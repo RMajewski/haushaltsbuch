@@ -7,6 +7,8 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.border.BevelBorder;
 
+import datas.LogData;
+
 /**
  * Zeigt die StatusBar an.
  * 
@@ -29,7 +31,7 @@ public class StatusBar extends JLabel {
 	/**
 	 * Liste, der in der Statuszeile angezeigten Nachrichten
 	 */
-	private List<String> _list;
+	private List<LogData> _list;
 
 	/**
 	 * Initalisieren der StatusBar
@@ -41,7 +43,7 @@ public class StatusBar extends JLabel {
 		setBorder(new BevelBorder(BevelBorder.LOWERED));
 		
 		// Liste initalisieren
-		_list = new ArrayList<String>();
+		_list = new ArrayList<LogData>();
 	}
 	
 	/**
@@ -61,7 +63,48 @@ public class StatusBar extends JLabel {
 	public void setMessage(String message)
 	{
 		setText(message);
-		_list.add(message);
+		_list.add(new LogData(message));
+	}
+	
+	/**
+	 * Speichert die übergebene Nachricht und markiert sie so, dass sie nicht
+	 * ausgegeben werden soll
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 */
+	public void setMessageAsNoOut(String message) {
+		setText(message);
+		_list.add(new LogData(message, LogData.NO_OUT));
+	}
+	
+	/**
+	 * Speichert die übergebene Nachricht und markiert sie als Fehler.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 */
+	public void setMessageAsError(String message) {
+		setText(message);
+		_list.add(new LogData(message, LogData.ERROR));
+	}
+	
+	/**
+	 * Speichert die übergebene Nachricht und markeirt sie als Warnung.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 */
+	public void setMessageAsWarning(String message) {
+		setText(message);
+		_list.add(new LogData(message, LogData.WARNING));
+	}
+	
+	/**
+	 * Speichert die Übergebene Nachricht als Erfolgreich.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll.
+	 */
+	public void setMessageAsOk(String message) {
+		setText(message);
+		_list.add(new LogData(message, LogData.OK));
 	}
 	
 	/**
@@ -69,7 +112,7 @@ public class StatusBar extends JLabel {
 	 * 
 	 * @return Liste mit den Log-Einträgen
 	 */
-	public List<String> getLog() {
+	public List<LogData> getLog() {
 		return _list;
 	}
 }

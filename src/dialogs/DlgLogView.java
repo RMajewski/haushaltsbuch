@@ -8,6 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
+import datas.LogData;
+import elements.StatusBar;
+import renderer.LogViewListRenderer;
+
 public class DlgLogView extends JDialog {
 
 	/**
@@ -21,7 +25,7 @@ public class DlgLogView extends JDialog {
 	 * 
 	 * @param owner Vater-Objekt
 	 */
-	public DlgLogView(Window owner, List<String> list) {
+	public DlgLogView(Window owner) {
 		// Dialog initalisieren
 		super(owner);
 		
@@ -35,10 +39,17 @@ public class DlgLogView extends JDialog {
 		setTitle("Log");
 		
 		// Liste anzeigen
-		final DefaultListModel<String> model = new DefaultListModel<String>();
-		for (int i = 0; i < list.size(); i++)
-			model.addElement(list.get(i));
-		JList<String> l = new JList<String>(model);
+		final DefaultListModel<LogData> model = new DefaultListModel<LogData>();
+		StatusBar status = StatusBar.getInstance();
+		for (int i = 0; i < status.getLog().size(); i++) {
+			LogData data = status.getLog().get(i);
+			if (data.getOut() != LogData.NO_OUT) {
+				model.addElement(data);
+			}
+		}
+		JList<LogData> l = new JList<LogData>();
+		l.setModel(model);
+		l.setCellRenderer(new LogViewListRenderer());
 		JScrollPane pane = new JScrollPane(l);
 		add(pane);
 		

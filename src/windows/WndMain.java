@@ -50,14 +50,14 @@ public class WndMain extends JFrame implements ActionListener {
 		setJMenuBar(new MainTop(this));
 		
 		// StatusBar initalisieren und anzeigen
-		status = new StatusBar();
+		status = StatusBar.getInstance();
 		getContentPane().add(status, java.awt.BorderLayout.SOUTH);
 		
 		// Datenbank vorbereiten
 		prepaireDatabase();
 		
 		// anzeigen
-		status.setMessage("Ready");
+		status.setMessageAsOk("Ready");
 		setVisible(true);
 	}
 
@@ -149,7 +149,7 @@ public class WndMain extends JFrame implements ActionListener {
 				
 			// Log anzeigen
 			case MainTop.LOG_VIEW:
-				new DlgLogView(this, status.getLog());
+				new DlgLogView(this);
 				break;
 		}
 		
