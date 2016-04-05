@@ -16,11 +16,15 @@ import javax.swing.border.BevelBorder;
  *
  */
 public class StatusBar extends JLabel {
-
 	/**
 	 * Serialisation ID
 	 */
 	private static final long serialVersionUID = 3659562286526820393L;
+	
+	/**
+	 * Speichert die Instanz der StatusBar
+	 */
+	private static final StatusBar _status = new StatusBar();
 	
 	/**
 	 * Liste, der in der Statuszeile angezeigten Nachrichten
@@ -38,6 +42,15 @@ public class StatusBar extends JLabel {
 		
 		// Liste initalisieren
 		_list = new ArrayList<String>();
+	}
+	
+	/**
+	 * Gibt die Instanz der StatusBar zurück
+	 * 
+	 * @return Instanz der Statusbar
+	 */
+	public static StatusBar getInstance() {
+		return _status;
 	}
 	
 	/**
