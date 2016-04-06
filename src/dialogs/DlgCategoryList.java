@@ -88,18 +88,18 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 				// Neu
 				case PopupCategoryList.NEW:
 					String nc = JOptionPane.showInputDialog(this, "Neue Kategorie", "Kategorie erstellen", JOptionPane.OK_CANCEL_OPTION);
-					System.out.println(nc);
 					if (nc != null) {
 						if (stm.executeUpdate("INSERT INTO 'category' ('name') VALUES ('" + nc + "')") > 0) {
 							StatusBar.getInstance().setMessageAsOk("Neue Kategory in der Datenbank gespeichert.");
+						} else {
+							StatusBar.getInstance().setMessageAsError("Die Neue Kategorie '" + nc + "' konnte nicht hinzugefügt werden.");
 						}
 					}
 					break;
 					
 				// Löschen
 				case PopupCategoryList.DELETE:
-					if (_table.getSelectedRow() >= 0)
-					{
+					if (_table.getSelectedRow() >= 0) {
 						// Daten ermitteln
 						CategoryData data = model.getRowDataAt(_table.getSelectedRow());
 						
@@ -108,10 +108,29 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 						if (d == 0) {
 							if (stm.executeUpdate("DELETE FROM 'category' WHERE id = " + data.getId() + ";") > 0) {
 								StatusBar.getInstance().setMessageAsOk("Die Kategorie '" + data.getName() + "' (ID = " + data.getId() +") wurde gelöscht");
+							} else {
+								StatusBar.getInstance().setMessageAsError("Die Kategory '" + data.getName() + "' konnte nicht gelöscht werden.");
 							}
 						}
 					}
 					break;
+					
+				// Ändern
+				case PopupCategoryList.CHANGE:
+					if (_table.getSelectedRow() >= 0) {
+						// Daten ermitteln
+						CategoryData data = model.getRowDataAt(_table.getSelectedRow());
+						
+						// Kategorie ändern
+						String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Kategorie ändern", JOptionPane.OK_CANCEL_OPTION);
+						if ((cc != null) && (cc.compareTo(data.getName()) != 0)) {
+							if (stm.executeUpdate("UPDATE 'category' SET name = '" + cc + "' WHERE id = " + data.getId()) > 0) {
+								StatusBar.getInstance().setMessageAsOk("Die Kategorie '" + data.getName() +"' wurde in '" + cc + "' geändert.");
+							} else {
+								StatusBar.getInstance().setMessageAsError("Der Name der Kategorie '" + data.getName() + "' konnte nicht geändert werden.");
+							}
+						}
+					}
 			}
 		} catch (SQLException e) {
 			System.err.println("Fehler beim Zugriff auf die Datenbank.");
