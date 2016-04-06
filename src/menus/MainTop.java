@@ -105,9 +105,12 @@ public class MainTop extends JMenuBar {
 	}
 	
 	/**
+	 * Erzeugt das Menü für das Logbuch.
 	 * 
-	 * @param listener
-	 * @return
+	 * @param listener Listener, auf das Drücken eines Menü-Elementes reagieren
+	 * soll.
+	 * 
+	 * @return Erzeugtes Log-Menü
 	 */
 	private JMenu createLogMenu(ActionListener listener) {
 		// Log-Menü initalisieren

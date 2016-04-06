@@ -113,7 +113,7 @@ public class DbController {
 	/**
 	 * Überprüft ob eine Verbindung zur Datenbank besteht.
 	 * 
-	 * @return
+	 * @return Besteht eine Verbindung zur Datenbank?
 	 */
 	public boolean isConnection()
 		throws SQLException
@@ -128,8 +128,10 @@ public class DbController {
 	}
 
 	/**
+	 * Erzeugt ein {@link java.sql.Statement}
 	 * 
-	 * @return
+	 * @return Erzeugtes SQL-Statement
+	 * 
 	 * @throws SQLException
 	 */
 	public Statement createStatement()
@@ -139,9 +141,12 @@ public class DbController {
 	}
 	
 	/**
+	 * Erzeugt ein {@link java.sql.PreparedStatement}
 	 * 
-	 * @param sql
-	 * @return
+	 * @param sql SQL-Befehl der ausgeführt werden soll
+	 * 
+	 * @return Erzeugtes SQL-PreparedStatement
+	 * 
 	 * @throws SQLException
 	 */
 	public PreparedStatement prepareStatement(String sql)
@@ -151,8 +156,12 @@ public class DbController {
 	}
 	
 	/**
+	 * Legt fest, ob der AutoCommit ausgeführt werden soll oder nicht.
+	 * <b>true</b>, der AutoCommit soll ausgeführt werden. <b>false</b>, der
+	 * AutoCommit soll nicht ausgeführt werden.
 	 * 
-	 * @param autoCommit
+	 * @param autoCommit Soll der AutoCommit ausgeführt werden?
+	 * 
 	 * @throws SQLException
 	 */
 	public void setAutoCommit(boolean autoCommit)

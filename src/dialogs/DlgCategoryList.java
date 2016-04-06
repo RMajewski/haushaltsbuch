@@ -3,11 +3,15 @@ package dialogs;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import db.DbController;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
 import tables.models.CategoryListModel;
@@ -65,5 +69,19 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		try {
+			switch (ae.getActionCommand()) {
+				// Neu
+				case PopupCategoryList.NEW:
+					String nc = JOptionPane.showInputDialog(this, "Neue Kategorie", "Kategorie erstellen", JOptionPane.OK_CANCEL_OPTION);
+					if (nc != null) {
+						Statement stm = DbController.getInstance().createStatement();
+						
+					}
+					break;
+			}
+		} catch (SQLException e) {
+			
+		}
 	}
 }

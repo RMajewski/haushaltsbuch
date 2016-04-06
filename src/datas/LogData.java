@@ -70,8 +70,7 @@ public class LogData {
 	/**
 	 * Gibt die gespeicherte Nachricht zurück;
 	 * 
-	 * return Nachricht, die gespeichert wurde
-	 * @return 
+	 * @return Nachricht, die gespeichert wurde
 	 */
 	public String getMessage() {
 		return _message;

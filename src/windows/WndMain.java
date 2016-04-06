@@ -2,6 +2,7 @@ package windows;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,11 +16,12 @@ import dialogs.DlgLogView;
 import elements.StatusBar;
 import menus.MainTop;
 
+// TODO Desktop für die Fenster initalisieren.
+
 /**
  * Klasse für das Hauptfenster.
  * 
  * @author René Majewski
- *
  */
 public class WndMain extends JFrame implements ActionListener {
 	/**

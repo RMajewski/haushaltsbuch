@@ -81,7 +81,7 @@ public class CategoryData {
 	/**
 	 * Setzt die Kategorie der ID auf den übergebenen Wert.
 	 * 
-	 * @param _id Neue ID der Kategorie
+	 * @param id Neue ID der Kategorie
 	 */
 	public void setId(int id) {
 		_id = id;

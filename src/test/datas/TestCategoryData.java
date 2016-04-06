@@ -68,7 +68,7 @@ public class TestCategoryData {
 	/**
 	 * Testet, ob der Konstruktor mit der übergebenen ID und den übergebenen
 	 * Namen richtig arbeitet.
-	 * ({@link datas.CategoryData#CategoryData(int, java.String)})
+	 * ({@link datas.CategoryData#CategoryData(int, String)})
 	 */
 	@Test
 	public void testCategoryDataIntString() {
@@ -117,7 +117,7 @@ public class TestCategoryData {
 	
 	/**
 	 * Testet, ob der Name richtig übernommen wird.
-	 * {@link datas.CategoryData#setName(java.String)}
+	 * {@link datas.CategoryData#setName(String)}
 	 */
 	@Test
 	public void testSetName() {
@@ -128,7 +128,7 @@ public class TestCategoryData {
 	
 	/**
 	 * Testet, ob ein leerer Name erzeugt wird, wenn null übergeben wird.
-	 * {@link datas.CategoryData#setName(java.String)}
+	 * {@link datas.CategoryData#setName(String)}
 	 */
 	@Test
 	public void testSetNameWithNull() {
