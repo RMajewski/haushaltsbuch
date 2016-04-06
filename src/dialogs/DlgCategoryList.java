@@ -69,7 +69,9 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 		setVisible(true);
 	}
 
-	// TODO Eine Klasse für die einzelnen Datenbank-Abfragen anlegen
+	// TODO Eine Klasse für die einzelnen Datenbank-Abfragen anlegen.
+	
+	// TODO Bei mehreren markierten Zeilen, alle markierten Zeilen löschen.
 	
 	/**
 	 * Reagiert auf die einzelnen Einträge im PopupMenu.
@@ -94,6 +96,10 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 						} else {
 							StatusBar.getInstance().setMessageAsError("Die Neue Kategorie '" + nc + "' konnte nicht hinzugefügt werden.");
 						}
+
+						// Tabelle neu zeichnen
+						model.dataRefresh();
+						model.fireTableDataChanged();
 					}
 					break;
 					
@@ -111,6 +117,11 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 							} else {
 								StatusBar.getInstance().setMessageAsError("Die Kategory '" + data.getName() + "' konnte nicht gelöscht werden.");
 							}
+							
+							// Tabelle neu zeichnen
+							model.dataRefresh();
+							model.fireTableDataChanged();
+
 						}
 					}
 					break;
@@ -129,6 +140,10 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 							} else {
 								StatusBar.getInstance().setMessageAsError("Der Name der Kategorie '" + data.getName() + "' konnte nicht geändert werden.");
 							}
+
+							// Tabelle neu zeichnen
+							model.dataRefresh();
+							model.fireTableDataChanged();
 						}
 					}
 			}

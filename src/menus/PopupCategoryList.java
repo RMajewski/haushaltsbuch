@@ -32,11 +32,6 @@ public class PopupCategoryList extends JPopupMenu {
 	public static final String NEW = "PopupCategoryNew";
 	
 	/**
-	 * ActionCommand, um die Tabelle neu aufzubauen
-	 */
-	public static final String RESET = "PopupCategoryPopup";
-	
-	/**
 	 * Initalisiert das Popup-Menü
 	 */
 	public PopupCategoryList(ActionListener listener) {
@@ -60,16 +55,6 @@ public class PopupCategoryList extends JPopupMenu {
 		item = new JMenuItem("Löschen");
 		item.setMnemonic('L');
 		item.setActionCommand(DELETE);
-		item.addActionListener(listener);
-		add(item);
-		
-		// Seperator
-		addSeparator();
-		
-		// Tabelle neu aufbauen
-		item = new JMenuItem("Tabelle aktualisieren");
-		item.setMnemonic('T');
-		item.setActionCommand(RESET);
 		item.addActionListener(listener);
 		add(item);
 	}

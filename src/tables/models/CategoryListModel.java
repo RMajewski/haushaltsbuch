@@ -37,18 +37,8 @@ public class CategoryListModel extends AbstractTableModel {
 		
 		_datas = new ArrayList<CategoryData>();
 		
-		// Daten aus Datenbank lesen
-		try {
-			DbController db = DbController.getInstance();
-			Statement stmt = db.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, name FROM category ORDER BY id ASC;");
-			while(rs.next()) {
-				_datas.add(new CategoryData(rs.getInt("id"), rs.getString("name")));
-			}
-		} catch (SQLException e) {
-			System.err.println("Fehler beim abrufen von Daten aus der Datenbank");
-			e.printStackTrace();
-		}
+		dataRefresh();
+		
 	}
 
 	/**
@@ -105,4 +95,24 @@ public class CategoryListModel extends AbstractTableModel {
 		return _datas.get(row);
 	}
 
+	/**
+	 * Liest die Daten aus der Datenbank neu ein
+	 */
+	public void dataRefresh() {
+		// Liste mit Daten leeren
+		_datas.clear();
+		
+		// Daten aus Datenbank lesen
+		try {
+			DbController db = DbController.getInstance();
+			Statement stmt = db.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id, name FROM category ORDER BY id ASC;");
+			while(rs.next()) {
+				_datas.add(new CategoryData(rs.getInt("id"), rs.getString("name")));
+			}
+		} catch (SQLException e) {
+			System.err.println("Fehler beim abrufen von Daten aus der Datenbank");
+			e.printStackTrace();
+		}
+	}
 }
