@@ -6,18 +6,14 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import tables.models.CategoryListModel;
+
 public class DlgCategoryList extends JDialog {
 
 	/**
 	 * Serialisation ID
 	 */
 	private static final long serialVersionUID = -3602076466416544711L;
-	
-	/**
-	 * Namen der Tabellen-Spalten
-	 */
-	private String[] columnNames = {"ID", "Kategorie"};
-	
 	
 	/**
 	 * Initalisiert den den Dialog und die Tabelle. Anschließend wird der
@@ -39,8 +35,9 @@ public class DlgCategoryList extends JDialog {
 		setTitle("Kategorien");
 		
 		// Tabelle initalisieren
-		String[][] test =  { {"0", "1"} };
-		JTable table = new JTable(test, columnNames);
+		JTable table = new JTable(new CategoryListModel());
+		table.getColumnModel().getColumn(0).setHeaderValue("ID");
+		table.getColumnModel().getColumn(1).setHeaderValue("Kategorie");
 		add(new JScrollPane(table));
 		
 		// Anzeigen
