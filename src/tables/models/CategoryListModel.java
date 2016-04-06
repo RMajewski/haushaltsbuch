@@ -90,5 +90,19 @@ public class CategoryListModel extends AbstractTableModel {
 		else
 			return _datas.get(row).getName();
 	}
+	
+	/**
+	 * Gibt die Daten der angegebenen Zeile wieder.
+	 * 
+	 * @param row Zeile, von der die Daten zurück gegeben werden sollen.
+	 * 
+	 * @return Daten der angegeben Zeile
+	 */
+	public CategoryData getRowDataAt(int row) {
+		if (row == -1)
+			return new CategoryData();
+		
+		return _datas.get(row);
+	}
 
 }

@@ -11,7 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import datas.CategoryData;
 import db.DbController;
+import elements.StatusBar;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
 import tables.models.CategoryListModel;
@@ -26,7 +28,12 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 	/**
 	 * Speichert das Popup-Menü
 	 */
-	PopupCategoryList _popup;
+	private PopupCategoryList _popup;
+	
+	/**
+	 * Speichert die Tabelle mit den Kategorien.
+	 */
+	private JTable _table;
 	
 	/**
 	 * Initalisiert den den Dialog und die Tabelle. Anschließend wird der
@@ -48,20 +55,22 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 		setTitle("Kategorien");
 		
 		// Tabelle initalisieren
-		JTable table = new JTable(new CategoryListModel());
-		table.getColumnModel().getColumn(0).setHeaderValue("ID");
-		table.getColumnModel().getColumn(1).setHeaderValue("Kategorie");
-		add(new JScrollPane(table));
+		_table = new JTable(new CategoryListModel());
+		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
+		_table.getColumnModel().getColumn(1).setHeaderValue("Kategorie");
+		add(new JScrollPane(_table));
 		
 		// Popup-Menü initalisieren
 		_popup = new PopupCategoryList(this);
-		table.addMouseListener(new PopupMenuMouseListener(_popup));
+		_table.addMouseListener(new PopupMenuMouseListener(_popup));
 		
 		// Anzeigen
 		pack();
 		setVisible(true);
 	}
 
+	// TODO Eine Klasse für die einzelnen Datenbank-Abfragen anlegen
+	
 	/**
 	 * Reagiert auf die einzelnen Einträge im PopupMenu.
 	 * 
@@ -69,19 +78,44 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		CategoryListModel model = (CategoryListModel)_table.getModel();
+
 		try {
+			Statement stm = DbController.getInstance().createStatement();
+			
+			// Welcher Popup-Menü-Punkt wurde ausgewählt?
 			switch (ae.getActionCommand()) {
 				// Neu
 				case PopupCategoryList.NEW:
 					String nc = JOptionPane.showInputDialog(this, "Neue Kategorie", "Kategorie erstellen", JOptionPane.OK_CANCEL_OPTION);
+					System.out.println(nc);
 					if (nc != null) {
-						Statement stm = DbController.getInstance().createStatement();
+						if (stm.executeUpdate("INSERT INTO 'category' ('name') VALUES ('" + nc + "')") > 0) {
+							StatusBar.getInstance().setMessageAsOk("Neue Kategory in der Datenbank gespeichert.");
+						}
+					}
+					break;
+					
+				// Löschen
+				case PopupCategoryList.DELETE:
+					if (_table.getSelectedRow() >= 0)
+					{
+						// Daten ermitteln
+						CategoryData data = model.getRowDataAt(_table.getSelectedRow());
 						
+						// Kategorie löschen? 
+						int d = JOptionPane.showConfirmDialog(this, "Soll die ausgewählte Kategorie '" + data.getName() +"'(" + data.getId() + ") wirklich gelöscht werden?", "Kategorie löschen", JOptionPane.YES_NO_OPTION);
+						if (d == 0) {
+							if (stm.executeUpdate("DELETE FROM 'category' WHERE id = " + data.getId() + ";") > 0) {
+								StatusBar.getInstance().setMessageAsOk("Die Kategorie '" + data.getName() + "' (ID = " + data.getId() +") wurde gelöscht");
+							}
+						}
 					}
 					break;
 			}
 		} catch (SQLException e) {
-			
+			System.err.println("Fehler beim Zugriff auf die Datenbank.");
+			e.printStackTrace();
 		}
 	}
 }
