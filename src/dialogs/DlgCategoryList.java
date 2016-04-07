@@ -71,7 +71,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 
 	// TODO Eine Klasse für die einzelnen Datenbank-Abfragen anlegen.
 	
-	// TODO Bei mehreren markierten Zeilen, alle markierten Zeilen löschen.
+	// FIXME Bei mehreren markierten Zeilen, alle markierten Zeilen löschen.
 	
 	/**
 	 * Reagiert auf die einzelnen Einträge im PopupMenu.
@@ -148,7 +148,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 					}
 			}
 		} catch (SQLException e) {
-			System.err.println("Fehler beim Zugriff auf die Datenbank.");
+			StatusBar.getInstance().setMessageAsError("Fehler beim Zugriff auf die Datenbank.");
 			e.printStackTrace();
 		}
 	}
