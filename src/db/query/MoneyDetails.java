@@ -32,4 +32,10 @@ public class MoneyDetails implements QueryInterface {
 		return null;
 	}
 
+	@Override
+	public String select() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

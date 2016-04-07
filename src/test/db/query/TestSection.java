@@ -9,7 +9,7 @@ import db.query.Section;
 import test.TestHelper;
 
 /**
- * Enthält die Tests, um die Klasse {@link db.query.Selection} zu testen.
+ * Enthält die Tests, um die Klasse {@link db.query.Section} zu testen.
  * 
  * @author René Majewski
  */
