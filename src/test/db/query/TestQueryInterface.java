@@ -36,7 +36,13 @@ public class TestQueryInterface {
 			if (method.getName().equals(name)) {
 				return method;
 			}
+			
+			System.out.println(method.getName());
 		}
+
+		System.out.println();
+		System.out.println();
+		System.out.println();
 		
 		// Da bisher nicht beendet wurde, null zurück geben
 		return null;
@@ -155,12 +161,40 @@ public class TestQueryInterface {
 	}
 	
 	/**
-	 * Testetm, ob der Rückgabewert der Methode
+	 * Testet, ob der Rückgabewert der Methode
 	 * {@link db.query.QueryInterface#delete(int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
 	public void testDeleteReturnString() {
 		assertEquals("java.lang.String", getMethod("delete").getReturnType().getName());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#select()}
+	 * deklariert wurde.
+	 */
+	@Test
+	public void testSelectDeclaration() {
+		assertTrue(getMethod("select") != null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#select()}
+	 * keinen Parameter besitzt.
+	 */
+	@Test
+	public void testSelectNoParameter() {
+		assertEquals(0, getMethod("select").getParameterTypes().length);
+	}
+	
+	/**
+	 * Testet, ob der Rückgabewert der Methode
+	 * {@link db.query.QueryInterface#select()} vom Typ
+	 * {@link java.lang.String} ist.
+	 */
+	@Test
+	public void testSelectReturnString() {
+		assertEquals("java.lang.String", getMethod("select").getReturnType().getName());
 	}
 }

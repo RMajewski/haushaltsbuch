@@ -284,4 +284,13 @@ public class TestCategory extends TestHelper {
 	public void testUpdateStringMinusOneAndNullAsParametersHasTwoQueries() {
 		assertEquals(2, frequency(_category.update(-1, null), "?"));
 	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Category#select()} keine
+	 * leere Zeichenkette liefert.
+	 */
+	@Test
+	public void testSelectReturnNotNull() {
+		assertStringIsNotNull(_category.select());
+	}
 }

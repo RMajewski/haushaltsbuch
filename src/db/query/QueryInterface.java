@@ -34,4 +34,10 @@ public interface QueryInterface {
 	 * @param id ID des Datensatzes
 	 */
 	public String update(int id);
+	
+	/**
+	 * Gibt eine Zeichenkette zurück, in der alle Datensätze zurück gegeben
+	 * werden.
+	 */
+	public String select();
 }
