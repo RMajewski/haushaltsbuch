@@ -91,7 +91,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 				case PopupCategoryList.NEW:
 					String nc = JOptionPane.showInputDialog(this, "Neue Kategorie", "Kategorie erstellen", JOptionPane.OK_CANCEL_OPTION);
 					if (nc != null) {
-						if (stm.executeUpdate("INSERT INTO 'category' ('name') VALUES ('" + nc + "')") > 0) {
+						if (stm.executeUpdate(DbController.queries().category().insert(nc)) > 0) {
 							StatusBar.getInstance().setMessageAsOk("Neue Kategory in der Datenbank gespeichert.");
 						} else {
 							StatusBar.getInstance().setMessageAsError("Die Neue Kategorie '" + nc + "' konnte nicht hinzugefügt werden.");
@@ -112,7 +112,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 						// Kategorie löschen? 
 						int d = JOptionPane.showConfirmDialog(this, "Soll die ausgewählte Kategorie '" + data.getName() +"'(" + data.getId() + ") wirklich gelöscht werden?", "Kategorie löschen", JOptionPane.YES_NO_OPTION);
 						if (d == 0) {
-							if (stm.executeUpdate("DELETE FROM 'category' WHERE id = " + data.getId() + ";") > 0) {
+							if (stm.executeUpdate(DbController.queries().category().delete(data.getId())) > 0) {
 								StatusBar.getInstance().setMessageAsOk("Die Kategorie '" + data.getName() + "' (ID = " + data.getId() +") wurde gelöscht");
 							} else {
 								StatusBar.getInstance().setMessageAsError("Die Kategory '" + data.getName() + "' konnte nicht gelöscht werden.");
@@ -135,7 +135,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 						// Kategorie ändern
 						String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Kategorie ändern", JOptionPane.OK_CANCEL_OPTION);
 						if ((cc != null) && (cc.compareTo(data.getName()) != 0)) {
-							if (stm.executeUpdate("UPDATE 'category' SET name = '" + cc + "' WHERE id = " + data.getId()) > 0) {
+							if (stm.executeUpdate(DbController.queries().category().update(data.getId(), cc)) > 0) {
 								StatusBar.getInstance().setMessageAsOk("Die Kategorie '" + data.getName() +"' wurde in '" + cc + "' geändert.");
 							} else {
 								StatusBar.getInstance().setMessageAsError("Der Name der Kategorie '" + data.getName() + "' konnte nicht geändert werden.");

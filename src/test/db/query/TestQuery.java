@@ -14,14 +14,13 @@ import db.query.QueryInterface;
  *
  */
 public class TestQuery {
-	
 	/**
 	 * Testet ob das Attribut {@link db.query.Query#category} ein Objekt der
 	 * Klasse {@link db.query.Category} ist.
 	 */
 	@Test
 	public void testCategoryRightClassName() {
-		assertEquals("db.query.Category", Query.category.getClass().getName());
+		assertEquals("db.query.Category", Query.getInstance().category().getClass().getName());
 	}
 	
 	/**
@@ -30,7 +29,7 @@ public class TestQuery {
 	 */
 	@Test
 	public void testCategoryInstanceofQueryInterface() {
-		assertTrue(Query.category instanceof QueryInterface);
+		assertTrue(Query.getInstance().category() instanceof QueryInterface);
 	}
 	
 	/**
@@ -39,7 +38,7 @@ public class TestQuery {
 	 */
 	@Test
 	public void testSectionRightClassName() {
-		assertEquals("db.query.Section", Query.section.getClass().getName());
+		assertEquals("db.query.Section", Query.getInstance().section().getClass().getName());
 	}
 	
 	/**
@@ -48,7 +47,7 @@ public class TestQuery {
 	 */
 	@Test
 	public void testSectionInstanceofQueryInterface() {
-		assertTrue(Query.section instanceof QueryInterface);
+		assertTrue(Query.getInstance().section() instanceof QueryInterface);
 	}
 	
 	/**
@@ -57,7 +56,7 @@ public class TestQuery {
 	 */
 	@Test
 	public void testMoneyDetailsRightClassName() {
-		assertEquals("db.query.MoneyDetails", Query.moneyDetails.getClass().getName());
+		assertEquals("db.query.MoneyDetails", Query.getInstance().moneyDetails().getClass().getName());
 	}
 	
 	/**
@@ -66,7 +65,7 @@ public class TestQuery {
 	 */
 	@Test
 	public void testMoneyDetailsInstanceofQueryInterface() {
-		assertTrue(Query.moneyDetails instanceof QueryInterface);
+		assertTrue(Query.getInstance().moneyDetails() instanceof QueryInterface);
 	}
 	
 	/**
@@ -75,7 +74,7 @@ public class TestQuery {
 	 */
 	@Test
 	public void testMoneyRightClassName() {
-		assertEquals("db.query.Money", Query.money.getClass().getName());
+		assertEquals("db.query.Money", Query.getInstance().money().getClass().getName());
 	}
 	
 	/**
@@ -84,7 +83,7 @@ public class TestQuery {
 	 */
 	@Test
 	public void testMoneyInstanceofQueryInterface() {
-		assertTrue(Query.money instanceof QueryInterface);
+		assertTrue(Query.getInstance().money() instanceof QueryInterface);
 	}
 
 }

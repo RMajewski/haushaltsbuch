@@ -74,14 +74,14 @@ public class WndMain extends JFrame implements ActionListener {
 			Statement stm = db.createStatement();
 			
 			// Tabelle für die einzelnen Kategorien
-			stm.executeUpdate("CREATE TABLE IF NOT EXISTS 'category' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'name' TEXT);");
+			stm.executeUpdate(DbController.queries().category().createTable());
 			
 			// Überprüfen ob standard Kategorien schon eingetragen wurden
 			ResultSet rs = stm.executeQuery("SELECT count(*) FROM 'category'");
 			if (rs.getInt(1) == 0)
 			{
 				// Kategorien anlegen
-				PreparedStatement ps = db.prepareStatement("INSERT INTO 'category' ('name') VALUES (?);");
+				PreparedStatement ps = db.prepareStatement(DbController.queries().category().insert());
 				ps.setString(1, "Lebensmittel");
 				ps.addBatch();
 				ps.setString(1, "Getränke");
@@ -118,14 +118,19 @@ public class WndMain extends JFrame implements ActionListener {
 			}
 			status.setMessage("Datenbank: Tabelle der Kategorien ist fertig vorbereitet");
 			
-			// Tabelle für die einzelnen Ausgaben
-			stm.executeUpdate("CREATE TABLE IF NOT EXISTS 'outgoing' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'day' DATE, 'category' INTEGER, 'money' REAL, 'cash' BOOLEAN, 'comment' TEXT);");
-			status.setMessage("Datenbank: Tabelle der einzelnen Ausgaben ist fertig vorbereitet");
+			// Tabelle für die Geschäfte
+			stm.executeUpdate(DbController.queries().section().createTable());
+			status.setMessage("Datenbank: Tabelle der Geschäfte ist fertig vorbereitet.");
 			
-			// Tabelle für die einzelnen Einnahmen
-			stm.executeUpdate("CREATE TABLE IF NOT EXISTS 'ingoing' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'day' DATE, 'category' INTEGER, 'money' REAL, 'comment' TEXT)");
-			status.setMessage("Datenbank: Tabelle der einzelnen Einnahmen ist fertig vorbereitet");
+			// TODO SQL-Abfragen für die Tabelle money fertig implementieren
+			// Tabelle für die Ein- und Ausgaben
+			//stm.executeUpdate(DbController.queries().money().createTable());
+			//status.setMessage("Datenbank: Tabelle der Ein- und Ausgaben ist fertig vorbereitet");
 			
+			// TODO SQL-Abfragen für die Tabelle money_details fertig implementieren
+			// Tabelle für die Details zu den Ein- und Ausgaben
+			//stm.executeUpdate(DbController.queries().moneyDetails().createTable());
+			//status.setMessage("Datenbank: Tabelle der Details für Ein- und Ausgaben ist fertig vorbereitet.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

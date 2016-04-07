@@ -28,7 +28,7 @@ public class Section implements QueryInterface {
 	 */
 	@Override
 	public String insert() {
-		return "INSERT INTO 'section' ('name') VALUES ('?');";
+		return "INSERT INTO 'section' ('name') VALUES (?);";
 	}
 	
 	/**

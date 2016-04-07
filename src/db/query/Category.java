@@ -28,7 +28,7 @@ public class Category implements QueryInterface {
 	 */
 	@Override
 	public String insert() {
-		return "INSERT INTO 'category' ('name') VALUES ('?');";
+		return "INSERT INTO 'category' ('name') VALUES (?);";
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class Category implements QueryInterface {
 		String ret = insert();
 		
 		if (name != null && !name.isEmpty()) {
-			ret = ret.replace("?", name);
+			ret = ret.replace("?", "'" + name + "'");
 		}
 
 		return ret;
