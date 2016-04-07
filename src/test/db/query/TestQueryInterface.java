@@ -36,14 +36,8 @@ public class TestQueryInterface {
 			if (method.getName().equals(name)) {
 				return method;
 			}
-			
-			System.out.println(method.getName());
 		}
-
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		
+	
 		// Da bisher nicht beendet wurde, null zurück geben
 		return null;
 	}

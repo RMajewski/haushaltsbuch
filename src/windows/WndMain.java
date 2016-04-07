@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import db.DbController;
 import dialogs.DlgCategoryList;
 import dialogs.DlgLogView;
+import dialogs.DlgSectionList;
 import elements.StatusBar;
 import menus.MainTop;
 
@@ -150,13 +151,18 @@ public class WndMain extends JFrame implements ActionListener {
 				break;
 			
 			// Kategorien anzeigen
-			case MainTop.DB_CATEGORY_LIST:
+			case MainTop.DB_CATEGORY:
 				new DlgCategoryList(this);
 				break;
 				
 			// Log anzeigen
 			case MainTop.LOG_VIEW:
 				new DlgLogView(this);
+				break;
+				
+			// Geschäfte anzeigen
+			case MainTop.DB_SECTION:
+				new DlgSectionList(this);
 				break;
 		}
 		

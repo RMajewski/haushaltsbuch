@@ -18,6 +18,11 @@ import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
 import tables.models.CategoryListModel;
 
+/**
+ * In diesen Dialog werden die einzelnen Kategorien angezeigt.
+ * 
+ * @author René Majewski
+ */
 public class DlgCategoryList extends JDialog implements ActionListener {
 
 	/**
@@ -36,7 +41,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 	private JTable _table;
 	
 	/**
-	 * Initalisiert den den Dialog und die Tabelle. Anschließend wird der
+	 * Initalisiert den Dialog und die Tabelle. Anschließend wird der
 	 * Dialog angezeigt.
 	 * 
 	 * @param owner Vater-Fenster
@@ -69,8 +74,6 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 		setVisible(true);
 	}
 
-	// TODO Eine Klasse für die einzelnen Datenbank-Abfragen anlegen.
-	
 	// FIXME Bei mehreren markierten Zeilen, alle markierten Zeilen löschen.
 	
 	/**

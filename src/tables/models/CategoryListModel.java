@@ -12,9 +12,16 @@ import datas.CategoryData;
 import db.DbController;
 
 /**
+ * FIXME CategoryListModel und SectionListModel zusammenfassen -> String für
+ * SQL-Abfrage bei Konstruktor übergeben.
+ */
+
+/**
  * Zeigt die einzelnen Kategorien an.
  * 
  * @author René Majewski
+ * 
+ * @deprecated
  */
 public class CategoryListModel extends AbstractTableModel {
 
@@ -106,7 +113,7 @@ public class CategoryListModel extends AbstractTableModel {
 		try {
 			DbController db = DbController.getInstance();
 			Statement stmt = db.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, name FROM category ORDER BY id ASC;");
+			ResultSet rs = stmt.executeQuery(DbController.queries().category().select());
 			while(rs.next()) {
 				_datas.add(new CategoryData(rs.getInt("id"), rs.getString("name")));
 			}

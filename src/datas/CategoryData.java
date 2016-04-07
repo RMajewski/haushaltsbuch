@@ -1,10 +1,13 @@
 package datas;
 
+// FIXME CategoryData und SectionDatan zusammenfassen
+
 /**
  * Speichert Informationen zu einer Kategorie.
  * 
  * @author René Majewski
  *
+ * @deprecated
  */
 public class CategoryData {
 	/**

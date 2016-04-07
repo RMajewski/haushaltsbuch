@@ -35,14 +35,14 @@ public class MainTop extends JMenuBar {
 	public static final String LOG_VIEW = "LogAnzeigen";
 	
 	/**
-	 * ActionCommand für Datenbank -> Kategory -> Anzeigen
+	 * ActionCommand für Datenbank -> Kategory
 	 */
-	public static final String DB_CATEGORY_LIST = "DBCategoryList";
+	public static final String DB_CATEGORY = "DBCategoryList";
 	
 	/**
-	 * ActionCommand für Datenbank -> Kategory -> Hinzufügen
+	 * ActionCOmmand für Datenbank -> geschäft
 	 */
-	public static final String DB_CATEGORY_NEW = "Neu...";
+	public static final String DB_SECTION = "DBSectionList";
 
 	/**
 	 * Initalisiert das Menü
@@ -141,26 +141,19 @@ public class MainTop extends JMenuBar {
 		JMenu ret = new JMenu("Datenbank");
 		ret.setMnemonic('D');
 		
-		// Untermenü für die Kategorien
-		JMenu menu = new JMenu("Kategorie");
-		menu.setMnemonic('K');
-		
-		// Anzeigen
-		JMenuItem item = new JMenuItem("Anzeigen");
-		item.setMnemonic('A');
-		item.setActionCommand(DB_CATEGORY_LIST);
+		// Eintrag für die Kategor
+		JMenuItem item = new JMenuItem("Kategorie");
+		item.setMnemonic('K');
+		item.setActionCommand(DB_CATEGORY);
 		item.addActionListener(listener);
-		menu.add(item);
+		ret.add(item);
 		
-		// Neu
-		item = new JMenuItem(DB_CATEGORY_NEW);
-		item.setMnemonic('N');
-		item.setActionCommand(DB_CATEGORY_NEW);
+		// Eintrag für die Geschäfte
+		item = new JMenuItem("Geschäfte");
+		item.setMnemonic('G');
+		item.setActionCommand(DB_SECTION);
 		item.addActionListener(listener);
-		menu.add(item);
-		
-		// Untermenü einfügen
-		ret.add(menu);
+		ret.add(item);
 		
 		// Datenbank-Menü zurück geben
 		return ret;
