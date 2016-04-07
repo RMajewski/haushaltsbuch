@@ -8,8 +8,10 @@ import org.junit.runners.Suite;
 	test.datas.TestLogData.class,
 	test.datas.TestCategoryData.class,
 	
-	test.db.query.JQueryInterface.class,
-	test.db.query.TestQuery.class
+	test.db.query.TestQueryInterface.class,
+	test.db.query.TestQuery.class,
+	test.db.query.TestCategory.class,
+	test.db.query.TestSection.class
 })
 public class TestHaushaltsbuch {
 

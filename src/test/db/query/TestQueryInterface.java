@@ -16,7 +16,7 @@ import db.query.QueryInterface;
  * @author René Majewski
  *
  */
-public class JQueryInterface {
+public class TestQueryInterface {
 	/**
 	 * Speichert die einzelnen Methoden
 	 */
