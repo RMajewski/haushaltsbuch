@@ -18,8 +18,6 @@ import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
 import tables.models.IdNameListModel;
 
-// FIXME Popup-Menü auch bei leerer Tabelle anzeigen
-
 /**
  * In diesen Dialog werden die einzelnen Geschäfte angezeigt.
  * 
