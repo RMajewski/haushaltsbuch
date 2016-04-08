@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 import db.DbController;
 import listener.PopupMenuMouseListener;
@@ -58,6 +59,8 @@ public class DlgSectionList extends JDialog implements ActionListener {
 		_table = new JTable(new IdNameListModel(DbController.queries().section().select()));
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
 		_table.getColumnModel().getColumn(1).setHeaderValue("Geschäft");
+		_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		_table.setRowSelectionAllowed(true);
 		add(new JScrollPane(_table));
 		
 		// Popup-Menü initalisieren

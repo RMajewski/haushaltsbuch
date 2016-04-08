@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 import datas.IdNameData;
 import db.DbController;
@@ -63,6 +64,8 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 		_table = new JTable(new IdNameListModel(DbController.queries().category().select()));
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
 		_table.getColumnModel().getColumn(1).setHeaderValue("Kategorie");
+		_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		_table.setRowSelectionAllowed(true);
 		add(new JScrollPane(_table));
 		
 		// Popup-Menü initalisieren
@@ -73,8 +76,6 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 		pack();
 		setVisible(true);
 	}
-
-	// FIXME Bei mehreren markierten Zeilen, alle markierten Zeilen löschen.
 	
 	/**
 	 * Reagiert auf die einzelnen Einträge im PopupMenu.
