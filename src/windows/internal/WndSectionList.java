@@ -1,10 +1,9 @@
-package dialogs;
+package windows.internal;
 
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JDialog;
+import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -19,7 +18,7 @@ import tables.models.IdNameListModel;
  * 
  * @author René Majewski
  */
-public class DlgSectionList extends JDialog implements ActionListener {
+public class WndSectionList extends JInternalFrame implements ActionListener {
 
 	/**
 	 * Serilisation ID
@@ -39,21 +38,22 @@ public class DlgSectionList extends JDialog implements ActionListener {
 	/**
 	 * Initalisiert den Dialog und die Tabelle. Anschließend wird der Dialog
 	 * angezeigt.
-	 * 
-	 * @param owner Vater-Fenster
 	 */
-	public DlgSectionList(Window owner) {
+	public WndSectionList() {
 		// Dialog initalisieren
-		super(owner);
-		
-		// Nicht Modal
-		setModal(false);
+		super();
 		
 		// Größe
 		setSize(600, 400);
 		
 		// Title
 		setTitle("Geschäfte");
+		
+		// Eigenschaften des Fensters
+		setResizable(false);
+		setClosable(true);
+		setMaximizable(false);
+		setIconifiable(false);
 		
 		// Tabelle initalisieren
 		_table = new JTable(new IdNameListModel(DbController.queries().section().select()));

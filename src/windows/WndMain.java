@@ -8,16 +8,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
 import db.DbController;
-import dialogs.DlgCategoryList;
 import dialogs.DlgLogView;
-import dialogs.DlgSectionList;
 import elements.StatusBar;
 import menus.MainTop;
-
-// TODO Desktop für die Fenster initalisieren.
+import windows.internal.WndCategoryList;
+import windows.internal.WndSectionList;
 
 /**
  * Klasse für das Hauptfenster.
@@ -34,6 +33,11 @@ public class WndMain extends JFrame implements ActionListener {
 	 * StatusBar
 	 */
 	private StatusBar status;
+	
+	/**
+	 * Speichert den Desktop
+	 */
+	private JDesktopPane _desktop;
 
 	/**
 	 * Hauptfenster initalisieren
@@ -51,6 +55,10 @@ public class WndMain extends JFrame implements ActionListener {
 		
 		// Menü setzen
 		setJMenuBar(new MainTop(this));
+		
+		// Dekstop initalisieren
+		_desktop = new JDesktopPane();
+		add(_desktop);
 		
 		// StatusBar initalisieren und anzeigen
 		status = StatusBar.getInstance();
@@ -123,12 +131,12 @@ public class WndMain extends JFrame implements ActionListener {
 			stm.executeUpdate(DbController.queries().section().createTable());
 			status.setMessage("Datenbank: Tabelle der Geschäfte ist fertig vorbereitet.");
 			
-			// TODO SQL-Abfragen für die Tabelle money fertig implementieren
+			// FIXME SQL-Abfragen für die Tabelle money fertig implementieren
 			// Tabelle für die Ein- und Ausgaben
 			//stm.executeUpdate(DbController.queries().money().createTable());
 			//status.setMessage("Datenbank: Tabelle der Ein- und Ausgaben ist fertig vorbereitet");
 			
-			// TODO SQL-Abfragen für die Tabelle money_details fertig implementieren
+			// FIXME SQL-Abfragen für die Tabelle money_details fertig implementieren
 			// Tabelle für die Details zu den Ein- und Ausgaben
 			//stm.executeUpdate(DbController.queries().moneyDetails().createTable());
 			//status.setMessage("Datenbank: Tabelle der Details für Ein- und Ausgaben ist fertig vorbereitet.");
@@ -152,17 +160,17 @@ public class WndMain extends JFrame implements ActionListener {
 			
 			// Kategorien anzeigen
 			case MainTop.DB_CATEGORY:
-				new DlgCategoryList(this);
+				_desktop.add(new WndCategoryList());
+				break;
+				
+			// Geschäfte anzeigen
+			case MainTop.DB_SECTION:
+				_desktop.add(new WndSectionList());
 				break;
 				
 			// Log anzeigen
 			case MainTop.LOG_VIEW:
 				new DlgLogView(this);
-				break;
-				
-			// Geschäfte anzeigen
-			case MainTop.DB_SECTION:
-				new DlgSectionList(this);
 				break;
 		}
 		

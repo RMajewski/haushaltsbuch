@@ -1,12 +1,11 @@
-package dialogs;
+package windows.internal;
 
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JDialog;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,7 +23,7 @@ import tables.models.IdNameListModel;
  * 
  * @author René Majewski
  */
-public class DlgCategoryList extends JDialog implements ActionListener {
+public class WndCategoryList extends JInternalFrame implements ActionListener {
 
 	/**
 	 * Serialisation ID
@@ -44,21 +43,22 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 	/**
 	 * Initalisiert den Dialog und die Tabelle. Anschließend wird der
 	 * Dialog angezeigt.
-	 * 
-	 * @param owner Vater-Fenster
 	 */
-	public DlgCategoryList(Window owner) {
+	public WndCategoryList() {
 		// Dialog initalieren
-		super(owner);
-		
-		// Nicht modal
-		setModal(false);
+		super();
 		
 		// Größe
 		setSize(600, 400);
 		
 		// Titel
 		setTitle("Kategorien");
+		
+		// Eigenschaften des Fensters
+		setResizable(false);
+		setClosable(true);
+		setMaximizable(false);
+		setIconifiable(false);
 		
 		// Tabelle initalisieren
 		_table = new JTable(new IdNameListModel(DbController.queries().category().select()));
