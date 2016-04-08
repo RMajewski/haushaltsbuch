@@ -1,7 +1,5 @@
 package datas;
 
-import java.util.Date;
-
 /**
  * Speichert die Daten für einen Datensatz der Tabelle 'money'
  * 
@@ -26,7 +24,7 @@ public class MoneyData {
 	/**
 	 * Speichert das Datum
 	 */
-	private Date _date;
+	private long _date;
 	
 	/**
 	 * Speichert ob es eine Ein- oder Auszahlung ist
@@ -45,7 +43,7 @@ public class MoneyData {
 	 */
 	public MoneyData() {
 		_id = -1;
-		setDate(null);
+		_date = -1;
 		_inout = false;
 		setComment(null);
 	}
@@ -74,7 +72,7 @@ public class MoneyData {
 	 * 
 	 * @param comment Beschreibung, die gespeichert werden soll.
 	 */
-	public MoneyData(int id, Date date, boolean inout, String comment) {
+	public MoneyData(int id, long date, boolean inout, String comment) {
 		_id = id;
 		setDate(date);
 		_inout = inout;
@@ -104,20 +102,16 @@ public class MoneyData {
 	 * 
 	 * @return Gespeichertes Datum
 	 */
-	public Date getDate() {
+	public long getDate() {
 		return _date;
 	}
 
 	/**
-	 * Es wird das Datum auf das übergebene Datum gesetzt. Ist das übergebene
-	 * Datum <b>null</b>, so wird das aktuelle Datum ermittelt.
+	 * Es wird das Datum auf das übergebene Datum gesetzt.
 	 * 
 	 * @param date Neues Datum, was gespeichert werden soll.
 	 */
-	public void setDate(Date date) {
-		if (date == null)
-			_date = new Date();
-		else
+	public void setDate(long date) {
 			_date = date;
 	}
 

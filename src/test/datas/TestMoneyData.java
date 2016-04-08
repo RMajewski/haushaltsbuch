@@ -30,7 +30,7 @@ public class TestMoneyData {
 	/**
 	 * Speichert das Datum
 	 */
-	private Date _date;
+	private long _date;
 	
 	/**
 	 * Speichert ob es sich um eine Ein- oder Ausgabe handelt.
@@ -50,7 +50,7 @@ public class TestMoneyData {
 	@Before
 	public void setUp() throws Exception {
 		_id = 100;
-		_date = new Date(new GregorianCalendar( 2016, Calendar.APRIL, 8 ).getTimeInMillis());
+		_date = (new GregorianCalendar( 2016, Calendar.APRIL, 8 )).getTimeInMillis();
 		_inout = true;
 		_comment = "Dies ist ein Test!";
 		_data = new MoneyData(_id, _date, _inout, _comment);
@@ -65,7 +65,7 @@ public class TestMoneyData {
 	public void testMoneyData() {
 		_data = new MoneyData();
 		assertEquals(-1, _data.getId());
-		assertEquals(new Date(), _data.getDate());
+		assertEquals(-1, _data.getDate());
 		assertEquals(false, _data.getInOut());
 		assertEquals(new String(), _data.getComment());
 	}
@@ -79,7 +79,7 @@ public class TestMoneyData {
 	public void testMoneyDataInt() {
 		_data = new MoneyData(_id);
 		assertEquals(_id, _data.getId());
-		assertEquals(new Date(), _data.getDate());
+		assertEquals(-1, _data.getDate());
 		assertEquals(false, _data.getInOut());
 		assertEquals(new String(), _data.getComment());
 	}
@@ -114,23 +114,6 @@ public class TestMoneyData {
 		assertEquals(_inout, _data.getInOut());
 		assertEquals(new String(), _data.getComment());
 	}
-	
-	/**
-	 * Testet, ob der Konstruktor mit der übergebenen Id, <b>null</b> als
-	 * Datum, der übergebenen Ein- oder Auszahlung und der übergebenen
-	 * Beschreibung richtig initalisiert.
-	 * 
-	 * @see datas.MoneyData#MoneyData(int, Date, boolean, String)
-	 */
-	@Test
-	public void testMoneyDataInitDateBooleanStringNullAsDate() {
-		_data = new MoneyData(_id, null, _inout, _comment);
-		assertEquals(_id, _data.getId());
-		assertEquals(new Date(), _data.getDate());
-		assertEquals(_inout, _data.getInOut());
-		assertEquals(_comment, _data.getComment());
-	}
-
 	
 	/**
 	 * Testet, ob die ID richtig zurück gegeben wird.
@@ -170,21 +153,9 @@ public class TestMoneyData {
 	 */
 	 @Test
 	 public void testSetDate() {
-		 Date date = new Date(10000);
+		 long date = 1345918385878L;
 		 _data.setDate(date);
 		 assertEquals(date, _data.getDate());
-	 }
-	 
-	 /**
-	  * Testet, ob das ein neues Datum erzeugt wird, wenn null als
-	  * Datum übergeben wird.
-	  * 
-	  * @see datas.MoneyData#setDate(Date)
-	  */
-	 @Test
-	 public void testSetDateWithNullAsParameter() {
-		 _data.setDate(null);
-		 assertEquals(new Date(), _data.getDate());
 	 }
 	 
 	 /**

@@ -47,48 +47,40 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#insert()} ein
+	 * Testet, ob die Methode {@link db.query.Money#insert()} drei
 	 * Fragezeichen enthält.
 	 */
 	@Test
-	public void testInsertHasAQuery() {
-		assertEquals(1, frequency(_money.insert(), "?"));
+	public void testInsertHasThreeQuery() {
+		assertEquals(3, frequency(_money.insert(), "?"));
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#insert(String)} keine
-	 * leere Zeichenkette liefert, auch wenn der Parameter <b>null</b> ist.
+	 * Testet, ob die Methode {@link db.query.Money#insert(long, boolean, String)
+	 * keine leere Zeichenkette liefert.
 	 */
 	@Test
-	public void testInsertStringWithNullAsParameterReturnNotNull() {
-		assertStringIsNotNull(_money.insert(null));
+	public void testInsertDateBooleanStringReturnNotNull() {
+		assertStringIsNotNull(_money.insert(7919156, true, "Dies ist ein Test"));
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#insert(String)} ein
-	 * Fragezeichen enhält, wenn der Parameter <b>null</b> ist.
+	 * Testet, ob die Methode {@link db.query.Money#insert(long, boolean, String)
+	 * ein ? in der Rückgabe enthält, wenn die Beschreibung <b>null</b> ist.
 	 */
 	@Test
-	public void testInsertStringWithNullAsParameterHasOneQuery() {
-		assertEquals(1, frequency(_money.insert(null), "?"));
+	public void testInsertDataBooleanStringWithNull() {
+		assertEquals(1, frequency(_money.insert(768786L,  true, null), "?"));
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#insert(String)} keine
-	 * leere Zeichenkette liefert.
+	 * Testet, ob die Methode {@link db.query.Money#insert(long, boolean, String)
+	 * ein ? in der Rückgabe enthält, wenn die Beschreibung eine leere
+	 * Zeichenkette ist.
 	 */
 	@Test
-	public void testInsertStringReturnNotNull() {
-		assertStringIsNotNull(_money.insert("test"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#insert(String)} kein
-	 * Fragezeichen zurück gibt.
-	 */
-	@Test
-	public void testInsertStringHasNoQuery() {
-		assertEquals(0, frequency(_money.insert("test"), "?"));
+	public void testInsertDataBooleanStringWithEmpty() {
+		assertEquals(1, frequency(_money.insert(768786L,  true, new String()), "?"));
 	}
 	
 	/**
@@ -155,12 +147,12 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int)} ein
+	 * Testet, ob die Methode {@link db.query.Money#update(int)} drei
 	 * Fragezeichen in der Rückgabe enthält.
 	 */
 	@Test
 	public void testUpdateHasOneQuery() {
-		assertEquals(1, frequency(_money.update(100), "?"));
+		assertEquals(3, frequency(_money.update(100), "?"));
 	}
 	
 	/**
@@ -182,12 +174,12 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int)} zwei
+	 * Testet, ob die Methode {@link db.query.Money#update(int)} vier
 	 * Fragezeichen in der Rückgabe enthält, wenn der PArameter -1 ist.
 	 */
 	@Test
 	public void testUpdateMinusOneAsParameterHasOneQuery() {
-		assertEquals(2, frequency(_money.update(-1), "?"));
+		assertEquals(4, frequency(_money.update(-1), "?"));
 	}
 	
 	/**
@@ -197,93 +189,6 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testUpdateMinusOneAsParameterHasNoId() {
 		assertEquals(0, frequency(_money.update(-1), "-1"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, String)}
-	 * keine leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testUpdateStringReturnNotNull() {
-		assertStringIsNotNull(_money.update(100, "name"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, String)}
-	 * kein Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateStringHasNoQuery() {
-		assertEquals(0, frequency(_money.update(100, "test"), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int String)} die
-	 * übergebene ID in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateStringHasId() {
-		int id = 100;
-		assertEquals(1, frequency(_money.update(id, "test"), new String("\"" + id + "\"")));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, String)} den
-	 * übergebenen Namen enthält.
-	 */
-	@Test
-	public void testUpdateStringHasName() {
-		String test = new String("test");
-		assertEquals(1, frequency(_money.update(100, test), test));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, String)}
-	 * keine leere Zeichenkette liefert, der Parameter für die ID ist -1.
-	 */
-	@Test
-	public void testUpdateStringMinusOneAsParameterReturnNotNull() {
-		assertStringIsNotNull(_money.update(-1, "name"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, String)}
-	 * kein Fragezeichen in der Rückgabe enthält, der Parameter für die ID ist
-	 * -1.
-	 */
-	@Test
-	public void testUpdateStringMinusOneAsParameterHasOneQuery() {
-		assertEquals(1, frequency(_money.update(-1, "test"), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int String)} die
-	 * übergebene ID in der Rückgabe nicht enthält. Der Parameter ist -1.
-	 */
-	@Test
-	public void testUpdateStringMinusOneAsParamterHasNoId() {
-		int id = -1;
-		assertEquals(0, frequency(_money.update(id, "test"), new String("\"" + id + "\"")));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, String)}
-	 * kein Fragezeichen in der Rückgabe enthält. Der Parameter für den Namen
-	 * is <b>null</b>
-	 */
-	@Test
-	public void testUpdateStringNullAsParameterHasOneQuery() {
-		assertEquals(1, frequency(_money.update(100, null), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, String)}
-	 * kein Fragezeichen in der Rückgabe enthält. Der Parameter für den Namen
-	 * is <b>null</b>. Der Parameter für die ID ist -1.
-	 */
-	@Test
-	public void testUpdateStringMinusOneAndNullAsParametersHasTwoQueries() {
-		assertEquals(2, frequency(_money.update(-1, null), "?"));
 	}
 	
 	/**
