@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import datas.CategoryData;
+import datas.IdNameData;
 import db.DbController;
 import elements.StatusBar;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
-import tables.models.CategoryListModel;
+import tables.models.IdNameListModel;
 
 /**
  * In diesen Dialog werden die einzelnen Kategorien angezeigt.
@@ -60,7 +60,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 		setTitle("Kategorien");
 		
 		// Tabelle initalisieren
-		_table = new JTable(new CategoryListModel());
+		_table = new JTable(new IdNameListModel(DbController.queries().category().select()));
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
 		_table.getColumnModel().getColumn(1).setHeaderValue("Kategorie");
 		add(new JScrollPane(_table));
@@ -83,7 +83,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		CategoryListModel model = (CategoryListModel)_table.getModel();
+		IdNameListModel model = (IdNameListModel)_table.getModel();
 
 		try {
 			Statement stm = DbController.getInstance().createStatement();
@@ -101,8 +101,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 						}
 
 						// Tabelle neu zeichnen
-						model.dataRefresh();
-						model.fireTableDataChanged();
+						model.dataRefresh(true);
 					}
 					break;
 					
@@ -110,7 +109,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 				case PopupCategoryList.DELETE:
 					if (_table.getSelectedRow() >= 0) {
 						// Daten ermitteln
-						CategoryData data = model.getRowDataAt(_table.getSelectedRow());
+						IdNameData data = model.getRowDataAt(_table.getSelectedRow());
 						
 						// Kategorie löschen? 
 						int d = JOptionPane.showConfirmDialog(this, "Soll die ausgewählte Kategorie '" + data.getName() +"'(" + data.getId() + ") wirklich gelöscht werden?", "Kategorie löschen", JOptionPane.YES_NO_OPTION);
@@ -122,8 +121,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 							}
 							
 							// Tabelle neu zeichnen
-							model.dataRefresh();
-							model.fireTableDataChanged();
+							model.dataRefresh(true);
 
 						}
 					}
@@ -133,7 +131,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 				case PopupCategoryList.CHANGE:
 					if (_table.getSelectedRow() >= 0) {
 						// Daten ermitteln
-						CategoryData data = model.getRowDataAt(_table.getSelectedRow());
+						IdNameData data = model.getRowDataAt(_table.getSelectedRow());
 						
 						// Kategorie ändern
 						String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Kategorie ändern", JOptionPane.OK_CANCEL_OPTION);
@@ -145,8 +143,7 @@ public class DlgCategoryList extends JDialog implements ActionListener {
 							}
 
 							// Tabelle neu zeichnen
-							model.dataRefresh();
-							model.fireTableDataChanged();
+							model.dataRefresh(true);
 						}
 					}
 			}

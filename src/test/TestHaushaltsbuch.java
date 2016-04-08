@@ -6,8 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 	test.datas.TestLogData.class,
-	test.datas.TestCategoryData.class,
-	test.datas.TestSectionData.class,
+	test.datas.TestIdNameData.class,
 	
 	test.db.query.TestQueryInterface.class,
 	test.db.query.TestQuery.class,

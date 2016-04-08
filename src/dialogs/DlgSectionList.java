@@ -8,9 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import db.DbController;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
-import tables.models.SectionListModel;
+import tables.models.IdNameListModel;
 
 /**
  * In diesen Dialog werden die einzelnen Geschäfte angezeigt.
@@ -54,7 +55,7 @@ public class DlgSectionList extends JDialog implements ActionListener {
 		setTitle("Geschäfte");
 		
 		// Tabelle initalisieren
-		_table = new JTable(new SectionListModel());
+		_table = new JTable(new IdNameListModel(DbController.queries().section().select()));
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
 		_table.getColumnModel().getColumn(1).setHeaderValue("Geschäft");
 		add(new JScrollPane(_table));
