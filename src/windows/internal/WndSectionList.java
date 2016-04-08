@@ -2,16 +2,23 @@ package windows.internal;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
+import datas.IdNameData;
 import db.DbController;
+import elements.StatusBar;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
 import tables.models.IdNameListModel;
+
+// FIXME Popup-Menü auch bei leerer Tabelle anzeigen
 
 /**
  * In diesen Dialog werden die einzelnen Geschäfte angezeigt.
@@ -61,21 +68,96 @@ public class WndSectionList extends JInternalFrame implements ActionListener {
 		_table.getColumnModel().getColumn(1).setHeaderValue("Geschäft");
 		_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		_table.setRowSelectionAllowed(true);
-		add(new JScrollPane(_table));
+		JScrollPane pane = new JScrollPane(_table);
+		add(pane);
 		
 		// Popup-Menü initalisieren
 		_popup = new PopupCategoryList(this);
-		_table.addMouseListener(new PopupMenuMouseListener(_popup));
+		PopupMenuMouseListener listener = new PopupMenuMouseListener(_popup);
+		pane.addMouseListener(listener);
+		_table.addMouseListener(listener);
 		
 		// Anzeigen
 		pack();
 		setVisible(true);
 	}
 
+	
+	/**
+	 * Reagiert auf die einzelnen Einträge im PopupMenu.
+	 * 
+	 * @param ae Event-Daten
+	 */
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent ae) {
+		IdNameListModel model = (IdNameListModel)_table.getModel();
 
+		try {
+			Statement stm = DbController.getInstance().createStatement();
+			
+			// Welcher Popup-Menü-Punkt wurde ausgewählt?
+			switch (ae.getActionCommand()) {
+				// Neu
+				case PopupCategoryList.NEW:
+					String nc = JOptionPane.showInputDialog(this, "Neues Geschäft", "Geschäft erstellen", JOptionPane.OK_CANCEL_OPTION);
+					if (nc != null) {
+						if (stm.executeUpdate(DbController.queries().section().insert(nc)) > 0) {
+							StatusBar.getInstance().setMessageAsOk("Neues Geschäft in der Datenbank gespeichert.");
+						} else {
+							StatusBar.getInstance().setMessageAsError("Das neue Geschäft '" + nc + "' konnte nicht hinzugefügt werden.");
+						}
+
+						// Tabelle neu zeichnen
+						model.dataRefresh(true);
+					}
+					break;
+					
+				// Löschen
+				case PopupCategoryList.DELETE:
+					if (_table.getSelectedRow() >= 0) {
+						// Daten ermitteln
+						IdNameData data = model.getRowDataAt(_table.getSelectedRow());
+						
+						// Kategorie löschen? 
+						int d = JOptionPane.showConfirmDialog(this, "Soll das ausgewählte Geschäft '" + data.getName() +"'(" + data.getId() + ") wirklich gelöscht werden?", "Geschäft löschen", JOptionPane.YES_NO_OPTION);
+						if (d == 0) {
+							if (stm.executeUpdate(DbController.queries().section().delete(data.getId())) > 0) {
+								StatusBar.getInstance().setMessageAsOk("Das Geschäft '" + data.getName() + "' (ID = " + data.getId() +") wurde gelöscht");
+							} else {
+								StatusBar.getInstance().setMessageAsError("Das Geschäft '" + data.getName() + "' konnte nicht gelöscht werden.");
+							}
+							
+							// Tabelle neu zeichnen
+							model.dataRefresh(true);
+
+						}
+					}
+					break;
+					
+				// Ändern
+				case PopupCategoryList.CHANGE:
+					if (_table.getSelectedRow() >= 0) {
+						// Daten ermitteln
+						IdNameData data = model.getRowDataAt(_table.getSelectedRow());
+						
+						// Kategorie ändern
+						String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Geschäft ändern", JOptionPane.OK_CANCEL_OPTION);
+						if ((cc != null) && (cc.compareTo(data.getName()) != 0)) {
+							if (stm.executeUpdate(DbController.queries().section().update(data.getId(), cc)) > 0) {
+								StatusBar.getInstance().setMessageAsOk("Das Geschäft '" + data.getName() +"' wurde in '" + cc + "' geändert.");
+							} else {
+								StatusBar.getInstance().setMessageAsError("Der Name des Geschäftes '" + data.getName() + "' konnte nicht geändert werden.");
+							}
+
+							// Tabelle neu zeichnen
+							model.dataRefresh(true);
+						}
+					}
+			}
+		} catch (SQLException e) {
+			StatusBar.getInstance().setMessageAsError("Fehler beim Zugriff auf die Datenbank.");
+			e.printStackTrace();
+		}
 	}
 
 }

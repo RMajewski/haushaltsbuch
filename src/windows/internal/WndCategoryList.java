@@ -66,11 +66,14 @@ public class WndCategoryList extends JInternalFrame implements ActionListener {
 		_table.getColumnModel().getColumn(1).setHeaderValue("Kategorie");
 		_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		_table.setRowSelectionAllowed(true);
-		add(new JScrollPane(_table));
+		JScrollPane pane = new JScrollPane(_table);
+		add(pane);
 		
 		// Popup-Menü initalisieren
 		_popup = new PopupCategoryList(this);
-		_table.addMouseListener(new PopupMenuMouseListener(_popup));
+		PopupMenuMouseListener listener = new PopupMenuMouseListener(_popup);
+		pane.addMouseListener(listener);
+		_table.addMouseListener(listener);
 		
 		// Anzeigen
 		pack();
