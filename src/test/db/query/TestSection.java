@@ -18,6 +18,11 @@ public class TestSection extends TestHelper {
 	 * Speichert die Instanz der Datenbank-Abfragen der Tabelle "section"
 	 */
 	private static Section _section;
+	
+	/**
+	 * Speichert den Namen der Tabelle
+	 */
+	private final String _table = new String("section");
 
 	/**
 	 * Initalisiert die einzelnen Tests 
@@ -34,6 +39,15 @@ public class TestSection extends TestHelper {
 	@Test
 	public void testCreateTableReturnNotNull() {
 		assertStringIsNotNull(_section.createTable());
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Section#createTable()} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testCreateTableReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_section.createTable(),_table));
 	}
 
 	/**
@@ -52,6 +66,15 @@ public class TestSection extends TestHelper {
 	@Test
 	public void testInsertHasAQuery() {
 		assertEquals(1, frequency(_section.insert(), "?"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Section#insert()} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testInsertReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_section.insert(),_table));
 	}
 	
 	/**
@@ -88,6 +111,15 @@ public class TestSection extends TestHelper {
 	@Test
 	public void testInsertStringHasNoQuery() {
 		assertEquals(0, frequency(_section.insert("test"), "?"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Section#insert(String)} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testInsertStringReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_section.insert("Dies ist ein Test"),_table));
 	}
 	
 	/**
@@ -145,6 +177,15 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
+	 * Testest, ob die Methode {@link db.query.Section#delete(int)} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testDeleteReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_section.delete(100),_table));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.Section#update(int)} keine leere
 	 * Zeichenkette liefert.
 	 */
@@ -196,6 +237,15 @@ public class TestSection extends TestHelper {
 	@Test
 	public void testUpdateMinusOneAsParameterHasNoId() {
 		assertEquals(0, frequency(_section.update(-1), "-1"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Section#update(int)} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testUpdateReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_section.update(100),_table));
 	}
 	
 	/**
@@ -286,11 +336,29 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
+	 * Testest, ob die Methode {@link db.query.Section#update(int, String)} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testUpdateStringReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_section.update(100, "Dies ist ein Test"),_table));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.Section#select()} keine
 	 * leere Zeichenkette liefert.
 	 */
 	@Test
 	public void testSelectReturnNotNull() {
 		assertStringIsNotNull(_section.select());
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Section#select()} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testSelectReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_section.select(),_table));
 	}
 }

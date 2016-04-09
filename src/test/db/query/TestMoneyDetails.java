@@ -18,6 +18,11 @@ public class TestMoneyDetails extends TestHelper{
 	 * Speichert die Instanz der Datenbank-Abfragen der Tabelle 'money_details'
 	 */
 	private MoneyDetails _moneyDetails;
+	
+	/**
+	 * Speichert den Namen der Tabelle
+	 */
+	private final String _table = new String("money_details");
 
 	/**
 	 * Initalisiert die einzelnen Tests.
@@ -37,6 +42,15 @@ public class TestMoneyDetails extends TestHelper{
 	public void testCreateTableReturnNotNull() {
 		assertStringIsNotNull(_moneyDetails.createTable());
 	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.MoneyDetails#createTable()} in
+	 * der Rückgabe 'money_details' enthält.
+	 */
+	@Test
+	public void testCreateTableReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_moneyDetails.createTable(),_table));
+	}
 
 	/**
 	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert()} keine leere
@@ -54,6 +68,15 @@ public class TestMoneyDetails extends TestHelper{
 	@Test
 	public void testInsertHasFifeQuery() {
 		assertEquals(5, frequency(_moneyDetails.insert(), "?"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.MoneyDetails#insert()} in
+	 * der Rückgabe 'money_details' enthält.
+	 */
+	@Test
+	public void testInsertTableReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_moneyDetails.insert(),_table));
 	}
 	
 	/**
@@ -170,6 +193,15 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
+	 * Testest, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)} in
+	 * der Rückgabe 'money_details' enthält.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_moneyDetails.insert(100, 200, 300, 10.45, "Dies ist ein Test"),_table));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.MoneyDetails#delete(int)} keine
 	 * leere Zeichenkette liefert.
 	 */
@@ -221,6 +253,15 @@ public class TestMoneyDetails extends TestHelper{
 	@Test
 	public void testDeleteWithNullAsParameterHasId() {
 		assertEquals(0, frequency(_moneyDetails.delete(-1), "100"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.MoneyDetails#delete(int)} in
+	 * der Rückgabe 'money_details' enthält.
+	 */
+	@Test
+	public void testDeleteReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_moneyDetails.delete(100),_table));
 	}
 	
 	/**
@@ -278,12 +319,30 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
+	 * Testest, ob die Methode {@link db.query.MoneyDetails#createTable()} in
+	 * der Rückgabe 'money_details' enthält.
+	 */
+	@Test
+	public void testUpdateReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_moneyDetails.createTable(),_table));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.MoneyDetails#select()} keine
 	 * leere Zeichenkette liefert.
 	 */
 	@Test
 	public void testSelectReturnNotNull() {
 		assertStringIsNotNull(_moneyDetails.select());
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.MoneyDetails#select()} in
+	 * der Rückgabe 'money_details' enthält.
+	 */
+	@Test
+	public void testSelectReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_moneyDetails.select(),_table));
 	}
 	
 	/**
@@ -302,5 +361,14 @@ public class TestMoneyDetails extends TestHelper{
 	@Test
 	public void testSelectIntMinusOneHasOneQuery() {
 		assertEquals(1, frequency(_moneyDetails.select(-1), "?"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.MoneyDetails#select(int)} in
+	 * der Rückgabe 'money_details' enthält.
+	 */
+	@Test
+	public void testSelectIntReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_moneyDetails.select(100),_table));
 	}
 }

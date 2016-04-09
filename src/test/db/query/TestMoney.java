@@ -19,6 +19,11 @@ public class TestMoney extends TestHelper {
 	 * Speichert die Instanz der Datenbank-Abfragen der Tabelle 'money'.
 	 */
 	private Money _money;
+	
+	/**
+	 * Speichert den Namen der Tabelle
+	 */
+	private final String _table = new String("money");
 
 	/**
 	 * Initalisiert die einzelnen Tests 
@@ -35,6 +40,15 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testCreateTableReturnNotNull() {
 		assertStringIsNotNull(_money.createTable());
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Money#createTable()} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testCreateTableReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_money.createTable(),_table));
 	}
 
 	/**
@@ -53,6 +67,15 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testInsertHasThreeQuery() {
 		assertEquals(3, frequency(_money.insert(), "?"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Money#insert()} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testInsertTableReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_money.insert(),_table));
 	}
 	
 	/**
@@ -81,6 +104,15 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testInsertDataBooleanStringWithEmpty() {
 		assertEquals(1, frequency(_money.insert(768786L,  true, new String()), "?"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Money#insert(long, boolean, String)} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testInsertLongBooleanStringTableReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_money.insert(100l, true, "Dies ist ein Test"),_table));
 	}
 	
 	/**
@@ -158,6 +190,15 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
+	 * Testest, ob die Methode {@link db.query.Money#delete(int)} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testDeleteReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_money.delete(100),_table));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.Money#update(int)} keine leere
 	 * Zeichenkette liefert.
 	 */
@@ -212,6 +253,15 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
+	 * Testest, ob die Methode {@link db.query.Money#update(int)} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testUpdateReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_money.update(100),_table));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.Money#update(int, long)}
 	 * keine leere Zeichenkette liefert
 	 */
@@ -256,6 +306,15 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testUpdateDateMinusOneReturnOneQuery() {
 		assertEquals(1, frequency(_money.update(-1, 4717951739l), "?"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Money#update(int, long)} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testUpdateDateTableReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_money.update(100, 5175837l),_table));
 	}
 	
 	/**
@@ -313,6 +372,15 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testUpdateInOutMinusOneReturnOneQuery() {
 		assertEquals(1, frequency(_money.update(-1, true), "?"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Money#update(int, boolean)} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testUpdateInOutReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_money.update(100, true),_table));
 	}
 	
 	/**
@@ -382,11 +450,29 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
+	 * Testest, ob die Methode {@link db.query.Money#update(int, string)} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testUpdateCommentReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_money.update(100, "Dies ist ein Test"),_table));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.Money#select()} keine
 	 * leere Zeichenkette liefert.
 	 */
 	@Test
 	public void testSelectReturnNotNull() {
 		assertStringIsNotNull(_money.select());
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Money#select()} in
+	 * der Rückgabe 'money' enthält.
+	 */
+	@Test
+	public void testSelectReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_money.select(),_table));
 	}
 }

@@ -18,6 +18,11 @@ public class TestCategory extends TestHelper {
 	 * Speichert die Instanz der Datenbank-Abfrage der Tabelle 'category'.
 	 */
 	private Category _category;
+	
+	/**
+	 * Speichert den Namen der Tabelle
+	 */
+	private final String _table = new String("category");
 
 	/**
 	 * Initalisiert die einzelnen Tests.
@@ -34,6 +39,15 @@ public class TestCategory extends TestHelper {
 	@Test
 	public void testCreateTableReturnNotNull() {
 		assertStringIsNotNull(_category.createTable());
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Category#createTable()} in
+	 * der Rückgabe 'category' enthält.
+	 */
+	@Test
+	public void testCreateTableReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_category.createTable(),_table));
 	}
 
 	/**
@@ -52,6 +66,15 @@ public class TestCategory extends TestHelper {
 	@Test
 	public void testInsertHasAQuery() {
 		assertEquals(1, frequency(_category.insert(), "?"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Category#insert()} in
+	 * der Rückgabe 'category' enthält.
+	 */
+	@Test
+	public void testInsertReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_category.insert(),_table));
 	}
 	
 	/**
@@ -88,6 +111,15 @@ public class TestCategory extends TestHelper {
 	@Test
 	public void testInsertStringHasNoQuery() {
 		assertEquals(0, frequency(_category.insert("test"), "?"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Category#insert(String)} in
+	 * der Rückgabe 'category' enthält.
+	 */
+	@Test
+	public void testInsertStringReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_category.insert("Dies ist ein Test"),_table));
 	}
 	
 	/**
@@ -145,6 +177,15 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
+	 * Testest, ob die Methode {@link db.query.Category#delete()} in
+	 * der Rückgabe 'category' enthält.
+	 */
+	@Test
+	public void testDeleteReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_category.delete(100),_table));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.Category#update(int)} keine leere
 	 * Zeichenkette liefert.
 	 */
@@ -196,6 +237,15 @@ public class TestCategory extends TestHelper {
 	@Test
 	public void testUpdateMinusOneAsParameterHasNoId() {
 		assertEquals(0, frequency(_category.update(-1), "-1"));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Category#update(int)} in
+	 * der Rückgabe 'category' enthält.
+	 */
+	@Test
+	public void testUpdateReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_category.update(100),_table));
 	}
 	
 	/**
@@ -286,11 +336,29 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
+	 * Testest, ob die Methode {@link db.query.Category#update(int, String)} in
+	 * der Rückgabe 'category' enthält.
+	 */
+	@Test
+	public void testUpdateStringReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_category.update(100, "Dies ist ein Test"),_table));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.Category#select()} keine
 	 * leere Zeichenkette liefert.
 	 */
 	@Test
 	public void testSelectReturnNotNull() {
 		assertStringIsNotNull(_category.select());
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.Category#select()} in
+	 * der Rückgabe 'category' enthält.
+	 */
+	@Test
+	public void testSelectReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_category.select(),_table));
 	}
 }
