@@ -57,6 +57,119 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * keine leere Zeichenkette liefert.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringReturnNotNull() {
+		assertStringIsNotNull(_moneyDetails.insert(100, 200, 300, 10.34, "Dies ist ein Test"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * kein Fragezeichen enthält.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringReturnHaveNoQuery() {
+		assertEquals(0, frequency(_moneyDetails.insert(100, 200, 300, 10.34, "Dies ist ein Test"), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * ein Fragezeichen in der Rückgabe enthält, wenn <b>-1</b> als 'moneyid'
+	 * übergeben wird.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringMinusOneAsMoneyIdReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.insert(-1, 200, 300, 10.34, "Dies ist ein Test"), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * die 'moneyid' in der Rückgabe enthält.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringReturnHaveMoneyId() {
+		assertEquals(1, frequency(_moneyDetails.insert(100, 200, 300, 10.34, "Dies ist ein Test"), "100"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * ein Fragezeichen in der Rückgabe enthält, wenn <b>-1</b> als
+	 * 'categoryid' übergeben wird.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringMinusOneAsCategoryIdReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.insert(100, -1, 300, 10.34, "Dies ist ein Test"), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * die 'categoryid' in der Rückgabe enthält.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringReturnHaveCategoryId() {
+		assertEquals(1, frequency(_moneyDetails.insert(100, 200, 300, 10.34, "Dies ist ein Test"), "200"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * ein Fragezeichen in der Rückgabe enthält, wenn <b>-1</b> als
+	 * 'sectionid' übergeben wird.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringMinusOneAsSectionIdReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.insert(100, 200, -1, 10.34, "Dies ist ein Test"), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * die 'sectionid' in der Rückgabe enthält.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringReturnHaveSectionId() {
+		assertEquals(1, frequency(_moneyDetails.insert(100, 200, 300, 10.34, "Dies ist ein Test"), "300"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)
+	 * ein ? in der Rückgabe enthält, wenn die Beschreibung <b>null</b> ist.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringWithNull() {
+		assertEquals(1, frequency(_moneyDetails.insert(100, 200, 300, 10.34, null), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)
+	 * ein ? in der Rückgabe enthält, wenn die Beschreibung eine leere
+	 * Zeichenkette ist.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringWithEmpty() {
+		assertEquals(1, frequency(_moneyDetails.insert(100, 200, 300, 10.34, new String()), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * das Geld in der Rückgabe enthält.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringReturnHaveMoney() {
+		assertEquals(1, frequency(_moneyDetails.insert(100, 200, 300, 10.34, "Dies ist ein Test"), "10.34"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * den Kommentar in der Rückgabe enthält.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringReturnHaveComment() {
+		String test = "Dies ist ein Test";
+		assertEquals(1, frequency(_moneyDetails.insert(100, 200, 300, 10.34, test), test));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.MoneyDetails#delete(int)} keine
 	 * leere Zeichenkette liefert.
 	 */
@@ -120,12 +233,12 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int)} drei
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int)} fünf
 	 * Fragezeichen in der Rückgabe enthält.
 	 */
 	@Test
-	public void testUpdateHasThreeQuery() {
-		assertEquals(3, frequency(_moneyDetails.update(100), "?"));
+	public void testUpdateHasFiveQuery() {
+		assertEquals(5, frequency(_moneyDetails.update(100), "?"));
 	}
 	
 	/**
@@ -147,12 +260,12 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int)} vier
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int)} sechs
 	 * Fragezeichen in der Rückgabe enthält, wenn der PArameter -1 ist.
 	 */
 	@Test
-	public void testUpdateMinusOneAsParameterHasForeQuery() {
-		assertEquals(4, frequency(_moneyDetails.update(-1), "?"));
+	public void testUpdateMinusOneAsParameterHasSixQuery() {
+		assertEquals(6, frequency(_moneyDetails.update(-1), "?"));
 	}
 	
 	/**
@@ -171,5 +284,23 @@ public class TestMoneyDetails extends TestHelper{
 	@Test
 	public void testSelectReturnNotNull() {
 		assertStringIsNotNull(_moneyDetails.select());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#select(int)} keine
+	 * leere Zeichenkette liefert.
+	 */
+	@Test
+	public void testSelectIntReturnNotNull() {
+		assertStringIsNotNull(_moneyDetails.select(100));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#select(int)} ein
+	 * Fragenzeichen enthält, wenn <b>-1</b> als Parameter übergeben wird.
+	 */
+	@Test
+	public void testSelectIntMinusOneHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.select(-1), "?"));
 	}
 }
