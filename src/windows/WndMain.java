@@ -131,15 +131,13 @@ public class WndMain extends JFrame implements ActionListener {
 			stm.executeUpdate(DbController.queries().section().createTable());
 			status.setMessage("Datenbank: Tabelle der Geschäfte ist fertig vorbereitet.");
 			
-			// FIXME SQL-Abfragen für die Tabelle money fertig implementieren
 			// Tabelle für die Ein- und Ausgaben
-			//stm.executeUpdate(DbController.queries().money().createTable());
-			//status.setMessage("Datenbank: Tabelle der Ein- und Ausgaben ist fertig vorbereitet");
+			stm.executeUpdate(DbController.queries().money().createTable());
+			status.setMessage("Datenbank: Tabelle der Ein- und Ausgaben ist fertig vorbereitet");
 			
-			// FIXME SQL-Abfragen für die Tabelle money_details fertig implementieren
 			// Tabelle für die Details zu den Ein- und Ausgaben
-			//stm.executeUpdate(DbController.queries().moneyDetails().createTable());
-			//status.setMessage("Datenbank: Tabelle der Details für Ein- und Ausgaben ist fertig vorbereitet.");
+			stm.executeUpdate(DbController.queries().moneyDetails().createTable());
+			status.setMessage("Datenbank: Tabelle der Details für Ein- und Ausgaben ist fertig vorbereitet.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -17,7 +17,7 @@ public class MoneyDetails implements QueryInterface {
 	 */
 	@Override
 	public String createTable() {
-		return "CREATE TABLE IF NOT EXISTS 'money' (" +
+		return "CREATE TABLE IF NOT EXISTS 'money_details' (" +
 				"'id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				"'moneyid' INTEGER NOT NULL, " +
 				"'categoryid' INTEGER NOT NULL, " +
