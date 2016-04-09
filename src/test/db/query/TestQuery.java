@@ -4,86 +4,86 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import db.query.Query;
+import db.query.Queries;
 import db.query.QueryInterface;
 
 /**
- * Es wird die Klasse {@link db.query.Query} getestet.
+ * Es wird die Klasse {@link db.query.Queries} getestet.
 
  * @author René Majewski
  *
  */
 public class TestQuery {
 	/**
-	 * Testet ob das Attribut {@link db.query.Query#category} ein Objekt der
+	 * Testet ob das Attribut {@link db.query.Queries#category} ein Objekt der
 	 * Klasse {@link db.query.Category} ist.
 	 */
 	@Test
 	public void testCategoryRightClassName() {
-		assertEquals("db.query.Category", Query.getInstance().category().getClass().getName());
+		assertEquals("db.query.Category", Queries.getInstance().category().getClass().getName());
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Query#category} das Interface
+	 * Testet ob das Attribut {@link db.query.Queries#category} das Interface
 	 * {@link db.query.QueryInterface} implementiert.
 	 */
 	@Test
 	public void testCategoryInstanceofQueryInterface() {
-		assertTrue(Query.getInstance().category() instanceof QueryInterface);
+		assertTrue(Queries.getInstance().category() instanceof QueryInterface);
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Query#section} ein Objekt der
+	 * Testet ob das Attribut {@link db.query.Queries#section} ein Objekt der
 	 * Klasse {@link db.query.Section} ist.
 	 */
 	@Test
 	public void testSectionRightClassName() {
-		assertEquals("db.query.Section", Query.getInstance().section().getClass().getName());
+		assertEquals("db.query.Section", Queries.getInstance().section().getClass().getName());
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Query#section} das Interface
+	 * Testet ob das Attribut {@link db.query.Queries#section} das Interface
 	 * {@link db.query.QueryInterface} implementiert.
 	 */
 	@Test
 	public void testSectionInstanceofQueryInterface() {
-		assertTrue(Query.getInstance().section() instanceof QueryInterface);
+		assertTrue(Queries.getInstance().section() instanceof QueryInterface);
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Query#moneyDetails} ein Objekt
+	 * Testet ob das Attribut {@link db.query.Queries#moneyDetails} ein Objekt
 	 * der Klasse {@link db.query.MoneyDetails} ist.
 	 */
 	@Test
 	public void testMoneyDetailsRightClassName() {
-		assertEquals("db.query.MoneyDetails", Query.getInstance().moneyDetails().getClass().getName());
+		assertEquals("db.query.MoneyDetails", Queries.getInstance().moneyDetails().getClass().getName());
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Query#moneyDetails} das Interface
+	 * Testet ob das Attribut {@link db.query.Queries#moneyDetails} das Interface
 	 * {@link db.query.QueryInterface} implementiert.
 	 */
 	@Test
 	public void testMoneyDetailsInstanceofQueryInterface() {
-		assertTrue(Query.getInstance().moneyDetails() instanceof QueryInterface);
+		assertTrue(Queries.getInstance().moneyDetails() instanceof QueryInterface);
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Query#money} ein Objekt der
+	 * Testet ob das Attribut {@link db.query.Queries#money} ein Objekt der
 	 * Klasse {@link db.query.Money} ist.
 	 */
 	@Test
 	public void testMoneyRightClassName() {
-		assertEquals("db.query.Money", Query.getInstance().money().getClass().getName());
+		assertEquals("db.query.Money", Queries.getInstance().money().getClass().getName());
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Query#money} das Interface
+	 * Testet ob das Attribut {@link db.query.Queries#money} das Interface
 	 * {@link db.query.QueryInterface} implementiert.
 	 */
 	@Test
 	public void testMoneyInstanceofQueryInterface() {
-		assertTrue(Query.getInstance().money() instanceof QueryInterface);
+		assertTrue(Queries.getInstance().money() instanceof QueryInterface);
 	}
 
 }

@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import db.query.Query;
+import db.query.Queries;
 
 /**
  * Stellt die Verbindung zur Datenbank bereit.
@@ -175,7 +175,7 @@ public class DbController {
 	/**
 	 * Gibt die Klasse mit den Abfragen zurück.
 	 */
-	public static Query queries() {
-		return Query.getInstance();
+	public static Queries queries() {
+		return Queries.getInstance();
 	}
 }

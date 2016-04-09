@@ -7,7 +7,7 @@ package db.query;
  * @author René Majewski
  *
  */
-public class Query {
+public class Queries {
 	/**
 	 * Beinhaltet alle Abfragen für die Tabelle mit den Kategorien
 	 */
@@ -32,12 +32,12 @@ public class Query {
 	/**
 	 * Speichert die Instanz dieser Klasse
 	 */
-	private static final Query _query = new Query();
+	private static final Queries _query = new Queries();
 	
 	/**
 	 * Initalisiert die einzelnen Abfragen-Klassen
 	 */
-	public Query() {
+	public Queries() {
 		_category = new Category();
 		_section = new Section();
 		_moneyDetails = new MoneyDetails();
@@ -49,7 +49,7 @@ public class Query {
 	 * 
 	 * @return Instanz
 	 */
-	public static Query getInstance() {
+	public static Queries getInstance() {
 		return _query;
 	}
 	
