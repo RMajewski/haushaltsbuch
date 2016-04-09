@@ -1,7 +1,5 @@
 package db.query;
 
-import java.util.Date;
-
 /**
  * Enthält alle Datenbank-Abfragen für die Tabelle 'money'.
  * 
@@ -51,7 +49,10 @@ public class Money implements QueryInterface {
 		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(date));
 		
 		// Einfügen, ob es eine Einname oder eine Ausgabe ist
-		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(inout));
+		if (inout)
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, "1");
+		else
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, "0");
 		
 		// Kommentar einfügen
 		if (comment != null && !comment.isEmpty())
@@ -87,7 +88,7 @@ public class Money implements QueryInterface {
 	}
 	
 	/**
-	 * Erzeugt die Datenbank-Abfrage, um eine Kategorie in der Tabelle
+	 * Erzeugt die Datenbank-Abfrage, um einen Datensatz in der Tabelle
 	 * "money" zu ändern. Wurde ein ID größer <b>-1</b> angegeben, so
 	 * wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
 	 * angegeben, wird für die ID ein <b>?</b> als Platzhalter in die
@@ -104,6 +105,98 @@ public class Money implements QueryInterface {
 		
 		if (id > -1)
 			ret.replace(ret.lastIndexOf("?"), ret.lastIndexOf("?") + 1, String.valueOf(id));
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um das Datum eines Datensatzes in der
+	 * Tabelle "money" zu ändern. Wurde eine ID größer <b>-1</b> angegbeen,
+	 * so wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
+	 * angegeben, wird für die ID ein <b>?</b> als Platzhalter in die
+	 * Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes, der geändert werden soll.
+	 * 
+	 * @param date Neues Datum, das in den Datensatz gespeichert werde soll.
+	 * 
+	 * @return Datenbank-Abfrage, um das Datum im angegeben Datensatz zu
+	 * ändern.
+	 */
+	public String update(int id, long date) {
+		// Abfrage zum ändern des Datums im angegeben Datensatz
+		StringBuilder ret = new StringBuilder("UPDATE 'money' SET date = ? WHERE id = ?");
+
+		// ID einfügen
+		if (id > -1)
+			ret.replace(ret.lastIndexOf("?"), ret.lastIndexOf("?") + 1, String.valueOf(id));
+		
+		// Datum einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1,	String.valueOf(date));
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um in der Tabelle "money" zu ändern, ob
+	 * es sich um eine Einnahme oder Ausgabe handelt. Wurde eine ID größer 
+	 * <b>-1</b> angegbeen, so wird die ID in die Abfrage aufgenommen. Wurde
+	 * als ID <b>-1</b> angegeben, wird für die ID ein <b>?</b> als Platzhalte
+	 * in die Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes, der geändert werden soll.
+	 * 
+	 * @param inout Handelt es sich um eine Einnahme oder eine Ausgabe?
+	 * 
+	 * @return Datenbank-Abfrage, um zu ändern, ob es sich um eine Einnahme
+	 * oder eine Ausgabe handelt.
+	 */
+	public String update(int id, boolean inout) {
+		// Abfrage zum ändern, ob es sich um eine Einnahme oder Ausgabe handelt
+		StringBuilder ret = new StringBuilder("UPDATE 'money' SET inout = ? WHERE id = ?");
+
+		// ID einfügen
+		if (id > -1)
+			ret.replace(ret.lastIndexOf("?"), ret.lastIndexOf("?") + 1, String.valueOf(id));
+		
+		// Einfügen, ob es sich um eine Einnahme oder eine Ausgabe handelt
+		if (inout)
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, "1");
+		else
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, "0");
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um die Beschreibung eines Datensatzes
+	 * in der Tabelle "money" zu ändern. Wurde eine ID größer <b>-1</b>
+	 * angegeben, so wird die ID in die Abfrage aufgenommen. Wurde als ID
+	 * <b>-1</b> angegeben, wird für die ID ein <b>?</b> als Platzhalter in die
+	 * Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes, der geändert werden soll.
+	 * 
+	 * @param comment Neue Beschreibung, die in den Datensatz gespeichert werde
+	 * soll.
+	 * 
+	 * @return Datenbank-Abfrage, um die Beschreibung im angegeben Datensatz zu
+	 * ändern.
+	 */
+	public String update(int id, String comment) {
+		// Abfrage zum ändern der Beschreibung im angegeben Datensatz
+		StringBuilder ret = new StringBuilder("UPDATE 'money' SET comment ='?' WHERE id = ?");
+
+		// ID einfügen
+		if (id > -1)
+			ret.replace(ret.lastIndexOf("?"), ret.lastIndexOf("?") + 1, String.valueOf(id));
+		
+		// Beschreibung einfügen
+		if (comment != null && !comment.isEmpty())
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
 		
 		// Abfrage zurück geben
 		return ret.toString();
