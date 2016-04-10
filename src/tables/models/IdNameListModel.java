@@ -12,7 +12,8 @@ import datas.IdNameData;
 import db.DbController;
 import elements.StatusBar;
 
-public class IdNameListModel extends AbstractTableModel {
+public class IdNameListModel extends AbstractTableModel
+							 implements DbModelInterface{
 
 	/**
 	 * Serilisation ID
@@ -55,7 +56,10 @@ public class IdNameListModel extends AbstractTableModel {
 	 * @param repaint Wird <b>true</b> übergeben, so wird die zu Grunde
 	 * liegende Tabelle angewiesen, dass neu gezeichnet werden muss. Bei
 	 * <b>false</b> wird dies nicht ausgelöst.
+	 * 
+	 * @see tables.models.DbModelInterface
 	 */
+	@Override
 	public void dataRefresh(boolean repaint) {
 		// Liste mit Daten leeren
 		_list.clear();

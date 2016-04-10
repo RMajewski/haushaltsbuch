@@ -68,6 +68,15 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
+	 * Testet, ob die die richtige Anzahl an Spalten zurück gegeben wird.
+	 * {@link db.query.Query#getColumnCount()}
+	 */
+	@Test
+	public void testGetColumnCount() {
+		assertEquals(2, _query.getCloumnCount());
+	}
+	
+	/**
 	 * Testet, ob kein Fragezeichen von der Methode {@link db.query.Query#replaceQuery(int, StringBuilder, boolean}
 	 * überschrieben wird, wenn eine -1 als id übergeben wird.
 	 */

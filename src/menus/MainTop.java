@@ -40,9 +40,14 @@ public class MainTop extends JMenuBar {
 	public static final String DB_CATEGORY = "DBCategoryList";
 	
 	/**
-	 * ActionCOmmand für Datenbank -> geschäft
+	 * ActionCOmmand für Datenbank -> Geschäft
 	 */
 	public static final String DB_SECTION = "DBSectionList";
+	
+	/**
+	 * ActionCommand für Datenbank -> Money
+	 */
+	public static final String DB_MONEY = "DBMoneyList";
 
 	/**
 	 * Initalisiert das Menü
@@ -152,6 +157,13 @@ public class MainTop extends JMenuBar {
 		item = new JMenuItem("Geschäfte");
 		item.setMnemonic('G');
 		item.setActionCommand(DB_SECTION);
+		item.addActionListener(listener);
+		ret.add(item);
+		
+		// Eintrag für das Geld
+		item = new JMenuItem("Einnahmen und Ausgaben");
+		item.setMnemonic('A');
+		item.setActionCommand(DB_MONEY);
 		item.addActionListener(listener);
 		ret.add(item);
 		

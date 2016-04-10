@@ -16,6 +16,7 @@ import dialogs.DlgLogView;
 import elements.StatusBar;
 import menus.MainTop;
 import windows.internal.WndCategoryList;
+import windows.internal.WndMoneyList;
 import windows.internal.WndSectionList;
 
 /**
@@ -164,6 +165,11 @@ public class WndMain extends JFrame implements ActionListener {
 			// Geschäfte anzeigen
 			case MainTop.DB_SECTION:
 				_desktop.add(new WndSectionList());
+				break;
+				
+			// Money-Datensätze anzeigen
+			case MainTop.DB_MONEY:
+				_desktop.add(new WndMoneyList());
 				break;
 				
 			// Log anzeigen

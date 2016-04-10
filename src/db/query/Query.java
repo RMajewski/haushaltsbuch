@@ -74,6 +74,15 @@ public abstract class Query implements QueryInterface {
 	}
 	
 	/**
+	 * Liefert die Anzahl der Spalten.
+	 * 
+	 * @return Anzahl der Spalten
+	 */
+	public int getCloumnCount() {
+		return _columnNames.size();
+	}
+	
+	/**
 	 * Erzeugt die Datenbank-Abfrage, um alle Datensätze anzuzeigen.
 	 * Die Datensätze werden nach den IDs geordnet.
 	 * 
