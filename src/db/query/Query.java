@@ -11,6 +11,8 @@ import java.util.List;
  * dann gespeichert und können über Getter-Methoden abgerufen werden. 
 
  * @author René Majewski
+ * 
+ * @version 0.2
  */
 public abstract class Query implements QueryInterface {
 	/**
@@ -69,5 +71,40 @@ public abstract class Query implements QueryInterface {
 	 */
 	public List<String> getColumnNames() {
 		return _columnNames;
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um alle Datensätze anzuzeigen.
+	 * Die Datensätze werden nach den IDs geordnet.
+	 * 
+	 * Diese Abfrage wird mit Hilfe der gespeicherten Spalten-Namen
+	 * und des gespeicherten Tabellen-Namens erstellt.
+	 * 
+	 * @return Datenbank-Abfrage, um alle Datensätze aufzulisten
+	 */
+	@Override
+	public String select() {
+		// Rückgabe vorbereiten
+		StringBuilder ret = new StringBuilder("SELECT ");
+		
+		// Spalten-Namen einfügen
+		for (int i = 0; i < _columnNames.size(); i++) {
+			if (i == 0)
+				ret.append(_columnNames.get(i));
+			else {
+				ret.append(", ");
+				ret.append(_columnNames.get(i));
+			}
+		}
+		
+		// Tabellen-Name einfügen
+		ret.append(" FROM ");
+		ret.append(_tableName);
+		
+		// Nach was wird geordnet?
+		ret.append(" ORDER BY id ASC");
+		
+		// Rückgabe der Datenbank-Abfrage
+		return ret.toString();
 	}
 }

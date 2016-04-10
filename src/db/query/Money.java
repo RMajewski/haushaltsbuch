@@ -208,16 +208,4 @@ public class Money extends Query {
 		// Abfrage zurück geben
 		return ret.toString();
 	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um alle Datensätze der Tabelle "money"
-	 * aufzulisten. Die Datensätze werden noch ihren IDs aufsteigend sortiert.
-	 * 
-	 * @return Datenbank-Abfrage, um alle Datensätze zurück zu geben.
-	 */
-	@Override
-	public String select() {
-		return "SELECT id, date, inout, comment FROM money ORDER BY id ASC;";
-	}
-
 }

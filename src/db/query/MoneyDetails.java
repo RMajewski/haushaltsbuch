@@ -165,17 +165,6 @@ public class MoneyDetails extends Query {
 	}
 
 	/**
-	 * Erzeugt die Datenbank-Abfrage, um alle Datensätze der Tabelle "money_details"
-	 * aufzulisten. Die Datensätze werden noch ihren IDs aufsteigend sortiert.
-	 * 
-	 * @return Datenbank-Abfrage, um alle Datensätze zurück zu geben.
-	 */
-	@Override
-	public String select() {
-		return "SELECT id, moneyid, categoryid, sectionid, money, comment FROM money_details ORDER BY id ASC";
-	}
-
-	/**
 	 * Erzeugt, die Datenbank-Abfrage, um alle Datensätze der Tabelle
 	 * "money_details" aufzulisten, die einen angegeben Money-Datensatz
 	 * enthalten. Ist für die ID eine <b>-1</b> angegeben, so wird ein

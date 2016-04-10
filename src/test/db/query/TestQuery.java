@@ -120,4 +120,44 @@ public class TestQuery extends TestHelper {
 		_query.testReplayQuery(100, _builder, true);
 		assertEquals("Dies ? ist ein 100 Test.", _builder.toString());
 	}
+	
+	/**
+	 * Testem ob die Datenbank-Abfrage, um alle Datensätze aufzulisten,
+	 * kein <b>null</b> als Rückgabe hat.
+	 * 
+	 * {@link db.query.Query#select()}
+	 */
+	@Test
+	public void testSelectReturnIsNotNull() {
+		assertFalse(_query.select() == null);
+	}
+	
+	/**
+	 * Testet, ob die Datenbank-Abfrage, um alle Datensätze aufzulisten,
+	 * keine leere Zeichenkette zurück gibt.
+	 * 
+	 * {@link db.query.Query#select()}
+	 */
+	@Test
+	public void testSelectReturnIsNotEmpty() {
+		assertFalse(_query.select().isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Datenbank-Abfrage, um alle Datensätze aufzulisten,
+	 * richtig erzeugt wurde.
+	 * 
+	 * {@link db.query.Query#select()}
+	 */
+	@Test
+	public void testSelectReturnIsRight() {
+		StringBuilder ret = new StringBuilder("SELECT ");
+		ret.append(_col1);
+		ret.append(", ");
+		ret.append(_col2);
+		ret.append(" FROM ");
+		ret.append(_table);
+		ret.append(" ORDER BY id ASC");
+		assertEquals(ret.toString(), _query.select());
+	}
 }

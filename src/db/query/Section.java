@@ -131,16 +131,5 @@ public class Section extends Query {
 		// abfrage zurück geben
 		return ret.toString();
 	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um alle Datensätze der Tabelle "section"
-	 * aufzulisten. Die Datensätze werden noch ihren IDs aufsteigend sortiert.
-	 * 
-	 * @return Datenbank-Abfrage, um alle Datensätze zurück zu geben.
-	 */
-	@Override
-	public String select() {
-		return "SELECT id, name FROM section ORDER BY id ASC;";
-	}
 	
 }
