@@ -231,7 +231,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob das Geld richtig übernommen wird.
 	 * 
-	 * @see datas.MoneyDetailsData#setMoney(int))
+	 * @see datas.MoneyDetailsData#getMoney()
 	 */
 	@Test
 	public void testSetMoney() {

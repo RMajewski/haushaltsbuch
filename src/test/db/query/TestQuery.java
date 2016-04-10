@@ -69,7 +69,7 @@ public class TestQuery extends TestHelper {
 	
 	/**
 	 * Testet, ob die die richtige Anzahl an Spalten zurück gegeben wird.
-	 * {@link db.query.Query#getColumnCount()}
+	 * {@link db.query.Query#getCloumnCount()}
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -77,11 +77,11 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob kein Fragezeichen von der Methode {@link db.query.Query#replaceQuery(int, StringBuilder, boolean}
+	 * Testet, ob kein Fragezeichen von der Methode {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 * überschrieben wird, wenn eine -1 als id übergeben wird.
 	 */
 	@Test
-	public void testReplaceQueryWithMinusOneAsIDReturnHaveTwoQueries() {
+	public void testreplaceIdWithMinusOneAsIDReturnHaveTwoQueries() {
 		_query.testReplayQuery(-1, _builder, false);
 		assertEquals(2, frequency(_builder.toString(), "?"));
 	}
@@ -92,7 +92,7 @@ public class TestQuery extends TestHelper {
 	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
-	public void testReplaceQueryWithFalseAsLastReturnHasOneQuery() {
+	public void testreplaceIdWithFalseAsLastReturnHasOneQuery() {
 		_query.testReplayQuery(100, _builder, false);
 		assertEquals(1, frequency(_builder.toString(), "?"));
 	}
@@ -103,7 +103,7 @@ public class TestQuery extends TestHelper {
 	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
-	public void testReplaceQueryWithFalseAsLastReturnIsRight() {
+	public void testreplaceIdWithFalseAsLastReturnIsRight() {
 		_query.testReplayQuery(100, _builder, false);
 		assertEquals("Dies 100 ist ein ? Test.", _builder.toString());
 	}
@@ -114,7 +114,7 @@ public class TestQuery extends TestHelper {
 	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
-	public void testReplaceQueryWithTrueAsLastReturnHasOneQuery() {
+	public void testreplaceIdWithTrueAsLastReturnHasOneQuery() {
 		_query.testReplayQuery(100, _builder, true);
 		assertEquals(1, frequency(_builder.toString(), "?"));
 	}
@@ -125,7 +125,7 @@ public class TestQuery extends TestHelper {
 	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
-	public void testReplaceQueryWithTrueAsLastReturnIsRight() {
+	public void testreplaceIdWithTrueAsLastReturnIsRight() {
 		_query.testReplayQuery(100, _builder, true);
 		assertEquals("Dies ? ist ein 100 Test.", _builder.toString());
 	}

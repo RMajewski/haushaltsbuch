@@ -176,7 +176,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * ein ? in der Rückgabe enthält, wenn die Beschreibung <b>null</b> ist.
 	 */
 	@Test
@@ -185,7 +185,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * ein ? in der Rückgabe enthält, wenn die Beschreibung eine leere
 	 * Zeichenkette ist.
 	 */

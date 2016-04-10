@@ -187,7 +187,7 @@ public class MoneyDetailsData {
 	/**
 	 * Speichert die neue Beschreibung.
 	 * 
-	 * @param Neue Beschreibung
+	 * @param comment Neue Beschreibung
 	 */
 	public void setComment(String comment) {
 		if (comment == null)

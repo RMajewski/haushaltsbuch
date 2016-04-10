@@ -91,7 +91,7 @@ public class MoneyData {
 	/**
 	 * Es wird die ID auf die übergebene ID gesetzt.
 	 * 
-	 * @param Neue ID
+	 * @param id Neue ID
 	 */
 	public void setId(int id) {
 		_id = id;

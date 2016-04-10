@@ -76,7 +76,7 @@ public class WndMoneyList extends JInternalFrame implements ActionListener {
 	/**
 	 * Reagiert auf die einzelnen Einträge im Popup-Menü
 	 * 
-	 * @return ae Event-Daten
+	 * param ae Event-Daten
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {

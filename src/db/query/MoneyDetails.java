@@ -111,7 +111,8 @@ public class MoneyDetails extends Query {
 	 * so wird die ID eingefügt.
 	 * 
 	 * @param id ID für den Money-Datensatz
-	 * @return
+	 * 
+	 * @return Datenbank-Abfrage um alle Datensätze anzuzeigen.
 	 */
 	public String select(int id) {
 		// Abfrage vorbereiten

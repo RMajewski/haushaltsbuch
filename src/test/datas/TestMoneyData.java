@@ -89,7 +89,7 @@ public class TestMoneyData {
 	 * Datums, der übergebenen Ein- oder Auszahlung und der übergebenen
 	 * Beschreibung richtig initalisiert.
 	 * 
-	 * @see datas.MoneyData#MoneyData(int, Date, boolean, String)
+	 * @see datas.MoneyData#MoneyData(int, long, boolean, String)
 	 */
 	@Test
 	public void testMoneyDataIntDateBooleanString() {
@@ -104,7 +104,7 @@ public class TestMoneyData {
 	 * Datums, der übergebenen Ein- oder Auszahlung und <b>null</b> als
 	 * Beschreibung richtig initalisiert.
 	 * 
-	 * @see datas.MoneyData#MoneyData(int, Date, boolean, String)
+	 * @see datas.MoneyData#MoneyData(int, long, boolean, String)
 	 */
 	@Test
 	public void testMoneyDataInitDateBooleanStringNullAsString() {
@@ -149,7 +149,7 @@ public class TestMoneyData {
 	/**
 	 * Testet, ob das Datum richtig übernommen wird.
 	 * 
-	 * @see datas.MoneyData#setDate(Date)
+	 * @see datas.MoneyData#setDate(long)
 	 */
 	 @Test
 	 public void testSetDate() {

@@ -194,7 +194,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Category#delete()} in
+	 * Testest, ob die Methode {@link db.query.Category#delete(int)} in
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
