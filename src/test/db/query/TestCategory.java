@@ -33,6 +33,23 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
+	 * Testet, ob der richtige Tabellen-Name gesetzt wurde.
+	 */
+	@Test
+	public void testRightTableName() {
+		assertEquals("category", _category.getTableName());
+	}
+	
+	/**
+	 * Testet, ob die richtigen Spalten-Namen gesetzt wurden.
+	 */
+	@Test
+	public void testRightColumnNames() {
+		assertEquals("id", _category.getColumnNames().get(0));
+		assertEquals("name", _category.getColumnNames().get(1));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.Category#createTable()} keine
 	 * leere Zeichenkette liefert.
 	 */
@@ -273,7 +290,7 @@ public class TestCategory extends TestHelper {
 	@Test
 	public void testUpdateStringHasId() {
 		int id = 100;
-		assertEquals(1, frequency(_category.update(id, "test"), new String("\"" + id + "\"")));
+		assertEquals(1, frequency(_category.update(id, "test"), String.valueOf(id)));
 	}
 	
 	/**

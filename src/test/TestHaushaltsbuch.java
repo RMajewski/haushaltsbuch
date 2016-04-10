@@ -12,6 +12,7 @@ import org.junit.runners.Suite;
 	
 	test.db.query.TestQueryInterface.class,
 	test.db.query.TestQuery.class,
+	test.db.query.TestQueries.class,
 	test.db.query.TestCategory.class,
 	test.db.query.TestSection.class,
 	test.db.query.TestMoney.class,

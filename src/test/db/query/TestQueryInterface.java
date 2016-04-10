@@ -2,12 +2,11 @@ package test.db.query;
 
 import static org.junit.Assert.*;
 
-import java.lang.reflect.Method;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import db.query.QueryInterface;
+import test.TestHelper;
 
 /**
  * Testet ob das {@link db.query.QueryInterface}-Interface alle Methoden
@@ -16,31 +15,7 @@ import db.query.QueryInterface;
  * @author René Majewski
  *
  */
-public class TestQueryInterface {
-	/**
-	 * Speichert die einzelnen Methoden
-	 */
-	private Method _methods[];
-	
-	/**
-	 * Sucht die angegebene Methode aus dem Methoden-Array.
-	 * 
-	 * @param name Name der Methode
-	 * 
-	 * @return Gibt <b>null</b> zurück, wenn die Methode nicht gefunden wurde.
-	 * Wurde die Methode gefunden, so wird diese zurück gegeben.
-	 */
-	private Method getMethod(String name) {
-		// Array durchlaufen
-		for (Method method : _methods) {
-			if (method.getName().equals(name)) {
-				return method;
-			}
-		}
-	
-		// Da bisher nicht beendet wurde, null zurück geben
-		return null;
-	}
+public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Initalisiert die einzelnen Test

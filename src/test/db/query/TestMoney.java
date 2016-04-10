@@ -34,6 +34,25 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
+	 * Testet, ob der richtige Tabellen-Name gesetzt wurde.
+	 */
+	@Test
+	public void testRightTableName() {
+		assertEquals("money", _money.getTableName());
+	}
+	
+	/**
+	 * Testet, ob die richtigen Spalten-Namen gesetzt wurden.
+	 */
+	@Test
+	public void testRightColumnNames() {
+		assertEquals("id", _money.getColumnNames().get(0));
+		assertEquals("date", _money.getColumnNames().get(1));
+		assertEquals("inout", _money.getColumnNames().get(2));
+		assertEquals("comment", _money.getColumnNames().get(3));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.Money#createTable()} keine
 	 * leere Zeichenkette liefert.
 	 */

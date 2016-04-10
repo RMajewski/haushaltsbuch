@@ -6,7 +6,16 @@ package db.query;
  * @author René Majewski
  *
  */
-public class Category implements QueryInterface {
+public class Category extends Query {
+	/**
+	 * Initalisiert den Tabellen-Namen und die Spalten-Namen
+	 */
+	public Category() {
+		super("category");
+		_columnNames.add("id");
+		_columnNames.add("name");
+	}
+
 	/**
 	 * Gibt die Datenbank-Abfrage zurück, die die Tabelle "category" erzeugt.
 	 * 
@@ -65,14 +74,13 @@ public class Category implements QueryInterface {
 	@Override
 	public String delete(int id) {
 		// Abfrage enthält Platzhalter
-		String ret = "DELETE FROM 'category' WHERE id = ?";
+		StringBuilder ret = new StringBuilder("DELETE FROM 'category' WHERE id = ?");
 		
 		// Platzhalter mit einer ID ersetzen?
-		if (id > -1)
-			ret = ret.replace("?", new String("\"" + id + "\""));
+		replaceId(id, ret, true);
 		
 		// Abfrage zrück geben
-		return ret;
+		return ret.toString();
 	}
 
 	/**
@@ -91,8 +99,7 @@ public class Category implements QueryInterface {
 		// Abfrage zum ändern des angegebenen Datensatzes
 		StringBuilder ret = new StringBuilder("UPDATE 'category' SET name = '?' WHERE id = ?");
 		
-		if (id > -1)
-			ret.replace(ret.lastIndexOf("?"), ret.lastIndexOf("?") + 1, "\"" + id + "\"");
+		replaceId(id, ret, true);
 		
 		// Abfrage zurück geben
 		return ret.toString();
@@ -124,6 +131,7 @@ public class Category implements QueryInterface {
 		return ret.toString();
 	}
 	
+	// TODO Select-Abfrage aus Tabellen-Name und Tabellen-Spalten automatisch erstellen.
 	/**
 	 * Erzeugt die Datenbank-Abfrage, um alle Datensätze der Tabelle "category"
 	 * aufzulisten. Die Datensätze werden noch ihren IDs aufsteigend sortiert.

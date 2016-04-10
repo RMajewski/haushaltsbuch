@@ -6,8 +6,19 @@ package db.query;
  * @author René Majewski
  *
  */
-public class MoneyDetails implements QueryInterface {
-
+public class MoneyDetails extends Query {
+	/**
+	 * Initalisiert den Tabellen-Namen und die Spalten-Namen. 
+	 */
+	public MoneyDetails() {
+		super("money_details");
+		_columnNames.add("id");
+		_columnNames.add("moneyid");
+		_columnNames.add("categoryid");
+		_columnNames.add("sectionid");
+		_columnNames.add("money");
+		_columnNames.add("comment");
+	}
 
 	/**
 	 * Gibt die Datenbank-Abfrage zurück, die die Tabelle "money_details"
@@ -121,14 +132,13 @@ public class MoneyDetails implements QueryInterface {
 	@Override
 	public String delete(int id) {
 		// Abfrage enthält Platzhalter
-		String ret = "DELETE FROM 'money_details' WHERE id = ?";
+		StringBuilder ret = new StringBuilder("DELETE FROM 'money_details' WHERE id = ?");
 		
 		// Platzhalter mit einer ID ersetzen?
-		if (id > -1)
-			ret = ret.replace("?", new String("\"" + id + "\""));
+		replaceId(id, ret, true);
 		
 		// Abfrage zrück geben
-		return ret;
+		return ret.toString();
 	}
 
 	/**
@@ -147,9 +157,8 @@ public class MoneyDetails implements QueryInterface {
 		// Abfrage zum ändern des angegebenen Datensatzes
 		StringBuilder ret = new StringBuilder("UPDATE 'money' SET moneyid = ?, categoryid = ?, sectionid = ?, money = ?, comment = '?' WHERE id = ?");
 		
-		// TODO Diese Abfrage-Bedingung als Methode implementieren
-		if (id > -1)
-			ret.replace(ret.lastIndexOf("?"), ret.lastIndexOf("?") + 1, String.valueOf(id));
+		// ID einfügen
+		replaceId(id, ret, true);
 		
 		// Abfrage zurück geben
 		return ret.toString();
@@ -181,8 +190,7 @@ public class MoneyDetails implements QueryInterface {
 		StringBuilder ret = new StringBuilder("SELECT id, moneyid, categoryid, section id, money, comment FROM money_details WHERE moneyid = ? ORDER BY id ASC");
 		
 		// Money-ID einfügen
-		if (id > -1)
-			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(id));
+		replaceId(id, ret, false);
 		
 		// Datenbank-Abfrage zurück geben
 		return ret.toString();

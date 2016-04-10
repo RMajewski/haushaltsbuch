@@ -2,88 +2,122 @@ package test.db.query;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import db.query.Queries;
-import db.query.QueryInterface;
+import test.TestHelper;
 
 /**
- * Es wird die Klasse {@link db.query.Queries} getestet.
-
+ * Testet die Klasse {@link db.query.Query}
+ * 
  * @author René Majewski
- *
  */
-public class TestQuery {
+public class TestQuery extends TestHelper {
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#category} ein Objekt der
-	 * Klasse {@link db.query.Category} ist.
+	 * Speichert die Instanz der TestQueryImplementation
 	 */
-	@Test
-	public void testCategoryRightClassName() {
-		assertEquals("db.query.Category", Queries.getInstance().category().getClass().getName());
+	private TestQueryImplementation _query;
+	
+	/**
+	 * Name der Tabelle
+	 */
+	private final String _table = new String("test");
+	
+	/**
+	 * Name der 1. Spalte
+	 */
+	private final String _col1 = new String("col1");
+	
+	/**
+	 * Name der 2. Spalte
+	 */
+	private final String _col2 = new String("col2");
+	
+	/**
+	 * Speichert den String-Builder
+	 */
+	private StringBuilder _builder;
+	
+	/**
+	 * Initalisiert die einzelnen Tests
+	 * @throws Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
+		_query = new TestQueryImplementation(_table, _col1, _col2);
+		_builder = new StringBuilder("Dies ? ist ein ? Test.");
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#category} das Interface
-	 * {@link db.query.QueryInterface} implementiert.
+	 * Testet, ob der Tabellen-Name richtig zurück gegeben wird.
+	 * {@link db.query.Query#getTableName()}
 	 */
 	@Test
-	public void testCategoryInstanceofQueryInterface() {
-		assertTrue(Queries.getInstance().category() instanceof QueryInterface);
+	public void testGetTableName() {
+		assertEquals(_table, _query.getTableName());
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#section} ein Objekt der
-	 * Klasse {@link db.query.Section} ist.
+	 * Testet, ob die Liste mit den Spalten-Namen richtig zurück gegeben wird.
+	 * {@link db.query.Query#getColumnNames()}
 	 */
 	@Test
-	public void testSectionRightClassName() {
-		assertEquals("db.query.Section", Queries.getInstance().section().getClass().getName());
+	public void testGetColoumnNames() {
+		assertEquals(_col1, _query.getColumnNames().get(0));
+		assertEquals(_col2, _query.getColumnNames().get(1));
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#section} das Interface
-	 * {@link db.query.QueryInterface} implementiert.
+	 * Testet, ob kein Fragezeichen von der Methode {@link db.query.Query#replaceQuery(int, StringBuilder, boolean}
+	 * überschrieben wird, wenn eine -1 als id übergeben wird.
 	 */
 	@Test
-	public void testSectionInstanceofQueryInterface() {
-		assertTrue(Queries.getInstance().section() instanceof QueryInterface);
+	public void testReplaceQueryWithMinusOneAsIDReturnHaveTwoQueries() {
+		_query.testReplayQuery(-1, _builder, false);
+		assertEquals(2, frequency(_builder.toString(), "?"));
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#moneyDetails} ein Objekt
-	 * der Klasse {@link db.query.MoneyDetails} ist.
+	 * Testet, ob es nur noch ein Fragezeichen gibt, wenn eine richtige ID
+	 * angegeben wird.
+	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
-	public void testMoneyDetailsRightClassName() {
-		assertEquals("db.query.MoneyDetails", Queries.getInstance().moneyDetails().getClass().getName());
+	public void testReplaceQueryWithFalseAsLastReturnHasOneQuery() {
+		_query.testReplayQuery(100, _builder, false);
+		assertEquals(1, frequency(_builder.toString(), "?"));
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#moneyDetails} das Interface
-	 * {@link db.query.QueryInterface} implementiert.
+	 * Testet, ob es nur noch ein Fragezeichen gibt, wenn eine richtige ID
+	 * angegeben wird.
+	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
-	public void testMoneyDetailsInstanceofQueryInterface() {
-		assertTrue(Queries.getInstance().moneyDetails() instanceof QueryInterface);
+	public void testReplaceQueryWithFalseAsLastReturnIsRight() {
+		_query.testReplayQuery(100, _builder, false);
+		assertEquals("Dies 100 ist ein ? Test.", _builder.toString());
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#money} ein Objekt der
-	 * Klasse {@link db.query.Money} ist.
+	 * Testet, ob es nur noch ein Fragezeichen gibt, wenn eine richtige ID
+	 * angegeben wird.
+	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
-	public void testMoneyRightClassName() {
-		assertEquals("db.query.Money", Queries.getInstance().money().getClass().getName());
+	public void testReplaceQueryWithTrueAsLastReturnHasOneQuery() {
+		_query.testReplayQuery(100, _builder, true);
+		assertEquals(1, frequency(_builder.toString(), "?"));
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#money} das Interface
-	 * {@link db.query.QueryInterface} implementiert.
+	 * Testet, ob es nur noch ein Fragezeichen gibt, wenn eine richtige ID
+	 * angegeben wird.
+	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
-	public void testMoneyInstanceofQueryInterface() {
-		assertTrue(Queries.getInstance().money() instanceof QueryInterface);
+	public void testReplaceQueryWithTrueAsLastReturnIsRight() {
+		_query.testReplayQuery(100, _builder, true);
+		assertEquals("Dies ? ist ein 100 Test.", _builder.toString());
 	}
-
 }

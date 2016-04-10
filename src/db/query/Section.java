@@ -6,7 +6,16 @@ package db.query;
  * @author René Majewski
  *
  */
-public class Section implements QueryInterface {
+public class Section extends Query {
+	/**
+	 * Initalisiert den Tabellen-Namen und die Spalten-Namen.
+	 */
+	public Section() {
+		super("section");
+		_columnNames.add("id");
+		_columnNames.add("name");
+	}
+
 	/**
 	 * Gibt die Datenbank-Abfrage zurück, die die Tabelle "section" erzeugt.
 	 * 
@@ -65,14 +74,13 @@ public class Section implements QueryInterface {
 	@Override
 	public String delete(int id) {
 		// Abfrage enthält Platzhalter
-		String ret = "DELETE FROM 'section' WHERE id = ?";
+		StringBuilder ret = new StringBuilder("DELETE FROM 'section' WHERE id = ?");
 		
 		// Platzhalter mit einer ID ersetzen?
-		if (id > -1)
-			ret = ret.replace("?", new String("\"" + id + "\""));
+		replaceId(id, ret, true);
 		
 		// Abfrage zrück geben
-		return ret;
+		return ret.toString();
 	}
 
 	/**
@@ -91,8 +99,8 @@ public class Section implements QueryInterface {
 		// Abfrage zum ändern des angegebenen Datensatzes
 		StringBuilder ret = new StringBuilder("UPDATE 'section' SET name = '?' WHERE id = ?");
 		
-		if (id > -1)
-			ret.replace(ret.lastIndexOf("?"), ret.lastIndexOf("?") + 1, "\"" + id + "\"");
+		// ID hinzufügen
+		replaceId(id, ret, true);
 		
 		// Abfrage zurück geben
 		return ret.toString();

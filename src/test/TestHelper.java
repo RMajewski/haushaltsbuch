@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Method;
+
 /**
  * Hier werden einige Helfer-Methoden deklariert.
  * 
@@ -9,6 +11,30 @@ import static org.junit.Assert.*;
  *
  */
 public class TestHelper {
+	/**
+	 * Speichert die einzelnen Methoden
+	 */
+	protected Method _methods[];
+	
+	/**
+	 * Sucht die angegebene Methode aus dem Methoden-Array.
+	 * 
+	 * @param name Name der Methode
+	 * 
+	 * @return Gibt <b>null</b> zurück, wenn die Methode nicht gefunden wurde.
+	 * Wurde die Methode gefunden, so wird diese zurück gegeben.
+	 */
+	protected Method getMethod(String name) {
+		// Array durchlaufen
+		for (Method method : _methods) {
+			if (method.getName().equals(name)) {
+				return method;
+			}
+		}
+	
+		// Da bisher nicht beendet wurde, null zurück geben
+		return null;
+	}
 	/**
 	 * Überprüft ob die übergebene Zeichenkette nicht <b>null</b> ist und b
 	 * sie nicht leer ist. Trifft eins von beiden nicht zu, so wird
