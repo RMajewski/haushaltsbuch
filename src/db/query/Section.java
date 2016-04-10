@@ -27,18 +27,6 @@ public class Section extends Query {
 				"'id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				"'name' TEXT);";
 	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um ein neues Geschäft in die Tabelle
-	 * "section" zu speichern. Den Namen des neuen Geschäfts wird mit einen
-	 * <b>?</b> markiert.
-	 * 
-	 * @return Datenbank-Abfrage, um ein neues Geschäft zu erstellen.
-	 */
-	@Override
-	public String insert() {
-		return "INSERT INTO 'section' ('name') VALUES (?);";
-	}
 	
 	/**
 	 * Erzeugt die Datenbank-Abfrage, um ein neues Geschft in die Tabelle
@@ -58,52 +46,6 @@ public class Section extends Query {
 		}
 
 		return ret;
-	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um ein Geschäft aus der Tabelle
-	 * "section" zu löschen. Wurde eine ID größer <b>-1</> angegeben, so
-	 * ist diese bereits in der Rückgabe enthalten. Wurde als ID
-	 * <b>-1</b> angegeben, so ist für die ID der Platzhalter <b>?</b>
-	 * vorgesehen.
-	 * 
-	 * @param id ID des Datensatzes, der gelöscht werden soll.
-	 * 
-	 * @return Datenbank-Abfrage um den angegeben Datensatz zu löschen.
-	 */
-	@Override
-	public String delete(int id) {
-		// Abfrage enthält Platzhalter
-		StringBuilder ret = new StringBuilder("DELETE FROM 'section' WHERE id = ?");
-		
-		// Platzhalter mit einer ID ersetzen?
-		replaceId(id, ret, true);
-		
-		// Abfrage zrück geben
-		return ret.toString();
-	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um ein Geschäft in der Tabelle
-	 * "section" zu ändern. Wurde eine ID größer <b>-1</b> angegeben, so
-	 * wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
-	 * angegeben, wird für die ID ein <b>?</b> als Platzhalter in die
-	 * Datenbankabfrage übernommen.
-	 * 
-	 * @param id ID des Datensatzes, der geändert werde soll.
-	 * 
-	 * @return Datenbank-Abfrage, um den angegebenen Datensatz zu ändern.
-	 */
-	@Override
-	public String update(int id) {
-		// Abfrage zum ändern des angegebenen Datensatzes
-		StringBuilder ret = new StringBuilder("UPDATE 'section' SET name = '?' WHERE id = ?");
-		
-		// ID hinzufügen
-		replaceId(id, ret, true);
-		
-		// Abfrage zurück geben
-		return ret.toString();
 	}
 	
 	/**

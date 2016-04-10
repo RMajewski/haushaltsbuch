@@ -30,18 +30,6 @@ public class Category extends Query {
 
 	/**
 	 * Erzeugt die Datenbank-Abfrage, um eine neue Kategorie in die Tabelle
-	 * "category" zu speichern. Den Namen der neuen Kategorie wird mit einen
-	 * <b>?</b> markiert.
-	 * 
-	 * @return Datenbank-Abfrage, um eine neue Kategorie zu erstellen.
-	 */
-	@Override
-	public String insert() {
-		return "INSERT INTO 'category' ('name') VALUES (?);";
-	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um eine neue Kategorie in die Tabelle
 	 * "category" zu speichern. Diese Abfrage enthält bereits den Namen. Wird
 	 * <b>null</b> als Parameter übergeben, so wird als Platzhalter für den
 	 * Namen ein <b>?</b> eingefügt.
@@ -58,51 +46,6 @@ public class Category extends Query {
 		}
 
 		return ret;
-	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um eine Kategorie aus der Tabelle
-	 * "category" zu löschen. Wurde eine ID größer <b>-1</> angegeben, so
-	 * ist diese bereits in der Rückgabe enthalten. Wurde als ID
-	 * <b>-1</b> angegeben, so ist für die ID der Platzhalter <b>?</b>
-	 * vorgesehen.
-	 * 
-	 * @param id ID des Datensatzes, der gelöscht werden soll.
-	 * 
-	 * @return Datenbank-Abfrage um den angegeben Datensatz zu löschen.
-	 */
-	@Override
-	public String delete(int id) {
-		// Abfrage enthält Platzhalter
-		StringBuilder ret = new StringBuilder("DELETE FROM 'category' WHERE id = ?");
-		
-		// Platzhalter mit einer ID ersetzen?
-		replaceId(id, ret, true);
-		
-		// Abfrage zrück geben
-		return ret.toString();
-	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um eine Kategorie in der Tabelle
-	 * "category" zu ändern. Wurde ein ID größer <b>-1</b> angegeben, so
-	 * wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
-	 * angegeben, wird für die ID ein <b>?</b> als Platzhalter in die
-	 * Datenbankabfrage übernommen.
-	 * 
-	 * @param id ID des Datensatzes, der geändert werde soll.
-	 * 
-	 * @return Datenbank-Abfrage, um den angegebenen Datensatz zu ändern.
-	 */
-	@Override
-	public String update(int id) {
-		// Abfrage zum ändern des angegebenen Datensatzes
-		StringBuilder ret = new StringBuilder("UPDATE 'category' SET name = '?' WHERE id = ?");
-		
-		replaceId(id, ret, true);
-		
-		// Abfrage zurück geben
-		return ret.toString();
 	}
 
 	/**

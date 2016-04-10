@@ -54,34 +54,6 @@ public class TestQueryImplementation extends Query {
 		return null;
 	}
 
-	/**
-	 * Dieses Methode wird für den Test der Query-Klasse nicht gebraucht.
-	 * 
-	 * @return Es wird lediglich <b>null</b> zurück gegeben.
-	 */
-	@Override
-	public String insert() {
-		return null;
-	}
 
-	/**
-	 * Dieses Methode wird für den Test der Query-Klasse nicht gebraucht.
-	 * 
-	 * @return Es wird lediglich <b>null</b> zurück gegeben.
-	 */
-	@Override
-	public String delete(int id) {
-		return null;
-	}
-
-	/**
-	 * Dieses Methode wird für den Test der Query-Klasse nicht gebraucht.
-	 * 
-	 * @return Es wird lediglich <b>null</b> zurück gegeben.
-	 */
-	@Override
-	public String update(int id) {
-		return null;
-	}
 
 }

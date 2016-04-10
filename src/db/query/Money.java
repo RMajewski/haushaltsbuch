@@ -32,18 +32,6 @@ public class Money extends Query {
 				"'inout' INTEGER, " +
 				"'comment' TEXT)";
 	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um einen neuen Eintrag in der Tabelle
-	 * "money" zu erzeugen. FÜr das Datum, ob es eine Ausgabe oder Einnahme
-	 * und die Beschreibung werden "?" als Platzhalter genutzt.
-	 * 
-	 * @return Datenbank-Abfrage, um einen neuen Eintrag in "money" zu erzeugen
-	 */
-	@Override
-	public String insert() {
-		return "INSERT INTO 'money' ('date', 'inout', 'comment') VALUES (?, ?, ?)";
-	}
 	
 	/**
 	 * Erzeugt die Datenbank-Abfrage, um einen Eintrag in der Tabelle "money"
@@ -70,53 +58,6 @@ public class Money extends Query {
 			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
 		
 		// Datenbank-Abfrage zurück geben
-		return ret.toString();
-	}
-
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um eine Kategorie aus der Tabelle
-	 * "money" zu löschen. Wurde eine ID größer <b>-1</> angegeben, so
-	 * ist diese bereits in der Rückgabe enthalten. Wurde als ID
-	 * <b>-1</b> angegeben, so ist für die ID der Platzhalter <b>?</b>
-	 * vorgesehen.
-	 * 
-	 * @param id ID des Datensatzes, der gelöscht werden soll.
-	 * 
-	 * @return Datenbank-Abfrage um den angegeben Datensatz zu löschen.
-	 */
-	@Override
-	public String delete(int id) {
-		// Abfrage enthält Platzhalter
-		StringBuilder ret = new StringBuilder("DELETE FROM 'money' WHERE id = ?");
-		
-		// Platzhalter mit einer ID ersetzen?
-		replaceId(id, ret, true);
-		
-		// Abfrage zrück geben
-		return ret.toString();
-	}
-	
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um einen Datensatz in der Tabelle
-	 * "money" zu ändern. Wurde ein ID größer <b>-1</b> angegeben, so
-	 * wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
-	 * angegeben, wird für die ID ein <b>?</b> als Platzhalter in die
-	 * Datenbankabfrage übernommen.
-	 * 
-	 * @param id ID des Datensatzes, der geändert werde soll.
-	 * 
-	 * @return Datenbank-Abfrage, um den angegebenen Datensatz zu ändern.
-	 */
-	@Override
-	public String update(int id) {
-		// Abfrage zum ändern des angegebenen Datensatzes
-		StringBuilder ret = new StringBuilder("UPDATE 'money' SET date = ?, inout = ?, comment = '?' WHERE id = ?");
-		
-		// ID ersetzen
-		replaceId(id, ret, true);
-		
-		// Abfrage zurück geben
 		return ret.toString();
 	}
 

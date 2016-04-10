@@ -107,4 +107,125 @@ public abstract class Query implements QueryInterface {
 		// Rückgabe der Datenbank-Abfrage
 		return ret.toString();
 	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um einen neuen Datensatz in die Tabelle
+	 * einzufügen.
+	 * 
+	 * Diese Abfrage wird mit Hilfe der gespeicherten Spalten-Namen
+	 * und des gespeicherten Tabellen-Namens erstellt.
+	 * 
+	 * @return Datenbank-Abfrage um neuen Datensatz einzufügen
+	 */
+	@Override
+	public String insert() {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("INSERT INTO ");
+		
+		// Tabellen-Namen einfügen
+		ret.append(_tableName);
+		ret.append(" (");
+		
+		// Spalten-Namen einfügen (id auslassen)
+		boolean first = true;
+		int queries = 0;
+		for (int i = 0; i < _columnNames.size(); i++) {
+			if (!_columnNames.get(i).equals("id")) {
+				if (first)
+					first = false;
+				else
+					ret.append(", ");
+				ret.append(_columnNames.get(i));
+				queries++;
+			}
+		}
+		
+		// Anzahl Fragezeichen einfügen
+		ret.append(") VALUES (");
+		for (int i = 0; i < queries; i++) {
+			if (i == 0)
+				ret.append("?");
+			else
+				ret.append(", ?");
+		}
+		ret.append(");");
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um einen neuen Datensatz zu ändern.
+	 * Wird als ID <b>-1</b> übergeben, so wird als Platzhalter ein
+	 * Fragenzeichen eingesetzt. Wenn nicht, so wird die ID mit in der
+	 * Abfrage erstellt.
+	 * 
+	 * Diese Abfrage wird mit Hilfe der gespeicherten Spalten-Namen
+	 * und des gespeicherten Tabellen-Namens erstellt.
+	 * 
+	 * @param id ID des Datensatzes, der geändert werden soll.
+	 * 
+	 * @return Datenbank-Abfrage um einen Datensatz zu ändern
+	 */
+	@Override
+	public String update(int id) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("UPDATE ");
+		
+		// Tabellen-Namen einfügen
+		ret.append(_tableName);
+		ret.append(" SET ");
+		
+		// Spalten mit Fragenzeichen einfügen ( id auslassen)
+		boolean first = true;
+		for (int i = 0; i < _columnNames.size(); i++) {
+			if (!_columnNames.get(i).equals("id")) {
+				if (first)
+					first = false;
+				else
+					ret.append(", ");
+				
+				ret.append(_columnNames.get(i));
+				ret.append(" = '?'");
+			}
+		}
+		
+		// Abfrage abschließen
+		ret.append(" WHERE id = ?");
+		
+		// ID einfügen
+		replaceId(id, ret, true);
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um einen neuen Datensatz löschen.
+	 * Wird als ID <b>-1</b> übergeben, so wird als Platzhalter ein
+	 * Fragenzeichen eingesetzt. Wenn nicht, so wird die ID mit in der
+	 * Abfrage erstellt.
+	 * 
+	 * Diese Abfrage wird mit Hilfe der gespeicherten Spalten-Namen
+	 * und des gespeicherten Tabellen-Namens erstellt.
+	 * 
+	 * @param id ID des Datensatzes, der gelöscht werden soll.
+	 * 
+	 * @return Datenbank-Abfrage um einen Datensatz zu löschen
+	 */
+	@Override
+	public String delete(int id) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("DELETE FROM ");
+		
+		// Tabellen-Namen einfügen und Abfrage abschließen
+		ret.append(_tableName);
+		ret.append(" WHERE id = ?");
+		
+		// ID ersetzen
+		replaceId(id, ret, true);
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
 }

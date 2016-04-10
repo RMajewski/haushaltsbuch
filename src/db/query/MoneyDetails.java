@@ -36,21 +36,6 @@ public class MoneyDetails extends Query {
 				"'money' DOUBLE, " +
 				"'comment' TEXT)";
 	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um einen neuen Eintrag in der Tabelle
-	 * "money_details" zu erzeugen. Für die 'moneyid', 'categoryid',
-	 * 'sectionid', das Geld und die Beschreiung wird jeweils ein "?" als
-	 * Platzhalter genutzt.
-	 *
-	 * 
-	 * @return Datenbank-Abfrage, um einen neuen Eintrag in "money_details" zu
-	 * erzeugen
-	 */
-	@Override
-	public String insert() {
-		return "INSERT INTO 'money_details' ('moneyid', 'categoryid', 'sectionid', 'money', 'comment') VALUES (?, ?, ?, ?, ?);";
-	}
 	
 	/**
 	 * Erzeugt die Datenbank-Abfrage, um einen neuen Eintrag in die Tabelle
@@ -115,52 +100,6 @@ public class MoneyDetails extends Query {
 		ret.append(");");
 		
 		// Rückgabe des Datenbank-Abfrage
-		return ret.toString();
-	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um einen Datensatz aus der Tabelle
-	 * "money_details" zu löschen. Wurde eine ID größer <b>-1</> angegeben, so
-	 * ist diese bereits in der Rückgabe enthalten. Wurde als ID
-	 * <b>-1</b> angegeben, so ist für die ID der Platzhalter <b>?</b>
-	 * vorgesehen.
-	 * 
-	 * @param id ID des Datensatzes, der gelöscht werden soll.
-	 * 
-	 * @return Datenbank-Abfrage um den angegeben Datensatz zu löschen.
-	 */
-	@Override
-	public String delete(int id) {
-		// Abfrage enthält Platzhalter
-		StringBuilder ret = new StringBuilder("DELETE FROM 'money_details' WHERE id = ?");
-		
-		// Platzhalter mit einer ID ersetzen?
-		replaceId(id, ret, true);
-		
-		// Abfrage zrück geben
-		return ret.toString();
-	}
-
-	/**
-	 * Erzeugt die Datenbank-Abfrage, um einen Datensatz in der Tabelle
-	 * "money_details" zu ändern. Wurde ein ID größer <b>-1</b> angegeben, so
-	 * wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
-	 * angegeben, wird für die ID ein <b>?</b> als Platzhalter in die
-	 * Datenbankabfrage übernommen.
-	 * 
-	 * @param id ID des Datensatzes, der geändert werde soll.
-	 * 
-	 * @return Datenbank-Abfrage, um den angegebenen Datensatz zu ändern.
-	 */
-	@Override
-	public String update(int id) {
-		// Abfrage zum ändern des angegebenen Datensatzes
-		StringBuilder ret = new StringBuilder("UPDATE 'money' SET moneyid = ?, categoryid = ?, sectionid = ?, money = ?, comment = '?' WHERE id = ?");
-		
-		// ID einfügen
-		replaceId(id, ret, true);
-		
-		// Abfrage zurück geben
 		return ret.toString();
 	}
 
