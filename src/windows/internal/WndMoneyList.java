@@ -103,7 +103,7 @@ public class WndMoneyList extends JInternalFrame implements ActionListener {
 			// Einen Eintrag ändern
 			case PopupCategoryList.CHANGE:
 				// Wurde ein Datensatz ausgewählt?
-				if (isSelected()) {
+				if (_table.getSelectedRow() > -1) {
 					// Datensatz ermitteln
 					MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
 					
@@ -122,7 +122,7 @@ public class WndMoneyList extends JInternalFrame implements ActionListener {
 			// Einen Eintrag löschen
 			case PopupCategoryList.DELETE:
 				// Wurde ein Datensatz ausgewählt?
-				if (isSelected()) {
+				if (_table.getSelectedRow() > -1) {
 					// Datensatz ermitteln
 					MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
 					

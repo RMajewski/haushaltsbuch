@@ -1,5 +1,8 @@
 package datas;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 // TODO Aus übergebenen Daum (String) long-Wert erzeugen
 // TODO Aus long-Wert ein Datum erzeugen (String)
 
@@ -94,6 +97,16 @@ public class MoneyData extends Data {
 	 */
 	public long getDate() {
 		return _date;
+	}
+
+	/**
+	 * Erstellt aus dem gespeicherten long-Wert des Datum eine Zeichenkette,
+	 * in der das Datum in Klartext geschrieben ist.
+	 * 
+	 * @return Datum als Zeichenkette
+	 */
+	public String getDateAsString() {
+		return DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(_date));
 	}
 
 	/**

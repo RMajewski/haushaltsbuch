@@ -136,6 +136,17 @@ public class TestMoneyData {
 	}
 	
 	/**
+	 * Testet, ob das Datum als Zeichenkette richtig zurück gegeben wird.
+	 * 
+	 * @see datas.MoneyData#getDateAsString()
+	 */
+	@Test
+	public void testGetDateAsString() {
+		_data.setDate(1460387339811l);
+		assertEquals("11.04.2016", _data.getDateAsString());
+	}
+	
+	/**
 	 * Testet, ob das Datum richtig übernommen wird.
 	 * 
 	 * @see datas.MoneyData#setDate(long)

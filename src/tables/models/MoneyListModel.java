@@ -84,8 +84,7 @@ public class MoneyListModel extends AbstractTableModel
 				
 			// Datum
 			case 1:
-				// TODO Datum richtig ausgeben
-				return _list.get(row).getDate();
+				return _list.get(row).getDateAsString();
 				
 			// Einnahme oder Ausgabe
 			case 2:

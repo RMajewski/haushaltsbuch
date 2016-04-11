@@ -165,7 +165,7 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 		// Daten einfügen?
 		if (_data != null) {
 			// Datum einfügen
-			_txtDate.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(_data.getDate())));
+			_txtDate.setText(_data.getDateAsString());
 			
 			// Einnahme oder Ausgabe
 			if (_data.getInOut() == MoneyData.INCOMING)
