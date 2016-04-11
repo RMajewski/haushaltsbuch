@@ -26,6 +26,7 @@ import elements.StatusBar;
 import tables.models.MoneyListModel;
 
 // FIXME Überprüfen vor Speichern, ob Datum angegeben ist. Wenn nicht -> Darauf hinweisen
+// TODO Ausgaben für Datenbank-Abfragen in der StatusBar vereinheitlichen.
 
 /**
  * Zeigt das Fenster an, um einen neuen Datensatz anzulegen oder einen

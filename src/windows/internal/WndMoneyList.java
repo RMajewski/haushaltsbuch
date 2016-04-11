@@ -2,13 +2,18 @@ package windows.internal;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import datas.MoneyData;
+import db.DbController;
+import elements.StatusBar;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
 import tables.models.MoneyListModel;
@@ -116,6 +121,31 @@ public class WndMoneyList extends JInternalFrame implements ActionListener {
 				
 			// Einen Eintrag löschen
 			case PopupCategoryList.DELETE:
+				// Wurde ein Datensatz ausgewählt?
+				if (isSelected()) {
+					// Datensatz ermitteln
+					MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+					
+					// Benutzer Fragen ob Datensatz gelöscht werden soll
+					// Kategorie löschen? 
+					int d = JOptionPane.showConfirmDialog(this, "Soll der Datensatz mit der ID" + data.getId() + " wirklich gelöscht werden?", "Datensatz löschen", JOptionPane.YES_NO_OPTION);
+					if (d == 0) {
+						try {
+							Statement stm = DbController.getInstance().createStatement();
+							if (stm.executeUpdate(DbController.queries().money().delete(data.getId())) > 0) {
+								StatusBar.getInstance().setMessageAsOk("Der Datensatz mit der ID " + data.getId() + " wurde aus der Datenbank-Tabelle 'money' gelöscht");
+							} else {
+								StatusBar.getInstance().setMessageAsError("Der Datensatz mit der ID " + data.getId() + " konnte nicht aus der Datenbank-Tabelle 'money' gelöscht werden.");
+							}
+						} catch (SQLException e) {
+							StatusBar.getInstance().setMessageAsError("Fehler beim Zugriff auf die Datenbank.");
+							e.printStackTrace();
+						}
+						
+						// Tabelle neu zeichnen
+						((MoneyListModel)_table.getModel()).dataRefresh(true);
+					}
+				}
 				break;
 		}
 	}
