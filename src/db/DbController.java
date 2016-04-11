@@ -178,4 +178,13 @@ public class DbController {
 	public static Queries queries() {
 		return Queries.getInstance();
 	}
+	
+	/**
+	 * Erzeugt die Status-Nachricht, wenn ein Datenbank-Fehler aufgetreten ist.
+	 * 
+	 * @return Status-Nachricht, bei Datenbank-Fehler
+	 */
+	public static String statusDbError() {
+		return "Fehler beim Zugriff auf die Datenbank.";
+	}
 }

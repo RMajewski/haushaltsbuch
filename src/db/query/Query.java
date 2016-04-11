@@ -237,4 +237,111 @@ public abstract class Query implements QueryInterface {
 		// Abfrage zurück geben
 		return ret.toString();
 	}
+	
+	/**
+	 * Gibt die Status-Nachricht fürs Einfügen eines Datensatzes zurück.
+	 * 
+	 * @return Status-Nachricht fürs Einfügen eines Datensatzes
+	 */
+	@Override
+	public String statusInsertOk() {
+		// Nachricht vorbereiten
+		StringBuilder ret = new StringBuilder("Datenbank: In die Tabelle '");
+		ret.append(_tableName);
+		ret.append("' wurde ein Datensatz eingefügt.");
+		
+		// Nachricht zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Status-Nachricht, wenn der Datensatz nicht eingefügt werden
+	 * kann.
+	 * 
+	 * @return Status-Nachricht, wenn Datensatz nicht eingefügt werden konnte.
+	 */
+	@Override
+	public String statusInsertError() {
+		// Nachricht vorbereiten
+		StringBuilder ret = new StringBuilder("Datenbank: In die Tabelle '");
+		ret.append(_tableName);
+		ret.append("' konnte kein Datensatz eingefügt werden.");
+		
+		// Nachricht zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Status-Nachricht, fürs ändern einen Datensatzes.
+	 * 
+	 * @return Status-Nachricht, wenn Datensatz geändert wurde.
+	 */
+	@Override
+	public String statusUpdateOk(int id) {
+		// Nachricht vorbereiten
+		StringBuilder ret = new StringBuilder("Datenbank: Der Datensatz mit der ID ");
+		ret.append(id);
+		ret.append(" aus der Tabelle '");
+		ret.append(_tableName);
+		ret.append("' wurde geändert.");
+		
+		// nachrihct zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Status-Nachricht, wenn der Datensatz nicht geändert werden
+	 * kann.
+	 * 
+	 * @return Status-Nachricht, wenn Datensatz nicht geändert werden konnte
+	 */
+	@Override
+	public String statusUpdateError(int id) {
+		// Nachricht vorbereiten
+		StringBuilder ret = new StringBuilder("Datenbank: Der Datensatz mit der ID ");
+		ret.append(id);
+		ret.append(" aus der Tabelle '");
+		ret.append(_tableName);
+		ret.append("' konnte nicht geändert werden.");
+		
+		// Nachricht zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Status-Nachrciht, wenn ein Datensatz gelöscht wurde.
+	 * 
+	 * @return Status-Nachricht, wenn Datensatz gelöscht wurde.
+	 */
+	@Override
+	public String statusDeleteOk(int id) {
+		// Nachricht vorbereiten
+		StringBuilder ret = new StringBuilder("Datenbank: Der Datensatz mit der ID ");
+		ret.append(id);
+		ret.append(" wurde aus der Tabelle '");
+		ret.append(_tableName);
+		ret.append("' gelöscht.");
+		
+		// Nachricht zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Status-Nachricht, wenn ein Datensatz nicht gelöscht werden
+	 * konnte.
+	 * 
+	 * @return Status-Nachricht, wenn Datensatz nicht gelöscht werden konnte.
+	 */
+	@Override
+	public String statusDeleteError(int id) {
+		// Nachricht vorbereiten
+		StringBuilder ret = new StringBuilder("Datenbank: Der Datensatz mit der ID ");
+		ret.append(id);
+		ret.append(" konnte nicht aus der Tabelle '");
+		ret.append(_tableName);
+		ret.append("' gelöscht werden.");
+		
+		// Nachricht zurück geben
+		return ret.toString();
+	}
 }

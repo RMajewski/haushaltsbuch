@@ -42,7 +42,7 @@ public class Category extends Query {
 		String ret = insert();
 		
 		if (name != null && !name.isEmpty()) {
-			ret = ret.replace("?", "'" + name + "'");
+			ret = ret.replace("?", name);
 		}
 
 		return ret;

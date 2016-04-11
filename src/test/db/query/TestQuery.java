@@ -370,4 +370,232 @@ public class TestQuery extends TestHelper {
 	public void testUpdateReturnHaveTwoQueries() {
 		assertEquals(2, frequency(_query.insert(), "?"));
 	}
+	
+	/**
+	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
+	 * gibt.
+	 * 
+	 * {@link db.query.Query#statusInsertOk()}
+	 */
+	@Test
+	public void testStatusInsertOkReturnIsNotNull() {
+		assertFalse(_query.statusInsertOk() == null);
+	}
+	
+	/**
+	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
+	 * enthält.
+	 * 
+	 * {@link db.query.Query#statusInsertOk()}
+	 */
+	@Test
+	public void testStatusInsertOkReturnIsNotEmpty() {
+		assertFalse(_query.statusInsertOk().isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
+	 * hat. 
+	 * 
+	 * {@link db.query.Query#statusInsertOk()}
+	 */
+	@Test
+	public void testStatusInsertOkReturnIsRight() {
+		StringBuilder ret = new StringBuilder("Datenbank: In die Tabelle '");
+		ret.append(_table);
+		ret.append("' wurde ein Datensatz eingefügt.");
+		assertEquals(ret.toString(), _query.statusInsertOk());
+	}
+	
+	/**
+	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
+	 * gibt.
+	 * 
+	 * {@link db.query.Query#statusInsertError()}
+	 */
+	@Test
+	public void testStatusInsertErrorReturnIsNotNull() {
+		assertFalse(_query.statusInsertError() == null);
+	}
+	
+	/**
+	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
+	 * enthält.
+	 * 
+	 * {@link db.query.Query#statusInsertError()}
+	 */
+	@Test
+	public void testStatusInsertErrorReturnIsNotEmpty() {
+		assertFalse(_query.statusInsertError().isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
+	 * hat. 
+	 * 
+	 * {@link db.query.Query#statusInsertError()}
+	 */
+	@Test
+	public void testStatusInsertErrorReturnIsRight() {
+		StringBuilder ret = new StringBuilder("Datenbank: In die Tabelle '");
+		ret.append(_table);
+		ret.append("' konnte kein Datensatz eingefügt werden.");
+		assertEquals(ret.toString(), _query.statusInsertError());
+	}
+	
+	/**
+	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
+	 * gibt.
+	 * 
+	 * {@link db.query.Query#statusUpdateOk(int)}
+	 */
+	@Test
+	public void testStatusUpdateOkReturnIsNotNull() {
+		assertFalse(_query.statusUpdateOk(100) == null);
+	}
+	
+	/**
+	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
+	 * enthält.
+	 * 
+	 * {@link db.query.Query#statusUpdateOk(int)}
+	 */
+	@Test
+	public void testStatusUpdateOkReturnIsNotEmpty() {
+		assertFalse(_query.statusUpdateOk(100).isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
+	 * hat. 
+	 * 
+	 * {@link db.query.Query#statusUpdateOk(int)}
+	 */
+	@Test
+	public void testStatusUpdateOkReturnIsRight() {
+		int id = 100;
+		StringBuilder ret = new StringBuilder("Datenbank: Der Datensatz mit der ID ");
+		ret.append(id);
+		ret.append(" aus der Tabelle '");
+		ret.append(_table);
+		ret.append("' wurde geändert.");
+		assertEquals(ret.toString(), _query.statusUpdateOk(id));
+	}
+	
+	/**
+	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
+	 * gibt.
+	 * 
+	 * {@link db.query.Query#statusUpdateError(int)}
+	 */
+	@Test
+	public void testStatusUpdateErrorReturnIsNotNull() {
+		assertFalse(_query.statusUpdateError(100) == null);
+	}
+	
+	/**
+	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
+	 * enthält.
+	 * 
+	 * {@link db.query.Query#statusUpdateError(int)}
+	 */
+	@Test
+	public void testStatusUpdateErrorReturnIsNotEmpty() {
+		assertFalse(_query.statusUpdateError(100).isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
+	 * hat. 
+	 * 
+	 * {@link db.query.Query#statusUpdateError(int)}
+	 */
+	@Test
+	public void testStatusUpdateErrorReturnIsRight() {
+		int id = 100;
+		StringBuilder ret = new StringBuilder("Datenbank: Der Datensatz mit der ID ");
+		ret.append(id);
+		ret.append(" aus der Tabelle '");
+		ret.append(_table);
+		ret.append("' konnte nicht geändert werden.");
+		assertEquals(ret.toString(), _query.statusUpdateError(id));
+	}
+	
+	/**
+	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
+	 * gibt.
+	 * 
+	 * {@link db.query.Query#statusDeleteOk(int)}
+	 */
+	@Test
+	public void testStatusDeleteOkReturnIsNotNull() {
+		assertFalse(_query.statusDeleteOk(100) == null);
+	}
+	
+	/**
+	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
+	 * enthält.
+	 * 
+	 * {@link db.query.Query#statusDeleteOk(int)}
+	 */
+	@Test
+	public void testStatusDeleteOkReturnIsNotEmpty() {
+		assertFalse(_query.statusDeleteOk(100).isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
+	 * hat. 
+	 * 
+	 * {@link db.query.Query#statusDeleteOk(int)}
+	 */
+	@Test
+	public void testStatusDeleteOkReturnIsRight() {
+		int id = 100;
+		StringBuilder ret = new StringBuilder("Datenbank: Der Datensatz mit der ID ");
+		ret.append(id);
+		ret.append(" wurde aus der Tabelle '");
+		ret.append(_table);
+		ret.append("' gelöscht.");
+		assertEquals(ret.toString(), _query.statusDeleteOk(id));
+	}
+	
+	/**
+	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
+	 * gibt.
+	 * 
+	 * {@link db.query.Query#statusDeleteError(int)}
+	 */
+	@Test
+	public void testStatusDeleteErrorReturnIsNotNull() {
+		assertFalse(_query.statusDeleteError(100) == null);
+	}
+	
+	/**
+	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
+	 * enthält.
+	 * 
+	 * {@link db.query.Query#statusDeleteError(int)}
+	 */
+	@Test
+	public void testStatusDeleteErrorReturnIsNotEmpty() {
+		assertFalse(_query.statusDeleteError(100).isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
+	 * hat. 
+	 * 
+	 * {@link db.query.Query#statusDeleteError(int)}
+	 */
+	@Test
+	public void testStatusDeleteErrorReturnIsRight() {
+		int id = 100;
+		StringBuilder ret = new StringBuilder("Datenbank: Der Datensatz mit der ID ");
+		ret.append(id);
+		ret.append(" konnte nicht aus der Tabelle '");
+		ret.append(_table);
+		ret.append("' gelöscht werden.");
+		assertEquals(ret.toString(), _query.statusDeleteError(id));
+	}
 }

@@ -40,4 +40,34 @@ public interface QueryInterface {
 	 * werden.
 	 */
 	public String select();
+	
+	/**
+	 * Meldung: Datensatz wurde eingefügt
+	 */
+	public String statusInsertOk();
+	
+	/**
+	 * Meldung: Datensatz konnte nicht eingefügt werden
+	 */
+	public String statusInsertError();
+	
+	/**
+	 * Meldung: Datensatz wurde geändert
+	 */
+	public String statusUpdateOk(int id);
+	
+	/**
+	 * Meldung: Datensatz konnte nicht geändert werden
+	 */
+	public String statusUpdateError(int id);
+	
+	/**
+	 * Meldung: Datensatz wurde gelöscht
+	 */
+	public String statusDeleteOk(int id);
+	
+	/**
+	 * Meldung: Datensatz konnt nicht gelöscht werden.
+	 */
+	public String statusDeleteError(int id);
 }

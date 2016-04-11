@@ -166,4 +166,176 @@ public class TestQueryInterface extends TestHelper {
 	public void testSelectReturnString() {
 		assertEquals("java.lang.String", getMethod("select").getReturnType().getName());
 	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusInsertOk()}
+	 * deklariert wurde.
+	 */
+	@Test
+	public void testStatusInsertOkDeclaration() {
+		assertTrue(getMethod("statusInsertOk") != null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusInsertOk()}
+	 * keinen Parameter besitzt.
+	 */
+	@Test
+	public void testStatusInsertOkNoParameter() {
+		assertEquals(0, getMethod("statusInsertOk").getParameterTypes().length);
+	}
+	
+	/**
+	 * Testet, ob der Rückgabewert der Methode
+	 * {@link db.query.QueryInterface#statusInsertOk()} vom Typ
+	 * {@link java.lang.String} ist.
+	 */
+	@Test
+	public void testStatusInsertOkReturnString() {
+		assertEquals("java.lang.String", getMethod("statusInsertOk").getReturnType().getName());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusInsertError()}
+	 * deklariert wurde.
+	 */
+	@Test
+	public void testStatusInsertErrorDeclaration() {
+		assertTrue(getMethod("statusInsertError") != null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusInsertError()}
+	 * keinen Parameter besitzt.
+	 */
+	@Test
+	public void testStatusInsertErrorNoParameter() {
+		assertEquals(0, getMethod("statusInsertError").getParameterTypes().length);
+	}
+	
+	/**
+	 * Testet, ob der Rückgabewert der Methode
+	 * {@link db.query.QueryInterface#statusInsertError()} vom Typ
+	 * {@link java.lang.String} ist.
+	 */
+	@Test
+	public void testStatusInsertErrorReturnString() {
+		assertEquals("java.lang.String", getMethod("statusInsertError").getReturnType().getName());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateOk()}
+	 * deklariert wurde.
+	 */
+	@Test
+	public void testStatusUpdateOkDeclaration() {
+		assertTrue(getMethod("statusUpdateOk") != null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateOk(int)}
+	 * keinen Parameter besitzt.
+	 */
+	@Test
+	public void testStatusUpdateOkHasOneParameter() {
+		assertEquals(1, getMethod("statusUpdateOk").getParameterTypes().length);
+		assertEquals("int", getMethod("statusUpdateOk").getParameterTypes()[0].getName());
+	}
+	
+	/**
+	 * Testet, ob der Rückgabewert der Methode
+	 * {@link db.query.QueryInterface#statusUpdateOk()} vom Typ
+	 * {@link java.lang.String} ist.
+	 */
+	@Test
+	public void testStatusUpdatetOkReturnString() {
+		assertEquals("java.lang.String", getMethod("statusUpdateOk").getReturnType().getName());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateError()}
+	 * deklariert wurde.
+	 */
+	@Test
+	public void testStatusUpdateErrorDeclaration() {
+		assertTrue(getMethod("statusUpdateError") != null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateError()}
+	 * keinen Parameter besitzt.
+	 */
+	@Test
+	public void testStatusUpdateErrorHaseOneParameter() {
+		assertEquals(1, getMethod("statusUpdateError").getParameterTypes().length);
+		assertEquals("int", getMethod("statusUpdateError").getParameterTypes()[0].getName());
+	}
+	
+	/**
+	 * Testet, ob der Rückgabewert der Methode
+	 * {@link db.query.QueryInterface#statusUpdateError()} vom Typ
+	 * {@link java.lang.String} ist.
+	 */
+	@Test
+	public void testStatusUpdatetErrorReturnString() {
+		assertEquals("java.lang.String", getMethod("statusUpdateError").getReturnType().getName());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteOk()}
+	 * deklariert wurde.
+	 */
+	@Test
+	public void testDeleteInsertOkDeclaration() {
+		assertTrue(getMethod("statusDeleteOk") != null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteOk()}
+	 * keinen Parameter besitzt.
+	 */
+	@Test
+	public void testDeleteOkHasOneParameter() {
+		assertEquals(1, getMethod("statusDeleteOk").getParameterTypes().length);
+		assertEquals("int", getMethod("statusDeleteOk").getParameterTypes()[0].getName());
+	}
+	
+	/**
+	 * Testet, ob der Rückgabewert der Methode
+	 * {@link db.query.QueryInterface#statusDeleteOk()} vom Typ
+	 * {@link java.lang.String} ist.
+	 */
+	@Test
+	public void testDeleteInsertOkReturnString() {
+		assertEquals("java.lang.String", getMethod("statusDeleteOk").getReturnType().getName());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteError()}
+	 * deklariert wurde.
+	 */
+	@Test
+	public void testDeleteInsertErrorDeclaration() {
+		assertTrue(getMethod("statusDeleteError") != null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteError()}
+	 * keinen Parameter besitzt.
+	 */
+	@Test
+	public void testDeleteInsertErrorHasOneParameter() {
+		assertEquals(1, getMethod("statusDeleteOk").getParameterTypes().length);
+		assertEquals("int", getMethod("statusDeleteOk").getParameterTypes()[0].getName());
+	}
+	
+	/**
+	 * Testet, ob der Rückgabewert der Methode
+	 * {@link db.query.QueryInterface#statusDeleteError()} vom Typ
+	 * {@link java.lang.String} ist.
+	 */
+	@Test
+	public void testDeleteInsertErrorReturnString() {
+		assertEquals("java.lang.String", getMethod("statusDeleteError").getReturnType().getName());
+	}
 }

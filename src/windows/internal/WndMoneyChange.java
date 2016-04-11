@@ -5,11 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.regex.Pattern;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -26,7 +22,6 @@ import db.DbController;
 import elements.StatusBar;
 import tables.models.MoneyListModel;
 
-// TODO Ausgaben für Datenbank-Abfragen in der StatusBar vereinheitlichen.
 
 /**
  * Zeigt das Fenster an, um einen neuen Datensatz anzulegen oder einen
@@ -226,9 +221,9 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 				if (_data == null) {
 					// Neuer Datensatz
 					if (stm.executeUpdate(DbController.queries().money().insert(date, inout, comment)) > 0)
-						StatusBar.getInstance().setMessageAsOk("Neuer Datensatz in die Tabelle 'money' eingefügt.");
+						StatusBar.getInstance().setMessageAsOk(DbController.queries().money().statusInsertOk());
 					else
-						StatusBar.getInstance().setMessageAsError("Neuer Datensatz konnte nicht in die Tabelle 'money' eingefügt werden.");
+						StatusBar.getInstance().setMessageAsError(DbController.queries().money().statusInsertError());
 				} else {
 					// Datensatz ändern
 					String sql;
@@ -241,13 +236,13 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 					
 					// Datenbank-Abfrage stellen
 					if (stm.executeUpdate(sql) > 0)
-						StatusBar.getInstance().setMessageAsOk("Der Datensatz mit der ID " + String.valueOf(_data.getId()) + " wurde in der Datenbank-Tabelle 'money' geändert.");
+						StatusBar.getInstance().setMessageAsOk(DbController.queries().money().statusUpdateOk(_data.getId()));
 					else
-						StatusBar.getInstance().setMessageAsError("Der Datensatz mit der ID " + String.valueOf(_data.getId()) + " konnte nit in der Datenbank-Tabelle 'money' geändert werden.");
+						StatusBar.getInstance().setMessageAsError(DbController.queries().money().statusUpdateError(_data.getId()));
 					
 				}
 			} catch (SQLException e) {
-				StatusBar.getInstance().setMessageAsError("Datenbank-Abfrage war nicht erfolgreich.");
+				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
 				e.printStackTrace();
 			}
 			

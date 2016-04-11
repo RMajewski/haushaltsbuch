@@ -100,9 +100,9 @@ public class WndSectionList extends JInternalFrame implements ActionListener {
 					String nc = JOptionPane.showInputDialog(this, "Neues Geschäft", "Geschäft erstellen", JOptionPane.OK_CANCEL_OPTION);
 					if (nc != null) {
 						if (stm.executeUpdate(DbController.queries().section().insert(nc)) > 0) {
-							StatusBar.getInstance().setMessageAsOk("Neues Geschäft in der Datenbank gespeichert.");
+							StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusInsertOk());
 						} else {
-							StatusBar.getInstance().setMessageAsError("Das neue Geschäft '" + nc + "' konnte nicht hinzugefügt werden.");
+							StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusInsertError());
 						}
 
 						// Tabelle neu zeichnen
@@ -120,9 +120,9 @@ public class WndSectionList extends JInternalFrame implements ActionListener {
 						int d = JOptionPane.showConfirmDialog(this, "Soll das ausgewählte Geschäft '" + data.getName() +"'(" + data.getId() + ") wirklich gelöscht werden?", "Geschäft löschen", JOptionPane.YES_NO_OPTION);
 						if (d == 0) {
 							if (stm.executeUpdate(DbController.queries().section().delete(data.getId())) > 0) {
-								StatusBar.getInstance().setMessageAsOk("Das Geschäft '" + data.getName() + "' (ID = " + data.getId() +") wurde gelöscht");
+								StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusDeleteOk(data.getId()));
 							} else {
-								StatusBar.getInstance().setMessageAsError("Das Geschäft '" + data.getName() + "' konnte nicht gelöscht werden.");
+								StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusDeleteError(data.getId()));
 							}
 							
 							// Tabelle neu zeichnen
@@ -138,13 +138,13 @@ public class WndSectionList extends JInternalFrame implements ActionListener {
 						// Daten ermitteln
 						IdNameData data = model.getRowDataAt(_table.getSelectedRow());
 						
-						// Kategorie ändern
+						// Geschäft ändern
 						String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Geschäft ändern", JOptionPane.OK_CANCEL_OPTION);
 						if ((cc != null) && (cc.compareTo(data.getName()) != 0)) {
 							if (stm.executeUpdate(DbController.queries().section().update(data.getId(), cc)) > 0) {
-								StatusBar.getInstance().setMessageAsOk("Das Geschäft '" + data.getName() +"' wurde in '" + cc + "' geändert.");
+								StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusUpdateOk(data.getId()));
 							} else {
-								StatusBar.getInstance().setMessageAsError("Der Name des Geschäftes '" + data.getName() + "' konnte nicht geändert werden.");
+								StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusUpdateError(data.getId()));
 							}
 
 							// Tabelle neu zeichnen
@@ -153,7 +153,7 @@ public class WndSectionList extends JInternalFrame implements ActionListener {
 					}
 			}
 		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError("Fehler beim Zugriff auf die Datenbank.");
+			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
 			e.printStackTrace();
 		}
 	}

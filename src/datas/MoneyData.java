@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.regex.Pattern;
 
-// TODO Aus übergebenen Daum (String) long-Wert erzeugen
 
 /**
  * Speichert die Daten für einen Datensatz der Tabelle 'money'

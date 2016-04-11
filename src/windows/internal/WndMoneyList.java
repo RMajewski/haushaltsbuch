@@ -133,12 +133,12 @@ public class WndMoneyList extends JInternalFrame implements ActionListener {
 						try {
 							Statement stm = DbController.getInstance().createStatement();
 							if (stm.executeUpdate(DbController.queries().money().delete(data.getId())) > 0) {
-								StatusBar.getInstance().setMessageAsOk("Der Datensatz mit der ID " + data.getId() + " wurde aus der Datenbank-Tabelle 'money' gelöscht");
+								StatusBar.getInstance().setMessageAsOk(DbController.queries().money().statusDeleteOk(data.getId()));
 							} else {
-								StatusBar.getInstance().setMessageAsError("Der Datensatz mit der ID " + data.getId() + " konnte nicht aus der Datenbank-Tabelle 'money' gelöscht werden.");
+								StatusBar.getInstance().setMessageAsError(DbController.queries().money().statusDeleteError(data.getId()));
 							}
 						} catch (SQLException e) {
-							StatusBar.getInstance().setMessageAsError("Fehler beim Zugriff auf die Datenbank.");
+							StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
 							e.printStackTrace();
 						}
 						
