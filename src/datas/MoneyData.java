@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.util.Date;
 
 // TODO Aus übergebenen Daum (String) long-Wert erzeugen
-// TODO Aus long-Wert ein Datum erzeugen (String)
 
 /**
  * Speichert die Daten für einen Datensatz der Tabelle 'money'
@@ -125,6 +124,20 @@ public class MoneyData extends Data {
 	 */
 	public boolean getInOut() {
 		return _inout;
+	}
+
+	/**
+	 * Gibt die Zeichenkette "Ausgabe" zurück, wenn in _inout OUTGOING
+	 * gespeichert wurde. Wurde dagegen INCOMING gespeichert, so wird die
+	 * Zeichenkette "Einnahm" zurück gegeben.
+	 *   
+	 * @return Gibt entweder "Einnahme" oder "Ausgabe" zurück.
+	 */
+	public String getInOutAsString() {
+		if (_inout == INCOMING)
+			return new String("Einnahme");
+		else
+			return new String("Ausgabe");
 	}
 
 	/**

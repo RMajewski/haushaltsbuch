@@ -88,8 +88,7 @@ public class MoneyListModel extends AbstractTableModel
 				
 			// Einnahme oder Ausgabe
 			case 2:
-				// TODO Einnahme oder Ausgabe hin schreiben.
-				return _list.get(row).getInOut();
+				return _list.get(row).getInOutAsString();
 				
 			// Beschreibung
 			case 3:

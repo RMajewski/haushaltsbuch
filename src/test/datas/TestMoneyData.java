@@ -169,6 +169,32 @@ public class TestMoneyData {
 	 }
 	 
 	 /**
+	  * Testet, ob Einnahme ausgegeben wird, wenn an
+	  * {@link datas.Money#setInOut(boolean) {@link datas.Money#INCOMING}
+	  * übergeben wurde.
+	  * 
+	  * @see datas.Money#getInOutAsString()
+	  */
+	 @Test
+	 public void testGetInOutAsStringWithIncoming() {
+		 _data.setInOut(MoneyData.INCOMING);
+		 assertEquals("Einnahme", _data.getInOutAsString());
+	 }
+	 
+	 /**
+	  * Testet, ob Ausgabe ausgegeben wird, wenn an
+	  * {@link datas.Money#setInOut(boolean) {@link datas.Money#OUTGOING}
+	  * übergeben wurde.
+	  * 
+	  * @see datas.Money#getInOutAsString()
+	  */
+	 @Test
+	 public void testGetInOutAsStringWithOutgoing() {
+		 _data.setInOut(MoneyData.OUTGOING);
+		 assertEquals("Ausgabe", _data.getInOutAsString());
+	 }
+	 
+	 /**
 	  * Testet, ob die Ein- oder Auszahlung richtig übernommen wird.
 	  * 
 	  * @see datas.MoneyData#setInOut(boolean)

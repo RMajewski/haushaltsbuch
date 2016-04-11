@@ -26,7 +26,6 @@ import db.DbController;
 import elements.StatusBar;
 import tables.models.MoneyListModel;
 
-// FIXME Überprüfen vor Speichern, ob Datum angegeben ist. Wenn nicht -> Darauf hinweisen
 // TODO Ausgaben für Datenbank-Abfragen in der StatusBar vereinheitlichen.
 
 /**
