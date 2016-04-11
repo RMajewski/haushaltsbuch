@@ -478,6 +478,187 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * keine <b>null</b> zurück gibt.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringReturnNotNull() {
+		assertFalse(_money.update(100, 1750170l, false, "Dies ist ein Test") == null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * keine leere Zeichenkette zurück gibt.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringReturnNotEmpty() {
+		assertFalse(_money.update(100, 1750815701l, false, "Dies ist ein Test").isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * keine <b>?</b> in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringReturnNoQuery() {
+		assertEquals(0, frequency(_money.update(100, 157081750l, false, "Dies ist ein Test"), "?"));
+	}
+	
+	
+	/**
+	 * Test, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * die ID in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringReturnHaveId() {
+		int id = 100;
+		assertEquals(1, frequency(_money.update(id, 110857l, false, "Dies ist ein Test"), String.valueOf(id)));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * das Datum in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringReturnHaveDate() {
+		long date = 217805710837l;
+		assertEquals(1, frequency(_money.update(100, date, false, "Dies ist ein Test"), String.valueOf(date)));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * in der Rückgabe enthält, ob es sich um eine Einnahme oder eine Ausgabe
+	 * handelt.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringReturnHaveInout() {
+		assertEquals(1, frequency(_money.update(999, 708705l, true, "Dies ist ein Test"), "1"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * den Kommentar in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringReturnHaveComment() {
+		String comment = "Dies ist ein Test!";
+		assertEquals(1, frequency(_money.update(100, 17508170l, false, comment), comment));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * den Tabellen-Namen in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringReturnHaveTableName() {
+		assertEquals(1, frequency(_money.update(100, 17508170l, false, "Dies ist ein Test"), _table));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringMinusOneAsIdReturnHasOneQuery() {
+		assertEquals(1, frequency(_money.update(-1, 1740704l, false, "Dies ist ein Test"), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * ein <b>?</b> enthält, wenn null als Kommentar übergeben wird.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringNullAsCommentReturnHasOneQuery() {
+		assertEquals(1, frequency(_money.update(100, 1407450l, false, null), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * ein <b>?</b> enthält, wenn eine leere Zeichenkette als Kommentar
+	 * übergeben wird.
+	 */
+	@Test
+	public void testUpdateIntBooleanStringEmptyAsCommentReturnHasOneQuery() {
+		assertEquals(1, frequency(_money.update(100, 17501l, false, new String()), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * keine <b>null</b> zurück gibt.
+	 */
+	@Test
+	public void testUpdateIntBooleanReturnNotNull() {
+		assertFalse(_money.update(100, 1750170l, false) == null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * keine leere Zeichenkette zurück gibt.
+	 */
+	@Test
+	public void testUpdateIntBooleanReturnNotEmpty() {
+		assertFalse(_money.update(100, 1750815701l, false).isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * keine <b>?</b> in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntBooleanReturnNoQuery() {
+		assertEquals(0, frequency(_money.update(100, 157081750l, false), "?"));
+	}
+	
+	
+	/**
+	 * Test, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * die ID in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntBooleanReturnHaveId() {
+		int id = 100;
+		assertEquals(1, frequency(_money.update(id, 110857l, false, "Dies ist ein Test"), String.valueOf(id)));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * das Datum in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntBooleanReturnHaveDate() {
+		long date = 217805710837l;
+		assertEquals(1, frequency(_money.update(100, date, false), String.valueOf(date)));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * in der Rückgabe enthält, ob es sich um eine Einnahme oder eine Ausgabe
+	 * handelt.
+	 */
+	@Test
+	public void testUpdateIntBooleanReturnHaveInout() {
+		assertEquals(1, frequency(_money.update(999, 708705l, true), "1"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * den Tabellen-Namen in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntBooleanReturnHaveTableName() {
+		assertEquals(1, frequency(_money.update(100, 17508170l, false), _table));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
+	 */
+	@Test
+	public void testUpdateIntBooleanMinusOneAsIdReturnHasOneQuery() {
+		assertEquals(1, frequency(_money.update(-1, 1740704l, false), "?"));
+	}
+	
+	/**
 	 * Testet, ob die Methode {@link db.query.Money#select()} keine
 	 * leere Zeichenkette liefert.
 	 */

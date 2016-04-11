@@ -18,6 +18,21 @@ public class Money extends Query {
 		_columnNames.add("inout");
 		_columnNames.add("comment");
 	}
+	
+	/**
+	 * Ermittelt aus dem übergebenen boolschen-Wert, ob in die
+	 * Datenbank-Abfrage eine 1 oder eine 0 eingefügt werden muss.
+	 * 
+	 * @param inout Handelt es sich um eine Einnahme oder eine Ausgabe?
+	 * 
+	 * @return Entsprechender Zahlenwert zu inout.
+	 */
+	private String inoutToString(boolean inout) {
+		if (inout)
+			return new String("1");
+		else
+			return new String("0");
+	}
 
 	/**
 	 * Gibt die Datenbank-Abfrage zurück, die die Tabelle "money" erzeugt.
@@ -48,16 +63,80 @@ public class Money extends Query {
 		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(date));
 		
 		// Einfügen, ob es eine Einname oder eine Ausgabe ist
-		if (inout)
-			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, "1");
-		else
-			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, "0");
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, inoutToString(inout));
 		
 		// Kommentar einfügen
 		if (comment != null && !comment.isEmpty())
 			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
 		
 		// Datenbank-Abfrage zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um das Datum eines Datensatzes in der
+	 * Tabelle "money" zu ändern. Wurde eine ID größer <b>-1</b> angegeben,
+	 * so wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
+	 * angegeben, word für die ID ein <b>?</b> als Platzhalter in die
+	 * Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes, der geändert werden soll.
+	 * 
+	 * @param date Datum, das in den Datensatz eingefügt werden soll.
+	 * 
+	 * @param inout Handelt es sich um eine Einnahme oder eine Ausgabe?
+	 * 
+	 * @param comment Beschreibung des Datensatzes
+	 * 
+	 * @return Datenbank-Abfrage, um den angegeben Datensatz zu ändern.
+	 */
+	public String update(int id, long date, boolean inout, String comment) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder(update(id));
+		
+		// Datum einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(date));
+		
+		// Einfügen ob es sich um eine Einnahme oder eine Ausgabe handelt
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, inoutToString(inout));
+		
+		// Soll der Kommentar eingefügt werden?
+		if (comment != null && !comment.isEmpty())
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um das Datum eines Datensatzes in der
+	 * Tabelle "money" zu ändern, ohne Kommentar. Wurde eine ID größer
+	 * <b>-1</b> angegeben, so wird die ID in die Abfrage aufgenommen. Wurde
+	 * als ID <b>-1</b> angegeben, word für die ID ein <b>?</b> als Platzhalter
+	 * in die Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes, der geändert werden soll.
+	 * 
+	 * @param date Datum, das in den Datensatz eingefügt werden soll.
+	 * 
+	 * @param inout Handelt es sich um eine Einnahme oder eine Ausgabe?
+	 * 
+	 * @return Datenbank-Abfrage, um den angegeben Datensatz zu ändern.
+	 */
+	public String update(int id, long date, boolean inout) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("UPDATE 'money' SET date = ?, inout = ?, comment = '' WHERE id = ?");
+		
+		// ID einfügen?
+		replaceId(id, ret, true);
+		
+		// Datum einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(date));
+		
+		// Einfügen ob es sich um eine Einnahme oder eine Ausgabe handelt
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, inoutToString(inout));
+		
+		// Abfrage zurück geben
 		return ret.toString();
 	}
 

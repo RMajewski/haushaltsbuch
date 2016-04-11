@@ -216,13 +216,26 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 				// Neuer Datensatz oder Datensatz ändern?
 				if (_data == null) {
 					// Neuer Datensatz
-					System.out.println(DbController.queries().money().insert(date, inout, comment));
 					if (stm.executeUpdate(DbController.queries().money().insert(date, inout, comment)) > 0)
 						StatusBar.getInstance().setMessageAsOk("Neuer Datensatz in die Tabelle 'money' eingefügt.");
 					else
 						StatusBar.getInstance().setMessageAsError("Neuer Datensatz konnte nicht in die Tabelle 'money' eingefügt werden.");
 				} else {
 					// Datensatz ändern
+					String sql;
+					
+					// Überprüfen ob ein Kommentar angegeben wurde
+					if (comment.isEmpty())
+						sql = DbController.queries().money().update(_data.getId(), date, inout);
+					else
+						sql = DbController.queries().money().update(_data.getId(), date, inout, comment);
+					
+					// Datenbank-Abfrage stellen
+					if (stm.executeUpdate(sql) > 0)
+						StatusBar.getInstance().setMessageAsOk("Der Datensatz mit der ID " + String.valueOf(_data.getId()) + " wurde in der Datenbank-Tabelle 'money' geändert.");
+					else
+						StatusBar.getInstance().setMessageAsError("Der Datensatz mit der ID " + String.valueOf(_data.getId()) + " konnte nit in der Datenbank-Tabelle 'money' geändert werden.");
+					
 				}
 			} catch (SQLException e) {
 				StatusBar.getInstance().setMessageAsError("Datenbank-Abfrage war nicht erfolgreich.");
