@@ -129,6 +129,7 @@ public class IdNameListModel extends AbstractTableModel
 	 * 
 	 * @return Daten der angegeben Zeile
 	 */
+	@Override
 	public IdNameData getRowDataAt(int row) {
 		if (row == -1)
 			return new IdNameData();

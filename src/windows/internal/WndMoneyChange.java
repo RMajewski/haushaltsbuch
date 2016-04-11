@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.regex.Pattern;
 
@@ -49,9 +51,9 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 	private static final String CANCEL = "Cancel";
 	
 	/**
-	 * Speichert die ID des Datensatzes
+	 * Speichert den Datensatz
 	 */
-	private int _id;
+	private MoneyData _data;
 	
 	/**
 	 * Speichert das Fenster, aus dem dieses Fenster aufgerufen wurde.
@@ -81,21 +83,21 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 	/**
 	 * Initalisiert das Fenster.
 	 * 
-	 * @param id ID, des Datensatzes, der geändert werden soll. Wird <b>-1</b>
+	 * @param data Datensatz, der geändert werden soll. Wird <b>null</b>
 	 * angegeben, so wird ein neuer Datensatz erstellt.
 	 * 
 	 * @param frame Fenster, aus dem dieses Fenster aufgerufen wurde.
 	 */
-	public WndMoneyChange(int id, JInternalFrame frame) {
+	public WndMoneyChange(MoneyData data, JInternalFrame frame) {
 		// Fenster initalisieren
 		super();
 		
 		// ID und Fenster speichern
-		_id = id;
+		_data = data;
 		_frame = frame;
 		
 		// Fenster-Titel
-		if (_id == -1)
+		if (_data == null)
 			setTitle("Neuen Datensatz erstellen");
 		else
 			setTitle("Datensätz ändern");
@@ -158,6 +160,21 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 		btn.addActionListener(this);
 		addComponent(gbl, btn, 3, 10, 1, 1, 0, 0);
 		
+		// Daten einfügen?
+		if (_data != null) {
+			// Datum einfügen
+			_txtDate.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(_data.getDate())));
+			
+			// Einnahme oder Ausgabe
+			if (_data.getInOut() == MoneyData.INCOMING)
+				_rbIn.setSelected(true);
+			else
+				_rbOut.setSelected(true);
+			
+			// Beschreibung einfügen
+			_txtComment.setText(_data.getComment());
+		}
+		
 		// Fenster anzeigen und Fokus holen
 		setVisible(true);
 	}
@@ -197,7 +214,7 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 				Statement stm = DbController.getInstance().createStatement();
 				
 				// Neuer Datensatz oder Datensatz ändern?
-				if (_id == -1) {
+				if (_data == null) {
 					// Neuer Datensatz
 					System.out.println(DbController.queries().money().insert(date, inout, comment));
 					if (stm.executeUpdate(DbController.queries().money().insert(date, inout, comment)) > 0)

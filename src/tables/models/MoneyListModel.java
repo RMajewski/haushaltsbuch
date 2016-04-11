@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import datas.Data;
 import datas.MoneyData;
 import db.DbController;
 import elements.StatusBar;
@@ -130,6 +131,22 @@ public class MoneyListModel extends AbstractTableModel
 		// Überprüfen ob die Tabelle neugezeichnet werden soll
 		if (repaint)
 			fireTableDataChanged();
+	}
+
+	/**
+	 * Gibt den Datensatz der angegeben Zeile zurück. Wurde <b>-1</b> als ID
+	 * übergeben, so wird ein leerer Datensatz zurück gegeben.
+	 * 
+	 * @param row Zeile, die als Datensatz zurück gegeben werden soll.
+	 * 
+	 * @return Datensatz der angegeben Zeile
+	 */
+	@Override
+	public MoneyData getRowDataAt(int row) {
+		if (row == -1)
+			return new MoneyData();
+		else
+			return _list.get(row);
 	}
 
 }

@@ -1,5 +1,7 @@
 package tables.models;
 
+import datas.Data;
+
 /**
  * In diesem Interface werden Methoden deklariert, die auf den Zugriff auf
  * die Datenbank gewährleisten.
@@ -15,4 +17,11 @@ public interface DbModelInterface {
 	 */
 	public void dataRefresh(boolean repaint);
 
+	/**
+	 * Gibt die Daten der angegeben Zeile zurück. Wurde als ID <b>-1</b>
+	 * übergeben, so wird ein leerer Datensatz zurück gegeben.
+	 * 
+	 * @return Datensatz der angegeben Zeile.
+	 */
+	public Data getRowDataAt(int row);
 }

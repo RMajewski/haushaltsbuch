@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
+import datas.MoneyData;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
 import tables.models.MoneyListModel;
@@ -84,7 +85,7 @@ public class WndMoneyList extends JInternalFrame implements ActionListener {
 		switch (ae.getActionCommand()) {
 			// Neuen Eintrag erstellen
 			case PopupCategoryList.NEW:
-				WndMoneyChange wnd = new WndMoneyChange(-1, this);
+				WndMoneyChange wnd = new WndMoneyChange(null, this);
 				getDesktopPane().add(wnd);
 				wnd.moveToFront();
 				try {
@@ -96,6 +97,21 @@ public class WndMoneyList extends JInternalFrame implements ActionListener {
 				
 			// Einen Eintrag ändern
 			case PopupCategoryList.CHANGE:
+				// Wurde ein Datensatz ausgewählt?
+				if (isSelected()) {
+					// Datensatz ermitteln
+					MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+					
+					// Fenster zum ändern der Daten anzeigen
+					WndMoneyChange w = new WndMoneyChange(data, this);
+					getDesktopPane().add(w);
+					w.moveToFront();
+					try {
+						w.setSelected(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
 				break;
 				
 			// Einen Eintrag löschen
