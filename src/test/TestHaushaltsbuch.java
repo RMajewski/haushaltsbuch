@@ -5,6 +5,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+	test.datas.TestData.class,
 	test.datas.TestLogData.class,
 	test.datas.TestIdNameData.class,
 	test.datas.TestMoneyData.class,

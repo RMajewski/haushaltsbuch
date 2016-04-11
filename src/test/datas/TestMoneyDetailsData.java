@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import datas.Data;
 import datas.MoneyDetailsData;
 
 /**
@@ -62,6 +63,15 @@ public class TestMoneyDetailsData {
 		_money = 25.75;
 		_comment = "Dies ist ein Test";
 		_data = new MoneyDetailsData(_id, _moneyId, _categoryId, _sectionId, _money, _comment);
+	}
+	
+	/**
+	 * Testet ob die Klasse {@link datas.MoneyDetailsData} eine Instanz von der
+	 * Klasse {@link datas.Data} ist.
+	 */
+	@Test
+	public void testIdNameDataInstanceOfData() {
+		assertTrue(_data instanceof Data);
 	}
 	
 	/**
@@ -128,28 +138,6 @@ public class TestMoneyDetailsData {
 		assertEquals(_sectionId, _data.getSectionId());
 		assertEquals(_money, _data.getMoney(), 0.00);
 		assertEquals(new String(), _data.getComment());
-	}
-	
-	/**
-	 * Testet, ob die ID richtig zurück gegeben wird.
-	 * 
-	 * @see datas.MoneyDetailsData#getId()
-	 */
-	@Test
-	public void testGetId() {
-		assertEquals(_id, _data.getId());
-	}
-	
-	/**
-	 * Testet, ob die ID richtig übernommen wird.
-	 * 
-	 * @see datas.MoneyDetailsData#setId(int)
-	 */
-	@Test
-	public void testSetId() {
-		int id = 3546;
-		_data.setId(id);
-		assertEquals(id, _data.getId());
 	}
 	
 	/**

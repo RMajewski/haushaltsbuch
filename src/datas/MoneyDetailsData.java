@@ -5,11 +5,7 @@ package datas;
  * 
  * @author René Majewski
  */
-public class MoneyDetailsData {
-	/**
-	 * Speichert die ID
-	 */
-	private int _id;
+public class MoneyDetailsData extends Data {
 	
 	/**
 	 * Speichert die ID des zugehörigen Money-Datensatzes
@@ -41,7 +37,7 @@ public class MoneyDetailsData {
 	 * Zeichenkette als Beschreibung
 	 */
 	public MoneyDetailsData() {
-		_id = -1;
+		super(-1);
 		_moneyId = -1;
 		_categoryId = -1;
 		_sectionId = -1;
@@ -77,30 +73,12 @@ public class MoneyDetailsData {
 	 * @param comment Beschreibung des Datensatzes
 	 */
 	public MoneyDetailsData(int id, int moneyId, int categoryId, int sectionId, double money, String comment) {
-		_id = id;
+		super(id);
 		_moneyId = moneyId;
 		_categoryId = categoryId;
 		_sectionId = sectionId;
 		_money = money;
 		setComment(comment);
-	}
-
-	/**
-	 * Gibt die gespeicherte ID zurück
-	 * 
-	 * @return ID dieses Datensatzes
-	 */
-	public int getId() {
-		return _id;
-	}
-
-	/**
-	 * Speichert die neue ID.
-	 * 
-	 * @param id Neue ID
-	 */
-	public void setId(int id) {
-		_id = id;
 	}
 
 	/**

@@ -8,7 +8,7 @@ package datas;
  * 
  * @author René Majewski
  */
-public class MoneyData {
+public class MoneyData extends Data {
 	/**
 	 * Speichert den Wert für eine Ausgabe
 	 */
@@ -28,11 +28,6 @@ public class MoneyData {
 	 * Speichert den für Ausgabe als Integer
 	 */
 	public static final int INT_OUTGOING = 0;
-
-	/**
-	 * Speichert die ID
-	 */
-	private int _id;
 	
 	/**
 	 * Speichert das Datum
@@ -55,7 +50,7 @@ public class MoneyData {
 	 * angenommen. 
 	 */
 	public MoneyData() {
-		_id = -1;
+		super(-1);
 		_date = -1;
 		_inout = false;
 		setComment(null);
@@ -86,28 +81,10 @@ public class MoneyData {
 	 * @param comment Beschreibung, die gespeichert werden soll.
 	 */
 	public MoneyData(int id, long date, boolean inout, String comment) {
-		_id = id;
+		super(id);
 		setDate(date);
 		_inout = inout;
 		setComment(comment);
-	}
-
-	/**
-	 * Gibt die gespeicherte ID zurück.
-	 * 
-	 * @return Gespeichert ID
-	 */
-	public int getId() {
-		return _id;
-	}
-
-	/**
-	 * Es wird die ID auf die übergebene ID gesetzt.
-	 * 
-	 * @param id Neue ID
-	 */
-	public void setId(int id) {
-		_id = id;
 	}
 
 	/**

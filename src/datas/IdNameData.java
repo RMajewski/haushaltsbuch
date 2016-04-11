@@ -5,11 +5,7 @@ package datas;
  * 
  * @author René Majewski
  */
-public class IdNameData {
-	/**
-	 * Speichert die ID
-	 */
-	private int _id;
+public class IdNameData extends Data {
 	
 	/**
 	 * Speichert den Namen
@@ -20,7 +16,7 @@ public class IdNameData {
 	 * Initalisiert die ID mit -1 und einen leeren Namen
 	 */
 	public IdNameData() {
-		setId(-1);
+		super(-1);
 		setName(new String());
 	}
 	
@@ -31,7 +27,7 @@ public class IdNameData {
 	 * @param id Neue ID
 	 */
 	public IdNameData(int id) {
-		setId(id);
+		super(id);
 		setName(new String());
 	}
 	
@@ -43,7 +39,7 @@ public class IdNameData {
 	 * @param name Neuer Name
 	 */
 	public IdNameData(int id, String name) {
-		setId(id);
+		super(id);
 		setName(name);
 	}
 
@@ -66,23 +62,5 @@ public class IdNameData {
 			_name = new String();
 		else
 			_name = name;
-	}
-
-	/**
-	 * Gibt die gespeicherte ID zurück.
-	 * 
-	 * @return Gespeicherte ID
-	 */
-	public int getId() {
-		return _id;
-	}
-
-	/**
-	 * Speichert die übergebene ID.
-	 * 
-	 * @param id Neue ID, die gespeichert werden soll
-	 */
-	public void setId(int id) {
-		_id = id;
 	}
 }

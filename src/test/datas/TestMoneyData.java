@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
 import org.junit.Before;
 import org.junit.Test;
 
+import datas.Data;
 import datas.MoneyData;
 
 /**
@@ -54,6 +55,15 @@ public class TestMoneyData {
 		_inout = true;
 		_comment = "Dies ist ein Test!";
 		_data = new MoneyData(_id, _date, _inout, _comment);
+	}
+	
+	/**
+	 * Testet ob die Klasse {@link datas.MoneyData} eine Instanz von der
+	 * Klasse {@link datas.Data} ist.
+	 */
+	@Test
+	public void testIdNameDataInstanceOfData() {
+		assertTrue(_data instanceof Data);
 	}
 	
 	/**
@@ -114,28 +124,7 @@ public class TestMoneyData {
 		assertEquals(_inout, _data.getInOut());
 		assertEquals(new String(), _data.getComment());
 	}
-	
-	/**
-	 * Testet, ob die ID richtig zurück gegeben wird.
-	 * 
-	 * @see datas.MoneyData#getId()
-	 */
-	@Test
-	public void testGetId() {
-		assertEquals(_id, _data.getId());
-	}
-	
-	/**
-	 * Testet, ob die ID richtig übernommen wird.
-	 * 
-	 * @see datas.MoneyData#setId(int)
-	 */
-	@Test
-	public void testSetId() {
-		_data.setId(5400);
-		assertEquals(5400, _data.getId());
-	}
-	
+
 	/**
 	 * Testet, ob das Datum richtig zurück gegeben wird.
 	 * 
