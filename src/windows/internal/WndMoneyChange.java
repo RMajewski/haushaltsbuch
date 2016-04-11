@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -192,6 +193,18 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 		
 		// Speichern
 		else if (ae.getActionCommand().compareTo(SAVE) == 0) {
+			// Überprüfen ob kein Datum eingegeben wurde
+			if (_txtDate.getText().isEmpty()) {
+				// Benutzer darauf hinweisen
+				JOptionPane.showConfirmDialog(this, "Sie haben vergessen ein Datum einzugeben.", "Datum", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				
+				// Focus setzen
+				_txtDate.requestFocus();
+				
+				// Methode verlassen
+				return;
+			}
+			
 			// Datum umwandeln
 			String[]tmp  =_txtDate.getText().split(Pattern.quote("."));
 			long date = new GregorianCalendar(
