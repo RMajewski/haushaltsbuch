@@ -131,7 +131,7 @@ public class TestMoney extends TestHelper {
 	 */
 	@Test
 	public void testInsertLongBooleanStringTableReturnHaveMoneyDetails() {
-		assertEquals(1, frequency(_money.insert(100l, true, "Dies ist ein Test"),_table));
+		assertEquals(1, frequency(_money.insert(100l, true, "'Dies ist ein Test'"),_table));
 	}
 	
 	/**

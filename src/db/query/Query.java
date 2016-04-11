@@ -153,9 +153,9 @@ public abstract class Query implements QueryInterface {
 		ret.append(") VALUES (");
 		for (int i = 0; i < queries; i++) {
 			if (i == 0)
-				ret.append("?");
+				ret.append("'?'");
 			else
-				ret.append(", ?");
+				ret.append(", '?'");
 		}
 		ret.append(");");
 		

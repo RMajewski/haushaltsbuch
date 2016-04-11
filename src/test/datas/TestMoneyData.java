@@ -225,6 +225,17 @@ public class TestMoneyData {
 	 }
 	 
 	 /**
+	  * Testet, ob die int-Konstante für die Ausgabe richtig initalisiert
+	  * wurde.
+	  * 
+	  * @see datas.MoneyData#INT_OUTGOING
+	  */
+	 @Test
+	 public void testIntOutgoing() {
+		 assertEquals(0, MoneyData.INT_OUTGOING);
+	 }
+	 
+	 /**
 	  * Testet, ob die Konstante für eine Einzahlung richtig initalisiert
 	  * wurde.
 	  * 
@@ -233,5 +244,16 @@ public class TestMoneyData {
 	 @Test
 	 public void testIncoming() {
 		 assertTrue(MoneyData.INCOMING);
+	 }
+	 
+	 /**
+	  * Testet, ob die int-Konstante für die Einnahme richtig initalisiert
+	  * wurde.
+	  * 
+	  * @see datas.MoneyData#INT_INCOMING
+	  */
+	 @Test
+	 public void testIntIncoming() {
+		 assertEquals(1, MoneyData.INT_INCOMING);
 	 }
 }

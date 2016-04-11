@@ -69,7 +69,7 @@ public class WndMoneyList extends JInternalFrame implements ActionListener {
 		_table.addMouseListener(listener);
 		
 		// Fenster anzeigen
-		//pack();
+		pack();
 		setVisible(true);
 	}
 
@@ -80,5 +80,36 @@ public class WndMoneyList extends JInternalFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		// Welcher Menü-Eintrag wurde gedrückt?
+		switch (ae.getActionCommand()) {
+			// Neuen Eintrag erstellen
+			case PopupCategoryList.NEW:
+				WndMoneyChange wnd = new WndMoneyChange(-1, this);
+				getDesktopPane().add(wnd);
+				wnd.moveToFront();
+				try {
+					wnd.setSelected(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+				
+			// Einen Eintrag ändern
+			case PopupCategoryList.CHANGE:
+				break;
+				
+			// Einen Eintrag löschen
+			case PopupCategoryList.DELETE:
+				break;
+		}
+	}
+	
+	/**
+	 * Gibt die Tabelle zurück.
+	 * 
+	 * @return Tabelle
+	 */
+	public JTable getTable() {
+		return _table;
 	}
 }

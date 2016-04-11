@@ -1,5 +1,8 @@
 package datas;
 
+// TODO Aus übergebenen Daum (String) long-Wert erzeugen
+// TODO Aus long-Wert ein Datum erzeugen (String)
+
 /**
  * Speichert die Daten für einen Datensatz der Tabelle 'money'
  * 
@@ -15,6 +18,16 @@ public class MoneyData {
 	 * Speichert den Wert für eine Einnahme
 	 */
 	public static final boolean INCOMING = true;
+
+	/**
+	 * Speichert den Wert für die Einnahme als Integer
+	 */
+	public static final int INT_INCOMING = 1;
+
+	/**
+	 * Speichert den für Ausgabe als Integer
+	 */
+	public static final int INT_OUTGOING = 0;
 
 	/**
 	 * Speichert die ID

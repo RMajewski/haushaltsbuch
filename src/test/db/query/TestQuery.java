@@ -356,7 +356,7 @@ public class TestQuery extends TestHelper {
 		ret.append(_col1);
 		ret.append(", ");
 		ret.append(_col2);
-		ret.append(") VALUES (?, ?);");
+		ret.append(") VALUES ('?', '?');");
 		assertEquals(ret.toString(), _query.insert());
 	}
 	
