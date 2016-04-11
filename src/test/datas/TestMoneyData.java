@@ -171,7 +171,7 @@ public class TestMoneyData {
 	 }
 	 
 	 /**
-	  * Teste, die Methode {@links datas.MoneyData#setDate(String) das aktuelle
+	  * Teste, die Methode {@link datas.MoneyData#setDate(String)} das aktuelle
 	  * Datum speichert, wenn <b>null</b> als Zeichenkette übergeben wird.
 	  */
 	 @Test
@@ -181,7 +181,7 @@ public class TestMoneyData {
 	 }
 	 
 	 /**
-	  * Testet, ob die Methode {@links datas.MoneyData#setDate(String) auch
+	  * Testet, ob die Methode {@link datas.MoneyData#setDate(String)} auch
 	  * das ermittelte Datum als long-Wert zurück gibt.
 	  */
 	 @Test
@@ -201,10 +201,10 @@ public class TestMoneyData {
 	 
 	 /**
 	  * Testet, ob Einnahme ausgegeben wird, wenn an
-	  * {@link datas.Money#setInOut(boolean) {@link datas.Money#INCOMING}
+	  * {@link datas.MoneyData#setInOut(boolean)} {@link datas.MoneyData#INCOMING}
 	  * übergeben wurde.
 	  * 
-	  * @see datas.Money#getInOutAsString()
+	  * @see datas.MoneyData#getInOutAsString()
 	  */
 	 @Test
 	 public void testGetInOutAsStringWithIncoming() {
@@ -214,10 +214,10 @@ public class TestMoneyData {
 	 
 	 /**
 	  * Testet, ob Ausgabe ausgegeben wird, wenn an
-	  * {@link datas.Money#setInOut(boolean) {@link datas.Money#OUTGOING}
+	  * {@link datas.MoneyData#setInOut(boolean)} {@link datas.MoneyData#OUTGOING}
 	  * übergeben wurde.
 	  * 
-	  * @see datas.Money#getInOutAsString()
+	  * @see datas.MoneyData#getInOutAsString()
 	  */
 	 @Test
 	 public void testGetInOutAsStringWithOutgoing() {

@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import datas.Data;
 import datas.MoneyData;
 import db.DbController;
 import elements.StatusBar;

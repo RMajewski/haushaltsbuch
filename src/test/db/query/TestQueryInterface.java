@@ -224,7 +224,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateOk()}
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateOk(int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -244,7 +244,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#statusUpdateOk()} vom Typ
+	 * {@link db.query.QueryInterface#statusUpdateOk(int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -253,7 +253,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateError()}
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateError(int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -262,7 +262,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateError()}
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateError(int)}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -273,7 +273,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#statusUpdateError()} vom Typ
+	 * {@link db.query.QueryInterface#statusUpdateError(int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -282,7 +282,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteOk()}
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteOk(int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -291,7 +291,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteOk()}
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteOk(int)}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -302,7 +302,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#statusDeleteOk()} vom Typ
+	 * {@link db.query.QueryInterface#statusDeleteOk(int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -311,7 +311,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteError()}
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteError(int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -320,7 +320,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteError()}
+	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteError(int)}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -331,7 +331,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#statusDeleteError()} vom Typ
+	 * {@link db.query.QueryInterface#statusDeleteError(int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
