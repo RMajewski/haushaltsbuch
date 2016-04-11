@@ -152,10 +152,41 @@ public class TestMoneyData {
 	 * @see datas.MoneyData#setDate(long)
 	 */
 	 @Test
-	 public void testSetDate() {
+	 public void testSetDateLong() {
 		 long date = 1345918385878L;
 		 _data.setDate(date);
 		 assertEquals(date, _data.getDate());
+	 }
+	 
+	 /**
+	  * Testet, ob aus einer Zeichenkette mit einem Datum der long-Wert richtig
+	  * ermittelt werden kann.
+	  * 
+	  * @see datas.MoneyData#setDate(String)
+	  */
+	 @Test
+	 public void testSetDateString() {
+		 _data.setDate("01.01.2016");
+		 assertEquals(1451602800000l, _data.getDate(), 0);
+	 }
+	 
+	 /**
+	  * Teste, die Methode {@links datas.MoneyData#setDate(String) das aktuelle
+	  * Datum speichert, wenn <b>null</b> als Zeichenkette übergeben wird.
+	  */
+	 @Test
+	 public void testSetDateStringWithNull() {
+		 _data.setDate(null);
+		 assertEquals(new Date().getTime(), _data.getDate(), 100);
+	 }
+	 
+	 /**
+	  * Testet, ob die Methode {@links datas.MoneyData#setDate(String) auch
+	  * das ermittelte Datum als long-Wert zurück gibt.
+	  */
+	 @Test
+	 public void testSetDateStringReturnIsRight() {
+		 assertEquals(1451602800000l, _data.setDate("01.01.2016"), 0);
 	 }
 	 
 	 /**

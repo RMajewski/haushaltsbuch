@@ -2,6 +2,8 @@ package datas;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.regex.Pattern;
 
 // TODO Aus übergebenen Daum (String) long-Wert erzeugen
 
@@ -118,6 +120,33 @@ public class MoneyData extends Data {
 	}
 
 	/**
+	 * Es wird aus der übergebenen Zeichenkette der long-Wert des Datums
+	 * ermittelt und gespeichert. Wird eine leere Zeichenkette oder <b>null</b>
+	 * übergeben, so wird der long-Wert des aktuellen Datums ermittelt und
+	 * gespeichert.
+	 * 
+	 * @param date Zeichenkette, aus der der long-Wert des Datums ermittelt
+	 * werden soll.
+	 * 
+	 * @return Gibt das ermittelte Datum zurück.
+	 */
+	public long setDate(String date) {
+		if (date == null || date.isEmpty()) {
+			// Aktuelles Datum ermitteln und long-Wert speichern
+			_date = new Date().getTime();
+		} else {
+			String[]tmp  = date.split(Pattern.quote("."));
+			_date = new GregorianCalendar(Integer.valueOf(tmp[2]).intValue(),
+										  Integer.valueOf(tmp[1]).intValue() - 1,
+										  Integer.valueOf(tmp[0]).intValue()
+							  ).getTimeInMillis();
+		}
+		
+		// Datum zurück geben
+		return _date;
+	}
+
+	/**
 	 * Gibt zurück, ob dies eine Ausgabe oder eine Einzahlung ist.
 	 * 
 	 * @return Ausgabe oder Einzahlung
@@ -170,5 +199,4 @@ public class MoneyData extends Data {
 		else
 			_comment = comment;
 	}
-
 }

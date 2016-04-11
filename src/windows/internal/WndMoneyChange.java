@@ -205,11 +205,7 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 			}
 			
 			// Datum umwandeln
-			String[]tmp  =_txtDate.getText().split(Pattern.quote("."));
-			long date = new GregorianCalendar(
-					Integer.valueOf(tmp[2]).intValue(),
-					Integer.valueOf(tmp[1]).intValue() - 1,
-					Integer.valueOf(tmp[0]).intValue()).getTimeInMillis();
+			long date = new MoneyData().setDate(_txtDate.getText());
 			
 			// InOut ermitteln
 			boolean inout = false;
