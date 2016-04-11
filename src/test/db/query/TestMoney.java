@@ -478,7 +478,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * keine <b>null</b> zurück gibt.
 	 */
 	@Test
@@ -487,7 +487,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * keine leere Zeichenkette zurück gibt.
 	 */
 	@Test
@@ -496,7 +496,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * keine <b>?</b> in der Rückgabe enthält.
 	 */
 	@Test
@@ -506,7 +506,7 @@ public class TestMoney extends TestHelper {
 	
 	
 	/**
-	 * Test, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Test, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * die ID in der Rückgabe enthält.
 	 */
 	@Test
@@ -516,7 +516,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * das Datum in der Rückgabe enthält.
 	 */
 	@Test
@@ -526,7 +526,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * in der Rückgabe enthält, ob es sich um eine Einnahme oder eine Ausgabe
 	 * handelt.
 	 */
@@ -536,7 +536,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * den Kommentar in der Rückgabe enthält.
 	 */
 	@Test
@@ -546,7 +546,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * den Tabellen-Namen in der Rückgabe enthält.
 	 */
 	@Test
@@ -555,7 +555,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
 	 */
 	@Test
@@ -564,7 +564,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * ein <b>?</b> enthält, wenn null als Kommentar übergeben wird.
 	 */
 	@Test
@@ -573,7 +573,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean, String)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * ein <b>?</b> enthält, wenn eine leere Zeichenkette als Kommentar
 	 * übergeben wird.
 	 */
@@ -583,7 +583,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
 	 * keine <b>null</b> zurück gibt.
 	 */
 	@Test
@@ -592,7 +592,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
 	 * keine leere Zeichenkette zurück gibt.
 	 */
 	@Test
@@ -601,7 +601,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
 	 * keine <b>?</b> in der Rückgabe enthält.
 	 */
 	@Test
@@ -611,7 +611,7 @@ public class TestMoney extends TestHelper {
 	
 	
 	/**
-	 * Test, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * Test, ob die Methode {@link db.query.Money#update(int, long, boolean)}
 	 * die ID in der Rückgabe enthält.
 	 */
 	@Test
@@ -621,7 +621,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
 	 * das Datum in der Rückgabe enthält.
 	 */
 	@Test
@@ -631,7 +631,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
 	 * in der Rückgabe enthält, ob es sich um eine Einnahme oder eine Ausgabe
 	 * handelt.
 	 */
@@ -641,7 +641,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
 	 * den Tabellen-Namen in der Rückgabe enthält.
 	 */
 	@Test
@@ -650,7 +650,7 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long boolean)}
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
 	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
 	 */
 	@Test
