@@ -126,8 +126,10 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 				
 			// Details anzeigen
 			case PopupMoneyList.DETAILS:
-				MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
-				newWindow(new WndMoneyDetailsList(data));
+				if (_table.getSelectedRow() > -1) {
+					MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+					newWindow(new WndMoneyDetailsList(data));
+				}
 				break;
 		}
 	}

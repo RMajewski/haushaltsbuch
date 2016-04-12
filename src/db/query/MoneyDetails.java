@@ -116,7 +116,7 @@ public class MoneyDetails extends Query {
 	 */
 	public String select(int id) {
 		// Abfrage vorbereiten
-		StringBuilder ret = new StringBuilder("SELECT id, moneyid, categoryid, section id, money, comment FROM money_details WHERE moneyid = ? ORDER BY id ASC");
+		StringBuilder ret = new StringBuilder("SELECT id, moneyid, categoryid, sectionid, money, comment FROM money_details WHERE moneyid = ? ORDER BY id ASC");
 		
 		// Money-ID einfügen
 		replaceId(id, ret, false);
