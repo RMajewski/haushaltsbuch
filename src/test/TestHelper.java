@@ -21,20 +21,38 @@ public class TestHelper {
 	 * 
 	 * @param name Name der Methode
 	 * 
+	 * @param index Angabe, die wievielte Methode zurück gegeben werden soll
+	 * 
 	 * @return Gibt <b>null</b> zurück, wenn die Methode nicht gefunden wurde.
 	 * Wurde die Methode gefunden, so wird diese zurück gegeben.
 	 */
-	protected Method getMethod(String name) {
+	protected Method getMethod(String name, int index) {
 		// Array durchlaufen
+		int count = 1;
 		for (Method method : _methods) {
 			if (method.getName().equals(name)) {
-				return method;
+				if (count == index)
+					return method;
+				count++;
 			}
 		}
 	
 		// Da bisher nicht beendet wurde, null zurück geben
 		return null;
 	}
+	
+	/**
+	 * Sucht die angegebene Methode aus dem Methoden-Array.
+	 * 
+	 * @param name Name der Methode
+	 * 
+	 * @return Gibt <b>null</b> zurück, wenn die Methode nicht gefunden wurde.
+	 * Wurde die Methode gefunden, so wird diese zurück gegeben.
+	 */
+	protected Method getMethod(String name) {
+		return getMethod(name, 1);
+	}
+
 	/**
 	 * Überprüft ob die übergebene Zeichenkette nicht <b>null</b> ist und b
 	 * sie nicht leer ist. Trifft eins von beiden nicht zu, so wird

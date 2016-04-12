@@ -57,6 +57,15 @@ public interface QueryInterface {
 	public String search(String col, String str);
 	
 	/**
+	 * Gibt eine Zeichenkette zurück, in dem nach einen Datensatz gesucht wird.
+	 * 
+	 * @param col Name der Spalte, in der gesucht werden soll
+	 * 
+	 * @param str Zahl, nach der gesucht werden soll
+	 */
+	public String search(String col, int str);
+	
+	/**
 	 * Meldung: Datensatz wurde eingefügt
 	 */
 	public String statusInsertOk();

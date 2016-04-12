@@ -392,4 +392,223 @@ public class TestMoneyDetails extends TestHelper{
 	public void testSelectIntReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_moneyDetails.select(100),_table));
 	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * keine <b>null</b> zurück gibt.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringReturnNotNull() {
+		assertFalse(_moneyDetails.update(100, 200, 300, 400, 10.89, "Dies ist ein Test") == null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * keine leere Zeichenkette zurück gibt.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringReturnNotEmpty() {
+		assertFalse(_moneyDetails.update(100, 200, 300, 400, 10.89, "Dies ist ein Test").isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * keine <b>?</b> in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringReturnNoQuery() {
+		assertEquals(0, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, "Dies ist ein Test"), "?"));
+	}
+	
+	/**
+	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * die ID in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringReturnHaveId() {
+		int id = 100;
+		assertEquals(1, frequency(_moneyDetails.update(id, 200, 300, 400, 10.89, "Dies ist ein Test"), String.valueOf(id)));
+	}
+	
+	/**
+	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * die ID des zugehörigen Money-Datensatzes in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringReturnHaveMoneyId() {
+		int id = 200;
+		assertEquals(1, frequency(_moneyDetails.update(100, id, 300, 400, 10.89, "Dies ist ein Test"), String.valueOf(id)));
+	}
+	
+	/**
+	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * die ID der Kategorie in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringReturnHaveCategoryId() {
+		int id = 300;
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, id, 400, 10.89, "Dies ist ein Test"), String.valueOf(id)));
+	}
+	
+	/**
+	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * die ID des Geschäftes in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringReturnHaveSectionId() {
+		int id = 400;
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, id, 10.89, "Dies ist ein Test"), String.valueOf(id)));
+	}
+	
+	/**
+	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * den Betrag in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringReturnHaveMoney() {
+		double money = 18.76;
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, money, "Dies ist ein Test"), String.valueOf(money)));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * den Kommentar in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringReturnHaveComment() {
+		String comment = "Dies ist ein Test!";
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, comment), comment));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * den Tabellen-Namen in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringReturnHaveTableName() {
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, "Dies ist ein Test"), _table));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringMinusOneAsIdReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.update(-1, 200, 300, 400, 10.89, "Dies ist ein Test"), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * ein <b>?</b> enthält, wenn null als Kommentar übergeben wird.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringNullAsCommentReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, null), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double, String)}
+	 * ein <b>?</b> enthält, wenn eine leere Zeichenkette als Kommentar
+	 * übergeben wird.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringEmptyAsCommentReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, new String()), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double)}
+	 * keine <b>null</b> zurück gibt.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleReturnNotNull() {
+		assertFalse(_moneyDetails.update(100, 200, 300, 400, 10.89) == null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double)}
+	 * keine leere Zeichenkette zurück gibt.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleReturnNotEmpty() {
+		assertFalse(_moneyDetails.update(100, 200, 300, 400, 10.89).isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double)}
+	 * keine <b>?</b> in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleReturnNoQuery() {
+		assertEquals(0, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89), "?"));
+	}
+	
+	/**
+	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double)}
+	 * die ID in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleReturnHaveId() {
+		int id = 100;
+		assertEquals(1, frequency(_moneyDetails.update(id, 200, 300, 400, 10.89), String.valueOf(id)));
+	}
+	
+	/**
+	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double)}
+	 * die ID des zugehörigen Money-Datensatzes in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleReturnHaveMoneyId() {
+		int id = 200;
+		assertEquals(1, frequency(_moneyDetails.update(100, id, 300, 400, 10.89), String.valueOf(id)));
+	}
+	
+	/**
+	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double)}
+	 * die ID der Kategorie in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleReturnHaveCategoryId() {
+		int id = 300;
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, id, 400, 10.89), String.valueOf(id)));
+	}
+	
+	/**
+	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double)}
+	 * die ID des Geschäftes in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleReturnHaveSectionId() {
+		int id = 400;
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, id, 10.89), String.valueOf(id)));
+	}
+	
+	/**
+	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double)}
+	 * den Betrag in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleReturnHaveMoney() {
+		double money = 18.76;
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, money), String.valueOf(money)));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double)}
+	 * den Tabellen-Namen in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleReturnHaveTableName() {
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89), _table));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, int, double)}
+	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleMinusOneAsIdReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.update(-1, 200, 300, 400, 10.89), "?"));
+	}
 }

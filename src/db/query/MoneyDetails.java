@@ -128,4 +128,78 @@ public class MoneyDetails extends Query {
 		return ret.toString();
 	}
 
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um das Datum eines Datensatzes in der
+	 * Tabelle "money" zu ändern. Wurde eine ID größer <b>-1</b> angegeben,
+	 * so wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
+	 * angegeben, word für die ID ein <b>?</b> als Platzhalter in die
+	 * Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes, der geändert werden soll.
+	 * 
+	 * @param moneyid ID des zugehörigen Money-Datensatzes
+	 * 
+	 * @param categoryid ID der Kategorie
+	 * 
+	 * @param sectionid ID des Geschäftes
+	 * 
+	 * @param money Betrag, der eingezahlt oder ausgegeben wurde.
+	 * 
+	 * @return Datenbank-Abfrage, um den angegeben Datensatz zu ändern.
+	 */
+	public String update(int id, int moneyid, int categoryid, int sectionid, double money) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("UPDATE 'money_details' SET moneyid = ?, categoryid = ?, sectionid = ?, money = ?, comment = \"\" WHERE id = ?");
+		
+		// ID einfügen?
+		replaceId(id, ret, true);
+		// Money-ID, ID der Kategrie, ID des Geschäfts und Betrag einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(moneyid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(categoryid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(sectionid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(money));
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um das Datum eines Datensatzes in der
+	 * Tabelle "money" zu ändern. Wurde eine ID größer <b>-1</b> angegeben,
+	 * so wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
+	 * angegeben, word für die ID ein <b>?</b> als Platzhalter in die
+	 * Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes, der geändert werden soll.
+	 * 
+	 * @param moneyid ID des zugehörigen Money-Datensatzes
+	 * 
+	 * @param categoryid ID der Kategorie
+	 * 
+	 * @param sectionid ID des Geschäftes
+	 * 
+	 * @param money Betrag, der eingezahlt oder ausgegeben wurde.
+	 * 
+	 * @param comment Beschreibung des Datensatzes
+	 * 
+	 * @return Datenbank-Abfrage, um den angegeben Datensatz zu ändern.
+	 */
+	public String update(int id, int moneyid, int categoryid, int sectionid, double money, String comment) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder(update(id));
+		
+		// Money-ID, ID der Kategrie, ID des Geschäfts und Betrag einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(moneyid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(categoryid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(sectionid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(money));
+		
+		// Soll der Kommentar eingefügt werden?
+		if (comment != null && !comment.isEmpty())
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+
 }
