@@ -11,6 +11,7 @@ import datas.MoneyDetailsData;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
 import tables.models.MoneyDetailsListModel;
+import tables.models.MoneyListModel;
 
 /**
  * In diesem Fenster wird zum angegeben Datensatz aus der Tabelle 'money' die
@@ -86,12 +87,32 @@ public class WndMoneyDetailsList extends WndInternalFrame implements ActionListe
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		// Datensatz ermitteln
+		MoneyDetailsData data;
+		if (_table.getSelectedRow() > -1) {
+			data = ((MoneyDetailsListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+		} else {
+			data = new MoneyDetailsData(-1);
+		}
+		
+		// Was soll ausgeführt werden?
 		switch(ae.getActionCommand()) {
 			// Neu
 			case PopupCategoryList.NEW:
-				MoneyDetailsData data = new MoneyDetailsData(-1);
+				data = new MoneyDetailsData(-1);
 				data.setMoneyId(_money.getId());
 				newWindow(new WndMoneyDetailsChange(data, this));
+				break;
+				
+			// Ändern
+			case PopupCategoryList.CHANGE:
+				if (_table.getSelectedRow() > -1)
+					newWindow(new WndMoneyDetailsChange(data, this));
+				break;
+				
+			// Löschen
+			case PopupCategoryList.DELETE:
+				// FIXME Datensatz löschen in eine Methode stecken
 				break;
 		}
 	}

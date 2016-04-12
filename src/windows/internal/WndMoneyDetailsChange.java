@@ -133,17 +133,28 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 		addComponent(gbl, _txtComment, 2, 6, 2, 4, 0, 0.5);
 		
 		try {
+			// FIXME In eine private Methode packen
 			// Kategorien füllen
 			Statement stm = DbController.getInstance().createStatement();
 			ResultSet rs = stm.executeQuery(DbController.queries().category().select());
 			while (rs.next()) {
 				_cbCategory.addItem(rs.getString("name"));
+				
+				// Datensatz ändern
+				if (_data.getId() > -1)
+					if (rs.getInt("id") == _data.getCategoryId())
+						_cbCategory.setSelectedItem(rs.getString("name"));
 			}
 			
 			// Geschäfte füllen
 			rs = stm.executeQuery(DbController.queries().section().select());
 			while (rs.next()) {
 				_cbSection.addItem(rs.getString("name"));
+				
+				// Datensatz ändern
+				if (_data.getId() > -1)
+					if (rs.getInt("id") == _data.getCategoryId())
+						_cbSection.setSelectedItem(rs.getString("name"));
 			}
 		} catch (SQLException e) {
 			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
@@ -164,6 +175,15 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 		btn.setActionCommand(CANCEL);
 		btn.addActionListener(this);
 		addComponent(gbl, btn, 3, 10, 1, 1, 0, 0);
+		
+		// Daten einfügen, wenn Daten übergeben wurden
+		if (_data.getId() > -1) {
+			// Betrag anzeigen
+			_txtMoney.setValue(_data.getMoney());
+			
+			// Beschreibung anzeigen
+			_txtComment.setText(_data.getComment());
+		}
 		
 		// Fenster anzeigen
 		setVisible(true);
@@ -213,6 +233,20 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 						StatusBar.getInstance().setMessageAsError(DbController.queries().moneyDetails().statusInsertError());
 				} else {
 					// Datensatz ändern
+					String sql;
+					
+					// Überprüfen ob ein Kommentar angegeben wurde
+					if (comment.isEmpty())
+						sql = DbController.queries().moneyDetails().update(_data.getId(), _data.getMoneyId(), category, section, money);
+					else
+						sql = DbController.queries().moneyDetails().update(_data.getId(), _data.getMoneyId(), category, section, money, comment);
+					
+					// Datenbank-Abfrage stellen
+					if (stm.executeUpdate(sql) > 0)
+						StatusBar.getInstance().setMessageAsOk(DbController.queries().moneyDetails().statusUpdateOk(_data.getId()));
+					else
+						StatusBar.getInstance().setMessageAsError(DbController.queries().moneyDetails().statusUpdateError(_data.getId()));
+					
 				}
 			} catch(SQLException e) {
 				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
