@@ -85,7 +85,11 @@ public class WndMoneyDetailsList extends WndInternalFrame implements ActionListe
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		// TODO Auto-generated method stub
-		
+		switch(ae.getActionCommand()) {
+			// Neu
+			case PopupCategoryList.NEW:
+				newWindow(new WndMoneyDetailsChange(null, this));
+				break;
+		}
 	}
 }
