@@ -2,12 +2,17 @@ package windows.internal;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.sql.Statement;
 
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import datas.MoneyData;
 import datas.MoneyDetailsData;
+import db.DbController;
+import elements.StatusBar;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
 import tables.models.MoneyDetailsListModel;
@@ -113,6 +118,28 @@ public class WndMoneyDetailsList extends WndInternalFrame implements ActionListe
 			// Löschen
 			case PopupCategoryList.DELETE:
 				// FIXME Datensatz löschen in eine Methode stecken
+				// Wurde ein Datensatz ausgewählt?
+				if (_table.getSelectedRow() > -1) {
+					// Benutzer Fragen ob Datensatz gelöscht werden soll
+					// Kategorie löschen? 
+					int d = JOptionPane.showConfirmDialog(this, "Soll der Datensatz mit der ID" + data.getId() + " wirklich gelöscht werden?", "Datensatz löschen", JOptionPane.YES_NO_OPTION);
+					if (d == 0) {
+						try {
+							Statement stm = DbController.getInstance().createStatement();
+							if (stm.executeUpdate(DbController.queries().moneyDetails().delete(data.getId())) > 0) {
+								StatusBar.getInstance().setMessageAsOk(DbController.queries().moneyDetails().statusDeleteOk(data.getId()));
+							} else {
+								StatusBar.getInstance().setMessageAsError(DbController.queries().moneyDetails().statusDeleteError(data.getId()));
+							}
+						} catch (SQLException e) {
+							StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+							e.printStackTrace();
+						}
+						
+						// Tabelle neu zeichnen
+						((MoneyDetailsListModel)_table.getModel()).dataRefresh(true);
+					}
+				}
 				break;
 		}
 	}
