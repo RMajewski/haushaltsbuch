@@ -87,11 +87,12 @@ public class WndMain extends JFrame implements ActionListener {
 			stm.executeUpdate(DbController.queries().category().createTable());
 			
 			// Überprüfen ob standard Kategorien schon eingetragen wurden
-			ResultSet rs = stm.executeQuery("SELECT count(*) FROM 'category'");
+			ResultSet rs = stm.executeQuery(DbController.queries().category().count());
 			if (rs.getInt(1) == 0)
 			{
 				// Kategorien anlegen
 				PreparedStatement ps = db.prepareStatement(DbController.queries().category().insert());
+				System.out.println(ps.getFetchSize());
 				ps.setString(1, "Lebensmittel");
 				ps.addBatch();
 				ps.setString(1, "Getränke");
@@ -133,7 +134,7 @@ public class WndMain extends JFrame implements ActionListener {
 			
 			// Überprüfen ob die Einträge für die Standart Geschäfte schon
 			// enthalten sind
-			rs = stm.executeQuery("SELECT count(*) FROM 'category'");
+			rs = stm.executeQuery(DbController.queries().section().count());
 			if (rs.getInt(1) == 0) {
 				// Geschäfte anlegen
 				PreparedStatement ps = db.prepareStatement(DbController.queries().section().insert());

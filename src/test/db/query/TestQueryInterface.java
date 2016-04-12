@@ -338,4 +338,32 @@ public class TestQueryInterface extends TestHelper {
 	public void testDeleteInsertErrorReturnString() {
 		assertEquals("java.lang.String", getMethod("statusDeleteError").getReturnType().getName());
 	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#count()}
+	 * deklariert wurde.
+	 */
+	@Test
+	public void testCountDeclaration() {
+		assertTrue(getMethod("count") != null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#count()}
+	 * keinen Parameter besitzt.
+	 */
+	@Test
+	public void testCountNoParameter() {
+		assertEquals(0, getMethod("count").getParameterTypes().length);
+	}
+	
+	/**
+	 * Testet, ob der Rückgabewert der Methode
+	 * {@link db.query.QueryInterface#count()} vom Typ
+	 * {@link java.lang.String} ist.
+	 */
+	@Test
+	public void testCountReturnString() {
+		assertEquals("java.lang.String", getMethod("count").getReturnType().getName());
+	}
 }

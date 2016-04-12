@@ -356,7 +356,7 @@ public class TestQuery extends TestHelper {
 		ret.append(_col1);
 		ret.append(", ");
 		ret.append(_col2);
-		ret.append(") VALUES ('?', '?');");
+		ret.append(") VALUES (\"?\", \"?\");");
 		assertEquals(ret.toString(), _query.insert());
 	}
 	
@@ -597,5 +597,40 @@ public class TestQuery extends TestHelper {
 		ret.append(_table);
 		ret.append("' gelöscht werden.");
 		assertEquals(ret.toString(), _query.statusDeleteError(id));
+	}
+	
+	/**
+	 * Teste, ob die Anzahl an Datensätzen nicht <b>null</b> zurück gibt. 
+	 * 
+	 * {@link db.query.Query#count()}
+	 */
+	@Test
+	public void testCountReturnIsNotNull() {
+		assertFalse(_query.count() == null);
+	}
+	
+	/**
+	 * Testet, ob die Anzahl an Datensätzen keine leere Zeichenkette zurück
+	 * gibt.
+	 * 
+	 * {@link db.query.Query#count()}
+	 */
+	@Test
+	public void testCountReturnIsNotEmpty() {
+		assertFalse(_query.count().isEmpty());
+	}
+	
+	/**
+	 * Testet, die Anzahl an Datensätzen die richtige Abfrage zurück
+	 * gibt.
+	 * 
+	 * {@link db.query.Query#count()}
+	 */
+	@Test
+	public void testCountReturnIsRight() {
+		StringBuilder ret = new StringBuilder("SELECT count(*) FROM '");
+		ret.append(_table);
+		ret.append("'");
+		assertEquals(ret.toString(), _query.count());
 	}
 }

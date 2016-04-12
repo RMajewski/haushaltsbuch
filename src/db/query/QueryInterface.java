@@ -42,6 +42,12 @@ public interface QueryInterface {
 	public String select();
 	
 	/**
+	 * Gibt eine Zeichenkette zurück, in der die Anzahl der Datensätze zurück
+	 * gegeben werden.
+	 */
+	public String count();
+	
+	/**
 	 * Meldung: Datensatz wurde eingefügt
 	 */
 	public String statusInsertOk();

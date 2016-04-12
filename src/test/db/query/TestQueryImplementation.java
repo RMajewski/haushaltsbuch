@@ -54,6 +54,4 @@ public class TestQueryImplementation extends Query {
 		return null;
 	}
 
-
-
 }

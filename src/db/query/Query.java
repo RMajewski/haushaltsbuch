@@ -153,9 +153,9 @@ public abstract class Query implements QueryInterface {
 		ret.append(") VALUES (");
 		for (int i = 0; i < queries; i++) {
 			if (i == 0)
-				ret.append("'?'");
+				ret.append("\"?\"");
 			else
-				ret.append(", '?'");
+				ret.append(", \"?\"");
 		}
 		ret.append(");");
 		
@@ -233,6 +233,23 @@ public abstract class Query implements QueryInterface {
 		
 		// ID ersetzen
 		replaceId(id, ret, true);
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, in der die Anzahl der Datensätze
+	 * ermittelt wird.
+	 * 
+	 * @return Datenbank-Abfrage, in der Anzah der Datensätze ermittelt wird.
+	 */
+	@Override
+	public String count() {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("SELECT count(*) FROM '");
+		ret.append(_tableName);
+		ret.append("'");
 		
 		// Abfrage zurück geben
 		return ret.toString();
