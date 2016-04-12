@@ -80,7 +80,7 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 		switch (ae.getActionCommand()) {
 			// Neuen Eintrag erstellen
 			case PopupMoneyList.NEW:
-				newWindows(new WndMoneyChange(null, this));
+				newWindow(new WndMoneyChange(null, this));
 				break;
 				
 			// Einen Eintrag ändern
@@ -91,7 +91,7 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 					MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
 					
 					// Fenster zum ändern der Daten anzeigen
-					newWindows(new WndMoneyChange(data, this));
+					newWindow(new WndMoneyChange(data, this));
 				}
 				break;
 				
@@ -126,6 +126,8 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 				
 			// Details anzeigen
 			case PopupMoneyList.DETAILS:
+				MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+				newWindow(new WndMoneyDetailsList(data));
 				break;
 		}
 	}

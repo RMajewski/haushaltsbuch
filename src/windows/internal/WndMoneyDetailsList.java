@@ -40,6 +40,8 @@ public class WndMoneyDetailsList extends WndInternalFrame {
 		// Größe
 		setSize(600, 400);
 		
-		
+		// Fenster anzeigen
+		//pack();
+		setVisible(true);
 	}
 }

@@ -41,7 +41,7 @@ public class WndInternalFrame extends JInternalFrame {
 	 * 
 	 * @param wnd Fenster, das den Focus erhalten soll
 	 */
-	protected void newWindows(JInternalFrame wnd) {
+	protected void newWindow(JInternalFrame wnd) {
 		getDesktopPane().add(wnd);
 		wnd.moveToFront();
 		try {
