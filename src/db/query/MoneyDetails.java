@@ -63,7 +63,7 @@ public class MoneyDetails extends Query {
 	 */
 	public String insert(int moneyid, int categoryid, int sectionid, double money, String comment) {
 		// Vorberung der Abfrage
-		StringBuilder ret = new StringBuilder("INSERT INTO 'money_details' ('moneyid', 'categoryid', 'sectionid', 'money', 'comment) VALUES(");
+		StringBuilder ret = new StringBuilder("INSERT INTO 'money_details' ('moneyid', 'categoryid', 'sectionid', 'money', 'comment') VALUES(");
 		
 		// ID des Money-Datensatzes
 		if (moneyid > -1)
@@ -93,8 +93,11 @@ public class MoneyDetails extends Query {
 		// Der Kommentar
 		if (comment == null || comment.isEmpty())
 			ret.append("?");
-		else
+		else {
+			ret.append("\"");
 			ret.append(comment);
+			ret.append("\"");
+		}
 		
 		// Abfrage abschließen
 		ret.append(");");

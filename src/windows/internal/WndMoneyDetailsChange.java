@@ -18,6 +18,7 @@ import javax.swing.JTextArea;
 import datas.MoneyDetailsData;
 import db.DbController;
 import elements.StatusBar;
+import tables.models.MoneyDetailsListModel;
 
 /**
  * Fenster zum Eingaben der Daten für einen Details-Datensatz von Money.
@@ -186,9 +187,49 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 		
 		// Speichern
 		else if(ae.getActionCommand().compareTo(SAVE) == 0) {
-			// ID der Kategorie ermitteln
-			int category = -1;
+			try {
+				// ID der Kategorie ermitteln
+				Statement stm = DbController.getInstance().createStatement();
+				ResultSet rs = stm.executeQuery(DbController.queries().category().search("name", String.valueOf(_cbCategory.getSelectedItem())));
+				int category = rs.getInt("id");
+				
+				// ID des Geschäftes ermitteln
+				rs = stm.executeQuery(DbController.queries().section().search("name", String.valueOf(_cbSection.getSelectedItem())));
+				int section = rs.getInt("id");
+				
+				// Betrag ermitteln
+				double money = ((Number)_txtMoney.getValue()).doubleValue();
+				
+				// Beschreibung ermitteln
+				String comment = _txtComment.getText();
+				
+				// Neuer Datensatz oder Datensatz ändern?
+				if (_data.getId() == -1) {
+					// Neuer Datensatz
+					System.out.println(DbController.queries().moneyDetails().insert(_data.getMoneyId(), category, section, money, comment));
+					if (stm.executeUpdate(DbController.queries().moneyDetails().insert(_data.getMoneyId(), category, section, money, comment)) > 0)
+						StatusBar.getInstance().setMessageAsOk(DbController.queries().moneyDetails().statusInsertOk());
+					else
+						StatusBar.getInstance().setMessageAsError(DbController.queries().moneyDetails().statusInsertError());
+				} else {
+					// Datensatz ändern
+				}
+			} catch(SQLException e) {
+				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+				e.printStackTrace();
+			}
 			
+			// Tabelle updaten
+			if (_frame != null) {
+				((MoneyDetailsListModel)((WndMoneyDetailsList)_frame).getTable().getModel()).dataRefresh(true);;
+			}
+			
+			// Beenden
+			try {
+				 setClosed(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

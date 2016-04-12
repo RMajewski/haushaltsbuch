@@ -95,4 +95,13 @@ public class WndMoneyDetailsList extends WndInternalFrame implements ActionListe
 				break;
 		}
 	}
+	
+	/**
+	 * Gibt die Tabelle zurück.
+	 * 
+	 * @return Tabelle
+	 */
+	public JTable getTable() {
+		return _table;
+	}
 }
