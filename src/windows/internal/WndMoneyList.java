@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,7 +22,7 @@ import tables.models.MoneyListModel;
  * 
  * @author René Majewski
  */
-public class WndMoneyList extends JInternalFrame implements ActionListener {
+public class WndMoneyList extends WndInternalFrame implements ActionListener {
 
 	/**
 	 * Serilisation ID
@@ -41,18 +40,9 @@ public class WndMoneyList extends JInternalFrame implements ActionListener {
 	public WndMoneyList() {
 		// Fenster initalisieren
 		super();
-		
-		// Größe
-		setSize(600, 400);
 
 		// Titel
 		setTitle("Einnahmen und Ausgaben");
-		
-		// Eigenschaften des Fensters
-		setResizable(false);
-		setClosable(true);
-		setMaximizable(false);
-		setIconifiable(false);
 		
 		// Tabelle initalisieren
 		_table = new JTable(new MoneyListModel());

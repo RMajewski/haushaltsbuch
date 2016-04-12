@@ -98,15 +98,6 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 		else
 			setTitle("Datensätz ändern");
 		
-		// Fenster-Größe
-		setSize(600, 400);
-		
-		// Fenster-Eigenschaften
-		setResizable(false);
-		setClosable(true);
-		setMaximizable(false);
-		setIconifiable(false);
-		
 		// GridBag-Layout initalisieren und setzen
 		GridBagLayout gbl = new GridBagLayout();
 		setLayout(gbl);
