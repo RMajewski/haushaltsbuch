@@ -20,69 +20,91 @@
 package dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
- * In diesen Dialog wird etwas über das Programm gesagt.
+ * Zeigt die Lizent-Bestimmungen an.
+ * 
+ * Dies Lizenz-Bestimmungen werden aus der Daten 
  * 
  * @author René Majewski
- *
  */
-public class DlgAbout extends JDialog {
+public class DlgLicense extends JDialog {
 
 	/**
 	 * Serilisation ID
-	 * 
-	 * @param owner Instanz, das diesen Dialog aufgerufen hat.
 	 */
-	private static final long serialVersionUID = -1375741277581661L;
+	private static final long serialVersionUID = -4447016229235653195L;
 
 	/**
-	 * Initalisiert den Dialog und sein Elemente
+	 * Initalisiert das Fenster
+	 * 
+	 * @param owner Fenster, das den Dialog aufgerufen hat.
 	 */
-	public DlgAbout(Window owner) {
+	public DlgLicense(Window owner) {
 		// Dialog initalisieren
 		super(owner);
 		
-		// Modaler Dialog
+		// Modal
 		setModal(true);
 		
 		// Größe
-		setSize(325, 200);
+		setSize(800, 400);
 		
-		// Dialog-Titel
-		setTitle("Log");
+		// TextArea initaliseren
+		JTextArea txt = new JTextArea();
+		txt.setColumns(80);
+		add(new JScrollPane(txt));
 		
-		setLayout(new BorderLayout(5, 5));
+		// Datei öffnen
+		File f = new File("Lizenz.md");
+
+		// Existiert die Lizenz-Datei?
+		if (f.exists()) {
+			try {
+				// Vorbereitungen, um die Datei zu lesen
+				FileReader fr = new FileReader(f);
+				BufferedReader br = new BufferedReader(fr);
+				
+				// Datei einlesen
+				String line = new String();
+				do {
+					line = br.readLine();
+					
+					if (line != null) {
+						// Zeile in die Text-Ausgabe einfügen
+						txt.append(line);
+						txt.append("\n");
+					}
+				} while (line != null);
+				
+				// Zugriff auf Datei beenden
+				br.close();
+				fr.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
-		// Box für den Text initalisieren
-		JPanel pan = new JPanel();
-		pan.setLayout(new BoxLayout(pan, BoxLayout.Y_AXIS));
-		pan.add(new JLabel("Haushaltsbuch", JLabel.CENTER));
-		pan.add(new JLabel(" "));
-		pan.add(new JLabel("Version 0.1"));
-		pan.add(new JLabel("Copyright René Majewski"));
-		pan.add(new JLabel(" "));
-		pan.add(new JLabel("http://github.com/RMajewski/haushaltsbuch"));
-		pan.add(new JLabel(" "));
-		pan.add(new JLabel(" "));
-		pan.add(new JLabel("Diese Software steht unter der EUPL"));
-		add(pan, BorderLayout.CENTER);
+		// TextArea auf die 1. Zeile setzen und Benutzer kann nicht editieren
+		txt.setCaretPosition(0);
+		txt.setEditable(false);
 		
 		// Button
-		pan = new JPanel();
+		JPanel pan = new JPanel();
 		JButton btn = new JButton("Ok");
 		btn.setMnemonic('O');
 		btn.addActionListener(new ActionListener() {

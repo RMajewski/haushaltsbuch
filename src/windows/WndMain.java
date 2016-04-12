@@ -32,6 +32,7 @@ import javax.swing.JFrame;
 
 import db.DbController;
 import dialogs.DlgAbout;
+import dialogs.DlgLicense;
 import dialogs.DlgLogView;
 import elements.StatusBar;
 import menus.MainTop;
@@ -217,6 +218,11 @@ public class WndMain extends JFrame implements ActionListener {
 			// Programm beenden
 			case MainTop.FILE_END:
 				System.exit(0);
+				break;
+				
+			// Linzez-Dialog
+			case MainTop.HELP_LICENSE:
+				new DlgLicense(this);
 				break;
 				
 			// Über-Dialog

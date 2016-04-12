@@ -49,6 +49,11 @@ public class MainTop extends JMenuBar {
 	public static final String HELP_ABOUT = "HelpAbout";
 	
 	/**
+	 * ActionCommand füt Hilfe -> Lizenz ...
+	 */
+	public static final String HELP_LICENSE = "HelpLicense";
+	
+	/**
 	 * ActionCommand für Log -> Anzeigen ...
 	 */
 	public static final String LOG_VIEW = "LogAnzeigen";
@@ -117,8 +122,18 @@ public class MainTop extends JMenuBar {
 		JMenu ret = new JMenu("Hilfe");
 		ret.setMnemonic('H');
 		
+		// Lizenz ...
+		JMenuItem item = new JMenuItem("Lizenz...");
+		item.setMnemonic('L');
+		item.setActionCommand(HELP_LICENSE);
+		item.addActionListener(listener);
+		ret.add(item);
+		
+		// Trennlinie
+		ret.addSeparator();
+		
 		// Über ...
-		JMenuItem item = new JMenuItem("Über...");
+		item = new JMenuItem("Über...");
 		item.setMnemonic('Ü');
 		item.setActionCommand(HELP_ABOUT);
 		item.addActionListener(listener);
