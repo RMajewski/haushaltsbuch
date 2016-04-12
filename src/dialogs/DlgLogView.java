@@ -10,6 +10,12 @@ import datas.LogData;
 import elements.StatusBar;
 import renderer.LogViewListRenderer;
 
+/**
+ * In diesen Dialog wird das Log angezeigt.
+ * 
+ * @author René Majewski
+ *
+ */
 public class DlgLogView extends JDialog {
 
 	/**

@@ -27,7 +27,7 @@ public class MainTop extends JMenuBar {
 	/**
 	 * ActionCommand für Hilfe -> Über ...
 	 */
-	public static final String HELP_ABOUT = "Über...";
+	public static final String HELP_ABOUT = "HelpAbout";
 	
 	/**
 	 * ActionCommand für Log -> Anzeigen ...
@@ -99,7 +99,7 @@ public class MainTop extends JMenuBar {
 		ret.setMnemonic('H');
 		
 		// Über ...
-		JMenuItem item = new JMenuItem(HELP_ABOUT);
+		JMenuItem item = new JMenuItem("Über...");
 		item.setMnemonic('Ü');
 		item.setActionCommand(HELP_ABOUT);
 		item.addActionListener(listener);

@@ -12,6 +12,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
 import db.DbController;
+import dialogs.DlgAbout;
 import dialogs.DlgLogView;
 import elements.StatusBar;
 import menus.MainTop;
@@ -197,6 +198,11 @@ public class WndMain extends JFrame implements ActionListener {
 			// Programm beenden
 			case MainTop.FILE_END:
 				System.exit(0);
+				break;
+				
+			// Über-Dialog
+			case MainTop.HELP_ABOUT:
+				new DlgAbout(this);
 				break;
 			
 			// Kategorien anzeigen
