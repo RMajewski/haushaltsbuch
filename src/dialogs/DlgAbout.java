@@ -1,5 +1,6 @@
 package dialogs;
 
+import java.awt.BorderLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,18 +42,18 @@ public class DlgAbout extends JDialog {
 		// Dialog-Titel
 		setTitle("Log");
 		
+		setLayout(new BorderLayout(5, 5));
+		
 		// Box für den Text initalisieren
-		Box b = Box.createVerticalBox();
-		b.add(Box.createGlue());
-		b.add(new JLabel("Haushaltsbuch"));
-		b.add(new JLabel("Version 0.1"));
-		b.add(new JLabel("Copyright © by René Majewski"));
-		b.add(Box.createGlue());
-		b.add(new JLabel("http://github.com/RMajewski/haushaltsbuch"));
-		b.add(Box.createGlue());
-		getContentPane().add(b, "Center");
+		JPanel pan = new JPanel();
+		pan.add(new JLabel("Haushaltsbuch"));
+		pan.add(new JLabel("Version 0.1"));
+		pan.add(new JLabel("Copyright © by René Majewski"));
+		pan.add(new JLabel("http://github.com/RMajewski/haushaltsbuch"));
+		add(pan, BorderLayout.CENTER);
 		
 		// Button
+		pan = new JPanel();
 		JButton btn = new JButton("Ok");
 		btn.setMnemonic('O');
 		btn.addActionListener(new ActionListener() {
@@ -61,8 +62,8 @@ public class DlgAbout extends JDialog {
 				setVisible(false);
 			}
 		});
-		getContentPane().add(new JPanel().add(btn), "South");
-		
+		pan.add(btn);
+		add(pan, BorderLayout.PAGE_END);
 		
 		// Dialog anzeigen
 		setVisible(true);
