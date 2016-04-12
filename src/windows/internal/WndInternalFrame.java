@@ -18,6 +18,23 @@ public class WndInternalFrame extends JInternalFrame {
 	 * Serilisation ID
 	 */
 	private static final long serialVersionUID = 5666026630627138150L;
+	
+	/**
+	 * Initalisieren der Eigenschaften
+	 */
+	public WndInternalFrame() {
+		// Klasse initalisieren
+		super();
+		
+		// Fenstergröße
+		setSize(600,400);
+		
+		// Fenstereigenschaften
+		setResizable(false);
+		setClosable(true);
+		setMaximizable(false);
+		setIconifiable(false);
+	}
 
 	/**
 	 * Fügt eine Komponente in das GridBag-Layout ein und setzt die

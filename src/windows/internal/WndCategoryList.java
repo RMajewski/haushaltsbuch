@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,7 +22,7 @@ import tables.models.IdNameListModel;
  * 
  * @author René Majewski
  */
-public class WndCategoryList extends JInternalFrame implements ActionListener {
+public class WndCategoryList extends WndInternalFrame implements ActionListener {
 
 	/**
 	 * Serialisation ID
@@ -48,17 +47,8 @@ public class WndCategoryList extends JInternalFrame implements ActionListener {
 		// Dialog initalieren
 		super();
 		
-		// Größe
-		setSize(600, 400);
-		
 		// Titel
 		setTitle("Kategorien");
-		
-		// Eigenschaften des Fensters
-		setResizable(false);
-		setClosable(true);
-		setMaximizable(false);
-		setIconifiable(false);
 		
 		// Tabelle initalisieren
 		_table = new JTable(new IdNameListModel(DbController.queries().category().select()));
