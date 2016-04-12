@@ -366,4 +366,34 @@ public class TestQueryInterface extends TestHelper {
 	public void testCountReturnString() {
 		assertEquals("java.lang.String", getMethod("count").getReturnType().getName());
 	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#search(String, String)}
+	 * deklariert wurde.
+	 */
+	@Test
+	public void testSearchDeclaration() {
+		assertTrue(getMethod("search") != null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#search(String, String)}
+	 * keinen Parameter besitzt.
+	 */
+	@Test
+	public void testSearchHaveTwoParameter() {
+		assertEquals(2, getMethod("search").getParameterTypes().length);
+		assertEquals("java.lang.String", getMethod("search").getParameterTypes()[0].getName());
+		assertEquals("java.lang.String", getMethod("search").getParameterTypes()[1].getName());
+	}
+	
+	/**
+	 * Testet, ob der Rückgabewert der Methode
+	 * {@link db.query.QueryInterface#search(String, String)} vom Typ
+	 * {@link java.lang.String} ist.
+	 */
+	@Test
+	public void testSearchReturnString() {
+		assertEquals("java.lang.String", getMethod("search").getReturnType().getName());
+	}
 }

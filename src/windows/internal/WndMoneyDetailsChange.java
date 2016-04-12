@@ -113,10 +113,13 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 		
 		// Combo-Box für die Kategorien
 		_cbCategory = new JComboBox<String>();
+		_cbCategory.setEditable(false);
 		addComponent(gbl, _cbCategory, 2, 0, 2, 1, 0, 0);
 		
 		// Combo-Box für die Geschäfte
 		_cbSection = new JComboBox<String>();
+		_cbSection.setEditable(false);
+		
 		addComponent(gbl, _cbSection, 2, 2, 2, 1, 0, 0);
 		
 		// Textfeld für den Betrag
@@ -181,5 +184,11 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 				e.printStackTrace();
 			}
 		
+		// Speichern
+		else if(ae.getActionCommand().compareTo(SAVE) == 0) {
+			// ID der Kategorie ermitteln
+			int category = -1;
+			
+		}
 	}
 }

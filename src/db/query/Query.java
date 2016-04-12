@@ -256,6 +256,50 @@ public abstract class Query implements QueryInterface {
 	}
 	
 	/**
+	 * Erzeugt die Datenbank-Abfrage, in der ein bestimmter Datensatz
+	 * ausgewählt werden soll.
+	 * 
+	 * @param col Spalte, in der gesucht werden soll.
+	 * 
+	 * @param str Zeichenkette nach der gesucht werden soll.
+	 * 
+	 * @return Datenbank-Abfrage, in der ein bestimmter Datensatz ausgewählt
+	 * werden soll.
+	 */
+	@Override
+	public String search(String col, String str) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("SELECT ");
+		
+		// Spalten-Namen einfügen
+		for (int i = 0; i < _columnNames.size(); i++) {
+			if (i == 0)
+				ret.append(_columnNames.get(i));
+			else {
+				ret.append(", ");
+				ret.append(_columnNames.get(i));
+			}
+		}
+		
+		// Tabellen-Name einfügen
+		ret.append(" FROM ");
+		ret.append(_tableName);
+		
+		// Suche einfügen
+		ret.append(" WHERE ");
+		ret.append(col);
+		ret.append(" = \"");
+		ret.append(str);
+		ret.append("\"");
+		
+		// Nach was wird geordnet?
+		ret.append(" ORDER BY id ASC");
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+	
+	/**
 	 * Gibt die Status-Nachricht fürs Einfügen eines Datensatzes zurück.
 	 * 
 	 * @return Status-Nachricht fürs Einfügen eines Datensatzes
