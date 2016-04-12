@@ -130,6 +130,47 @@ public class WndMain extends JFrame implements ActionListener {
 			
 			// Tabelle für die Geschäfte
 			stm.executeUpdate(DbController.queries().section().createTable());
+			
+			// Überprüfen ob die Einträge für die Standart Geschäfte schon
+			// enthalten sind
+			rs = stm.executeQuery("SELECT count(*) FROM 'category'");
+			if (rs.getInt(1) == 0) {
+				// Geschäfte anlegen
+				PreparedStatement ps = db.prepareStatement(DbController.queries().section().insert());
+				ps.setString(1, "jobcenter");
+				ps.addBatch();
+				ps.setString(1, "Mutti");
+				ps.addBatch();
+				ps.setString(1, "Schwester");
+				ps.addBatch();
+				ps.setString(1, "EDEKA");
+				ps.addBatch();
+				ps.setString(1, "Netto");
+				ps.addBatch();
+				ps.setString(1, "Lidl");
+				ps.addBatch();
+				ps.setString(1, "Penny");
+				ps.addBatch();
+				ps.setString(1, "DM");
+				ps.addBatch();
+				ps.setString(1, "Rossmann");
+				ps.addBatch();
+				ps.setString(1, "Obi");
+				ps.addBatch();
+				ps.setString(1, "Hornbach");
+				ps.addBatch();
+				ps.setString(1, "würtembergische");
+				ps.addBatch();
+				ps.setString(1, "Stadtwerke");
+				ps.addBatch();
+				ps.setString(1, "Sparkasse");
+				ps.addBatch();
+				
+				// Geschäfte in die Datenbank schreiben
+				db.setAutoCommit(false);
+				ps.executeBatch();
+				db.setAutoCommit(true);
+			}
 			status.setMessage("Datenbank: Tabelle der Geschäfte ist fertig vorbereitet.");
 			
 			// Tabelle für die Ein- und Ausgaben
