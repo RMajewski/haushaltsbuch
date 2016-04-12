@@ -14,7 +14,6 @@ import datas.MoneyData;
 import db.DbController;
 import elements.StatusBar;
 import listener.PopupMenuMouseListener;
-import menus.PopupCategoryList;
 import menus.PopupMoneyList;
 import tables.models.MoneyListModel;
 
@@ -81,14 +80,7 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 		switch (ae.getActionCommand()) {
 			// Neuen Eintrag erstellen
 			case PopupMoneyList.NEW:
-				WndMoneyChange wnd = new WndMoneyChange(null, this);
-				getDesktopPane().add(wnd);
-				wnd.moveToFront();
-				try {
-					wnd.setSelected(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				newWindows(new WndMoneyChange(null, this));
 				break;
 				
 			// Einen Eintrag ändern
@@ -99,14 +91,7 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 					MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
 					
 					// Fenster zum ändern der Daten anzeigen
-					WndMoneyChange w = new WndMoneyChange(data, this);
-					getDesktopPane().add(w);
-					w.moveToFront();
-					try {
-						w.setSelected(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+					newWindows(new WndMoneyChange(data, this));
 				}
 				break;
 				

@@ -35,6 +35,22 @@ public class WndInternalFrame extends JInternalFrame {
 		setMaximizable(false);
 		setIconifiable(false);
 	}
+	
+	/**
+	 * Fügt neues Fenster auf dem Desktop ein und gibt ihn den Focus.
+	 * 
+	 * @param wnd Fenster, das den Focus erhalten soll
+	 */
+	protected void newWindows(JInternalFrame wnd) {
+		getDesktopPane().add(wnd);
+		wnd.moveToFront();
+		try {
+			wnd.setSelected(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	/**
 	 * Fügt eine Komponente in das GridBag-Layout ein und setzt die
