@@ -33,6 +33,8 @@ public class PopupCategoryList extends JPopupMenu {
 	
 	/**
 	 * Initalisiert das Popup-Menü
+	 * 
+	 * @param listener Wer reagiert auf die einzelnen Einträge?
 	 */
 	public PopupCategoryList(ActionListener listener) {
 		super();

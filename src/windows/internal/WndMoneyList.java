@@ -15,6 +15,7 @@ import db.DbController;
 import elements.StatusBar;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
+import menus.PopupMoneyList;
 import tables.models.MoneyListModel;
 
 /**
@@ -59,8 +60,8 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 		add(scroll);
 		
 		// Popup-Menü initalisieren
-		PopupCategoryList _popup = new PopupCategoryList(this);
-		PopupMenuMouseListener listener = new PopupMenuMouseListener(_popup);
+		PopupMoneyList popup = new PopupMoneyList(this);
+		PopupMenuMouseListener listener = new PopupMenuMouseListener(popup);
 		scroll.addMouseListener(listener);
 		_table.addMouseListener(listener);
 		
@@ -79,7 +80,7 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 		// Welcher Menü-Eintrag wurde gedrückt?
 		switch (ae.getActionCommand()) {
 			// Neuen Eintrag erstellen
-			case PopupCategoryList.NEW:
+			case PopupMoneyList.NEW:
 				WndMoneyChange wnd = new WndMoneyChange(null, this);
 				getDesktopPane().add(wnd);
 				wnd.moveToFront();
@@ -91,7 +92,7 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 				break;
 				
 			// Einen Eintrag ändern
-			case PopupCategoryList.CHANGE:
+			case PopupMoneyList.CHANGE:
 				// Wurde ein Datensatz ausgewählt?
 				if (_table.getSelectedRow() > -1) {
 					// Datensatz ermitteln
@@ -110,7 +111,7 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 				break;
 				
 			// Einen Eintrag löschen
-			case PopupCategoryList.DELETE:
+			case PopupMoneyList.DELETE:
 				// Wurde ein Datensatz ausgewählt?
 				if (_table.getSelectedRow() > -1) {
 					// Datensatz ermitteln
@@ -136,6 +137,10 @@ public class WndMoneyList extends WndInternalFrame implements ActionListener {
 						((MoneyListModel)_table.getModel()).dataRefresh(true);
 					}
 				}
+				break;
+				
+			// Details anzeigen
+			case PopupMoneyList.DETAILS:
 				break;
 		}
 	}
