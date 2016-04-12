@@ -1,3 +1,22 @@
+/* 
+* Copyright 2016 René Majewski
+*  
+* Lizenziert unter der EUPL, Version 1.1 oder - sobald diese von der
+* Europäischen Kommission genehmigt wurden - Folgeversionen der EUPL
+* ("Lizenz"); Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz
+* nutzen. 
+* 
+* Eine Kopie der Lizenz finden Sie hier: 
+* https://joinup.ec.europa.eu/software/page/eupl
+*  
+* Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in 
+* schriftlicher Form vereinbart, wird die unter der Lizenz verbreitete 
+* Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
+* ausdrücklich oder stillschweigend - verbreitet.
+* Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz
+* sind dem Lizenztext zu entnehmen.
+*/ 
+
 package menus;
 
 import javax.swing.JMenuBar;
@@ -28,6 +47,11 @@ public class MainTop extends JMenuBar {
 	 * ActionCommand für Hilfe -> Über ...
 	 */
 	public static final String HELP_ABOUT = "HelpAbout";
+	
+	/**
+	 * ActionCommand füt Hilfe -> Lizenz ...
+	 */
+	public static final String HELP_LICENSE = "HelpLicense";
 	
 	/**
 	 * ActionCommand für Log -> Anzeigen ...
@@ -98,8 +122,18 @@ public class MainTop extends JMenuBar {
 		JMenu ret = new JMenu("Hilfe");
 		ret.setMnemonic('H');
 		
+		// Lizenz ...
+		JMenuItem item = new JMenuItem("Lizenz...");
+		item.setMnemonic('L');
+		item.setActionCommand(HELP_LICENSE);
+		item.addActionListener(listener);
+		ret.add(item);
+		
+		// Trennlinie
+		ret.addSeparator();
+		
 		// Über ...
-		JMenuItem item = new JMenuItem("Über...");
+		item = new JMenuItem("Über...");
 		item.setMnemonic('Ü');
 		item.setActionCommand(HELP_ABOUT);
 		item.addActionListener(listener);
