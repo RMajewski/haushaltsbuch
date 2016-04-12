@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import datas.MoneyData;
+import datas.MoneyDetailsData;
 import listener.PopupMenuMouseListener;
 import menus.PopupCategoryList;
 import tables.models.MoneyDetailsListModel;
@@ -88,7 +89,9 @@ public class WndMoneyDetailsList extends WndInternalFrame implements ActionListe
 		switch(ae.getActionCommand()) {
 			// Neu
 			case PopupCategoryList.NEW:
-				newWindow(new WndMoneyDetailsChange(null, this));
+				MoneyDetailsData data = new MoneyDetailsData(-1);
+				data.setMoneyId(_money.getId());
+				newWindow(new WndMoneyDetailsChange(data, this));
 				break;
 		}
 	}
