@@ -69,19 +69,9 @@ public class DbController {
 			if (connection != null)
 				return;
 			
-			System.out.print("Verbindung zur Datenbank ");
-			
-			// Überprüfen ob das Verzeichnis existiert
-			
-			
 			// Verbindung zur Datenbank herstellen
 			path += "/haushaltsbuch.sqlite";
 			connection = DriverManager.getConnection("jdbc:sqlite:" + path);
-			if (!connection.isClosed()) {
-				System.out.println("wurde hergestellt.");
-				System.out.println("\tName der Datenbank: " + path);
-			} else
-				System.out.println("konnte nicht hergestellt werden.");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -91,9 +81,6 @@ public class DbController {
 				try {
 					if (!connection.isClosed() && connection != null) {
 						connection.close();
-						
-						if (connection.isClosed())
-							System.out.println("Verbindung zur Datenbank wurde beendet.");
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();

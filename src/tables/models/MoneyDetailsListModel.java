@@ -64,9 +64,43 @@ public class MoneyDetailsListModel extends AbstractTableModel
 		return _list.size();
 	}
 
+	/**
+	 * Gibt den Wert für die angegebene Zelle wieder.
+	 * 
+	 * @param row Zeile, in der die Zelle liegt
+	 * 
+	 * @param col Spalte, in der die Zelle liegt
+	 * 
+	 * @return Wert der Zelle
+	 */
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
+	public Object getValueAt(int row, int col) {
+		// Welche Spalte?
+		switch(col) {
+			// ID
+			case 0:
+				return _list.get(row).getId();
+				
+			// MoneyID
+			case 1:
+				return _list.get(row).getMoneyId();
+				
+			// Kategorie
+			case 2:
+				return _list.get(row).getCategoryId();
+				
+			// Geschäft
+			case 3:
+				return _list.get(row).getSectionId();
+				
+			// Betrag
+			case 4:
+				return _list.get(row).getMoney();
+				
+			// Beschreibung
+			case 5:
+				return _list.get(row).getComment();
+		}
 		return null;
 	}
 	
