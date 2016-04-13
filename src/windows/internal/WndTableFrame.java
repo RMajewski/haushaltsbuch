@@ -28,12 +28,17 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 import db.DbController;
 import db.query.Query;
 import elements.StatusBar;
 import listener.PopupMenuMouseListener;
+import menus.PopupMoneyList;
 import menus.PopupStandardList;
 import tables.models.DbModelInterface;
 import tables.models.IdNameListModel;
@@ -44,7 +49,8 @@ import tables.models.IdNameListModel;
  * 
  * @author René Majewski
  */
-public abstract class WndTableFrame extends WndInternalFrame implements ActionListener {
+public abstract class WndTableFrame extends WndInternalFrame
+	implements ActionListener, TableModelListener, ListSelectionListener {
 
 	/**
 	 * Serialisation ID
@@ -88,10 +94,28 @@ public abstract class WndTableFrame extends WndInternalFrame implements ActionLi
 		JScrollPane pane = new JScrollPane(_table);
 		add(pane);
 		
+		// Listener zur Tabelle hinzufügen
+		_table.getModel().addTableModelListener(this);
+		_table.getSelectionModel().addListSelectionListener(this);
+		
 		// Popup-Menü initalisieren
 		PopupMenuMouseListener listener = new PopupMenuMouseListener(_popup);
 		pane.addMouseListener(listener);
 		_table.addMouseListener(listener);
+		
+		// Ändern und Löschen auf nicht benutzbar setzen
+		setPopupItemEnable(false);
+	}
+	
+	/**
+	 * Setzt die Einträge Ändern und Löschen des Stanard-Popup-Menü auf
+	 * benutzbar (true) oder nicht benutzbar (false).
+	 * 
+	 * @param enable Standard-Popup-Einträge benutzbar?
+	 */
+	protected void setPopupItemEnable(boolean enable) {
+		((PopupStandardList)_popup).setMenuItemEnable(PopupStandardList.VISIBLE_CHANGE, enable);
+		((PopupStandardList)_popup).setMenuItemEnable(PopupStandardList.VISIBLE_DELETE, enable);
 	}
 	
 	/**
@@ -137,5 +161,32 @@ public abstract class WndTableFrame extends WndInternalFrame implements ActionLi
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * Wird aufgerufen, wenn ein Datensatz gelöscht oder eingefügt wurde.
+	 * 
+	 * @param e Event-Daten
+	 */
+	@Override
+	public void tableChanged(TableModelEvent e) {
+		if (_table.getRowCount() > 0)
+			setPopupItemEnable(true);
+		else
+			System.out.println(_table.getRowCount());
+			setPopupItemEnable(false);
+	}
+
+	/**
+	 * Wird aufgerufen, wenn eine Zeile selektiert wurde.
+	 * 
+	 * @param e Event-Daten
+	 */
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		if (_table.getSelectedRow() > -1)
+			setPopupItemEnable(true);
+		else
+			setPopupItemEnable(false);
 	}
 }
