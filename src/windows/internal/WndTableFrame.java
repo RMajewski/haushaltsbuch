@@ -33,7 +33,7 @@ import db.DbController;
 import db.query.Query;
 import elements.StatusBar;
 import listener.PopupMenuMouseListener;
-import menus.PopupCategoryList;
+import menus.PopupStandardList;
 import tables.models.DbModelInterface;
 import tables.models.IdNameListModel;
 
@@ -78,6 +78,9 @@ public class WndTableFrame extends WndInternalFrame {
 		PopupMenuMouseListener listener = new PopupMenuMouseListener(popup);
 		pane.addMouseListener(listener);
 		_table.addMouseListener(listener);
+		
+		// Test
+		
 	}
 	
 	/**

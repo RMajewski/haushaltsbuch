@@ -33,7 +33,7 @@ import datas.IdNameData;
 import db.DbController;
 import elements.StatusBar;
 import listener.PopupMenuMouseListener;
-import menus.PopupCategoryList;
+import menus.PopupStandardList;
 import tables.models.IdNameListModel;
 
 /**
@@ -58,7 +58,7 @@ public class WndCategoryList extends WndTableFrame implements ActionListener {
 		
 		// Tabelle initalisieren
 		initTable(new IdNameListModel(DbController.queries().category().select()),
-				new PopupCategoryList(this));
+				new PopupStandardList(this));
 		
 		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
@@ -87,7 +87,7 @@ public class WndCategoryList extends WndTableFrame implements ActionListener {
 			// Welcher Popup-Menü-Punkt wurde ausgewählt?
 			switch (ae.getActionCommand()) {
 				// Neu
-				case PopupCategoryList.NEW:
+				case PopupStandardList.NEW:
 					String nc = JOptionPane.showInputDialog(this, "Neue Kategorie", "Kategorie erstellen", JOptionPane.OK_CANCEL_OPTION);
 					if (nc != null) {
 						if (stm.executeUpdate(DbController.queries().category().insert(nc)) > 0) {
@@ -102,13 +102,13 @@ public class WndCategoryList extends WndTableFrame implements ActionListener {
 					break;
 					
 				// Löschen
-				case PopupCategoryList.DELETE:
+				case PopupStandardList.DELETE:
 					if (_table.getSelectedRow() > 0)
 						delete(model.getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().category());
 					break;
 					
 				// Ändern
-				case PopupCategoryList.CHANGE:
+				case PopupStandardList.CHANGE:
 					if (_table.getSelectedRow() >= 0) {
 						// Daten ermitteln
 						IdNameData data = model.getRowDataAt(_table.getSelectedRow());

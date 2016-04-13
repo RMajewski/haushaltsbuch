@@ -29,7 +29,7 @@ import javax.swing.JPopupMenu;
  * 
  * @author René Majewski
  */
-public class PopupCategoryList extends JPopupMenu {
+public class PopupStandardList extends JPopupMenu {
 	/**
 	 * Serilisation ID
 	 */
@@ -51,11 +51,26 @@ public class PopupCategoryList extends JPopupMenu {
 	public static final String NEW = "PopupCategoryNew";
 	
 	/**
+	 * Gibt an, ob der Eintrag "Neu" benutzbar sein soll oder nicht.
+	 */
+	public static final int VISIBLE_NEW = 1;
+	
+	/**
+	 * Gibt an, ob der Eintrag "Ändern" benutzbar sein soll oder nicht.
+	 */
+	public static final int VISIBLE_CHANGE = 2;
+	
+	/**
+	 * Gibt an, ob der EIntrag "Löschen" benutzbar sein soll oder nicht.
+	 */
+	public static final int VISIBLE_DELETE = 3;
+	
+	/**
 	 * Initalisiert das Popup-Menü
 	 * 
 	 * @param listener Wer reagiert auf die einzelnen Einträge?
 	 */
-	public PopupCategoryList(ActionListener listener) {
+	public PopupStandardList(ActionListener listener) {
 		super();
 		
 		// Neuer Eintrag hinzu fügen
@@ -78,5 +93,31 @@ public class PopupCategoryList extends JPopupMenu {
 		item.setActionCommand(DELETE);
 		item.addActionListener(listener);
 		add(item);
+	}
+	
+	/**
+	 * Es wird die Benutzbarkeit des angegebenen Menü-Eintrages ensprechend
+	 * gesetzt.
+	 * 
+	 * @param item Menü-Eintrag, dessen Benutzbarkeit entsprechend gesetzt
+	 * werden soll.
+	 * 
+	 * @param enable true = Benutzbar, false = Unbenutzbar
+	 */
+	public void setMenuItemEnable(int item, boolean enable) {
+		switch(item) {
+			// Neu
+			case VISIBLE_NEW:
+				getComponent(0).setEnabled(enable);
+				return;
+				
+			// Ändern
+			case VISIBLE_CHANGE:
+				return;
+				
+			// Löschen
+			case VISIBLE_DELETE:
+				return;
+		}
 	}
 }

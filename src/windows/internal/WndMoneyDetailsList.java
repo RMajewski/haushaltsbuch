@@ -33,7 +33,7 @@ import datas.MoneyDetailsData;
 import db.DbController;
 import elements.StatusBar;
 import listener.PopupMenuMouseListener;
-import menus.PopupCategoryList;
+import menus.PopupStandardList;
 import tables.models.MoneyDetailsListModel;
 import tables.models.MoneyListModel;
 
@@ -77,7 +77,7 @@ public class WndMoneyDetailsList extends WndTableFrame implements ActionListener
 		
 		// Tabelle initalisieren
 		initTable(new MoneyDetailsListModel(_money.getId()), 
-				new PopupCategoryList(this));
+				new PopupStandardList(this));
 		
 		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
@@ -110,20 +110,20 @@ public class WndMoneyDetailsList extends WndTableFrame implements ActionListener
 		// Was soll ausgeführt werden?
 		switch(ae.getActionCommand()) {
 			// Neu
-			case PopupCategoryList.NEW:
+			case PopupStandardList.NEW:
 				data = new MoneyDetailsData(-1);
 				data.setMoneyId(_money.getId());
 				newWindow(new WndMoneyDetailsChange(data, this));
 				break;
 				
 			// Ändern
-			case PopupCategoryList.CHANGE:
+			case PopupStandardList.CHANGE:
 				if (_table.getSelectedRow() > -1)
 					newWindow(new WndMoneyDetailsChange(data, this));
 				break;
 				
 			// Löschen
-			case PopupCategoryList.DELETE:
+			case PopupStandardList.DELETE:
 				// Wurde ein Datensatz ausgewählt?
 				if (_table.getSelectedRow() > -1)
 					delete(((MoneyDetailsListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().moneyDetails());

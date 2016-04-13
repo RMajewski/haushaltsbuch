@@ -29,9 +29,9 @@ import javax.swing.JMenuItem;
  * 
  * @author René Majewski
  *
- * @see menus.PopupCategoryList
+ * @see menus.PopupStandardList
  */
-public class PopupMoneyList extends PopupCategoryList {
+public class PopupMoneyList extends PopupStandardList {
 
 	/**
 	 * Serilisation ID
