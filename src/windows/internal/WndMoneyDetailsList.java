@@ -43,7 +43,7 @@ import tables.models.MoneyListModel;
  * 
  * @author René Majewski
  */
-public class WndMoneyDetailsList extends WndTableFrame implements ActionListener{
+public class WndMoneyDetailsList extends WndTableFrame {
 
 	/**
 	 * Serilisation ID

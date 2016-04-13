@@ -28,12 +28,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 import datas.MoneyData;
 import db.DbController;
 import elements.StatusBar;
 import listener.PopupMenuMouseListener;
 import menus.PopupMoneyList;
+import menus.PopupStandardList;
 import tables.models.MoneyDetailsListModel;
 import tables.models.MoneyListModel;
 
@@ -42,7 +45,7 @@ import tables.models.MoneyListModel;
  * 
  * @author René Majewski
  */
-public class WndMoneyList extends WndTableFrame {
+public class WndMoneyList extends WndTableFrame implements TableModelListener {
 
 	/**
 	 * Serilisation ID
@@ -71,6 +74,13 @@ public class WndMoneyList extends WndTableFrame {
 		_table.getColumnModel().getColumn(2).setHeaderValue("Was?");
 		_table.getColumnModel().getColumn(3).setHeaderValue("Gesamt Betrag");
 		_table.getColumnModel().getColumn(4).setHeaderValue("Beschreibung");
+		
+		// Listener hinzufügen
+		_table.getModel().addTableModelListener(this);
+		
+		// Details nicht benutzbar sein soll
+		if (_table.getRowCount() == 0)
+			((PopupMoneyList)_popup).setMenuItemEnable(PopupMoneyList.VISIBLE_DETAILS, false);
 		
 		// Fenster anzeigen
 		pack();
@@ -127,5 +137,22 @@ public class WndMoneyList extends WndTableFrame {
 	 */
 	public JTable getTable() {
 		return _table;
+	}
+
+	/**
+	 * Wird aufgerufen, wenn ein Datensatz gelöscht oder eingefügt wurde.
+	 * 
+	 * @param e Event-Daten
+	 */
+	@Override
+	public void tableChanged(TableModelEvent e) {
+		// Überprüfen ob es mindestens 1 Zeile hat
+		if (_table.getRowCount() > 0) {
+			// Details ist benutzbar
+			((PopupMoneyList)_popup).setMenuItemEnable(PopupMoneyList.VISIBLE_DETAILS, true);
+		} else {
+			// Details ist nicht benutzbar
+			((PopupMoneyList)_popup).setMenuItemEnable(PopupMoneyList.VISIBLE_DETAILS, false);
+		}
 	}
 }

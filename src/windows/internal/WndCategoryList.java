@@ -41,7 +41,7 @@ import tables.models.IdNameListModel;
  * 
  * @author René Majewski
  */
-public class WndCategoryList extends WndTableFrame implements ActionListener {
+public class WndCategoryList extends WndTableFrame {
 
 	/**
 	 * Serialisation ID

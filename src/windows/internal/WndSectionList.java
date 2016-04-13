@@ -41,7 +41,7 @@ import tables.models.IdNameListModel;
  * 
  * @author René Majewski
  */
-public class WndSectionList extends WndTableFrame implements ActionListener {
+public class WndSectionList extends WndTableFrame {
 
 	/**
 	 * Serilisation ID
