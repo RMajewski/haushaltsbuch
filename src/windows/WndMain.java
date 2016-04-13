@@ -29,6 +29,7 @@ import java.sql.Statement;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 
 import db.DbController;
 import dialogs.DlgAbout;
@@ -92,6 +93,21 @@ public class WndMain extends JFrame implements ActionListener {
 		// anzeigen
 		status.setMessageAsOk("Ready");
 		setVisible(true);
+	}
+	
+	/**
+	 * Erzeugt ein das Fenster und gibt ihm dem Focus
+	 * 
+	 * @param wnd Fenster, das erzeugt werden soll
+	 */
+	private void newWindow(JInternalFrame wnd) {
+		_desktop.add(wnd);
+		wnd.moveToFront();
+		try {
+			wnd.setSelected(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 	}
 
 	/**
@@ -232,17 +248,17 @@ public class WndMain extends JFrame implements ActionListener {
 			
 			// Kategorien anzeigen
 			case MainTop.DB_CATEGORY:
-				_desktop.add(new WndCategoryList());
+				newWindow(new WndCategoryList());
 				break;
 				
 			// Geschäfte anzeigen
 			case MainTop.DB_SECTION:
-				_desktop.add(new WndSectionList());
+				newWindow(new WndSectionList());
 				break;
 				
 			// Money-Datensätze anzeigen
 			case MainTop.DB_MONEY:
-				_desktop.add(new WndMoneyList());
+				newWindow(new WndMoneyList());
 				break;
 				
 			// Log anzeigen
