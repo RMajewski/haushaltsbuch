@@ -80,16 +80,6 @@ public class WndMoneyList extends WndTableFrame {
 		_table.getColumnModel().getColumn(3).setHeaderValue("Gesamt Betrag");
 		_table.getColumnModel().getColumn(4).setHeaderValue("Beschreibung");
 		
-		// Mouse-Listener
-		_table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent me) {
-				if (me.getClickCount() == 2) {
-					createDetailsWindow();
-				}
-			}
-		});
-
 		// Details auf nicht Benutzbar setzen
 		setPopupItemEnable(false);
 		
@@ -101,7 +91,8 @@ public class WndMoneyList extends WndTableFrame {
 	/**
 	 * Erzeugt das Fenster mit den Details und gibt ihm den Fokus.
 	 */
-	private void createDetailsWindow() {
+	@Override
+	protected void tableRowDoubleClick() {
 		if (_table.getSelectedRow() > -1) {
 			MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
 			newWindow(new WndMoneyDetailsList(data));
@@ -155,7 +146,7 @@ public class WndMoneyList extends WndTableFrame {
 				
 			// Details anzeigen
 			case PopupMoneyList.DETAILS:
-				createDetailsWindow();
+				tableRowDoubleClick();
 				break;
 		}
 	}

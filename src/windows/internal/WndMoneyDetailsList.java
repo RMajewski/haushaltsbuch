@@ -117,8 +117,7 @@ public class WndMoneyDetailsList extends WndTableFrame {
 				
 			// Ändern
 			case PopupStandardList.CHANGE:
-				if (_table.getSelectedRow() > -1)
-					newWindow(new WndMoneyDetailsChange(data, this));
+				tableRowDoubleClick();
 				break;
 				
 			// Löschen
@@ -137,5 +136,14 @@ public class WndMoneyDetailsList extends WndTableFrame {
 	 */
 	public JTable getTable() {
 		return _table;
+	}
+
+	/**
+	 * Wird aufgerufen, wenn auf eine Tabellen-Zeile doppelt geklickt wurde.
+	 */
+	@Override
+	protected void tableRowDoubleClick() {
+		if (_table.getSelectedRow() > -1)
+			newWindow(new WndMoneyDetailsChange(((MoneyDetailsListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()), this));
 	}
 }

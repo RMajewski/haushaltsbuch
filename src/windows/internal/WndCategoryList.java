@@ -108,27 +108,42 @@ public class WndCategoryList extends WndTableFrame {
 					
 				// Ändern
 				case PopupStandardList.CHANGE:
-					if (_table.getSelectedRow() >= 0) {
-						// Daten ermitteln
-						IdNameData data = model.getRowDataAt(_table.getSelectedRow());
-						
-						// Kategorie ändern
-						String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Kategorie ändern", JOptionPane.OK_CANCEL_OPTION);
-						if ((cc != null) && (cc.compareTo(data.getName()) != 0)) {
-							if (stm.executeUpdate(DbController.queries().category().update(data.getId(), cc)) > 0) {
-								StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusUpdateOk(data.getId()));
-							} else {
-								StatusBar.getInstance().setMessageAsError(DbController.queries().category().statusUpdateError(data.getId()));
-							}
-
-							// Tabelle neu zeichnen
-							model.dataRefresh(true);
-						}
-					}
+					tableRowDoubleClick();
+					break;
 			}
 		} catch (SQLException e) {
 			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
 			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Wird aufgerufen, wenn auf eine Tabellen-Zeile doppelt geklickt wurde.
+	 */
+	@Override
+	protected void tableRowDoubleClick() {
+		if (_table.getSelectedRow() >= 0) {
+			try {
+				// Daten ermitteln
+				IdNameData data = ((IdNameListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+				
+				// Kategorie ändern
+				String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Kategorie ändern", JOptionPane.OK_CANCEL_OPTION);
+				if ((cc != null) && (cc.compareTo(data.getName()) != 0)) {
+					Statement stm = DbController.getInstance().createStatement();
+					if (stm.executeUpdate(DbController.queries().category().update(data.getId(), cc)) > 0) {
+						StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusUpdateOk(data.getId()));
+					} else {
+						StatusBar.getInstance().setMessageAsError(DbController.queries().category().statusUpdateError(data.getId()));
+					}
+	
+					// Tabelle neu zeichnen
+					((IdNameListModel)_table.getModel()).dataRefresh(true);
+				}
+			} catch (SQLException e) {
+				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+				e.printStackTrace();
+			}
 		}
 	}
 }

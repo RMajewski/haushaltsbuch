@@ -20,6 +20,8 @@
 package windows.internal;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -79,6 +81,11 @@ public abstract class WndTableFrame extends WndInternalFrame
 	}
 	
 	/**
+	 * Wird aufgerufen, wenn auf eine Tabellen-Zeile doppelt geklickt wurde.
+	 */
+	abstract protected void tableRowDoubleClick();
+	
+	/**
 	 * Initalisiert das Fenster.
 	 * 
 	 * Es wird die Tabelle initalisiert und angezeigt. Zudem wird das
@@ -97,6 +104,16 @@ public abstract class WndTableFrame extends WndInternalFrame
 		// Listener zur Tabelle hinzufügen
 		_table.getModel().addTableModelListener(this);
 		_table.getSelectionModel().addListSelectionListener(this);
+		
+		// Auf Doppelklick in einer Tabellen-Zeile reagieren
+		_table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent me) {
+				if (me.getClickCount() == 2) {
+					tableRowDoubleClick();
+				}
+			}
+		});
 		
 		// Popup-Menü initalisieren
 		PopupMenuMouseListener listener = new PopupMenuMouseListener(_popup);
