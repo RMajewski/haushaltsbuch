@@ -115,7 +115,7 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 			// FIXME In eine private Methode packen
 			// Kategorien füllen
 			Statement stm = DbController.getInstance().createStatement();
-			ResultSet rs = stm.executeQuery(DbController.queries().category().select());
+			ResultSet rs = stm.executeQuery(DbController.queries().category().sort("name"));
 			while (rs.next()) {
 				_cbCategory.addItem(rs.getString("name"));
 				
@@ -126,7 +126,7 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 			}
 			
 			// Geschäfte füllen
-			rs = stm.executeQuery(DbController.queries().section().select());
+			rs = stm.executeQuery(DbController.queries().section().sort("name"));
 			while (rs.next()) {
 				_cbSection.addItem(rs.getString("name"));
 				

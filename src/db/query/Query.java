@@ -112,28 +112,7 @@ public abstract class Query implements QueryInterface {
 	 */
 	@Override
 	public String select() {
-		// Rückgabe vorbereiten
-		StringBuilder ret = new StringBuilder("SELECT ");
-		
-		// Spalten-Namen einfügen
-		for (int i = 0; i < _columnNames.size(); i++) {
-			if (i == 0)
-				ret.append(_columnNames.get(i));
-			else {
-				ret.append(", ");
-				ret.append(_columnNames.get(i));
-			}
-		}
-		
-		// Tabellen-Name einfügen
-		ret.append(" FROM ");
-		ret.append(_tableName);
-		
-		// Nach was wird geordnet?
-		ret.append(" ORDER BY id ASC");
-		
-		// Rückgabe der Datenbank-Abfrage
-		return ret.toString();
+		return sort(null);
 	}
 	
 	/**
@@ -358,6 +337,45 @@ public abstract class Query implements QueryInterface {
 		ret.append(" ORDER BY id ASC");
 		
 		// Abfrage zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, in der nach einer bestimmten Spalte
+	 * sortiert werden soll.
+	 * 
+	 * @param col Spalte, nach der sortiert werden soll.
+	 * 
+	 * @return Datenbank-Abfrage, wo nach einer bestimmten Spalte sortiert
+	 * wird.
+	 */
+	public String sort(String col) {
+		// Rückgabe vorbereiten
+		StringBuilder ret = new StringBuilder("SELECT ");
+		
+		// Spalten-Namen einfügen
+		for (int i = 0; i < _columnNames.size(); i++) {
+			if (i == 0)
+				ret.append(_columnNames.get(i));
+			else {
+				ret.append(", ");
+				ret.append(_columnNames.get(i));
+			}
+		}
+		
+		// Tabellen-Name einfügen
+		ret.append(" FROM ");
+		ret.append(_tableName);
+		
+		// Nach was wird geordnet?
+		ret.append(" ORDER BY ");
+		if (col == null || col.isEmpty())
+			ret.append("id");
+		else
+			ret.append(col);
+		ret.append(" ASC");
+		
+		// Rückgabe der Datenbank-Abfrage
 		return ret.toString();
 	}
 	

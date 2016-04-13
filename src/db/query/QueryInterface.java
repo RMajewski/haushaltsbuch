@@ -85,6 +85,16 @@ public interface QueryInterface {
 	public String search(String col, int str);
 	
 	/**
+	 * Gibt eine Zeichenkette zurück, in dem nach der angegeben Spalte
+	 * sortiert wird.
+	 * 
+	 * @param col Name der Spalte, nach der sortiert werden soll
+	 * 
+	 * @return Datenbank-Abfrage, um die Datensätze zu sortieren
+	 */
+	public String sort(String col);
+	
+	/**
 	 * Meldung: Datensatz wurde eingefügt
 	 */
 	public String statusInsertOk();

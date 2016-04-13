@@ -402,8 +402,8 @@ public class TestQueryInterface extends TestHelper {
 	@Test
 	public void testSearchHaveTwoParameter() {
 		assertEquals(2, getMethod("search", 2).getParameterTypes().length);
-		assertEquals("java.lang.String", getMethod("search", 2).getParameterTypes()[0].getName());
-		assertEquals("java.lang.String", getMethod("search", 2).getParameterTypes()[1].getName());
+		assertEquals("java.lang.String", getMethod("search", 1).getParameterTypes()[0].getName());
+		assertEquals("java.lang.String", getMethod("search", 1).getParameterTypes()[1].getName());
 	}
 	
 	/**
@@ -432,8 +432,8 @@ public class TestQueryInterface extends TestHelper {
 	@Test
 	public void testSearchStringIntHaveTwoParameter() {
 		assertEquals(2, getMethod("search", 2).getParameterTypes().length);
-		assertEquals("java.lang.String", getMethod("search", 1).getParameterTypes()[0].getName());
-		assertEquals("int", getMethod("search", 1).getParameterTypes()[1].getName());
+		assertEquals("java.lang.String", getMethod("search", 2).getParameterTypes()[0].getName());
+		assertEquals("int", getMethod("search", 2).getParameterTypes()[1].getName());
 	}
 	
 	/**
@@ -444,5 +444,34 @@ public class TestQueryInterface extends TestHelper {
 	@Test
 	public void testSearchStringIntReturnString() {
 		assertEquals("java.lang.String", getMethod("search", 1).getReturnType().getName());
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#search(String, int)}
+	 * deklariert wurde.
+	 */
+	@Test
+	public void testSortStringDeclaration() {
+		assertTrue(getMethod("sort", 1) != null);
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.QueryInterface#search(String, int)}
+	 * keinen Parameter besitzt.
+	 */
+	@Test
+	public void testSortStringHasOneParameter() {
+		assertEquals(1, getMethod("sort", 1).getParameterTypes().length);
+		assertEquals("java.lang.String", getMethod("search", 1).getParameterTypes()[0].getName());
+	}
+	
+	/**
+	 * Testet, ob der Rückgabewert der Methode
+	 * {@link db.query.QueryInterface#search(String, int)} vom Typ
+	 * {@link java.lang.String} ist.
+	 */
+	@Test
+	public void testSortStringReturnString() {
+		assertEquals("java.lang.String", getMethod("sort", 1).getReturnType().getName());
 	}
 }

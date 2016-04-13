@@ -736,4 +736,46 @@ public class TestQuery extends TestHelper {
 		ret.append(" = 100 ORDER BY id ASC");
 		assertEquals(ret.toString(), _query.search(_col1, 100));
 	}
+	
+	/**
+	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, nicht
+	 *  <b>null</b> zurück gibt. 
+	 * 
+	 * {@link db.query.Query#sort(String)}
+	 */
+	@Test
+	public void testSortStringReturnIsNotNull() {
+		assertFalse(_query.sort(_col1) == null);
+	}
+	
+	/**
+	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, keine
+	 * leere Zeichenkette zurück gibt.
+	 * 
+	 * {@link db.query.Query#sort(String)}
+	 */
+	@Test
+	public void testSortStringReturnIsNotEmpty() {
+		assertFalse(_query.sort(_col1).isEmpty());
+	}
+	
+	/**
+	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, die
+	 * richtige Abfrage zurück gibt.
+	 * 
+	 * {@link db.query.Query#sort(String)}
+	 */
+	@Test
+	public void testSortStringReturnIsRight() {
+		StringBuilder ret = new StringBuilder("SELECT ");
+		ret.append(_col1);
+		ret.append(", ");
+		ret.append(_col2);
+		ret.append(" FROM ");
+		ret.append(_table);
+		ret.append(" ORDER BY ");
+		ret.append(_col1);
+		ret.append(" ASC");
+		assertEquals(ret.toString(), _query.sort(_col1));
+	}
 }
