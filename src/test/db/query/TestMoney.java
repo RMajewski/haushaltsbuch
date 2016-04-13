@@ -127,21 +127,21 @@ public class TestMoney extends TestHelper {
 	
 	/**
 	 * Testet, ob die Methode {@link db.query.Money#insert(long, boolean, String)}
-	 * ein ? in der Rückgabe enthält, wenn die Beschreibung <b>null</b> ist.
+	 * kein ? in der Rückgabe enthält, wenn die Beschreibung <b>null</b> ist.
 	 */
 	@Test
 	public void testInsertDataBooleanStringWithNull() {
-		assertEquals(1, frequency(_money.insert(768786L,  true, null), "?"));
+		assertEquals(0, frequency(_money.insert(768786L,  true, null), "?"));
 	}
 	
 	/**
 	 * Testet, ob die Methode {@link db.query.Money#insert(long, boolean, String)}
-	 * ein ? in der Rückgabe enthält, wenn die Beschreibung eine leere
+	 * kein ? in der Rückgabe enthält, wenn die Beschreibung eine leere
 	 * Zeichenkette ist.
 	 */
 	@Test
 	public void testInsertDataBooleanStringWithEmpty() {
-		assertEquals(1, frequency(_money.insert(768786L,  true, new String()), "?"));
+		assertEquals(0, frequency(_money.insert(768786L,  true, new String()), "?"));
 	}
 	
 	/**

@@ -48,32 +48,12 @@ import tables.models.MoneyListModel;
  * 
  * @author René Majewski
  */
-public class WndMoneyChange extends WndInternalFrame implements ActionListener {
+public class WndMoneyChange extends WndChangeFrame {
 
 	/**
 	 * Serialisation ID
 	 */
 	private static final long serialVersionUID = 3911001002528630785L;
-	
-	/**
-	 * Speichert das ActionCommand für OK-Button
-	 */
-	private static final String SAVE = "Save";
-	
-	/**
-	 * Speichert das ActionCommand für den Abbrechen-Button
-	 */
-	private static final String CANCEL = "Cancel";
-	
-	/**
-	 * Speichert den Datensatz
-	 */
-	private MoneyData _data;
-	
-	/**
-	 * Speichert das Fenster, aus dem dieses Fenster aufgerufen wurde.
-	 */
-	private JInternalFrame _frame;
 	
 	/**
 	 * Speichert das Textfeld für das Datum.
@@ -89,11 +69,6 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 	 * Speichert den Radio-Button für die Ausgabe
 	 */
 	private JRadioButton _rbOut;
-	
-	/**
-	 * Speichert die TextArea für die Beschreibung.
-	 */
-	private JTextArea _txtComment;
 
 	/**
 	 * Initalisiert das Fenster.
@@ -103,82 +78,50 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 	 * 
 	 * @param frame Fenster, aus dem dieses Fenster aufgerufen wurde.
 	 */
-	public WndMoneyChange(MoneyData data, JInternalFrame frame) {
+	public WndMoneyChange(MoneyData data, WndTableFrame frame) {
+		
 		// Fenster initalisieren
-		super();
-		
-		// ID und Fenster speichern
-		_data = data;
-		_frame = frame;
-		
-		// Fenster-Titel
-		if (_data == null)
-			setTitle("Neuen Datensatz erstellen");
-		else
-			setTitle("Datensätz ändern");
-		
-		// GridBag-Layout initalisieren und setzen
-		GridBagLayout gbl = new GridBagLayout();
-		setLayout(gbl);
+		super(data, frame);
 		
 		// Label für das Datum
 		JLabel label = new JLabel("Datum");
-		addComponent(gbl, label, 0, 0, 1, 1, 0.2, 0);
+		addComponent(_gbl, label, 0, 0, 1, 1, 0.2, 0);
 		
 		// Textfeld für das Datum
 		_txtDate = new JFormattedTextField(new SimpleDateFormat("dd.MM.yyyy"));
-		addComponent(gbl, _txtDate, 2, 0, 2, 1, 0.8, 0);
+		addComponent(_gbl, _txtDate, 2, 0, 2, 1, 0.8, 0);
 		
 		// ButtonGroup initalisieren
 		ButtonGroup bg = new ButtonGroup();
 		
 		// Radion-Button für die Einnahme
 		_rbIn = new JRadioButton("Einname");
-		addComponent(gbl, _rbIn, 2, 2, 2, 1, 0, 0);
+		addComponent(_gbl, _rbIn, 2, 2, 2, 1, 0, 0);
 		_rbIn.setSelected(true);
 		bg.add(_rbIn);
 		
 		// Radio-Button für die Ausgabe
 		_rbOut = new JRadioButton("Ausgabe");
-		addComponent(gbl, _rbOut, 2, 3, 2, 1, 0, 0);
+		addComponent(_gbl, _rbOut, 2, 3, 2, 1, 0, 0);
 		bg.add(_rbOut);
 		
 		// Label für die Beschreibung
 		label = new JLabel("Beschreibung");
-		addComponent(gbl, label, 0, 5, 1, 1, 0.2, 0);
-		
-		// Mehrzeiliger Text für die Beschreibung
-		_txtComment = new JTextArea();
-		addComponent(gbl, new JScrollPane(_txtComment), 2, 5, 2, 4, 0.8, 0.5);
-		
-		// Speichern-Button
-		JButton btn = new JButton("Speichern");
-		btn.setActionCommand(SAVE);
-		btn.setMnemonic('S');
-		btn.setSelected(true);
-		btn.addActionListener(this);
-		addComponent(gbl, btn, 2, 10, 1, 1, 0, 0);
-		
-		// Abbrechen-Button
-		btn = new JButton("Abbrechen");
-		btn.setMnemonic('A');
-		btn.setActionCommand(CANCEL);
-		btn.addActionListener(this);
-		addComponent(gbl, btn, 3, 10, 1, 1, 0, 0);
+		addComponent(_gbl, label, 0, 5, 1, 1, 0.2, 0);
 		
 		// Daten einfügen?
 		if (_data != null) {
 			// Datum einfügen
-			_txtDate.setText(_data.getDateAsString());
+			_txtDate.setText(((MoneyData)_data).getDateAsString());
 			
 			// Einnahme oder Ausgabe
-			if (_data.getInOut() == MoneyData.INCOMING)
+			if (((MoneyData)_data).getInOut() == MoneyData.INCOMING)
 				_rbIn.setSelected(true);
 			else
 				_rbOut.setSelected(true);
 			
 			// Beschreibung einfügen
-			_txtComment.setText(_data.getComment());
+			_txtComment.setText(((MoneyData)_data).getComment());
 		}
 		
 		// Fenster anzeigen und Fokus holen
@@ -187,16 +130,8 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		// Beenden
-		if (ae.getActionCommand().compareTo(CANCEL) == 0)
-			try {
-			 setClosed(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		
 		// Speichern
-		else if (ae.getActionCommand().compareTo(SAVE) == 0) {
+		if (ae.getActionCommand().compareTo(SAVE) == 0) {
 			// Überprüfen ob kein Datum eingegeben wurde
 			if (_txtDate.getText().isEmpty()) {
 				// Benutzer darauf hinweisen
@@ -258,7 +193,7 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 			
 			// Tabelle updaten
 			if (_frame != null) {
-				((MoneyListModel)((WndMoneyList)_frame).getTable().getModel()).dataRefresh(true);;
+				((MoneyListModel)_frame.getTable().getModel()).dataRefresh(true);
 			}
 			
 			// Beenden
@@ -267,6 +202,12 @@ public class WndMoneyChange extends WndInternalFrame implements ActionListener {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			// Methode beenden
+			return;
 		}
+		
+		// Da nich beendet, diese Methode in der Vater-Klasse aufrufen
+		super.actionPerformed(ae);
 	}
 }

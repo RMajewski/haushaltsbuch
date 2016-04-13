@@ -44,32 +44,12 @@ import tables.models.MoneyDetailsListModel;
  * 
  * @author René Majewski
  */
-public class WndMoneyDetailsChange extends WndInternalFrame implements ActionListener {
+public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListener {
 
 	/**
 	 * Serilisation ID
 	 */
 	private static final long serialVersionUID = 3225451593739557575L;
-	
-	/**
-	 * Speichert den Datensatz.
-	 */
-	private MoneyDetailsData _data;
-	
-	/**
-	 * Speichert das Fenster, welches dieses Fenster aufgerufen hat.
-	 */
-	private JInternalFrame _frame;
-	
-	/**
-	 * Speichert das ActionCommand für OK-Button
-	 */
-	private static final String SAVE = "Save";
-	
-	/**
-	 * Speichert das ActionCommand für den Abbrechen-Button
-	 */
-	private static final String CANCEL = "Cancel";
 	
 	/**
 	 * Speichert die Combo-Box für die Kategorie
@@ -85,11 +65,6 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 	 * Speichert die Eingabe für den Betrag
 	 */
 	private JFormattedTextField _txtMoney;
-	
-	/**
-	 * Speichert den Text-Bereich für die Beschreibung
-	 */
-	private JTextArea _txtComment;
 
 	/**
 	 * Initalisiert das Fenster
@@ -98,58 +73,43 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 	 * 
 	 * @param frame Fenster, welches dieses Fenster aufgereufen hat
 	 */
-	public WndMoneyDetailsChange(MoneyDetailsData data, JInternalFrame frame) {
-		super();
-		
-		// Datensatz speichern
-		_data = data;
-		_frame = frame;
-		
-		// Titel des Fensters
-		if (_data.getId() == -1)
-			setTitle("Neuen Datensatz erstellen");
-		else
-			setTitle("Datensatz ändern");
-		
-		// GridBag-Layout initalisieren und setzen
-		GridBagLayout gbl = new GridBagLayout();
-		setLayout(gbl);
+	public WndMoneyDetailsChange(MoneyDetailsData data, WndTableFrame frame) {
+		super(data, frame);
 		
 		// Label für die Kategorie
 		JLabel label = new JLabel("Kategorie");
-		addComponent(gbl, label, 0, 0, 1, 1, 0, 0);
+		addComponent(_gbl, label, 0, 0, 1, 1, 0, 0);
 		
 		// Label für das Geschäft
 		label = new JLabel("Geschäft");
-		addComponent(gbl, label, 0, 2, 1, 1, 0, 0);
+		addComponent(_gbl, label, 0, 2, 1, 1, 0, 0);
 		
 		// Label für den Betrag
 		label = new JLabel("Betrag");
-		addComponent(gbl, label, 0, 4, 1, 1, 0, 0);
+		addComponent(_gbl, label, 0, 4, 1, 1, 0, 0);
 		
 		// Label für die Beschreibung
 		label = new JLabel("Beschreibung");
-		addComponent(gbl, label, 0, 6, 1, 1, 0, 0);
+		addComponent(_gbl, label, 0, 6, 1, 1, 0, 0);
 		
 		// Combo-Box für die Kategorien
 		_cbCategory = new JComboBox<String>();
 		_cbCategory.setEditable(false);
-		addComponent(gbl, _cbCategory, 2, 0, 2, 1, 0, 0);
+		addComponent(_gbl, _cbCategory, 2, 0, 2, 1, 0, 0);
 		
 		// Combo-Box für die Geschäfte
 		_cbSection = new JComboBox<String>();
-		_cbSection.setEditable(false);
-		
-		addComponent(gbl, _cbSection, 2, 2, 2, 1, 0, 0);
+		_cbSection.setEditable(false);		
+		addComponent(_gbl, _cbSection, 2, 2, 2, 1, 0, 0);
 		
 		// Textfeld für den Betrag
 		_txtMoney = new JFormattedTextField(new DecimalFormat("0.00"));
 		_txtMoney.setText("0,00");
-		addComponent(gbl, _txtMoney, 2, 4, 2, 1, 0, 0);
+		addComponent(_gbl, _txtMoney, 2, 4, 2, 1, 0, 0);
 		
 		// Text-Bereich für die Beschreibung
 		_txtComment = new JTextArea();
-		addComponent(gbl, _txtComment, 2, 6, 2, 4, 0, 0.5);
+		addComponent(_gbl, _txtComment, 2, 6, 2, 4, 0, 0.5);
 		
 		try {
 			// FIXME In eine private Methode packen
@@ -161,7 +121,7 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 				
 				// Datensatz ändern
 				if (_data.getId() > -1)
-					if (rs.getInt("id") == _data.getCategoryId())
+					if (rs.getInt("id") == ((MoneyDetailsData)_data).getCategoryId())
 						_cbCategory.setSelectedItem(rs.getString("name"));
 			}
 			
@@ -172,7 +132,7 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 				
 				// Datensatz ändern
 				if (_data.getId() > -1)
-					if (rs.getInt("id") == _data.getCategoryId())
+					if (rs.getInt("id") == ((MoneyDetailsData)_data).getCategoryId())
 						_cbSection.setSelectedItem(rs.getString("name"));
 			}
 		} catch (SQLException e) {
@@ -180,28 +140,13 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 			e.printStackTrace();
 		}
 		
-		// Speichern-Button
-		JButton btn = new JButton("Speichern");
-		btn.setActionCommand(SAVE);
-		btn.setMnemonic('S');
-		btn.setSelected(true);
-		btn.addActionListener(this);
-		addComponent(gbl, btn, 2, 10, 1, 1, 0, 0);
-		
-		// Abbrechen-Button
-		btn = new JButton("Abbrechen");
-		btn.setMnemonic('A');
-		btn.setActionCommand(CANCEL);
-		btn.addActionListener(this);
-		addComponent(gbl, btn, 3, 10, 1, 1, 0, 0);
-		
 		// Daten einfügen, wenn Daten übergeben wurden
 		if (_data.getId() > -1) {
 			// Betrag anzeigen
-			_txtMoney.setValue(_data.getMoney());
+			_txtMoney.setValue(((MoneyDetailsData)_data).getMoney());
 			
 			// Beschreibung anzeigen
-			_txtComment.setText(_data.getComment());
+			_txtComment.setText(((MoneyDetailsData)_data).getComment());
 		}
 		
 		// Fenster anzeigen
@@ -216,16 +161,8 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		// Beenden
-		if (ae.getActionCommand().compareTo(CANCEL) == 0)
-			try {
-			 setClosed(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		
 		// Speichern
-		else if(ae.getActionCommand().compareTo(SAVE) == 0) {
+		if(ae.getActionCommand().compareTo(SAVE) == 0) {
 			try {
 				// ID der Kategorie ermitteln
 				Statement stm = DbController.getInstance().createStatement();
@@ -238,7 +175,11 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 				
 				// Betrag ermitteln
 				System.out.println(_txtMoney.getValue());
-				double money = ((Number)_txtMoney.getValue()).doubleValue();
+				double money;
+				if (_txtMoney.getValue() == null)
+					money = 0.00;
+				else
+					money = ((Number)_txtMoney.getValue()).doubleValue();
 				
 				// Beschreibung ermitteln
 				String comment = _txtComment.getText();
@@ -246,8 +187,8 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 				// Neuer Datensatz oder Datensatz ändern?
 				if (_data.getId() == -1) {
 					// Neuer Datensatz
-					System.out.println(DbController.queries().moneyDetails().insert(_data.getMoneyId(), category, section, money, comment));
-					if (stm.executeUpdate(DbController.queries().moneyDetails().insert(_data.getMoneyId(), category, section, money, comment)) > 0)
+					System.out.println(DbController.queries().moneyDetails().insert(((MoneyDetailsData)_data).getMoneyId(), category, section, money, comment));
+					if (stm.executeUpdate(DbController.queries().moneyDetails().insert(((MoneyDetailsData)_data).getMoneyId(), category, section, money, comment)) > 0)
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().moneyDetails().statusInsertOk());
 					else
 						StatusBar.getInstance().setMessageAsError(DbController.queries().moneyDetails().statusInsertError());
@@ -257,9 +198,9 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 					
 					// Überprüfen ob ein Kommentar angegeben wurde
 					if (comment.isEmpty())
-						sql = DbController.queries().moneyDetails().update(_data.getId(), _data.getMoneyId(), category, section, money);
+						sql = DbController.queries().moneyDetails().update(_data.getId(), ((MoneyDetailsData)_data).getMoneyId(), category, section, money);
 					else
-						sql = DbController.queries().moneyDetails().update(_data.getId(), _data.getMoneyId(), category, section, money, comment);
+						sql = DbController.queries().moneyDetails().update(_data.getId(), ((MoneyDetailsData)_data).getMoneyId(), category, section, money, comment);
 					
 					// Datenbank-Abfrage stellen
 					if (stm.executeUpdate(sql) > 0)
@@ -284,6 +225,12 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			// Methode beenden
+			return;
 		}
+		
+		// Da bisher nicht beendet, diese Methode in der Vater-Klasse aufrufen
+		super.actionPerformed(ae);
 	}
 }

@@ -87,6 +87,8 @@ public class Money extends Query {
 		// Kommentar einfügen
 		if (comment != null && !comment.isEmpty())
 			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		else
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, new String());
 		
 		// Datenbank-Abfrage zurück geben
 		return ret.toString();
