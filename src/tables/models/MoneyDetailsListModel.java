@@ -50,6 +50,28 @@ public class MoneyDetailsListModel extends AbstractTableModel
 	private int _moneyId;
 	
 	/**
+	 * Stellt die Abfrage an die Datenbank und gibt das Ergebenis zurück.
+	 * 
+	 * @param sql SQL-Abfrage, die gestellt werden soll.
+	 * 
+	 * @return Der zu suchende Name
+	 */
+	private String searchName(String sql) {
+		String ret = new String();
+		try {
+			Statement stm = DbController.getInstance().createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+			if (rs.getString("name") != null && !rs.getString("name").isEmpty())
+				ret = rs.getString("name");
+			
+		} catch (SQLException e) {
+			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+			e.printStackTrace();
+		}
+		return ret;
+	}
+	
+	/**
 	 * Initalisiert das Model
 	 * 
 	 * @param money ID des dazugehörigen Money-Datensatzes
@@ -104,35 +126,13 @@ public class MoneyDetailsListModel extends AbstractTableModel
 			case 1:
 				return _list.get(row).getMoneyId();
 				
-			// Kategorie
+			// Name der Kategorie
 			case 2:
-				String ret = new String();
-				try {
-					Statement stm = DbController.getInstance().createStatement();
-					ResultSet rs = stm.executeQuery(DbController.queries().category().search("id", _list.get(row).getCategoryId()));
-					if (rs.getString("name") != null && !rs.getString("name").isEmpty())
-						ret = rs.getString("name");
-					
-				} catch (SQLException e) {
-					StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-					e.printStackTrace();
-				}
-				return ret;
+				return searchName(DbController.queries().category().search("id", _list.get(row).getCategoryId()));
 				
-			// Geschäft
+			// Name des Geschäftes
 			case 3:
-				ret = new String();
-				try {
-					Statement stm = DbController.getInstance().createStatement();
-					ResultSet rs = stm.executeQuery(DbController.queries().section().search("id", _list.get(row).getCategoryId()));
-					if (rs.getString("name") != null && !rs.getString("name").isEmpty())
-						ret = rs.getString("name");
-					
-				} catch (SQLException e) {
-					StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-					e.printStackTrace();
-				}
-				return ret;
+				return searchName(DbController.queries().section().search("id", _list.get(row).getCategoryId()));
 				
 			// Betrag
 			case 4:

@@ -65,6 +65,36 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 	 * Speichert die Eingabe für den Betrag
 	 */
 	private JFormattedTextField _txtMoney;
+	
+	/**
+	 * Führt die angegebene SQL-Abfrage aus und fügt der angegebenen ComboBox
+	 * den Namen als Eintrag hinzu. Sollte die ID des Namens und die übergebene
+	 * ID übereinstimmten, so wird der Namen in der ComboBox ausgewählt.
+	 * 
+	 * @param sql SQL-Abfrage, mit der die Daten aus der Datenbank ermittelt
+	 * werden können.
+	 * 
+	 * @param id ID, des Namens, der in der ComboBox ausgewählt werden soll
+	 * 
+	 * @param combo ComboBox, die gefüllt werden soll.
+	 */
+	private void queriesAddComboBox(String sql, int id, JComboBox<String> combo) {
+		try {
+			Statement stm = DbController.getInstance().createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+			while (rs.next()) {
+				combo.addItem(rs.getString("name"));
+				
+				// Datensatz auswählen?
+				if (_data.getId() > -1)
+					if (rs.getInt("id") == id)
+						combo.setSelectedItem(rs.getString("name"));
+			}
+			
+		} catch (SQLException e) {
+			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+		}
+	}
 
 	/**
 	 * Initalisiert das Fenster
@@ -111,34 +141,15 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 		_txtComment = new JTextArea();
 		addComponent(_gbl, _txtComment, 2, 6, 2, 4, 0, 0.5);
 		
-		try {
-			// FIXME In eine private Methode packen
-			// Kategorien füllen
-			Statement stm = DbController.getInstance().createStatement();
-			ResultSet rs = stm.executeQuery(DbController.queries().category().sort("name"));
-			while (rs.next()) {
-				_cbCategory.addItem(rs.getString("name"));
-				
-				// Datensatz ändern
-				if (_data.getId() > -1)
-					if (rs.getInt("id") == ((MoneyDetailsData)_data).getCategoryId())
-						_cbCategory.setSelectedItem(rs.getString("name"));
-			}
-			
-			// Geschäfte füllen
-			rs = stm.executeQuery(DbController.queries().section().sort("name"));
-			while (rs.next()) {
-				_cbSection.addItem(rs.getString("name"));
-				
-				// Datensatz ändern
-				if (_data.getId() > -1)
-					if (rs.getInt("id") == ((MoneyDetailsData)_data).getCategoryId())
-						_cbSection.setSelectedItem(rs.getString("name"));
-			}
-		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-			e.printStackTrace();
-		}
+		// Kategorien füllen
+		queriesAddComboBox(DbController.queries().category().sort("name"),
+				((MoneyDetailsData)_data).getCategoryId(),
+				_cbCategory);
+		
+		// Geschäfte füllen
+		queriesAddComboBox(DbController.queries().section().sort("name"),
+				((MoneyDetailsData)_data).getSectionId(),
+				_cbSection);
 		
 		// Daten einfügen, wenn Daten übergeben wurden
 		if (_data.getId() > -1) {
