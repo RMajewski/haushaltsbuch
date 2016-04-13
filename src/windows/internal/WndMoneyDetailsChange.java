@@ -198,7 +198,9 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 				}
 				
 				// Betrag ermitteln
-				double money = Double.valueOf(_txtMoney.getText());
+				double money = 0;
+				if (_txtMoney.getValue() != null)
+					money = ((Number)_txtMoney.getValue()).doubleValue();
 				
 				// Beschreibung ermitteln
 				String comment = _txtComment.getText();

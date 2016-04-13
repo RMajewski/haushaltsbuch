@@ -66,7 +66,8 @@ public class WndMoneyList extends WndTableFrame implements ActionListener {
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
 		_table.getColumnModel().getColumn(1).setHeaderValue("Datum");
 		_table.getColumnModel().getColumn(2).setHeaderValue("Was?");
-		_table.getColumnModel().getColumn(3).setHeaderValue("Beschreibung");
+		_table.getColumnModel().getColumn(3).setHeaderValue("Gesamt Betrag");
+		_table.getColumnModel().getColumn(4).setHeaderValue("Beschreibung");
 		
 		// Fenster anzeigen
 		pack();

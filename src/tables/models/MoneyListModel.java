@@ -70,7 +70,7 @@ public class MoneyListModel extends AbstractTableModel
 	 */
 	@Override
 	public int getColumnCount() {
-		return DbController.queries().money().getCloumnCount();
+		return DbController.queries().money().getCloumnCount() + 1;
 	}
 
 	/**
@@ -108,8 +108,22 @@ public class MoneyListModel extends AbstractTableModel
 			case 2:
 				return _list.get(row).getInOutAsString();
 				
-			// Beschreibung
+			// Betrag
 			case 3:
+				double ret = 0;
+				// Summe aus der Datenbank lesen
+				try {
+					Statement stm = DbController.getInstance().createStatement();
+					ResultSet rs = stm.executeQuery("SELECT sum(money) AS 'sum' FROM money_details WHERE moneyid = " + _list.get(row).getId());
+					ret = rs.getDouble("sum");
+				} catch (SQLException e) {
+					StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+					e.getStackTrace();
+				}
+				return ret;
+			
+			// Beschreibung
+			case 4:
 				return _list.get(row).getComment();
 		}
 		
