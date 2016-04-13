@@ -106,11 +106,33 @@ public class MoneyDetailsListModel extends AbstractTableModel
 				
 			// Kategorie
 			case 2:
-				return _list.get(row).getCategoryId();
+				String ret = new String();
+				try {
+					Statement stm = DbController.getInstance().createStatement();
+					ResultSet rs = stm.executeQuery(DbController.queries().category().search("id", _list.get(row).getCategoryId()));
+					if (rs.getString("name") != null && !rs.getString("name").isEmpty())
+						ret = rs.getString("name");
+					
+				} catch (SQLException e) {
+					StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+					e.printStackTrace();
+				}
+				return ret;
 				
 			// Geschäft
 			case 3:
-				return _list.get(row).getSectionId();
+				ret = new String();
+				try {
+					Statement stm = DbController.getInstance().createStatement();
+					ResultSet rs = stm.executeQuery(DbController.queries().section().search("id", _list.get(row).getCategoryId()));
+					if (rs.getString("name") != null && !rs.getString("name").isEmpty())
+						ret = rs.getString("name");
+					
+				} catch (SQLException e) {
+					StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+					e.printStackTrace();
+				}
+				return ret;
 				
 			// Betrag
 			case 4:
