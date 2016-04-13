@@ -32,6 +32,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import datas.MoneyDetailsData;
@@ -184,13 +185,20 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 				rs = stm.executeQuery(DbController.queries().section().search("name", String.valueOf(_cbSection.getSelectedItem())));
 				int section = rs.getInt("id");
 				
+				// Überprüfen ob Betrag eingegeben wurde.
+				if (_txtMoney.getText().isEmpty()) {
+					// Benutzer darauf hinweisen
+					JOptionPane.showConfirmDialog(this, "Sie haben vergessen den Betrag einzugeben.", "Betrag", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE);
+					
+					// Focus setzen
+					_txtMoney.requestFocus();
+					
+					// Methode verlassen
+					return;
+				}
+				
 				// Betrag ermitteln
-				System.out.println(_txtMoney.getValue());
-				double money;
-				if (_txtMoney.getValue() == null)
-					money = 0.00;
-				else
-					money = ((Number)_txtMoney.getValue()).doubleValue();
+				double money = Double.valueOf(_txtMoney.getText());
 				
 				// Beschreibung ermitteln
 				String comment = _txtComment.getText();
