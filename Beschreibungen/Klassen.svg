@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="245cm" height="123cm" viewBox="-52 -773 4890 2444" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="173.39" y="-21.5781" width="233.3" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="173.39" y="-21.5781" width="233.3" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="290.04" y="-2.57805">Main</text>
+    <rect style="fill: #ffffff" x="173.39" y="6.42195" width="233.3" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="173.39" y="6.42195" width="233.3" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="176.39" y="20.4219">+main(in args:String[]): void</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="638.39" y="227.422" width="294.9" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="638.39" y="227.422" width="294.9" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="785.84" y="246.422">IdNameData</text>
+    <rect style="fill: #ffffff" x="638.39" y="255.422" width="294.9" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="638.39" y="255.422" width="294.9" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="641.39" y="269.422">-_name: String</text>
+    <rect style="fill: #ffffff" x="638.39" y="275.422" width="294.9" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="638.39" y="275.422" width="294.9" height="84"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="641.39" y="289.422">+IdNameData()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="641.39" y="305.422">+IdNameData(in id:int)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="641.39" y="321.422">+IdNameData(in id:int,in name:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="641.39" y="337.422">+getName(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="641.39" y="353.422">+setName(in name:String): void</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1080.3" y="-42.1638" width="187.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1080.3" y="-42.1638" width="187.1" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1173.85" y="-23.1638">Data</text>
+    <rect style="fill: #ffffff" x="1080.3" y="-14.1638" width="187.1" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1080.3" y="-14.1638" width="187.1" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1083.3" y="-0.163839">#id: int</text>
+    <rect style="fill: #ffffff" x="1080.3" y="5.83616" width="187.1" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1080.3" y="5.83616" width="187.1" height="52"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1083.3" y="19.8362">+Data(in id:int)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1083.3" y="35.8362">+getId(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1083.3" y="51.8362">+setId(in id:int): void</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1173.85,76.0722 1173.85,150.629 785.84,150.629 785.84,227.422 "/>
+    <polygon style="fill: #ffffff" points="1181.85,76.0722 1173.85,60.0722 1165.85,76.0722 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1181.85,76.0722 1173.85,60.0722 1165.85,76.0722 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1938.39" y="213.422" width="356.5" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1938.39" y="213.422" width="356.5" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="2116.64" y="232.422">LogData</text>
+    <rect style="fill: #ffffff" x="1938.39" y="241.422" width="356.5" height="116"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1938.39" y="241.422" width="356.5" height="116"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="255.422">-_message: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="271.422">-_out: short</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="287.422">+NO_OUT: short = 0</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="303.422">+ERROR: short = 1</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="319.422">+WARNING: short = 2</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="335.422">+NONE: short = 3</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="351.422">+OK: short = 4</text>
+    <rect style="fill: #ffffff" x="1938.39" y="357.422" width="356.5" height="164"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1938.39" y="357.422" width="356.5" height="164"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="371.422">+LogData()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="387.422">+LogData(in message:String,in out:short)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="403.422">+getMessage(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="419.422">+setMessage(in message:String): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="435.422">+setMessageAsError(in message:String): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="451.422">+setMessageAsNoOut(in message:String): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="467.422">+setMessageAsWarning(in message:String): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="483.422">+setmessageAsOk(in message:String): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="499.422">+getOut(): short</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1941.39" y="515.422">+setOut(in out:short): void</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="973.39" y="224.422" width="402.7" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="973.39" y="224.422" width="402.7" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1174.74" y="243.422">MoneyData</text>
+    <rect style="fill: #ffffff" x="973.39" y="252.422" width="402.7" height="116"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="973.39" y="252.422" width="402.7" height="116"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="266.422">-_date: long</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="282.422">-_inout: boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="298.422">-_comment: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="314.422">+OUTGOING: boolean = false</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="330.422">+INCOMING: boolean = true</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="346.422">+INT_OUTGOING: int = 0</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="362.422">+INT_INCOMING: int = 1</text>
+    <rect style="fill: #ffffff" x="973.39" y="368.422" width="402.7" height="212"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="973.39" y="368.422" width="402.7" height="212"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="382.422">+MoneyData()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="398.422">+MoneyData(in id:int)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="414.422">+MoneyData(in int:id,in date:long,in inout:boolean,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="430.422">           in comment:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="446.422">+getDate(): long</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="462.422">+getDateAsString(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="478.422">+setDate(in date:long): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="494.422">+setDate(in date:String): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="510.422">+getInOut(): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="526.422">+getInOutAsstring(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="542.422">+setInOut(in inout:boolean): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="558.422">+getComment(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.39" y="574.422">+setComment(in comment:String): void</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1173.85,76.0722 1173.85,149.129 1174.74,149.129 1174.74,224.422 "/>
+    <polygon style="fill: #ffffff" points="1181.85,76.0722 1173.85,60.0722 1165.85,76.0722 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1181.85,76.0722 1173.85,60.0722 1165.85,76.0722 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1461.39" y="225.422" width="418.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1461.39" y="225.422" width="418.1" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1670.44" y="244.422">MoneyDeatilsData</text>
+    <rect style="fill: #ffffff" x="1461.39" y="253.422" width="418.1" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1461.39" y="253.422" width="418.1" height="84"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="267.422">-_moneyId: int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="283.422">-_categoryId: int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="299.422">-_sectionId: int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="315.422">-_money: double</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="331.422">-_comment: String</text>
+    <rect style="fill: #ffffff" x="1461.39" y="337.422" width="418.1" height="244"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1461.39" y="337.422" width="418.1" height="244"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="351.422">+MoneyDetailsData()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="367.422">+MoneyDetailsData(in id:int)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="383.422">+MoneyDetailsData(in id:int,in moneyid:int,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="399.422">                  in categoryid:int,in sectionid:int,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="415.422">                  in money:double,in comment:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="431.422">+getMoneyId(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="447.422">+setMoneyId(in moneyid:int): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="463.422">+getCategoryId(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="479.422">+setCategoryId(in categoryid:int): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="495.422">+getSectionId(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="511.422">+setSectionId(in sectionid:int): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="527.422">+getMoney(): double</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="543.422">+setMoney(in money:double): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="559.422">+getComment(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1464.39" y="575.422">+setComment(in comment:String): void</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1173.85,76.0722 1173.85,149.629 1670.44,149.629 1670.44,225.422 "/>
+    <polygon style="fill: #ffffff" points="1181.85,76.0722 1173.85,60.0722 1165.85,76.0722 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1181.85,76.0722 1173.85,60.0722 1165.85,76.0722 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-50.0361" y="1108.72" width="395" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-50.0361" y="1108.72" width="395" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="147.464" y="1127.72">DbController</text>
+    <rect style="fill: #ffffff" x="-50.0361" y="1136.72" width="395" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-50.0361" y="1136.72" width="395" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1150.72">-controller: DbController = new DbController</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1166.72">-connection: Connection</text>
+    <rect style="fill: #ffffff" x="-50.0361" y="1172.72" width="395" height="164"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-50.0361" y="1172.72" width="395" height="164"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1186.72">+getInstance(): DbController</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1202.72">+queries(): Queries</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1218.72">+DbController()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1234.72">-initConnection(): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1250.72">+statusDbError(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1266.72">+getConnection(): Connection</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1282.72">+isConnection(): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1298.72">+createStatement(): Statement</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1314.72">+prepareStatement(in sql:String): PrepareStatement</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-47.0361" y="1330.72">+setAutoCommit(in commit:boolean): void</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="518.478" y="1110.83" width="241" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="518.478" y="1110.83" width="241" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="638.978" y="1129.83">Queries</text>
+    <rect style="fill: #ffffff" x="518.478" y="1138.83" width="241" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="518.478" y="1138.83" width="241" height="84"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1152.83">-_query: Queries = new Queries</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1168.83">-_category: Category</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1184.83">-_section: Section</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1200.83">-_money: Money</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1216.83">-_moneyDetails: MoneyDetails</text>
+    <rect style="fill: #ffffff" x="518.478" y="1222.83" width="241" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="518.478" y="1222.83" width="241" height="100"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1236.83">+Queries()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1252.83">+getInstance(): Queries</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1268.83">+category(): Category</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1284.83">+section(): Section</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1300.83">+money(): Money</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="521.478" y="1316.83">+moneyDetails(): MoneyDetails</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="370.135,1214.72 438.721,1214.72 438.721,1212.83 518.478,1212.83 "/>
+    <polygon style="fill: #ffffff" points="344.964,1214.72 358.964,1209.92 372.964,1214.72 358.964,1219.52 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="344.964,1214.72 358.964,1209.92 372.964,1214.72 358.964,1219.52 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="2038.04" y="728.298" width="348.8" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2038.04" y="728.298" width="348.8" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="2212.44" y="747.298">QueryInterface</text>
+    <rect style="fill: #ffffff" x="2038.04" y="756.298" width="348.8" height="212"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2038.04" y="756.298" width="348.8" height="212"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="770.298">+createTable(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="786.298">+select(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="802.298">+delete(in id:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="818.298">+insert(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="834.298">+update(in id:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="850.298">+count(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="866.298">+search(in col:String,in str:String): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="882.298">+search(in col:String,in str:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="898.298">+statusInsertOk(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="914.298">+statusInsertError(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="930.298">+statusUpdateOk(): statusUpdateError</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="946.298">+statusDeleteOk(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2041.04" y="962.298">+statusDeleteError(): String</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="2019.02" y="1102.38" width="387.3" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2019.02" y="1102.38" width="387.3" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:italic;font-weight:700" x="2212.67" y="1121.38">Query</text>
+    <rect style="fill: #ffffff" x="2019.02" y="1130.38" width="387.3" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2019.02" y="1130.38" width="387.3" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1144.38">#_tableName: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1160.38">#_columnNames: List&lt;String&gt;</text>
+    <rect style="fill: #ffffff" x="2019.02" y="1166.38" width="387.3" height="292"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2019.02" y="1166.38" width="387.3" height="292"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1180.38">+Query(in name:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1196.38">#replaceId(in id:int,inout builder:StringBuilder,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1212.38">           in last:boolean): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1228.38">+getTableName(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1244.38">+getColumnNames(): List&lt;String&gt;</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1260.38">+select(in id:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1276.38">+insert(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1292.38">+update(in id:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1308.38">+delete(in id:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1324.38">+count(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1340.38">+search(in col:String,in str:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1356.38">+search(in col:String,in str:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1372.38">+statusInsertOk(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1388.38">+statusInsertError(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1404.38">+statusUpdateOk(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1420.38">+statusupdateError(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1436.38">+statusDeleteOk(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2022.02" y="1452.38">+statusDeleteError(): String</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="2212.44,986.534 2212.44,1043.34 2212.67,1043.34 2212.67,1102.38 "/>
+    <polygon style="fill: #ffffff" points="2220.44,986.534 2212.44,970.534 2204.44,986.534 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2220.44,986.534 2212.44,970.534 2204.44,986.534 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1179.99" y="890.504" width="325.7" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1179.99" y="890.504" width="325.7" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1342.84" y="909.504">Category</text>
+    <rect style="fill: #ffffff" x="1179.99" y="918.504" width="325.7" height="68"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1179.99" y="918.504" width="325.7" height="68"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1182.99" y="932.504">+Category()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1182.99" y="948.504">+createTable(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1182.99" y="964.504">+insert(in id:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1182.99" y="980.504">+update(in id:int,in name:String): String</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1179.93" y="1056.56" width="325.7" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1179.93" y="1056.56" width="325.7" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1342.78" y="1075.56">Section</text>
+    <rect style="fill: #ffffff" x="1179.93" y="1084.56" width="325.7" height="68"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1179.93" y="1084.56" width="325.7" height="68"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1182.93" y="1098.56">+Section()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1182.93" y="1114.56">+createTable(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1182.93" y="1130.56">+insert(in id:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1182.93" y="1146.56">+update(in id:int,in name:String): String</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1100.68" y="1215.28" width="502.8" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1100.68" y="1215.28" width="502.8" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1352.08" y="1234.28">Money</text>
+    <rect style="fill: #ffffff" x="1100.68" y="1243.28" width="502.8" height="164"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1100.68" y="1243.28" width="502.8" height="164"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1103.68" y="1257.28">+Money()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1103.68" y="1273.28">-inOutToString(in inout:boolean): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1103.68" y="1289.28">+createTable(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1103.68" y="1305.28">+insert(in date:long,in inout:boolean,in comment:String): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1103.68" y="1321.28">+update(in id:int,in date:long): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1103.68" y="1337.28">+update(in id:int,in inout:boolean): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1103.68" y="1353.28">+update(in int:id,in comment:String): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1103.68" y="1369.28">+update(in id:String,in date:long,in inout:boolean): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1103.68" y="1385.28">+update(in id:int,in date:long,in inout:boolean,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1103.68" y="1401.28">        in comment:String): String</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1158.79" y="1462.77" width="402.7" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1158.79" y="1462.77" width="402.7" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1360.14" y="1481.77">MoneyDetails</text>
+    <rect style="fill: #ffffff" x="1158.79" y="1490.77" width="402.7" height="180"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1158.79" y="1490.77" width="402.7" height="180"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1504.77">+MoneyDetails()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1520.77">+createTable(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1536.77">+insert(in id:int,in moneyid:int,in categoryid:int,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1552.77">        in sectionid:int,in money:double,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1568.77">        in comment:String): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1584.77">+select(in id:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1600.77">+update(in id:int,in moneyid:int,in categoryid:int,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1616.77">        in sectionid:int,in money:double): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1632.77">+update(in id:int,in moneyid:int,in categoryid:int,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1648.77">        in sectionid:int,in money:double,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1161.79" y="1664.77">        in comment:String): String</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="784.65,1212.83 976.732,1212.83 976.732,944.504 1179.99,944.504 "/>
+    <polygon style="fill: #ffffff" points="759.478,1212.83 773.478,1208.03 787.478,1212.83 773.478,1217.63 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="759.478,1212.83 773.478,1208.03 787.478,1212.83 773.478,1217.63 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="784.65,1212.83 976.704,1212.83 976.704,1094.56 1179.93,1094.56 "/>
+    <polygon style="fill: #ffffff" points="759.478,1212.83 773.478,1208.03 787.478,1212.83 773.478,1217.63 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="759.478,1212.83 773.478,1208.03 787.478,1212.83 773.478,1217.63 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="784.65,1212.83 976.567,1212.83 976.567,1317.28 1100.68,1317.28 "/>
+    <polygon style="fill: #ffffff" points="759.478,1212.83 773.478,1208.03 787.478,1212.83 773.478,1217.63 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="759.478,1212.83 773.478,1208.03 787.478,1212.83 773.478,1217.63 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="784.65,1212.83 976.567,1212.83 976.567,1532.77 1158.79,1532.77 "/>
+    <polygon style="fill: #ffffff" points="759.478,1212.83 773.478,1208.03 787.478,1212.83 773.478,1217.63 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="759.478,1212.83 773.478,1208.03 787.478,1212.83 773.478,1217.63 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2000.78,1288.38 1754.35,1288.38 1754.35,944.504 1505.69,944.504 "/>
+    <polygon style="fill: #ffffff" points="2000.78,1296.38 2016.78,1288.38 2000.78,1280.38 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2000.78,1296.38 2016.78,1288.38 2000.78,1280.38 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2000.78,1288.38 1754.32,1288.38 1754.32,1094.56 1505.63,1094.56 "/>
+    <polygon style="fill: #ffffff" points="2000.78,1296.38 2016.78,1288.38 2000.78,1280.38 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2000.78,1296.38 2016.78,1288.38 2000.78,1280.38 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2000.78,1288.38 1754.84,1288.38 1754.84,1317.28 1603.48,1317.28 "/>
+    <polygon style="fill: #ffffff" points="2000.78,1296.38 2016.78,1288.38 2000.78,1280.38 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2000.78,1296.38 2016.78,1288.38 2000.78,1280.38 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2000.78,1288.38 1754.84,1288.38 1754.84,1580.77 1561.49,1580.77 "/>
+    <polygon style="fill: #ffffff" points="2000.78,1296.38 2016.78,1288.38 2000.78,1280.38 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2000.78,1296.38 2016.78,1288.38 2000.78,1280.38 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1147.82" y="-771.056" width="302.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1147.82" y="-771.056" width="302.6" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1299.12" y="-752.056">DbModelInterface</text>
+    <rect style="fill: #ffffff" x="1147.82" y="-743.056" width="302.6" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1147.82" y="-743.056" width="302.6" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1150.82" y="-729.056">+dataRefresh(in repaint:boolean): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1150.82" y="-713.056">+getRowData(in row:int): Data</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="732.759" y="-493.481" width="333.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="732.759" y="-493.481" width="333.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="899.459" y="-474.481">IdNameListModel</text>
+    <rect style="fill: #ffffff" x="732.759" y="-465.481" width="333.4" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="732.759" y="-465.481" width="333.4" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="735.759" y="-451.481">-_sql: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="735.759" y="-435.481">-_list: List&lt;IdNameData&gt;</text>
+    <rect style="fill: #ffffff" x="732.759" y="-429.481" width="333.4" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="732.759" y="-429.481" width="333.4" height="100"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="735.759" y="-415.481">+IdNameListModel(in sql:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="735.759" y="-399.481">+dataRefresh(in repaint:boolean): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="735.759" y="-383.481">+getColumnCount(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="735.759" y="-367.481">+getRowCount(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="735.759" y="-351.481">+getValueAt(in row:int,in col:int): Object</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="735.759" y="-335.481">+getRowDataAt(in row:int): IdNameData</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1133.91" y="-483.272" width="333.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1133.91" y="-483.272" width="333.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1300.61" y="-464.272">MoneyListModel</text>
+    <rect style="fill: #ffffff" x="1133.91" y="-455.272" width="333.4" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1133.91" y="-455.272" width="333.4" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1136.91" y="-441.272">-_list: List&lt;MoneyData&gt;</text>
+    <rect style="fill: #ffffff" x="1133.91" y="-435.272" width="333.4" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1133.91" y="-435.272" width="333.4" height="100"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1136.91" y="-421.272">+MoneyListModel()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1136.91" y="-405.272">+dataRefresh(in repaint:boolean): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1136.91" y="-389.272">+getColumnCount(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1136.91" y="-373.272">+getRowCount(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1136.91" y="-357.272">+getValueAt(in row:int,in col:int): Object</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1136.91" y="-341.272">+getRowDataAt(in row:int): MoneyData</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1526.92" y="-484.569" width="341.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1526.92" y="-484.569" width="341.1" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1697.47" y="-465.569">MoneyDetailsListModel</text>
+    <rect style="fill: #ffffff" x="1526.92" y="-456.569" width="341.1" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1526.92" y="-456.569" width="341.1" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1529.92" y="-442.569">-_list: List&lt;MoneyData&gt;</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1529.92" y="-426.569">-_moneyId: int</text>
+    <rect style="fill: #ffffff" x="1526.92" y="-420.569" width="341.1" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1526.92" y="-420.569" width="341.1" height="100"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1529.92" y="-406.569">+MoneyDetailsListModel(in moneyid:int)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1529.92" y="-390.569">+dataRefresh(in repaint:boolean): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1529.92" y="-374.569">+getColumnCount(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1529.92" y="-358.569">+getRowCount(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1529.92" y="-342.569">+getValueAt(in row:int,in col:int): Object</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1529.92" y="-326.569">+getRowDataAt(in row:int): MoneyDataDetails</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1299.12,-688.82 1299.12,-592.269 899.459,-592.269 899.459,-493.481 "/>
+    <polygon style="fill: #ffffff" points="1307.12,-688.82 1299.12,-704.82 1291.12,-688.82 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1307.12,-688.82 1299.12,-704.82 1291.12,-688.82 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1299.12,-688.82 1299.12,-587.164 1300.61,-587.164 1300.61,-483.272 "/>
+    <polygon style="fill: #ffffff" points="1307.12,-688.82 1299.12,-704.82 1291.12,-688.82 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1307.12,-688.82 1299.12,-704.82 1291.12,-688.82 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1299.12,-688.82 1299.12,-592.059 1697.47,-592.059 1697.47,-484.569 "/>
+    <polygon style="fill: #ffffff" points="1307.12,-688.82 1299.12,-704.82 1291.12,-688.82 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1307.12,-688.82 1299.12,-704.82 1291.12,-688.82 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="3338.9" y="-728.574" width="395" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3338.9" y="-728.574" width="395" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="3536.4" y="-709.574">WndInternalFrame</text>
+    <rect style="fill: #ffffff" x="3338.9" y="-700.574" width="395" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3338.9" y="-700.574" width="395" height="100"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3341.9" y="-686.574">+WndInternalFrame()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3341.9" y="-670.574">#newWindow(in wnd:JIntewrnalFrame): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3341.9" y="-654.574">#addComponent(in bgl:GridBagLayout,in c:Component,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3341.9" y="-638.574">              in x:int,in y:int,in width:int,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3341.9" y="-622.574">              in height:int,in weightx:double,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3341.9" y="-606.574">              in weighty:double): void</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="2469.05" y="-337.505" width="287.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2469.05" y="-337.505" width="287.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="2612.65" y="-318.505">WndCategoryList</text>
+    <rect style="fill: #ffffff" x="2469.05" y="-309.505" width="287.2" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2469.05" y="-309.505" width="287.2" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2472.05" y="-295.505">-_popup: PopupCategoryList</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2472.05" y="-279.505">-_table: JTable</text>
+    <rect style="fill: #ffffff" x="2469.05" y="-273.505" width="287.2" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2469.05" y="-273.505" width="287.2" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2472.05" y="-259.505">+WndCategoryList()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2472.05" y="-243.505">+actinPerformed(ae:ActenEvent): void</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="2861.84" y="-342.112" width="287.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2861.84" y="-342.112" width="287.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="3005.44" y="-323.112">WndSectionList</text>
+    <rect style="fill: #ffffff" x="2861.84" y="-314.112" width="287.2" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2861.84" y="-314.112" width="287.2" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2864.84" y="-300.112">-_popup: PopupCategoryList</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2864.84" y="-284.112">-_table: JTable</text>
+    <rect style="fill: #ffffff" x="2861.84" y="-278.112" width="287.2" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2861.84" y="-278.112" width="287.2" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2864.84" y="-264.112">+WndSectionList()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2864.84" y="-248.112">+actinPerformed(ae:ActenEvent): void</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="3230.63" y="-344.844" width="287.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3230.63" y="-344.844" width="287.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="3374.23" y="-325.844">WndMoneyList</text>
+    <rect style="fill: #ffffff" x="3230.63" y="-316.844" width="287.2" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3230.63" y="-316.844" width="287.2" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3233.63" y="-302.844">-_table: JTable</text>
+    <rect style="fill: #ffffff" x="3230.63" y="-296.844" width="287.2" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3230.63" y="-296.844" width="287.2" height="52"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3233.63" y="-282.844">+WndMoneyList()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3233.63" y="-266.844">+actinPerformed(ae:ActenEvent): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3233.63" y="-250.844">+getTable(): JTable</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="3574.97" y="-346.426" width="287.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3574.97" y="-346.426" width="287.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="3718.57" y="-327.426">WndMoneyDetailsList</text>
+    <rect style="fill: #ffffff" x="3574.97" y="-318.426" width="287.2" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3574.97" y="-318.426" width="287.2" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3577.97" y="-304.426">-_table: JTable</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3577.97" y="-288.426">-_moneyId: int</text>
+    <rect style="fill: #ffffff" x="3574.97" y="-282.426" width="287.2" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3574.97" y="-282.426" width="287.2" height="52"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3577.97" y="-268.426">+WndMoneyDetailsList(in moneyid:int)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3577.97" y="-252.426">+actinPerformed(ae:ActenEvent): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3577.97" y="-236.426">+getTable(): JTable</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="3929.37" y="-355.268" width="456.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3929.37" y="-355.268" width="456.6" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="4157.67" y="-336.268">WndMoneyChange</text>
+    <rect style="fill: #ffffff" x="3929.37" y="-327.268" width="456.6" height="132"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3929.37" y="-327.268" width="456.6" height="132"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3932.37" y="-313.268">-_data: MoneyData</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3932.37" y="-297.268">-_frame: JInternalFrame</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3932.37" y="-281.268">-_txtDate: JFormattedTextField</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3932.37" y="-265.268">-_rbIncoming: JRadioButton</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3932.37" y="-249.268">-_rbOutgoing: JRadioButton</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3932.37" y="-233.268">-_txtComment: JTextArea</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3932.37" y="-217.268">-SAVE: String = Save</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3932.37" y="-201.268">-CANCEL: String = Cancel</text>
+    <rect style="fill: #ffffff" x="3929.37" y="-195.268" width="456.6" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="3929.37" y="-195.268" width="456.6" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3932.37" y="-181.268">+WndMoneyChange(in data:MoneyData,in frame:JInternalFrame)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="3932.37" y="-165.268">+actinPerformed(ae:ActenEvent): void</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="4473.56" y="-355.412" width="364.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="4473.56" y="-355.412" width="364.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="4655.66" y="-336.412">WndMoneyDetailsChange</text>
+    <rect style="fill: #ffffff" x="4473.56" y="-327.412" width="364.2" height="132"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="4473.56" y="-327.412" width="364.2" height="132"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-313.412">-_data: MoneyDetailsData</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-297.412">-_frame: JInternalFrame</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-281.412">-_cbCategory: JComboBox</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-265.412">-_cbSection: JComboBox</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-249.412">-_txtMoney: JFormattedTextField</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-233.412">-_txtComment: JTextArea</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-217.412">-SAVE: String = Save</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-201.412">-CANCEL: String = Cancel</text>
+    <rect style="fill: #ffffff" x="4473.56" y="-195.412" width="364.2" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="4473.56" y="-195.412" width="364.2" height="52"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-181.412">+WndMoneyDetailsList(in data:MoneyDetailsData,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-165.412">                     in frame:JInternalFrame)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="4476.56" y="-149.412">+actinPerformed(ae:ActenEvent): void</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3536.4,-582.338 3536.4,-470.226 2612.65,-470.226 2612.65,-337.505 "/>
+    <polygon style="fill: #ffffff" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3536.4,-582.338 3536.4,-470.226 3005.44,-470.226 3005.44,-342.112 "/>
+    <polygon style="fill: #ffffff" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3536.4,-582.338 3536.4,-470.226 3374.23,-470.226 3374.23,-344.844 "/>
+    <polygon style="fill: #ffffff" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3536.4,-582.338 3536.4,-470.226 3718.57,-470.226 3718.57,-346.426 "/>
+    <polygon style="fill: #ffffff" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3536.4,-582.338 3536.4,-469.921 4157.67,-469.921 4157.67,-355.268 "/>
+    <polygon style="fill: #ffffff" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3536.4,-582.338 3536.4,-469.993 4655.66,-469.993 4655.66,-355.412 "/>
+    <polygon style="fill: #ffffff" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="3544.4,-582.338 3536.4,-598.338 3528.4,-582.338 "/>
+  </g>
+</svg>

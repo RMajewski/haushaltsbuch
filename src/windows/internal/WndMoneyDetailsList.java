@@ -43,7 +43,7 @@ import tables.models.MoneyListModel;
  * 
  * @author René Majewski
  */
-public class WndMoneyDetailsList extends WndInternalFrame implements ActionListener{
+public class WndMoneyDetailsList extends WndTableFrame implements ActionListener{
 
 	/**
 	 * Serilisation ID
@@ -54,11 +54,6 @@ public class WndMoneyDetailsList extends WndInternalFrame implements ActionListe
 	 * Speichert den Datensatz aus der Tabelle 'money'
 	 */
 	private MoneyData _money;
-	
-	/**
-	 * Speichert die Tabelle
-	 */
-	private JTable _table;
 
 	/**
 	 * Initalisiert das Fenster und speichert die Daten des angegebenen
@@ -81,23 +76,16 @@ public class WndMoneyDetailsList extends WndInternalFrame implements ActionListe
 		setSize(1000, 400);
 		
 		// Tabelle initalisieren
-		_table = new JTable(new MoneyDetailsListModel(_money.getId()));
+		initTable(new MoneyDetailsListModel(_money.getId()), 
+				new PopupCategoryList(this));
+		
+		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
 		_table.getColumnModel().getColumn(1).setHeaderValue("MoneyID");
 		_table.getColumnModel().getColumn(2).setHeaderValue("Kategorie");
 		_table.getColumnModel().getColumn(3).setHeaderValue("Geschäft");
 		_table.getColumnModel().getColumn(4).setHeaderValue("Betrag");
 		_table.getColumnModel().getColumn(5).setHeaderValue("Beschreibung");
-		
-		// Tabelle in Scrollbereich anzeigen
-		JScrollPane scroll = new JScrollPane(_table);
-		add(scroll);
-		
-		// Popup-Menü initalisieren
-		PopupCategoryList popup = new PopupCategoryList(this);
-		PopupMenuMouseListener listener = new PopupMenuMouseListener(popup);
-		scroll.addMouseListener(listener);
-		_table.addMouseListener(listener);
 		
 		// Fenster anzeigen
 		//pack();
@@ -136,29 +124,9 @@ public class WndMoneyDetailsList extends WndInternalFrame implements ActionListe
 				
 			// Löschen
 			case PopupCategoryList.DELETE:
-				// FIXME Datensatz löschen in eine Methode stecken
 				// Wurde ein Datensatz ausgewählt?
-				if (_table.getSelectedRow() > -1) {
-					// Benutzer Fragen ob Datensatz gelöscht werden soll
-					// Kategorie löschen? 
-					int d = JOptionPane.showConfirmDialog(this, "Soll der Datensatz mit der ID" + data.getId() + " wirklich gelöscht werden?", "Datensatz löschen", JOptionPane.YES_NO_OPTION);
-					if (d == 0) {
-						try {
-							Statement stm = DbController.getInstance().createStatement();
-							if (stm.executeUpdate(DbController.queries().moneyDetails().delete(data.getId())) > 0) {
-								StatusBar.getInstance().setMessageAsOk(DbController.queries().moneyDetails().statusDeleteOk(data.getId()));
-							} else {
-								StatusBar.getInstance().setMessageAsError(DbController.queries().moneyDetails().statusDeleteError(data.getId()));
-							}
-						} catch (SQLException e) {
-							StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-							e.printStackTrace();
-						}
-						
-						// Tabelle neu zeichnen
-						((MoneyDetailsListModel)_table.getModel()).dataRefresh(true);
-					}
-				}
+				if (_table.getSelectedRow() > -1)
+					delete(((MoneyDetailsListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().moneyDetails());
 				break;
 		}
 	}

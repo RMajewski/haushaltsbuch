@@ -41,22 +41,12 @@ import tables.models.IdNameListModel;
  * 
  * @author René Majewski
  */
-public class WndSectionList extends WndInternalFrame implements ActionListener {
+public class WndSectionList extends WndTableFrame implements ActionListener {
 
 	/**
 	 * Serilisation ID
 	 */
 	private static final long serialVersionUID = -6848374575961659809L;
-	
-	/**
-	 * Speichert das Popup-Menü
-	 */
-	private PopupCategoryList _popup;
-	
-	/**
-	 * Speichert die Tabelle mit den Geschäften
-	 */
-	private JTable _table;
 	
 	/**
 	 * Initalisiert den Dialog und die Tabelle. Anschließend wird der Dialog
@@ -70,20 +60,13 @@ public class WndSectionList extends WndInternalFrame implements ActionListener {
 		setTitle("Geschäfte");
 		
 		// Tabelle initalisieren
-		_table = new JTable(new IdNameListModel(DbController.queries().section().select()));
+		initTable(new IdNameListModel(DbController.queries().section().select()),
+				new PopupCategoryList(this));
+		
+		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
 		_table.getColumnModel().getColumn(1).setHeaderValue("Geschäft");
-		_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		_table.setRowSelectionAllowed(true);
-		JScrollPane pane = new JScrollPane(_table);
-		add(pane);
-		
-		// Popup-Menü initalisieren
-		_popup = new PopupCategoryList(this);
-		PopupMenuMouseListener listener = new PopupMenuMouseListener(_popup);
-		pane.addMouseListener(listener);
-		_table.addMouseListener(listener);
-		
+
 		// Anzeigen
 		pack();
 		setVisible(true);
@@ -121,24 +104,8 @@ public class WndSectionList extends WndInternalFrame implements ActionListener {
 					
 				// Löschen
 				case PopupCategoryList.DELETE:
-					if (_table.getSelectedRow() >= 0) {
-						// Daten ermitteln
-						IdNameData data = model.getRowDataAt(_table.getSelectedRow());
-						
-						// Kategorie löschen? 
-						int d = JOptionPane.showConfirmDialog(this, "Soll das ausgewählte Geschäft '" + data.getName() +"'(" + data.getId() + ") wirklich gelöscht werden?", "Geschäft löschen", JOptionPane.YES_NO_OPTION);
-						if (d == 0) {
-							if (stm.executeUpdate(DbController.queries().section().delete(data.getId())) > 0) {
-								StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusDeleteOk(data.getId()));
-							} else {
-								StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusDeleteError(data.getId()));
-							}
-							
-							// Tabelle neu zeichnen
-							model.dataRefresh(true);
-
-						}
-					}
+					if (_table.getSelectedRow() >= 0)
+						delete(model.getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().section());
 					break;
 					
 				// Ändern

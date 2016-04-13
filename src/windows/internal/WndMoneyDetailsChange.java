@@ -237,6 +237,7 @@ public class WndMoneyDetailsChange extends WndInternalFrame implements ActionLis
 				int section = rs.getInt("id");
 				
 				// Betrag ermitteln
+				System.out.println(_txtMoney.getValue());
 				double money = ((Number)_txtMoney.getValue()).doubleValue();
 				
 				// Beschreibung ermitteln

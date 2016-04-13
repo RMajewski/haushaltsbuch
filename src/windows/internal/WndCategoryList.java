@@ -41,22 +41,12 @@ import tables.models.IdNameListModel;
  * 
  * @author René Majewski
  */
-public class WndCategoryList extends WndInternalFrame implements ActionListener {
+public class WndCategoryList extends WndTableFrame implements ActionListener {
 
 	/**
 	 * Serialisation ID
 	 */
-	private static final long serialVersionUID = -3602076466416544711L;
-	
-	/**
-	 * Speichert das Popup-Menü
-	 */
-	private PopupCategoryList _popup;
-	
-	/**
-	 * Speichert die Tabelle mit den Kategorien.
-	 */
-	private JTable _table;
+	private static final long serialVersionUID = -3602076466416544711L;	
 	
 	/**
 	 * Initalisiert den Dialog und die Tabelle. Anschließend wird der
@@ -66,23 +56,16 @@ public class WndCategoryList extends WndInternalFrame implements ActionListener 
 		// Dialog initalieren
 		super();
 		
-		// Titel
-		setTitle("Kategorien");
-		
 		// Tabelle initalisieren
-		_table = new JTable(new IdNameListModel(DbController.queries().category().select()));
+		initTable(new IdNameListModel(DbController.queries().category().select()),
+				new PopupCategoryList(this));
+		
+		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
 		_table.getColumnModel().getColumn(1).setHeaderValue("Kategorie");
-		_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		_table.setRowSelectionAllowed(true);
-		JScrollPane pane = new JScrollPane(_table);
-		add(pane);
-		
-		// Popup-Menü initalisieren
-		_popup = new PopupCategoryList(this);
-		PopupMenuMouseListener listener = new PopupMenuMouseListener(_popup);
-		pane.addMouseListener(listener);
-		_table.addMouseListener(listener);
+
+		// Titel
+		setTitle("Kategorien");
 		
 		// Anzeigen
 		pack();
@@ -120,24 +103,8 @@ public class WndCategoryList extends WndInternalFrame implements ActionListener 
 					
 				// Löschen
 				case PopupCategoryList.DELETE:
-					if (_table.getSelectedRow() >= 0) {
-						// Daten ermitteln
-						IdNameData data = model.getRowDataAt(_table.getSelectedRow());
-						
-						// Kategorie löschen? 
-						int d = JOptionPane.showConfirmDialog(this, "Soll die ausgewählte Kategorie '" + data.getName() +"'(" + data.getId() + ") wirklich gelöscht werden?", "Kategorie löschen", JOptionPane.YES_NO_OPTION);
-						if (d == 0) {
-							if (stm.executeUpdate(DbController.queries().category().delete(data.getId())) > 0) {
-								StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusDeleteOk(data.getId()));
-							} else {
-								StatusBar.getInstance().setMessageAsError(DbController.queries().category().statusDeleteError(data.getId()));
-							}
-							
-							// Tabelle neu zeichnen
-							model.dataRefresh(true);
-
-						}
-					}
+					if (_table.getSelectedRow() > 0)
+						delete(model.getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().category());
 					break;
 					
 				// Ändern
