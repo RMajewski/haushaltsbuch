@@ -76,8 +76,7 @@ public class WndMoneyDetailsList extends WndTableFrame implements ActionListener
 		setSize(1000, 400);
 		
 		// Tabelle initalisieren
-		initTable(new MoneyDetailsListModel(_money.getId()), 
-				new PopupStandardList(this));
+		initTable(new MoneyDetailsListModel(_money.getId()));
 		
 		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");

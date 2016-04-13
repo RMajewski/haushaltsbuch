@@ -60,8 +60,7 @@ public class WndSectionList extends WndTableFrame implements ActionListener {
 		setTitle("Geschäfte");
 		
 		// Tabelle initalisieren
-		initTable(new IdNameListModel(DbController.queries().section().select()),
-				new PopupStandardList(this));
+		initTable(new IdNameListModel(DbController.queries().section().select()));
 		
 		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");

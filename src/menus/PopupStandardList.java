@@ -53,17 +53,17 @@ public class PopupStandardList extends JPopupMenu {
 	/**
 	 * Gibt an, ob der Eintrag "Neu" benutzbar sein soll oder nicht.
 	 */
-	public static final int VISIBLE_NEW = 1;
+	public static final int VISIBLE_NEW = 0;
 	
 	/**
 	 * Gibt an, ob der Eintrag "Ändern" benutzbar sein soll oder nicht.
 	 */
-	public static final int VISIBLE_CHANGE = 2;
+	public static final int VISIBLE_CHANGE = 1;
 	
 	/**
-	 * Gibt an, ob der EIntrag "Löschen" benutzbar sein soll oder nicht.
+	 * Gibt an, ob der Eintrag "Löschen" benutzbar sein soll oder nicht.
 	 */
-	public static final int VISIBLE_DELETE = 3;
+	public static final int VISIBLE_DELETE = 2;
 	
 	/**
 	 * Initalisiert das Popup-Menü
@@ -105,19 +105,6 @@ public class PopupStandardList extends JPopupMenu {
 	 * @param enable true = Benutzbar, false = Unbenutzbar
 	 */
 	public void setMenuItemEnable(int item, boolean enable) {
-		switch(item) {
-			// Neu
-			case VISIBLE_NEW:
-				getComponent(0).setEnabled(enable);
-				return;
-				
-			// Ändern
-			case VISIBLE_CHANGE:
-				return;
-				
-			// Löschen
-			case VISIBLE_DELETE:
-				return;
-		}
+		getComponent(item).setEnabled(enable);
 	}
 }

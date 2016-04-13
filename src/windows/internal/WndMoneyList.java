@@ -42,7 +42,7 @@ import tables.models.MoneyListModel;
  * 
  * @author René Majewski
  */
-public class WndMoneyList extends WndTableFrame implements ActionListener {
+public class WndMoneyList extends WndTableFrame {
 
 	/**
 	 * Serilisation ID
@@ -59,8 +59,11 @@ public class WndMoneyList extends WndTableFrame implements ActionListener {
 		// Titel
 		setTitle("Einnahmen und Ausgaben");
 		
+		// Popup-Menü initalisieren
+		_popup = new PopupMoneyList(this);
+		
 		// Tabelle initalisieren
-		initTable(new MoneyListModel(), new PopupMoneyList(this));
+		initTable(new MoneyListModel());
 		
 		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");

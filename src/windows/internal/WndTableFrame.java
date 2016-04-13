@@ -19,6 +19,7 @@
 
 package windows.internal;
 
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -43,7 +44,7 @@ import tables.models.IdNameListModel;
  * 
  * @author René Majewski
  */
-public class WndTableFrame extends WndInternalFrame {
+public abstract class WndTableFrame extends WndInternalFrame implements ActionListener {
 
 	/**
 	 * Serialisation ID
@@ -56,17 +57,30 @@ public class WndTableFrame extends WndInternalFrame {
 	protected JTable _table;
 	
 	/**
+	 * PopupMenu, welches angezeigt werden soll
+	 */
+	protected JPopupMenu _popup;
+	
+	/**
+	 * Im Konstruktor wird "nur" das Popup-Menü initalisiert.
+	 */
+	public WndTableFrame() {
+		// Klasse initalisieren
+		super();
+		
+		// Popup-Menü initalisieren
+		_popup = new PopupStandardList(this);
+	}
+	
+	/**
 	 * Initalisiert das Fenster.
 	 * 
 	 * Es wird die Tabelle initalisiert und angezeigt. Zudem wird das
 	 * Popup-Menü zum Anzeigen vorbereitet.
 	 * 
 	 * @param model Model, dass die Tabelle
-	 * 
-	 * @param popup Popup-Menü, das angezeigt werden soll, wenn die rechte
-	 * Maustaste gedrückt wurde.
 	 */
-	protected void initTable(AbstractTableModel model, JPopupMenu popup) {
+	protected void initTable(AbstractTableModel model) {
 		// Tabelle initalisieren
 		_table = new JTable(model);
 		_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -75,12 +89,9 @@ public class WndTableFrame extends WndInternalFrame {
 		add(pane);
 		
 		// Popup-Menü initalisieren
-		PopupMenuMouseListener listener = new PopupMenuMouseListener(popup);
+		PopupMenuMouseListener listener = new PopupMenuMouseListener(_popup);
 		pane.addMouseListener(listener);
 		_table.addMouseListener(listener);
-		
-		// Test
-		
 	}
 	
 	/**

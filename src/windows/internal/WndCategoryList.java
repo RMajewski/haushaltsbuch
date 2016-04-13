@@ -57,8 +57,7 @@ public class WndCategoryList extends WndTableFrame implements ActionListener {
 		super();
 		
 		// Tabelle initalisieren
-		initTable(new IdNameListModel(DbController.queries().category().select()),
-				new PopupStandardList(this));
+		initTable(new IdNameListModel(DbController.queries().category().select()));
 		
 		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
