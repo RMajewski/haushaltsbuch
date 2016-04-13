@@ -21,6 +21,9 @@ package windows.internal;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -47,7 +50,7 @@ import tables.models.MoneyListModel;
  * 
  * @author René Majewski
  */
-public class WndMoneyList extends WndTableFrame{
+public class WndMoneyList extends WndTableFrame {
 
 	/**
 	 * Serilisation ID
@@ -76,6 +79,16 @@ public class WndMoneyList extends WndTableFrame{
 		_table.getColumnModel().getColumn(2).setHeaderValue("Was?");
 		_table.getColumnModel().getColumn(3).setHeaderValue("Gesamt Betrag");
 		_table.getColumnModel().getColumn(4).setHeaderValue("Beschreibung");
+		
+		// Mouse-Listener
+		_table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent me) {
+				if (me.getClickCount() == 2) {
+					createDetailsWindow();
+				}
+			}
+		});
 
 		// Details auf nicht Benutzbar setzen
 		setPopupItemEnable(false);
@@ -83,6 +96,16 @@ public class WndMoneyList extends WndTableFrame{
 		// Fenster anzeigen
 		pack();
 		setVisible(true);
+	}
+	
+	/**
+	 * Erzeugt das Fenster mit den Details und gibt ihm den Fokus.
+	 */
+	private void createDetailsWindow() {
+		if (_table.getSelectedRow() > -1) {
+			MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+			newWindow(new WndMoneyDetailsList(data));
+		}
 	}
 	
 	/**
@@ -132,10 +155,7 @@ public class WndMoneyList extends WndTableFrame{
 				
 			// Details anzeigen
 			case PopupMoneyList.DETAILS:
-				if (_table.getSelectedRow() > -1) {
-					MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
-					newWindow(new WndMoneyDetailsList(data));
-				}
+				createDetailsWindow();
 				break;
 		}
 	}
