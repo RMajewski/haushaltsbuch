@@ -36,7 +36,8 @@ import org.junit.runners.Suite;
 	test.db.query.TestCategory.class,
 	test.db.query.TestSection.class,
 	test.db.query.TestMoney.class,
-	test.db.query.TestMoneyDetails.class
+	test.db.query.TestMoneyDetails.class,
+	test.db.TestDbController.class
 })
 public class TestHaushaltsbuch {
 

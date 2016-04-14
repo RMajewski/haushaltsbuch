@@ -164,7 +164,7 @@ public class DbController {
 		if (_connection == null)
 			return false;
 		
-		if (!_connection.isClosed())
+		if (_connection.isClosed())
 			return false;
 		
 		return true;

@@ -22,6 +22,7 @@ package test.db;
 import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -31,6 +32,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import db.DbController;
+import db.query.Category;
+import db.query.Money;
+import db.query.MoneyDetails;
+import db.query.Section;
 import test.TestHelper;
 
 public class TestDbController extends TestHelper {
@@ -79,11 +84,36 @@ public class TestDbController extends TestHelper {
 	private boolean dbTableExists(String table) throws SQLException {
 		Statement stm = DbController.getInstance().createStatement();
 		ResultSet rs = stm.executeQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = '" + table + "'");
-
+		
 		if (rs.getString("name").equals(table))
 			return true;
 		else
 			return false;
+	}
+	
+	/**
+	 * Überprüft, ob die Spalte in der angegebenen Tabelle existiert.
+	 * 
+	 * @param table Name der Tabelle
+	 * 
+	 * @param column Name der Spalte, die überprüft werden soll.
+	 * 
+	 * @return Gibt <b>true</b> zurück, wenn die Spalte in der Tabelle
+	 * existiert. Existiert sie nicht, so wird <b>false</b> zurück gegeben.
+	 */
+	private boolean dbTableColumnExists(String table, String column) throws SQLException{
+		Statement stm = DbController.getInstance().createStatement();
+		ResultSet rs = stm.executeQuery("SELECT * FROM " + table);
+		ResultSetMetaData meta = rs.getMetaData();
+		
+		// Über alle Spalten laufen
+		for (int i = 1; i <= meta.getColumnCount(); i++) {
+			if (meta.getColumnName(i).equals(column))
+				return true;
+		}
+		
+		// Standard-Rückgabe
+		return false;
 	}
 	
 	/**
@@ -140,12 +170,93 @@ public class TestDbController extends TestHelper {
 	
 	/**
 	 * Überprüft, ob die Rückgabe von createStatement() eine Instanz der Klasse
-	 * java.sql.Statement ist.
+	 * org.sqlite.jdbc4.JDBC4Statement ist.
 	 */
 	@Test
 	public void testCreateStatementRightClass() {
 		try {
 			assertEquals("org.sqlite.jdbc4.JDBC4Statement", DbController.getInstance().createStatement().getClass().getName());
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+
+	/**
+	 * Überprüft, ob die Rückgabe von getConnection() eine Instanz der Klasse
+	 * org.sqlite.SQLiteConnection ist.
+	 */
+	@Test
+	public void testGetConnectionRightClass() {
+		assertEquals("org.sqlite.SQLiteConnection", DbController.getInstance().getConnection().getClass().getName());
+	}
+	
+	/**
+	 * Überprüft, ob die Rückgabe von isConnection() korrekt ist.
+	 */
+	@Test
+	public void testIsConnectionReturnTrue() {
+		try {
+			assertTrue(DbController.getInstance().isConnection());
+			assertEquals(!DbController.getInstance().getConnection().isClosed(), DbController.getInstance().isConnection());
+		} catch(SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob nach dem Beenden der Verbindung <b>false</b> zurück
+	 * gegeben wird.
+	 */
+	@Test
+	public void testIsConnectionReturnFalseAfterClose() {
+		try {
+			DbController.getInstance().getConnection().close();
+			assertFalse(DbController.getInstance().isConnection());
+			assertEquals(!DbController.getInstance().getConnection().isClosed(), DbController.getInstance().isConnection());
+		} catch(SQLException e) {
+			dbError(e);
+		}
+		
+	}
+	
+	/**
+	 * Übeprüft, ob prepareStatement(String) eine Instanz der Klasse
+	 * org.sqlite.jdbc4.JDBC4PreparedStatement zurück gibt.
+	 */
+	@Test
+	public void testPrepareStatementReturnIsRightClass() {
+		try {
+			assertEquals("org.sqlite.jdbc4.JDBC4PreparedStatement", DbController.getInstance().prepareStatement("SELECT * FROM sqlite_master").getClass().getName());
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob die Methode setAutoCommit(boolean) richtig arbeitet. Das
+	 * heißt, wenn <b>false</b> übergeben wurde, sollte bei
+	 * getConnectio().getAutoCommit() auch <b>true</b> zurück gegeben werden.
+	 */
+	@Test
+	public void testSetAutoCommitWithTrueAsParameter() {
+		try {
+			DbController.getInstance().setAutoCommit(true);
+			assertTrue(DbController.getInstance().getConnection().getAutoCommit());
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob die Methode setAutoCommit(boolean) richtig arbeitet. Das
+	 * heißt, wenn <b>false</b> übergeben wurde, sollte bei
+	 * getConnectio().getAutoCommit() auch <b>true</b> zurück gegeben werden.
+	 */
+	@Test
+	public void testSetAutoCommitWithFalseAsParameter() {
+		try {
+			DbController.getInstance().setAutoCommit(false);
+			assertFalse(DbController.getInstance().getConnection().getAutoCommit());
 		} catch (SQLException e) {
 			dbError(e);
 		}
@@ -167,6 +278,22 @@ public class TestDbController extends TestHelper {
 	}
 	
 	/**
+	 * Überprüft, ob alle Spalten der Tabelle 'secetion' erzeugt wurden.
+	 */
+	@Test
+	public void testPrepaireDatabaseCategoryHasAllColumns() {
+		try {
+			DbController.getInstance().prepaireDatabase();
+
+			Category category = DbController.queries().category();
+			for (int i = 0; i < category.getCloumnCount(); i++)
+				assertTrue(dbTableColumnExists("category", category.getColumnNames().get(i)));
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
 	 * Überprüft, ob die prepaireDatabase() die Datenbank-Tabelle 'section'
 	 * erzeugt hat.
 	 */
@@ -176,6 +303,22 @@ public class TestDbController extends TestHelper {
 			DbController.getInstance().prepaireDatabase();
 
 			assertTrue(dbTableExists(new String("section")));
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob alle Spalten der Tabelle 'secetion' erzeugt wurden.
+	 */
+	@Test
+	public void testPrepaireDatabaseSectionHasAllColumns() {
+		try {
+			DbController.getInstance().prepaireDatabase();
+
+			Section section = DbController.queries().section();
+			for (int i = 0; i < section.getCloumnCount(); i++)
+				assertTrue(dbTableColumnExists("section", section.getColumnNames().get(i)));
 		} catch (SQLException e) {
 			dbError(e);
 		}
@@ -197,6 +340,22 @@ public class TestDbController extends TestHelper {
 	}
 	
 	/**
+	 * Überprüft, ob alle Spalten der Tabelle 'money' erzeugt wurden.
+	 */
+	@Test
+	public void testPrepaireDatabaseMoneyHasAllColumns() {
+		try {
+			DbController.getInstance().prepaireDatabase();
+
+			Money money = DbController.queries().money();
+			for (int i = 0; i < money.getCloumnCount(); i++)
+				assertTrue(dbTableColumnExists("money", money.getColumnNames().get(i)));
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
 	 * Überprüft, ob die prepaireDatabase() die Datenbank-Tabelle
 	 * 'money_details' erzeugt hat.
 	 */
@@ -206,6 +365,22 @@ public class TestDbController extends TestHelper {
 			DbController.getInstance().prepaireDatabase();
 
 			assertTrue(dbTableExists(new String("money_details")));
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob alle Spalten der Tabelle 'money_details' erzeugt wurden.
+	 */
+	@Test
+	public void testPrepaireDatabaseMoneyDetailsHasAllColumns() {
+		try {
+			DbController.getInstance().prepaireDatabase();
+
+			MoneyDetails details = DbController.queries().moneyDetails();
+			for (int i = 0; i < details.getCloumnCount(); i++)
+				assertTrue(dbTableColumnExists("money_details", details.getColumnNames().get(i)));
 		} catch (SQLException e) {
 			dbError(e);
 		}
