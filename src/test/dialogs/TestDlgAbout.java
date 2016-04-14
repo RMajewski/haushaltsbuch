@@ -47,10 +47,31 @@ public class TestDlgAbout implements Scenario {
 			
 			// Fenster des Hauptprogrammes
 			JFrameOperator wnd = new JFrameOperator(WndMain.TITLE);
-			System.out.println(wnd);
 			
-			// MainMenu-Bar
+			// MainMenu-Bar laden und Help -> "Über ..." aufrufen
 			JMenuBarOperator menu = new JMenuBarOperator(wnd);
+			menu.getTimeouts().setTimeout("JMenuOperator.PushMenuTimeout", 600000);
+			menu.pushMenuNoBlock("Hilfe|Über...");
+			
+			// Dialog-Fenster abfangen
+			JDialogOperator dlg = new JDialogOperator(wnd, "Über ...");
+			
+			// Überprüfen ob der Dialog Modal ist
+			if (!dlg.isModal())
+				return 1;
+			
+			// Überprüfen ob der Dialog angezeigt wird
+			if (!dlg.isVisible())
+				return 1;
+			
+			// Button ermitteln und ihn drücken
+			JButtonOperator btn = new JButtonOperator(dlg, "Ok");
+			btn.push();
+			
+			// Überprüfen, ob der Dialog nicht mehr angezeigt wird
+			if (dlg.isVisible())
+				return 1;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 1;
