@@ -208,7 +208,6 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 				// Neuer Datensatz oder Datensatz ändern?
 				if (_data.getId() == -1) {
 					// Neuer Datensatz
-					System.out.println(DbController.queries().moneyDetails().insert(((MoneyDetailsData)_data).getMoneyId(), category, section, money, comment));
 					if (stm.executeUpdate(DbController.queries().moneyDetails().insert(((MoneyDetailsData)_data).getMoneyId(), category, section, money, comment)) > 0)
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().moneyDetails().statusInsertOk());
 					else
