@@ -61,13 +61,18 @@ public class WndMain extends JFrame implements ActionListener {
 	 * Speichert den Desktop
 	 */
 	private JDesktopPane _desktop;
+	
+	/**
+	 * Speichert den Namen des Fensters
+	 */
+	public static final String TITLE = new String("René's Haushaltsbuch");
 
 	/**
 	 * Hauptfenster initalisieren
 	 */
 	public WndMain() {
 		// Name des Hauptfensters
-		super("René's Haushaltsbuch");
+		super(TITLE);
 		
 		// Fenster beim Beenden schließen
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

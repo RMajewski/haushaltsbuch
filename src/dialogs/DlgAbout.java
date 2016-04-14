@@ -63,7 +63,8 @@ public class DlgAbout extends JDialog {
 		setSize(325, 200);
 		
 		// Dialog-Titel
-		setTitle("Log");
+		setTitle("Über ...");
+		setName("DlgAbout");
 		
 		setLayout(new BorderLayout(5, 5));
 		

@@ -75,13 +75,22 @@ public class DbController {
 	 */
 	private void initConnection() {
 		// Überprüfen ob das Verzeichnis existiert
-		String path = System.getProperty("user.home") + "/.majewski/haushaltsbuch";
-		File file = new File(path);
-		if (!file.exists())
-		{
-			file.mkdirs();
+		String path = new String("");
+		if (System.getProperty("testing") != null)
+			path = new String(":memory:");
+		else {
+			path = System.getProperty("user.home") + "/.majewski/haushaltsbuch";
+			File file = new File(path);
+			if (!file.exists())
+			{
+				file.mkdirs();
+			}
+			
+			if (System.getProperty("debugging") != null)
+				path += "/debugging.sqlite";
+			else
+				path += "/haushaltsbuch.sqlite";
 		}
-		
 		// Verbindung zur Datenbank herstellen
 		try {
 			// Wurde schon eine Verbindung hergestellt?
@@ -89,7 +98,6 @@ public class DbController {
 				return;
 			
 			// Verbindung zur Datenbank herstellen
-			path += "/haushaltsbuch.sqlite";
 			connection = DriverManager.getConnection("jdbc:sqlite:" + path);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

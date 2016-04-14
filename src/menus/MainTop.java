@@ -72,6 +72,11 @@ public class MainTop extends JMenuBar {
 	 * ActionCommand für Datenbank -> Money
 	 */
 	public static final String DB_MONEY = "DBMoneyList";
+	
+	/**
+	 * Speichert den Namen des Menus
+	 */
+	public static final String MENU_NAME = new String("MainMenu");
 
 	/**
 	 * Initalisiert das Menü
@@ -81,6 +86,9 @@ public class MainTop extends JMenuBar {
 	public MainTop(ActionListener listener) {
 		// Initalisieren
 		super();
+		
+		// Name des Menüs setzen
+		setName(MENU_NAME);
 		
 		// Menü erstellen
 		add(createFileMenu(listener));
