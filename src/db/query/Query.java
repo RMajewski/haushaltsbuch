@@ -122,12 +122,35 @@ public abstract class Query implements QueryInterface {
 	 * Diese Abfrage wird mit Hilfe der gespeicherten Spalten-Namen
 	 * und des gespeicherten Tabellen-Namens erstellt.
 	 * 
+	 * Es werden Anführungszeichen um die Fragezeichen gesetzt.
+	 * 
 	 * @return Datenbank-Abfrage um neuen Datensatz einzufügen
 	 */
 	@Override
 	public String insert() {
+		return insert(true);
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um einen neuen Datensatz in die Tabelle
+	 * einzufügen.
+	 * 
+	 * Diese Abfrage wird mit Hilfe der gespeicherten Spalten-Namen
+	 * und des gespeicherten Tabellen-Namens erstellt.
+	 * 
+	 * @return Datenbank-Abfrage um neuen Datensatz einzufügen
+	 * 
+	 * @param quotes Bei <b>true</b> werden die Anführungszeichen gesetzt.
+	 * Bei <b>false</b> werden keine Anführungszeichen gesetzt.
+	 */
+	public String insert(boolean quotes) {
 		// Abfrage vorbereiten
 		StringBuilder ret = new StringBuilder("INSERT INTO ");
+		
+		// Anführungszeichen
+		String quote = new String("");
+		if (quotes)
+			quote = new String("\"");
 		
 		// Tabellen-Namen einfügen
 		ret.append(_tableName);
@@ -150,10 +173,12 @@ public abstract class Query implements QueryInterface {
 		// Anzahl Fragezeichen einfügen
 		ret.append(") VALUES (");
 		for (int i = 0; i < queries; i++) {
-			if (i == 0)
-				ret.append("\"?\"");
-			else
-				ret.append(", \"?\"");
+			if (i > 0)
+				ret.append(", ");
+			
+			ret.append(quote);
+			ret.append("?");
+			ret.append(quote);
 		}
 		ret.append(");");
 		

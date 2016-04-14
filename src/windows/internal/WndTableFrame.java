@@ -190,7 +190,6 @@ public abstract class WndTableFrame extends WndInternalFrame
 		if (_table.getRowCount() > 0)
 			setPopupItemEnable(true);
 		else
-			System.out.println(_table.getRowCount());
 			setPopupItemEnable(false);
 	}
 
