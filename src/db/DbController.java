@@ -40,7 +40,7 @@ public class DbController {
 	/**
 	 * Kontroller zur Datenbank
 	 */
-	private static final DbController _controller = new DbController();
+	private static DbController _controller = new DbController();
 	
 	/**
 	 * Verbindung zur Datenbank
@@ -62,11 +62,29 @@ public class DbController {
 	}
 	
 	/**
-	 * Contructor
+	 * Initalisiert die Verbindung zur Datenbank
 	 */
 	private DbController() {
 		_dbName = new String();
 		initConnection();
+	}
+	
+	/**
+	 * Beendet die Verbindung zur Datenbank
+	 */
+	public void close() {
+		try {
+			if ( _connection != null && !_connection.isClosed()) {
+				_connection.close();
+			}
+			_connection = null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+
+		if (_controller != null)
+			_controller = null;
 	}
 	
 	/**
@@ -75,6 +93,9 @@ public class DbController {
 	 * @return Instanz des Controllers
 	 */
 	public static DbController getInstance() {
+		if (_controller == null)
+			_controller = new DbController();
+		
 		return _controller;
 	}
 	
@@ -117,13 +138,7 @@ public class DbController {
 		
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			public void run() {
-				try {
-					if (!_connection.isClosed() && _connection != null) {
-						_connection.close();
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				close();
 			}
 		});
 	}

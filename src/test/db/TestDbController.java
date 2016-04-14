@@ -21,6 +21,7 @@ package test.db;
 
 import static org.junit.Assert.*;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -55,6 +56,34 @@ public class TestDbController extends TestHelper {
 	 */
 	@After
 	public void tearDown() {
+		// Verbindung zur Datenbank beenden
+		DbController.getInstance().close();
+	}
+	
+	/**
+	 * Gibt den Fehler für Datenbank-Fehler aus.
+	 */
+	private void dbError(SQLException e) {
+		e.printStackTrace();
+		fail("Datenbank-Fehler");
+	}
+	
+	/**
+	 * Überprüft ob die angegebenene Tabelle in der Datenbank existiert.
+	 * 
+	 * @param table Name der Tabelle, die in der Datenbank existieren soll.
+	 * 
+	 * @return Gibt <b>true</b> zurück, wenn die Tabelle in der Datenbank
+	 * existiert. Esistiert sie nicht, so wird <b>false</b> zurück gegeben.
+	 */
+	private boolean dbTableExists(String table) throws SQLException {
+		Statement stm = DbController.getInstance().createStatement();
+		ResultSet rs = stm.executeQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = '" + table + "'");
+
+		if (rs.getString("name").equals(table))
+			return true;
+		else
+			return false;
 	}
 	
 	/**
@@ -98,5 +127,87 @@ public class TestDbController extends TestHelper {
 	@Test
 	public void testGetDatabaseNameReturnIsMemoryWithTesting() {
 		assertEquals(":memory:", DbController.getInstance().getDatabaseName());
+	}
+	
+	/**
+	 * Überprüft, ob die Rückgabe von queries() eine Instanz der Klasse
+	 * Queries ist.
+	 */
+	@Test
+	public void testQueriesRightClass() {
+		assertEquals("db.query.Queries", DbController.queries().getClass().getName());
+	}
+	
+	/**
+	 * Überprüft, ob die Rückgabe von createStatement() eine Instanz der Klasse
+	 * java.sql.Statement ist.
+	 */
+	@Test
+	public void testCreateStatementRightClass() {
+		try {
+			assertEquals("org.sqlite.jdbc4.JDBC4Statement", DbController.getInstance().createStatement().getClass().getName());
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob die prepairDatabase() die Datenbank-Tabelle 'category'
+	 * erzeugt hat.
+	 */
+	@Test
+	public void testPrepaireDatabaseCreateTableCategory() {
+		try {
+			DbController.getInstance().prepaireDatabase();
+
+			assertTrue(dbTableExists(new String("category")));
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob die prepaireDatabase() die Datenbank-Tabelle 'section'
+	 * erzeugt hat.
+	 */
+	@Test
+	public void testPrepaireDatabaseCreateTableSection() {
+		try {
+			DbController.getInstance().prepaireDatabase();
+
+			assertTrue(dbTableExists(new String("section")));
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob die prepaireDatabase() die Datenbank-Tabelle 'money'
+	 * erzeugt hat.
+	 */
+	@Test
+	public void testPrepaireDatabaseCreateTableMoney() {
+		try {
+			DbController.getInstance().prepaireDatabase();
+
+			assertTrue(dbTableExists(new String("money")));
+		} catch (SQLException e) {
+			dbError(e);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob die prepaireDatabase() die Datenbank-Tabelle
+	 * 'money_details' erzeugt hat.
+	 */
+	@Test
+	public void testPrepaireDatabaseCreateTableMoneyDetails() {
+		try {
+			DbController.getInstance().prepaireDatabase();
+
+			assertTrue(dbTableExists(new String("money_details")));
+		} catch (SQLException e) {
+			dbError(e);
+		}
 	}
 }
