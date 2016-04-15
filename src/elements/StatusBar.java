@@ -45,7 +45,7 @@ public class StatusBar extends JLabel {
 	/**
 	 * Speichert die Instanz der StatusBar
 	 */
-	private static final StatusBar _status = new StatusBar();
+	private static StatusBar _status = new StatusBar();
 	
 	/**
 	 * Liste, der in der Statuszeile angezeigten Nachrichten
@@ -66,12 +66,23 @@ public class StatusBar extends JLabel {
 	}
 	
 	/**
-	 * Gibt die Instanz der StatusBar zurück
+	 * Gibt die Instanz der StatusBar zurück. Sollte die Instanz nicht
+	 * intalisiert sein, so wird sie vor der Rückgabe initalisiert.
 	 * 
 	 * @return Instanz der Statusbar
 	 */
 	public static StatusBar getInstance() {
+		if (_status == null)
+			_status = new StatusBar();
 		return _status;
+	}
+	
+	/**
+	 * Beendet die StatusBar
+	 */
+	public void close() {
+		if (_status != null)
+			_status = null;
 	}
 	
 	/**
@@ -82,6 +93,7 @@ public class StatusBar extends JLabel {
 	public void setMessage(String message)
 	{
 		setText(message);
+		setBackground(LogData.COLOR_NONE);
 		_list.add(new LogData(message));
 	}
 	
@@ -92,7 +104,6 @@ public class StatusBar extends JLabel {
 	 * @param message Nachricht, die gespeichert werden soll
 	 */
 	public void setMessageAsNoOut(String message) {
-		setText(message);
 		_list.add(new LogData(message, LogData.NO_OUT));
 	}
 	
@@ -103,6 +114,7 @@ public class StatusBar extends JLabel {
 	 */
 	public void setMessageAsError(String message) {
 		setText(message);
+		setBackground(LogData.COLOR_ERROR);
 		_list.add(new LogData(message, LogData.ERROR));
 	}
 	
@@ -113,6 +125,7 @@ public class StatusBar extends JLabel {
 	 */
 	public void setMessageAsWarning(String message) {
 		setText(message);
+		setBackground(LogData.COLOR_WARNING);
 		_list.add(new LogData(message, LogData.WARNING));
 	}
 	
@@ -123,6 +136,7 @@ public class StatusBar extends JLabel {
 	 */
 	public void setMessageAsOk(String message) {
 		setText(message);
+		setBackground(LogData.COLOR_OK);
 		_list.add(new LogData(message, LogData.OK));
 	}
 	

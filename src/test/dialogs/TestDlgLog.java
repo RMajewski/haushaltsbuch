@@ -22,12 +22,9 @@ package test.dialogs;
 import org.netbeans.jemmy.ClassReference;
 import org.netbeans.jemmy.Scenario;
 import org.netbeans.jemmy.Test;
-import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
-import org.netbeans.jemmy.operators.JTextAreaOperator;
-
 import windows.WndMain;
 
 public class TestDlgLog implements Scenario {
