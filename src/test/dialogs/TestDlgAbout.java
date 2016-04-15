@@ -28,6 +28,7 @@ import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
 
 import menus.MainTop;
+import test.GuiTests;
 import windows.WndMain;
 
 /**
@@ -36,8 +37,7 @@ import windows.WndMain;
  * 
  * @author René Majewski
  */
-public class TestDlgAbout implements Scenario {
-
+public class TestDlgAbout extends GuiTests {
 	/**
 	 * Ruft die einzelnen Tests auf.
 	 */
@@ -58,21 +58,13 @@ public class TestDlgAbout implements Scenario {
 			// Dialog-Fenster abfangen
 			JDialogOperator dlg = new JDialogOperator(wnd, "Über ...");
 			
-			// Überprüfen ob der Dialog Modal ist
-			if (!dlg.isModal())
-				return 1;
-			
-			// Überprüfen ob der Dialog angezeigt wird
-			if (!dlg.isVisible())
-				return 1;
+			test("Überprüfen, ob der Dialog angezeigt wird", dlg.isVisible());
 			
 			// Button ermitteln und ihn drücken
 			JButtonOperator btn = new JButtonOperator(dlg, "Ok");
 			btn.push();
 			
-			// Überprüfen, ob der Dialog nicht mehr angezeigt wird
-			if (dlg.isVisible())
-				return 1;
+			test("Überprüfen, ob der Dialog nicht mehr angezeigt wird", !dlg.isVisible());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
