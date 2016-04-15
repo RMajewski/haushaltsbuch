@@ -44,7 +44,11 @@ import org.junit.runners.Suite;
 	test.menus.TestPopupStandardList.class,
 	test.menus.TestPopupMoneyList.class,
 	
-	test.renderer.TestLogViewListRenderer.class
+	test.renderer.TestLogViewListRenderer.class,
+	
+	test.tables.models.TestIdNameListModel.class,
+	test.tables.models.TestMoneyDetailsListModel.class,
+	test.tables.models.TestMoneyListModel.class
 })
 public class JUnitTestsHaushaltsbuch {
 
