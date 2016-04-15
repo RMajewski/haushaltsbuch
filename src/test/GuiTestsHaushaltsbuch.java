@@ -136,6 +136,9 @@ public class GuiTestsHaushaltsbuch {
 		tests.runTest(test.dialogs.TestDlgLicense.class.getName());
 		tests.runTest(test.dialogs.TestDlgLog.class.getName());
 		
+		// Menüs
+		tests.runTest(test.menus.TestTopMainMenu.class.getName());
+		
 		// Statistik ausgeben
 		tests.statistics();
 	}

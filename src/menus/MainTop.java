@@ -165,7 +165,7 @@ public class MainTop extends JMenuBar {
 		ret.setMnemonic('L');
 		
 		// Anzeigen ...
-		JMenuItem item = new JMenuItem("Anzeigen");
+		JMenuItem item = new JMenuItem("Anzeigen...");
 		item.setMnemonic('A');
 		item.setActionCommand(LOG_VIEW);
 		item.addActionListener(listener);
@@ -189,7 +189,7 @@ public class MainTop extends JMenuBar {
 		ret.setMnemonic('D');
 		
 		// Eintrag für die Kategor
-		JMenuItem item = new JMenuItem("Kategorie");
+		JMenuItem item = new JMenuItem("Kategorien");
 		item.setMnemonic('K');
 		item.setActionCommand(DB_CATEGORY);
 		item.addActionListener(listener);

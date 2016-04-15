@@ -38,17 +38,17 @@ public class PopupStandardList extends JPopupMenu {
 	/**
 	 * ActionCommand zum Löschen der ausgewählten Kategorie.
 	 */
-	public static final String DELETE = "PopupCategoryDelete";
+	public static final String DELETE = "PopupStandardListDelete";
 	
 	/**
 	 * ActionCommand zum Ändern der ausgewählten Kategorie.
 	 */
-	public static final String CHANGE = "PopupCategoryChange";
+	public static final String CHANGE = "PopupStandardListChange";
 	
 	/**
 	 * ActionCommand, um eine neue Kategorie erstellen.
 	 */
-	public static final String NEW = "PopupCategoryNew";
+	public static final String NEW = "PopupStandardListNew";
 	
 	/**
 	 * Gibt an, ob der Eintrag "Neu" benutzbar sein soll oder nicht.
