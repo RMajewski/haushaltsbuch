@@ -26,6 +26,7 @@ import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JLabelOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
 
+import test.GuiTest;
 import windows.WndMain;
 
 /**
@@ -33,7 +34,7 @@ import windows.WndMain;
  * 
  * @author René Majewski
  */
-public class TestWndMain implements Scenario {
+public class TestWndMain extends GuiTest {
 
 	/**
 	 * Führt die einzelnen Tests aus.
@@ -47,17 +48,13 @@ public class TestWndMain implements Scenario {
 			// Fenster des Hauptprogrammes
 			JFrameOperator wnd = new JFrameOperator(WndMain.TITLE);
 			
-			// Überprüfen ob es ein Menü gibt
-			if (!new JMenuBarOperator(wnd).isEnabled())
-				return 1;
+			test("Gibt es ein Menü?", new JMenuBarOperator(wnd).isEnabled());
 			
-			// Überprüfen ob die StatusBar eingefügt ist
-			if (!new JLabelOperator(wnd).getText().equals("Ready"))
-				return 1;
+			test("Wurde die StatusBar eingefügt?", 
+					new JLabelOperator(wnd).getText().equals("Ready"));
 			
-			// Übeprüfen ob es ein Desktop für Unterfenster gibt
-			if (!wnd.getContentPane().getComponent(0).getClass().getName().equals("javax.swing.JDesktopPane"))
-				return 1;
+			test("Desktop für die Unterfenster eingefügt?",
+					wnd.getContentPane().getComponent(0).getClass().getName().equals("javax.swing.JDesktopPane"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 1;

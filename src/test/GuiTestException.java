@@ -26,7 +26,7 @@ package test;
  * @author René Majewski
  *
  */
-public class GuiTestsException extends Exception {
+public class GuiTestException extends Exception {
 
 	/**
 	 * Serialisation ID

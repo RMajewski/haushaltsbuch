@@ -34,6 +34,8 @@ import org.netbeans.jemmy.operators.JTableOperator;
 import org.netbeans.jemmy.operators.Operator;
 
 import db.DbController;
+import test.GuiTest;
+import test.GuiTestException;
 import windows.WndMain;
 
 /**
@@ -41,7 +43,7 @@ import windows.WndMain;
  * 
  * @author René Majewski
  */
-public class TestWndCategoryList implements Scenario {
+public class TestWndCategoryList extends GuiTest {
 	/**
 	 * Speichert das Popup-Menü
 	 */
@@ -53,18 +55,16 @@ public class TestWndCategoryList implements Scenario {
 	 * 
 	 * @param enabled <b>true</b>, wenn die Einträge benutzbar sein sollen.
 	 * <b>false</b>, wenn die Einträge nicht benutzbar sein sollen.
+	 * 
+	 * @throws GuiTestException
 	 */
-	private int checkPopupItemEnabled(boolean enabled) {
+	private void checkPopupItemEnabled(boolean enabled) 
+			throws GuiTestException {
 		// Ändern
-		if (_popup.getComponent(1).isEnabled() != enabled)
-			return 1;
+		test(null, _popup.getComponent(1).isEnabled() == enabled);
 		
 		// Löschen
-		if (_popup.getComponent(2).isEnabled() != enabled)
-			return 1;
-		
-		// Standard-Rückgabe
-		return 0;
+		test(null, _popup.getComponent(2).isEnabled() != enabled);
 	}
 
 	@Override
@@ -88,52 +88,45 @@ public class TestWndCategoryList implements Scenario {
 			
 			// Übeprüfen ob es eine Tabelle besitz
 			JTableOperator table = new JTableOperator(internal);
-			if (!table.isEnabled())
-				return 1;
+			test("Wurde eine Tabelle eingefügt?", table.isEnabled());
 			
-			// Ist die Spaltenüberschrift der Spalte 0 "ID"
-			if (!table.getColumnModel().getColumn(0).getHeaderValue().equals("ID"))
-				return 1;
+			// Spaltenüberschriften
+			test("Ist der Name der Spalte 0 'ID'?",
+					table.getColumnModel().getColumn(0).getHeaderValue().equals("ID"));
 			
-			// Ist die Spaltenüberschrift der Spalte 1 "Kategorie"
-			if (!table.getColumnModel().getColumn(1).getHeaderValue().equals("Kategorie"))
-				return 1;
+			test("Ist der Name der Spalte 1 'Kategorie'?", 
+					table.getColumnModel().getColumn(1).getHeaderValue().equals("Kategorie"));
 			
 			// Popup-Menü öffnen
 			table.clickMouse(1, Operator.getPopupMouseButton());			
 			_popup = new JPopupMenuOperator();
 			_popup.getTimeouts().setTimeout("JPopupMenuOperator.PushMenuTimeout", 600000);
 			
-			// Überprüfen ob es 3 Einträge gibt
-			if (_popup.getComponentCount() != 3)
-				return 1;
 			
-			// Überprüfen ob der 1. Eintrag "Neu" ist
-			if (!((JMenuItem)_popup.getComponent(0)).getText().equals("Neu"))
-				return 1;
+			test("Hat das Popup-Menü 3 Einträge?", 
+					_popup.getComponentCount() == 3);
 			
-			// Überprüfen ob der 1. Eintrag benutzbar ist
-			if (!_popup.getComponent(0).isEnabled())
-				return 1;
+			// 1. Eintrag "Neu" und ist benutzbar?
+			test("1. Popup-Menü-Eintrag 'Neu'?", 
+					((JMenuItem)_popup.getComponent(0)).getText().equals("Neu"));
 			
-			// Überprüfen ob der 2. Eintrag "Ändern" ist
-			if (!((JMenuItem)_popup.getComponent(1)).getText().equals("Ändern"))
-				return 1;
+			test("Ist 'Neu' anklickbar?", _popup.getComponent(0).isEnabled());
+
+			// 2. Eintrag "Ändern" und 3. Eintrag "Löschen"?
+			test("2. Popup-Menü-Eintrag 'Ändern'",
+					((JMenuItem)_popup.getComponent(1)).getText().equals("Ändern"));
 			
-			// Überprüfen ob der 3. Eintrag "Ändern" ist
-			if (!((JMenuItem)_popup.getComponent(2)).getText().equals("Löschen"))
-				return 1;
+			test("3. Popup-Menü-Eintrag 'Löschen'",
+					((JMenuItem)_popup.getComponent(2)).getText().equals("Löschen"));
 			
-			// Überprüfen ob "Löschen" und "Ändern" nicht benutzbar sind
-			if (checkPopupItemEnabled(false) > 0)
-				return 1;
+			// Überprüfen ob "Löschen" und "Ändern" nicht anklickbar sind
+			checkPopupItemEnabled(false);
 			
 			// Zeile makieren
 			table.clickOnCell(0, 0);
 			
 			// Überprüfen ob "Löschen" und "Ändern" benutzbar sind
-			if (checkPopupItemEnabled(true) > 0)
-				return 1;
+			checkPopupItemEnabled(true);
 			
 			// Auf neuen Eintrag klicken
 			table.clickMouse(1, Operator.getPopupMouseButton());			

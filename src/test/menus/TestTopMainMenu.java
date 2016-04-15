@@ -27,6 +27,8 @@ import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
 
+import test.GuiTest;
+import test.GuiTestException;
 import windows.WndMain;
 
 /**
@@ -34,24 +36,19 @@ import windows.WndMain;
  * 
  * @author René Majewski
  */
-public class TestTopMainMenu implements Scenario {
+public class TestTopMainMenu extends GuiTest {
 	/**
 	 * Überprüft ob das Datei-Menü richtig ist.
 	 * 
 	 * @return 1, wenn ein Fehler aufgetreten ist. 0, wenn kein Fehler
 	 * aufgetreten ist.
+	 * 
+	 * @throws GuiTestException
 	 */
-	private int testFileMenu(JMenu menu) {
-		// Name des Menü
-		if (!menu.getText().equals("Datei"))
-			return 1;
-		
-		// Überprüfen ob Beenden-Eintrag vorhanden ist
-		if (!menu.getItem(0).getText().equals("Beenden"))
-			return 1;
-		
-		// Standard-Rückgabe-Wert
-		return 0;
+	private void testFileMenu(JMenu menu) throws GuiTestException{
+		test("Ist der Menü-Name Datei?", menu.getText().equals("Datei"));
+		test("Überprüfen ob der Beenden-Eintrag vorhanden ist",
+				menu.getItem(0).getText().equals("Beenden"));
 	}
 	
 	/**
@@ -59,26 +56,21 @@ public class TestTopMainMenu implements Scenario {
 	 * 
 	 * @return 1, wenn ein Fehler aufgetreten ist. 0, wenn kein Fehler
 	 * aufgetreten ist.
+	 * 
+	 * @throws GuiTestException
 	 */
-	private int testDbMenu(JMenu menu) {
-		// Name des Menüs
-		if (!menu.getText().equals("Datenbank"))
-			return 1;
+	private void testDbMenu(JMenu menu) throws GuiTestException {
+		test("Ist der Menü-Name Datenbank?", 
+				menu.getText().equals("Datenbank"));
 		
-		// Kategorie
-		if (!menu.getItem(0).getText().equals("Kategorien"))
-			return 1;
+		test("Überprüfen, ob der Eintrag 'Kategorien' vorhanden ist",
+				menu.getItem(0).getText().equals("Kategorien"));
 		
-		// Geschäfte
-		if (!menu.getItem(1).getText().equals("Geschäfte"))
-			return 1;
+		test("Überprüfen, ob der Eintrag 'Geschäfte' vorhanden ist",
+				menu.getItem(1).getText().equals("Geschäfte"));
 		
-		// Einnahmen und Ausgaben
-		if (!menu.getItem(2).getText().equals("Einnahmen und Ausgaben"))
-			return 1;
-		
-		// Standard-Rückgabe-Wert
-		return 0;
+		test("Überprüfen, ob der Eintrag 'Einnahmen und Ausgaben' vorhanden ist",
+				menu.getItem(2).getText().equals("Einnahmen und Ausgaben"));
 	}
 	
 	/**
@@ -86,41 +78,28 @@ public class TestTopMainMenu implements Scenario {
 	 * 
 	 * @return 1, wenn ein Fehler aufgetreten ist. 0, wenn kein Fehler
 	 * aufgetreten ist.
+	 * 
+	 * @throws GuitestsException
 	 */
-	private int testLogMenu(JMenu menu) {
-		// Name des Menüs
-		if (!menu.getText().equals("Log"))
-			return 1;
-		
-		// Kategorie
-		if (!menu.getItem(0).getText().equals("Anzeigen..."))
-			return 1;
-		
-		// Standard-Rückgabe-Wert
-		return 0;
+	private void testLogMenu(JMenu menu) throws GuiTestException {
+		test("Ist der Name des Menü Log?", menu.getText().equals("Log"));
+		test("Überprüfen, ob der Eintrag 'Anzeigen...' vorhanden ist",
+				menu.getItem(0).getText().equals("Anzeigen..."));
 	}
 	
 	/**
 	 * Überprüft ob das Hilfe-Menü richtig ist.
 	 * 
-	 * @return 1, wenn ein Fehler aufgetreten ist. 0, wenn kein Fehler
-	 * aufgetreten ist.
+	 * @throws GuiTestException
 	 */
-	private int testHelpMenu(JMenu menu) {
-		// Name des Menüs
-		if (!menu.getText().equals("Hilfe"))
-			return 1;
+	private void testHelpMenu(JMenu menu) throws GuiTestException{
+		test("Ist der Name des Menü Hilfer?", menu.getText().equals("Hilfe"));
+
+		test("Überprüfen, ob der Eintrag 'Lizenz...' vorhanden ist",
+				menu.getItem(0).getText().equals("Lizenz..."));
 		
-		// Kategorie
-		if (!menu.getItem(0).getText().equals("Lizenz..."))
-			return 1;
-		
-		// Kategorie
-		if (!menu.getItem(2).getText().equals("Über..."))
-			return 1;
-		
-		// Standard-Rückgabe-Wert
-		return 0;
+		test("Überprüfen, ob der Eintrag 'Über...' vorhanden ist",
+				menu.getItem(2).getText().equals("Über..."));
 	}
 	
 
@@ -136,21 +115,11 @@ public class TestTopMainMenu implements Scenario {
 			// MainMenu-Bar laden
 			JMenuBarOperator menu = new JMenuBarOperator(wnd);
 			
-			// Datei-Menü
-			if (testFileMenu(menu.getMenu(0)) != 0)
-				return 1;
-			
-			// Datenbank-Menü
-			if (testDbMenu(menu.getMenu(1)) != 0)
-				return 1;
-			
-			// Log-Menü
-			if (testLogMenu(menu.getMenu(2)) != 0)
-				return 1;
-			
-			// Hilfe-Menü
-			if (testHelpMenu(menu.getMenu(3)) != 0)
-				return 1;
+			// Menü-Struktur überprüfen
+			testFileMenu(menu.getMenu(0));
+			testDbMenu(menu.getMenu(1));
+			testLogMenu(menu.getMenu(2));
+			testHelpMenu(menu.getMenu(3));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 1;

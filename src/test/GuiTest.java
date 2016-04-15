@@ -33,18 +33,18 @@ import org.netbeans.jemmy.Test;
  * @since 0.1
  *
  */
-public abstract class GuiTests implements Scenario {
+public abstract class GuiTest implements Scenario {
 	/**
 	 * Testet, ob die Behauptung richtig ist. Ist sie nicht richtig, so wird mit
-	 * dem Fehler {@link test.GuiTestsException} abgebrochen.
+	 * dem Fehler {@link test.GuiTestException} abgebrochen.
 	 * 
 	 * @param message Nachricht, die auf der Console ausgegeben werden soll
 	 * 
 	 * @param assertion Behauptung, die überprüft werden soll.
 	 * 
-	 * @throws GuiTestsException Wenn ein Test fehlerhaft ist
+	 * @throws GuiTestException Wenn ein Test fehlerhaft ist
 	 */
-	protected void test(String message, boolean assertion) throws GuiTestsException {
+	protected void test(String message, boolean assertion) throws GuiTestException {
 		System.out.println();
 		System.out.println();
 		System.out.print("(");
@@ -60,7 +60,7 @@ public abstract class GuiTests implements Scenario {
 			System.out.println("\t-> Fehler");
 			System.out.println();
 			System.out.println();
-			throw new GuiTestsException();
+			throw new GuiTestException();
 		} else {
 			System.out.println("\t-> Erfolgreich");
 		}

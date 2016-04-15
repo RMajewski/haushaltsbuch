@@ -25,9 +25,11 @@ import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
+
+import test.GuiTest;
 import windows.WndMain;
 
-public class TestDlgLog implements Scenario {
+public class TestDlgLog extends GuiTest {
 
 	@Override
 	public int runIt(Object arg0) {
@@ -46,13 +48,8 @@ public class TestDlgLog implements Scenario {
 			// Dialog-Fenster abfangen
 			JDialogOperator dlg = new JDialogOperator(wnd, "Log");
 			
-			// Überprüfen ob der Dialog Modal ist
-			if (!dlg.isModal())
-				return 1;
-			
-			// Überprüfen ob der Dialog angezeigt wird
-			if (!dlg.isVisible())
-				return 1;
+			test("Überprüfen, ob der Dialog Modal ist", dlg.isModal());
+			test("Überprüfen, ob der Dialog angezeigt wird.", dlg.isVisible());
 		} catch (Exception e) {
 			return 1;
 		}

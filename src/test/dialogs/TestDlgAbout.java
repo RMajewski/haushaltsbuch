@@ -28,7 +28,7 @@ import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
 
 import menus.MainTop;
-import test.GuiTests;
+import test.GuiTest;
 import windows.WndMain;
 
 /**
@@ -37,7 +37,7 @@ import windows.WndMain;
  * 
  * @author René Majewski
  */
-public class TestDlgAbout extends GuiTests {
+public class TestDlgAbout extends GuiTest {
 	/**
 	 * Ruft die einzelnen Tests auf.
 	 */
