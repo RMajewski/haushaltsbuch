@@ -139,6 +139,9 @@ public class GuiTestsHaushaltsbuch {
 		// Menüs
 		tests.runTest(test.menus.TestTopMainMenu.class.getName());
 		
+		// Hauptfenster
+		tests.runTest(test.windows.TestWndMain.class.getName());
+		
 		// Statistik ausgeben
 		tests.statistics();
 	}
