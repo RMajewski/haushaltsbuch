@@ -42,7 +42,9 @@ import org.junit.runners.Suite;
 	test.elements.TestStatusBar.class,
 	
 	test.menus.TestPopupStandardList.class,
-	test.menus.TestPopupMoneyList.class
+	test.menus.TestPopupMoneyList.class,
+	
+	test.renderer.TestLogViewListRenderer.class
 })
 public class JUnitTestsHaushaltsbuch {
 

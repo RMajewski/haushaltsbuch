@@ -65,22 +65,22 @@ public class LogViewListRenderer extends JLabel implements ListCellRenderer<LogD
 			switch (value.getOut()) {
 				// Warnung
 				case LogData.WARNING:
-					setBackground(Color.ORANGE);
+					setBackground(LogData.COLOR_WARNING);
 					break;
 					
 				// Fehler
 				case LogData.ERROR:
-					setBackground(Color.RED);
+					setBackground(LogData.COLOR_ERROR);
 					break;
 					
 				// OK
 				case LogData.OK:
-					setBackground(Color.GREEN);
+					setBackground(LogData.COLOR_OK);
 					break;
 					
 				// Keine besondere Markierung
 				case LogData.NONE:
-					setBackground(UIManager.getColor("List.background"));
+					setBackground(LogData.COLOR_NONE);
 					break;
 			}
 		}
