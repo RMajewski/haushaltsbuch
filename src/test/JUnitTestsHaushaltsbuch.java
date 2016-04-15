@@ -41,6 +41,6 @@ import org.junit.runners.Suite;
 	
 	test.elements.TestStatusBar.class
 })
-public class TestHaushaltsbuch {
+public class JUnitTestsHaushaltsbuch {
 
 }
