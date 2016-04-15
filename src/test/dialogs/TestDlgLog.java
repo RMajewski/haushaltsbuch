@@ -32,7 +32,6 @@ public class TestDlgLog implements Scenario {
 	@Override
 	public int runIt(Object arg0) {
 		try {
-			// Bundle Erstellen
 			// Start des Haupt-Programms
 			new ClassReference("Main").startApplication();
 			
@@ -46,7 +45,6 @@ public class TestDlgLog implements Scenario {
 			
 			// Dialog-Fenster abfangen
 			JDialogOperator dlg = new JDialogOperator(wnd, "Log");
-			
 			
 			// Überprüfen ob der Dialog Modal ist
 			if (!dlg.isModal())
