@@ -19,35 +19,15 @@
 
 package test.windows.internal;
 
-import javax.swing.JMenuItem;
-import javax.swing.JTable;
-
-import org.netbeans.jemmy.ClassReference;
-import org.netbeans.jemmy.Scenario;
 import org.netbeans.jemmy.Test;
-import org.netbeans.jemmy.operators.JButtonOperator;
-import org.netbeans.jemmy.operators.JDialogOperator;
-import org.netbeans.jemmy.operators.JFrameOperator;
-import org.netbeans.jemmy.operators.JInternalFrameOperator;
-import org.netbeans.jemmy.operators.JMenuBarOperator;
-import org.netbeans.jemmy.operators.JPopupMenuOperator;
-import org.netbeans.jemmy.operators.JTableOperator;
-import org.netbeans.jemmy.operators.JTextFieldOperator;
-import org.netbeans.jemmy.operators.Operator;
-
-import datas.IdNameData;
-import db.DbController;
-import tables.models.IdNameListModel;
-import test.GuiTest;
-import test.GuiTestException;
-import windows.WndMain;
 
 /**
- * Testet das Unterfenster {@link windows.internal.WndCategoryList}.
+ * Enthält die GUI-Tests für das Unterfenster 
+ * {@link windows.internal.WndSectionList}.
  * 
  * @author René Majewski
  */
-public class TestWndCategoryList extends GuiWndIdNameTest {
+public class TestWndSectionList extends GuiWndIdNameTest {
 	/**
 	 * Führt den Test aus
 	 */
@@ -55,26 +35,26 @@ public class TestWndCategoryList extends GuiWndIdNameTest {
 	public int runIt(Object arg0) {
 		try {
 			// Testet, ob das Fenster richtig initalisiert wurde
-			testInit("Kategorien", "Datenbank|Kategorien");
+			testInit("Geschäfte", "Datenbank|Geschäfte");
 			
 			// Spaltenüberschriften
 			test("Ist der Name der Spalte 0 'ID'?",
 					_table.getColumnModel().getColumn(0).getHeaderValue().equals("ID"));
-			
-			test("Ist der Name der Spalte 1 'Kategorie'?", 
-					_table.getColumnModel().getColumn(1).getHeaderValue().equals("Kategorie"));
+
+			test("Ist der Name der Spalte 1 'Geschäft'?", 
+					_table.getColumnModel().getColumn(1).getHeaderValue().equals("Geschäft"));
 
 			// Popup-Menü testen
 			testPopupMenu();
 			
 			// Auf Eintrag "Neu" klicken
-			String name = "Kategorie erstellen";
+			String name = "Geschäft erstellen";
 			newCancel(name);
 			newOkWithoutName(name);
 			newOkWithName(name);
 			
 			// Auf Eintrag "Ändern" klicken
-			name = "Kategorie ändern";
+			name = "Geschäft ändern";
 			changeCancel(name);
 			changeOkWithoutName(name);
 			changeOkWithName(name);
@@ -98,6 +78,6 @@ public class TestWndCategoryList extends GuiWndIdNameTest {
 	 */
 	public static void main(String[] args) {
 		System.setProperty("testing", "true");
-		Test.main(new String[] {"test.windows.internal.TestWndCategoryList"});
+		Test.main(new String[] {"test.windows.internal.TestWndSectionList"});
 	}
 }
