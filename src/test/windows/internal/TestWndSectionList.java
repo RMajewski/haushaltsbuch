@@ -45,7 +45,7 @@ public class TestWndSectionList extends GuiWndIdNameTest {
 					_table.getColumnModel().getColumn(1).getHeaderValue().equals("Geschäft"));
 
 			// Popup-Menü testen
-			testPopupMenu();
+			testPopupMenu(3);
 			
 			// Auf Eintrag "Neu" klicken
 			String name = "Geschäft erstellen";
@@ -64,6 +64,7 @@ public class TestWndSectionList extends GuiWndIdNameTest {
 			deleteNo();
 			deleteYes();
 		} catch (Exception e) {
+			e.printStackTrace();
 			return 1;
 		}
 		

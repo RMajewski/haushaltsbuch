@@ -37,7 +37,7 @@ import menus.PopupStandardList;
 import tables.models.IdNameListModel;
 
 /**
- * In diesen Dialog werden die einzelnen Geschäfte angezeigt.
+ * In diesen Unterfenster werden die einzelnen Geschäfte angezeigt.
  * 
  * @author René Majewski
  */

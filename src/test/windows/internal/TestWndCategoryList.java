@@ -65,7 +65,7 @@ public class TestWndCategoryList extends GuiWndIdNameTest {
 					_table.getColumnModel().getColumn(1).getHeaderValue().equals("Kategorie"));
 
 			// Popup-Menü testen
-			testPopupMenu();
+			testPopupMenu(3);
 			
 			// Auf Eintrag "Neu" klicken
 			String name = "Kategorie erstellen";

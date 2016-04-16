@@ -66,6 +66,11 @@ public abstract class GuiWndTest extends GuiTest {
 	protected JFrameOperator _wnd;
 	
 	/**
+	 * Speichert das Unterfenster
+	 */
+	protected JInternalFrameOperator _frame;
+	
+	/**
 	 * Testet, ob die Menü-Einträge "Ändern" und "Löschen" richtig gesetzt
 	 * sind.
 	 * 
@@ -115,10 +120,10 @@ public abstract class GuiWndTest extends GuiTest {
 		m.pushMenu(menu);
 
 		// Unterfenster abfangen
-		JInternalFrameOperator internal = new JInternalFrameOperator(_wnd, name);
+		_frame = new JInternalFrameOperator(_wnd, name);
 		
 		// Übeprüfen ob es eine Tabelle besitz
-		_table = new JTableOperator(internal);
+		_table = new JTableOperator(_frame);
 		test("Wurde eine Tabelle eingefügt?", _table.isEnabled());
 	}
 	
@@ -133,13 +138,13 @@ public abstract class GuiWndTest extends GuiTest {
 	 * 
 	 * @throws GuiTestException
 	 */
-	protected void testPopupMenu() throws GuiTestException {
+	protected void testPopupMenu(int itemCount) throws GuiTestException {
 		// Popup-Menü öffnen
 		_table.clickMouse(1, Operator.getPopupMouseButton());			
 		_popup = new JPopupMenuOperator();
 		
-		test("Hat das Popup-Menü 3 Einträge?", 
-				_popup.getComponentCount() == 3);
+		test("Hat das Popup-Menü " + itemCount + " Einträge?", 
+				_popup.getComponentCount() == itemCount);
 		
 		// 1. Eintrag "Neu" und ist benutzbar?
 		test("1. Popup-Menü-Eintrag 'Neu'?", 
