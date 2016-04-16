@@ -88,7 +88,7 @@ public class WndCategoryList extends WndTableFrame {
 				// Neu
 				case PopupStandardList.NEW:
 					String nc = JOptionPane.showInputDialog(this, "Neue Kategorie", "Kategorie erstellen", JOptionPane.OK_CANCEL_OPTION);
-					if (nc != null) {
+					if (nc != null && !nc.isEmpty()) {
 						if (stm.executeUpdate(DbController.queries().category().insert(nc)) > 0) {
 							StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusInsertOk());
 						} else {
@@ -102,7 +102,7 @@ public class WndCategoryList extends WndTableFrame {
 					
 				// Löschen
 				case PopupStandardList.DELETE:
-					if (_table.getSelectedRow() > 0)
+					if (_table.getSelectedRow() > -1)
 						delete(model.getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().category());
 					break;
 					
@@ -129,7 +129,7 @@ public class WndCategoryList extends WndTableFrame {
 				
 				// Kategorie ändern
 				String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Kategorie ändern", JOptionPane.OK_CANCEL_OPTION);
-				if ((cc != null) && (cc.compareTo(data.getName()) != 0)) {
+				if ((cc != null) && !cc.isEmpty() && (cc.compareTo(data.getName()) != 0)) {
 					Statement stm = DbController.getInstance().createStatement();
 					if (stm.executeUpdate(DbController.queries().category().update(data.getId(), cc)) > 0) {
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusUpdateOk(data.getId()));

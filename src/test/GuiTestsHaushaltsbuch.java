@@ -142,6 +142,9 @@ public class GuiTestsHaushaltsbuch {
 		// Hauptfenster
 		tests.runTest(test.windows.TestWndMain.class.getName());
 		
+		// Unterfenster
+		tests.runTest(test.windows.internal.TestWndCategoryList.class.getName());
+		
 		// Statistik ausgeben
 		tests.statistics();
 	}
