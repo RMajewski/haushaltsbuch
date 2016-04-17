@@ -80,11 +80,10 @@ public class WndMoneyDetailsList extends WndTableFrame {
 		
 		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
-		_table.getColumnModel().getColumn(1).setHeaderValue("MoneyID");
-		_table.getColumnModel().getColumn(2).setHeaderValue("Kategorie");
-		_table.getColumnModel().getColumn(3).setHeaderValue("Geschäft");
-		_table.getColumnModel().getColumn(4).setHeaderValue("Betrag");
-		_table.getColumnModel().getColumn(5).setHeaderValue("Beschreibung");
+		_table.getColumnModel().getColumn(1).setHeaderValue("Kategorie");
+		_table.getColumnModel().getColumn(2).setHeaderValue("Geschäft");
+		_table.getColumnModel().getColumn(3).setHeaderValue("Betrag");
+		_table.getColumnModel().getColumn(4).setHeaderValue("Beschreibung");
 		
 		// Fenster anzeigen
 		//pack();

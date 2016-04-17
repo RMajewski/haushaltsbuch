@@ -22,25 +22,15 @@ package test.dialogs;
 import org.netbeans.jemmy.ClassReference;
 import org.netbeans.jemmy.Scenario;
 import org.netbeans.jemmy.Test;
-import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
 
-import menus.MainTop;
 import test.GuiTest;
 import windows.WndMain;
 
-/**
- * Testet, ob der "Über ..."-Dialog mit Help->Über... aufgerufen werden kann
- * und ob er einen Button hat, der den Dialog beendet.
- * 
- * @author René Majewski
- */
-public class TestDlgAbout extends GuiTest {
-	/**
-	 * Ruft die einzelnen Tests auf.
-	 */
+public class TestDlgLog extends GuiTest {
+
 	@Override
 	public int runIt(Object arg0) {
 		try {
@@ -53,31 +43,23 @@ public class TestDlgAbout extends GuiTest {
 			// MainMenu-Bar laden und Help -> "Über ..." aufrufen
 			JMenuBarOperator menu = new JMenuBarOperator(wnd);
 			menu.getTimeouts().setTimeout("JMenuOperator.PushMenuTimeout", 600000);
-			menu.pushMenuNoBlock("Hilfe|Über...");
+			menu.pushMenuNoBlock("Log|Anzeigen");
 			
 			// Dialog-Fenster abfangen
-			JDialogOperator dlg = new JDialogOperator(wnd, "Über ...");
+			JDialogOperator dlg = new JDialogOperator(wnd, "Log");
 			
-			test("Überprüfen, ob der Dialog angezeigt wird", dlg.isVisible());
-			
-			// Button ermitteln und ihn drücken
-			JButtonOperator btn = new JButtonOperator(dlg, "Ok");
-			btn.push();
-			
-			test("Überprüfen, ob der Dialog nicht mehr angezeigt wird", !dlg.isVisible());
-			
+			test("Überprüfen, ob der Dialog Modal ist", dlg.isModal());
+			test("Überprüfen, ob der Dialog angezeigt wird.", dlg.isVisible());
 		} catch (Exception e) {
-			e.printStackTrace();
 			return 1;
 		}
 		
-		// Da bisher nicht beendet mit 0 beenden (kein Fehler)
 		return 0;
 	}
-	
-	public static void main(String[] argv) {
+
+	public static void main(String[] args) {
 		System.setProperty("testing", "true");
-		Test.main(new String[] {"test.dialogs.TestDlgAbout"});
+		Test.main(new String[] {"test.dialogs.TestDlgLog"});
 	}
 
 }

@@ -37,7 +37,7 @@ import menus.PopupStandardList;
 import tables.models.IdNameListModel;
 
 /**
- * In diesen Dialog werden die einzelnen Geschäfte angezeigt.
+ * In diesen Unterfenster werden die einzelnen Geschäfte angezeigt.
  * 
  * @author René Majewski
  */
@@ -89,7 +89,7 @@ public class WndSectionList extends WndTableFrame {
 				// Neu
 				case PopupStandardList.NEW:
 					String nc = JOptionPane.showInputDialog(this, "Neues Geschäft", "Geschäft erstellen", JOptionPane.OK_CANCEL_OPTION);
-					if (nc != null) {
+					if (nc != null && !nc.isEmpty()) {
 						if (stm.executeUpdate(DbController.queries().section().insert(nc)) > 0) {
 							StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusInsertOk());
 						} else {
@@ -131,7 +131,7 @@ public class WndSectionList extends WndTableFrame {
 				
 				// Geschäft ändern
 				String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Geschäft ändern", JOptionPane.OK_CANCEL_OPTION);
-				if ((cc != null) && (cc.compareTo(data.getName()) != 0)) {
+				if ((cc != null) && !cc.isEmpty() && (cc.compareTo(data.getName()) != 0)) {
 					Statement stm = DbController.getInstance().createStatement();
 					if (stm.executeUpdate(DbController.queries().section().update(data.getId(), cc)) > 0) {
 					}

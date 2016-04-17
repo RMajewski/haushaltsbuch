@@ -18,8 +18,9 @@
 */ 
 
 /**
- * In diesem Pakcage werden die Tests für die Dialoge zusammen gefasst.
+ * In diesem Package werden die Tests für die einzelnen Renderer zusammen
+ * gefasst.
  * 
  * @author René Majewski
  */
-package test.dialogs;
+package test.renderer;

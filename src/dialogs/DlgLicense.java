@@ -64,6 +64,9 @@ public class DlgLicense extends JDialog {
 		// Größe
 		setSize(800, 400);
 		
+		// Titel
+		setTitle("Lizenz");
+		
 		// TextArea initaliseren
 		JTextArea txt = new JTextArea();
 		txt.setColumns(80);

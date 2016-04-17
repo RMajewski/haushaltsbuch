@@ -18,8 +18,9 @@
 */ 
 
 /**
- * In diesem Pakcage werden die Tests für die Dialoge zusammen gefasst.
+ * In diesem Package werden alle Test-Klassen zusammen gefasst, die die
+ * einzelnen Menüs testen.
  * 
  * @author René Majewski
  */
-package test.dialogs;
+package test.menus;

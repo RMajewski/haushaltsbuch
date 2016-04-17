@@ -92,7 +92,7 @@ public class MoneyDetailsListModel extends AbstractTableModel
 	 */
 	@Override
 	public int getColumnCount() {
-		return DbController.queries().moneyDetails().getCloumnCount();
+		return DbController.queries().moneyDetails().getCloumnCount() - 1;
 	}
 
 	/**
@@ -122,24 +122,20 @@ public class MoneyDetailsListModel extends AbstractTableModel
 			case 0:
 				return _list.get(row).getId();
 				
-			// MoneyID
-			case 1:
-				return _list.get(row).getMoneyId();
-				
 			// Name der Kategorie
-			case 2:
+			case 1:
 				return searchName(DbController.queries().category().search("id", _list.get(row).getCategoryId()));
 				
 			// Name des Geschäftes
-			case 3:
+			case 2:
 				return searchName(DbController.queries().section().search("id", _list.get(row).getCategoryId()));
 				
 			// Betrag
-			case 4:
+			case 3:
 				return _list.get(row).getMoney();
 				
 			// Beschreibung
-			case 5:
+			case 4:
 				return _list.get(row).getComment();
 		}
 		return null;

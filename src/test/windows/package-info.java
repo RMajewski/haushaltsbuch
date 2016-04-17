@@ -18,8 +18,8 @@
 */ 
 
 /**
- * In diesem Pakcage werden die Tests für die Dialoge zusammen gefasst.
+ * In diesen Package werden alle Test für die Hauptfenster zusammen gefasst.
  * 
  * @author René Majewski
  */
-package test.dialogs;
+package test.windows;

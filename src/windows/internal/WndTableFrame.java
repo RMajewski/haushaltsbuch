@@ -52,7 +52,7 @@ import tables.models.IdNameListModel;
  * @author René Majewski
  */
 public abstract class WndTableFrame extends WndInternalFrame
-	implements ActionListener, TableModelListener, ListSelectionListener {
+	implements ActionListener, ListSelectionListener {
 
 	/**
 	 * Serialisation ID
@@ -102,7 +102,6 @@ public abstract class WndTableFrame extends WndInternalFrame
 		add(pane);
 		
 		// Listener zur Tabelle hinzufügen
-		_table.getModel().addTableModelListener(this);
 		_table.getSelectionModel().addListSelectionListener(this);
 		
 		// Auf Doppelklick in einer Tabellen-Zeile reagieren
@@ -178,19 +177,6 @@ public abstract class WndTableFrame extends WndInternalFrame
 				e.printStackTrace();
 			}
 		}
-	}
-
-	/**
-	 * Wird aufgerufen, wenn ein Datensatz gelöscht oder eingefügt wurde.
-	 * 
-	 * @param e Event-Daten
-	 */
-	@Override
-	public void tableChanged(TableModelEvent e) {
-		if (_table.getRowCount() > 0)
-			setPopupItemEnable(true);
-		else
-			setPopupItemEnable(false);
 	}
 
 	/**

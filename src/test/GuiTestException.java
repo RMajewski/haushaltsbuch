@@ -17,9 +17,20 @@
 * sind dem Lizenztext zu entnehmen.
 */ 
 
+package test;
+
 /**
- * In diesem Pakcage werden die Tests für die Dialoge zusammen gefasst.
+ * Dieser Fehler wird benutzer, um anzugeben, dass ein Test einen Fehler
+ * aufweist.
  * 
  * @author René Majewski
+ *
  */
-package test.dialogs;
+public class GuiTestException extends Exception {
+
+	/**
+	 * Serialisation ID
+	 */
+	private static final long serialVersionUID = 6787176059309545912L;
+
+}

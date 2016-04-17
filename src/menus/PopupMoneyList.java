@@ -41,7 +41,7 @@ public class PopupMoneyList extends PopupStandardList {
 	/**
 	 * ActionCommand, um die Datails zum ausgewählten Datensatz anzuzeigen
 	 */
-	public static final String DETAILS = "PopupMoneyDetails";
+	public static final String DETAILS = "PopupMoneyListDetails";
 	
 	/**
 	 * Gibt an, ob der Eintrag "Details" benutzbar sein soll oder nicht

@@ -26,24 +26,24 @@ import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
+import org.netbeans.jemmy.operators.JTextAreaOperator;
 
-import menus.MainTop;
 import test.GuiTest;
 import windows.WndMain;
 
 /**
- * Testet, ob der "Über ..."-Dialog mit Help->Über... aufgerufen werden kann
- * und ob er einen Button hat, der den Dialog beendet.
+ * Testet, ob der Lizenz-Dialog mit Hilfe->Lizenz aufgerufen werden kann und
+ * ob er mit einen Button beendet werden kann.
+ * 
  * 
  * @author René Majewski
  */
-public class TestDlgAbout extends GuiTest {
-	/**
-	 * Ruft die einzelnen Tests auf.
-	 */
+public class TestDlgLicense extends GuiTest {
+
 	@Override
 	public int runIt(Object arg0) {
 		try {
+			// Bundle Erstellen
 			// Start des Haupt-Programms
 			new ClassReference("Main").startApplication();
 			
@@ -53,31 +53,44 @@ public class TestDlgAbout extends GuiTest {
 			// MainMenu-Bar laden und Help -> "Über ..." aufrufen
 			JMenuBarOperator menu = new JMenuBarOperator(wnd);
 			menu.getTimeouts().setTimeout("JMenuOperator.PushMenuTimeout", 600000);
-			menu.pushMenuNoBlock("Hilfe|Über...");
+			menu.pushMenuNoBlock("Hilfe|Lizenz...");
 			
 			// Dialog-Fenster abfangen
-			JDialogOperator dlg = new JDialogOperator(wnd, "Über ...");
+			JDialogOperator dlg = new JDialogOperator(wnd, "Lizenz");
 			
-			test("Überprüfen, ob der Dialog angezeigt wird", dlg.isVisible());
+			// TextArea ermitteln und Tests durchführen
+			JTextAreaOperator txt = new JTextAreaOperator(dlg);
+			test("Überprüfen, ob es eine TextArea gibt und ob sie angezeigt wird",
+					txt.isVisible());
+			
+			test("Überprüfen, ob die TextArea im nur Lesemodus ist",
+					!txt.isEditable());
+			
+			test("Überprüfen, ob der Lizenz-Text geladen wurde",
+					txt.getLineCount() > 0);
+			
+			test("Überprüfen, ob der Dialog Modal ist", dlg.isModal());
+			
+			test("Überprüfen, ob der Dialog angezeigt wird.", dlg.isVisible());
 			
 			// Button ermitteln und ihn drücken
 			JButtonOperator btn = new JButtonOperator(dlg, "Ok");
 			btn.push();
 			
-			test("Überprüfen, ob der Dialog nicht mehr angezeigt wird", !dlg.isVisible());
-			
+			// Überprüfen, ob der Dialog nicht mehr angezeigt wird
+			test("Überprüfen, ob der Dialog nicht mehr angezeigt wird",
+					!dlg.isVisible());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 1;
 		}
 		
-		// Da bisher nicht beendet mit 0 beenden (kein Fehler)
 		return 0;
 	}
-	
-	public static void main(String[] argv) {
+
+	public static void main(String[] args) {
 		System.setProperty("testing", "true");
-		Test.main(new String[] {"test.dialogs.TestDlgAbout"});
+		Test.main(new String[] {"test.dialogs.TestDlgLicense"});
 	}
 
 }

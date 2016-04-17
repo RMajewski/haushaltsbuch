@@ -21,6 +21,8 @@ package test.datas;
 
 import static org.junit.Assert.*;
 
+import java.awt.Color;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -228,5 +230,37 @@ public class TestLogData {
 		_data.setMessageAsOk(null);
 		assertEquals(new String(), _data.getMessage());
 		assertEquals(LogData.OK, _data.getOut());
+	}
+	
+	/**
+	 * Testet, ob die Farbe für Normale-Nachrichten richtig gesetzt wurde.
+	 */
+	@Test
+	public void testColorNormalRightClor() {
+		assertEquals(Color.LIGHT_GRAY, LogData.COLOR_NONE);
+	}
+	
+	/**
+	 * Testet, ob die Farbe für Warnungen richtig gesetzt wurde.
+	 */
+	@Test
+	public void testColorWarnungRightClor() {
+		assertEquals(Color.ORANGE, LogData.COLOR_WARNING);
+	}
+	
+	/**
+	 * Testet, ob die Farbe für "In Ordung"-Nachrichten richtig gesetzt wurde.
+	 */
+	@Test
+	public void testColorOkRightClor() {
+		assertEquals(Color.GREEN, LogData.COLOR_OK);
+	}
+	
+	/**
+	 * Testet, ob die Farbe für Fehler richtig gesetzt wurde.
+	 */
+	@Test
+	public void testColorErrorRightClor() {
+		assertEquals(Color.RED, LogData.COLOR_ERROR);
 	}
 }

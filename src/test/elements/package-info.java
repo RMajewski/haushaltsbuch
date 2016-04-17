@@ -18,8 +18,9 @@
 */ 
 
 /**
- * In diesem Pakcage werden die Tests für die Dialoge zusammen gefasst.
+ * In diesem Package werden alle Tests der Klassen für eigene Elemente
+ * zusammen gefasst. 
  * 
  * @author René Majewski
  */
-package test.dialogs;
+package test.elements;

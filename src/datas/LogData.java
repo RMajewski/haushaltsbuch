@@ -19,6 +19,8 @@
 
 package datas;
 
+import java.awt.Color;
+
 /**
  * Speichert die Daten des Logbuches.
  * 
@@ -59,6 +61,26 @@ public class LogData {
 	 * Gibt an, dass die Nachricht einen Erfolg markiert
 	 */
 	public static final short OK = 4;
+	
+	/**
+	 * Speichert die Farbe für einen Fehler.
+	 */
+	public static final Color COLOR_ERROR = Color.RED;
+	
+	/**
+	 * Speichert die Farbe für eine Warnung
+	 */
+	public static final Color COLOR_WARNING = Color.ORANGE;
+	
+	/**
+	 * Speichert die Farbe für eine Normale Nachricht 
+	 */
+	public static final Color COLOR_NONE = Color.LIGHT_GRAY;
+	
+	/**
+	 * Speichert die Farbe für eine OK Nachricht
+	 */
+	public static final Color COLOR_OK = Color.GREEN;
 	
 	/**
 	 * Standart Konstruktor (Neue Instanz ohne Daten)
