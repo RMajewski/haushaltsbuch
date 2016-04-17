@@ -52,7 +52,7 @@ public class TestPopupMoneyList {
 	}
 	
 	/**
-	 * Testet, ob Klase {@link menus.PopupMenuList} von der Klasse
+	 * Testet, ob Klase {@link menus.PopupMoneyList} von der Klasse
 	 * {@link menus.PopupStandardList} abgeleitet ist.
 	 */
 	@Test

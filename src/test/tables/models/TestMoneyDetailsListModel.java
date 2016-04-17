@@ -110,7 +110,7 @@ public class TestMoneyDetailsListModel {
 	/**
 	 * Testet, ob die Anzahl der Spalten richtig wiedergegeben wird.
 	 * 
-	 * @see tables.models.MoneyDetailsModel#getColumnCount()
+	 * @see tables.models.MoneyDetailsListModel#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCount() {

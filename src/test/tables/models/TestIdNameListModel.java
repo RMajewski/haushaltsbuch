@@ -91,7 +91,7 @@ public class TestIdNameListModel {
 	}
 	
 	/**
-	 * Testet, ob {@link tables.models.IdNameListModelk#getValueAt(int, int)}
+	 * Testet, ob {@link tables.models.IdNameListModel#getValueAt(int, int)}
 	 * der Name geliefert wird, wenn Spalte 1 ausgewählt ist.
 	 */
 	@Test

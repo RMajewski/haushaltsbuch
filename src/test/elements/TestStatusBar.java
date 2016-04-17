@@ -33,7 +33,7 @@ import datas.LogData;
 import elements.StatusBar;
 
 /**
- * Testet die Klasse {@link elements.StatsBar}
+ * Testet die Klasse {@link elements.StatusBar}
  * 
  * @author René Majewski
  */
