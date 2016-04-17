@@ -20,7 +20,15 @@
 package windows.internal;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.RowSorter.SortKey;
+import javax.swing.SortOrder;
+import javax.swing.table.TableRowSorter;
+
+import comparators.CompId;
+import comparators.CompInt;
 import datas.MoneyData;
 import db.DbController;
 import menus.PopupMoneyList;
@@ -55,7 +63,8 @@ public class WndMoneyList extends WndTableFrame {
 		_popup = new PopupMoneyList(this);
 		
 		// Tabelle initalisieren
-		initTable(new MoneyListModel());
+		MoneyListModel model = new MoneyListModel();
+		initTable(model);
 		
 		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
@@ -63,6 +72,22 @@ public class WndMoneyList extends WndTableFrame {
 		_table.getColumnModel().getColumn(2).setHeaderValue("Was?");
 		_table.getColumnModel().getColumn(3).setHeaderValue("Gesamt Betrag");
 		_table.getColumnModel().getColumn(4).setHeaderValue("Beschreibung");
+
+		// Sorter initalisieren
+		TableRowSorter<MoneyListModel> sorter = 
+				new TableRowSorter<MoneyListModel>(model);
+		sorter.setSortsOnUpdates(true);
+		
+		// Zusätzliche Comparatoren setzen
+		sorter.setComparator(0, new CompInt());
+		
+		// Welche Liste soll beim Start sortiert sein?
+		List<SortKey> sk = new ArrayList<SortKey>();
+		sk.add(new SortKey(0, SortOrder.ASCENDING));
+		sorter.setSortKeys(sk);
+		
+		// Sorter in Tabelle einfügen
+		_table.setRowSorter(sorter);
 		
 		// Details auf nicht Benutzbar setzen
 		setPopupItemEnable(false);

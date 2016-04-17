@@ -21,14 +21,22 @@ package windows.internal;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTable;
+import javax.swing.SortOrder;
+import javax.swing.RowSorter.SortKey;
+import javax.swing.table.TableRowSorter;
 
+import comparators.CompDouble;
+import comparators.CompInt;
 import datas.MoneyData;
 import datas.MoneyDetailsData;
 import db.DbController;
 import menus.PopupStandardList;
 import tables.models.MoneyDetailsListModel;
+import tables.models.MoneyListModel;
 
 /**
  * In diesem Fenster wird zum angegeben Datensatz aus der Tabelle 'money' die
@@ -73,7 +81,8 @@ public class WndMoneyDetailsList extends WndTableFrame {
 		setMinimumSize(new Dimension(1000, 400));
 		
 		// Tabelle initalisieren
-		initTable(new MoneyDetailsListModel(_money.getId()));
+		MoneyDetailsListModel model = new MoneyDetailsListModel(_money.getId());
+		initTable(model);
 		
 		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
@@ -81,6 +90,23 @@ public class WndMoneyDetailsList extends WndTableFrame {
 		_table.getColumnModel().getColumn(2).setHeaderValue("Geschäft");
 		_table.getColumnModel().getColumn(3).setHeaderValue("Betrag");
 		_table.getColumnModel().getColumn(4).setHeaderValue("Beschreibung");
+
+		// Sorter initalisieren
+		TableRowSorter<MoneyDetailsListModel> sorter = 
+				new TableRowSorter<MoneyDetailsListModel>(model);
+		sorter.setSortsOnUpdates(true);
+		
+		// Zusätzliche Comparatoren setzen
+		sorter.setComparator(0, new CompInt());
+		sorter.setComparator(3, new CompDouble());
+		
+		// Welche Liste soll beim Start sortiert sein?
+		List<SortKey> sk = new ArrayList<SortKey>();
+		sk.add(new SortKey(0, SortOrder.ASCENDING));
+		sorter.setSortKeys(sk);
+		
+		// Sorter in Tabelle einfügen
+		_table.setRowSorter(sorter);
 		
 		// Fenster anzeigen
 		//pack();

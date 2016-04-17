@@ -22,14 +22,22 @@ package windows.internal;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.SortOrder;
+import javax.swing.RowSorter.SortKey;
+import javax.swing.table.TableRowSorter;
 
+import comparators.CompDouble;
+import comparators.CompInt;
 import datas.IdNameData;
 import db.DbController;
 import elements.StatusBar;
 import menus.PopupStandardList;
 import tables.models.IdNameListModel;
+import tables.models.MoneyDetailsListModel;
 
 /**
  * In diesen Unterfenster werden die einzelnen Geschäfte angezeigt.
@@ -58,11 +66,28 @@ public class WndSectionList extends WndTableFrame {
 		setTitle("Geschäfte");
 		
 		// Tabelle initalisieren
-		initTable(new IdNameListModel(DbController.queries().section().select()));
+		IdNameListModel model = new IdNameListModel(DbController.queries().section().select()); 
+		initTable(model);
 		
 		// Namen der Tabellen-Spalten
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
 		_table.getColumnModel().getColumn(1).setHeaderValue("Geschäft");
+
+		// Sorter initalisieren
+		TableRowSorter<IdNameListModel> sorter = 
+				new TableRowSorter<IdNameListModel>(model);
+		sorter.setSortsOnUpdates(true);
+		
+		// Zusätzliche Comparatoren setzen
+		sorter.setComparator(0, new CompInt());
+		
+		// Welche Liste soll beim Start sortiert sein?
+		List<SortKey> sk = new ArrayList<SortKey>();
+		sk.add(new SortKey(0, SortOrder.ASCENDING));
+		sorter.setSortKeys(sk);
+		
+		// Sorter in Tabelle einfügen
+		_table.setRowSorter(sorter);
 
 		// Anzeigen
 		pack();
