@@ -137,7 +137,7 @@ public class MoneyDetailsListModel extends AbstractTableModel
 				
 			// Name des Geschäftes
 			case 2:
-				return searchName(DbController.queries().section().search("id", _list.get(row).getCategoryId()));
+				return searchName(DbController.queries().section().search("id", _list.get(row).getSectionId()));
 				
 			// Betrag
 			case 3:
