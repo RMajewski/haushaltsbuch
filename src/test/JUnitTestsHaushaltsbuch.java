@@ -32,6 +32,9 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+	test.comparators.TestCompDouble.class,
+	test.comparators.TestCompId.class,
+	test.comparators.TestCompInt.class,
 	test.datas.TestData.class,
 	test.datas.TestLogData.class,
 	test.datas.TestIdNameData.class,

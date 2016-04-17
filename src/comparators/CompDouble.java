@@ -21,13 +21,27 @@ package comparators;
 
 import java.util.Comparator;
 
+/**
+ * Vergleicht die beiden Fließkomma-Zahlen miteinander.
+ * 
+ * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.2
+ */
 public class CompDouble implements Comparator<Double>{
 
+	/**
+	 * Vergleicht die beiden Zahlen miteinander. Es wird -1 zurück
+	 * gegeben, wenn die Zahl i1 kleiner als die Zahl i2. Sind beide Zahlen
+	 * gleich groß, so wird 0 zurück geben. Ist die Zahl größer von i1 als die
+	 * Zahl i2, so wird 1 zurück gegeben.
+	 */
 	@Override
 	public int compare(Double d1, Double d2) {
 		if (d1 < d2)
 			return -1;
-		if (d1 == d2)
+		if ((d1 - d2) == 0)
 			return 0;
 		return 1;
 	}
