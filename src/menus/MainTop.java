@@ -75,6 +75,21 @@ public class MainTop extends JMenuBar {
 	public static final String DB_MONEY = "DBMoneyList";
 	
 	/**
+	 * ActionCommand für Report -> Wochenübersicht
+	 */
+	public static final String REPORT_WEEK = "ReportWeek";
+	
+	/**
+	 * ActionCommand für Report -> Monatsübersicht
+	 */
+	public static final String REPORT_MONTH = "ReportMonrth";
+	
+	/**
+	 * ActionCommand für Report -> Jahrsübersicht
+	 */
+	public static final String REPORT_YEAR = "ReportYear";
+	
+	/**
 	 * Speichert den Namen des Menus
 	 */
 	public static final String MENU_NAME = new String("MainMenu");
@@ -94,10 +109,11 @@ public class MainTop extends JMenuBar {
 		// Menü erstellen
 		add(createFileMenu(listener));
 		add(createDbMenu(listener));
+		add(createReportMenu(listener));
 		add(createLogMenu(listener));
 		add(createHelpMenu(listener));
 	}
-	
+
 	/**
 	 * Initalisiert das Menü: Datei
 	 * 
@@ -211,6 +227,44 @@ public class MainTop extends JMenuBar {
 		ret.add(item);
 		
 		// Datenbank-Menü zurück geben
+		return ret;
+	}
+
+	/**
+	 * Initalisiert das Menü Report
+	 * 
+	 * @param listener Klasse, die auf das Drücken eines Menü-Elementes
+	 * reagiert.
+	 * 
+	 * @return Report-Menü
+	 */
+	private JMenu createReportMenu(ActionListener listener) {
+		// Report-Menü initalisieren
+		JMenu ret = new JMenu("Report");
+		ret.setMnemonic('R');
+		
+		// Eintrag für die Wochenübersicht
+		JMenuItem item = new JMenuItem("Wochenübersicht");
+		item.setMnemonic('W');
+		item.setActionCommand(REPORT_WEEK);
+		item.addActionListener(listener);
+		ret.add(item);
+		
+		// Eintrag für die Monatsübersicht
+		item = new JMenuItem("Monatsübersicht");
+		item.setMnemonic('M');
+		item.setActionCommand(REPORT_MONTH);
+		item.addActionListener(listener);
+		ret.add(item);
+		
+		// Einträg für die Jahresübersicht
+		item = new JMenuItem("Jahresübersicht");
+		item.setMnemonic('a');
+		item.setActionCommand(REPORT_YEAR);
+		item.addActionListener(listener);
+		ret.add(item);
+		
+		// Report-Menü zurück geben
 		return ret;
 	}
 }

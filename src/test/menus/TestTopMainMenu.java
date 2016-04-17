@@ -94,6 +94,26 @@ public class TestTopMainMenu extends GuiTest {
 		test("Überprüfen, ob der Eintrag 'Über...' vorhanden ist",
 				menu.getItem(2).getText().equals("Über..."));
 	}
+
+	/**
+	 * Überprüft, ob das Report-Menü richtig ist.
+	 * 
+	 * @param menu
+	 * 
+	 * @throws GuiTestException
+	 */
+	private void testReportMenu(JMenu menu) throws GuiTestException {
+		test("Ist der Name des Menü Report?", menu.getText().equals("Report"));
+		
+		test("Überprüfen, ob der Eintrag 'Wochenübersicht' vorhanden ist",
+				menu.getItem(0).getText().equals("Wochenübersicht"));
+		
+		test("Überprüfen, ob der Eintrag 'Monatsübersicht' vorhanden ist",
+				menu.getItem(1).getText().equals("Monatsübersicht"));
+		
+		test("Überprüfen, ob der Eintrag 'Jahresübersicht' vorhanden ist",
+				menu.getItem(2).getText().equals("Jahresübersicht"));
+	}
 	
 	/**
 	 * Führt die einzelnen Tests aus
@@ -111,10 +131,12 @@ public class TestTopMainMenu extends GuiTest {
 			JMenuBarOperator menu = new JMenuBarOperator(wnd);
 			
 			// Menü-Struktur überprüfen
-			testFileMenu(menu.getMenu(0));
-			testDbMenu(menu.getMenu(1));
-			testLogMenu(menu.getMenu(2));
-			testHelpMenu(menu.getMenu(3));
+			int count = 0;
+			testFileMenu(menu.getMenu(count++));
+			testDbMenu(menu.getMenu(count++));
+			testReportMenu(menu.getMenu(count++));
+			testLogMenu(menu.getMenu(count++));
+			testHelpMenu(menu.getMenu(count++));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 1;
