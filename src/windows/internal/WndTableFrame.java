@@ -19,6 +19,7 @@
 
 package windows.internal;
 
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -74,6 +75,10 @@ public abstract class WndTableFrame extends WndInternalFrame
 	public WndTableFrame() {
 		// Klasse initalisieren
 		super();
+		
+		// Größenänderung des Fenster zulassen 
+		setResizable(true);
+		setMinimumSize(new Dimension(600, 400));
 		
 		// Popup-Menü initalisieren
 		_popup = new PopupStandardList(this);

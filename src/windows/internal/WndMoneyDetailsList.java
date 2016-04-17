@@ -19,6 +19,7 @@
 
 package windows.internal;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTable;
@@ -69,6 +70,7 @@ public class WndMoneyDetailsList extends WndTableFrame {
 		
 		// Größe
 		setSize(1000, 400);
+		setMinimumSize(new Dimension(1000, 400));
 		
 		// Tabelle initalisieren
 		initTable(new MoneyDetailsListModel(_money.getId()));
