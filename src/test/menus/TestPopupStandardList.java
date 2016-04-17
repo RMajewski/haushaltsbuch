@@ -33,6 +33,9 @@ import menus.PopupStandardList;
  * Testet das standart Popup-Menü für Listen
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestPopupStandardList {
 	/**
@@ -52,6 +55,8 @@ public class TestPopupStandardList {
 	
 	/**
 	 * Testet, ob das Popup-Menü 3 Einträge hat
+	 * 
+	 * @see menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveThreeItems() {
@@ -60,6 +65,8 @@ public class TestPopupStandardList {
 	
 	/**
 	 * Testet, ob der Menü-Eintrag für "Neu" vorhanden ist
+	 * 
+	 * @see menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveInsertItem() {
@@ -68,6 +75,8 @@ public class TestPopupStandardList {
 	
 	/**
 	 * Testet, ob der Menü-Eintrag für "Ändern" vorhanden ist
+	 * 
+	 * @see menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveChangeItem() {
@@ -76,6 +85,8 @@ public class TestPopupStandardList {
 	
 	/**
 	 * Testet, ob der Menü-Eintrag für "Löschen" vorhanden ist
+	 * 
+	 * @see menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveDeleteItem() {

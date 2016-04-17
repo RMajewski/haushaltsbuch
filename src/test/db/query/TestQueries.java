@@ -31,7 +31,9 @@ import db.query.QueryInterface;
  * Es wird die Klasse {@link db.query.Queries} getestet.
 
  * @author René Majewski
- *
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestQueries {
 	/**

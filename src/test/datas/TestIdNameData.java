@@ -32,6 +32,9 @@ import datas.IdNameData;
  * Teste die Klasse {@link datas.IdNameData}
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestIdNameData {
 	/**
@@ -107,6 +110,8 @@ public class TestIdNameData {
 	/**
 	 * Testet, ob der Konstruktor mit der übergebenen ID und einen null-Objekt
 	 * als Name richtig arbeitet (leeren Namen erzeugt)
+	 * 
+	 * @see datas.IdNameData#IdNameData(int, String)
 	 */
 	@Test
 	public void testIdNameDataIntStringWithNull() {

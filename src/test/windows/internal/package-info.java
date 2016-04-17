@@ -21,6 +21,8 @@
  * In diesem Package werden alle Test der Unterfenster zusammen gefasst.
  * 
  * @author René Majewski
- *
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 package test.windows.internal;

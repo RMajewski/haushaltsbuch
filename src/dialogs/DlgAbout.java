@@ -42,8 +42,6 @@ public class DlgAbout extends JDialog {
 
 	/**
 	 * Serilisation ID
-	 * 
-	 * @param owner Instanz, das diesen Dialog aufgerufen hat.
 	 */
 	private static final long serialVersionUID = -1375741277581661L;
 

@@ -31,6 +31,9 @@ import test.TestHelper;
  * Testet die Klasse {@link db.query.Query}
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestQuery extends TestHelper {
 	/**

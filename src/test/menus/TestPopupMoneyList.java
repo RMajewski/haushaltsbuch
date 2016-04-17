@@ -34,6 +34,9 @@ import menus.PopupMoneyList;
  * initalisiert wird.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  *
  */
 public class TestPopupMoneyList {
@@ -62,6 +65,8 @@ public class TestPopupMoneyList {
 	
 	/**
 	 * Testet, ob es 5 Menü-Elemente gibt
+	 * 
+	 * @see menus.PopupMoneyList#PopupMoneyList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveFifeItems() {
@@ -70,6 +75,8 @@ public class TestPopupMoneyList {
 	
 	/**
 	 * Testet, ob es einen Eintrag "Details" gibt
+	 * 
+	 * @see menus.PopupMoneyList#PopupMoneyList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveDetailsItem() {

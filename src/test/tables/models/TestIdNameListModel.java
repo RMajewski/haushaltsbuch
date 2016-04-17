@@ -30,6 +30,13 @@ import datas.IdNameData;
 import db.DbController;
 import tables.models.IdNameListModel;
 
+/**
+ * Testet die Klasse {@link tables.models.IdNameListModel} 
+ * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
+ */
 public class TestIdNameListModel {
 	/**
 	 * Speichert das Model

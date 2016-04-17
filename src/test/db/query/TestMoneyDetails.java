@@ -32,6 +32,9 @@ import test.TestHelper;
  * Testet die Klasse {@link db.query.MoneyDetails}
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestMoneyDetails extends TestHelper{
 	/**
@@ -56,6 +59,8 @@ public class TestMoneyDetails extends TestHelper{
 	
 	/**
 	 * Testet, ob der richtige Tabellen-Name gesetzt wurde.
+	 * 
+	 * @see db.query.MoneyDetails#MoneyDetails()
 	 */
 	@Test
 	public void testRightTableName() {
@@ -64,6 +69,8 @@ public class TestMoneyDetails extends TestHelper{
 	
 	/**
 	 * Testet, ob die richtigen Spalten-Namen gesetzt wurden.
+	 * 
+	 * @see db.query.MoneyDetails#MoneyDetails()
 	 */
 	@Test
 	public void testRightColumnNames() {

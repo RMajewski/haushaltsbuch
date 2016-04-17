@@ -28,7 +28,6 @@ import org.netbeans.jemmy.Scenario;
  * 
  * @version 0.1
  * @since 0.1
- *
  */
 public abstract class GuiTest implements Scenario {
 	/**

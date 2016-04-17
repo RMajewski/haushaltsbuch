@@ -33,7 +33,9 @@ import test.TestHelper;
  * deklariert hat.
  * 
  * @author René Majewski
- *
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestQueryInterface extends TestHelper {
 	

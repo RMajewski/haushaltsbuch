@@ -33,7 +33,12 @@ import windows.WndMain;
  * Testet, ob der "Über ..."-Dialog mit Help->Über... aufgerufen werden kann
  * und ob er einen Button hat, der den Dialog beendet.
  * 
+ * @see dialogs.DlgAbout
+ * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestDlgAbout extends GuiTest {
 	/**
@@ -73,6 +78,11 @@ public class TestDlgAbout extends GuiTest {
 		return 0;
 	}
 	
+	/**
+	 * Initalisiert die Test-Umgebung
+	 * 
+	 * @param argv Parameter von der Kommandozeile
+	 */
 	public static void main(String[] argv) {
 		System.setProperty("testing", "true");
 		Test.main(new String[] {"test.dialogs.TestDlgAbout"});

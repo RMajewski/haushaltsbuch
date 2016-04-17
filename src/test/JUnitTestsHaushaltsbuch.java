@@ -22,6 +22,14 @@ package test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+/**
+ * Führt alle JUnite-Tests aus.
+ * 
+ * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 	test.datas.TestData.class,

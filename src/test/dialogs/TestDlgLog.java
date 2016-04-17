@@ -28,8 +28,21 @@ import org.netbeans.jemmy.operators.JMenuBarOperator;
 import test.GuiTest;
 import windows.WndMain;
 
+/**
+ * Testet, ob der Log-Dialog mit Log->Ansehen aufgerufen werden kann.
+ * 
+ * @see dialogs.DlgLog
+ * 
+ * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
+ */
 public class TestDlgLog extends GuiTest {
 
+	/**
+	 * Führt den Test aus
+	 */
 	@Override
 	public int runIt(Object arg0) {
 		try {
@@ -56,6 +69,11 @@ public class TestDlgLog extends GuiTest {
 		return 0;
 	}
 
+	/**
+	 * Initalisiert die Test-Umgebung
+	 * 
+	 * @param args Parameter von der Kommandozeile
+	 */
 	public static void main(String[] args) {
 		System.setProperty("testing", "true");
 		Test.main(new String[] {"test.dialogs.TestDlgLog"});

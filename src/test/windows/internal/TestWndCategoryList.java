@@ -25,6 +25,9 @@ import org.netbeans.jemmy.Test;
  * Testet das Unterfenster {@link windows.internal.WndCategoryList}.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestWndCategoryList extends GuiWndIdNameTest {
 	/**

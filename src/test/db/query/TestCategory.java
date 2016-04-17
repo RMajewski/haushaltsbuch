@@ -31,6 +31,9 @@ import test.TestHelper;
  * Enthält die Tests, um die Klasse {@link db.query.Category} zu testen.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestCategory extends TestHelper {
 	/**
@@ -53,6 +56,8 @@ public class TestCategory extends TestHelper {
 	
 	/**
 	 * Testet, ob der richtige Tabellen-Name gesetzt wurde.
+	 * 
+	 * @see db.query.Category#Category()
 	 */
 	@Test
 	public void testRightTableName() {
@@ -61,6 +66,8 @@ public class TestCategory extends TestHelper {
 	
 	/**
 	 * Testet, ob die richtigen Spalten-Namen gesetzt wurden.
+	 * 
+	 * @see db.query.Category#Category()
 	 */
 	@Test
 	public void testRightColumnNames() {

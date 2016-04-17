@@ -22,5 +22,8 @@
  * des Package "db" testen.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 package test.db;

@@ -33,6 +33,14 @@ import datas.MoneyDetailsData;
 import db.DbController;
 import tables.models.MoneyDetailsListModel;
 
+/**
+ * Testet die Klasse {@link tables.models.MoneyDetailsListModel}
+ * 
+ * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
+ */
 public class TestMoneyDetailsListModel {
 	/**
 	 * Speichert das Model
@@ -119,6 +127,8 @@ public class TestMoneyDetailsListModel {
 
 	/**
 	 * Testet, ob die Anzahl an Zeilen richtig wiedergegeben wurde.
+	 * 
+	 * @see tables.models.MoneyDetailsListModel#getRowCount()
 	 */
 	@Test
 	public void testGetRowCount() {

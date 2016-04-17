@@ -43,7 +43,7 @@ public abstract class GuiWndIdNameTest extends GuiWndTest {
 	 * Ruft den Dialog für "Neu" auf, und bricht ihn mit Cancel ab. Danach
 	 * sollte in der Datenbank sich nichts geändert haben.
 	 * 
-	 * @param Name des Dialogs
+	 * @param name Name des Dialogs
 	 * 
 	 * @throws GuiTestException
 	 */

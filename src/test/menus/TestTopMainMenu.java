@@ -34,13 +34,13 @@ import windows.WndMain;
  * Überprüft, ob alle Menü-Einträge vorhanden sind.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestTopMainMenu extends GuiTest {
 	/**
 	 * Überprüft ob das Datei-Menü richtig ist.
-	 * 
-	 * @return 1, wenn ein Fehler aufgetreten ist. 0, wenn kein Fehler
-	 * aufgetreten ist.
 	 * 
 	 * @throws GuiTestException
 	 */
@@ -52,9 +52,6 @@ public class TestTopMainMenu extends GuiTest {
 	
 	/**
 	 * Überprüft ob das Datenbank-Menü richtig ist.
-	 * 
-	 * @return 1, wenn ein Fehler aufgetreten ist. 0, wenn kein Fehler
-	 * aufgetreten ist.
 	 * 
 	 * @throws GuiTestException
 	 */
@@ -74,9 +71,6 @@ public class TestTopMainMenu extends GuiTest {
 	
 	/**
 	 * Überprüft ob das Log-Menü richtig ist.
-	 * 
-	 * @return 1, wenn ein Fehler aufgetreten ist. 0, wenn kein Fehler
-	 * aufgetreten ist.
 	 * 
 	 * @throws GuitestsException
 	 */
@@ -101,7 +95,9 @@ public class TestTopMainMenu extends GuiTest {
 				menu.getItem(2).getText().equals("Über..."));
 	}
 	
-
+	/**
+	 * Führt die einzelnen Tests aus
+	 */
 	@Override
 	public int runIt(Object arg0) {
 		try {
@@ -128,6 +124,11 @@ public class TestTopMainMenu extends GuiTest {
 		return 0;
 	}
 
+	/**
+	 * Initalisiert die Test-Umgebung
+	 * 
+	 * @param args Paramter von der Kommandozeile
+	 */
 	public static void main(String[] args) {
 		System.setProperty("testing", "true");
 		Test.main(new String[] {"test.menus.TestTopMainMenu"});

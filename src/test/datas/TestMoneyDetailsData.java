@@ -32,6 +32,9 @@ import datas.MoneyDetailsData;
  * Testet die Klasse {@link datas.MoneyDetailsData}
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestMoneyDetailsData {
 	/**

@@ -26,7 +26,9 @@ import db.query.Query;
  * testen der implementierten Methoden.
  * 
  * @author René Majewski
- *
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestQueryImplementation extends Query {
 	

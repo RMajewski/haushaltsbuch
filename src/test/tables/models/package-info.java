@@ -21,6 +21,8 @@
  * In diesem Package werden alle Test für die Tabellen-Models zusammengefasst.
  * 
  * @author René Majewski
- *
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 package test.tables.models;
