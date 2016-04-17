@@ -35,6 +35,9 @@ import tables.models.IdNameListModel;
  * In diesen Dialog werden die einzelnen Kategorien angezeigt.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndCategoryList extends WndTableFrame {
 

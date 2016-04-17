@@ -30,6 +30,9 @@ import tables.models.MoneyListModel;
  * In diesem Fenster werden die einzelnen Money-Datensätze angezeigt.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndMoneyList extends WndTableFrame {
 

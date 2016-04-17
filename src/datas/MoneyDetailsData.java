@@ -23,6 +23,9 @@ package datas;
  * Speichert die Daten eines Datensatzes der Tabelle 'money_details'
  * 
  * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
  */
 public class MoneyDetailsData extends Data {
 	

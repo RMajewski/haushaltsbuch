@@ -41,6 +41,9 @@ import windows.internal.WndSectionList;
  * Klasse für das Hauptfenster.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndMain extends JFrame implements ActionListener {
 	/**

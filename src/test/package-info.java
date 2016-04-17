@@ -18,11 +18,9 @@
 */ 
 
 /**
- * In diesem Package werden alle Elemente zusammen gefasst.
+ * In diesen Package werden die Ober-Klassen für Tests und die Klassen zum
+ * aufruf der einzelnen Tests zusammen gefasst.
  * 
  * @author René Majewski
- *
- * @version 0.1
- * @since 0.1
  */
-package elements;
+package test;

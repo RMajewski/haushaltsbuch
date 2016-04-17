@@ -30,6 +30,8 @@ import javax.swing.JMenuItem;
  * 
  * @author René Majewski
  *
+ * @version 0.1
+ * @since 0.1
  */
 public class MainTop extends JMenuBar {
 	/**

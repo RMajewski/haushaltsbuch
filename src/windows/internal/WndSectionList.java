@@ -35,6 +35,9 @@ import tables.models.IdNameListModel;
  * In diesen Unterfenster werden die einzelnen Geschäfte angezeigt.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndSectionList extends WndTableFrame {
 

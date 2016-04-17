@@ -29,6 +29,9 @@ import java.util.regex.Pattern;
  * Speichert die Daten für einen Datensatz der Tabelle 'money'
  * 
  * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
  */
 public class MoneyData extends Data {
 	/**

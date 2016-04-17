@@ -28,6 +28,9 @@ import javax.swing.JPopupMenu;
  * Initalisiert das Popup-Menü für die Kategorie-Tabelle.
  * 
  * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
  */
 public class PopupStandardList extends JPopupMenu {
 	/**

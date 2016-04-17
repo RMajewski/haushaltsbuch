@@ -41,6 +41,9 @@ import tables.models.MoneyListModel;
  * Datensazu zu ändern in der Datenbank-Tabelle 'money'.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndMoneyChange extends WndChangeFrame {
 

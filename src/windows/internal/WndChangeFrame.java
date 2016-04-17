@@ -36,6 +36,9 @@ import datas.Data;
  * Steuerelemnte initalisieren.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public abstract class WndChangeFrame extends WndInternalFrame implements ActionListener{
 

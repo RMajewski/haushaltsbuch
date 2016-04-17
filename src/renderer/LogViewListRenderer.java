@@ -32,6 +32,9 @@ import datas.LogData;
  * Zeigt die Einträge der Log-Liste an.
  * 
  * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
  */
 public class LogViewListRenderer extends JLabel implements ListCellRenderer<LogData> {
 

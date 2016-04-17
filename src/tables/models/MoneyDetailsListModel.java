@@ -31,6 +31,14 @@ import datas.MoneyDetailsData;
 import db.DbController;
 import elements.StatusBar;
 
+/**
+ * Gibt die Daten für die Tabelle 'money_details' aus.
+ * 
+ * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
+ */
 public class MoneyDetailsListModel extends AbstractTableModel 
 								   implements DbModelInterface {
 

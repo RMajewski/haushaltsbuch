@@ -34,6 +34,9 @@ import tables.models.MoneyDetailsListModel;
  * Detail-Datensätze als Liste angezeigt.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndMoneyDetailsList extends WndTableFrame {
 

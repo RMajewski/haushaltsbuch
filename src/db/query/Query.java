@@ -31,7 +31,8 @@ import java.util.List;
 
  * @author René Majewski
  * 
- * @version 0.2
+ * @version 0.1
+ * @since 0.1
  */
 public abstract class Query implements QueryInterface {
 	/**

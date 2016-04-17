@@ -41,6 +41,9 @@ import tables.models.MoneyDetailsListModel;
  * Fenster zum Eingaben der Daten für einen Details-Datensatz von Money.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListener {
 

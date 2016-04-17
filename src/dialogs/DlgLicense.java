@@ -40,6 +40,9 @@ import javax.swing.JTextArea;
  * Dies Lizenz-Bestimmungen werden aus der Daten 
  * 
  * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
  */
 public class DlgLicense extends JDialog {
 

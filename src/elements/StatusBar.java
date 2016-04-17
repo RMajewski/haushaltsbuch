@@ -32,9 +32,9 @@ import datas.LogData;
  * Zeigt die StatusBar an.
  * 
  * @author René Majewski
- * 
- * @version 0.1
  *
+ * @version 0.1
+ * @since 0.1
  */
 public class StatusBar extends JLabel {
 	/**

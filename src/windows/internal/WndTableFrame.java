@@ -46,6 +46,9 @@ import tables.models.DbModelInterface;
  * Fenster abgeleitet, die Tabellen benutzen, um Daten anzuzeigen.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public abstract class WndTableFrame extends WndInternalFrame
 	implements ActionListener, ListSelectionListener {

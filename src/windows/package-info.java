@@ -21,5 +21,8 @@
  * In diesem Package werden alle Fenster zusammen gefasst.
  *
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 package windows;
