@@ -19,7 +19,7 @@
 
 package test.tables.models;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 import java.sql.Statement;

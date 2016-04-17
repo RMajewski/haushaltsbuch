@@ -19,28 +19,7 @@
 
 package test.windows.internal;
 
-import javax.swing.JMenuItem;
-import javax.swing.JTable;
-
-import org.netbeans.jemmy.ClassReference;
-import org.netbeans.jemmy.Scenario;
 import org.netbeans.jemmy.Test;
-import org.netbeans.jemmy.operators.JButtonOperator;
-import org.netbeans.jemmy.operators.JDialogOperator;
-import org.netbeans.jemmy.operators.JFrameOperator;
-import org.netbeans.jemmy.operators.JInternalFrameOperator;
-import org.netbeans.jemmy.operators.JMenuBarOperator;
-import org.netbeans.jemmy.operators.JPopupMenuOperator;
-import org.netbeans.jemmy.operators.JTableOperator;
-import org.netbeans.jemmy.operators.JTextFieldOperator;
-import org.netbeans.jemmy.operators.Operator;
-
-import datas.IdNameData;
-import db.DbController;
-import tables.models.IdNameListModel;
-import test.GuiTest;
-import test.GuiTestException;
-import windows.WndMain;
 
 /**
  * Testet das Unterfenster {@link windows.internal.WndCategoryList}.

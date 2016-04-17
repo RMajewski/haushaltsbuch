@@ -20,7 +20,6 @@
 package test.windows;
 
 import org.netbeans.jemmy.ClassReference;
-import org.netbeans.jemmy.Scenario;
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JLabelOperator;

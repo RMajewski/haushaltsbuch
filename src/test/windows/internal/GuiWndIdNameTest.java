@@ -19,7 +19,6 @@
 
 package test.windows.internal;
 
-import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JTextFieldOperator;

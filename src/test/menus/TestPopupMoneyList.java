@@ -19,7 +19,8 @@
 
 package test.menus;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import javax.swing.JMenuItem;
 
@@ -27,7 +28,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import menus.PopupMoneyList;
-import menus.PopupStandardList;
 
 /**
  * Testet, ob das Popup-Menü für die Tabelle Einnahmen und Ausgaben richtig

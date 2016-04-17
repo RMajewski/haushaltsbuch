@@ -19,7 +19,7 @@
 
 package test.tables.models;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,7 +32,6 @@ import org.junit.Test;
 
 import datas.MoneyData;
 import db.DbController;
-import tables.models.MoneyDetailsListModel;
 import tables.models.MoneyListModel;
 
 /**

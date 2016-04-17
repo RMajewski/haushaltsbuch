@@ -20,19 +20,14 @@
 package windows.internal;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 
 import datas.IdNameData;
 import db.DbController;
 import elements.StatusBar;
-import listener.PopupMenuMouseListener;
 import menus.PopupStandardList;
 import tables.models.IdNameListModel;
 

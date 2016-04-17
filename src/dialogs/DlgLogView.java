@@ -20,6 +20,7 @@
 package dialogs;
 
 import java.awt.Window;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JList;

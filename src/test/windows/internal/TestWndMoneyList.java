@@ -23,12 +23,9 @@ import javax.swing.JMenuItem;
 
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
-import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JInternalFrameOperator;
-import org.netbeans.jemmy.operators.JPopupMenuOperator;
 import org.netbeans.jemmy.operators.Operator;
 
-import datas.MoneyData;
 import db.DbController;
 import tables.models.MoneyListModel;
 import test.GuiTestException;

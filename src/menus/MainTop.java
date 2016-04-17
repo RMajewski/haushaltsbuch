@@ -19,11 +19,10 @@
 
 package menus;
 
-import javax.swing.JMenuBar;
-
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 /**
