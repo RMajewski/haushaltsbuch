@@ -46,7 +46,7 @@ import test.TestHelper;
  * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class TestDbController extends TestHelper {
@@ -95,8 +95,9 @@ public class TestDbController extends TestHelper {
 	private boolean dbTableExists(String table) throws SQLException {
 		Statement stm = DbController.getInstance().createStatement();
 		ResultSet rs = stm.executeQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = '" + table + "'");
-		
-		if (rs.getString("name").equals(table))
+		String name = rs.getString("name");
+		rs.close();
+		if (name.equals(table))
 			return true;
 		else
 			return false;
@@ -122,6 +123,8 @@ public class TestDbController extends TestHelper {
 			if (meta.getColumnName(i).equals(column))
 				return true;
 		}
+		
+		rs.close();
 		
 		// Standard-Rückgabe
 		return false;

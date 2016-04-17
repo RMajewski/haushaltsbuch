@@ -36,7 +36,7 @@ import elements.StatusBar;
  * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class IdNameListModel extends AbstractTableModel
@@ -99,6 +99,7 @@ public class IdNameListModel extends AbstractTableModel
 			while(rs.next()) {
 				_list.add(new IdNameData(rs.getInt("id"), rs.getString("name")));
 			}
+			rs.close();
 		} catch (SQLException e) {
 			StatusBar.getInstance().setMessageAsError("Fehler beim abrufen von Daten aus der Datenbank");
 			e.printStackTrace();

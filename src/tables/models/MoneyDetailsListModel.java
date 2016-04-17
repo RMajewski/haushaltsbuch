@@ -36,7 +36,7 @@ import elements.StatusBar;
  * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class MoneyDetailsListModel extends AbstractTableModel 
@@ -71,6 +71,7 @@ public class MoneyDetailsListModel extends AbstractTableModel
 			ResultSet rs = stm.executeQuery(sql);
 			if (rs.getString("name") != null && !rs.getString("name").isEmpty())
 				ret = rs.getString("name");
+			rs.close();
 			
 		} catch (SQLException e) {
 			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
@@ -177,6 +178,7 @@ public class MoneyDetailsListModel extends AbstractTableModel
 							rs.getDouble("money"),
 							rs.getString("comment") ));
 			}
+			rs.close();
 		} catch (SQLException e) {
 			StatusBar.getInstance().setMessageAsError("Fehler beim abrufen von Daten aus der Datenbank");
 			e.printStackTrace();

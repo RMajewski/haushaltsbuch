@@ -36,7 +36,7 @@ import elements.StatusBar;
  * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class MoneyListModel extends AbstractTableModel 
@@ -119,6 +119,7 @@ public class MoneyListModel extends AbstractTableModel
 					Statement stm = DbController.getInstance().createStatement();
 					ResultSet rs = stm.executeQuery("SELECT sum(money) AS 'sum' FROM money_details WHERE moneyid = " + _list.get(row).getId());
 					ret = rs.getDouble("sum");
+					rs.close();
 				} catch (SQLException e) {
 					StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
 					e.getStackTrace();
@@ -156,6 +157,7 @@ public class MoneyListModel extends AbstractTableModel
 			while(rs.next()) {
 				_list.add(new MoneyData(rs.getInt("id"), rs.getLong("date"), rs.getBoolean("inout"), rs.getString("comment")));
 			}
+			rs.close();
 		} catch (SQLException e) {
 			StatusBar.getInstance().setMessageAsError("Fehler beim abrufen von Daten aus der Datenbank");
 			e.printStackTrace();

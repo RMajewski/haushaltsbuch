@@ -42,7 +42,7 @@ import tables.models.MoneyDetailsListModel;
  * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListener {
@@ -91,6 +91,7 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 					if (rs.getInt("id") == id)
 						combo.setSelectedItem(rs.getString("name"));
 			}
+			rs.close();
 			
 		} catch (SQLException e) {
 			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
@@ -180,10 +181,12 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 				Statement stm = DbController.getInstance().createStatement();
 				ResultSet rs = stm.executeQuery(DbController.queries().category().search("name", String.valueOf(_cbCategory.getSelectedItem())));
 				int category = rs.getInt("id");
+				rs.close();
 				
 				// ID des Geschäftes ermitteln
 				rs = stm.executeQuery(DbController.queries().section().search("name", String.valueOf(_cbSection.getSelectedItem())));
 				int section = rs.getInt("id");
+				rs.close();
 				
 				// Überprüfen ob Betrag eingegeben wurde.
 				if (_txtMoney.getText().isEmpty()) {

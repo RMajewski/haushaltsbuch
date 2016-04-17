@@ -35,7 +35,7 @@ import elements.StatusBar;
  * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  *
  */
@@ -292,6 +292,7 @@ public class DbController {
 			ps.executeBatch();
 			setAutoCommit(true);
 		}
+		rs.close();
 		StatusBar.getInstance().setMessage("Datenbank: Tabelle der Kategorien ist fertig vorbereitet");
 		
 		// Tabelle für die Geschäfte
@@ -337,6 +338,7 @@ public class DbController {
 			ps.executeBatch();
 			setAutoCommit(true);
 		}
+		rs.close();
 		StatusBar.getInstance().setMessage("Datenbank: Tabelle der Geschäfte ist fertig vorbereitet.");
 		
 		// Tabelle für die Ein- und Ausgaben
