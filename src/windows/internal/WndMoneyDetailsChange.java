@@ -21,6 +21,8 @@ package windows.internal;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,7 +47,8 @@ import tables.models.MoneyDetailsListModel;
  * @version 0.2
  * @since 0.1
  */
-public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListener {
+public class WndMoneyDetailsChange extends WndChangeFrame
+			implements ActionListener, FocusListener {
 
 	/**
 	 * Serilisation ID
@@ -137,6 +140,7 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 		// Textfeld für den Betrag
 		_txtMoney = new JFormattedTextField(new DecimalFormat("0.00"));
 		_txtMoney.setText("0,00");
+		_txtMoney.addFocusListener(this);
 		addComponent(_gbl, _txtMoney, 2, 4, 2, 1, 0, 0);
 		
 		// Text-Bereich für die Beschreibung
@@ -255,5 +259,25 @@ public class WndMoneyDetailsChange extends WndChangeFrame implements ActionListe
 		
 		// Da bisher nicht beendet, diese Methode in der Vater-Klasse aufrufen
 		super.actionPerformed(ae);
+	}
+
+	/**
+	 * Wird aufgerufen, wenn der Fokus bekommt.
+	 * 
+	 * @param e Daten dieses Events.
+	 */
+	@Override
+	public void focusGained(FocusEvent e) {
+		_txtMoney.setSelectionStart(0);
+		_txtMoney.setSelectionEnd(_txtMoney.getText().length());
+	}
+
+	/**
+	 * Wird aufgerufen, wenn der Fokus verloren geht.
+	 * 
+	 * @param e Daten zu diesem Event
+	 */
+	@Override
+	public void focusLost(FocusEvent e) {
 	}
 }
