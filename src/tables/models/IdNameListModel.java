@@ -31,6 +31,14 @@ import datas.IdNameData;
 import db.DbController;
 import elements.StatusBar;
 
+/**
+ * Gibt die Daten für die Tabellen 'category' und 'section' aus.
+ * 
+ * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
+ */
 public class IdNameListModel extends AbstractTableModel
 							 implements DbModelInterface{
 

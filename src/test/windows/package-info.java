@@ -21,5 +21,8 @@
  * In diesen Package werden alle Test für die Hauptfenster zusammen gefasst.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 package test.windows;

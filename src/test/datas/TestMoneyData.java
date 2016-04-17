@@ -19,7 +19,9 @@
 
 package test.datas;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -35,6 +37,9 @@ import datas.MoneyData;
  * Testet die Klasse {@link datas.MoneyData}
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestMoneyData {
 	/**

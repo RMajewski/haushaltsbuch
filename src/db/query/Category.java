@@ -24,6 +24,9 @@ package db.query;
  * 
  * @author René Majewski
  *
+ * @version 0.1
+ * @since 0.1
+ *
  */
 public class Category extends Query {
 	/**

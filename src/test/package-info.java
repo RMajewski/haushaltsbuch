@@ -17,22 +17,13 @@
 * sind dem Lizenztext zu entnehmen.
 */ 
 
-package test;
-
 /**
- * Dieser Fehler wird benutzer, um anzugeben, dass ein Test einen Fehler
- * aufweist.
+ * In diesen Package werden die Ober-Klassen für Tests und die Klassen zum
+ * aufruf der einzelnen Tests zusammen gefasst.
  * 
  * @author René Majewski
  * 
  * @version 0.1
  * @since 0.1
  */
-public class GuiTestException extends Exception {
-
-	/**
-	 * Serialisation ID
-	 */
-	private static final long serialVersionUID = 6787176059309545912L;
-
-}
+package test;

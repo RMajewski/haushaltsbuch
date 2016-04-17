@@ -19,7 +19,8 @@
 
 package test.datas;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
 
@@ -29,8 +30,12 @@ import org.junit.Test;
 import datas.LogData;
 
 /**
+ * Testet die Klasse {@link datas.LogData}.
+ * 
  * @author René Majewski
- *
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestLogData {
 	/**

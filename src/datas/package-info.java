@@ -22,5 +22,8 @@
  * Beinhaltet alle Klassen, die Daten speichern.
  * 
  * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
  */
 package datas;

@@ -20,7 +20,6 @@
 package test.windows;
 
 import org.netbeans.jemmy.ClassReference;
-import org.netbeans.jemmy.Scenario;
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JLabelOperator;
@@ -33,6 +32,9 @@ import windows.WndMain;
  * Testet das Hauptfenster
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestWndMain extends GuiTest {
 
@@ -64,6 +66,11 @@ public class TestWndMain extends GuiTest {
 		return 0;
 	}
 
+	/**
+	 * Initalisiert die Test-Umgebung
+	 * 
+	 * @param args Parameter von der Kommandozeile
+	 */
 	public static void main(String[] args) {
 		System.setProperty("testing", "true");
 		Test.main(new String[] {"test.windows.TestWndMain"});

@@ -17,22 +17,12 @@
 * sind dem Lizenztext zu entnehmen.
 */ 
 
-package test;
-
 /**
- * Dieser Fehler wird benutzer, um anzugeben, dass ein Test einen Fehler
- * aufweist.
+ * In diesem Package werden alle Test der Daten-Klassen zusammen gefasst.
  * 
  * @author René Majewski
  * 
  * @version 0.1
  * @since 0.1
  */
-public class GuiTestException extends Exception {
-
-	/**
-	 * Serialisation ID
-	 */
-	private static final long serialVersionUID = 6787176059309545912L;
-
-}
+package test.datas;

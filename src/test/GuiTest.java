@@ -19,10 +19,7 @@
 
 package test;
 
-import java.util.Arrays;
-
 import org.netbeans.jemmy.Scenario;
-import org.netbeans.jemmy.Test;
 
 /**
  * Von dieser Klasse werden alle GUI-Tests abgeleitet werden.
@@ -31,7 +28,6 @@ import org.netbeans.jemmy.Test;
  * 
  * @version 0.1
  * @since 0.1
- *
  */
 public abstract class GuiTest implements Scenario {
 	/**

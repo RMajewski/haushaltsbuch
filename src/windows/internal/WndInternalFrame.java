@@ -30,6 +30,9 @@ import javax.swing.JInternalFrame;
  * Diese Klasse stellt für das GridBag-Layout Helfer zur Verfügung.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndInternalFrame extends JInternalFrame {
 

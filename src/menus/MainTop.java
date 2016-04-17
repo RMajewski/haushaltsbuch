@@ -19,11 +19,10 @@
 
 package menus;
 
-import javax.swing.JMenuBar;
-
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 /**
@@ -31,6 +30,8 @@ import javax.swing.JMenuItem;
  * 
  * @author René Majewski
  *
+ * @version 0.1
+ * @since 0.1
  */
 public class MainTop extends JMenuBar {
 	/**

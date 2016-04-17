@@ -20,35 +20,19 @@
 package windows.internal;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 
 import datas.MoneyData;
 import db.DbController;
-import elements.StatusBar;
-import listener.PopupMenuMouseListener;
 import menus.PopupMoneyList;
-import menus.PopupStandardList;
-import tables.models.MoneyDetailsListModel;
 import tables.models.MoneyListModel;
 
 /**
  * In diesem Fenster werden die einzelnen Money-Datensätze angezeigt.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndMoneyList extends WndTableFrame {
 

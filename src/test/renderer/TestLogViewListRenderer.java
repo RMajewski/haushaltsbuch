@@ -19,7 +19,8 @@
 
 package test.renderer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import javax.swing.JLabel;
 import javax.swing.UIManager;
@@ -34,6 +35,9 @@ import renderer.LogViewListRenderer;
  * Testet die Klasse {@link renderer.LogViewListRenderer}.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestLogViewListRenderer {
 	/**

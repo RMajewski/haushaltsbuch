@@ -23,12 +23,12 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * Diese Klasse wird benutzt, um alle Tests auszuführen.
- * 
- * Dies ist notwendig, da verschiedene Test-Systeme benutzt werden.
+ * Diese Klasse wird benutzt, um alle GUI-Tests auszuführen.
  * 
  * @author René Majewski
- *
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class GuiTestsHaushaltsbuch {
 	/**

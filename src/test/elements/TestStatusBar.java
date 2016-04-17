@@ -19,10 +19,11 @@
 
 package test.elements;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -32,9 +33,12 @@ import datas.LogData;
 import elements.StatusBar;
 
 /**
- * Testet die Klasse {@link elements.StatsBar}
+ * Testet die Klasse {@link elements.StatusBar}
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestStatusBar {
 

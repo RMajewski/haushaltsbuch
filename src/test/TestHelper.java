@@ -19,7 +19,8 @@
 
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 import java.lang.reflect.Method;
 
@@ -27,7 +28,9 @@ import java.lang.reflect.Method;
  * Hier werden einige Helfer-Methoden deklariert.
  * 
  * @author René Majewski
- *
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestHelper {
 	/**

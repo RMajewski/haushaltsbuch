@@ -24,6 +24,9 @@ package datas;
  * in alle Datensatz-Klassen vorhanden sind.
  * 
  * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
  */
 public class Data {
 	/**

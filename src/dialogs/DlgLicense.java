@@ -20,7 +20,6 @@
 package dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,6 +40,9 @@ import javax.swing.JTextArea;
  * Dies Lizenz-Bestimmungen werden aus der Daten 
  * 
  * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
  */
 public class DlgLicense extends JDialog {
 

@@ -19,7 +19,11 @@
 
 package test.db;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -38,6 +42,13 @@ import db.query.MoneyDetails;
 import db.query.Section;
 import test.TestHelper;
 
+/**
+ * 
+ * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
+ */
 public class TestDbController extends TestHelper {
 	/**
 	 * Diese Initalisierungen bleiben für alle Tests bestehen.
@@ -128,6 +139,8 @@ public class TestDbController extends TestHelper {
 	/**
 	 * Überprüfbt, ob die zurück gegebene Instanz auch eine Instanz von
 	 * DbController-Klasse ist.
+	 * 
+	 * @see db.DbController#getInstance()
 	 */
 	@Test
 	public void testGetInstanceRightClass()  {
@@ -136,6 +149,8 @@ public class TestDbController extends TestHelper {
 	
 	/**
 	 * Überprüft, ob die zurück gegebene Instanz nicht null ist.
+	 * 
+	 * @see db.DbController#getInstance()
 	 */
 	@Test
 	public void testGetInstanceReturnNotNull() {
@@ -145,6 +160,8 @@ public class TestDbController extends TestHelper {
 	/**
 	 * Übeprüft, ob der Datenbank-Name nicht <b>null</b> oder eine leere
 	 * Zeichenkette ist.
+	 * 
+	 * @see db.DbController#getInstance()
 	 */
 	@Test
 	public void testGetDatabaseNameReturnIsNotNullAndNotEmpty() {
@@ -153,6 +170,8 @@ public class TestDbController extends TestHelper {
 	
 	/**
 	 * Überprüft, ob zum testen die Datenbank im Speichert angelegt wird.
+	 * 
+	 * @see db.DbController#getInstance()
 	 */
 	@Test
 	public void testGetDatabaseNameReturnIsMemoryWithTesting() {
@@ -162,6 +181,8 @@ public class TestDbController extends TestHelper {
 	/**
 	 * Überprüft, ob die Rückgabe von queries() eine Instanz der Klasse
 	 * Queries ist.
+	 * 
+	 * @see db.DbController#queries()
 	 */
 	@Test
 	public void testQueriesRightClass() {
@@ -171,6 +192,8 @@ public class TestDbController extends TestHelper {
 	/**
 	 * Überprüft, ob die Rückgabe von createStatement() eine Instanz der Klasse
 	 * org.sqlite.jdbc4.JDBC4Statement ist.
+	 * 
+	 * @see db.DbController#createStatement()
 	 */
 	@Test
 	public void testCreateStatementRightClass() {
@@ -184,6 +207,8 @@ public class TestDbController extends TestHelper {
 	/**
 	 * Überprüft, ob die Rückgabe von getConnection() eine Instanz der Klasse
 	 * org.sqlite.SQLiteConnection ist.
+	 * 
+	 * @see db.DbController#createStatement()
 	 */
 	@Test
 	public void testGetConnectionRightClass() {
@@ -192,6 +217,8 @@ public class TestDbController extends TestHelper {
 	
 	/**
 	 * Überprüft, ob die Rückgabe von isConnection() korrekt ist.
+	 * 
+	 * @see db.DbController#isConnection()
 	 */
 	@Test
 	public void testIsConnectionReturnTrue() {
@@ -206,6 +233,8 @@ public class TestDbController extends TestHelper {
 	/**
 	 * Überprüft, ob nach dem Beenden der Verbindung <b>false</b> zurück
 	 * gegeben wird.
+	 * 
+	 * @see db.DbController#isConnection()
 	 */
 	@Test
 	public void testIsConnectionReturnFalseAfterClose() {
@@ -222,6 +251,8 @@ public class TestDbController extends TestHelper {
 	/**
 	 * Übeprüft, ob prepareStatement(String) eine Instanz der Klasse
 	 * org.sqlite.jdbc4.JDBC4PreparedStatement zurück gibt.
+	 * 
+	 * @see db.DbController#prepareStatement(String)
 	 */
 	@Test
 	public void testPrepareStatementReturnIsRightClass() {
@@ -236,6 +267,8 @@ public class TestDbController extends TestHelper {
 	 * Überprüft, ob die Methode setAutoCommit(boolean) richtig arbeitet. Das
 	 * heißt, wenn <b>false</b> übergeben wurde, sollte bei
 	 * getConnectio().getAutoCommit() auch <b>true</b> zurück gegeben werden.
+	 * 
+	 * @see db.DbController#setAutoCommit(boolean)
 	 */
 	@Test
 	public void testSetAutoCommitWithTrueAsParameter() {
@@ -251,6 +284,8 @@ public class TestDbController extends TestHelper {
 	 * Überprüft, ob die Methode setAutoCommit(boolean) richtig arbeitet. Das
 	 * heißt, wenn <b>false</b> übergeben wurde, sollte bei
 	 * getConnectio().getAutoCommit() auch <b>true</b> zurück gegeben werden.
+	 * 
+	 * @see db.DbController#setAutoCommit(boolean)
 	 */
 	@Test
 	public void testSetAutoCommitWithFalseAsParameter() {
@@ -263,8 +298,10 @@ public class TestDbController extends TestHelper {
 	}
 	
 	/**
-	 * Überprüft, ob die prepairDatabase() die Datenbank-Tabelle 'category'
+	 * Überprüft, ob die prepaireDatabase() die Datenbank-Tabelle 'category'
 	 * erzeugt hat.
+	 * 
+	 * @see db.DbController#prepaireDatabase()
 	 */
 	@Test
 	public void testPrepaireDatabaseCreateTableCategory() {
@@ -279,6 +316,8 @@ public class TestDbController extends TestHelper {
 	
 	/**
 	 * Überprüft, ob alle Spalten der Tabelle 'secetion' erzeugt wurden.
+	 * 
+	 * @see db.DbController#prepaireDatabase()
 	 */
 	@Test
 	public void testPrepaireDatabaseCategoryHasAllColumns() {
@@ -296,6 +335,8 @@ public class TestDbController extends TestHelper {
 	/**
 	 * Überprüft, ob die prepaireDatabase() die Datenbank-Tabelle 'section'
 	 * erzeugt hat.
+	 * 
+	 * @see db.DbController#prepaireDatabase()
 	 */
 	@Test
 	public void testPrepaireDatabaseCreateTableSection() {
@@ -310,6 +351,8 @@ public class TestDbController extends TestHelper {
 	
 	/**
 	 * Überprüft, ob alle Spalten der Tabelle 'secetion' erzeugt wurden.
+	 * 
+	 * @see db.DbController#prepaireDatabase()
 	 */
 	@Test
 	public void testPrepaireDatabaseSectionHasAllColumns() {
@@ -327,6 +370,8 @@ public class TestDbController extends TestHelper {
 	/**
 	 * Überprüft, ob die prepaireDatabase() die Datenbank-Tabelle 'money'
 	 * erzeugt hat.
+	 * 
+	 * @see db.DbController#prepaireDatabase()
 	 */
 	@Test
 	public void testPrepaireDatabaseCreateTableMoney() {
@@ -341,6 +386,8 @@ public class TestDbController extends TestHelper {
 	
 	/**
 	 * Überprüft, ob alle Spalten der Tabelle 'money' erzeugt wurden.
+	 * 
+	 * @see db.DbController#prepaireDatabase()
 	 */
 	@Test
 	public void testPrepaireDatabaseMoneyHasAllColumns() {
@@ -358,6 +405,8 @@ public class TestDbController extends TestHelper {
 	/**
 	 * Überprüft, ob die prepaireDatabase() die Datenbank-Tabelle
 	 * 'money_details' erzeugt hat.
+	 * 
+	 * @see db.DbController#prepaireDatabase()
 	 */
 	@Test
 	public void testPrepaireDatabaseCreateTableMoneyDetails() {
@@ -372,6 +421,8 @@ public class TestDbController extends TestHelper {
 	
 	/**
 	 * Überprüft, ob alle Spalten der Tabelle 'money_details' erzeugt wurden.
+	 * 
+	 * @see db.DbController#prepaireDatabase()
 	 */
 	@Test
 	public void testPrepaireDatabaseMoneyDetailsHasAllColumns() {

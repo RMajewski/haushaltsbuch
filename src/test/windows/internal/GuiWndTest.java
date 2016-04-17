@@ -25,7 +25,6 @@ import java.sql.SQLException;
 import javax.swing.JMenuItem;
 
 import org.netbeans.jemmy.ClassReference;
-import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;

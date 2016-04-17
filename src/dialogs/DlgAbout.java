@@ -20,14 +20,10 @@
 package dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -39,13 +35,13 @@ import javax.swing.JPanel;
  * 
  * @author René Majewski
  *
+ * @version 0.1
+ * @since 0.1
  */
 public class DlgAbout extends JDialog {
 
 	/**
 	 * Serilisation ID
-	 * 
-	 * @param owner Instanz, das diesen Dialog aufgerufen hat.
 	 */
 	private static final long serialVersionUID = -1375741277581661L;
 

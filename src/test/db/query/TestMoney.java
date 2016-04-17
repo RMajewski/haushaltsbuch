@@ -19,7 +19,8 @@
 
 package test.db.query;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +32,9 @@ import test.TestHelper;
  * Testet die Klasse {@link db.query.Money}
  * 
  * @author René Majewski
- *
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestMoney extends TestHelper {
 	/**
@@ -54,6 +57,8 @@ public class TestMoney extends TestHelper {
 	
 	/**
 	 * Testet, ob der richtige Tabellen-Name gesetzt wurde.
+	 * 
+	 * @see db.query.Money#Money()
 	 */
 	@Test
 	public void testRightTableName() {
@@ -62,6 +67,8 @@ public class TestMoney extends TestHelper {
 	
 	/**
 	 * Testet, ob die richtigen Spalten-Namen gesetzt wurden.
+	 * 
+	 * @see db.query.Money#Money()
 	 */
 	@Test
 	public void testRightColumnNames() {

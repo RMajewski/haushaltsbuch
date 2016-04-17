@@ -35,6 +35,9 @@ import elements.StatusBar;
  * 
  * @author René Majewski
  *
+ * @version 0.1
+ * @since 0.1
+ *
  */
 public class DbController {
 	/**
@@ -247,7 +250,7 @@ public class DbController {
 		Statement stm = createStatement();
 		
 		// Tabelle für die einzelnen Kategorien
-		int ret = stm.executeUpdate(queries().category().createTable());
+		stm.executeUpdate(queries().category().createTable());
 		
 		// Überprüfen ob standard Kategorien schon eingetragen wurden
 		ResultSet rs = stm.executeQuery(queries().category().count());

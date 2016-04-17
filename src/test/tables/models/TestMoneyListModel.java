@@ -19,7 +19,7 @@
 
 package test.tables.models;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,13 +32,15 @@ import org.junit.Test;
 
 import datas.MoneyData;
 import db.DbController;
-import tables.models.MoneyDetailsListModel;
 import tables.models.MoneyListModel;
 
 /**
  * Testet das Datenbank-Model {@link tables.models.MoneyListModel}
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestMoneyListModel {
 	/**
@@ -106,7 +108,7 @@ public class TestMoneyListModel {
 	/**
 	 * Testet, ob die Anzahl der Spalten richtig wiedergegeben wird.
 	 * 
-	 * @see tables.models.MoneyModel#getColumnCount()
+	 * @see tables.models.MoneyListModel#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCount() {

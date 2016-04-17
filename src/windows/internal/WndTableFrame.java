@@ -32,24 +32,23 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 import db.DbController;
 import db.query.Query;
 import elements.StatusBar;
 import listener.PopupMenuMouseListener;
-import menus.PopupMoneyList;
 import menus.PopupStandardList;
 import tables.models.DbModelInterface;
-import tables.models.IdNameListModel;
 
 /**
  * Erzeugt das Fenster mit einer Tabelle. Von diesem Fenster werden alle
  * Fenster abgeleitet, die Tabellen benutzen, um Daten anzuzeigen.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public abstract class WndTableFrame extends WndInternalFrame
 	implements ActionListener, ListSelectionListener {

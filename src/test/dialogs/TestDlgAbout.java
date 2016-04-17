@@ -20,14 +20,12 @@
 package test.dialogs;
 
 import org.netbeans.jemmy.ClassReference;
-import org.netbeans.jemmy.Scenario;
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
 
-import menus.MainTop;
 import test.GuiTest;
 import windows.WndMain;
 
@@ -35,7 +33,12 @@ import windows.WndMain;
  * Testet, ob der "Über ..."-Dialog mit Help->Über... aufgerufen werden kann
  * und ob er einen Button hat, der den Dialog beendet.
  * 
+ * @see dialogs.DlgAbout
+ * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestDlgAbout extends GuiTest {
 	/**
@@ -75,6 +78,11 @@ public class TestDlgAbout extends GuiTest {
 		return 0;
 	}
 	
+	/**
+	 * Initalisiert die Test-Umgebung
+	 * 
+	 * @param argv Parameter von der Kommandozeile
+	 */
 	public static void main(String[] argv) {
 		System.setProperty("testing", "true");
 		Test.main(new String[] {"test.dialogs.TestDlgAbout"});

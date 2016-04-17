@@ -30,6 +30,9 @@ import javax.swing.JMenuItem;
  * @author René Majewski
  *
  * @see menus.PopupStandardList
+ *
+ * @version 0.1
+ * @since 0.1
  */
 public class PopupMoneyList extends PopupStandardList {
 

@@ -32,9 +32,12 @@ import db.DbController;
 import elements.StatusBar;
 
 /**
- * Gibt die Daten der Liste für die Tabelle 'money' aus.
+ * Gibt die Daten für die Tabelle 'money' aus.
  * 
  * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.1
  */
 public class MoneyListModel extends AbstractTableModel 
 							implements DbModelInterface {

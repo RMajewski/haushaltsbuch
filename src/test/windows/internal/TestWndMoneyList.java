@@ -23,12 +23,9 @@ import javax.swing.JMenuItem;
 
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
-import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JInternalFrameOperator;
-import org.netbeans.jemmy.operators.JPopupMenuOperator;
 import org.netbeans.jemmy.operators.Operator;
 
-import datas.MoneyData;
 import db.DbController;
 import tables.models.MoneyListModel;
 import test.GuiTestException;
@@ -38,6 +35,9 @@ import test.GuiTestException;
  * {@link windows.internal.WndMoneyList}.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestWndMoneyList extends GuiWndTest {
 	/**
@@ -137,6 +137,11 @@ public class TestWndMoneyList extends GuiWndTest {
 		return 0;
 	}
 
+	/**
+	 * Überprüft, ob das Details-Fenster angezeigt wird.
+	 * 
+	 * @throws GuiTestException
+	 */
 	private void detailsWindow() throws GuiTestException {
 		// Popup-Menü "Neu" drücken
 		_table.selectCell(0, 0);
@@ -156,6 +161,10 @@ public class TestWndMoneyList extends GuiWndTest {
 				row == _table.getRowCount());
 	}
 
+	/**
+	 * Überprüft, ob das Ändern-Fenster angezeigt wird.
+	 * @throws GuiTestException
+	 */
 	private void changeWindow() throws GuiTestException {
 		// Popup-Menü "Neu" drücken
 		_table.selectCell(0, 0);

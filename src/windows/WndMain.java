@@ -21,11 +21,7 @@ package windows;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -45,6 +41,9 @@ import windows.internal.WndSectionList;
  * Klasse für das Hauptfenster.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndMain extends JFrame implements ActionListener {
 	/**

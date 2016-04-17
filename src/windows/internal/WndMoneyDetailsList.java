@@ -20,28 +20,23 @@
 package windows.internal;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import datas.MoneyData;
 import datas.MoneyDetailsData;
 import db.DbController;
-import elements.StatusBar;
-import listener.PopupMenuMouseListener;
 import menus.PopupStandardList;
 import tables.models.MoneyDetailsListModel;
-import tables.models.MoneyListModel;
 
 /**
  * In diesem Fenster wird zum angegeben Datensatz aus der Tabelle 'money' die
  * Detail-Datensätze als Liste angezeigt.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class WndMoneyDetailsList extends WndTableFrame {
 

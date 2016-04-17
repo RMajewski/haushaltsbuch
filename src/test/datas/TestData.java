@@ -19,7 +19,7 @@
 
 package test.datas;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,6 +30,9 @@ import datas.Data;
  * Testet die Klasse {@link datas.Data}
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestData {
 	/**
@@ -55,6 +58,8 @@ public class TestData {
 	
 	/**
 	 * Testet, ob die Klasse richtig initalisiert wurde.
+	 * 
+	 * @see datas.Data#Data(int)
 	 */
 	@Test
 	public void testDataInt() {

@@ -20,7 +20,6 @@
 package test.dialogs;
 
 import org.netbeans.jemmy.ClassReference;
-import org.netbeans.jemmy.Scenario;
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
@@ -35,11 +34,19 @@ import windows.WndMain;
  * Testet, ob der Lizenz-Dialog mit Hilfe->Lizenz aufgerufen werden kann und
  * ob er mit einen Button beendet werden kann.
  * 
+ * @see dialogs.DlgLicense
+ * 
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public class TestDlgLicense extends GuiTest {
 
+	/**
+	 * Führt den Test aus
+	 */
 	@Override
 	public int runIt(Object arg0) {
 		try {
@@ -88,6 +95,11 @@ public class TestDlgLicense extends GuiTest {
 		return 0;
 	}
 
+	/**
+	 * Initalisiert die Test-Umgebung
+	 * 
+	 * @param args Paramter von der Kommandozeile
+	 */
 	public static void main(String[] args) {
 		System.setProperty("testing", "true");
 		Test.main(new String[] {"test.dialogs.TestDlgLicense"});

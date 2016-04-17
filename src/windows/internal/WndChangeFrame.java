@@ -24,7 +24,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -37,6 +36,9 @@ import datas.Data;
  * Steuerelemnte initalisieren.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  */
 public abstract class WndChangeFrame extends WndInternalFrame implements ActionListener{
 

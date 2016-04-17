@@ -19,7 +19,7 @@
 
 package test.tables.models;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
@@ -30,6 +30,13 @@ import datas.IdNameData;
 import db.DbController;
 import tables.models.IdNameListModel;
 
+/**
+ * Testet die Klasse {@link tables.models.IdNameListModel} 
+ * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
+ */
 public class TestIdNameListModel {
 	/**
 	 * Speichert das Model
@@ -91,7 +98,7 @@ public class TestIdNameListModel {
 	}
 	
 	/**
-	 * Testet, ob {@link tables.models.IdNameListModelk#getValueAt(int, int)}
+	 * Testet, ob {@link tables.models.IdNameListModel#getValueAt(int, int)}
 	 * der Name geliefert wird, wenn Spalte 1 ausgewählt ist.
 	 */
 	@Test

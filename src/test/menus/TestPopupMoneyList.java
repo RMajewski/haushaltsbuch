@@ -19,7 +19,8 @@
 
 package test.menus;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import javax.swing.JMenuItem;
 
@@ -27,13 +28,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import menus.PopupMoneyList;
-import menus.PopupStandardList;
 
 /**
  * Testet, ob das Popup-Menü für die Tabelle Einnahmen und Ausgaben richtig
  * initalisiert wird.
  * 
  * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.1
  *
  */
 public class TestPopupMoneyList {
@@ -52,7 +55,7 @@ public class TestPopupMoneyList {
 	}
 	
 	/**
-	 * Testet, ob Klase {@link menus.PopupMenuList} von der Klasse
+	 * Testet, ob Klase {@link menus.PopupMoneyList} von der Klasse
 	 * {@link menus.PopupStandardList} abgeleitet ist.
 	 */
 	@Test
@@ -62,6 +65,8 @@ public class TestPopupMoneyList {
 	
 	/**
 	 * Testet, ob es 5 Menü-Elemente gibt
+	 * 
+	 * @see menus.PopupMoneyList#PopupMoneyList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveFifeItems() {
@@ -70,6 +75,8 @@ public class TestPopupMoneyList {
 	
 	/**
 	 * Testet, ob es einen Eintrag "Details" gibt
+	 * 
+	 * @see menus.PopupMoneyList#PopupMoneyList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveDetailsItem() {
