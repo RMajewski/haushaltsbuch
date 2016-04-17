@@ -31,10 +31,12 @@ import db.DbController;
 import dialogs.DlgAbout;
 import dialogs.DlgLicense;
 import dialogs.DlgLogView;
+import dialogs.DlgReport;
 import elements.StatusBar;
 import menus.MainTop;
 import windows.internal.WndCategoryList;
 import windows.internal.WndMoneyList;
+import windows.internal.WndReports;
 import windows.internal.WndSectionList;
 
 /**
@@ -167,6 +169,21 @@ public class WndMain extends JFrame implements ActionListener {
 			// Log anzeigen
 			case MainTop.LOG_VIEW:
 				new DlgLogView(this);
+				break;
+				
+			// Wochenübersicht anzeigen
+			case MainTop.REPORT_WEEK:
+				newWindow(new WndReports(DlgReport.WEEK));
+				break;
+				
+			// Monatsübersicht anzeigen
+			case MainTop.REPORT_MONTH:
+				newWindow(new WndReports(DlgReport.MONTH));
+				break;
+				
+			// Jahresübersicht anzeigen
+			case MainTop.REPORT_YEAR:
+				newWindow(new WndReports(DlgReport.YEAR));
 				break;
 		}
 		
