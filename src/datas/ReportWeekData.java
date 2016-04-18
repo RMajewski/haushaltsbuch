@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.junit.BeforeClass;
+import javax.swing.table.TableColumnModel;
 
 import db.DbController;
 import elements.StatusBar;
@@ -159,5 +159,51 @@ public class ReportWeekData {
 		
 		// Ermittelte Spalten zurück geben
 		return ret;
+	}
+	
+	/**
+	 * Setzt die Spalten-Überschriften.
+	 * 
+	 * @param tcm Spalten-Modell der Tabelle
+	 */
+	public void setColumnHeader(TableColumnModel tcm) {
+		// Standard-Spalten
+		tcm.getColumn(0).setHeaderValue("Woche");
+		tcm.getColumn(1).setHeaderValue("Einnahmen");
+		tcm.getColumn(2).setHeaderValue("Ausgaben");
+		tcm.getColumn(3).setHeaderValue("Differenz");
+		
+		// Überprüfen ob die Kategorien ausgegeben werden sollen
+		try {
+			// Datenbankabfrage vorbereiten
+			Statement stm = DbController.getInstance().createStatement();
+			ResultSet rs;
+			int column = 4;
+			
+			// FIXME in seperate Methode packen und jeweils aufrufen
+			
+			// Sollen die Kategorien mit eingefügt werden?
+			if (_preferences.getPreference(DRAW_CATEGORIES) != null) {
+				rs = stm.executeQuery(
+						DbController.queries().category().sort("name"));
+				while (rs.next()) {
+					tcm.getColumn(column).setHeaderValue(rs.getString("name"));
+					column++;
+				}
+			}
+			
+			// Sollen die Geschäfte mit eingefügt werden?
+			if (_preferences.getPreference(DRAW_SECTIONS) != null) {
+				rs = stm.executeQuery(
+						DbController.queries().section().sort("name"));
+				while (rs.next()) {
+					tcm.getColumn(column).setHeaderValue(rs.getString("name"));
+					column++;
+				}
+			}
+		} catch (SQLException e) {
+			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+			e.getStackTrace();
+		}
 	}
 }

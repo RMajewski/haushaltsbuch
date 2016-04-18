@@ -147,10 +147,12 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 					setTitle("Monatsübersicht");
 					
 					// Tabellen-Model einstellen
-					_table.setModel(
-							new ReportWeekModel(
-									new ReportWeekData(_preference)));
+					ReportWeekData data = new ReportWeekData(_preference);
+					_table.setModel(new ReportWeekModel(data));
 					
+					// Spalten-Beschreibungen
+					data.setColumnHeader(_table.getColumnModel());
+										
 					break;
 					
 				case ReportPreferencesData.TYPE_MONTH:

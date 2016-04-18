@@ -20,11 +20,15 @@
 package test.datas;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.GregorianCalendar;
+
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import org.junit.After;
 import org.junit.Before;
@@ -270,5 +274,143 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 		
 		// Ermittelte Spalten überprüfen
 		assertEquals(4 + _categoryCount + _sectionCount, _data.getColumnCount());
+	}
+	
+	/**
+	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können.
+	 * 
+	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 */
+	@Test
+	public void testSetColumnHeader() {
+		// Model vorbereiten
+		TableColumnModel tcm = mock(TableColumnModel.class);
+		TableColumn tc = mock(TableColumn.class);
+		when(tcm.getColumn(0)).thenReturn(tc);
+		when(tcm.getColumn(1)).thenReturn(tc);
+		when(tcm.getColumn(2)).thenReturn(tc);
+		when(tcm.getColumn(3)).thenReturn(tc);
+		
+		// Header setzen
+		_data.setColumnHeader(tcm);
+		
+		// Überprüfen ob die richtigen Methoden aufgerufen wurden
+		verify(tcm).getColumn(0);
+		verify(tc).setHeaderValue("Woche");
+		verify(tcm).getColumn(1);
+		verify(tc).setHeaderValue("Einnahmen");
+		verify(tcm).getColumn(2);
+		verify(tc).setHeaderValue("Ausgaben");
+		verify(tcm).getColumn(3);
+		verify(tc).setHeaderValue("Differenz");
+	}
+	
+	/**
+	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
+	 * Standard-Spalten werden noch die Kategorien angezeigt.
+	 * 
+	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 */
+	@Test
+	public void testSetColumnHeaderWithCategory() {
+		// Einstellungen
+		_preferences.setPreference(ReportWeekData.DRAW_CATEGORIES, 1);
+		
+		// Model vorbereiten
+		TableColumnModel tcm = mock(TableColumnModel.class);
+		TableColumn tc = mock(TableColumn.class);
+		
+		for (int i = 0; i < _data.getColumnCount(); i++)
+			when(tcm.getColumn(i)).thenReturn(tc);
+		
+		// Header setzen
+		_data.setColumnHeader(tcm);
+		
+		// Überprüfen ob die richtigen Methoden aufgerufen wurden
+		verify(tcm).getColumn(0);
+		verify(tc).setHeaderValue("Woche");
+		verify(tcm).getColumn(1);
+		verify(tc).setHeaderValue("Einnahmen");
+		verify(tcm).getColumn(2);
+		verify(tc).setHeaderValue("Ausgaben");
+		verify(tcm).getColumn(3);
+		verify(tc).setHeaderValue("Differenz");
+		
+		for (int i = 4; i < _data.getColumnCount(); i++) {
+			verify(tcm).getColumn(i);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
+	 * Standard-Spalten werden noch die Geschäfte angezeigt.
+	 * 
+	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 */
+	@Test
+	public void testSetColumnHeaderWithSection() {
+		// Einstellungen
+		_preferences.setPreference(ReportWeekData.DRAW_SECTIONS, 1);
+		
+		// Model vorbereiten
+		TableColumnModel tcm = mock(TableColumnModel.class);
+		TableColumn tc = mock(TableColumn.class);
+		
+		for (int i = 0; i < _data.getColumnCount(); i++)
+			when(tcm.getColumn(i)).thenReturn(tc);
+		
+		// Header setzen
+		_data.setColumnHeader(tcm);
+		
+		// Überprüfen ob die richtigen Methoden aufgerufen wurden
+		verify(tcm).getColumn(0);
+		verify(tc).setHeaderValue("Woche");
+		verify(tcm).getColumn(1);
+		verify(tc).setHeaderValue("Einnahmen");
+		verify(tcm).getColumn(2);
+		verify(tc).setHeaderValue("Ausgaben");
+		verify(tcm).getColumn(3);
+		verify(tc).setHeaderValue("Differenz");
+		
+		for (int i = 4; i < _data.getColumnCount(); i++) {
+			verify(tcm).getColumn(i);
+		}
+	}
+	
+	/**
+	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
+	 * Standard-Spalten werden noch die Kategorien und die Geschäfte angezeigt.
+	 * 
+	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 */
+	@Test
+	public void testSetColumnHeaderWithCategoryAndSections() {
+		// Einstellungen
+		_preferences.setPreference(ReportWeekData.DRAW_CATEGORIES, 1);
+		_preferences.setPreference(ReportWeekData.DRAW_SECTIONS, 1);
+		
+		// Model vorbereiten
+		TableColumnModel tcm = mock(TableColumnModel.class);
+		TableColumn tc = mock(TableColumn.class);
+		
+		for (int i = 0; i < _data.getColumnCount(); i++)
+			when(tcm.getColumn(i)).thenReturn(tc);
+		
+		// Header setzen
+		_data.setColumnHeader(tcm);
+		
+		// Überprüfen ob die richtigen Methoden aufgerufen wurden
+		verify(tcm).getColumn(0);
+		verify(tc).setHeaderValue("Woche");
+		verify(tcm).getColumn(1);
+		verify(tc).setHeaderValue("Einnahmen");
+		verify(tcm).getColumn(2);
+		verify(tc).setHeaderValue("Ausgaben");
+		verify(tcm).getColumn(3);
+		verify(tc).setHeaderValue("Differenz");
+		
+		for (int i = 4; i < _data.getColumnCount(); i++) {
+			verify(tcm).getColumn(i);
+		}
 	}
 }
