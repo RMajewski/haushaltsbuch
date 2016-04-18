@@ -19,7 +19,17 @@
 
 package windows.internal;
 
+import datas.ReportData;
 import dialogs.DlgReport;
+import elements.ReportGraphic;
+
+import javax.swing.JLayeredPane;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTable;
 
 /**
  * Zeigt die einzelnen Reports an.
@@ -34,6 +44,16 @@ public class WndReports extends WndInternalFrame {
 	private static final long serialVersionUID = -8914036564878348162L;
 	
 	/**
+	 * Speichert die Tabelle
+	 */
+	private JTable _table;
+	
+	/**
+	 * Speichert die Grafische Darstellung
+	 */
+	private ReportGraphic _report;
+	
+	/**
 	 * Initalisiert das Fenster
 	 * 
 	 * @param report Welcher Report soll erstellt werden?
@@ -42,13 +62,46 @@ public class WndReports extends WndInternalFrame {
 		// Klasse initalisieren
 		super();
 		
-		// Titel setzen
-		setTitle("Monatsübersicht");
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
-		// Fenster anzeigen
-		setVisible(true);
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("Tabellenansicht", null, panel, null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		
+		_table = new JTable();
+		scrollPane.add(_table);
+		panel.add(scrollPane);
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Grafische Ansicht", null, panel_1, null);
+		
+		_report = new ReportGraphic();
+		panel_1.add(_report);
 		
 		// Einstellungen aufrufen
-		new DlgReport(report);
+		DlgReport dlg = new DlgReport(report);
+		ReportData data = dlg.getData();
+		
+		// Überprüfen ob ob der Report angezeigt werden soll
+		if (data.getFinished() == DlgReport.CREATE) {
+			// Namen einstellen
+			switch (data.getType()) {
+				case ReportData.TYPE_MONTH:
+					setTitle("Monatsübersicht");
+					break;
+					
+				case ReportData.TYPE_WEEK:
+					setTitle("Wocheübersicht");
+					break;
+					
+				case ReportData.TYPE_YEAR:
+					setTitle("Jahresübersicht");
+			}
+			
+			// Dialog anzeigen
+			setVisible(true);
+		}
 	}
 }

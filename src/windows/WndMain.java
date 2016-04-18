@@ -27,6 +27,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
+import datas.ReportData;
 import db.DbController;
 import dialogs.DlgAbout;
 import dialogs.DlgLicense;
@@ -173,17 +174,17 @@ public class WndMain extends JFrame implements ActionListener {
 				
 			// Wochenübersicht anzeigen
 			case MainTop.REPORT_WEEK:
-				newWindow(new WndReports(DlgReport.WEEK));
+				newWindow(new WndReports(ReportData.TYPE_WEEK));
 				break;
 				
 			// Monatsübersicht anzeigen
 			case MainTop.REPORT_MONTH:
-				newWindow(new WndReports(DlgReport.MONTH));
+				newWindow(new WndReports(ReportData.TYPE_MONTH));
 				break;
 				
 			// Jahresübersicht anzeigen
 			case MainTop.REPORT_YEAR:
-				newWindow(new WndReports(DlgReport.YEAR));
+				newWindow(new WndReports(ReportData.TYPE_YEAR));
 				break;
 		}
 		
