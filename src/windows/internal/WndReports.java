@@ -19,29 +19,47 @@
 
 package windows.internal;
 
-import datas.ReportData;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+
+import datas.ReportPreferencesData;
+import datas.ReportWeekData;
 import dialogs.DlgReport;
 import elements.ReportGraphic;
-
-import javax.swing.JLayeredPane;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTable;
+import tables.models.ReportWeekModel;
 
 /**
  * Zeigt die einzelnen Reports an.
  * 
  * @author René Majewski
  */
-public class WndReports extends WndInternalFrame {
+public class WndReports extends WndInternalFrame implements ActionListener {
 
 	/**
 	 * Serial ID
 	 */
 	private static final long serialVersionUID = -8914036564878348162L;
+	
+	/**
+	 * ActionCommand für die Einstellungen
+	 */
+	public static final String SETS = "WndReportsSets";
+	
+	/**
+	 * ActionCommand zum Beenden des Fensters
+	 */
+	public static final String CANCEL = "WndReportsCancel";
 	
 	/**
 	 * Speichert die Tabelle
@@ -54,6 +72,11 @@ public class WndReports extends WndInternalFrame {
 	private ReportGraphic _report;
 	
 	/**
+	 * Einstellungen für die Erzeugung des Reports
+	 */
+	private ReportPreferencesData _preference;
+	
+	/**
 	 * Initalisiert das Fenster
 	 * 
 	 * @param report Welcher Report soll erstellt werden?
@@ -62,17 +85,22 @@ public class WndReports extends WndInternalFrame {
 		// Klasse initalisieren
 		super();
 		
+		// Größe einstellen
+		setSize(1000, 700);
+		
+		// Einstellungen erzeugen
+		_preference = new ReportPreferencesData(report, 0, 0, 0);
+		
+		// Design
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Tabellenansicht", null, panel, null);
-		
-		JScrollPane scrollPane = new JScrollPane();
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		_table = new JTable();
-		scrollPane.add(_table);
-		panel.add(scrollPane);
+		panel.add(new JScrollPane(_table));
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Grafische Ansicht", null, panel_1, null);
@@ -80,28 +108,75 @@ public class WndReports extends WndInternalFrame {
 		_report = new ReportGraphic();
 		panel_1.add(_report);
 		
+		JPanel buttons = new JPanel();
+		getContentPane().add(buttons, BorderLayout.SOUTH);
+		buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
+		
+		JButton btnSet = new JButton("Einstellungen");
+		btnSet.setMnemonic('E');
+		btnSet.addActionListener(this);
+		btnSet.setActionCommand(SETS);
+		buttons.add(btnSet);
+		
+		Component horizontalGlue = Box.createHorizontalGlue();
+		buttons.add(horizontalGlue);
+		
+		JButton btnCancel = new JButton("Abbrechen");
+		btnCancel.setMnemonic('A');
+		btnCancel.addActionListener(this);
+		btnCancel.setActionCommand(CANCEL);
+		buttons.add(btnCancel);
+		
 		// Einstellungen aufrufen
-		DlgReport dlg = new DlgReport(report);
-		ReportData data = dlg.getData();
+		createDlgReport();
+	}
+	
+	/**
+	 * Ermittelt die Einstellungen
+	 */
+	public void createDlgReport() {
+		// Einstellungen aufrufen
+		DlgReport dlg = new DlgReport(_preference.getType());
+		_preference = dlg.getData();
 		
 		// Überprüfen ob ob der Report angezeigt werden soll
-		if (data.getFinished() == DlgReport.CREATE) {
+		if (_preference.getFinished() == DlgReport.CREATE) {
 			// Namen einstellen
-			switch (data.getType()) {
-				case ReportData.TYPE_MONTH:
+			switch (_preference.getType()) {
+				case ReportPreferencesData.TYPE_WEEK:
 					setTitle("Monatsübersicht");
+					
+					// Tabellen-Model einstellen
+					_table.setModel(
+							new ReportWeekModel(
+									new ReportWeekData(_preference)));
+					
 					break;
 					
-				case ReportData.TYPE_WEEK:
+				case ReportPreferencesData.TYPE_MONTH:
 					setTitle("Wocheübersicht");
 					break;
 					
-				case ReportData.TYPE_YEAR:
+				case ReportPreferencesData.TYPE_YEAR:
 					setTitle("Jahresübersicht");
 			}
 			
 			// Dialog anzeigen
 			setVisible(true);
 		}
+	}
+
+	/**
+	 * Reagiert auf die einzelnen Buttons.
+	 * 
+	 * @param ae Daten dieses Events
+	 */
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		// Welcher Button wurde geddrückt?
+		if (ae.getActionCommand().equals(CANCEL)) {
+			setVisible(false);
+		} else if (ae.getActionCommand().equals(SETS))
+			createDlgReport();
 	}
 }

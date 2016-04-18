@@ -19,6 +19,9 @@
 
 package datas;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * In dieser Klasse werden die einzelnen Einstellungen zur Report-Erstellung
  * gespeichert.
@@ -28,7 +31,7 @@ package datas;
  * @version 0.1
  * @since 1.0
  */
-public class ReportData {
+public class ReportPreferencesData {
 	/**
 	 * Wochenübersicht soll erstellt werden.
 	 */
@@ -63,6 +66,11 @@ public class ReportData {
 	 * Speichert den Report-Type
 	 */
 	private int _type;
+	
+	/**
+	 * Speichert die einzelnen Einstellungen
+	 */
+	private Map<String, Object> _preferences;
 
 	/**
 	 * Initalisiert dies Daten.
@@ -75,11 +83,12 @@ public class ReportData {
 	 * 
 	 * @param type Report-Typ
 	 */
-	public ReportData(int type, int finished, int month, int year) {
+	public ReportPreferencesData(int type, int finished, int month, int year) {
 		_finished = finished;
 		_month = month;
 		_year = year;
 		_type = type;
+		_preferences = new HashMap<String, Object>();
 	}
 	
 	/**
@@ -152,5 +161,39 @@ public class ReportData {
 	 */
 	public void setType(int type) {
 		_type = type;
+	}
+	
+	/**
+	 * Fügt einen neue Einstellung ein.
+	 * 
+	 * @param key Name der Einstellung
+	 * 
+	 * @param preference Einstellung, die gespeichert werden soll.
+	 */
+	public void setPreference(String key, Object preference) {
+		if ((key != null) && !key.isEmpty() && (preference != null))
+			_preferences.put(key, preference);
+	}
+	
+	/**
+	 * Liest die angegebene Einstellung aus und gibt diese zurück.
+	 * 
+	 * @param key Name der Einstellung, die ermittelt werden soll
+	 * 
+	 * @return Ausgelesene Einstellung
+	 */
+	public Object getPreference(String key) {
+		if (key == null || key.isEmpty())
+			return null;
+		return _preferences.get(key);
+	}
+	
+	/**
+	 * Gibt die Anzahl gespeicherter Einstellungen zurück.
+	 * 
+	 * @return Anzahl gespeicherter Einstellungen
+	 */
+	public int getPreferenceCount() {
+		return _preferences.size();
 	}
 }

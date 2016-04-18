@@ -36,7 +36,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import datas.ReportData;
+import datas.ReportPreferencesData;
 
 /**
  * Zeigt den Dialog an, um die Einstellungen für die Reports vorzunehmen.
@@ -83,7 +83,7 @@ public class DlgReport extends JDialog implements ActionListener {
 	/**
 	 * Speichert die Einstellungen
 	 */
-	private ReportData _data;
+	private ReportPreferencesData _data;
 	
 	/**
 	 * Initalisiert das Report-Fenster
@@ -95,7 +95,7 @@ public class DlgReport extends JDialog implements ActionListener {
 		super();
 		
 		// Daten initalisieren
-		_data = new ReportData(report, 0, 0, 0);
+		_data = new ReportPreferencesData(report, 0, 0, 0);
 		
 		// setTitle
 		setTitle("Einstellungen um Report zu erzeugen");
@@ -218,7 +218,7 @@ public class DlgReport extends JDialog implements ActionListener {
 	 * 
 	 * return Gemachte Einstellungen
 	 */
-	public ReportData getData() {
+	public ReportPreferencesData getData() {
 		return _data;
 	}
 }

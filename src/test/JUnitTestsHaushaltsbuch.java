@@ -40,7 +40,8 @@ import org.junit.runners.Suite;
 	test.datas.TestIdNameData.class,
 	test.datas.TestMoneyData.class,
 	test.datas.TestMoneyDetailsData.class,
-	test.datas.TestReportData.class,
+	test.datas.TestReportPreferenceData.class,
+	test.datas.TestReportWeekData.class,
 	
 	test.db.query.TestQueryInterface.class,
 	test.db.query.TestQuery.class,
