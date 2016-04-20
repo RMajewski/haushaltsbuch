@@ -76,6 +76,11 @@ public class WndMain extends JFrame implements ActionListener {
 		// Name des Hauptfensters
 		super(TITLE);
 		
+		// Übeprüfen ob im Debug-Modus gestartet wurde
+		if (System.getProperty("debugging") != null) {
+			setTitle(TITLE + " (Debug)");
+		}
+		
 		// Fenster beim Beenden schließen
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
