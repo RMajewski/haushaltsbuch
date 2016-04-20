@@ -83,17 +83,62 @@ public class ReportWeekModel extends AbstractTableModel {
 			case 0:
 				return _data.getWeekNumber(row);
 				
-			// Einnahmen
+			// 2. Spalte
 			case 1:
+				// 'von' aus gewählt
+				if (_data.drawDateFrom())
+					return _data.getDateFrom(row);
+				// 'bis' ausgewählt, aber 'von' nicht
+				if (!_data.drawDateFrom() && _data.drawDateTo())
+					return _data.getDateTo(row);
+				
+				// 'von' und 'bis' nicht ausgewählt
 				return _data.incoming(row);
 				
-			// Ausgaben
+			// 3. Spalte
 			case 2:
+				// 'bis' ausgewählt und 'von' ausgewählt
+				if (_data.drawDateTo() && _data.drawDateFrom())
+					return _data.getDateTo(row);
+				
+				if (_data.drawDateFrom() || _data.drawDateTo())
+					return _data.incoming(row);
+				
+				// 'von' und 'bis' nicht ausgewählt
 				return _data.outgoing(row);
 				
-			// Differenz
+			// 4. Spalte
 			case 3:
+				// 'von' und 'bis' ausgewählt
+				if (_data.drawDateFrom() && _data.drawDateTo())
+					return _data.incoming(row);
+				
+				// 'von' oder 'bis' ausgewählt
+				if (_data.drawDateFrom() || _data.drawDateTo())
+					return _data.outgoing(row);
+				
+				// 'von' und 'bis' nicht ausgewählt
 				return _data.deviation(row);
+				
+			// 5. Spalte
+			case 4:
+				// 'von' und 'bis' ausgewählt
+				if (_data.drawDateFrom() && _data.drawDateTo())
+					return _data.outgoing(row);
+				
+				// 'von' oder 'bis' ausgewählt
+				if (_data.drawDateFrom() || _data.drawDateTo())
+					return _data.deviation(row);
+				
+				return null;
+				
+			// 6. Spalte
+			case 5:
+				// 'von' und 'bis' ausgewählt
+				if (_data.drawDateFrom() && _data.drawDateTo())
+					return _data.deviation(row);
+				
+				return null;
 		}
 		
 		// Standard Rückgabe

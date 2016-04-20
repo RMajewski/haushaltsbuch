@@ -19,9 +19,11 @@
 
 package datas;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -116,7 +118,7 @@ public class ReportWeekData {
 		List<Double> ret = new ArrayList<Double>();
 		
 		// Liste neu aufbauen
-		for (int i = 0; i < _weekCount; i++) {
+		for (int i = 0; i <= _weekCount; i++) {
 			ret.add(Double.valueOf(0));
 		}
 		
@@ -162,25 +164,25 @@ public class ReportWeekData {
 		// Anzahl der Wochen ermitteln
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.set(GregorianCalendar.YEAR, _preferences.getYear());
-		_weekCount = gc.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR);
+		_weekCount = gc.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR) + 1;
 		
 		// Listen für die Einnahmen und die Ausgaben initalisieren
 		_in = initDoubleList();
 		_out = initDoubleList();
 		
 		// Schleife über alle Wochen
-		for (int i = 1; i <= _weekCount; i++) {
+		for (int i = 0; i <= _weekCount; i++) {
 			// Wochennummern
 			_weeks.add(String.valueOf(i));
 			
 			// Einnahmen für die Woche
 			gc.set(GregorianCalendar.WEEK_OF_YEAR, i);
-			gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+			gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
 			gc.set(GregorianCalendar.HOUR, 0);
 			gc.set(GregorianCalendar.MINUTE, 0);
 			gc.set(GregorianCalendar.SECOND, 0);
 			long from = gc.getTimeInMillis();
-			gc.set(GregorianCalendar.DAY_OF_WEEK, 7);
+			gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
 			gc.set(GregorianCalendar.HOUR, 23);
 			gc.set(GregorianCalendar.MINUTE, 59);
 			gc.set(GregorianCalendar.SECOND, 59);
@@ -197,7 +199,6 @@ public class ReportWeekData {
 					d += rs.getDouble(1);
 					rs.close();
 				}
-				System.out.println(d);
 				if (d > 0)
 					_in.set(i - 1, d);
 				rsw.close();
@@ -350,5 +351,80 @@ public class ReportWeekData {
 	 */
 	public double deviation(int week) {
 		return incoming(week) - outgoing(week);
+	}
+	
+	/**
+	 * Gibt Zurück, ob Spalte 'von' angezeigt werden soll oder nicht.
+	 * 
+	 * @return Soll Spalte 'von' angezeigt werden?
+	 */
+	public boolean drawDateFrom() {
+		if ((_preferences.getPreference(DRAW_DATE_FROM) == null) ||
+				((int)_preferences.getPreference(DRAW_DATE_FROM) == 0))
+			return false;
+		
+		return true;
+	}
+	
+	/**
+	 * Gibt zurück, ob die Spalte 'bis' angezeigt werden soll oder nicht.
+	 * 
+	 * @return Soll Spalte 'bis' angezeigt werden?
+	 */
+	public boolean drawDateTo() {
+		if ((_preferences.getPreference(DRAW_DATE_TO) == null) ||
+				((int)_preferences.getPreference(DRAW_DATE_TO) == 0))
+			return false;
+		
+		return true;
+	}
+	
+	/**
+	 * Ermittelt für die angegebene Woche das Datum des ersten Wochentages und
+	 * gibt dies als lesbare Zeichenkette zurück.
+	 * 
+	 * @param week Woche, von der der 1. Wochentag ermittelt werden soll.
+	 * 
+	 * @return 1. Wochentag der angegeben Woche.
+	 */
+	public String getDateFrom(int week) {
+		if (week > -1) {
+			GregorianCalendar gc = new GregorianCalendar();
+			gc.set(GregorianCalendar.YEAR, _preferences.getYear());
+			if (week == 0) {
+				gc.set(GregorianCalendar.MONTH, GregorianCalendar.JANUARY);
+				gc.set(GregorianCalendar.DAY_OF_MONTH, 1);
+			} else {
+				gc.set(GregorianCalendar.WEEK_OF_YEAR, week);
+				gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
+			}
+
+			return DateFormat.getDateInstance(DateFormat.MEDIUM).format(
+					new Date(gc.getTimeInMillis()));
+		}
+		
+		return new String();
+	}
+	
+	/**
+	 * Ermittelt für die angegebene Woche das Datum des letzten Wochentages und
+	 * gibt dies als lesbare Zeichenkette zurück.
+	 * 
+	 * @param week Woche, von der der letzte Wochentag ermittelt werden soll.
+	 * 
+	 * @return Letzer Wochentag der angegeben Woche.
+	 */
+	public String getDateTo(int week) {
+		if (week > -1) {
+			GregorianCalendar gc = new GregorianCalendar();
+			gc.set(GregorianCalendar.YEAR, _preferences.getYear());
+			gc.set(GregorianCalendar.WEEK_OF_YEAR, week);
+			gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+
+			return DateFormat.getDateInstance(DateFormat.MEDIUM).format(
+					new Date(gc.getTimeInMillis()));
+		}
+		
+		return new String();
 	}
 }

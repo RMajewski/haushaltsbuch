@@ -19,12 +19,14 @@
 
 package test.datas;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.util.GregorianCalendar;
 
 import javax.swing.table.TableColumn;
@@ -222,7 +224,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	public void testGetWeekNumbersFor2016() {
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.set(GregorianCalendar.YEAR, _year);
-		assertEquals(calendar.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR),
+		assertEquals(calendar.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR) + 1,
 				_data.getWeekCount());
 	}
 	
@@ -238,7 +240,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 		_preferences.setYear(_year);
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.set(GregorianCalendar.YEAR, _year);
-		assertEquals(calendar.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR),
+		assertEquals(calendar.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR) + 1,
 				_data.getWeekCount());
 	}
 	
@@ -249,8 +251,8 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void testGetWeekNumber() {
-		for (int i = 0; i < _data.getWeekCount(); i++)
-			assertEquals(String.valueOf(i + 1), _data.getWeekNumber(i));
+		for (int i = 0; i <= _data.getWeekCount(); i++)
+			assertEquals(String.valueOf(i), _data.getWeekNumber(i));
 	}
 
 	/**
@@ -697,5 +699,183 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	@Test
 	public void testDeviationWeekOne() {
 		assertEquals(_in - _out, _data.deviation(0), 0.01);
+	}
+	
+	/**
+	 * Überprüft, dass die Spalte 'von' angezeigt werden soll, wenn dies in den
+	 * Einstellungen angegeben ist.
+	 * 
+	 * @see datas.ReportWeekData#drawDateFrom()
+	 */
+	@Test
+	public void testDrawDateFromReturnIsTrueWithOneInPreferences() {
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_FROM, 1);
+		assertTrue(_data.drawDateFrom());
+	}
+	
+	/**
+	 * Überprüft, dass die Spalte 'von' nicht angezeigt werden soll, wenn es 
+	 * keine Angabe in den Einstellungen gibt.
+	 * 
+	 * @see datas.ReportWeekData#drawDateFrom()
+	 */
+	@Test
+	public void TestDrawDateFromReturnIsFalse() {
+		assertFalse(_data.drawDateFrom());
+	}
+	
+	/**
+	 * Überprüft, dass die Spalte 'von' nicht angezeigt werden soll, wenn in den
+	 * Einstellungen eine 0 vermerkt ist.
+	 * 
+	 * @see datas.ReportWeekData#drawDateFrom()
+	 */
+	@Test
+	public void TestDrawDateFromReturnIsFalseWithZeroInPreferences() {
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_FROM, 0);
+		assertFalse(_data.drawDateFrom());
+	}
+	
+	/**
+	 * Überprüft, dass die Spalte 'bis' angezeigt werden soll, wenn dies in den
+	 * Einstellungen angegeben ist.
+	 * 
+	 * @see datas.ReportWeekData#drawDateTo()
+	 */
+	@Test
+	public void testDrawDateToReturnIsTrueWithOneInPreferences() {
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_TO, 1);
+		assertTrue(_data.drawDateTo());
+	}
+	
+	/**
+	 * Überprüft, dass die Spalte 'bis' nicht angezeigt werden soll, wenn es 
+	 * keine Angabe in den Einstellungen gibt.
+	 * 
+	 * @see datas.ReportWeekData#drawDateTo()
+	 */
+	@Test
+	public void TestDrawDateToReturnIsFalse() {
+		assertFalse(_data.drawDateTo());
+	}
+	
+	/**
+	 * Überprüft, dass die Spalte 'bis' nicht angezeigt werden soll, wenn in den
+	 * Einstellungen eine 0 vermerkt ist.
+	 * 
+	 * @see datas.ReportWeekData#drawDateTo()
+	 */
+	@Test
+	public void TestDrawDateToReturnIsFalseWithZeroInPreferences() {
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_TO, 0);
+		assertFalse(_data.drawDateTo());
+	}
+	
+	/**
+	 * Überprüft, ob der 1. Wochentag nicht <b>null</b> ist.
+	 * 
+	 * @see datas.ReportWeekData#getDateFrom(int)
+	 */
+	@Test
+	public void TestGetDateFromReturnNotNull() {
+		assertNotNull(_data.getDateFrom(1));
+	}
+	
+	/**
+	 * Überprüft, ob der 1. Wochentag keine leere Zeichenkette ist.
+	 * 
+	 * @see datas.ReportWeekData#getDateFrom(int)
+	 */
+	@Test
+	public void TestGetDateFromReturnNotEmpty() {
+		assertFalse(_data.getDateFrom(1).isEmpty());
+	}
+	
+	/**
+	 * Überprüft, ob eine leere Zeichenkette zurück gegeben wird, wenn die Woche
+	 * kleiner 0 ist.
+	 * 
+	 * @see datas.ReportWeekData#getDateFrom(int)
+	 */
+	@Test
+	public void TestGetDateFromReturnIsEmptyWithMinusOneAsParameter() {
+		assertTrue(_data.getDateFrom(-1).isEmpty());
+	}
+	
+	/**
+	 * Überprüft, ob der 1. Wochentag richtig zurück gegeben wird.
+	 * 
+	 * @see datas.ReportWeekData#getDateFrom(int)
+	 */
+	@Test
+	public void TestGetDateFromReturnIsRight() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(GregorianCalendar.YEAR, _year);
+		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
+		assertEquals(DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(gc.getTimeInMillis())),
+				_data.getDateFrom(1));
+	}
+	
+	/**
+	 * Überprüftb, ob der 1. Tag in 2016 als 1. Tag in der 0. Woche zurück
+	 * gegeben wird.
+	 * 
+	 * @see datas.ReportWeekData#getDareFrom(int)
+	 */
+	@Test
+	public void TestGetDateFromWithZoroAsParameterReturnTheFirstDayIn2016() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(GregorianCalendar.YEAR, _year);
+		gc.set(GregorianCalendar.MONTH, GregorianCalendar.JANUARY);
+		gc.set(GregorianCalendar.DAY_OF_MONTH, 1);
+		assertEquals(DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(gc.getTimeInMillis())),
+				_data.getDateFrom(0));
+	}
+	
+	/**
+	 * Überprüft, ob der letzte Wochentag nicht <b>null</b> ist.
+	 * 
+	 * @see datas.ReportWeekData#getDateTo(int)
+	 */
+	@Test
+	public void TestGetDateToReturnNotNull() {
+		assertNotNull(_data.getDateTo(1));
+	}
+	
+	/**
+	 * Überprüft, ob der letzte Wochentag keine leere Zeichenkette ist.
+	 * 
+	 * @see datas.ReportWeekData#getDateTo(int)
+	 */
+	@Test
+	public void TestGetDateToReturnNotEmpty() {
+		assertFalse(_data.getDateTo(1).isEmpty());
+	}
+	
+	/**
+	 * Überprüft, ob eine leere Zeichenkette zurück gegeben wird, wenn die Woche
+	 * kleiner 0 ist.
+	 * 
+	 * @see datas.ReportWeekData#getDateTo(int)
+	 */
+	@Test
+	public void TestGetDateToReturnIsEmptyWithMinusOneAsParameter() {
+		assertTrue(_data.getDateFrom(-1).isEmpty());
+	}
+	
+	/**
+	 * Überprüft, ob der letzte Wochentag richtig zurück gegeben wird.
+	 * 
+	 * @see datas.ReportWeekData#getDateTo(int)
+	 */
+	@Test
+	public void TestGetDateToReturnIsRight() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(GregorianCalendar.YEAR, _year);
+		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+		assertEquals(DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(gc.getTimeInMillis())),
+				_data.getDateTo(1));
 	}
 }
