@@ -29,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -37,6 +38,10 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import datas.ReportPreferencesData;
+import datas.ReportWeekData;
+
+import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
 
 /**
  * Zeigt den Dialog an, um die Einstellungen für die Reports vorzunehmen.
@@ -81,6 +86,41 @@ public class DlgReport extends JDialog implements ActionListener {
 	private JComboBox<Integer> _cbYear;
 	
 	/**
+	 * Speichert den RadioButton zur Auswahl der Wochenübersicht
+	 */
+	private JRadioButton _rbWeek;
+	
+	/**
+	 * Speichert den RadioButton zur Auswahl der Monatsübersicht
+	 */
+	private JRadioButton _rbMonth;
+	
+	/**
+	 * Speichert den RadioButton zur Auswahl der Jahresübersicht
+	 */
+	private JRadioButton _rbYear;
+	
+	/**
+	 * Speichert die CheckBox für Wochenübersicht -> von
+	 */
+	private JCheckBox _cbWeekDateFrom;
+	
+	/**
+	 * Speichert die Checkbox für Wochenübersicht -> bis
+	 */
+	private JCheckBox _cbWeekDateTo;
+	
+	/**
+	 * Speichert die Checkbox für Wochenübersicht -> Kategorien
+	 */
+	private JCheckBox _cbWeekCategories;
+	
+	/**
+	 * Speichert die Checkbox für Wochenüberischt -> Geschäfte
+	 */
+	private JCheckBox _cbWeekSections;
+	
+	/**
 	 * Speichert die Einstellungen
 	 */
 	private ReportPreferencesData _data;
@@ -88,14 +128,14 @@ public class DlgReport extends JDialog implements ActionListener {
 	/**
 	 * Initalisiert das Report-Fenster
 	 * 
-	 * @param report Welcher Report soll voreingestellt sein?
+	 * @param preferences Einstellungen für die Reports
 	 */
-	public DlgReport(int report) {
+	public DlgReport(ReportPreferencesData preferences) {
 		// Klasse initalisieren
 		super();
 		
 		// Daten initalisieren
-		_data = new ReportPreferencesData(report, 0, 0, 0);
+		_data = preferences;
 		
 		// setTitle
 		setTitle("Einstellungen um Report zu erzeugen");
@@ -110,59 +150,160 @@ public class DlgReport extends JDialog implements ActionListener {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Kalender", null, panel, null);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
+		JPanel panMain = new JPanel();
+		tabbedPane.addTab("Kalender", null, panMain, null);
+		tabbedPane.setEnabledAt(0, true);
+		GridBagLayout gbl_panMain = new GridBagLayout();
+		gbl_panMain.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_panMain.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_panMain.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panMain.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panMain.setLayout(gbl_panMain);
+		
+		JLabel lblReport = new JLabel("Report");
+		GridBagConstraints gbc_lblReport = new GridBagConstraints();
+		gbc_lblReport.insets = new Insets(0, 0, 5, 5);
+		gbc_lblReport.gridx = 1;
+		gbc_lblReport.gridy = 1;
+		panMain.add(lblReport, gbc_lblReport);
+		
+		JPanel panReport = new JPanel();
+		GridBagConstraints gbc_panReport = new GridBagConstraints();
+		gbc_panReport.insets = new Insets(0, 0, 5, 0);
+		gbc_panReport.fill = GridBagConstraints.BOTH;
+		gbc_panReport.gridx = 3;
+		gbc_panReport.gridy = 1;
+		panMain.add(panReport, gbc_panReport);
+		panReport.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		_rbWeek = new JRadioButton("Wochenübersicht");
+		panReport.add(_rbWeek);
+		
+		_rbMonth = new JRadioButton("Monatsübersicht");
+		panReport.add(_rbMonth);
+		
+		_rbYear = new JRadioButton("Jahresübersicht");
+		panReport.add(_rbYear);
+		
+		ButtonGroup g = new ButtonGroup();
+		g.add(_rbWeek);
+		g.add(_rbMonth);
+		g.add(_rbYear);
 		
 		JLabel lblMonth = new JLabel("Monat");
 		GridBagConstraints gbc_lblMonth = new GridBagConstraints();
 		gbc_lblMonth.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMonth.gridx = 1;
-		gbc_lblMonth.gridy = 2;
-		panel.add(lblMonth, gbc_lblMonth);
+		gbc_lblMonth.gridy = 3;
+		panMain.add(lblMonth, gbc_lblMonth);
 		
 		_cbMonth = new JComboBox<String>();
 		GridBagConstraints gbc_month = new GridBagConstraints();
 		gbc_month.insets = new Insets(0, 0, 5, 0);
 		gbc_month.fill = GridBagConstraints.HORIZONTAL;
 		gbc_month.gridx = 3;
-		gbc_month.gridy = 2;
-		panel.add(_cbMonth, gbc_month);
+		gbc_month.gridy = 3;
+		panMain.add(_cbMonth, gbc_month);
 		
 		JLabel lblYear = new JLabel("Jahr");
 		GridBagConstraints gbc_lblYear = new GridBagConstraints();
 		gbc_lblYear.insets = new Insets(0, 0, 0, 5);
 		gbc_lblYear.gridx = 1;
-		gbc_lblYear.gridy = 4;
-		panel.add(lblYear, gbc_lblYear);
+		gbc_lblYear.gridy = 5;
+		panMain.add(lblYear, gbc_lblYear);
 		
 		_cbYear = new JComboBox<Integer>();
 		GridBagConstraints gbc_cbYear = new GridBagConstraints();
 		gbc_cbYear.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cbYear.gridx = 3;
-		gbc_cbYear.gridy = 4;
-		panel.add(_cbYear, gbc_cbYear);
+		gbc_cbYear.gridy = 5;
+		panMain.add(_cbYear, gbc_cbYear);
 		
-		JPanel calendar = new JPanel();
-		getContentPane().add(calendar, BorderLayout.SOUTH);
-		calendar.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel panButtons = new JPanel();
+		getContentPane().add(panButtons, BorderLayout.SOUTH);
+		panButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnCreate = new JButton("Report erstellen");
 		btnCreate.setMnemonic('R');
 		btnCreate.setActionCommand(BTN_CREATE);
 		btnCreate.addActionListener(this);
-		calendar.add(btnCreate);
+		panButtons.add(btnCreate);
 		
 		JButton btnCancel = new JButton("Abbrechen");
 		btnCancel.setMnemonic('A');
 		btnCancel.setActionCommand(BTN_CANCEL);
 		btnCancel.addActionListener(this);
-		calendar.add(btnCancel);
+		panButtons.add(btnCancel);
+		
+		JPanel panMonth = new JPanel();
+		tabbedPane.addTab("Monatsübersicht", null, panMonth, null);
+		tabbedPane.setEnabledAt(1, true);
+		GridBagLayout gbl_panMonth = new GridBagLayout();
+		gbl_panMonth.columnWidths = new int[] {4, 0, 4, 0, 3};
+		gbl_panMonth.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 10};
+		gbl_panMonth.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panMonth.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panMonth.setLayout(gbl_panMonth);
+		
+		JLabel lblSpalten = new JLabel("Spalten");
+		GridBagConstraints gbc_lblSpalten = new GridBagConstraints();
+		gbc_lblSpalten.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSpalten.gridx = 1;
+		gbc_lblSpalten.gridy = 1;
+		panMonth.add(lblSpalten, gbc_lblSpalten);
+		
+		_cbWeekDateFrom = new JCheckBox("von");
+		GridBagConstraints gbc_cbFrom = new GridBagConstraints();
+		gbc_cbFrom.anchor = GridBagConstraints.WEST;
+		gbc_cbFrom.insets = new Insets(0, 0, 5, 0);
+		gbc_cbFrom.gridx = 3;
+		gbc_cbFrom.gridy = 1;
+		panMonth.add(_cbWeekDateFrom, gbc_cbFrom);
+		
+		_cbWeekDateTo = new JCheckBox("bis");
+		GridBagConstraints gbc_cbTo = new GridBagConstraints();
+		gbc_cbTo.anchor = GridBagConstraints.WEST;
+		gbc_cbTo.insets = new Insets(0, 0, 5, 0);
+		gbc_cbTo.gridx = 3;
+		gbc_cbTo.gridy = 2;
+		panMonth.add(_cbWeekDateTo, gbc_cbTo);
+		
+		JLabel lblWochen = new JLabel("Wochen");
+		GridBagConstraints gbc_lblWochen = new GridBagConstraints();
+		gbc_lblWochen.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWochen.gridx = 1;
+		gbc_lblWochen.gridy = 2;
+		panMonth.add(lblWochen, gbc_lblWochen);
+		
+		JPanel panel = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 1;
+		gbc_panel.gridy = 3;
+		panMonth.add(panel, gbc_panel);
+		
+		JLabel lblZustzlich = new JLabel("Zusätzlich");
+		GridBagConstraints gbc_lblZustzlich = new GridBagConstraints();
+		gbc_lblZustzlich.insets = new Insets(0, 0, 5, 5);
+		gbc_lblZustzlich.gridx = 1;
+		gbc_lblZustzlich.gridy = 5;
+		panMonth.add(lblZustzlich, gbc_lblZustzlich);
+		
+		_cbWeekCategories = new JCheckBox("Kategorien");
+		GridBagConstraints gbc_cbCategories = new GridBagConstraints();
+		gbc_cbCategories.insets = new Insets(0, 0, 5, 0);
+		gbc_cbCategories.anchor = GridBagConstraints.WEST;
+		gbc_cbCategories.gridx = 3;
+		gbc_cbCategories.gridy = 5;
+		panMonth.add(_cbWeekCategories, gbc_cbCategories);
+		
+		_cbWeekSections = new JCheckBox("Geschäfte");
+		GridBagConstraints gbc_cbSections = new GridBagConstraints();
+		gbc_cbSections.anchor = GridBagConstraints.WEST;
+		gbc_cbSections.gridx = 3;
+		gbc_cbSections.gridy = 6;
+		panMonth.add(_cbWeekSections, gbc_cbSections);
 		
 		// Daten für die Monate
 		_cbMonth.addItem("Januar");
@@ -177,6 +318,24 @@ public class DlgReport extends JDialog implements ActionListener {
 		_cbMonth.addItem("Oktober");
 		_cbMonth.addItem("November");
 		_cbMonth.addItem("Dezember");
+		
+		// Einstellungen für Report?
+		switch(_data.getType()) {
+			// Wochenübersicht
+			case ReportPreferencesData.TYPE_WEEK:
+				_rbWeek.setSelected(true);
+				break;
+				
+			// Monatsübersicht
+			case ReportPreferencesData.TYPE_MONTH:
+				_rbWeek.setSelected(true);
+				break;
+				
+			// Jahresübersicht
+			case ReportPreferencesData.TYPE_YEAR:
+				_rbWeek.setSelected(true);
+				break;
+		}
 
 		// Daten für die Jahre
 		for (int i = 2000; i < 2101; i++ ) {
@@ -188,6 +347,22 @@ public class DlgReport extends JDialog implements ActionListener {
 		cal.setTimeInMillis(new Date().getTime());
 		_cbYear.setSelectedItem(Integer.valueOf(cal.get(GregorianCalendar.YEAR)));
 		_cbMonth.setSelectedIndex(cal.get(GregorianCalendar.MONTH));
+		
+		// Wurde Wochenübersicht 'von' ausgewählt?
+		if (_data.getPreference(ReportWeekData.DRAW_DATE_FROM) != null)
+			_cbWeekDateFrom.setSelected(true);
+		
+		// Wurde Wochenübersicht 'bis' ausgewählt?
+		if (_data.getPreference(ReportWeekData.DRAW_DATE_TO) != null)
+			_cbWeekDateTo.setSelected(true);
+		
+		// Wurde Wochenübersicht 'Kategorien' ausgewählt?
+		if (_data.getPreference(ReportWeekData.DRAW_CATEGORIES) != null)
+			_cbWeekCategories.setSelected(true);
+		
+		// Wurde Wochenübersicht 'Geschäfte' ausgewählt?
+		if (_data.getPreference(ReportWeekData.DRAW_SECTIONS) != null)
+			_cbWeekSections.setSelected(true);
 		
 		// Anzeigen
 		setVisible(true);
@@ -209,6 +384,44 @@ public class DlgReport extends JDialog implements ActionListener {
 			_data.setFinished(CREATE);
 			_data.setMonth(_cbMonth.getSelectedIndex());
 			_data.setYear((Integer)_cbYear.getSelectedItem());
+			
+			// Wurde Wochenübersicht ausgewählt?
+			if (_rbWeek.isSelected())
+				_data.setType(ReportPreferencesData.TYPE_WEEK);
+			
+			// Wurde Monatsübersicht ausgewählt?
+			if (_rbMonth.isSelected())
+				_data.setType(ReportPreferencesData.TYPE_MONTH);
+			
+			// Wurde Jahrsübersicht ausgewählt?
+			if (_rbYear.isSelected())
+				_data.setType(ReportPreferencesData.TYPE_YEAR);
+			
+			// Wurde Wochenübersicht 'von' ausgewählt?
+			if (_cbWeekDateFrom.isSelected())
+				_data.setPreference(ReportWeekData.DRAW_DATE_FROM, 1);
+			else
+				_data.removePreference(ReportWeekData.DRAW_DATE_FROM);
+			
+			// Wurde Wochenübersicht 'bis' ausgewählt?
+			if (_cbWeekDateTo.isSelected())
+				_data.setPreference(ReportWeekData.DRAW_DATE_TO, 1);
+			else
+				_data.removePreference(ReportWeekData.DRAW_DATE_TO);
+			
+			// Wurde Wochenübersicht 'Kategorien' ausgewählt?
+			if (_cbWeekCategories.isSelected())
+				_data.setPreference(ReportWeekData.DRAW_CATEGORIES, 1);
+			else
+				_data.removePreference(ReportWeekData.DRAW_CATEGORIES);
+			
+			// Wurde Wochenübersicht 'Geschäfte' ausgewählt?
+			if (_cbWeekSections.isSelected())
+				_data.setPreference(ReportWeekData.DRAW_SECTIONS, 1);
+			else
+				_data.removePreference(ReportWeekData.DRAW_SECTIONS);
+			
+			// Dialog ausblenden
 			setVisible(false);
 		}
 	}

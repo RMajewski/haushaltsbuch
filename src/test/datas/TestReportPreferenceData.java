@@ -316,4 +316,18 @@ public class TestReportPreferenceData {
 		_data.setPreference(_key, null);
 		assertEquals(0, _data.getPreferenceCount());
 	}
+	
+	/**
+	 * Überprüft, ob die angegebene Einstellung gelöscht wurde.
+	 * 
+	 * @see datas.ReportPreferencesData#removePreference(String)
+	 */
+	@Test
+	public void testRemovePreference() {
+		_data.setPreference(_key, "Test");
+		assertEquals(1, _data.getPreferenceCount());
+		
+		_data.removePreference(_key);
+		assertEquals(0, _data.getPreferenceCount());
+	}
 }

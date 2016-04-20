@@ -189,6 +189,15 @@ public class ReportPreferencesData {
 	}
 	
 	/**
+	 * Löscht die angegebene Einstellung aus der Liste.
+	 * 
+	 * @param key Einstellung, die gelöscht werden soll
+	 */
+	public void removePreference(String key) {
+		_preferences.remove(key);
+	}
+	
+	/**
 	 * Gibt die Anzahl gespeicherter Einstellungen zurück.
 	 * 
 	 * @return Anzahl gespeicherter Einstellungen

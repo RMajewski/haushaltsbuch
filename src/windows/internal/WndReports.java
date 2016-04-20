@@ -136,7 +136,7 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 	 */
 	public void createDlgReport() {
 		// Einstellungen aufrufen
-		DlgReport dlg = new DlgReport(_preference.getType());
+		DlgReport dlg = new DlgReport(_preference);
 		_preference = dlg.getData();
 		
 		// Überprüfen ob ob der Report angezeigt werden soll
