@@ -33,6 +33,7 @@ import javax.swing.table.TableColumnModel;
 
 import db.DbController;
 import elements.StatusBar;
+import helper.HelperCalendar;
 
 /**
  * Speichert die Daten, die im Report angezeigt werden sollen.
@@ -162,7 +163,8 @@ public class ReportWeekData {
 		_preferences = preferences;
 		
 		// Anzahl der Wochen ermitteln
-		GregorianCalendar gc = new GregorianCalendar();
+		GregorianCalendar gc = HelperCalendar.createCalendar(
+				_preferences.getYear());
 		gc.set(GregorianCalendar.YEAR, _preferences.getYear());
 		_weekCount = gc.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR) + 1;
 		
@@ -178,8 +180,6 @@ public class ReportWeekData {
 			// Einnahmen für die Woche
 			long from = getDateFromAsLong(i);
 			long to = getDateToAsLong(i);
-			
-			System.out.println(from + " " + to);
 			
 			try {
 				//FIXME In eine private Methode packen
@@ -386,12 +386,10 @@ public class ReportWeekData {
 	 */
 	public long getDateFromAsLong(int week) {
 		if (week > -1) {
-			GregorianCalendar gc = new GregorianCalendar();
-			gc.set(GregorianCalendar.YEAR, _preferences.getYear());
-			if (week == 0) {
-				gc.set(GregorianCalendar.MONTH, GregorianCalendar.JANUARY);
-				gc.set(GregorianCalendar.DAY_OF_MONTH, 1);
-			} else {
+			GregorianCalendar gc = HelperCalendar.createCalendar(
+					_preferences.getYear());
+
+			if (week > 0) {
 				gc.set(GregorianCalendar.WEEK_OF_YEAR, week);
 				gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
 			}

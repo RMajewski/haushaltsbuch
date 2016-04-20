@@ -42,6 +42,7 @@ import datas.ReportPreferencesData;
 import datas.ReportWeekData;
 import db.DbController;
 import db.query.Money;
+import helper.HelperCalendar;
 
 /**
  * Testet die Daten-Klasse {@link datas.ReportWeekData}
@@ -106,8 +107,7 @@ public class TestReportWeekData {
 		DbController.getInstance().prepaireDatabase();
 		
 		// Kalender vorbereiten
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(GregorianCalendar.YEAR, _year);
+		GregorianCalendar gc = HelperCalendar.createCalendar(_year);
 		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
 		gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
 		
@@ -809,8 +809,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void TestGetDateFromReturnIsRight() {
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(GregorianCalendar.YEAR, _year);
+		GregorianCalendar gc = HelperCalendar.createCalendar(_year);
 		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
 		gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
 		assertEquals(DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(gc.getTimeInMillis())),
@@ -825,8 +824,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void TestGetDateFromWithZoroAsParameterReturnTheFirstDayIn2016() {
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(GregorianCalendar.YEAR, _year);
+		GregorianCalendar gc = HelperCalendar.createCalendar(_year);
 		gc.set(GregorianCalendar.MONTH, GregorianCalendar.JANUARY);
 		gc.set(GregorianCalendar.DAY_OF_MONTH, 1);
 		assertEquals(DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(gc.getTimeInMillis())),
@@ -871,8 +869,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void TestGetDateToReturnIsRight() {
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(GregorianCalendar.YEAR, _year);
+		GregorianCalendar gc = HelperCalendar.createCalendar(_year);
 		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
 		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
 		assertEquals(DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(gc.getTimeInMillis())),
@@ -897,8 +894,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void TestGetDateFromAsLongReturnIsRight() {
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(GregorianCalendar.YEAR, _year);
+		GregorianCalendar gc = HelperCalendar.createCalendar(_year);
 		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
 		gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
 		assertEquals(gc.getTimeInMillis(), _data.getDateFromAsLong(1));
@@ -912,10 +908,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void TestGetDateFromAsLongReturnTheFirstDayOf2016() {
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(GregorianCalendar.YEAR, _year);
-		gc.set(GregorianCalendar.MONTH, GregorianCalendar.JANUARY);
-		gc.set(GregorianCalendar.DAY_OF_MONTH, 1);
+		GregorianCalendar gc = HelperCalendar.createCalendar(_year);
 		assertEquals(gc.getTimeInMillis(), _data.getDateFromAsLong(0));
 	}
 	

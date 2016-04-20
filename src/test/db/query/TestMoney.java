@@ -29,6 +29,7 @@ import org.junit.Test;
 
 import datas.MoneyData;
 import db.query.Money;
+import helper.HelperCalendar;
 import test.TestHelper;
 
 /**
@@ -712,8 +713,7 @@ public class TestMoney extends TestHelper {
 	 */
 	@Test
 	public void testSelectOfWeekWithIncoming() {
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(GregorianCalendar.YEAR, 2016);
+		GregorianCalendar gc = HelperCalendar.createCalendar(2016);
 		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
 		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
 		long from = gc.getTimeInMillis();
@@ -741,8 +741,7 @@ public class TestMoney extends TestHelper {
 	 */
 	@Test
 	public void testSelectOfWeekWithOutgoing() {
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(GregorianCalendar.YEAR, 2016);
+		GregorianCalendar gc = HelperCalendar.createCalendar(2016);
 		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
 		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
 		long from = gc.getTimeInMillis();

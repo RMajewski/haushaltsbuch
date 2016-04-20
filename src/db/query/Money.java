@@ -285,11 +285,18 @@ public class Money extends Query {
 	}
 	
 	/**
+	 * Erzeugt die Datenbank-Abfrage, um alle Datensätze der angegebenen Woche
+	 * zu selektieren. Zudem wird noch angegeben, ob Einnahmen oder Ausgaben
+	 * selektiert werden soll.
 	 * 
-	 * @param from
-	 * @param to
-	 * @param inout
-	 * @return
+	 * @param from Start-Datum als long-Wert
+	 * 
+	 * @param to End-Datum als long-Wert
+	 * 
+	 * @param inout Einnahmen oder Ausgaben selektieren?
+	 * 
+	 * @return Datenbank-Abfrage, um Datensätze der angegebenen Woche zu
+	 * selektieren.
 	 */
 	public String selectWeek(long from, long to, int inout) {
 		// Abfrage vorbereiten

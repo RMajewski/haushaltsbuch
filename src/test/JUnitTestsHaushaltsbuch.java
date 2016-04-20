@@ -54,6 +54,8 @@ import org.junit.runners.Suite;
 	
 	test.elements.TestStatusBar.class,
 	
+	test.helper.TestHelperCalendar.class,
+	
 	test.menus.TestPopupStandardList.class,
 	test.menus.TestPopupMoneyList.class,
 	
