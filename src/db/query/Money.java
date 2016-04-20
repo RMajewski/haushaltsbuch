@@ -19,6 +19,8 @@
 
 package db.query;
 
+import datas.MoneyData;
+
 /**
  * Enthält alle Datenbank-Abfragen für die Tabelle 'money'.
  * 
@@ -247,6 +249,28 @@ public class Money extends Query {
 		// Beschreibung einfügen
 		if (comment != null && !comment.isEmpty())
 			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * 
+	 * @param from
+	 * @param to
+	 * @param inout
+	 * @return
+	 */
+	public String selectWeek(long from, long to, int inout) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("SELECT id FROM ");
+		ret.append(_tableName);
+		ret.append(" WHERE date BETWEEN ");		
+		ret.append(from);
+		ret.append(" AND ");
+		ret.append(to);
+		ret.append(" AND inout = ");
+		ret.append(inout);
 		
 		// Abfrage zurück geben
 		return ret.toString();

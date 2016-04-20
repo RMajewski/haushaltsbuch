@@ -25,6 +25,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.table.TableColumnModel;
 
@@ -52,6 +53,17 @@ public class ReportWeekData {
 	 * an.
 	 */
 	public static final String DRAW_SECTIONS = new String("Week.drawSections");
+	
+	/**
+	 * Gibt den Namen für die Einstellung zum anzeigen der Spalte 'von' an.
+	 */
+	public static final String DRAW_DATE_FROM = new String("Week.drawDateFrom");
+	
+	/**
+	 * Gibt den Namen für die Einstellung zum anzeigen der Spalte 'bis' an.
+	 */
+	public static final String DRAW_DATE_TO = new String("Week.drawDateTo");
+	
 	/**
 	 * Speichert die Einstellungen
 	 */
@@ -68,6 +80,16 @@ public class ReportWeekData {
 	private List<String> _weeks;
 	
 	/**
+	 * Speichert die einzelnen Einnahmen
+	 */
+	private List<Double> _in;
+	
+	/**
+	 * Speichert die einzelnen Ausgaben
+	 */
+	private List<Double> _out;
+	
+	/**
 	 * Initalisiert die Daten.
 	 * 
 	 * @param preferences Einstellungen für den Report.
@@ -76,11 +98,32 @@ public class ReportWeekData {
 		// Liste für die Wochennummern initalisieren
 		_weeks = new ArrayList<String>();
 		_weekCount = 0;
+		
+		// Liste für die Einnahmen und die Ausgaben vorbereiten
+		_in = null;
+		_out = null;
 
 		// Einstellungen speichern und Daten ermitteln
 		setPreferences(preferences);
-}
-
+	}
+	
+	/**
+	 * Initalisiert die angegebene Liste und füllt sie mit 0.0 für die Anzahl
+	 * der Wochen.
+	 */
+	private List<Double> initDoubleList() {
+		// Liste initalisieren?
+		List<Double> ret = new ArrayList<Double>();
+		
+		// Liste neu aufbauen
+		for (int i = 0; i < _weekCount; i++) {
+			ret.add(Double.valueOf(0));
+		}
+		
+		// Liste zurück geben
+		return ret;
+	}
+	
 	/**
 	 * Gibt das ausgewählte Jahr wieder
 	 * 
@@ -121,9 +164,58 @@ public class ReportWeekData {
 		gc.set(GregorianCalendar.YEAR, _preferences.getYear());
 		_weekCount = gc.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR);
 		
-		// Wochennummern speichern
-		for (int i = 1; i <= _weekCount; i++)
+		// Listen für die Einnahmen und die Ausgaben initalisieren
+		_in = initDoubleList();
+		_out = initDoubleList();
+		
+		// Schleife über alle Wochen
+		for (int i = 1; i <= _weekCount; i++) {
+			// Wochennummern
 			_weeks.add(String.valueOf(i));
+			
+			// Einnahmen für die Woche
+			gc.set(GregorianCalendar.WEEK_OF_YEAR, i);
+			gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+			gc.set(GregorianCalendar.HOUR, 0);
+			gc.set(GregorianCalendar.MINUTE, 0);
+			gc.set(GregorianCalendar.SECOND, 0);
+			long from = gc.getTimeInMillis();
+			gc.set(GregorianCalendar.DAY_OF_WEEK, 7);
+			gc.set(GregorianCalendar.HOUR, 23);
+			gc.set(GregorianCalendar.MINUTE, 59);
+			gc.set(GregorianCalendar.SECOND, 59);
+			long to = gc.getTimeInMillis();
+			
+			try {
+				//FIXME In eine private Methode packen
+				// Einnahmen
+				Statement stm = DbController.getInstance().createStatement();
+				ResultSet rsw = stm.executeQuery(DbController.queries().money().selectWeek(from, to, MoneyData.INT_INCOMING));
+				double d = 0;
+				while(rsw.next()) {
+					ResultSet rs = stm.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
+					d += rs.getDouble(1);
+					rs.close();
+				}
+				System.out.println(d);
+				if (d > 0)
+					_in.set(i - 1, d);
+				rsw.close();
+				
+				// Ausgaben
+				rsw = stm.executeQuery(DbController.queries().money().selectWeek(from, to, MoneyData.INT_OUTGOING));
+				while(rsw.next()) {
+					ResultSet rs = stm.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
+					_in.set(i - 1, rs.getDouble(1));
+					rs.close();
+				}
+				rsw.close();
+			} catch(SQLException e) {
+				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+				e.printStackTrace();
+			}
+			
+		}
 	}
 
 	/**
@@ -135,6 +227,14 @@ public class ReportWeekData {
 	public int getColumnCount() {
 		// 4 Spalten für die Wochennummern, Einnahmen und Ausgaben und Differenz
 		int ret = 4;
+		
+		// Soll die Spalte "von" mit ausgegeben werden?
+		if (_preferences.getPreference(DRAW_DATE_FROM) != null)
+			ret++;
+		
+		// Soll die Spalte "bis" mit ausgegeben werden?
+		if (_preferences.getPreference(DRAW_DATE_TO) != null)
+			ret++;
 		
 		try {
 			// Datenbankabfrage vorbereiten
@@ -167,18 +267,30 @@ public class ReportWeekData {
 	 * @param tcm Spalten-Modell der Tabelle
 	 */
 	public void setColumnHeader(TableColumnModel tcm) {
-		// Standard-Spalten
-		tcm.getColumn(0).setHeaderValue("Woche");
-		tcm.getColumn(1).setHeaderValue("Einnahmen");
-		tcm.getColumn(2).setHeaderValue("Ausgaben");
-		tcm.getColumn(3).setHeaderValue("Differenz");
+		// Spalten-Nummer
+		int column = 0;
+		
+		// Spalte für die Wochennummern
+		tcm.getColumn(column++).setHeaderValue("Woche");
+		
+		// Soll von mit ausgegeben werden?
+		if (_preferences.getPreference(DRAW_DATE_FROM) != null)
+			tcm.getColumn(column++).setHeaderValue("von");
+		
+		// Soll bis mit ausgegeben werden?
+		if (_preferences.getPreference(DRAW_DATE_TO) != null)
+			tcm.getColumn(column++).setHeaderValue("bis");
+		
+		// Spalten für die Einnahmen, die Ausgaben und die Differenz
+		tcm.getColumn(column++).setHeaderValue("Einnahmen");
+		tcm.getColumn(column++).setHeaderValue("Ausgaben");
+		tcm.getColumn(column++).setHeaderValue("Differenz");
 		
 		// Überprüfen ob die Kategorien ausgegeben werden sollen
 		try {
 			// Datenbankabfrage vorbereiten
 			Statement stm = DbController.getInstance().createStatement();
 			ResultSet rs;
-			int column = 4;
 			
 			// FIXME in seperate Methode packen und jeweils aufrufen
 			
@@ -187,8 +299,7 @@ public class ReportWeekData {
 				rs = stm.executeQuery(
 						DbController.queries().category().sort("name"));
 				while (rs.next()) {
-					tcm.getColumn(column).setHeaderValue(rs.getString("name"));
-					column++;
+					tcm.getColumn(column++).setHeaderValue(rs.getString("name"));
 				}
 			}
 			
@@ -205,5 +316,39 @@ public class ReportWeekData {
 			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
 			e.getStackTrace();
 		}
+	}
+	
+	/**
+	 * Gibt die Einnahmen für die angegeben Woche zurück.
+	 * 
+	 * @param week Woche, für die die Einnahmen ermittelt werden sollen
+	 * 
+	 * @return Einnahmen der angebenen Woche
+	 */
+	public double incoming(int week) {
+		return _in.get(week);
+	}
+	
+	/**
+	 * Gibt die Ausgaben für die angegeben Woche zurück.
+	 * 
+	 * @param week Woche, für die die Ausgaben ermittelt werden sollen
+	 * 
+	 * @return Ausgaben der angebenen Woche
+	 */
+	public double outgoing(int week) {
+		return _out.get(week);
+	}
+	
+	/**
+	 * Berechnet die Differenz von Einnahmen und Ausgaben für die angegebene
+	 * Woche.
+	 * 
+	 * @param week Woche, für die die Differenz berechnet werden soll.
+	 * 
+	 * @return Gibt die Differenz von Einnahmen und Ausgaben zurück.
+	 */
+	public double deviation(int week) {
+		return incoming(week) - outgoing(week);
 	}
 }

@@ -82,6 +82,18 @@ public class ReportWeekModel extends AbstractTableModel {
 			// Wochennummer
 			case 0:
 				return _data.getWeekNumber(row);
+				
+			// Einnahmen
+			case 1:
+				return _data.incoming(row);
+				
+			// Ausgaben
+			case 2:
+				return _data.outgoing(row);
+				
+			// Differenz
+			case 3:
+				return _data.deviation(row);
 		}
 		
 		// Standard Rückgabe

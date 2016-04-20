@@ -638,4 +638,19 @@ public class TestMoneyDetails extends TestHelper{
 	public void testUpdateIntIntIntIntDoubleMinusOneAsIdReturnHasOneQuery() {
 		assertEquals(1, frequency(_moneyDetails.update(-1, 200, 300, 400, 10.89), "?"));
 	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#sum(int)} die
+	 * Datenbank-Abfrage generiert, um die Summe der Beträge des ausgewählen
+	 * Money-Datensatzes zu ermitteln.
+	 */
+	@Test
+	public void testSum() {
+		int id = 200;
+		StringBuilder builder = new StringBuilder("SELECT sum(money) FROM ");
+		builder.append(_table);
+		builder.append(" WHERE moneyid = ");
+		builder.append(id);
+		assertEquals(builder.toString(), _moneyDetails.sum(id));
+	}
 }

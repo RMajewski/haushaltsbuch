@@ -223,4 +223,23 @@ public class MoneyDetails extends Query {
 		return ret.toString();
 	}
 
+	/**
+	 * Erzeugt die Datenbankabfrage, um für die angegben Money-ID alle Beträge
+	 * zusammen zu addieren.
+	 * 
+	 * @param moneyid ID des Datensatzes von 'money', für den die Summe der
+	 * Beträge ermittelt werden soll.
+	 * 
+	 * @return Summe der Beträge für den ausgewählen Money-Datensatz
+	 */
+	public String sum(int moneyid) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("SELECT sum(money) FROM ");
+		ret.append(_tableName);
+		ret.append(" WHERE moneyid = ");
+		ret.append(moneyid);
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
 }

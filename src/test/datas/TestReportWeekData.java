@@ -35,9 +35,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import datas.MoneyData;
 import datas.ReportPreferencesData;
 import datas.ReportWeekData;
 import db.DbController;
+import db.query.Money;
 
 /**
  * Testet die Daten-Klasse {@link datas.ReportWeekData}
@@ -74,6 +76,17 @@ public class TestReportWeekData {
 	private int _sectionCount;
 	
 	/**
+	 * Speichert die Einnahmen für die 1. Woche
+	 */
+	private double _in;
+	
+	/**
+	 * Speichert die Ausgaben für die 1. Woche
+	 */
+	private double _out;
+	
+	
+	/**
 	 * Diese Initalisierungen bleiben für alle Tests bestehen.
 	 */
 	@BeforeClass
@@ -88,14 +101,47 @@ public class TestReportWeekData {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		DbController.getInstance().prepaireDatabase();
+		
+		// Kalender vorbereiten
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(GregorianCalendar.YEAR, _year);
+		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+		
+		Statement stm = DbController.getInstance().createStatement();
+		
+		// 1. Eintrag für Einnahmen und Ausgaben
+		long date = gc.getTimeInMillis();
+		stm.executeUpdate(DbController.queries().money().insert(date, MoneyData.INCOMING, ""));
+		stm.executeUpdate(DbController.queries().moneyDetails().insert(1, 1, 1, 1.88, ""));
+		stm.executeUpdate(DbController.queries().money().insert(date, MoneyData.OUTGOING, ""));
+		stm.executeUpdate(DbController.queries().moneyDetails().insert(2, 1, 1, 1.76, ""));
+		
+		// 2. Eintrag für Einnahmen und Ausgaben
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 4);
+		date = gc.getTimeInMillis();
+		stm.executeUpdate(DbController.queries().money().insert(date, MoneyData.INCOMING, ""));
+		stm.executeUpdate(DbController.queries().moneyDetails().insert(3, 1, 1, 4, ""));
+		stm.executeUpdate(DbController.queries().money().insert(date, MoneyData.OUTGOING, ""));
+		stm.executeUpdate(DbController.queries().moneyDetails().insert(4, 1, 1, 11, ""));
+		
+		// 3. Eintrag für Einnahmen und Ausgaben
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 7);
+		date = gc.getTimeInMillis();
+		stm.executeUpdate(DbController.queries().money().insert(date, MoneyData.INCOMING, ""));
+		stm.executeUpdate(DbController.queries().moneyDetails().insert(5, 1, 1, 6, ""));
+		stm.executeUpdate(DbController.queries().money().insert(date, MoneyData.OUTGOING, ""));
+		stm.executeUpdate(DbController.queries().moneyDetails().insert(6, 1, 1, 13, ""));
+
 		_year = 2016;
 		_preferences = new ReportPreferencesData(
 				ReportPreferencesData.TYPE_MONTH, 1, 0, _year);
 		_data = new ReportWeekData(_preferences);
 		_categoryCount = 10;
 		_sectionCount = 4;
-		
-		DbController.getInstance().prepaireDatabase();
+		_in = 11.88;
+		_out = 25.76;
 	}
 	
 	/**
@@ -122,6 +168,24 @@ public class TestReportWeekData {
 	@Test
 	public void testDrawSections() {
 		assertEquals("Week.drawSections", ReportWeekData.DRAW_SECTIONS);
+	}
+	
+	/**
+	 * Überprüft, ob die Konstante {@link datas.ReportWeekData#DRAW_DATE_FROM}
+	 * richtig gesetzt ist.
+	 */
+	@Test
+	public void testDrawFrom() {
+		assertEquals("Week.drawDateFrom", ReportWeekData.DRAW_DATE_FROM);
+	}
+	
+	/**
+	 * Überprüft, ob die Konstante {@link datas.ReportWeekData#DRAW_DATE_TO}
+	 * richtig gesetzt ist.
+	 */
+	@Test
+	public void testDrawTo() {
+		assertEquals("Week.drawDateFrom", ReportWeekData.DRAW_DATE_FROM);
 	}
 	
 	/**
@@ -275,6 +339,49 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 		// Ermittelte Spalten überprüfen
 		assertEquals(4 + _categoryCount + _sectionCount, _data.getColumnCount());
 	}
+
+	/**
+	 * Überprüft, ob die Anzahl der Spalten stimmen, wenn zusätzlich noch die
+	 * Spalte "bis" mit angegeben wird.
+	 * 
+	 * @see datas.ReportWeekData#getColumnCount()
+	 */
+	@Test
+	public void testGetColumnCountWithDateTo() {
+		// Einstellungen speichern
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_FROM, 1);
+		
+		assertEquals(5, _data.getColumnCount());
+	}
+
+	/**
+	 * Überprüft, ob die Anzahl der Spalten stimmen, wenn zusätzlich noch die
+	 * Spalte "von" mit angegeben wird.
+	 * 
+	 * @see datas.ReportWeekData#getColumnCount()
+	 */
+	@Test
+	public void testGetColumnCountWithDateFrom() {
+		// Einstellungen speichern
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_TO, 1);
+		
+		assertEquals(5, _data.getColumnCount());
+	}
+
+	/**
+	 * Überprüft, ob die Anzahl der Spalten stimmen, wenn zusätzlich noch die
+	 * Spalte "von" und die Spalte "bis" mit angegeben werden.
+	 * 
+	 * @see datas.ReportWeekData#getColumnCount()
+	 */
+	@Test
+	public void testGetColumnCountWithDateFromAndDateTo() {
+		// Einstellungen speichern
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_FROM, 1);
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_TO, 1);
+		
+		assertEquals(6, _data.getColumnCount());
+	}
 	
 	/**
 	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können.
@@ -379,15 +486,18 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	
 	/**
 	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
-	 * Standard-Spalten werden noch die Kategorien und die Geschäfte angezeigt.
+	 * Standard-Spalten werden noch die Kategorien, die Geschäfte, die Spalte
+	 * 'von' und die Spalte 'bis' angezeigt.
 	 * 
 	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
 	 */
 	@Test
-	public void testSetColumnHeaderWithCategoryAndSections() {
+	public void testSetColumnHeaderAllExtraColumns() {
 		// Einstellungen
 		_preferences.setPreference(ReportWeekData.DRAW_CATEGORIES, 1);
 		_preferences.setPreference(ReportWeekData.DRAW_SECTIONS, 1);
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_FROM, 1);
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_TO, 1);
 		
 		// Model vorbereiten
 		TableColumnModel tcm = mock(TableColumnModel.class);
@@ -403,14 +513,189 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 		verify(tcm).getColumn(0);
 		verify(tc).setHeaderValue("Woche");
 		verify(tcm).getColumn(1);
-		verify(tc).setHeaderValue("Einnahmen");
+		verify(tc).setHeaderValue("von");
 		verify(tcm).getColumn(2);
-		verify(tc).setHeaderValue("Ausgaben");
+		verify(tc).setHeaderValue("bis");
 		verify(tcm).getColumn(3);
+		verify(tc).setHeaderValue("Einnahmen");
+		verify(tcm).getColumn(4);
+		verify(tc).setHeaderValue("Ausgaben");
+		verify(tcm).getColumn(5);
 		verify(tc).setHeaderValue("Differenz");
 		
-		for (int i = 4; i < _data.getColumnCount(); i++) {
+		for (int i = 6; i < _data.getColumnCount(); i++) {
 			verify(tcm).getColumn(i);
 		}
+	}
+	
+	/**
+	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
+	 * Standard-Spalten wird noch die Spalte "von" angezeigt.
+	 * 
+	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 */
+	@Test
+	public void testSetColumnHeaderWithDateFrom() {
+		// Einstellungen
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_FROM, 1);
+		
+		// Model vorbereiten
+		TableColumnModel tcm = mock(TableColumnModel.class);
+		TableColumn tc = mock(TableColumn.class);
+		
+		for (int i = 0; i < _data.getColumnCount(); i++)
+			when(tcm.getColumn(i)).thenReturn(tc);
+		
+		// Header setzen
+		_data.setColumnHeader(tcm);
+		
+		// Überprüfen ob die richtigen Methoden aufgerufen wurden
+		verify(tcm).getColumn(0);
+		verify(tc).setHeaderValue("Woche");
+		verify(tcm).getColumn(1);
+		verify(tc).setHeaderValue("von");
+		verify(tcm).getColumn(2);
+		verify(tc).setHeaderValue("Einnahmen");
+		verify(tcm).getColumn(3);
+		verify(tc).setHeaderValue("Ausgaben");
+		verify(tcm).getColumn(4);
+		verify(tc).setHeaderValue("Differenz");
+	}
+	
+	/**
+	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
+	 * Standard-Spalten wird noch die Spalte "bis" angezeigt.
+	 * 
+	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 */
+	@Test
+	public void testSetColumnHeaderWithDateTo() {
+		// Einstellungen
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_TO, 1);
+		
+		// Model vorbereiten
+		TableColumnModel tcm = mock(TableColumnModel.class);
+		TableColumn tc = mock(TableColumn.class);
+		
+		for (int i = 0; i < _data.getColumnCount(); i++)
+			when(tcm.getColumn(i)).thenReturn(tc);
+		
+		// Header setzen
+		_data.setColumnHeader(tcm);
+		
+		// Überprüfen ob die richtigen Methoden aufgerufen wurden
+		verify(tcm).getColumn(0);
+		verify(tc).setHeaderValue("Woche");
+		verify(tcm).getColumn(1);
+		verify(tc).setHeaderValue("bis");
+		verify(tcm).getColumn(2);
+		verify(tc).setHeaderValue("Einnahmen");
+		verify(tcm).getColumn(3);
+		verify(tc).setHeaderValue("Ausgaben");
+		verify(tcm).getColumn(4);
+		verify(tc).setHeaderValue("Differenz");
+	}
+	
+	/**
+	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
+	 * Standard-Spalten wird noch die Spalten "von" und "bis" angezeigt.
+	 * 
+	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 */
+	@Test
+	public void testSetColumnHeaderWithDateFromAndDateTo() {
+		// Einstellungen
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_FROM, 1);
+		_preferences.setPreference(ReportWeekData.DRAW_DATE_TO, 1);
+		
+		// Model vorbereiten
+		TableColumnModel tcm = mock(TableColumnModel.class);
+		TableColumn tc = mock(TableColumn.class);
+		
+		for (int i = 0; i < _data.getColumnCount(); i++)
+			when(tcm.getColumn(i)).thenReturn(tc);
+		
+		// Header setzen
+		_data.setColumnHeader(tcm);
+		
+		// Überprüfen ob die richtigen Methoden aufgerufen wurden
+		verify(tcm).getColumn(0);
+		verify(tc).setHeaderValue("Woche");
+		verify(tcm).getColumn(1);
+		verify(tc).setHeaderValue("von");
+		verify(tcm).getColumn(2);
+		verify(tc).setHeaderValue("bis");
+		verify(tcm).getColumn(3);
+		verify(tc).setHeaderValue("Einnahmen");
+		verify(tcm).getColumn(4);
+		verify(tc).setHeaderValue("Ausgaben");
+		verify(tcm).getColumn(5);
+		verify(tc).setHeaderValue("Differenz");
+	}
+	
+	/**
+	 * Überprüft, ob die Einnahmen für die angegebene Woche richtig zurück
+	 * gegeben werden.
+	 * 
+	 * @see datas.ReportWeekData#incoming(int)
+	 */
+	@Test
+	public void testIncoming() {
+		for (int i = 1; i < _data.getWeekCount(); i++)
+			assertEquals(0, _data.incoming(i), 0);
+	}
+	
+	/**
+	 * Überprüft, ob die Einnahmen für die 1. Woche richtig ermittelt wurden.
+	 * 
+	 * @see datas.ReportWeekData#incoming(int)
+	 */
+	@Test
+	public void testIncomingWeekOne() {
+		assertEquals(_in, _data.incoming(0), 0.01);
+	}
+	
+	/**
+	 * Überprüft, ob die Ausgaben für die angegebene Woche richtig zurück
+	 * gegeben werden.
+	 * 
+	 * @see datas.ReportWeekData#outgoing(int)
+	 */
+	@Test
+	public void testOutgoing() {
+		for (int i = 1; i < _data.getWeekCount(); i++)
+			assertEquals(0, _data.outgoing(i), 0);
+	}
+	
+	/**
+	 * Überprüft, ob die Ausgaben für die 1. Woche richtig ermittelt wurden.
+	 * 
+	 * @see datas.ReportWeekData#incoming(int)
+	 */
+	@Test
+	public void testOutgoingWeekOne() {
+		assertEquals(_out, _data.outgoing(0), 0.01);
+	}
+	
+	/**
+	 * Überprüft, ob die Differenz für die angegebene Woche richtig zurück
+	 * gegeben werden.
+	 * 
+	 * @see datas.ReportWeekData#deviation(int)
+	 */
+	@Test
+	public void testDeviation() {
+		for (int i = 1; i < _data.getWeekCount(); i++)
+			assertEquals(0, _data.deviation(i), 0.01);
+	}
+	
+	/**
+	 * Überprüft, ob die Differenz für die 1. Woche richtig ermittelt wurden.
+	 * 
+	 * @see datas.ReportWeekData#deviation(int)
+	 */
+	@Test
+	public void testDeviationWeekOne() {
+		assertEquals(_in - _out, _data.deviation(0), 0.01);
 	}
 }

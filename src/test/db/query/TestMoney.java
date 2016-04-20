@@ -22,9 +22,12 @@ package test.db.query;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import java.util.GregorianCalendar;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import datas.MoneyData;
 import db.query.Money;
 import test.TestHelper;
 
@@ -700,5 +703,63 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testSelectReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_money.select(),_table));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#selectWeek(long, long, boolean)}
+	 * die Datenbank-Abfrage richtig erstellt hat. Es wurden die Datensätze
+	 * für die Einnahmen ausgewählt. 
+	 */
+	@Test
+	public void testSelectOfWeekWithIncoming() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(GregorianCalendar.YEAR, 2016);
+		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+		long from = gc.getTimeInMillis();
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 7);
+		long to = gc.getTimeInMillis();
+		
+		
+		StringBuilder query = new StringBuilder("SELECT id FROM ");
+		query.append(_table);
+		query.append(" WHERE date >= ");		
+		query.append(from);
+		query.append(" AND date <= ");
+		query.append(to);
+		query.append(" AND inout = ");
+		query.append(MoneyData.INT_INCOMING);
+		
+		assertEquals(query.toString(), 
+				_money.selectWeek(from, to, MoneyData.INT_INCOMING));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#selectWeek(long, long, boolean)}
+	 * die Datenbank-Abfrage richtig erstellt hat. Es wurden die Datensätze
+	 * für die Einnahmen ausgewählt. 
+	 */
+	@Test
+	public void testSelectOfWeekWithOutgoing() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(GregorianCalendar.YEAR, 2016);
+		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+		long from = gc.getTimeInMillis();
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 7);
+		long to = gc.getTimeInMillis();
+		
+		
+		StringBuilder query = new StringBuilder("SELECT id FROM ");
+		query.append(_table);
+		query.append(" WHERE date >= ");		
+		query.append(from);
+		query.append(" AND date <= ");
+		query.append(to);
+		query.append(" AND inout = ");
+		query.append(MoneyData.INT_OUTGOING);
+		
+		assertEquals(query.toString(), 
+				_money.selectWeek(from, to, MoneyData.INT_OUTGOING));
 	}
 }

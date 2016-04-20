@@ -144,7 +144,8 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 			// Namen einstellen
 			switch (_preference.getType()) {
 				case ReportPreferencesData.TYPE_WEEK:
-					setTitle("Monatsübersicht");
+					setTitle("Wochenübersicht für das Jahr " + 
+							_preference.getYear());
 					
 					// Tabellen-Model einstellen
 					ReportWeekData data = new ReportWeekData(_preference);
