@@ -109,7 +109,7 @@ public class TestReportWeekData {
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.set(GregorianCalendar.YEAR, _year);
 		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
-		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
 		
 		Statement stm = DbController.getInstance().createStatement();
 		
@@ -129,7 +129,7 @@ public class TestReportWeekData {
 		stm.executeUpdate(DbController.queries().moneyDetails().insert(4, 1, 1, 11, ""));
 		
 		// 3. Eintrag für Einnahmen und Ausgaben
-		gc.set(GregorianCalendar.DAY_OF_WEEK, 7);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
 		date = gc.getTimeInMillis();
 		stm.executeUpdate(DbController.queries().money().insert(date, MoneyData.INCOMING, ""));
 		stm.executeUpdate(DbController.queries().moneyDetails().insert(5, 1, 1, 6, ""));
@@ -654,7 +654,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void testIncomingWeekOne() {
-		assertEquals(_in, _data.incoming(0), 0.01);
+		assertEquals(_in, _data.incoming(1), 0.01);
 	}
 	
 	/**
@@ -676,7 +676,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void testOutgoingWeekOne() {
-		assertEquals(_out, _data.outgoing(0), 0.01);
+		assertEquals(_out, _data.outgoing(1), 0.01);
 	}
 	
 	/**
@@ -698,7 +698,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void testDeviationWeekOne() {
-		assertEquals(_in - _out, _data.deviation(0), 0.01);
+		assertEquals(_in - _out, _data.deviation(1), 0.01);
 	}
 	
 	/**
@@ -877,5 +877,70 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
 		assertEquals(DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(gc.getTimeInMillis())),
 				_data.getDateTo(1));
+	}
+	
+	/**
+	 * Überprüft, ob 0 zurück gegeben wird, wenn eine Woche kleiner 0 angegeben
+	 * wird.
+	 * 
+	 * @see datas.ReportWeekData#getDateFromAsLong(int)
+	 */
+	@Test
+	public void TestGetDateAsLongReturnZeroWithMinusOneAsParamter() {
+		assertEquals(0, _data.getDateFromAsLong(-1));
+	}
+	
+	/**
+	 * Überprüft, ob der richtige <b>long</b>-Wert zurück gegeben wird.
+	 * 
+	 * @see datas.ReportWeekData#getDateFromAsLong(int)
+	 */
+	@Test
+	public void TestGetDateFromAsLongReturnIsRight() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(GregorianCalendar.YEAR, _year);
+		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
+		assertEquals(gc.getTimeInMillis(), _data.getDateFromAsLong(1));
+	}
+	
+	/**
+	 * Überprüft, ob der richtige <b>long</b>-Wert zurück gegeben wird, wenn
+	 * die 0. Woche ausgewählt wird.
+	 * 
+	 * @see datas.ReportWeekData#getDateFromAsLong(int)
+	 */
+	@Test
+	public void TestGetDateFromAsLongReturnTheFirstDayOf2016() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(GregorianCalendar.YEAR, _year);
+		gc.set(GregorianCalendar.MONTH, GregorianCalendar.JANUARY);
+		gc.set(GregorianCalendar.DAY_OF_MONTH, 1);
+		assertEquals(gc.getTimeInMillis(), _data.getDateFromAsLong(0));
+	}
+	
+	/**
+	 * Überprüft, ob 0 zurück gegeben wird, wenn eine Woche kleiner 0 angegeben
+	 * wird.
+	 * 
+	 * @see datas.ReportWeekData#getDateToAsLong(int)
+	 */
+	@Test
+	public void TestGetDateToAsLongReturnZeroWithMinusOneAsParamter() {
+		assertEquals(0, _data.getDateToAsLong(-1));
+	}
+	
+	/**
+	 * Überprüft, ob der richtige <b>long</b>-Wert zurück gegeben wird.
+	 * 
+	 * @see datas.ReportWeekData#getDateToAsLong(int)
+	 */
+	@Test
+	public void TestGetDateToAsLongReturnIsRight() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(GregorianCalendar.YEAR, _year);
+		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+		assertEquals(gc.getTimeInMillis(), _data.getDateToAsLong(1));
 	}
 }

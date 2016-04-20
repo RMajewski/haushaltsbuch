@@ -723,9 +723,9 @@ public class TestMoney extends TestHelper {
 		
 		StringBuilder query = new StringBuilder("SELECT id FROM ");
 		query.append(_table);
-		query.append(" WHERE date >= ");		
+		query.append(" WHERE date BETWEEN ");		
 		query.append(from);
-		query.append(" AND date <= ");
+		query.append(" AND ");
 		query.append(to);
 		query.append(" AND inout = ");
 		query.append(MoneyData.INT_INCOMING);
@@ -752,9 +752,9 @@ public class TestMoney extends TestHelper {
 		
 		StringBuilder query = new StringBuilder("SELECT id FROM ");
 		query.append(_table);
-		query.append(" WHERE date >= ");		
+		query.append(" WHERE date BETWEEN ");		
 		query.append(from);
-		query.append(" AND date <= ");
+		query.append(" AND ");
 		query.append(to);
 		query.append(" AND inout = ");
 		query.append(MoneyData.INT_OUTGOING);

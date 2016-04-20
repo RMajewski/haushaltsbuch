@@ -176,17 +176,10 @@ public class ReportWeekData {
 			_weeks.add(String.valueOf(i));
 			
 			// Einnahmen für die Woche
-			gc.set(GregorianCalendar.WEEK_OF_YEAR, i);
-			gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
-			gc.set(GregorianCalendar.HOUR, 0);
-			gc.set(GregorianCalendar.MINUTE, 0);
-			gc.set(GregorianCalendar.SECOND, 0);
-			long from = gc.getTimeInMillis();
-			gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
-			gc.set(GregorianCalendar.HOUR, 23);
-			gc.set(GregorianCalendar.MINUTE, 59);
-			gc.set(GregorianCalendar.SECOND, 59);
-			long to = gc.getTimeInMillis();
+			long from = getDateFromAsLong(i);
+			long to = getDateToAsLong(i);
+			
+			System.out.println(from + " " + to);
 			
 			try {
 				//FIXME In eine private Methode packen
@@ -195,21 +188,25 @@ public class ReportWeekData {
 				ResultSet rsw = stm.executeQuery(DbController.queries().money().selectWeek(from, to, MoneyData.INT_INCOMING));
 				double d = 0;
 				while(rsw.next()) {
+					System.out.println("Einnahme");
 					ResultSet rs = stm.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
 					d += rs.getDouble(1);
 					rs.close();
 				}
 				if (d > 0)
-					_in.set(i - 1, d);
+					_in.set(i, d);
 				rsw.close();
 				
 				// Ausgaben
+				d = 0;
 				rsw = stm.executeQuery(DbController.queries().money().selectWeek(from, to, MoneyData.INT_OUTGOING));
 				while(rsw.next()) {
 					ResultSet rs = stm.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
-					_in.set(i - 1, rs.getDouble(1));
+					d += rs.getDouble(1);
 					rs.close();
 				}
+				if (d > 0)
+					_out.set(i, d);
 				rsw.close();
 			} catch(SQLException e) {
 				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
@@ -380,14 +377,14 @@ public class ReportWeekData {
 	}
 	
 	/**
-	 * Ermittelt für die angegebene Woche das Datum des ersten Wochentages und
-	 * gibt dies als lesbare Zeichenkette zurück.
+	 * Ermittel für die angegebene Woche das Datum des ersten Wochentages und
+	 * gibt die als <b>long</b> zurück.
 	 * 
 	 * @param week Woche, von der der 1. Wochentag ermittelt werden soll.
 	 * 
-	 * @return 1. Wochentag der angegeben Woche.
+	 * @return 1. Wochentag der angegebenen Woche als <b>long</b>.
 	 */
-	public String getDateFrom(int week) {
+	public long getDateFromAsLong(int week) {
 		if (week > -1) {
 			GregorianCalendar gc = new GregorianCalendar();
 			gc.set(GregorianCalendar.YEAR, _preferences.getYear());
@@ -399,11 +396,46 @@ public class ReportWeekData {
 				gc.set(GregorianCalendar.DAY_OF_WEEK, 2);
 			}
 
-			return DateFormat.getDateInstance(DateFormat.MEDIUM).format(
-					new Date(gc.getTimeInMillis()));
+			return gc.getTimeInMillis();
 		}
 		
+		return 0;
+	}
+	
+	/**
+	 * Ermittelt für die angegebene Woche das Datum des ersten Wochentages und
+	 * gibt dies als lesbare Zeichenkette zurück.
+	 * 
+	 * @param week Woche, von der der 1. Wochentag ermittelt werden soll.
+	 * 
+	 * @return 1. Wochentag der angegeben Woche als Zeichenkette.
+	 */
+	public String getDateFrom(int week) {
+		if (week > -1)
+			return DateFormat.getDateInstance(DateFormat.MEDIUM).format(
+					new Date(getDateFromAsLong(week)));
+		
 		return new String();
+	}
+	
+	/**
+	 * Ermittel für die angegebene Woche das Datum des letzten Wochentages und
+	 * gibt die als <b>long</b> zurück.
+	 * 
+	 * @param week Woche, von der der letzter Wochentag ermittelt werden soll.
+	 * 
+	 * @return Letzter Wochentag der angegebenen Woche als <b>long</b>.
+	 */
+	public long getDateToAsLong(int week) {
+		if (week > -1) {
+			GregorianCalendar gc = new GregorianCalendar();
+			gc.set(GregorianCalendar.YEAR, _preferences.getYear());
+			gc.set(GregorianCalendar.WEEK_OF_YEAR, week);
+			gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+			return gc.getTimeInMillis();
+		}
+		
+		return 0;
 	}
 	
 	/**
@@ -415,15 +447,9 @@ public class ReportWeekData {
 	 * @return Letzer Wochentag der angegeben Woche.
 	 */
 	public String getDateTo(int week) {
-		if (week > -1) {
-			GregorianCalendar gc = new GregorianCalendar();
-			gc.set(GregorianCalendar.YEAR, _preferences.getYear());
-			gc.set(GregorianCalendar.WEEK_OF_YEAR, week);
-			gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
-
+		if (week > -1)
 			return DateFormat.getDateInstance(DateFormat.MEDIUM).format(
-					new Date(gc.getTimeInMillis()));
-		}
+					new Date(getDateToAsLong(week)));
 		
 		return new String();
 	}
