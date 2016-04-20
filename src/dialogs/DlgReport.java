@@ -26,6 +26,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -48,7 +50,7 @@ import javax.swing.JCheckBox;
  * 
  * @author René Majewski
  */
-public class DlgReport extends JDialog implements ActionListener {
+public class DlgReport extends JDialog implements ActionListener, ItemListener {
 	
 	/**
 	 * ActionCommand zum Abbrechen
@@ -253,6 +255,7 @@ public class DlgReport extends JDialog implements ActionListener {
 		panMonth.add(lblSpalten, gbc_lblSpalten);
 		
 		_cbWeekDateFrom = new JCheckBox("von");
+		_cbWeekDateFrom.addItemListener(this);
 		GridBagConstraints gbc_cbFrom = new GridBagConstraints();
 		gbc_cbFrom.anchor = GridBagConstraints.WEST;
 		gbc_cbFrom.insets = new Insets(0, 0, 5, 0);
@@ -261,6 +264,7 @@ public class DlgReport extends JDialog implements ActionListener {
 		panMonth.add(_cbWeekDateFrom, gbc_cbFrom);
 		
 		_cbWeekDateTo = new JCheckBox("bis");
+		_cbWeekDateTo.addItemListener(this);
 		GridBagConstraints gbc_cbTo = new GridBagConstraints();
 		gbc_cbTo.anchor = GridBagConstraints.WEST;
 		gbc_cbTo.insets = new Insets(0, 0, 5, 0);
@@ -433,5 +437,26 @@ public class DlgReport extends JDialog implements ActionListener {
 	 */
 	public ReportPreferencesData getData() {
 		return _data;
+	}
+
+	/**
+	 * Reagiert darauf, wenn eine CheckBox aus- oder abgewählt wurde.
+	 * 
+	 * @param ie Event-Daten
+	 */
+	@Override
+	public void itemStateChanged(ItemEvent ie) {
+		// CheckBox
+		if (ie.getSource() instanceof JCheckBox) {
+			// Wochenübersicht 'von'
+			if ((ie.getSource() == _cbWeekDateFrom) && 
+					_cbWeekDateFrom.isSelected())
+				_cbWeekDateTo.setSelected(true);
+			
+			// Wochenüberischt 'bis'
+			if ((ie.getSource() == _cbWeekDateTo) && 
+					_cbWeekDateTo.isSelected())
+				_cbWeekDateFrom.setSelected(true);
+		}
 	}
 }
