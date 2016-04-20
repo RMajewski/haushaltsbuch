@@ -104,6 +104,8 @@ public class TestReportWeekData {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		_year = 2016;
+
 		DbController.getInstance().prepaireDatabase();
 		
 		// Kalender vorbereiten
@@ -135,8 +137,7 @@ public class TestReportWeekData {
 		stm.executeUpdate(DbController.queries().moneyDetails().insert(5, 1, 1, 6, ""));
 		stm.executeUpdate(DbController.queries().money().insert(date, MoneyData.OUTGOING, ""));
 		stm.executeUpdate(DbController.queries().moneyDetails().insert(6, 1, 1, 13, ""));
-
-		_year = 2016;
+		
 		_preferences = new ReportPreferencesData(
 				ReportPreferencesData.TYPE_MONTH, 1, 0, _year);
 		_data = new ReportWeekData(_preferences);
@@ -643,8 +644,9 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void testIncoming() {
-		for (int i = 1; i < _data.getWeekCount(); i++)
-			assertEquals(0, _data.incoming(i), 0);
+		for (int i = 0; i < _data.getWeekCount(); i++)
+			if (i != 1)
+				assertEquals(0, _data.incoming(i), 0);
 	}
 	
 	/**
@@ -665,8 +667,9 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void testOutgoing() {
-		for (int i = 1; i < _data.getWeekCount(); i++)
-			assertEquals(0, _data.outgoing(i), 0);
+		for (int i = 0; i < _data.getWeekCount(); i++)
+			if (i != 1)
+				assertEquals(0, _data.outgoing(i), 0);
 	}
 	
 	/**
@@ -687,8 +690,9 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void testDeviation() {
-		for (int i = 1; i < _data.getWeekCount(); i++)
-			assertEquals(0, _data.deviation(i), 0.01);
+		for (int i = 0; i < _data.getWeekCount(); i++)
+			if (i != 1)
+				assertEquals(0, _data.deviation(i), 0.01);
 	}
 	
 	/**

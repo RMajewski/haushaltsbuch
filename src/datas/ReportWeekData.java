@@ -165,7 +165,7 @@ public class ReportWeekData {
 		// Anzahl der Wochen ermitteln
 		GregorianCalendar gc = HelperCalendar.createCalendar(
 				_preferences.getYear());
-		gc.set(GregorianCalendar.YEAR, _preferences.getYear());
+
 		_weekCount = gc.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR) + 1;
 		
 		// Listen für die Einnahmen und die Ausgaben initalisieren
@@ -188,8 +188,8 @@ public class ReportWeekData {
 				ResultSet rsw = stm.executeQuery(DbController.queries().money().selectWeek(from, to, MoneyData.INT_INCOMING));
 				double d = 0;
 				while(rsw.next()) {
-					System.out.println("Einnahme");
-					ResultSet rs = stm.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
+					Statement stm2 = DbController.getInstance().createStatement();
+					ResultSet rs = stm2.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
 					d += rs.getDouble(1);
 					rs.close();
 				}
@@ -201,7 +201,8 @@ public class ReportWeekData {
 				d = 0;
 				rsw = stm.executeQuery(DbController.queries().money().selectWeek(from, to, MoneyData.INT_OUTGOING));
 				while(rsw.next()) {
-					ResultSet rs = stm.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
+					Statement stm2 = DbController.getInstance().createStatement();
+					ResultSet rs = stm2.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
 					d += rs.getDouble(1);
 					rs.close();
 				}
