@@ -126,6 +126,81 @@ public class MoneyDetails extends Query {
 		// Rückgabe des Datenbank-Abfrage
 		return ret.toString();
 	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um einen neuen Eintrag in die Tabelle
+	 * "money_details" zu erzeugen. Für die 'moneyid', 'category' und 'section'
+	 * werden die IDs übernommen. Sollte ein eine <b>-1</b übergeben werden, so
+	 * wird als Platzhalter ein <b>?</b> genommen. Das Geld wird so übernommen,
+	 * wie es angegeben wurde. Solle eine <b>null</b> oder eine leere
+	 * Zeichenkette als Kommentar übergeben werden, so wird als Platzhalter das
+	 * <b>?</b> benutzt. Sollte eine Zeichenkette übergeben werden, so wird
+	 * diese Zeichenkette in die Datenbank-Abfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes
+	 * 
+	 * @param moneyid ID des Money-Datensatzes, zu dem dieser Datensatz gehören
+	 * soll.
+	 * 
+	 * @param categoryid ID der Kategory
+	 * 
+	 * @param sectionid ID des Geschäftes
+	 * 
+	 * @param money Angabe des Geldes
+	 * 
+	 * @param comment Beschreibung für diesen Datensatz
+	 * 
+	 * @return Datenbank-Abfrage, um einen Eintrag in "money_details" mit den
+	 * übergebenen Daten zu erstellen.
+	 */
+	public String insert(int id, int moneyid, int categoryid, int sectionid, double money, String comment) {
+		// Vorberung der Abfrage
+		StringBuilder ret = new StringBuilder("INSERT INTO 'money_details' ('id', 'moneyid', 'categoryid', 'sectionid', 'money', 'comment') VALUES(");
+		
+		// ID einfügen
+		ret.append(String.valueOf(id));
+		ret.append(", ");
+		
+		// ID des Money-Datensatzes
+		if (moneyid > -1)
+			ret.append(String.valueOf(moneyid));
+		else
+			ret.append("?");
+		ret.append(", ");
+		
+		// Die Kategory ID
+		if (categoryid > -1)
+			ret.append(String.valueOf(categoryid));
+		else
+			ret.append("?");
+		ret.append(", ");
+		
+		// Die ID des Geschäftes
+		if (sectionid > -1)
+			ret.append(String.valueOf(sectionid));
+		else
+			ret.append("?");
+		ret.append(", ");
+		
+		// Das Geld
+		ret.append(String.valueOf(money));
+		ret.append(", ");
+		
+		// Der Kommentar
+		if (comment == null || comment.isEmpty())
+			ret.append("?");
+		else {
+			ret.append("\"");
+			ret.append(comment);
+			ret.append("\"");
+		}
+		
+		// Abfrage abschließen
+		ret.append(");");
+		
+		// Rückgabe des Datenbank-Abfrage
+		return ret.toString();
+	}
 
 	/**
 	 * Erzeugt, die Datenbank-Abfrage, um alle Datensätze der Tabelle

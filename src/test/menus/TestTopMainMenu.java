@@ -114,6 +114,21 @@ public class TestTopMainMenu extends GuiTest {
 		test("Überprüfen, ob der Eintrag 'Jahresübersicht' vorhanden ist",
 				menu.getItem(2).getText().equals("Jahresübersicht"));
 	}
+
+	/**
+	 * Überprüft, ob das Export-Menü richtig ist.
+	 * 
+	 * @param menu 
+	 * 
+	 * @throws GuiTestException Wird ausgelöst, wenn ein Test nicht korrekt
+	 * ausgeführt werden konnte.
+	 */
+	private void testExportMenu(JMenu menu) throws GuiTestException {
+		test("Ist der Name des Menü Export richtig?", menu.getText().equals("Export"));
+		
+		test("Überprüfen, ob der Eintrag 'SQL-Script' vorhanden ist",
+				menu.getItem(0).getText().equals("SQL-Script"));
+	}
 	
 	/**
 	 * Führt die einzelnen Tests aus
@@ -134,6 +149,7 @@ public class TestTopMainMenu extends GuiTest {
 			int count = 0;
 			testFileMenu(menu.getMenu(count++));
 			testDbMenu(menu.getMenu(count++));
+			testExportMenu(menu.getMenu(count++));
 			testReportMenu(menu.getMenu(count++));
 			testLogMenu(menu.getMenu(count++));
 			testHelpMenu(menu.getMenu(count++));

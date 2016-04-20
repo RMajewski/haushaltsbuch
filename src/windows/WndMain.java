@@ -34,6 +34,8 @@ import dialogs.DlgLicense;
 import dialogs.DlgLogView;
 import dialogs.DlgReport;
 import elements.StatusBar;
+import export.Export;
+import export.SqlScript;
 import menus.MainTop;
 import windows.internal.WndCategoryList;
 import windows.internal.WndMoneyList;
@@ -190,6 +192,11 @@ public class WndMain extends JFrame implements ActionListener {
 			// Jahresübersicht anzeigen
 			case MainTop.REPORT_YEAR:
 				newWindow(new WndReports(ReportPreferencesData.TYPE_YEAR));
+				break;
+				
+			// Export der Daten als SQL-Script
+			case MainTop.EXPORT_SQL_SCRIPT:
+				new SqlScript().execute();
 				break;
 		}
 		

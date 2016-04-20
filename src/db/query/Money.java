@@ -99,6 +99,36 @@ public class Money extends Query {
 	}
 	
 	/**
+	 * Erzeugt die Datenbank-Abfrage, um einen Eintrag in der Tabelle "money"
+	 * zu erzeugen. Es werden die übergebenen Daten in die Datenbank-Abfrage
+	 * geschrieben.
+	 * 
+	 * @return Datenbank-Abfrage, um einen neuen Eintrag in "money" zu erzeugen
+	 */
+	public String insert(int id, long date, boolean inout, String comment) {
+		// Rückgabe voerbereiten
+		StringBuilder ret = new StringBuilder(insertWithId());
+		
+		// Id einfügen
+		replaceId(id, ret, false);
+		
+		// Datum einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(date));
+		
+		// Einfügen, ob es eine Einname oder eine Ausgabe ist
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, inoutToString(inout));
+		
+		// Kommentar einfügen
+		if (comment != null && !comment.isEmpty())
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		else
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, new String());
+		
+		// Datenbank-Abfrage zurück geben
+		return ret.toString();
+	}
+	
+	/**
 	 * Erzeugt die Datenbank-Abfrage, um das Datum eines Datensatzes in der
 	 * Tabelle "money" zu ändern. Wurde eine ID größer <b>-1</b> angegeben,
 	 * so wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>

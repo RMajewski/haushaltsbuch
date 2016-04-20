@@ -90,6 +90,11 @@ public class MainTop extends JMenuBar {
 	public static final String REPORT_YEAR = "ReportYear";
 	
 	/**
+	 * ActionCommand für Export -> SQL-Script
+	 */
+	public static final String EXPORT_SQL_SCRIPT = "ExportSqlScript";
+	
+	/**
 	 * Speichert den Namen des Menus
 	 */
 	public static final String MENU_NAME = new String("MainMenu");
@@ -109,9 +114,33 @@ public class MainTop extends JMenuBar {
 		// Menü erstellen
 		add(createFileMenu(listener));
 		add(createDbMenu(listener));
+		add(createExport(listener));
 		add(createReportMenu(listener));
 		add(createLogMenu(listener));
 		add(createHelpMenu(listener));
+	}
+
+	/**
+	 * Initalisiert das Menü: Export
+	 * 
+	 * @param listener Reagiert auf das Drücken eines Menü-Eintrages
+	 * 
+	 * @return Gibt das Export-Menü zurück
+	 */
+	private JMenu createExport(ActionListener listener) {
+		// Export-Menü initalisieren
+		JMenu ret = new JMenu("Export");
+		ret.setMnemonic('E');
+		
+		// SQL-Script
+		JMenuItem item = new JMenuItem("SQL-Script");
+		item.setMnemonic('S');
+		item.setActionCommand(EXPORT_SQL_SCRIPT);
+		item.addActionListener(listener);
+		ret.add(item);
+		
+		// Gibt das initalisieren Export-Menü zurück
+		return ret;
 	}
 
 	/**

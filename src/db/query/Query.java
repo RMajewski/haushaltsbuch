@@ -186,6 +186,57 @@ public abstract class Query implements QueryInterface {
 		// Abfrage zurück geben
 		return ret.toString();
 	}
+
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um einen neuen Datensatz in die Tabelle
+	 * einzufügen. Es wird auch die ID mit in die Abfrage eingebaut.
+	 * 
+	 * Diese Abfrage wird mit Hilfe der gespeicherten Spalten-Namen
+	 * und des gespeicherten Tabellen-Namens erstellt.
+	 * 
+	 * @return Datenbank-Abfrage um neuen Datensatz einzufügen
+	 * 
+	 * @param quotes Bei <b>true</b> werden die Anführungszeichen gesetzt.
+	 * Bei <b>false</b> werden keine Anführungszeichen gesetzt.
+	 */
+	public String insertWithId() {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("INSERT INTO ");
+		
+		// Anführungszeichen
+		String quote = new String("\"");
+		
+		// Tabellen-Namen einfügen
+		ret.append(_tableName);
+		ret.append(" (");
+		
+		// Spalten-Namen einfügen (id auslassen)
+		boolean first = true;
+		int queries = 0;
+		for (int i = 0; i < _columnNames.size(); i++) {
+			if (first)
+				first = false;
+			else
+				ret.append(", ");
+			ret.append(_columnNames.get(i));
+			queries++;
+		}
+		
+		// Anzahl Fragezeichen einfügen
+		ret.append(") VALUES (");
+		for (int i = 0; i < queries; i++) {
+			if (i > 0)
+				ret.append(", ");
+			
+			ret.append(quote);
+			ret.append("?");
+			ret.append(quote);
+		}
+		ret.append(");");
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
 	
 	/**
 	 * Erzeugt die Datenbank-Abfrage, um einen neuen Datensatz zu ändern.

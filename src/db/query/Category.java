@@ -71,6 +71,30 @@ public class Category extends Query {
 	}
 
 	/**
+	 * Erzeugt die Datenbank-Abfrage, um eine neue Kategorie in die Tabelle
+	 * "category" zu speichern. Diese Abfrage enthält bereits den Namen. Wird
+	 * <b>null</b> als Parameter übergeben, so wird als Platzhalter für den
+	 * Namen ein <b>?</b> eingefügt.
+	 * 
+	 * @param name Name der neuen Kategorie.
+	 * 
+	 * @param id ID des Datensatzes
+	 * 
+	 * @return Datenbank-Abfrage, um eine neue Kategorie zu erstellen.
+	 */
+	public String insert(int id, String name) {
+		StringBuilder sb = new StringBuilder(insertWithId());
+		
+		replaceId(id, sb, false);
+		
+		if (name != null && !name.isEmpty()) {
+			sb.replace(sb.indexOf("?"), sb.indexOf("?") + 1, name);
+		}
+
+		return sb.toString();
+	}
+
+	/**
 	 * Erzeugt die Datenbank-Abfrage, um eine Kategorie in der Tabelle
 	 * "category" zu ändern. Wurde eine ID größer <b>-1</b> angegeben, so wird
 	 * die ID in die Abfrage aufgebommen. Wurde als ID <b>-1</b> angegeben,
