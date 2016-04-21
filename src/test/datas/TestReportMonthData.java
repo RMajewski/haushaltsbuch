@@ -163,4 +163,37 @@ public class TestReportMonthData extends TestReports {
 		order.verify(tc, times(1)).setHeaderValue("Ausgaben");
 		order.verify(tc, times(1)).setHeaderValue("Differenz");
 	}
+	
+	/**
+	 * Überprüft, ob der richtige Tag zurück gegeben wird.
+	 * 
+	 * @see datas.ReportMonthData#getDay(int)
+	 */
+	@Test
+	public void testGetDayForFirstJanuary2016() {
+		for (int i = 0; i < 31; i++)
+			assertEquals("01.01.2016", _data.getDay(0));
+	}
+	
+	/**
+	 * Überprüft, ob eine leere Zeichenkette zurück gegeben wird, wenn der index
+	 * im Minus-Bereich ist.
+	 * 
+	 * @see datas.ReportMonthData#getDay(int)
+	 */
+	@Test
+	public void testGetDayWithMinusOneAsParameter() {
+		assertNull(_data.getDay(-1));
+	}
+	
+	/**
+	 * Überprüft, ob eine leere Zeichenkette zurück gegeben wird, wenn eine zu
+	 * hoher Index angegeben wird.
+	 * 
+	 * @see datas.ReportMonthData#getDay(int)
+	 */
+	@Test
+	public void testGetDayWithThirtyOneAsParameter() {
+		assertNull(_data.getDay(31));
+	}
 }

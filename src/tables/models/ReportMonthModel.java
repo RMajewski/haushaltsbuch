@@ -63,8 +63,7 @@ public class ReportMonthModel extends AbstractTableModel {
 	 */
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return _data.getColumnCount();
 	}
 
 	/**
@@ -74,16 +73,39 @@ public class ReportMonthModel extends AbstractTableModel {
 	 */
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return _data.getRowCount();
 	}
 
 	/**
-	 * Gibt den Inhalt der Zelle zurück.
+	 * Gibt den Inhalt der angegeben Zelle zurück.
+	 * 
+	 * @param col Zeile, in der die Zelle liegt
+	 * 
+	 * @param row Spalte, in der die Zelle liegt.
+	 * 
+	 * @return Inhalt der angegeben Zelle
 	 */
 	@Override
-	public Object getValueAt(int arg0, int arg1) {
-		// TODO Auto-generated method stub
+	public Object getValueAt(int col, int row) {
+		switch (row) {
+			// Tag
+			case 0:
+				return _data.getDay(col);
+				
+			// Einnahmen
+			case 1:
+				return _data.incoming(col);
+				
+			// Ausgaben
+			case 2:
+				return _data.outgoing(col);
+				
+			// Differenz
+			case 3:
+				return _data.deviation(col);
+		}
+		
+		// Standard-Rückgabe
 		return null;
 	}
 

@@ -24,6 +24,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.regex.Pattern;
 
+import helper.HelperCalendar;
+
 
 /**
  * Speichert die Daten für einen Datensatz der Tabelle 'money'
@@ -128,7 +130,7 @@ public class MoneyData extends Data {
 	 * @return Datum als Zeichenkette
 	 */
 	public String getDateAsString() {
-		return DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(_date));
+		return HelperCalendar.dateToString(_date);
 	}
 
 	/**

@@ -81,8 +81,7 @@ public class TestReportData extends TestReports {
 	@Test
 	public void testGetDateAsString() {
 		GregorianCalendar cal = HelperCalendar.createCalendar(_year);
-		assertEquals(DateFormat.getDateInstance(DateFormat.MEDIUM).format(
-				new Date(cal.getTimeInMillis())), 
+		assertEquals(HelperCalendar.dateToString(cal.getTimeInMillis()), 
 				_data.getDateAsString(cal.getTimeInMillis()));
 	}
 	

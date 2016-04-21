@@ -20,34 +20,146 @@
 package test.tables.models;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestReportMonthModel {
+import datas.ReportMonthData;
+import tables.models.ReportMonthModel;
+import test.TestReports;
 
+public class TestReportMonthModel extends TestReports {
+	/**
+	 * Speichert die Instanz des Models
+	 */
+	private ReportMonthModel _model;
+	
+	/**
+	 * Speichert das Mockobjekt für die Daten
+	 */
+	private ReportMonthData _data;
+
+	/**
+	 * Initalisiert die einzelnen Tests
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
+		_year = 2016;
+		_month = 4;
+		initPreferences();
+		
+		// Mock-Objekt für die Daten
+		_data = mock(ReportMonthData.class);
+		
+		// Model initalisieren
+		_model = new ReportMonthModel(_data);
 	}
 
-	@Test
-	public void testReportMonthModel() {
-		fail("Not yet implemented"); // TODO
-	}
-
+	/**
+	 * Testet, ob die Spalten-Anzahl richtig ermittelt wird.
+	 * 
+	 * @see tables.models.ReportMonthModel#getColumnCount()
+	 */
 	@Test
 	public void testGetColumnCount() {
-		fail("Not yet implemented"); // TODO
+		int col = 1;
+		when(_data.getColumnCount()).thenReturn(col);
+		assertEquals(col, _model.getColumnCount());
+		verify(_data, times(1)).getColumnCount();
 	}
 
+	/**
+	 * Testet, ob die Zeilen-Anzahl richtig ermittelt wird.
+	 * 
+	 * @see tables.models.ReportMonthModel#getRowCount()
+	 */
 	@Test
 	public void testGetRowCount() {
-		fail("Not yet implemented"); // TODO
+		int row = 20;
+		when(_data.getRowCount()).thenReturn(row);
+		assertEquals(row, _model.getRowCount());
+		verify(_data, times(1)).getRowCount();
 	}
 
+	/**
+	 * Testet, ob der Tag richtig zurück gegeben wird.
+	 * 
+	 * @see tables.models.ReportMonthModel#getValueAt(int, int)
+	 */
 	@Test
-	public void testGetValueAt() {
-		fail("Not yet implemented"); // TODO
+	public void testGetValueAtZeroColumn() {
+		int col = 10;
+		String str = "01.04.2016";
+		
+		when(_data.getDay(col)).thenReturn(str);
+
+		assertEquals(str, _model.getValueAt(col, 0));
+		
+		verify(_data, times(1)).getDay(col);
+		verify(_data, never()).incoming(col);
+		verify(_data, never()).outgoing(col);
+		verify(_data, never()).deviation(col);
 	}
 
+	/**
+	 * Testet, ob die Einnahmen richtig zurück gegeben wird.
+	 * 
+	 * @see tables.models.ReportMonthModel#getValueAt(int, int)
+	 */
+	@Test
+	public void testGetValueAtOneColumn() {
+		int col = 10;
+		double d = 5.48;
+		
+		when(_data.incoming(col)).thenReturn(d);
+
+		assertEquals(d, (double)_model.getValueAt(col, 1), 0);
+		
+		verify(_data, never()).getDay(col);
+		verify(_data, times(1)).incoming(col);
+		verify(_data, never()).outgoing(col);
+		verify(_data, never()).deviation(col);
+	}
+
+	/**
+	 * Testet, ob die Ausgaben richtig zurück gegeben wird.
+	 * 
+	 * @see tables.models.ReportMonthModel#getValueAt(int, int)
+	 */
+	@Test
+	public void testGetValueAtTwoColumn() {
+		int col = 10;
+		double d = 5.48;
+		
+		when(_data.outgoing(col)).thenReturn(d);
+
+		assertEquals(d, (double)_model.getValueAt(col, 2), 0);
+		
+		verify(_data, never()).getDay(col);
+		verify(_data, never()).incoming(col);
+		verify(_data, times(1)).outgoing(col);
+		verify(_data, never()).deviation(col);
+	}
+
+	/**
+	 * Testet, ob die Ausgaben richtig zurück gegeben wird.
+	 * 
+	 * @see tables.models.ReportMonthModel#getValueAt(int, int)
+	 */
+	@Test
+	public void testGetValueAtThreeColumn() {
+		int col = 10;
+		double d = 5.48;
+		
+		when(_data.deviation(col)).thenReturn(d);
+
+		assertEquals(d, (double)_model.getValueAt(col, 3), 0);
+		
+		verify(_data, never()).getDay(col);
+		verify(_data, never()).incoming(col);
+		verify(_data, never()).outgoing(col);
+		verify(_data, times(1)).deviation(col);
+	}
 }

@@ -140,4 +140,16 @@ public class TestHelperCalendar {
 	public void testCreateCalendarReturnHasRightHourMilliSecond() {
 		assertEquals(0, _cal.get(GregorianCalendar.MILLISECOND));
 	}
+	
+	/**
+	 * Testet, ob der angegeben long-Wert richtig in eine Lesbare Zeichenkette
+	 * umgewandelt wird.
+	 * 
+	 * @see helper.HelperCalendar#dateToString(long)
+	 */
+	@Test
+	public void testDateToString() {
+		assertEquals("01.01.2016", 
+				HelperCalendar.dateToString(_cal.getTimeInMillis()));
+	}
 }

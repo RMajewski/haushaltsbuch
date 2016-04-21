@@ -33,10 +33,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
+import datas.ReportMonthData;
 import datas.ReportPreferencesData;
 import datas.ReportWeekData;
 import dialogs.DlgReport;
 import elements.ReportGraphic;
+import tables.models.ReportMonthModel;
 import tables.models.ReportWeekModel;
 
 /**
@@ -148,16 +150,26 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 							_preference.getYear());
 					
 					// Tabellen-Model einstellen
-					ReportWeekData data = new ReportWeekData(_preference);
-					_table.setModel(new ReportWeekModel(data));
+					ReportWeekData dataWeek = new ReportWeekData(_preference);
+					_table.setModel(new ReportWeekModel(dataWeek));
 					
 					// Spalten-Beschreibungen
-					data.setColumnHeader(_table.getColumnModel());
-										
+					dataWeek.setColumnHeader(_table.getColumnModel());
 					break;
 					
 				case ReportPreferencesData.TYPE_MONTH:
-					setTitle("Wocheübersicht");
+					setTitle("Monatsübersicht für den Monat " + 
+							_preference.getMonth() + " im Jahr " +
+							_preference.getYear());
+					
+					// Tabellen-Model einstellen
+					ReportMonthData dataMonth = 
+							new ReportMonthData(_preference);
+					_table.setModel(new ReportMonthModel(dataMonth));
+					
+					// Spalten-Beschreibungen
+					dataMonth.setColumnHeader(_table.getColumnModel());
+					
 					break;
 					
 				case ReportPreferencesData.TYPE_YEAR:

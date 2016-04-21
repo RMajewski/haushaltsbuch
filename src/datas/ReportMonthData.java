@@ -78,4 +78,27 @@ public class ReportMonthData extends ReportData {
 		tcm.getColumn(3).setHeaderValue("Differenz");
 	}
 
+	/**
+	 * Ermittelt aus den angegeben Index den Tag und gibt diesen als lesbare 
+	 * Zeichenkette zurück. Sollte der Index außerhalb des Bereiches sein, in
+	 * den die Tage liegen, wird <b>null</b> zurück gegeben.
+	 * 
+	 * @param index Index, von dem der Tag ermittelt werden soll.
+	 * 
+	 * @return Ermittelter Tag als zeichenkette
+	 */
+	public Object getDay(int index) {
+		GregorianCalendar gc = 
+				HelperCalendar.createCalendar(_preferences.getYear());
+		gc.set(GregorianCalendar.MONTH, _preferences.getMonth());
+		if ((0 <= index) && (index < 
+				gc.getActualMaximum(GregorianCalendar.DAY_OF_MONTH))) {
+			gc.set(GregorianCalendar.DAY_OF_MONTH, index + 1);
+			return HelperCalendar.dateToString(gc.getTimeInMillis());
+		}
+		
+		// Standard Rückgabe
+		return null;
+	}
+
 }

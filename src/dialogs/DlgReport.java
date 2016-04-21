@@ -332,12 +332,12 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 				
 			// Monatsübersicht
 			case ReportPreferencesData.TYPE_MONTH:
-				_rbWeek.setSelected(true);
+				_rbMonth.setSelected(true);
 				break;
 				
 			// Jahresübersicht
 			case ReportPreferencesData.TYPE_YEAR:
-				_rbWeek.setSelected(true);
+				_rbYear.setSelected(true);
 				break;
 		}
 

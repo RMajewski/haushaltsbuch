@@ -19,6 +19,8 @@
 
 package helper;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -48,5 +50,17 @@ public class HelperCalendar {
 		
 		// Kalender zurück geben
 		return ret;
+	}
+	
+	/**
+	 * Wandelt ein Datum (long-Wert) in eine lesbare Zeichenkette um.
+	 * 
+	 * @param date long-Wert, der umgewandelt werden soll
+	 * 
+	 * @return Lesbare Zeichenkette.
+	 */
+	public static String dateToString(long date) {
+		return DateFormat.getDateInstance(DateFormat.MEDIUM).format(
+				new Date(date));
 	}
 }
