@@ -28,6 +28,7 @@ import static org.mockito.Mockito.when;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -240,5 +241,32 @@ public class TestReportData extends TestReports {
 	public void testSetColumnHeaderNoReturnType() {
 		assertEquals("void", 
 				getMethod("setColumnHeader").getReturnType().getName());
+	}
+	
+	/**
+	 * Überprüft, ob auch wirklich eine Double-List zurück gegeben wird.
+	 * 
+	 * @see datas.ReportData#initDoubleList(int)
+	 */
+	@Test
+	public void testInitDoubleListRightType() {
+		assertEquals("java.util.ArrayList", 
+				_data.initDoubleList(10).getClass().getName());
+	}
+	
+	/**
+	 * Überprüft, ob die Double-Liste richtig initalisiert wurde.
+	 * 
+	 * @see datas.ReportData#initDoubleList(int)
+	 */
+	@Test
+	public void testInitDoubleList() {
+		int count = 10;
+		List<Double> list = _data.initDoubleList(count);
+		
+		assertEquals(count, list.size());
+		
+		for (int i = 0; i < count; i++)
+			assertEquals(0.0, list.get(i), 0.0);
 	}
 }

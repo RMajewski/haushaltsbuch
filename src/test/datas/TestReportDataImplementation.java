@@ -19,6 +19,8 @@
 
 package test.datas;
 
+import java.util.List;
+
 import javax.swing.table.TableColumnModel;
 
 import datas.ReportData;
@@ -55,6 +57,14 @@ public class TestReportDataImplementation extends ReportData {
 	@Override
 	public String getDateAsString(long date) {
 		return super.getDateAsString(date);
+	}
+	
+	/**
+	 * Zum testen, ob die protected-Methode richtig arbeitet.
+	 */
+	@Override
+	public List<Double> initDoubleList(int count) {
+		return super.initDoubleList(count);
 	}
 
 	@Override
