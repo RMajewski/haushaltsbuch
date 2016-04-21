@@ -934,8 +934,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void TestGetDateToAsLongReturnIsRight() {
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(GregorianCalendar.YEAR, _year);
+		GregorianCalendar gc = HelperCalendar.createCalendar(_year);
 		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
 		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
 		assertEquals(gc.getTimeInMillis(), _data.getDateToAsLong(1));

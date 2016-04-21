@@ -26,6 +26,7 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +44,7 @@ import helper.HelperCalendar;
  * @version 0.1
  * @since 0.2
  */
-public class ReportWeekData {
+public class ReportWeekData extends ReportData {
 	/**
 	 * Gibt den Namen für die Einstellung zum anzeigen der einzelnen Kategorien
 	 * an.
@@ -68,11 +69,6 @@ public class ReportWeekData {
 	public static final String DRAW_DATE_TO = new String("Week.drawDateTo");
 	
 	/**
-	 * Speichert die Einstellungen
-	 */
-	private ReportPreferencesData _preferences;
-	
-	/**
 	 * Speichert die Anzahl der Wochen für das ausgewählte Jahr
 	 */
 	private int _weekCount;
@@ -83,21 +79,14 @@ public class ReportWeekData {
 	private List<String> _weeks;
 	
 	/**
-	 * Speichert die einzelnen Einnahmen
-	 */
-	private List<Double> _in;
-	
-	/**
-	 * Speichert die einzelnen Ausgaben
-	 */
-	private List<Double> _out;
-	
-	/**
 	 * Initalisiert die Daten.
 	 * 
 	 * @param preferences Einstellungen für den Report.
 	 */
 	public ReportWeekData(ReportPreferencesData preferences) {
+		// Klasse initalisieren
+		super(preferences);
+		
 		// Liste für die Wochennummern initalisieren
 		_weeks = new ArrayList<String>();
 		_weekCount = 0;
@@ -128,15 +117,6 @@ public class ReportWeekData {
 	}
 	
 	/**
-	 * Gibt das ausgewählte Jahr wieder
-	 * 
-	 * @return Ausgewählte Jahr
-	 */
-	public int getYear() {
-		return _preferences.getYear();
-	}
-	
-	/**
 	 * Gibt die Anzahl der Wochen für das ausgewählte Jahr zurück.
 	 */
 	public int getWeekCount() {
@@ -158,9 +138,10 @@ public class ReportWeekData {
 	 * Speichert die neuen Einstellungen und weist an, dass die Daten neu
 	 * eingelesen werden.
 	 */
+	@Override
 	public void setPreferences(ReportPreferencesData preferences) {
 		// Neue Einstellungen speichern
-		_preferences = preferences;
+		super.setPreferences(preferences);
 		
 		// Anzahl der Wochen ermitteln
 		GregorianCalendar gc = HelperCalendar.createCalendar(
@@ -318,40 +299,6 @@ public class ReportWeekData {
 	}
 	
 	/**
-	 * Gibt die Einnahmen für die angegeben Woche zurück.
-	 * 
-	 * @param week Woche, für die die Einnahmen ermittelt werden sollen
-	 * 
-	 * @return Einnahmen der angebenen Woche
-	 */
-	public double incoming(int week) {
-		return _in.get(week);
-	}
-	
-	/**
-	 * Gibt die Ausgaben für die angegeben Woche zurück.
-	 * 
-	 * @param week Woche, für die die Ausgaben ermittelt werden sollen
-	 * 
-	 * @return Ausgaben der angebenen Woche
-	 */
-	public double outgoing(int week) {
-		return _out.get(week);
-	}
-	
-	/**
-	 * Berechnet die Differenz von Einnahmen und Ausgaben für die angegebene
-	 * Woche.
-	 * 
-	 * @param week Woche, für die die Differenz berechnet werden soll.
-	 * 
-	 * @return Gibt die Differenz von Einnahmen und Ausgaben zurück.
-	 */
-	public double deviation(int week) {
-		return incoming(week) - outgoing(week);
-	}
-	
-	/**
 	 * Gibt Zurück, ob Spalte 'von' angezeigt werden soll oder nicht.
 	 * 
 	 * @return Soll Spalte 'von' angezeigt werden?
@@ -411,8 +358,7 @@ public class ReportWeekData {
 	 */
 	public String getDateFrom(int week) {
 		if (week > -1)
-			return DateFormat.getDateInstance(DateFormat.MEDIUM).format(
-					new Date(getDateFromAsLong(week)));
+			return getDateAsString(getDateFromAsLong(week));
 		
 		return new String();
 	}
@@ -427,8 +373,8 @@ public class ReportWeekData {
 	 */
 	public long getDateToAsLong(int week) {
 		if (week > -1) {
-			GregorianCalendar gc = new GregorianCalendar();
-			gc.set(GregorianCalendar.YEAR, _preferences.getYear());
+			GregorianCalendar gc = HelperCalendar.createCalendar(
+					_preferences.getYear());
 			gc.set(GregorianCalendar.WEEK_OF_YEAR, week);
 			gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
 			return gc.getTimeInMillis();
@@ -447,8 +393,7 @@ public class ReportWeekData {
 	 */
 	public String getDateTo(int week) {
 		if (week > -1)
-			return DateFormat.getDateInstance(DateFormat.MEDIUM).format(
-					new Date(getDateToAsLong(week)));
+			return getDateAsString(getDateToAsLong(week));
 		
 		return new String();
 	}
