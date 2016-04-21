@@ -100,23 +100,6 @@ public class ReportWeekData extends ReportData {
 	}
 	
 	/**
-	 * Initalisiert die angegebene Liste und füllt sie mit 0.0 für die Anzahl
-	 * der Wochen.
-	 */
-	private List<Double> initDoubleList() {
-		// Liste initalisieren?
-		List<Double> ret = new ArrayList<Double>();
-		
-		// Liste neu aufbauen
-		for (int i = 0; i <= _weekCount; i++) {
-			ret.add(Double.valueOf(0));
-		}
-		
-		// Liste zurück geben
-		return ret;
-	}
-	
-	/**
 	 * Gibt die Anzahl der Wochen für das ausgewählte Jahr zurück.
 	 */
 	public int getRowCount() {
@@ -150,8 +133,8 @@ public class ReportWeekData extends ReportData {
 		_weekCount = gc.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR) + 1;
 		
 		// Listen für die Einnahmen und die Ausgaben initalisieren
-		_in = initDoubleList();
-		_out = initDoubleList();
+		_in = initDoubleList(_weekCount + 1);
+		_out = initDoubleList(_weekCount + 1);
 		
 		// Schleife über alle Wochen
 		for (int i = 0; i <= _weekCount; i++) {

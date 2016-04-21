@@ -19,7 +19,16 @@
 
 package datas;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.GregorianCalendar;
+
 import javax.swing.table.TableColumnModel;
+
+import db.DbController;
+import elements.StatusBar;
+import helper.HelperCalendar;
 
 /**
  * Speichert die Daten, die im Report für die Jahresübersicht angezeigt werden
@@ -130,9 +139,67 @@ public class ReportYearData extends ReportData {
 		return new String();
 	}
 	
+	/**
+	 * Speichert die Einstellungen und ermittelt die Daten, die in der Tabelle
+	 * ausgegeben werden sollen.
+	 * 
+	 * @param preferences Einstellungen, die gemacht wurden
+	 */
 	@Override
 	public void setPreferences(ReportPreferencesData preferences) {
 		// Einstellungen speichern
 		super.setPreferences(preferences);
+		
+		// Kalender vorbereiten
+		GregorianCalendar gc = HelperCalendar.createCalendar(
+				_preferences.getYear());
+		
+		// Listen für Einnahmen und Ausgaben initalisieren
+		_in = initDoubleList(12);
+		_out = initDoubleList(12);
+		
+		// Schleife über alle Tage
+		for (int i = 0; i < 12; i++) {
+			try {
+				// Long-Wert ermitteln
+				gc.set(GregorianCalendar.MONTH, i);
+				gc.set(GregorianCalendar.DAY_OF_MONTH, 1);
+				long first = gc.getTimeInMillis();
+				gc.set(GregorianCalendar.DAY_OF_MONTH,
+						gc.getActualMaximum(GregorianCalendar.DAY_OF_MONTH));
+				long last = gc.getTimeInMillis();
+				
+				// Einnahmen ermitteln
+				Statement stm = DbController.getInstance().createStatement();
+				ResultSet rsw = stm.executeQuery(DbController.queries().money().selectWeek(first, last, MoneyData.INT_INCOMING));
+				double d = 0;
+				while(rsw.next()) {
+					Statement stm2 = DbController.getInstance().createStatement();
+					ResultSet rs = stm2.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
+					d += rs.getDouble(1);
+					rs.close();
+				}
+				if (d > 0)
+					_in.set(i, d);
+				rsw.close();
+				
+				// Ausgaben ermitteln
+				stm = DbController.getInstance().createStatement();
+				rsw = stm.executeQuery(DbController.queries().money().selectWeek(first, last, MoneyData.INT_OUTGOING));
+				d = 0;
+				while(rsw.next()) {
+					Statement stm2 = DbController.getInstance().createStatement();
+					ResultSet rs = stm2.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
+					d += rs.getDouble(1);
+					rs.close();
+				}
+				if (d > 0)
+					_out.set(i, d);
+				rsw.close();
+			} catch (SQLException e) {
+				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+				e.printStackTrace();
+			}
+		}
 	}
 }

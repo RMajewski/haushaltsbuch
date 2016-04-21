@@ -82,6 +82,24 @@ public abstract class ReportData {
 	}
 	
 	/**
+	 * Initalisiert eine Double-Liste. Es wird die Anzahl der Datensätze mit 0
+	 * vorbelegt, wie sie im Parameter angegeben wurden.
+	 * 
+	 * @param count Anzahl an vorbelegten Datensätzen
+	 */
+	protected List<Double> initDoubleList(int count) {
+		// Liste initalisieren
+		List<Double> ret = new ArrayList<Double>();
+		
+		// Datensätze erzeugen
+		for (int i= 0; i < count; i++)
+			ret.add(0.0);
+		
+		// Liste zurück geben
+		return ret;
+	}
+	
+	/**
 	 * Gibt das ausgewählte Jahr wieder
 	 * 
 	 * @return Ausgewählte Jahr

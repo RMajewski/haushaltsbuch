@@ -52,26 +52,6 @@ public class ReportMonthData extends ReportData {
 		
 		setPreferences(preferences);
 	}
-	
-	/**
-	 * Initalisiert eine Double-Liste und füllt sie mit 0 auf für die Anzahl an
-	 * Tagen.
-	 * 
-	 * @param Anzahl Einträge, die die Liste haben soll
-	 * 
-	 * @return initalisierte Double-Liste
-	 */
-	private List<Double> initDoubleList(int days) {
-		// Liste vorbereiten
-		List<Double> ret = new ArrayList<Double>();
-		
-		// Einträge erzeugen
-		for (int i = 0; i < days; i++)
-			ret.add(0.0);
-		
-		// Initalisierte Liste zurück geben
-		return ret;
-	}
 
 	/**
 	 * Gibt die Anzahl der Spalten zurück
