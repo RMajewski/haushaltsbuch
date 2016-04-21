@@ -36,10 +36,12 @@ import javax.swing.JTable;
 import datas.ReportMonthData;
 import datas.ReportPreferencesData;
 import datas.ReportWeekData;
+import datas.ReportYearData;
 import dialogs.DlgReport;
 import elements.ReportGraphic;
 import tables.models.ReportMonthModel;
 import tables.models.ReportWeekModel;
+import tables.models.ReportYearModel;
 
 /**
  * Zeigt die einzelnen Reports an.
@@ -169,11 +171,18 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 					
 					// Spalten-Beschreibungen
 					dataMonth.setColumnHeader(_table.getColumnModel());
-					
 					break;
 					
 				case ReportPreferencesData.TYPE_YEAR:
-					setTitle("Jahresübersicht");
+					setTitle("Übersicht für das Jahr " + _preference.getYear());
+					
+					// Tabellen-Modell initalisieren
+					ReportYearData dataYear = new ReportYearData(_preference);
+					_table.setModel(new ReportYearModel(dataYear));
+					
+					// Spalten-Beschreibungen
+					dataYear.setColumnHeader(_table.getColumnModel());
+					break;
 			}
 			
 			// Dialog anzeigen

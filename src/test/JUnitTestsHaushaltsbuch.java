@@ -44,6 +44,7 @@ import org.junit.runners.Suite;
 	test.datas.TestReportData.class,
 	test.datas.TestReportWeekData.class,
 	test.datas.TestReportMonthData.class,
+	test.datas.TestReportYearData.class,
 	
 	test.db.query.TestQueryInterface.class,
 	test.db.query.TestQuery.class,
@@ -67,7 +68,8 @@ import org.junit.runners.Suite;
 	test.tables.models.TestMoneyDetailsListModel.class,
 	test.tables.models.TestMoneyListModel.class,
 	test.tables.models.TestReportWeekModel.class,
-	test.tables.models.TestReportMonthModel.class
+	test.tables.models.TestReportMonthModel.class,
+	test.tables.models.TestReportYearModel.class
 })
 public class JUnitTestsHaushaltsbuch {
 
