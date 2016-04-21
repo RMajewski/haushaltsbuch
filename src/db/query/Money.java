@@ -19,6 +19,8 @@
 
 package db.query;
 
+import java.util.GregorianCalendar;
+
 import datas.MoneyData;
 
 /**
@@ -311,5 +313,27 @@ public class Money extends Query {
 		
 		// Abfrage zurück geben
 		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um alle Datensätze des angegebenen Tages
+	 * zu selektieren. Zudem wird noch angegeben, ob Einnahmen oder Augaben
+	 * selektiert werden sollen.
+	 * 
+	 * @param day Tag, von dem die Datensätze selektiert werden sollen.
+	 * 
+	 * @param inout Einnahmen oder Ausgaben selektieren?
+	 * 
+	 * @return Datenbank-Abfrage , um Datenätze des angegebenen Tages zu
+	 * selektieren.
+	 */
+	public String selectDay(long day, int inout) {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTimeInMillis(day);
+		gc.set(GregorianCalendar.HOUR_OF_DAY, 23);
+		gc.set(GregorianCalendar.MINUTE, 59);
+		gc.set(GregorianCalendar.SECOND, 59);
+		gc.set(GregorianCalendar.MILLISECOND, 999);
+		return selectWeek(day, gc.getTimeInMillis(), inout);
 	}
 }

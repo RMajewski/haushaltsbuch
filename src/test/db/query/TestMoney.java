@@ -761,4 +761,68 @@ public class TestMoney extends TestHelper {
 		assertEquals(query.toString(), 
 				_money.selectWeek(from, to, MoneyData.INT_OUTGOING));
 	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#selectDay(long, int)} die
+	 * Datenbank-Abfrage richtig erstellt hat. Es wurden die Datensätze für die
+	 * Einnahmen ausgewählt.
+	 */
+	@Test
+	public void testSelectDayWithIncoming() {
+		GregorianCalendar gc = HelperCalendar.createCalendar(2016);
+		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+		long from = gc.getTimeInMillis();
+		gc.set(GregorianCalendar.HOUR_OF_DAY, 23);
+		gc.set(GregorianCalendar.MINUTE, 59);
+		gc.set(GregorianCalendar.SECOND, 59);
+		gc.set(GregorianCalendar.MILLISECOND, 999);
+		long to = gc.getTimeInMillis();
+		
+		
+		StringBuilder query = new StringBuilder("SELECT id FROM ");
+		query.append(_table);
+		query.append(" WHERE date BETWEEN ");		
+		query.append(from);
+		query.append(" AND ");
+		query.append(to);
+		query.append(" AND inout = ");
+		query.append(MoneyData.INT_INCOMING);
+		
+		assertEquals(query.toString(), 
+				_money.selectWeek(from, to, MoneyData.INT_INCOMING));
+		
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#selectDay(long, int)} die
+	 * Datenbank-Abfrage richtig erstellt hat. Es wurden die Datensätze für die
+	 * Ausgaben ausgewählt.
+	 */
+	@Test
+	public void testSelectDayWithOutgoing() {
+		GregorianCalendar gc = HelperCalendar.createCalendar(2016);
+		gc.set(GregorianCalendar.WEEK_OF_YEAR, 1);
+		gc.set(GregorianCalendar.DAY_OF_WEEK, 1);
+		long from = gc.getTimeInMillis();
+		gc.set(GregorianCalendar.HOUR_OF_DAY, 23);
+		gc.set(GregorianCalendar.MINUTE, 59);
+		gc.set(GregorianCalendar.SECOND, 59);
+		gc.set(GregorianCalendar.MILLISECOND, 999);
+		long to = gc.getTimeInMillis();
+		
+		
+		StringBuilder query = new StringBuilder("SELECT id FROM ");
+		query.append(_table);
+		query.append(" WHERE date BETWEEN ");		
+		query.append(from);
+		query.append(" AND ");
+		query.append(to);
+		query.append(" AND inout = ");
+		query.append(MoneyData.INT_OUTGOING);
+		
+		assertEquals(query.toString(), 
+				_money.selectWeek(from, to, MoneyData.INT_OUTGOING));
+		
+	}
 }

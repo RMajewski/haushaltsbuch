@@ -19,10 +19,17 @@
 
 package datas;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.swing.table.TableColumnModel;
 
+import db.DbController;
+import elements.StatusBar;
 import helper.HelperCalendar;
 
 /**
@@ -43,6 +50,27 @@ public class ReportMonthData extends ReportData {
 	public ReportMonthData(ReportPreferencesData preferences) {
 		super(preferences);
 		
+		setPreferences(preferences);
+	}
+	
+	/**
+	 * Initalisiert eine Double-Liste und füllt sie mit 0 auf für die Anzahl an
+	 * Tagen.
+	 * 
+	 * @param Anzahl Einträge, die die Liste haben soll
+	 * 
+	 * @return initalisierte Double-Liste
+	 */
+	private List<Double> initDoubleList(int days) {
+		// Liste vorbereiten
+		List<Double> ret = new ArrayList<Double>();
+		
+		// Einträge erzeugen
+		for (int i = 0; i < days; i++)
+			ret.add(0.0);
+		
+		// Initalisierte Liste zurück geben
+		return ret;
 	}
 
 	/**
@@ -101,4 +129,64 @@ public class ReportMonthData extends ReportData {
 		return null;
 	}
 
+	/**
+	 * Speichert die neuen Einstellungen. Außerdem werden die Daten eingelesen.
+	 * 
+	 * @param preference Neue Einstellungen
+	 */
+	@Override
+	public void setPreferences(ReportPreferencesData preferences) {
+		// Neue Einstellungen speichern
+		super.setPreferences(preferences);
+		
+		// Monat ermitteln, für den die Übersicht erstellt werden soll
+		GregorianCalendar gc = HelperCalendar.createCalendar(
+				_preferences.getYear());
+		gc.set(GregorianCalendar.MONTH, _preferences.getMonth());
+		int days = gc.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+		
+		// Listen für Einnahmen und Ausgaben initalisieren
+		_in = initDoubleList(days);
+		_out = initDoubleList(days);
+		
+		// Schleife über alle Tage
+		for (int i = 0; i < days; i++) {
+			try {
+				// Long-Wert ermitteln
+				gc.set(GregorianCalendar.DAY_OF_MONTH, i + 1);
+				long day = gc.getTimeInMillis();
+				
+				// Einnahmen ermitteln
+				Statement stm = DbController.getInstance().createStatement();
+				ResultSet rsw = stm.executeQuery(DbController.queries().money().selectDay(day, MoneyData.INT_INCOMING));
+				double d = 0;
+				while(rsw.next()) {
+					Statement stm2 = DbController.getInstance().createStatement();
+					ResultSet rs = stm2.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
+					d += rs.getDouble(1);
+					rs.close();
+				}
+				if (d > 0)
+					_in.set(i, d);
+				rsw.close();
+				
+				// Ausgaben ermitteln
+				stm = DbController.getInstance().createStatement();
+				rsw = stm.executeQuery(DbController.queries().money().selectDay(day, MoneyData.INT_OUTGOING));
+				d = 0;
+				while(rsw.next()) {
+					Statement stm2 = DbController.getInstance().createStatement();
+					ResultSet rs = stm2.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
+					d += rs.getDouble(1);
+					rs.close();
+				}
+				if (d > 0)
+					_out.set(i, d);
+				rsw.close();
+			} catch (SQLException e) {
+				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+				e.printStackTrace();
+			}
+		}
+	}
 }
