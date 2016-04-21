@@ -17,48 +17,49 @@
 * sind dem Lizenztext zu entnehmen.
 */ 
 
-package test.datas;
+package test;
 
-import javax.swing.table.TableColumnModel;
+import static org.mockito.Mockito.*;
 
-import datas.ReportData;
 import datas.ReportPreferencesData;
 
 /**
- * Beinhaltet eine Implementation der Klasse {@link datas.ReportData}, um die
- * dort implementierten Methoden zu testen.
+ * Implementiert Methoden, die bei den Report-Tests gebraucht wird.
  * 
  * @author René Majewski
  *
  * @version 0.1
  * @since 0.2
  */
-public class TestReportDataImplementation extends ReportData {
-
-	public TestReportDataImplementation(ReportPreferencesData preferences) {
-		super(preferences);
-	}
-
-	@Override
-	public int getColumnCount() {
-		return 0;
-	}
-
-	@Override
-	public void setColumnHeader(TableColumnModel tcm) {
-		
-	}
+public class TestReports extends TestHelper {
 
 	/**
-	 * Zum testen, ob die protected-Methode richtig arbeitet.
+	 * Speichert die Mock-Klasse für die Einstellungen
 	 */
-	@Override
-	public String getDateAsString(long date) {
-		return super.getDateAsString(date);
-	}
-
-	@Override
-	public int getRowCount() {
-		return 0;
+	protected ReportPreferencesData _rpd;
+	
+	/**
+	 * Speichert das Jahr
+	 */
+	protected int _year;
+	
+	/**
+	 * Speichert den Monat.
+	 */
+	protected int _month;
+	
+	/**
+	 * Speichert den Typ
+	 */
+	protected int _type;
+	
+	/**
+	 * Initalisiert das Mock-Objekt für die Einstellungen
+	 */
+	protected void initPreferences() {
+		_rpd = mock(ReportPreferencesData.class);
+		when(_rpd.getYear()).thenReturn(_year);
+		when(_rpd.getMonth()).thenReturn(_month);
+		when(_rpd.getType()).thenReturn(_type);
 	}
 }

@@ -19,8 +19,11 @@
 
 package test.datas;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.sql.Date;
 import java.text.DateFormat;
@@ -31,30 +34,14 @@ import org.junit.Test;
 
 import datas.ReportData;
 import datas.ReportPreferencesData;
-import db.query.QueryInterface;
 import helper.HelperCalendar;
-import test.TestHelper;
+import test.TestReports;
 
-public class TestReportData extends TestHelper {
+public class TestReportData extends TestReports {
 	/**
 	 * Speichert die Instanz von ReportData
 	 */
 	private TestReportDataImplementation _data;
-	
-	/**
-	 * Speichert das Jahr
-	 */
-	private int _year;
-	
-	/**
-	 * Speichert den Monat
-	 */
-	private int _month;
-	
-	/**
-	 * Speichert die Mocking-Instanz für {@link datas.ReportPreferencesData}
-	 */
-	private ReportPreferencesData _rpd;
 
 	/**
 	 * Initalisiert die einzelnen Tests
@@ -64,10 +51,10 @@ public class TestReportData extends TestHelper {
 	public void setUp() throws Exception {
 		_year = 2016;
 		_month = 1;
+		_type = 0;
 		
-		_rpd = mock(ReportPreferencesData.class);
-		when(_rpd.getYear()).thenReturn(_year);
-		when(_rpd.getMonth()).thenReturn(_month);
+		initPreferences();
+		
 		
 		_data = new TestReportDataImplementation(_rpd);
 		
@@ -193,6 +180,34 @@ public class TestReportData extends TestHelper {
 	public void testGetColumnCountReturnInt() {
 		assertEquals("int", 
 				getMethod("getColumnCount").getReturnType().getName());
+	}
+	
+	/**
+	 * Überprüft ob die abstrakte Methode
+	 * {@link datas.ReportData#getRowCount()} existiert.
+	 */
+	@Test
+	public void testGetRowCount() {
+		assertTrue(getMethod("getRowCount") != null);
+	}
+	
+	/**
+	 * Überprüft ob die abstrakte Methode
+	 * {@link datas.ReportData#getRowCount()} keine Parameter hat.
+	 */
+	@Test
+	public void testGetRowCountNoParameter() {
+		assertEquals(0, getMethod("getRowCount").getParameterTypes().length);
+	}
+	
+	/**
+	 * Überprüft ob der Rückgabe-Type der abstrakten Methode
+	 * {@link datas.ReportData#getRowCount()} int ist.
+	 */
+	@Test
+	public void testGetRowCountReturnInt() {
+		assertEquals("int", 
+				getMethod("getRowCount").getReturnType().getName());
 	}
 	
 	/**

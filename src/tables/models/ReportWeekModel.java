@@ -24,7 +24,7 @@ import javax.swing.table.AbstractTableModel;
 import datas.ReportWeekData;
 
 /**
- * Zeigt die erhoben Daten in der Tabelle an.
+ * Zeigt die erhoben Daten der Wochenübersicht in der Tabelle an.
  * 
  * @author René Majewski
  *
@@ -66,7 +66,7 @@ public class ReportWeekModel extends AbstractTableModel {
 	 */
 	@Override
 	public int getRowCount() {
-		return _data.getWeekCount();
+		return _data.getRowCount();
 	}
 
 	/**
@@ -88,8 +88,9 @@ public class ReportWeekModel extends AbstractTableModel {
 				// 'von' aus gewählt
 				if (_data.drawDateFrom())
 					return _data.getDateFrom(row);
+				
 				// 'bis' ausgewählt, aber 'von' nicht
-				if (!_data.drawDateFrom() && _data.drawDateTo())
+				if (_data.drawDateTo())
 					return _data.getDateTo(row);
 				
 				// 'von' und 'bis' nicht ausgewählt
@@ -97,10 +98,11 @@ public class ReportWeekModel extends AbstractTableModel {
 				
 			// 3. Spalte
 			case 2:
-				// 'bis' ausgewählt und 'von' ausgewählt
-				if (_data.drawDateTo() && _data.drawDateFrom())
+				// 'von' ausgewählt und 'bis' ausgewählt
+				if (_data.drawDateFrom() && _data.drawDateTo())
 					return _data.getDateTo(row);
 				
+				// 'von' oder 'bis' ausgewählt
 				if (_data.drawDateFrom() || _data.drawDateTo())
 					return _data.incoming(row);
 				

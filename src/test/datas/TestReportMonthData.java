@@ -20,9 +20,20 @@
 package test.datas;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.util.GregorianCalendar;
+
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InOrder;
+
+import datas.ReportMonthData;
+import datas.ReportPreferencesData;
+import test.TestReports;
 
 /**
  * Testet die Klasse {@link datas.ReportMonthData}.
@@ -32,7 +43,12 @@ import org.junit.Test;
  * @version 0.1
  * @since 0.2
  */
-public class TestReportMonthData {
+public class TestReportMonthData extends TestReports {
+	/**
+	 * Instanz der Monats-Daten
+	 */
+	private ReportMonthData _data;
+
 	/**
 	 * Initalisiert die einzelnen Tests
 	 * 
@@ -40,11 +56,111 @@ public class TestReportMonthData {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		_year = 2016;
+		_month = GregorianCalendar.JANUARY;
+		_type = ReportPreferencesData.TYPE_MONTH;
+		initPreferences();
 		
+		_data = new ReportMonthData(_rpd);
 	}
 	
+	/**
+	 * Testet, ob die Klase {@link datas.ReportMonthData} von der Klasse
+	 * {@link datas.ReportData} abgeleitet wurde.
+	 */
 	@Test
-	public void testFail() {
-		fail("Tests nicht implementiert");
+	public void testReportMonthDataExtendsReportData() {
+		assertEquals("datas.ReportData", 
+				_data.getClass().getSuperclass().getName());
+	}
+	
+	/**
+	 * Überprüft, ob die Richtige Anzahl an Spalten zurück gegeben werden.
+	 * 
+	 * @see datas.ReportMonthData#getColumnCount()
+	 */
+	@Test
+	public void testGetColumnCountReturnRightCount() {
+		assertEquals(4, _data.getColumnCount());
+	}
+	
+	/**
+	 * Überprüft, ob die richtige Anzahl an Zeilen zurück gegeben werden. Es
+	 * wird der Juli 2016 eingestellt.
+	 * 
+	 * @see datas.ReportMonthData#getRowCount()
+	 */
+	@Test
+	public void testGetRowCountReturgnRightCountForJuliy2016() {
+		when(_rpd.getMonth()).thenReturn(GregorianCalendar.JULY);
+		assertEquals(31, _data.getRowCount());
+	}
+	
+	/**
+	 * Überprüft, ob die richtige Anzahl an Zeilen zurück gegeben werden. Es
+	 * wird der Februar 2016 eingestellt.
+	 * 
+	 * @see datas.ReportMonthData#getRowCount()
+	 */
+	@Test
+	public void testGetRowCountReturgnRightCountForFebruary2016() {
+		when(_rpd.getMonth()).thenReturn(GregorianCalendar.FEBRUARY);
+		assertEquals(29, _data.getRowCount());
+	}
+	
+	/**
+	 * Überprüft, ob die richtige Anzahl an Zeilen zurück gegeben werden. Es
+	 * wird der Februar 2015 eingestellt.
+	 * 
+	 * @see datas.ReportMonthData#getRowCount()
+	 */
+	@Test
+	public void testGetRowCountReturgnRightCountForFebruary2015() {
+		when(_rpd.getMonth()).thenReturn(GregorianCalendar.FEBRUARY);
+		when(_rpd.getYear()).thenReturn(2015);
+		assertEquals(28, _data.getRowCount());
+	}
+	
+	/**
+	 * Überprüft, ob die richtige Anzahl an Zeilen zurück gegeben werden. Es
+	 * wird der April 2016 eingestellt.
+	 * 
+	 * @see datas.ReportMonthData#getRowCount()
+	 */
+	@Test
+	public void testGetRowCountReturgnRightCountForApril2016() {
+		when(_rpd.getMonth()).thenReturn(GregorianCalendar.APRIL);
+		assertEquals(30, _data.getRowCount());
+	}
+	
+	/**
+	 * Überprüft, ob die richtigen Spalten-Namen gesetzt werden.
+	 * 
+	 * @see datas.ReportMonthData#setColumnHeader(javax.swing.table.TableColumnModel)
+	 */
+	@Test
+	public void testSetColumnHeader() {
+		// Mock-Objekte vorbereiten
+		TableColumn tc = mock(TableColumn.class);
+		TableColumnModel tcm = mock(TableColumnModel.class);
+		when(tcm.getColumn(0)).thenReturn(tc);
+		when(tcm.getColumn(1)).thenReturn(tc);
+		when(tcm.getColumn(2)).thenReturn(tc);
+		when(tcm.getColumn(3)).thenReturn(tc);
+		InOrder order = inOrder(tc);
+		
+		// Spalten-Überschriften setzen
+		_data.setColumnHeader(tcm);
+		
+		// Überprüfen, ob die entsprechenden Methoden aufgerufen wurden
+		verify(tcm, times(1)).getColumn(0);
+		verify(tcm, times(1)).getColumn(1);
+		verify(tcm, times(1)).getColumn(2);
+		verify(tcm, times(1)).getColumn(3);
+		verify(tcm, never()).getColumn(4);
+		order.verify(tc, times(1)).setHeaderValue("Tag");
+		order.verify(tc, times(1)).setHeaderValue("Einnahmen");
+		order.verify(tc, times(1)).setHeaderValue("Ausgaben");
+		order.verify(tc, times(1)).setHeaderValue("Differenz");
 	}
 }

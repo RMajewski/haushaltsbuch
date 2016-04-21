@@ -119,7 +119,7 @@ public class ReportWeekData extends ReportData {
 	/**
 	 * Gibt die Anzahl der Wochen für das ausgewählte Jahr zurück.
 	 */
-	public int getWeekCount() {
+	public int getRowCount() {
 		return _weekCount;
 	}
 	

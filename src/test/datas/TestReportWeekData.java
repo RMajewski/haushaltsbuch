@@ -226,14 +226,14 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.set(GregorianCalendar.YEAR, _year);
 		assertEquals(calendar.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR) + 1,
-				_data.getWeekCount());
+				_data.getRowCount());
 	}
 	
 	/**
 	 * Überprüft, ob die Anzahl der Wochennummern für 2000 korrekt zurück
 	 * gegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#getWeekCount()
+	 * @see datas.ReportWeekData#getRowCount()
 	 */
 	@Test
 	public void testGetWeekNumbersFor2000() {
@@ -242,7 +242,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.set(GregorianCalendar.YEAR, _year);
 		assertEquals(calendar.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR) + 1,
-				_data.getWeekCount());
+				_data.getRowCount());
 	}
 	
 	/**
@@ -251,8 +251,8 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 * @see datas.ReportWeekData#getWeekNumber(int)
 	 */
 	@Test
-	public void testGetWeekNumber() {
-		for (int i = 0; i <= _data.getWeekCount(); i++)
+	public void testGetRowCount() {
+		for (int i = 0; i <= _data.getRowCount(); i++)
 			assertEquals(String.valueOf(i), _data.getWeekNumber(i));
 	}
 
@@ -644,7 +644,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void testIncoming() {
-		for (int i = 0; i < _data.getWeekCount(); i++)
+		for (int i = 0; i < _data.getRowCount(); i++)
 			if (i != 1)
 				assertEquals(0, _data.incoming(i), 0);
 	}
@@ -667,7 +667,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void testOutgoing() {
-		for (int i = 0; i < _data.getWeekCount(); i++)
+		for (int i = 0; i < _data.getRowCount(); i++)
 			if (i != 1)
 				assertEquals(0, _data.outgoing(i), 0);
 	}
@@ -690,7 +690,7 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
 	@Test
 	public void testDeviation() {
-		for (int i = 0; i < _data.getWeekCount(); i++)
+		for (int i = 0; i < _data.getRowCount(); i++)
 			if (i != 1)
 				assertEquals(0, _data.deviation(i), 0.01);
 	}

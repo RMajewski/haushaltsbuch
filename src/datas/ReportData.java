@@ -114,6 +114,14 @@ public abstract class ReportData {
 	 * @return Anzahl an Spalten
 	 */
 	public abstract int getColumnCount();
+
+	/**
+	 * Ermittelt aus den Einstellungen, wie viele Zeilen ausgegeben werden
+	 * müssen.
+	 * 
+	 * @return Anzahl an Zeilen
+	 */
+	public abstract int getRowCount();
 	
 	/**
 	 * Setzt die Spalten-Überschriften.

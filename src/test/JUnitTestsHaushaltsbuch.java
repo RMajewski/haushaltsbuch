@@ -65,7 +65,9 @@ import org.junit.runners.Suite;
 	
 	test.tables.models.TestIdNameListModel.class,
 	test.tables.models.TestMoneyDetailsListModel.class,
-	test.tables.models.TestMoneyListModel.class
+	test.tables.models.TestMoneyListModel.class,
+	test.tables.models.TestReportWeekModel.class,
+	test.tables.models.TestReportMonthModel.class
 })
 public class JUnitTestsHaushaltsbuch {
 
