@@ -33,17 +33,16 @@ import java.util.GregorianCalendar;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 
 import datas.ReportPreferencesData;
 import datas.ReportWeekData;
-
-import javax.swing.JRadioButton;
-import javax.swing.JCheckBox;
 
 /**
  * Zeigt den Dialog an, um die Einstellungen für die Reports vorzunehmen.

@@ -25,8 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
-import javax.swing.SortOrder;
 import javax.swing.RowSorter.SortKey;
+import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
 
 import comparators.CompDouble;
@@ -36,7 +36,6 @@ import datas.MoneyDetailsData;
 import db.DbController;
 import menus.PopupStandardList;
 import tables.models.MoneyDetailsListModel;
-import tables.models.MoneyListModel;
 
 /**
  * In diesem Fenster wird zum angegeben Datensatz aus der Tabelle 'money' die

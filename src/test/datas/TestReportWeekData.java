@@ -19,8 +19,13 @@
 
 package test.datas;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -41,7 +46,6 @@ import datas.MoneyData;
 import datas.ReportPreferencesData;
 import datas.ReportWeekData;
 import db.DbController;
-import db.query.Money;
 import helper.HelperCalendar;
 
 /**

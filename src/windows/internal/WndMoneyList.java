@@ -27,7 +27,6 @@ import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
 
-import comparators.CompId;
 import comparators.CompInt;
 import datas.MoneyData;
 import db.DbController;

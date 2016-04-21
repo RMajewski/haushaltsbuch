@@ -26,18 +26,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.SortOrder;
 import javax.swing.RowSorter.SortKey;
+import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
 
-import comparators.CompDouble;
 import comparators.CompInt;
 import datas.IdNameData;
 import db.DbController;
 import elements.StatusBar;
 import menus.PopupStandardList;
 import tables.models.IdNameListModel;
-import tables.models.MoneyDetailsListModel;
 
 /**
  * In diesen Unterfenster werden die einzelnen Geschäfte angezeigt.

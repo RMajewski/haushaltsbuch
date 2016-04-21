@@ -21,8 +21,6 @@ package db.query;
 
 import java.util.GregorianCalendar;
 
-import datas.MoneyData;
-
 /**
  * Enthält alle Datenbank-Abfragen für die Tabelle 'money'.
  * 
