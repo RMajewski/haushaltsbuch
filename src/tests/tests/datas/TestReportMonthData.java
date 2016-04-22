@@ -28,6 +28,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 import javax.swing.table.TableColumn;
@@ -35,10 +38,20 @@ import javax.swing.table.TableColumnModel;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InOrder;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareOnlyThisForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
+import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.datas.ReportMonthData;
 import haushaltsbuch.datas.ReportPreferencesData;
+import haushaltsbuch.db.DbController;
+import haushaltsbuch.db.query.Money;
+import haushaltsbuch.db.query.MoneyDetails;
+import haushaltsbuch.db.query.Queries;
+import haushaltsbuch.helper.HelperCalendar;
 import tests.testcase.TestReports;
 
 /**
@@ -49,11 +62,33 @@ import tests.testcase.TestReports;
  * @version 0.1
  * @since 0.2
  */
+@RunWith(PowerMockRunner.class)
+@PrepareOnlyThisForTest({DbController.class})
 public class TestReportMonthData extends TestReports {
 	/**
 	 * Instanz der Monats-Daten
 	 */
 	private ReportMonthData _data;
+	
+	/**
+	 * Speichert die Einnahmen
+	 */
+	private double _in;
+	
+	/**
+	 * Speichert die Ausgaben
+	 */
+	private double _out;
+	
+	/**
+	 * Speichert die Id für die Einnahme
+	 */
+	private int _inId;
+	
+	/**
+	 * Speichert die Id für die Ausgabe
+	 */
+	private int _outId;
 
 	/**
 	 * Initalisiert die einzelnen Tests
@@ -62,11 +97,103 @@ public class TestReportMonthData extends TestReports {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		// Einstellungen mocken
 		_year = 2016;
 		_month = GregorianCalendar.JANUARY;
 		_type = ReportPreferencesData.TYPE_MONTH;
 		initPreferences();
 		
+		// Daten für die Mocks festlegen
+		_in = 9.93;
+		_out = 7.66;
+		_inId = 100;
+		_outId = 200;
+
+		// Money mocken
+		Money money = mock(Money.class);
+		GregorianCalendar gc = HelperCalendar.createCalendar(_year);
+		gc.set(GregorianCalendar.MONTH, _month);
+		for(int i = 1; i <= gc.getActualMaximum(GregorianCalendar.DAY_OF_MONTH); i++) {
+			gc.set(GregorianCalendar.DAY_OF_MONTH, i);
+			long day = gc.getTimeInMillis();
+			when(money.selectDay(day, MoneyData.INT_INCOMING)).thenReturn("in" + i);
+			when(money.selectDay(day, MoneyData.INT_OUTGOING)).thenReturn("out" + i);
+		}
+		
+		// MoneyDetails mocken
+		MoneyDetails details = mock(MoneyDetails.class);
+		when(details.sum(_inId)).thenReturn("details_in");
+		when(details.sum(_outId)).thenReturn("details_out");
+		
+		// Queries mocken
+		Queries queries = mock(Queries.class);
+		when(queries.money()).thenReturn(money);
+		when(queries.moneyDetails()).thenReturn(details);
+		
+		// Statements, ResultSets und DbController-Mock
+		try {
+			// ResultSets mocken
+			ResultSet rsEmpty = mock(ResultSet.class);
+			when(rsEmpty.next()).thenReturn(false);
+			
+			ResultSet dayInId = mock(ResultSet.class);
+			when(dayInId.next()).thenReturn(true, false);
+			when(dayInId.getInt("id")).thenReturn(_inId);
+			
+			ResultSet dayIn = mock(ResultSet.class);
+			when(dayIn.getDouble(1)).thenReturn(_in);
+			
+			ResultSet dayOutId = mock(ResultSet.class);
+			when(dayOutId.next()).thenReturn(true, false);
+			when(dayOutId.getInt("id")).thenReturn(_outId);
+			
+			ResultSet dayOut = mock(ResultSet.class);
+			when(dayOut.getDouble(1)).thenReturn(_out);
+			
+			
+			// Statements mocken
+			Statement stmInId = mock(Statement.class);
+			when(stmInId.executeQuery("in1")).thenReturn(dayInId);
+			
+			Statement stmIn = mock(Statement.class);
+			when(stmIn.executeQuery("details_in")).thenReturn(dayIn);
+			
+			Statement stmOutId = mock(Statement.class);
+			when(stmOutId.executeQuery("out1")).thenReturn(dayOutId);
+			
+			Statement stmOut = mock(Statement.class);
+			when(stmOut.executeQuery("details_out")).thenReturn(dayOut);
+			
+			for (int i = 2; i <= gc.getActualMaximum(GregorianCalendar.DAY_OF_MONTH); i++) {
+				when(stmInId.executeQuery("in" + i)).thenReturn(rsEmpty);
+				when(stmOutId.executeQuery("out" + i)).thenReturn(rsEmpty);
+			}
+			
+			
+			// DbController mocken
+			DbController dbc = mock(DbController.class);
+			when(dbc.createStatement()).thenReturn(stmInId, stmIn, stmOutId, 
+					stmOut, stmInId, stmOutId, stmInId, stmOutId, stmInId,
+					stmOutId, stmInId, stmOutId, stmInId, stmOutId, stmInId,
+					stmOutId, stmInId, stmOutId, stmInId, stmOutId, stmInId, 
+					stmOutId, stmInId, stmOutId, stmInId, stmOutId, stmInId,
+					stmOutId, stmInId, stmOutId, stmInId, stmOutId, stmInId,
+					stmOutId, stmInId, stmOutId, stmInId, stmOutId, stmInId,
+					stmOutId, stmInId, stmOutId, stmInId, stmOutId, stmInId,
+					stmOutId, stmInId, stmOutId, stmInId, stmOutId, stmInId,
+					stmOutId, stmInId, stmOutId, stmInId, stmOutId, stmInId,
+					stmOutId, stmInId, stmOutId, stmInId, stmOutId, stmInId,
+					stmOutId);
+			
+			// Statische Methoden von DbController mocken
+			PowerMockito.mockStatic(DbController.class);
+			PowerMockito.when(DbController.getInstance()).thenReturn(dbc);
+			PowerMockito.when(DbController.queries()).thenReturn(queries);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		// Instanz der Daten-Klassen erzeugen
 		_data = new ReportMonthData(_rpd);
 	}
 	
@@ -201,5 +328,68 @@ public class TestReportMonthData extends TestReports {
 	@Test
 	public void testGetDayWithThirtyOneAsParameter() {
 		assertNull(_data.getDay(31));
+	}
+	
+	/**
+	 * Überprüft, ob für den 1. Tag Einnahmen bestehen.
+	 * 
+	 * @see datas.ReportMonthData#incoming(int)
+	 */
+	@Test
+	public void testIncomingWithMonthOneReturnRight() {
+		assertEquals(_in, _data.incoming(0), 0.0);
+	}
+	
+	/**
+	 * Überprüft, ob für die Tage 2 bis 31 keine Einnahmen bestehen.
+	 * 
+	 * @see datas.ReportMonthData#incoming(int)
+	 */
+	@Test
+	public void testIncomingWithMonthsTwoToTwelveReturnZero() {
+		for (int i = 1; i < 12; i++)
+			assertEquals(0.0, _data.incoming(i), 0.0);
+	}
+	
+	/**
+	 * Überprüft, ob für den 1. Tag Ausgaben bestehen.
+	 * 
+	 * @see datas.ReportMonthData#outgoing(int)
+	 */
+	@Test
+	public void testOutgoingWithMonthOneReturnRight() {
+		assertEquals(_out, _data.outgoing(0), 0.0);
+	}
+	
+	/**
+	 * Überprüft, ob für die Tage 2 bis 31 keine Ausgaben bestehen.
+	 * 
+	 * @see datas.ReportMonthData#outgoing(int)
+	 */
+	@Test
+	public void testOutgoingWithMonthsTwoToTwelveReturnZero() {
+		for (int i = 1; i < 12; i++)
+			assertEquals(0.0, _data.outgoing(i), 0.0);
+	}
+	
+	/**
+	 * Überprüft, ob für den 1. Tag die Differenz richtig ist.
+	 * 
+	 * @see datas.ReportMonthData#deviation(int)
+	 */
+	@Test
+	public void testDeviationWithMonthOneReturnRight() {
+		assertEquals(_in - _out, _data.deviation(0), 0.0);
+	}
+	
+	/**
+	 * Überprüft, ob für die Tage 2 bis 31 die Differenz 0.00 ist.
+	 * 
+	 * @see datas.ReportMonthData#deviation(int)
+	 */
+	@Test
+	public void testDeviationWithMonthsTwoToTwelveReturnZero() {
+		for (int i = 1; i < 12; i++)
+			assertEquals(0.0, _data.deviation(i), 0.0);
 	}
 }
