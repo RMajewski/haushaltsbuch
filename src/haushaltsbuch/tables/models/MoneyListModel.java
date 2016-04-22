@@ -117,7 +117,7 @@ public class MoneyListModel extends AbstractTableModel
 				// Summe aus der Datenbank lesen
 				try {
 					Statement stm = DbController.getInstance().createStatement();
-					ResultSet rs = stm.executeQuery("SELECT sum(money) AS 'sum' FROM money_details WHERE moneyid = " + _list.get(row).getId());
+					ResultSet rs = stm.executeQuery(DbController.queries().moneyDetails().sum(_list.get(row).getId()));
 					ret = rs.getDouble("sum");
 					rs.close();
 				} catch (SQLException e) {
