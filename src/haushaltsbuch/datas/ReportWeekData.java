@@ -99,7 +99,7 @@ public class ReportWeekData extends ReportData {
 	 * Gibt die Anzahl der Wochen für das ausgewählte Jahr zurück.
 	 */
 	public int getRowCount() {
-		return _weekCount;
+		return _weekCount + 1;
 	}
 	
 	/**
@@ -126,11 +126,13 @@ public class ReportWeekData extends ReportData {
 		GregorianCalendar gc = HelperCalendar.createCalendar(
 				_preferences.getYear());
 
-		_weekCount = gc.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR) + 1;
+		_weekCount = gc.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR);
 		
 		// Listen für die Einnahmen und die Ausgaben initalisieren
 		_in = initDoubleList(_weekCount + 1);
 		_out = initDoubleList(_weekCount + 1);
+		
+		long from = 0, to = 0;
 		
 		// Schleife über alle Wochen
 		for (int i = 0; i <= _weekCount; i++) {
@@ -138,8 +140,8 @@ public class ReportWeekData extends ReportData {
 			_weeks.add(String.valueOf(i));
 			
 			// Einnahmen für die Woche
-			long from = getDateFromAsLong(i);
-			long to = getDateToAsLong(i);
+			from = getDateFromAsLong(i);
+			to = getDateToAsLong(i);
 			
 			try {
 				//FIXME In eine private Methode packen
@@ -159,6 +161,7 @@ public class ReportWeekData extends ReportData {
 				
 				// Ausgaben
 				d = 0;
+				stm = DbController.getInstance().createStatement();
 				rsw = stm.executeQuery(DbController.queries().money().selectWeek(from, to, MoneyData.INT_OUTGOING));
 				while(rsw.next()) {
 					Statement stm2 = DbController.getInstance().createStatement();
@@ -195,26 +198,26 @@ public class ReportWeekData extends ReportData {
 		if (_preferences.getPreference(DRAW_DATE_TO) != null)
 			ret++;
 		
-		try {
-			// Datenbankabfrage vorbereiten
-			Statement stm = DbController.getInstance().createStatement();
-			ResultSet rs;
-			
-			// Sollen die Kategorien mit eingefügt werden?
-			if (_preferences.getPreference(DRAW_CATEGORIES) != null) {
-				rs = stm.executeQuery(DbController.queries().category().count());
-				ret += rs.getInt(1);
-			}
-			
-			// Sollen die Geschäfte mit eingefügt werden?
-			if (_preferences.getPreference(DRAW_SECTIONS) != null) {
-				rs = stm.executeQuery(DbController.queries().section().count());
-				ret += rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-			e.getStackTrace();
-		}
+//		try {
+//			// Datenbankabfrage vorbereiten
+//			Statement stm = DbController.getInstance().createStatement();
+//			ResultSet rs;
+//			
+//			// Sollen die Kategorien mit eingefügt werden?
+//			if (_preferences.getPreference(DRAW_CATEGORIES) != null) {
+//				rs = stm.executeQuery(DbController.queries().category().count());
+//				ret += rs.getInt(1);
+//			}
+//			
+//			// Sollen die Geschäfte mit eingefügt werden?
+//			if (_preferences.getPreference(DRAW_SECTIONS) != null) {
+//				rs = stm.executeQuery(DbController.queries().section().count());
+//				ret += rs.getInt(1);
+//			}
+//		} catch (SQLException e) {
+//			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+//			e.getStackTrace();
+//		}
 		
 		// Ermittelte Spalten zurück geben
 		return ret;
