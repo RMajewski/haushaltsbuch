@@ -36,12 +36,13 @@ import java.util.GregorianCalendar;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.core.MockRepository;
 import org.powermock.core.classloader.annotations.PrepareOnlyThisForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -63,7 +64,6 @@ import tests.testcase.TestReports;
  * @version 0.1
  * @since 0.2
  */
-@PowerMockIgnore("*")
 @RunWith(PowerMockRunner.class)
 @PrepareOnlyThisForTest({DbController.class})
 public class TestReportYearData extends TestReports {
@@ -94,11 +94,12 @@ public class TestReportYearData extends TestReports {
 
 	/**
 	 * Initalisiert die einzelnen Tests.
-	 * 
-	 * @throws Exception
+	 * @throws SQLException 
 	 */
 	@Before
-	public void setUp() throws SQLException {
+	public void setUp() {
+		System.setProperty("testing", "1");
+		
 		// Einstellungen mocken
 		_year = 2016;
 		_month = GregorianCalendar.JANUARY;
@@ -137,58 +138,69 @@ public class TestReportYearData extends TestReports {
 		when(qs.moneyDetails()).thenReturn(details);
 		
 		
-		// ResultSets mocken
-		ResultSet rsEmpty = mock(ResultSet.class);
-		when(rsEmpty.next()).thenReturn(false);
-		
-		ResultSet monthInId = mock(ResultSet.class);
-		when(monthInId.next()).thenReturn(true, false);
-		when(monthInId.getInt("id")).thenReturn(_inId);
-		
-		ResultSet monthIn = mock(ResultSet.class);
-		when(monthIn.getDouble(1)).thenReturn(_in);
-		
-		ResultSet monthOutId = mock(ResultSet.class);
-		when(monthOutId.next()).thenReturn(true, false);
-		when(monthOutId.getInt("id")).thenReturn(_outId);
-		
-		ResultSet monthOut = mock(ResultSet.class);
-		when(monthOut.getDouble(1)).thenReturn(_out);
-		
-		
-		// Statements mocken
-		Statement stmInId = mock(Statement.class);
-		when(stmInId.executeQuery("in0")).thenReturn(monthInId);
-		
-		Statement stmIn = mock(Statement.class);
-		when(stmIn.executeQuery("in_details")).thenReturn(monthIn);
+		try {
+			// ResultSets mocken
+			ResultSet rsEmpty = mock(ResultSet.class);
+			when(rsEmpty.next()).thenReturn(false);
+			
+			ResultSet monthInId = mock(ResultSet.class);
+			when(monthInId.next()).thenReturn(true, false);
+			when(monthInId.getInt("id")).thenReturn(_inId);
+			
+			ResultSet monthIn = mock(ResultSet.class);
+			when(monthIn.getDouble(1)).thenReturn(_in);
+			
+			ResultSet monthOutId = mock(ResultSet.class);
+			when(monthOutId.next()).thenReturn(true, false);
+			when(monthOutId.getInt("id")).thenReturn(_outId);
+			
+			ResultSet monthOut = mock(ResultSet.class);
+			when(monthOut.getDouble(1)).thenReturn(_out);
+			
+			
+			// Statements mocken
+			Statement stmInId = mock(Statement.class);
+			when(stmInId.executeQuery("in0")).thenReturn(monthInId);
+			
+			Statement stmIn = mock(Statement.class);
+			when(stmIn.executeQuery("in_details")).thenReturn(monthIn);
 
-		Statement stmOutId = mock(Statement.class);
-		when(stmOutId.executeQuery("out0")).thenReturn(monthOutId);
-		
-		Statement stmOut = mock(Statement.class);
-		when(stmOut.executeQuery("out_details")).thenReturn(monthOut);
+			Statement stmOutId = mock(Statement.class);
+			when(stmOutId.executeQuery("out0")).thenReturn(monthOutId);
+			
+			Statement stmOut = mock(Statement.class);
+			when(stmOut.executeQuery("out_details")).thenReturn(monthOut);
 
-		for (int i = 1; i < 12; i++) {
-			when(stmInId.executeQuery("in" + i)).thenReturn(rsEmpty);
-			when(stmOutId.executeQuery("out" + i)).thenReturn(rsEmpty);
+			for (int i = 1; i < 12; i++) {
+				when(stmInId.executeQuery("in" + i)).thenReturn(rsEmpty);
+				when(stmOutId.executeQuery("out" + i)).thenReturn(rsEmpty);
+			}
+
+			
+			// DbController mocken
+			DbController dbc = mock(DbController.class);
+			when(dbc.createStatement()).thenReturn(stmInId, stmIn, stmOutId, stmOut,
+					stmInId, stmOutId, stmInId, stmOutId, stmInId, stmOutId,
+					stmInId, stmOutId, stmInId, stmOutId, stmInId, stmOutId,
+					stmInId, stmOutId, stmInId, stmOutId, stmInId, stmOutId,
+					stmInId, stmOutId, stmInId, stmOutId);
+			
+			PowerMockito.mockStatic(DbController.class);
+			PowerMockito.when(DbController.getInstance()).thenReturn(dbc);
+			PowerMockito.when(DbController.queries()).thenReturn(qs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
-		
-		// DbController mocken
-		DbController dbc = mock(DbController.class);
-		when(dbc.createStatement()).thenReturn(stmInId, stmIn, stmOutId, stmOut,
-				stmInId, stmOutId, stmInId, stmOutId, stmInId, stmOutId,
-				stmInId, stmOutId, stmInId, stmOutId, stmInId, stmOutId,
-				stmInId, stmOutId, stmInId, stmOutId, stmInId, stmOutId,
-				stmInId, stmOutId, stmInId, stmOutId);
-		
-		PowerMockito.mockStatic(DbController.class);
-		PowerMockito.when(DbController.getInstance()).thenReturn(dbc);
-		PowerMockito.when(DbController.queries()).thenReturn(qs);
 		
 		// Instanz der Daten-Klasse erzeugen
 		_data = new ReportYearData(_rpd);
+	}
+	
+	@After
+	public void tearDown() {
+		MockRepository.clear();
+		DbController.getInstance().close();
 	}
 	
 	/**
@@ -197,7 +209,7 @@ public class TestReportYearData extends TestReports {
 	 */
 	@Test
 	public void testReportMonthDataExtendsReportData() {
-		assertEquals("datas.ReportData", 
+		assertEquals("haushaltsbuch.datas.ReportData", 
 				_data.getClass().getSuperclass().getName());
 	}
 

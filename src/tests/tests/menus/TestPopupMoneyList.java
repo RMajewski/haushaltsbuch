@@ -60,7 +60,7 @@ public class TestPopupMoneyList {
 	 */
 	@Test
 	public void testInheridedPopupStandardList() {
-		assertEquals("menus.PopupStandardList", PopupMoneyList.class.getSuperclass().getName());
+		assertEquals("haushaltsbuch.menus.PopupStandardList", PopupMoneyList.class.getSuperclass().getName());
 	}
 	
 	/**

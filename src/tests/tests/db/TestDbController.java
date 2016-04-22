@@ -147,7 +147,7 @@ public class TestDbController extends TestHelper {
 	 */
 	@Test
 	public void testGetInstanceRightClass()  {
-		assertEquals("db.DbController", DbController.getInstance().getClass().getName());
+		assertEquals("haushaltsbuch.db.DbController", DbController.getInstance().getClass().getName());
 	}
 	
 	/**
@@ -189,7 +189,7 @@ public class TestDbController extends TestHelper {
 	 */
 	@Test
 	public void testQueriesRightClass() {
-		assertEquals("db.query.Queries", DbController.queries().getClass().getName());
+		assertEquals("haushaltsbuch.db.query.Queries", DbController.queries().getClass().getName());
 	}
 	
 	/**

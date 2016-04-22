@@ -42,7 +42,7 @@ public class TestQueries {
 	 */
 	@Test
 	public void testCategoryRightClassName() {
-		assertEquals("db.query.Category", Queries.getInstance().category().getClass().getName());
+		assertEquals("haushaltsbuch.db.query.Category", Queries.getInstance().category().getClass().getName());
 	}
 	
 	/**
@@ -60,7 +60,7 @@ public class TestQueries {
 	 */
 	@Test
 	public void testSectionRightClassName() {
-		assertEquals("db.query.Section", Queries.getInstance().section().getClass().getName());
+		assertEquals("haushaltsbuch.db.query.Section", Queries.getInstance().section().getClass().getName());
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class TestQueries {
 	 */
 	@Test
 	public void testMoneyDetailsRightClassName() {
-		assertEquals("db.query.MoneyDetails", Queries.getInstance().moneyDetails().getClass().getName());
+		assertEquals("haushaltsbuch.db.query.MoneyDetails", Queries.getInstance().moneyDetails().getClass().getName());
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class TestQueries {
 	 */
 	@Test
 	public void testMoneyRightClassName() {
-		assertEquals("db.query.Money", Queries.getInstance().money().getClass().getName());
+		assertEquals("haushaltsbuch.db.query.Money", Queries.getInstance().money().getClass().getName());
 	}
 	
 	/**

@@ -72,5 +72,4 @@ import org.junit.runners.Suite;
 	tests.tests.tables.models.TestReportYearModel.class
 })
 public class JUnitTestsHaushaltsbuch {
-
 }

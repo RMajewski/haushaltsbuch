@@ -87,7 +87,7 @@ public class TestStatusBar {
 	 */
 	@Test
 	public void testGetInstanceReturnRightClass() {
-		assertEquals("elements.StatusBar", StatusBar.getInstance().getClass().getName());
+		assertEquals("haushaltsbuch.elements.StatusBar", StatusBar.getInstance().getClass().getName());
 	}
 	
 	/**

@@ -76,7 +76,7 @@ public class TestReportMonthData extends TestReports {
 	 */
 	@Test
 	public void testReportMonthDataExtendsReportData() {
-		assertEquals("datas.ReportData", 
+		assertEquals("haushaltsbuch.datas.ReportData", 
 				_data.getClass().getSuperclass().getName());
 	}
 	
