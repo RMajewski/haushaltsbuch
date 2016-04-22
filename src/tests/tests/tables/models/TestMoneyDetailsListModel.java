@@ -20,7 +20,10 @@
 package tests.tests.tables.models;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -28,9 +31,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareOnlyThisForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.db.query.Category;
+import haushaltsbuch.db.query.MoneyDetails;
+import haushaltsbuch.db.query.Queries;
+import haushaltsbuch.db.query.Section;
 import haushaltsbuch.tables.models.MoneyDetailsListModel;
 
 /**
@@ -41,6 +52,8 @@ import haushaltsbuch.tables.models.MoneyDetailsListModel;
  * @version 0.1
  * @since 0.1
  */
+@RunWith(PowerMockRunner.class)
+@PrepareOnlyThisForTest({DbController.class})
 public class TestMoneyDetailsListModel {
 	/**
 	 * Speichert das Model
@@ -71,16 +84,16 @@ public class TestMoneyDetailsListModel {
 	 * Speichert die Beschreibung
 	 */
 	private String _comment;
-
+	
 	/**
-	 * Initalisierungen für alle Tests
-	 * 
-	 * @throws Exception
+	 * Speichert die Anzahl der Spalten
 	 */
-	@BeforeClass
-	static public void beforeClass() throws Exception {
-		System.setProperty("testing", "true");
-	}
+	private int _columnCount;
+	
+	/**
+	 * Speichert die Instanz des DbController-Mock-Objektes
+	 */
+	private DbController _dbc;
 	
 	/**
 	 * Initalisiert die einzelnen Tests
@@ -93,26 +106,55 @@ public class TestMoneyDetailsListModel {
 		_sectionId = 1;
 		_money = 9.99;
 		_comment = "Dies ist ein Test";
+		_columnCount = 6;
 
-		DbController.getInstance().prepaireDatabase();
 		try {
-			Statement stm = DbController.getInstance().createStatement();
-			stm.executeUpdate(DbController.queries().moneyDetails().insert(_moneyId, _categoryId, _sectionId, _money, _comment));
+			// ResultSets mocken
+			ResultSet rs = mock(ResultSet.class);
+			when(rs.next()).thenReturn(true, false);
+			when(rs.getInt("id")).thenReturn(1);
+			when(rs.getInt("moneyid")).thenReturn(_moneyId);
+			when(rs.getInt("categoryid")).thenReturn(_categoryId);
+			when(rs.getInt("sectionid")).thenReturn(_sectionId);
+			when(rs.getDouble("money")).thenReturn(_money);
+			when(rs.getString("comment")).thenReturn(_comment);
+			
+			// Statment mocken
+			Statement stm = mock(Statement.class);
+			when(stm.executeQuery("test")).thenReturn(rs);
+			
+			// MoneyDetails mocken
+			MoneyDetails details = mock(MoneyDetails.class);
+			when(details.select(_moneyId)).thenReturn("test");
+			when(details.getCloumnCount()).thenReturn(_columnCount);
+			
+			// Category mocken
+			Category category = mock(Category.class);
+			when(category.search("id", _categoryId)).thenReturn("category");
+			
+			// Section mocken
+			Section section = mock(Section.class);
+			when(section.search("id", _sectionId)).thenReturn("section");
+			
+			// Queries mocken
+			Queries queries = mock(Queries.class);
+			when(queries.moneyDetails()).thenReturn(details);
+			when(queries.category()).thenReturn(category);
+			when(queries.section()).thenReturn(section);
+			
+			// DbController mocken
+			_dbc = mock(DbController.class);
+			when(_dbc.createStatement()).thenReturn(stm);
+			
+			PowerMockito.mockStatic(DbController.class);
+			PowerMockito.when(DbController.getInstance()).thenReturn(_dbc);
+			PowerMockito.when(DbController.queries()).thenReturn(queries);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		
+		// Model initalisieren
 		_model = new MoneyDetailsListModel(_moneyId);
-	}
-	
-	/**
-	 * Lösche die Daten aus dem Speicher
-	 * @throws Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-		DbController.getInstance().close();
 	}
 
 	/**
@@ -122,7 +164,7 @@ public class TestMoneyDetailsListModel {
 	 */
 	@Test
 	public void testGetColumnCount() {
-		assertEquals(5, _model.getColumnCount());
+		assertEquals(_columnCount - 1, _model.getColumnCount());
 	}
 
 	/**
@@ -150,7 +192,22 @@ public class TestMoneyDetailsListModel {
 	 */
 	@Test
 	public void testGetValueAtWithOneAsColReturnCategoryName() {
-		assertEquals("Lebensmittel", _model.getValueAt(0, 1));
+		try {
+			// ResultSet mocken
+			ResultSet rs = mock(ResultSet.class);
+			when(rs.getString("name")).thenReturn("test");
+			
+			//Statement
+			Statement stm = mock(Statement.class);
+			when(stm.executeQuery("category")).thenReturn(rs);
+			
+			// DbController
+			when(_dbc.createStatement()).thenReturn(stm);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		assertEquals("test", _model.getValueAt(0, 1));
 	}
 
 	/**
@@ -159,7 +216,22 @@ public class TestMoneyDetailsListModel {
 	 */
 	@Test
 	public void testGetValueAtWithTwoAsColReturnSectionName() {
-		assertEquals("jobcenter", _model.getValueAt(0, 2));
+		try {
+			// ResultSet mocken
+			ResultSet rs = mock(ResultSet.class);
+			when(rs.getString("name")).thenReturn("test2");
+			
+			//Statement
+			Statement stm = mock(Statement.class);
+			when(stm.executeQuery("section")).thenReturn(rs);
+			
+			// DbController
+			when(_dbc.createStatement()).thenReturn(stm);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		assertEquals("test2", _model.getValueAt(0, 2));
 	}
 
 	/**
