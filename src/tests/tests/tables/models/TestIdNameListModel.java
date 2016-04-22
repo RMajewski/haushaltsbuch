@@ -20,14 +20,28 @@
 package tests.tests.tables.models;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareOnlyThisForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import haushaltsbuch.datas.IdNameData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.db.query.Category;
 import haushaltsbuch.tables.models.IdNameListModel;
 
 /**
@@ -37,6 +51,8 @@ import haushaltsbuch.tables.models.IdNameListModel;
  * @version 0.1
  * @since 0.1
  */
+@RunWith(PowerMockRunner.class)
+@PrepareOnlyThisForTest({DbController.class})
 public class TestIdNameListModel {
 	/**
 	 * Speichert das Model
@@ -44,12 +60,9 @@ public class TestIdNameListModel {
 	private IdNameListModel _model;
 	
 	/**
-	 * Initalisiert die Klasse
+	 * Speicher die Anzahl der Datensätze
 	 */
-	@BeforeClass
-	static public void beforClass() throws Exception {
-		System.setProperty("testing", "true");
-	}
+	private int _count;
 
 	/**
 	 * Initalisiert die einzelnen Tests
@@ -57,17 +70,32 @@ public class TestIdNameListModel {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		DbController.getInstance().prepaireDatabase();
-		_model = new IdNameListModel(DbController.queries().category().select());
-	}
-	
-	/**
-	 * Lösche die Daten aus dem Speicher
-	 * @throws Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-		DbController.getInstance().close();
+		try {
+			// ResultSets mocken
+			ResultSet rs = mock(ResultSet.class);
+			when(rs.next()).thenReturn(true, true, true, false);
+			when(rs.getString("name")).thenReturn("test 1", "test 2", "test 3");
+			when(rs.getInt("id")).thenReturn(1, 2, 3);
+			
+			// Statment mocken
+			Statement stm = mock(Statement.class);
+			when(stm.executeQuery("test")).thenReturn(rs);
+			
+			// DbController mocken
+			DbController dbc = mock(DbController.class);
+			when(dbc.createStatement()).thenReturn(stm);
+			
+			PowerMockito.mockStatic(DbController.class);
+			PowerMockito.when(DbController.getInstance()).thenReturn(dbc);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		// Anzahl Datensätze speichern
+		_count = 3;
+		
+		// Model initalisieren
+		_model = new IdNameListModel("test");
 	}
 
 	/**
@@ -85,7 +113,7 @@ public class TestIdNameListModel {
 	 */
 	@Test
 	public void testGetRowCount() {
-		assertEquals(14, _model.getRowCount());
+		assertEquals(_count, _model.getRowCount());
 	}
 
 	/**
@@ -103,7 +131,7 @@ public class TestIdNameListModel {
 	 */
 	@Test
 	public void testGetValueAtWithOneAsColReturnName() {
-		assertEquals("Lebensmittel", _model.getValueAt(0, 1));
+		assertEquals("test 1", _model.getValueAt(0, 1));
 	}
 
 	/**
@@ -113,7 +141,7 @@ public class TestIdNameListModel {
 	public void testGetRowDataAt() {
 		IdNameData data = _model.getRowDataAt(0);
 		assertEquals(1, data.getId());
-		assertEquals("Lebensmittel", data.getName());
+		assertEquals("test 1", data.getName());
 	}
 
 }
