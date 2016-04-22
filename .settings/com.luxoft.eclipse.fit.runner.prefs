@@ -1,0 +1,3 @@
+FIT_RESULT_FOLDER=result/fit
+FIT_SOURCE_FOLDER=src/tests/fixtures
+eclipse.preferences.version=1

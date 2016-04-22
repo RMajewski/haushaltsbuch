@@ -6,3 +6,5 @@ null
 Beschreibungen/.~*#
 src/org/**/*
 src/org/*
+result/**/*
+result/*

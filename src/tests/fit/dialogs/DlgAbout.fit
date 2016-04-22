@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: &Uuml;ber</title>
+	</head>
+	<body>
+		<h2>
+			Dialog: &Uuml;ber</h2>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">
+						fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>
+						start</td>
+					<td>
+						tests.fixtures.dialogs.FixtureDlgAbout</td>
+					<td>
+						&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						check</td>
+					<td>
+						isVisble</td>
+					<td>
+						true</td>
+				</tr>
+				<tr>
+					<td>
+						press</td>
+					<td>
+						pushOk</td>
+					<td>
+						&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						check</td>
+					<td>
+						isVisble</td>
+					<td>
+						false</td>
+				</tr>
+			</tbody>
+		</table></body>
+</html>

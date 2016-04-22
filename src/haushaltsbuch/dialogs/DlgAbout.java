@@ -44,6 +44,16 @@ public class DlgAbout extends JDialog {
 	 * Serilisation ID
 	 */
 	private static final long serialVersionUID = -1375741277581661L;
+	
+	/**
+	 * Speichert den Titel dieses Dialoges
+	 */
+	public static final String DIALOG_TITLE = new String("Über ...");
+	
+	/**
+	 * Speichert den Namen dieses Dialoges
+	 */
+	public static final String DIALOG_NAME = new String("dialogs.DlgAbout");
 
 	/**
 	 * Initalisiert den Dialog und sein Elemente
@@ -59,8 +69,8 @@ public class DlgAbout extends JDialog {
 		setSize(325, 200);
 		
 		// Dialog-Titel
-		setTitle("Über ...");
-		setName("DlgAbout");
+		setTitle(DIALOG_TITLE);
+		setName(DIALOG_NAME);
 		
 		setLayout(new BorderLayout(5, 5));
 		

@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="/home/rene/workspace/cglib-nodep-2.2.2.jar"/>
 	<classpathentry kind="lib" path="/home/rene/workspace/objenesis-2.1.jar"/>
 	<classpathentry kind="lib" path="/home/rene/workspace/mockito-all-1.10.19.jar"/>
+	<classpathentry kind="lib" path="/home/rene/workspace/fit.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -20,72 +20,107 @@
 package tests.tests.dialogs;
 
 import org.netbeans.jemmy.ClassReference;
+import org.netbeans.jemmy.Scenario;
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
-import org.netbeans.jemmy.operators.JMenuBarOperator;
 
-import haushaltsbuch.windows.WndMain;
-import tests.testcase.GuiTest;
+import haushaltsbuch.dialogs.DlgAbout;
+import tests.apps.TestDialogApplication;
 
 /**
- * Testet, ob der "Über ..."-Dialog mit Help->Über... aufgerufen werden kann
- * und ob er einen Button hat, der den Dialog beendet.
- * 
- * @see dialogs.DlgAbout
+ * Testet den Dialog "Über"
  * 
  * @author René Majewski
- * 
- * @version 0.1
+ *
+ * @version 0.2
  * @since 0.1
  */
-public class TestDlgAbout extends GuiTest {
+public class TestDlgAbout implements Scenario {
+	
 	/**
-	 * Ruft die einzelnen Tests auf.
+	 * Speichert das Hauptfenster der Test-Applikation
+	 */
+	private JFrameOperator _frame;
+	
+	/**
+	 * Speichert den Dialog
+	 */
+	private JDialogOperator _dlg;
+	
+	/**
+	 * Speichert den Button
+	 */
+	private JButtonOperator _btn;
+	
+	
+	/**
+	 * Initalisiert die Klasse
+	 */
+	public TestDlgAbout() throws Exception {
+		// Test-Applikation aufrufen
+		(new ClassReference("tests.apps.TestDialogApplication")).startApplication();
+		
+		// Fenster ermitteln
+		_frame = new JFrameOperator(TestDialogApplication.TITLE);
+		
+		// Dialog aufrufen
+		new JButtonOperator(_frame,
+				TestDialogApplication.DIALOG_ABOUT).pushNoBlock();
+		
+		// Dialog ermitteln
+		_dlg = new JDialogOperator(_frame, DlgAbout.DIALOG_TITLE);
+		
+		// Button ermitteln
+		_btn = new JButtonOperator(_dlg, "Ok");
+	}
+	
+	/**
+	 * Führt einen Klick auf den Button aus
+	 */
+	public void pushOk() {
+		_btn.push();
+	}
+	
+	/**
+	 * Überprüft, ob der Dialog angezeigt wird.
+	 */
+	public boolean dlgIsVisible() {
+		return _dlg.isVisible();
+	}
+
+	/**
+	 * Führt die Test aus
 	 */
 	@Override
 	public int runIt(Object arg0) {
 		try {
-			// Start des Haupt-Programms
-			new ClassReference("Main").startApplication();
+			// Dialog Sichtbar?
+			if (!_dlg.isVisible())
+				throw new Exception();
 			
-			// Fenster des Hauptprogrammes
-			JFrameOperator wnd = new JFrameOperator(WndMain.TITLE);
+			// Dialog modal
+			if (!_dlg.isModal())
+				throw new Exception();
 			
-			// MainMenu-Bar laden und Help -> "Über ..." aufrufen
-			JMenuBarOperator menu = new JMenuBarOperator(wnd);
-			menu.getTimeouts().setTimeout("JMenuOperator.PushMenuTimeout", 600000);
-			menu.pushMenuNoBlock("Hilfe|Über...");
+			// Button drücken
+			pushOk();
 			
-			// Dialog-Fenster abfangen
-			JDialogOperator dlg = new JDialogOperator(wnd, "Über ...");
-			
-			test("Überprüfen, ob der Dialog angezeigt wird", dlg.isVisible());
-			
-			// Button ermitteln und ihn drücken
-			JButtonOperator btn = new JButtonOperator(dlg, "Ok");
-			btn.push();
-			
-			test("Überprüfen, ob der Dialog nicht mehr angezeigt wird", !dlg.isVisible());
-			
+			// Dialog sichtbar?
+			if (_dlg.isVisible())
+				throw new Exception();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 1;
 		}
-		
-		// Da bisher nicht beendet mit 0 beenden (kein Fehler)
 		return 0;
 	}
 	
 	/**
-	 * Initalisiert die Test-Umgebung
-	 * 
-	 * @param argv Parameter von der Kommandozeile
+	 * Startet den Test
 	 */
-	public static void main(String[] argv) {
-		System.setProperty("testing", "true");
-		Test.main(new String[] {"test.dialogs.TestDlgAbout"});
+	public static void main(String[] args) {
+		Test.main(new String[] {"tests.tests.dialogs.TestDlgAbout"});
 	}
-
 }
