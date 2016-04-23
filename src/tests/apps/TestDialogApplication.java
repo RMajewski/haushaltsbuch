@@ -27,10 +27,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.dialogs.DlgAbout;
 import haushaltsbuch.dialogs.DlgExportSqlScript;
 import haushaltsbuch.dialogs.DlgLicense;
 import haushaltsbuch.dialogs.DlgLogView;
+import haushaltsbuch.dialogs.DlgReport;
 import tests.tests.dialogs.TestDlgAbout;
 
 /**
@@ -67,11 +69,21 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	 * Gibt an, dass der Export-Dialog für das SQL-Script angezeigt werden soll.
 	 */
 	public static final String DIALOG_EXPORT_SQL = "tests.dialogs.DlgExportSqlScript";
+	
+	/**
+	 * Gibt an, dass der Report-Dialog angezeigt werden soll.
+	 */
+	public static final String DIALOG_REPORT = "test.dialogs.DlgReport";
 
 	/**
 	 * Serilisation ID
 	 */
 	private static final long serialVersionUID = -3655292066616840554L;
+	
+	/**
+	 * Speichert die Einstellungen für den Report-Dialog
+	 */
+	private ReportPreferencesData _rpd;
 
 	/**
 	 * Initalisiert das Fenster.
@@ -110,9 +122,24 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		btn.addActionListener(this);
 		btn.setActionCommand(DIALOG_EXPORT_SQL);
 		getContentPane().add(btn);
+		
+		// Button zum Anzeigen des Report-Dialoges
+		btn = new JButton(DIALOG_REPORT);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_REPORT);
+		getContentPane().add(btn);
 
 		// Fenster Anzeigen
 		setVisible(true);
+	}
+	
+	/**
+	 * Speichert die übergenen Einstellungen für den Report-Dialog.
+	 * 
+	 * @param pref Einstellungen für den Report-Dialog
+	 */
+	public void setReportPreferences(ReportPreferencesData pref) {
+		_rpd = pref;
 	}
 	
 	/**
@@ -147,6 +174,10 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 				DlgExportSqlScript dlg = new DlgExportSqlScript(this);
 				dlg.setVisible(true);
 			}
+			
+			// Report-Dialog
+			else if(ae.getActionCommand().equals(DIALOG_REPORT))
+				new DlgReport(_rpd, this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

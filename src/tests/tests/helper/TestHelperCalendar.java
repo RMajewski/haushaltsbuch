@@ -21,6 +21,7 @@ package tests.tests.helper;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.GregorianCalendar;
 
@@ -152,5 +153,89 @@ public class TestHelperCalendar {
 	public void testDateToString() {
 		assertEquals("01.01.2016", 
 				HelperCalendar.dateToString(_cal.getTimeInMillis()));
+	}
+	
+	/**
+	 * Testet, ob der zurück gegbene Wert richtig ist. Es werden die 12 
+	 * verschiedenen Möglichkeiten getestet.
+	 * 
+	 * @see helper.HelperCalendar#enStringToMonth(String)
+	 */
+	@Test
+	public void testEnStringToMonthReturnRigth() {
+		assertEquals(0, HelperCalendar.enStringToMonth("January"));
+		assertEquals(1, HelperCalendar.enStringToMonth("February"));
+		assertEquals(2, HelperCalendar.enStringToMonth("March"));
+		assertEquals(3, HelperCalendar.enStringToMonth("April"));
+		assertEquals(4, HelperCalendar.enStringToMonth("May"));
+		assertEquals(5, HelperCalendar.enStringToMonth("June"));
+		assertEquals(6, HelperCalendar.enStringToMonth("July"));
+		assertEquals(7, HelperCalendar.enStringToMonth("August"));
+		assertEquals(8, HelperCalendar.enStringToMonth("September"));
+		assertEquals(9, HelperCalendar.enStringToMonth("October"));
+		assertEquals(10, HelperCalendar.enStringToMonth("November"));
+		assertEquals(11, HelperCalendar.enStringToMonth("December"));
+	}
+	
+	/**
+	 * Testet, ob bei einem falschen Manatsnamen -1 zurück gegeben wird.
+	 * 
+	 * @see helper.HelperCalendar#enStringToMonth(String)
+	 */
+	@Test
+	public void testEnStringToMonthWrongParameterReturnMinusOne() {
+		assertEquals(-1, HelperCalendar.enStringToMonth("test"));
+	}
+	
+	/**
+	 * Testet, ob bei einer leeren Zeichenkette als Paramter -1 zurück gegeben
+	 * wird.
+	 * 
+	 * @see helper.HelperCalendar#enStringToMonth(String)
+	 */
+	@Test
+	public void testEnStringToMonthEmptyAsParameterReturnMinusOne() {
+		assertEquals(-1, HelperCalendar.enStringToMonth(new String()));
+	}
+	
+	/**
+	 * Testet, ob bei einer <b>null</b> als Paramter -1 zurück gegeben wird.
+	 * 
+	 * @see helper.HelperCalendar#enStringToMonth(String)
+	 */
+	@Test
+	public void testEnStringToMonthNullAsParameterReturnMinusOne() {
+		assertEquals(-1, HelperCalendar.enStringToMonth(null));
+	}
+	
+	/**
+	 * Testet, ob die richtigen Monatsnamen zurück gegeben werden.
+	 * 
+	 * @see haushaltsbuch.helper.HelperCalendar#enMonthToString(int)
+	 */
+	@Test
+	public void testEnMonthToStringReturnRight() {
+		assertEquals("January", HelperCalendar.enMonthToString(0));
+		assertEquals("February", HelperCalendar.enMonthToString(1));
+		assertEquals("March", HelperCalendar.enMonthToString(2));
+		assertEquals("April", HelperCalendar.enMonthToString(3));
+		assertEquals("May", HelperCalendar.enMonthToString(4));
+		assertEquals("June", HelperCalendar.enMonthToString(5));
+		assertEquals("July", HelperCalendar.enMonthToString(6));
+		assertEquals("August", HelperCalendar.enMonthToString(7));
+		assertEquals("September", HelperCalendar.enMonthToString(8));
+		assertEquals("October", HelperCalendar.enMonthToString(9));
+		assertEquals("November", HelperCalendar.enMonthToString(10));
+		assertEquals("December", HelperCalendar.enMonthToString(11));
+	}
+	
+	/**
+	 * Testet, ob eine leere Zeichenkette zurück gegeben wird, wenn der Monat
+	 * außerhalb des Bereiches liegt.
+	 */
+	@Test
+	public void testEnMonthToStringWithWrongParameterReturnIsEmptyString() {
+		assertTrue(HelperCalendar.enMonthToString(-1).isEmpty());
+		assertTrue(HelperCalendar.enMonthToString(12).isEmpty());
 	}
 }

@@ -63,4 +63,112 @@ public class HelperCalendar {
 		return DateFormat.getDateInstance(DateFormat.MEDIUM).format(
 				new Date(date));
 	}
+	
+	/**
+	 * Ermittelt aus der angegebenen Monats-Nummer der englischen Monats-Namen.
+	 * Ist die Nummer außerhalb des gültigen Bereiches wird eine leere
+	 * Zeichenkette zurück gegeben.
+	 * 
+	 * @param month Monats-Nummer, die in einen Monats-Namen umgewandelt werden
+	 * soll.
+	 * 
+	 * @return Englischer Monats-Name
+	 */
+	public static String enMonthToString(int month) {
+		switch (month) {
+		case 0:
+			return "January";
+			
+		case 1:
+			return "February";
+			
+		case 2:
+			return "March";
+			
+		case 3:
+			return "April";
+			
+		case 4:
+			return "May";
+			
+		case 5:
+			return "June";
+			
+		case 6:
+			return "July";
+			
+		case 7:
+			return "August";
+			
+		case 8:
+			return "September";
+			
+		case 9:
+			return "October";
+			
+		case 10:
+			return "November";
+			
+		case 11:
+			return "December";
+		
+		}
+		
+		// Standard Rückgabe
+		return new String();
+	}
+	
+	/**
+	 * Ermittelt aus den englischen Monats-Namen die Nummer des Monats. Wird ein
+	 * falscher Monatsname angegeben, so wird -1 zurück gegeben.
+	 * 
+	 * @param name Monatsname, der in eine Monats-Nummer umgewandelt werden
+	 * soll.
+	 * 
+	 * @return Monats-Nummer, die ermittelt wurde.
+	 */
+	public static int enStringToMonth(String name) {
+		if (name == null || name.isEmpty())
+			return -1;
+		
+		switch(name) {
+			case "January": 
+				return 0;
+				
+			case "February": 
+				return 1;
+				
+			case "March": 
+				return 2;
+				
+			case "April":
+				return 3;
+					
+			case "May":
+				return 4;
+				
+			case "June":
+				return 5;
+			case "July":
+				return 6;
+				
+			case "August":
+				return 7;
+				
+			case "September":
+				return 8;
+				
+			case "October":
+				return 9;
+				
+			case "November":
+				return 10;
+				
+			case "December":
+				return 11;
+		}
+		
+		// Standard Rückgabe
+		return -1;
+	}
 }

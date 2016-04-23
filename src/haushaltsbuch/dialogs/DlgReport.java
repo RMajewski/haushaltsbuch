@@ -20,10 +20,12 @@
 package haushaltsbuch.dialogs;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -60,6 +62,11 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 	 * ActionCommand zum Report Erstellen
 	 */
 	public final static String BTN_CREATE = new String("DlgReportCreate");
+	
+	/**
+	 * Speichert den Titel des Dialogs.
+	 */
+	public final static String DIALOG_TITLE = new String("Einstellungen um Report zu erzeugen");
 
 	/**
 	 * Serilisation ID
@@ -120,16 +127,18 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 	 * Initalisiert das Report-Fenster
 	 * 
 	 * @param preferences Einstellungen für die Reports
+	 * 
+	 * @param owner Fenster, das den Dialog aufgerufen hat.
 	 */
-	public DlgReport(ReportPreferencesData preferences) {
+	public DlgReport(ReportPreferencesData preferences, Window owner) {
 		// Klasse initalisieren
-		super();
+		super(owner);
 		
 		// Daten initalisieren
 		_data = preferences;
 		
 		// setTitle
-		setTitle("Einstellungen um Report zu erzeugen");
+		setTitle(DIALOG_TITLE);
 		
 		// Größe
 		setSize(600, 400);
@@ -204,6 +213,7 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		panMain.add(lblYear, gbc_lblYear);
 		
 		_cbYear = new JComboBox<Integer>();
+		_cbYear.setEditable(true);
 		GridBagConstraints gbc_cbYear = new GridBagConstraints();
 		gbc_cbYear.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cbYear.gridx = 3;
@@ -313,11 +323,17 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 			_cbYear.addItem(Integer.valueOf(i));
 		}
 		
-		// Aktuelles Jahr und aktuellen Monat auswählen auswählen
-		GregorianCalendar cal = new GregorianCalendar();
-		cal.setTimeInMillis(new Date().getTime());
-		_cbYear.setSelectedItem(Integer.valueOf(cal.get(GregorianCalendar.YEAR)));
-		_cbMonth.setSelectedIndex(cal.get(GregorianCalendar.MONTH));
+		// Wurde ein Datum übergeben?
+		if (_data.getMonth() < 0) {
+			// Aktuelles Jahr und aktuellen Monat auswählen auswählen
+			GregorianCalendar cal = new GregorianCalendar();
+			cal.setTimeInMillis(new Date().getTime());
+			_cbYear.setSelectedItem(Integer.valueOf(cal.get(GregorianCalendar.YEAR)));
+			_cbMonth.setSelectedIndex(cal.get(GregorianCalendar.MONTH));
+		} else {
+			_cbYear.setSelectedItem(Integer.valueOf(_data.getYear()));
+			_cbMonth.setSelectedIndex(_data.getMonth());
+		}
 		
 		// Wurde Wochenübersicht 'von' ausgewählt?
 		if (_data.getPreference(ReportWeekData.DRAW_DATE_FROM) != null)

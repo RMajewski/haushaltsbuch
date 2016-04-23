@@ -93,7 +93,7 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 		setSize(1000, 700);
 		
 		// Einstellungen erzeugen
-		_preference = new ReportPreferencesData(report, 0, 0, 0);
+		_preference = new ReportPreferencesData(report, 0, -1, 0);
 		
 		// Design
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -140,7 +140,7 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 	 */
 	public void createDlgReport() {
 		// Einstellungen aufrufen
-		DlgReport dlg = new DlgReport(_preference);
+		DlgReport dlg = new DlgReport(_preference, null);
 		_preference = dlg.getData();
 		
 		// Überprüfen ob ob der Report angezeigt werden soll
