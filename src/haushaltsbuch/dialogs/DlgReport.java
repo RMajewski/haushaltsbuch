@@ -112,16 +112,6 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 	private JCheckBox _cbWeekDateTo;
 	
 	/**
-	 * Speichert die Checkbox für Wochenübersicht -> Kategorien
-	 */
-	private JCheckBox _cbWeekCategories;
-	
-	/**
-	 * Speichert die Checkbox für Wochenüberischt -> Geschäfte
-	 */
-	private JCheckBox _cbWeekSections;
-	
-	/**
 	 * Speichert die Einstellungen
 	 */
 	private ReportPreferencesData _data;
@@ -271,7 +261,7 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		gbc_cbTo.gridy = 2;
 		panMonth.add(_cbWeekDateTo, gbc_cbTo);
 		
-		JLabel lblWochen = new JLabel("Wochen");
+		JLabel lblWochen = new JLabel("einfügen");
 		GridBagConstraints gbc_lblWochen = new GridBagConstraints();
 		gbc_lblWochen.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWochen.gridx = 1;
@@ -285,28 +275,6 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		gbc_panel.gridx = 1;
 		gbc_panel.gridy = 3;
 		panMonth.add(panel, gbc_panel);
-		
-		JLabel lblZustzlich = new JLabel("Zusätzlich");
-		GridBagConstraints gbc_lblZustzlich = new GridBagConstraints();
-		gbc_lblZustzlich.insets = new Insets(0, 0, 5, 5);
-		gbc_lblZustzlich.gridx = 1;
-		gbc_lblZustzlich.gridy = 5;
-		panMonth.add(lblZustzlich, gbc_lblZustzlich);
-		
-		_cbWeekCategories = new JCheckBox("Kategorien");
-		GridBagConstraints gbc_cbCategories = new GridBagConstraints();
-		gbc_cbCategories.insets = new Insets(0, 0, 5, 0);
-		gbc_cbCategories.anchor = GridBagConstraints.WEST;
-		gbc_cbCategories.gridx = 3;
-		gbc_cbCategories.gridy = 5;
-		panMonth.add(_cbWeekCategories, gbc_cbCategories);
-		
-		_cbWeekSections = new JCheckBox("Geschäfte");
-		GridBagConstraints gbc_cbSections = new GridBagConstraints();
-		gbc_cbSections.anchor = GridBagConstraints.WEST;
-		gbc_cbSections.gridx = 3;
-		gbc_cbSections.gridy = 6;
-		panMonth.add(_cbWeekSections, gbc_cbSections);
 		
 		// Daten für die Monate
 		_cbMonth.addItem("Januar");
@@ -359,14 +327,6 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		if (_data.getPreference(ReportWeekData.DRAW_DATE_TO) != null)
 			_cbWeekDateTo.setSelected(true);
 		
-		// Wurde Wochenübersicht 'Kategorien' ausgewählt?
-		if (_data.getPreference(ReportWeekData.DRAW_CATEGORIES) != null)
-			_cbWeekCategories.setSelected(true);
-		
-		// Wurde Wochenübersicht 'Geschäfte' ausgewählt?
-		if (_data.getPreference(ReportWeekData.DRAW_SECTIONS) != null)
-			_cbWeekSections.setSelected(true);
-		
 		// Anzeigen
 		setVisible(true);
 	}
@@ -411,18 +371,6 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 				_data.setPreference(ReportWeekData.DRAW_DATE_TO, 1);
 			else
 				_data.removePreference(ReportWeekData.DRAW_DATE_TO);
-			
-			// Wurde Wochenübersicht 'Kategorien' ausgewählt?
-			if (_cbWeekCategories.isSelected())
-				_data.setPreference(ReportWeekData.DRAW_CATEGORIES, 1);
-			else
-				_data.removePreference(ReportWeekData.DRAW_CATEGORIES);
-			
-			// Wurde Wochenübersicht 'Geschäfte' ausgewählt?
-			if (_cbWeekSections.isSelected())
-				_data.setPreference(ReportWeekData.DRAW_SECTIONS, 1);
-			else
-				_data.removePreference(ReportWeekData.DRAW_SECTIONS);
 			
 			// Dialog ausblenden
 			setVisible(false);

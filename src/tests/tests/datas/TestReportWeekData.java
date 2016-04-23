@@ -23,8 +23,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -39,7 +39,6 @@ import java.util.GregorianCalendar;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -76,16 +75,6 @@ public class TestReportWeekData extends TestReports {
 	private ReportWeekData _data;
 	
 	/**
-	 * Speichert die Anzahl von Kategorien
-	 */
-	private int _categoryCount;
-	
-	/**
-	 * Speichert die Anzahl von Geschäften
-	 */
-	private int _sectionCount;
-	
-	/**
 	 * Speichert die Einnahmen für die 1. Woche
 	 */
 	private double _in;
@@ -104,6 +93,17 @@ public class TestReportWeekData extends TestReports {
 	 * Speichert die Id für die Ausgabe
 	 */
 	private int _outId;
+	
+	/**
+	 * Speichert den Mock für ein leeren ResultSet
+	 */
+	private ResultSet _rsEmpty;
+	
+	/**
+	 * Speichert den Mock für ein Statement, was immer ein leeres ResultSet
+	 * liefert.
+	 */
+	private Statement _stmAnyEmpty;
 	
 	
 	/**
@@ -130,8 +130,6 @@ public class TestReportWeekData extends TestReports {
 		initPreferences();
 		
 		// Daten für die Mocks festlegen
-		_categoryCount = 10;
-		_sectionCount = 4;
 		_in = 11.88;
 		_out = 25.76;
 		_inId = 100;
@@ -155,12 +153,6 @@ public class TestReportWeekData extends TestReports {
 			when(money.selectWeek(first, last, MoneyData.INT_OUTGOING)).thenReturn("out" + i);
 		}
 		
-//		System.out.print(first + "(");
-//		System.out.print(HelperCalendar.dateToString(first));
-//		System.out.print(") " + last + "(");
-//		System.out.print(HelperCalendar.dateToString(last));
-//		System.out.println(")");
-		
 		// MoneyDetails mocken
 		MoneyDetails details = mock(MoneyDetails.class);
 		when(details.sum(_inId)).thenReturn("details_in");
@@ -174,8 +166,8 @@ public class TestReportWeekData extends TestReports {
 		// ResultSets, Statements und DbController mocken
 		try {
 			// ResultSets
-			ResultSet rsEmpty = mock(ResultSet.class);
-			when(rsEmpty.next()).thenReturn(false);
+			_rsEmpty = mock(ResultSet.class);
+			when(_rsEmpty.next()).thenReturn(false);
 			
 			ResultSet weekInId = mock(ResultSet.class);
 			when(weekInId.next()).thenReturn(true, false);
@@ -206,9 +198,13 @@ public class TestReportWeekData extends TestReports {
 			when(stmOut.executeQuery("details_out")).thenReturn(weekOut);
 
 			for (int i = 1; i <= gc.getActualMaximum(GregorianCalendar.WEEK_OF_YEAR) + 1; i++) {
-				when(stmInId.executeQuery("in" + i)).thenReturn(rsEmpty);
-				when(stmOutId.executeQuery("out" + i)).thenReturn(rsEmpty);
+				when(stmInId.executeQuery("in" + i)).thenReturn(_rsEmpty);
+				when(stmOutId.executeQuery("out" + i)).thenReturn(_rsEmpty);
 			}
+			
+			// Statement, was immer ein leeres ResultSet liefert
+			_stmAnyEmpty = mock(Statement.class);
+			when(_stmAnyEmpty.executeQuery(anyString())).thenReturn(_rsEmpty);
 		
 			
 			// DbController mocken
@@ -246,24 +242,6 @@ public class TestReportWeekData extends TestReports {
 	}
 	
 	/**
-	 * Überprüft, ob die Konstante {@link datas.ReportWeekData#DRAW_CATEGORIES}
-	 * richtig gesetzt ist.
-	 */
-	@Test
-	public void testDrawCategories() {
-		assertEquals("Week.drawCategories", ReportWeekData.DRAW_CATEGORIES);
-	}
-	
-	/**
-	 * Überprüft, ob die Konstante {@link datas.ReportWeekData#DRAW_SECTIONS}
-	 * richtig gesetzt ist.
-	 */
-	@Test
-	public void testDrawSections() {
-		assertEquals("Week.drawSections", ReportWeekData.DRAW_SECTIONS);
-	}
-	
-	/**
 	 * Überprüft, ob die Konstante {@link datas.ReportWeekData#DRAW_DATE_FROM}
 	 * richtig gesetzt ist.
 	 */
@@ -294,14 +272,46 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, die Einstellungen neu gesetzt werden können
 	 * 
-	 * @import java.sql.Statement;
-see datas.ReportWeekData#setPreferences(ReportPreferences)
+	 * @see datas.ReportWeekData#setPreferences(ReportPreferences)
 	 */
-	@Ignore
 	@Test
 	public void testSetPreferences() {
+		DbController dbc = DbController.getInstance();
+		try {
+			when(dbc.createStatement()).thenReturn(_stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, 
+					_stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty, _stmAnyEmpty,
+					_stmAnyEmpty, _stmAnyEmpty);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		int year = 2000;
-		_rpd.setYear(year);
+		when(_rpd.getYear()).thenReturn(year);
 		_data.setPreferences(_rpd);
 		assertEquals(year, _data.getYear());
 	}
@@ -356,85 +366,6 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 	@Test
 	public void testGetColumnCount() {
 		assertEquals(4, _data.getColumnCount());
-	}
-	
-	/**
-	 * Überprüft, ob die Anzahl der Spalten stimmen, wenn zusätzlich noch die
-	 * einzelnen Kategorien mit angegeben werden
-	 * @throws SQLException 
-	 * 
-	 * @see datas.ReportWeekData#getColumnCount()
-	 */
-	@Ignore
-	@Test
-	public void testGetColumnCountWithCategories() {
-		// Einstellungen speichern
-		_rpd.setPreference(ReportWeekData.DRAW_CATEGORIES, 1);
-		
-		try {
-			Statement stm = DbController.getInstance().createStatement();
-			ResultSet rs = stm.executeQuery(DbController.queries().category().count());
-			_categoryCount = rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		// Ermittelte Spalten überprüfen
-		assertEquals(4 + _categoryCount, _data.getColumnCount());
-	}
-	
-	/**
-	 * Überprüft, ob die Anzahl der Spalten stimmen, wenn zusätzlich noch die
-	 * einzelnen Geschäfte mit angegeben werden
-	 * @throws SQLException 
-	 * 
-	 * @see datas.ReportWeekData#getColumnCount()
-	 */
-	@Ignore
-	@Test
-	public void testGetColumnCountWithSections() {
-		// Einstellungen speichern
-		_rpd.setPreference(ReportWeekData.DRAW_SECTIONS, 1);
-		
-		try {
-			Statement stm = DbController.getInstance().createStatement();
-			ResultSet rs = stm.executeQuery(DbController.queries().category().count());
-			_sectionCount = rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		// Ermittelte Spalten überprüfen
-		assertEquals(4 + _sectionCount, _data.getColumnCount());
-	}
-	
-	/**
-	 * Überprüft, ob die Anzahl der Spalten stimmen, wenn zusätzlich noch die
-	 * einzelnen Kategorien und die einzelnen Geschäfte mit angegeben werden
-	 * @throws SQLException 
-	 * 
-	 * @see datas.ReportWeekData#getColumnCount()
-	 */
-	@Ignore
-	@Test
-	public void testGetColumnCountWithCategoriesAndSections() {
-		// Einstellungen speichern
-		_rpd.setPreference(ReportWeekData.DRAW_CATEGORIES, 1);
-		_rpd.setPreference(ReportWeekData.DRAW_SECTIONS, 1);
-		
-		try {
-			Statement stm = DbController.getInstance().createStatement();
-			ResultSet rs = stm.executeQuery(DbController.queries().category().count());
-			_categoryCount = rs.getInt(1);
-			
-			rs = stm.executeQuery(DbController.queries().section().count());
-			_sectionCount = rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		// Ermittelte Spalten überprüfen
-		assertEquals(4 + _categoryCount + _sectionCount, _data.getColumnCount());
 	}
 
 	/**
@@ -513,125 +444,6 @@ see datas.ReportWeekData#setPreferences(ReportPreferences)
 		verify(tc).setHeaderValue("Ausgaben");
 		verify(tcm).getColumn(3);
 		verify(tc).setHeaderValue("Differenz");
-	}
-	
-	/**
-	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
-	 * Standard-Spalten werden noch die Kategorien angezeigt.
-	 * 
-	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
-	 */
-	@Ignore
-	@Test
-	public void testSetColumnHeaderWithCategory() {
-		// Einstellungen
-		_rpd.setPreference(ReportWeekData.DRAW_CATEGORIES, 1);
-		
-		// Model vorbereiten
-		TableColumnModel tcm = mock(TableColumnModel.class);
-		TableColumn tc = mock(TableColumn.class);
-		
-		for (int i = 0; i < _data.getColumnCount(); i++)
-			when(tcm.getColumn(i)).thenReturn(tc);
-		
-		// Header setzen
-		_data.setColumnHeader(tcm);
-		
-		// Überprüfen ob die richtigen Methoden aufgerufen wurden
-		verify(tcm).getColumn(0);
-		verify(tc).setHeaderValue("Woche");
-		verify(tcm).getColumn(1);
-		verify(tc).setHeaderValue("Einnahmen");
-		verify(tcm).getColumn(2);
-		verify(tc).setHeaderValue("Ausgaben");
-		verify(tcm).getColumn(3);
-		verify(tc).setHeaderValue("Differenz");
-		
-		for (int i = 4; i < _data.getColumnCount(); i++) {
-			verify(tcm).getColumn(i);
-		}
-	}
-	
-	/**
-	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
-	 * Standard-Spalten werden noch die Geschäfte angezeigt.
-	 * 
-	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
-	 */
-	@Ignore
-	@Test
-	public void testSetColumnHeaderWithSection() {
-		// Einstellungen
-		_rpd.setPreference(ReportWeekData.DRAW_SECTIONS, 1);
-		
-		// Model vorbereiten
-		TableColumnModel tcm = mock(TableColumnModel.class);
-		TableColumn tc = mock(TableColumn.class);
-		
-		for (int i = 0; i < _data.getColumnCount(); i++)
-			when(tcm.getColumn(i)).thenReturn(tc);
-		
-		// Header setzen
-		_data.setColumnHeader(tcm);
-		
-		// Überprüfen ob die richtigen Methoden aufgerufen wurden
-		verify(tcm).getColumn(0);
-		verify(tc).setHeaderValue("Woche");
-		verify(tcm).getColumn(1);
-		verify(tc).setHeaderValue("Einnahmen");
-		verify(tcm).getColumn(2);
-		verify(tc).setHeaderValue("Ausgaben");
-		verify(tcm).getColumn(3);
-		verify(tc).setHeaderValue("Differenz");
-		
-		for (int i = 4; i < _data.getColumnCount(); i++) {
-			verify(tcm).getColumn(i);
-		}
-	}
-	
-	/**
-	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
-	 * Standard-Spalten werden noch die Kategorien, die Geschäfte, die Spalte
-	 * 'von' und die Spalte 'bis' angezeigt.
-	 * 
-	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
-	 */
-	@Ignore
-	@Test
-	public void testSetColumnHeaderAllExtraColumns() {
-		// Einstellungen
-		_rpd.setPreference(ReportWeekData.DRAW_CATEGORIES, 1);
-		_rpd.setPreference(ReportWeekData.DRAW_SECTIONS, 1);
-		_rpd.setPreference(ReportWeekData.DRAW_DATE_FROM, 1);
-		_rpd.setPreference(ReportWeekData.DRAW_DATE_TO, 1);
-		
-		// Model vorbereiten
-		TableColumnModel tcm = mock(TableColumnModel.class);
-		TableColumn tc = mock(TableColumn.class);
-		
-		for (int i = 0; i < _data.getColumnCount(); i++)
-			when(tcm.getColumn(i)).thenReturn(tc);
-		
-		// Header setzen
-		_data.setColumnHeader(tcm);
-		
-		// Überprüfen ob die richtigen Methoden aufgerufen wurden
-		verify(tcm).getColumn(0);
-		verify(tc).setHeaderValue("Woche");
-		verify(tcm).getColumn(1);
-		verify(tc).setHeaderValue("von");
-		verify(tcm).getColumn(2);
-		verify(tc).setHeaderValue("bis");
-		verify(tcm).getColumn(3);
-		verify(tc).setHeaderValue("Einnahmen");
-		verify(tcm).getColumn(4);
-		verify(tc).setHeaderValue("Ausgaben");
-		verify(tcm).getColumn(5);
-		verify(tc).setHeaderValue("Differenz");
-		
-		for (int i = 6; i < _data.getColumnCount(); i++) {
-			verify(tcm).getColumn(i);
-		}
 	}
 	
 	/**

@@ -42,19 +42,6 @@ import haushaltsbuch.helper.HelperCalendar;
  */
 public class ReportWeekData extends ReportData {
 	/**
-	 * Gibt den Namen für die Einstellung zum anzeigen der einzelnen Kategorien
-	 * an.
-	 */
-	public static final String DRAW_CATEGORIES = 
-			new String("Week.drawCategories");
-	
-	/**
-	 * Gibt den Namen für die Einstellung zum anzeigen der einzelnen Geschäfte
-	 * an.
-	 */
-	public static final String DRAW_SECTIONS = new String("Week.drawSections");
-	
-	/**
 	 * Gibt den Namen für die Einstellung zum anzeigen der Spalte 'von' an.
 	 */
 	public static final String DRAW_DATE_FROM = new String("Week.drawDateFrom");
@@ -247,37 +234,6 @@ public class ReportWeekData extends ReportData {
 		tcm.getColumn(column++).setHeaderValue("Einnahmen");
 		tcm.getColumn(column++).setHeaderValue("Ausgaben");
 		tcm.getColumn(column++).setHeaderValue("Differenz");
-		
-		// Überprüfen ob die Kategorien ausgegeben werden sollen
-		try {
-			// Datenbankabfrage vorbereiten
-			Statement stm = DbController.getInstance().createStatement();
-			ResultSet rs;
-			
-			// FIXME in seperate Methode packen und jeweils aufrufen
-			
-			// Sollen die Kategorien mit eingefügt werden?
-			if (_preferences.getPreference(DRAW_CATEGORIES) != null) {
-				rs = stm.executeQuery(
-						DbController.queries().category().sort("name"));
-				while (rs.next()) {
-					tcm.getColumn(column++).setHeaderValue(rs.getString("name"));
-				}
-			}
-			
-			// Sollen die Geschäfte mit eingefügt werden?
-			if (_preferences.getPreference(DRAW_SECTIONS) != null) {
-				rs = stm.executeQuery(
-						DbController.queries().section().sort("name"));
-				while (rs.next()) {
-					tcm.getColumn(column).setHeaderValue(rs.getString("name"));
-					column++;
-				}
-			}
-		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-			e.getStackTrace();
-		}
 	}
 	
 	/**
