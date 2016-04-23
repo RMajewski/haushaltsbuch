@@ -24,85 +24,69 @@ import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
-import org.netbeans.jemmy.operators.JMenuBarOperator;
 import org.netbeans.jemmy.operators.JTextAreaOperator;
 
-import haushaltsbuch.windows.WndMain;
-import tests.testcase.GuiTest;
+import haushaltsbuch.dialogs.DlgLicense;
+import tests.apps.TestDialogApplication;
+import tests.testcase.TestDialogs;
 
-/**
- * Testet, ob der Lizenz-Dialog mit Hilfe->Lizenz aufgerufen werden kann und
- * ob er mit einen Button beendet werden kann.
- * 
- * @see dialogs.DlgLicense
- * 
- * 
- * @author René Majewski
- * 
- * @version 0.1
- * @since 0.1
- */
-public class TestDlgLicense extends GuiTest {
-
+public class TestDlgLicense extends TestDialogs {
+	/**
+	 * Speichert die Text-Area
+	 */
+	private JTextAreaOperator _txt;
+	
+	/**
+	 * Initalisiert die Klasse
+	 */
+	public TestDlgLicense() throws Exception {
+		// Test-Applikation aufrufen
+		(new ClassReference("tests.apps.TestDialogApplication")).startApplication();
+		
+		// Fenster ermitteln
+		_frame = new JFrameOperator(TestDialogApplication.TITLE);
+		
+		// Dialog aufrufen
+		new JButtonOperator(_frame,
+				TestDialogApplication.DIALOG_LICENSE).pushNoBlock();
+		
+		// Dialog ermitteln
+		_dlg = new JDialogOperator(_frame, DlgLicense.DIALOG_TITLE);
+		
+		// Text-Area ermitteln
+		_txt = new JTextAreaOperator(_dlg);
+		
+		// Button ermitteln
+		_btn = new JButtonOperator(_dlg, "Ok");
+	}
+	
+	/**
+	 * Gibt die Anzahl der Zeilen aus.
+	 */
+	public int lineCount() {
+		return _txt.getLineCount();
+	}
+	
 	/**
 	 * Führt den Test aus
 	 */
 	@Override
-	public int runIt(Object arg0) {
-		try {
-			// Bundle Erstellen
-			// Start des Haupt-Programms
-			new ClassReference("Main").startApplication();
-			
-			// Fenster des Hauptprogrammes
-			JFrameOperator wnd = new JFrameOperator(WndMain.TITLE);
-			
-			// MainMenu-Bar laden und Help -> "Über ..." aufrufen
-			JMenuBarOperator menu = new JMenuBarOperator(wnd);
-			menu.getTimeouts().setTimeout("JMenuOperator.PushMenuTimeout", 600000);
-			menu.pushMenuNoBlock("Hilfe|Lizenz...");
-			
-			// Dialog-Fenster abfangen
-			JDialogOperator dlg = new JDialogOperator(wnd, "Lizenz");
-			
-			// TextArea ermitteln und Tests durchführen
-			JTextAreaOperator txt = new JTextAreaOperator(dlg);
-			test("Überprüfen, ob es eine TextArea gibt und ob sie angezeigt wird",
-					txt.isVisible());
-			
-			test("Überprüfen, ob die TextArea im nur Lesemodus ist",
-					!txt.isEditable());
-			
-			test("Überprüfen, ob der Lizenz-Text geladen wurde",
-					txt.getLineCount() > 0);
-			
-			test("Überprüfen, ob der Dialog Modal ist", dlg.isModal());
-			
-			test("Überprüfen, ob der Dialog angezeigt wird.", dlg.isVisible());
-			
-			// Button ermitteln und ihn drücken
-			JButtonOperator btn = new JButtonOperator(dlg, "Ok");
-			btn.push();
-			
-			// Überprüfen, ob der Dialog nicht mehr angezeigt wird
-			test("Überprüfen, ob der Dialog nicht mehr angezeigt wird",
-					!dlg.isVisible());
-		} catch (Exception e) {
-			e.printStackTrace();
+	public int runIt(Object o) {
+		// Anzahl der Linien ermitteln
+		if (lineCount() < 300)
 			return 1;
-		}
+
+		if (super.runIt(o) != 0)
+			return 1;
 		
 		return 0;
 	}
-
+	
 	/**
-	 * Initalisiert die Test-Umgebung
-	 * 
-	 * @param args Paramter von der Kommandozeile
+	 * Startet den Test
 	 */
 	public static void main(String[] args) {
-		System.setProperty("testing", "true");
-		Test.main(new String[] {"test.dialogs.TestDlgLicense"});
+		Test.main(new String[] {"tests.tests.dialogs.TestDlgLicense"});
 	}
 
 }

@@ -133,7 +133,7 @@ public class GuiTestsHaushaltsbuch {
 		
 		// Dialoge
 		tests.runTest(tests.tests.dialogs.TestDlgAboutOld.class.getName());
-		tests.runTest(tests.tests.dialogs.TestDlgLicense.class.getName());
+		tests.runTest(tests.tests.dialogs.TestDlgLicenseOld.class.getName());
 		tests.runTest(tests.tests.dialogs.TestDlgLog.class.getName());
 		
 		// Menüs

@@ -45,6 +45,11 @@ import javax.swing.JTextArea;
  * @since 0.1
  */
 public class DlgLicense extends JDialog {
+	
+	/**
+	 * Speichert den Titel des Fensters.
+	 */
+	public static final String DIALOG_TITLE = new String("Lizenz");
 
 	/**
 	 * Serilisation ID
@@ -67,7 +72,7 @@ public class DlgLicense extends JDialog {
 		setSize(800, 400);
 		
 		// Titel
-		setTitle("Lizenz");
+		setTitle(DIALOG_TITLE);
 		
 		// TextArea initaliseren
 		JTextArea txt = new JTextArea();
@@ -92,7 +97,7 @@ public class DlgLicense extends JDialog {
 					if (line != null) {
 						// Zeile in die Text-Ausgabe einfügen
 						txt.append(line);
-						txt.append("\n");
+						txt.append(System.getProperty("line.separator"));
 					}
 				} while (line != null);
 				

@@ -19,6 +19,7 @@
 
 package tests.apps;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,6 +28,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import haushaltsbuch.dialogs.DlgAbout;
+import haushaltsbuch.dialogs.DlgLicense;
 import tests.tests.dialogs.TestDlgAbout;
 
 /**
@@ -47,7 +49,12 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	/**
 	 * Gibt an, dass der "Über..."-Dialog angezeigt werden soll.
 	 */
-	public static String DIALOG_ABOUT = "tests.dialogs.DlgAbout";
+	public static final String DIALOG_ABOUT = "tests.dialogs.DlgAbout";
+	
+	/**
+	 * Gibt an, dass der Lizenz-Dialog angezeigt werden soll.
+	 */
+	public static final String DIALOG_LICENSE = "tests.dialogs.DlgLicense";
 
 	/**
 	 * Serilisation ID
@@ -68,11 +75,18 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		setSize(600, 400);
 		
 		// Button für "Über..."-Dialog anzeigen
+		getContentPane().setLayout(new FlowLayout());
 		JButton btn = new JButton(DIALOG_ABOUT);
 		btn.addActionListener(this);
 		btn.setActionCommand(DIALOG_ABOUT);
-		add(btn);
+		getContentPane().add(btn);
 		
+		// Button für Lizenez-Dialog anzeigen
+		btn = new JButton(DIALOG_LICENSE);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_LICENSE);
+		getContentPane().add(btn);
+
 		// Fenster Anzeigen
 		setVisible(true);
 	}
@@ -95,6 +109,10 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 			// "Über..."-Dialog
 			if (ae.getActionCommand().equals(DIALOG_ABOUT))
 				new DlgAbout(this);
+			
+			// Lizenz-Dialog
+			else if(ae.getActionCommand().equals(DIALOG_LICENSE))
+				new DlgLicense(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
