@@ -19,15 +19,35 @@
 
 package tests.fixtures.dialogs;
 
-import org.netbeans.jemmy.Scenario;
-
 import fit.ActionFixture;
+import tests.testcase.TestDialogs;
 
-public class FixureDialogs extends ActionFixture {
+/**
+ * Implementiert die standard Aktionen der Dialoge.
+ * 
+ * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.2
+ */
+public class FixtureDialogs extends ActionFixture {
 	/**
 	 * Speichert die Test-Klasse
 	 */
-	protected Scenario _test;
-
+	protected TestDialogs _test;
+	
+	/**
+	 * Drückt den Button, damit das Fenster beendet wird.
+	 */
+	public void pushOk() {
+		_test.pushOk();
+	}
+	
+	/**
+	 * Überprüft, ob der Dialog angezeigt wird.
+	 */
+	public String isVisible() {
+		return String.valueOf(_test.dlgIsVisible());
+	}
 	
 }

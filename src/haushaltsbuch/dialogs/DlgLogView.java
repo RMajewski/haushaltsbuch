@@ -20,6 +20,8 @@
 package haushaltsbuch.dialogs;
 
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
@@ -29,6 +31,9 @@ import javax.swing.JScrollPane;
 import haushaltsbuch.datas.LogData;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.renderer.LogViewListRenderer;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JButton;
 
 /**
  * In diesen Dialog wird das Log angezeigt.
@@ -38,7 +43,17 @@ import haushaltsbuch.renderer.LogViewListRenderer;
  * @version 0.1
  * @since 0.1
  */
-public class DlgLogView extends JDialog {
+public class DlgLogView extends JDialog implements ActionListener {
+	
+	/**
+	 * Speichert den Titel des Dialogs
+	 */
+	public static final String DIALOG_TITLE = "Log";
+	
+	/**
+	 * ActionCommand für den Ok-Button
+	 */
+	private static final String OK = "DlgLogViewOk";
 
 	/**
 	 * Serialisation ID
@@ -62,7 +77,7 @@ public class DlgLogView extends JDialog {
 		setSize(600, 400);
 		
 		// Dialog-Titel
-		setTitle("Log");
+		setTitle(DIALOG_TITLE);
 		
 		// Liste anzeigen
 		final DefaultListModel<LogData> model = new DefaultListModel<LogData>();
@@ -73,14 +88,40 @@ public class DlgLogView extends JDialog {
 				model.addElement(data);
 			}
 		}
+		getContentPane().setLayout(new BorderLayout(0, 0));
 		JList<LogData> l = new JList<LogData>();
 		l.setModel(model);
 		l.setCellRenderer(new LogViewListRenderer());
+		
+		// Scroll-Pane
 		JScrollPane pane = new JScrollPane(l);
-		add(pane);
+		getContentPane().add(pane);
+		
+		// Panel für den Button
+		JPanel panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.SOUTH);
+		
+		// Button einfügen
+		JButton btnOk = new JButton("Ok");
+		btnOk.setMnemonic('O');
+		btnOk.addActionListener(this);
+		btnOk.setActionCommand(OK);
+		panel.add(btnOk);
+
 		
 		// Anzeigen
 		pack();
 		setVisible(true);
+	}
+
+	/**
+	 * Reagiert auf den Klick des Buttons
+	 * 
+	 * @param ae Event-Daten
+	 */
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		if (ae.getActionCommand().equals(OK))
+			setVisible(false);
 	}
 }

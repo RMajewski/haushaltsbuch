@@ -24,30 +24,32 @@ import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
+import org.netbeans.jemmy.operators.JListOperator;
 import org.netbeans.jemmy.operators.JTextAreaOperator;
 
 import haushaltsbuch.dialogs.DlgLicense;
+import haushaltsbuch.dialogs.DlgLogView;
 import tests.apps.TestDialogApplication;
 import tests.testcase.TestDialogs;
 
 /**
- * Testet den Dialog "Lizenz"
+ * Testet den Dialog "Log"
  * 
  * @author René Majewski
  *
  * @version 0.2
  * @since 0.1
  */
-public class TestDlgLicense extends TestDialogs {
+public class TestDlgLogView extends TestDialogs {
 	/**
 	 * Speichert die Text-Area
 	 */
-	private JTextAreaOperator _txt;
+	private JListOperator _list;
 	
 	/**
 	 * Initalisiert die Klasse
 	 */
-	public TestDlgLicense() throws Exception {
+	public TestDlgLogView() throws Exception {
 		// Test-Applikation aufrufen
 		(new ClassReference("tests.apps.TestDialogApplication")).startApplication();
 		
@@ -56,23 +58,25 @@ public class TestDlgLicense extends TestDialogs {
 		
 		// Dialog aufrufen
 		new JButtonOperator(_frame,
-				TestDialogApplication.DIALOG_LICENSE).pushNoBlock();
+				TestDialogApplication.DIALOG_LOG).pushNoBlock();
 		
 		// Dialog ermitteln
-		_dlg = new JDialogOperator(_frame, DlgLicense.DIALOG_TITLE);
+		_dlg = new JDialogOperator(_frame, DlgLogView.DIALOG_TITLE);
 		
-		// Text-Area ermitteln
-		_txt = new JTextAreaOperator(_dlg);
+		// Liste ermitteln
+		_list = new JListOperator(_dlg);
 		
 		// Button ermitteln
 		_btn = new JButtonOperator(_dlg, "Ok");
 	}
 	
 	/**
-	 * Gibt die Anzahl der Zeilen aus.
+	 * Gibt zurück, ob die Liste vorhanden ist.
+	 * 
+	 * @return Ist die Liste vorhanden?
 	 */
-	public int lineCount() {
-		return _txt.getLineCount();
+	public boolean haveList() {
+		return _list.isVisible();
 	}
 	
 	/**
@@ -80,8 +84,8 @@ public class TestDlgLicense extends TestDialogs {
 	 */
 	@Override
 	public int runIt(Object o) {
-		// Anzahl der Linien ermitteln
-		if (lineCount() < 300)
+		// Liste vorhanden?
+		if (!haveList())
 			return 1;
 
 		if (super.runIt(o) != 0)
@@ -89,12 +93,11 @@ public class TestDlgLicense extends TestDialogs {
 		
 		return 0;
 	}
-	
+
 	/**
 	 * Startet den Test
 	 */
 	public static void main(String[] args) {
-		Test.main(new String[] {"tests.tests.dialogs.TestDlgLicense"});
+		Test.main(new String[] {"tests.tests.dialogs.TestDlgLogView"});
 	}
-
 }

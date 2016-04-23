@@ -19,24 +19,30 @@
 
 package tests.fixtures.dialogs;
 
-import fit.ActionFixture;
-import tests.tests.dialogs.TestDlgAbout;
+import tests.tests.dialogs.TestDlgLogView;
 
 /**
- * Beinhaltet die einzelnen Test-Schritte, die im FIT-Dokument angegeben sin.
+ * Implementiert die Aktionen für DlgLogView.fit.
  * 
  * @author René Majewski
  *
  * @version 0.1
  * @since 0.2
  */
-public class FixtureDlgAbout extends FixtureDialogs {
+public class FixtureDlgLogView extends FixtureDialogs {
 	/**
-	 * Initalisiert diese Klasse
+	 * Initalisiert dieses Fixture
 	 * 
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	public FixtureDlgAbout() throws Exception {
-		_test = new TestDlgAbout();
+	public FixtureDlgLogView() throws Exception{
+		_test = new TestDlgLogView();
+	}
+
+	/**
+	 * Überprüft, ob eine Liste besteht
+	 */
+	public String haveList() {
+		return String.valueOf(((TestDlgLogView)_test).haveList());
 	}
 }

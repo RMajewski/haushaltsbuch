@@ -1,11 +1,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Dialog: &Uuml;ber</title>
+		<title>Dialog: Log-Ansicht</title>
 	</head>
 	<body>
 		<h2>
-			Dialog: &Uuml;ber</h2>
+			Dialog: Log-Ansicht</h2>
 		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
 			<tbody>
 				<tr>
@@ -16,9 +16,17 @@
 					<td>
 						start</td>
 					<td>
-						tests.fixtures.dialogs.FixtureDlgAbout</td>
+						tests.fixtures.dialogs.FixtureDlgLogView</td>
 					<td>
 						&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						check</td>
+					<td>
+						haveList</td>
+					<td>
+						true</td>
 				</tr>
 				<tr>
 					<td>

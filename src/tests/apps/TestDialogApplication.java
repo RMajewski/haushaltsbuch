@@ -29,6 +29,7 @@ import javax.swing.JFrame;
 
 import haushaltsbuch.dialogs.DlgAbout;
 import haushaltsbuch.dialogs.DlgLicense;
+import haushaltsbuch.dialogs.DlgLogView;
 import tests.tests.dialogs.TestDlgAbout;
 
 /**
@@ -55,6 +56,11 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	 * Gibt an, dass der Lizenz-Dialog angezeigt werden soll.
 	 */
 	public static final String DIALOG_LICENSE = "tests.dialogs.DlgLicense";
+	
+	/**
+	 * Gibt ab, dass der Log angezeigt werden soll.
+	 */
+	public static final String DIALOG_LOG = "tests.dialogs.DlgLogView";
 
 	/**
 	 * Serilisation ID
@@ -86,6 +92,12 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		btn.addActionListener(this);
 		btn.setActionCommand(DIALOG_LICENSE);
 		getContentPane().add(btn);
+		
+		// Button zum Anzeigen des Logs
+		btn = new JButton(DIALOG_LOG);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_LOG);
+		getContentPane().add(btn);
 
 		// Fenster Anzeigen
 		setVisible(true);
@@ -113,6 +125,10 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 			// Lizenz-Dialog
 			else if(ae.getActionCommand().equals(DIALOG_LICENSE))
 				new DlgLicense(this);
+			
+			// Log-Dialog
+			else if(ae.getActionCommand().equals(DIALOG_LOG))
+				new DlgLogView(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

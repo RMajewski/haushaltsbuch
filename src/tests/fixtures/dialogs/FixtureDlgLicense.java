@@ -19,15 +19,18 @@
 
 package tests.fixtures.dialogs;
 
-import fit.ActionFixture;
 import tests.tests.dialogs.TestDlgLicense;
 
-public class FixtureDlgLicense extends ActionFixture {
-	/**
-	 * Speichert die Test-Klasse
-	 */
-	private TestDlgLicense _test;
-	
+/**
+ * In dieser Klasse werden die einzelnen Aktionen des DlgLicense.fit
+ * implementiert.
+ * 
+ * @author René Majewski
+ *
+ * @version 0.1
+ * @since 0.2
+ */
+public class FixtureDlgLicense extends FixtureDialogs {
 	/**
 	 * Initalisiert diese Klasse
 	 * 
@@ -38,24 +41,10 @@ public class FixtureDlgLicense extends ActionFixture {
 	}
 	
 	/**
-	 * Drückt den Button, damit das Fenster beendet wird.
-	 */
-	public void pushOk() {
-		_test.pushOk();
-	}
-	
-	/**
-	 * Überprüft, ob der Dialog angezeigt wird.
-	 */
-	public String isVisible() {
-		return String.valueOf(_test.dlgIsVisible());
-	}
-	
-	/**
 	 * Gibt die Anzahl der Linien zurück
 	 */
 	public String lineCount() {
-		return String.valueOf(_test.lineCount());
+		return String.valueOf(((TestDlgLicense)_test).lineCount());
 	}
 
 }
