@@ -46,7 +46,7 @@ public class SqlScript extends Export {
 	 */
 	public SqlScript() {
 		// Dialog speichern
-		_dlg = new DlgExportSqlScript();
+		_dlg = new DlgExportSqlScript(null);
 	}
 	
 	/**

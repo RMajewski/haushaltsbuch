@@ -67,7 +67,7 @@ public class TestDlgLogView extends TestDialogs {
 		_list = new JListOperator(_dlg);
 		
 		// Button ermitteln
-		_btn = new JButtonOperator(_dlg, "Ok");
+		_btnOk = new JButtonOperator(_dlg, "Ok");
 	}
 	
 	/**

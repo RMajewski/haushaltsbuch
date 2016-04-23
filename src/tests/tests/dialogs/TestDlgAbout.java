@@ -56,7 +56,7 @@ public class TestDlgAbout extends TestDialogs {
 		_dlg = new JDialogOperator(_frame, DlgAbout.DIALOG_TITLE);
 		
 		// Button ermitteln
-		_btn = new JButtonOperator(_dlg, "Ok");
+		_btnOk = new JButtonOperator(_dlg, "Ok");
 	}
 	
 	/**

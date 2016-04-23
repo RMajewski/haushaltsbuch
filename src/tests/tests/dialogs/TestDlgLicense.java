@@ -65,7 +65,7 @@ public class TestDlgLicense extends TestDialogs {
 		_txt = new JTextAreaOperator(_dlg);
 		
 		// Button ermitteln
-		_btn = new JButtonOperator(_dlg, "Ok");
+		_btnOk = new JButtonOperator(_dlg, "Ok");
 	}
 	
 	/**

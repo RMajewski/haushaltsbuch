@@ -22,12 +22,15 @@ package haushaltsbuch.dialogs;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+
+import org.netbeans.jemmy.ComponentChooser;
 
 /**
  * Zeigt die Einstellungen für den Export des SQL-Scripten.
@@ -140,20 +143,27 @@ public class DlgExportSqlScript extends DlgExport implements ActionListener {
 	 * Serilisation ID
 	 */
 	private static final long serialVersionUID = 7761588158976101899L;
+
+	/**
+	 * Speichert den Titel des Dialogs
+	 */
+	public static final String DIALOG_TITLE = "Export: SQL-Script";
 	
 	/**
 	 * Initalisiert diesen Dialog
+	 * 
+	 * @param owner Fenster, das den Dialog aufgerufen hat.
 	 */
-	public DlgExportSqlScript() {
+	public DlgExportSqlScript(Window owner) {
 		// Klasse initalisieren
-		super();
+		super(owner);
 		setModal(true);
 		
 		// Größe
 		setSize(450, 300);
 		
 		// Titel
-		setTitle("Export: SQL-Script");
+		setTitle(DIALOG_TITLE);
 		
 		// Modal
 		setModal(true);

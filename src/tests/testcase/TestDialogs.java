@@ -39,13 +39,13 @@ public abstract class TestDialogs implements Scenario {
 	/**
 	 * Speichert den Button
 	 */
-	protected JButtonOperator _btn;
+	protected JButtonOperator _btnOk;
 	
 	/**
 	 * Führt einen Klick auf den Button aus
 	 */
 	public void pushOk() {
-		_btn.push();
+		_btnOk.push();
 	}
 	
 	/**

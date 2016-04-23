@@ -19,6 +19,7 @@
 
 package haushaltsbuch.dialogs;
 
+import java.awt.Window;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,10 +53,12 @@ public class DlgExport extends JDialog {
 	
 	/**
 	 * Initalisiert den Dialog
+	 * 
+	 * @param owner Fenster, das den Dialog aufgerufen hat.
 	 */
-	public DlgExport() {
+	public DlgExport(Window owner) {
 		// Dialog initalisieren
-		super();
+		super(owner);
 		
 		// Einstellungen initalisieren
 		_preference = new HashMap<String, Object>();

@@ -28,6 +28,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import haushaltsbuch.dialogs.DlgAbout;
+import haushaltsbuch.dialogs.DlgExportSqlScript;
 import haushaltsbuch.dialogs.DlgLicense;
 import haushaltsbuch.dialogs.DlgLogView;
 import tests.tests.dialogs.TestDlgAbout;
@@ -58,9 +59,14 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	public static final String DIALOG_LICENSE = "tests.dialogs.DlgLicense";
 	
 	/**
-	 * Gibt ab, dass der Log angezeigt werden soll.
+	 * Gibt an, dass der Log angezeigt werden soll.
 	 */
 	public static final String DIALOG_LOG = "tests.dialogs.DlgLogView";
+	
+	/**
+	 * Gibt an, dass der Export-Dialog für das SQL-Script angezeigt werden soll.
+	 */
+	public static final String DIALOG_EXPORT_SQL = "tests.dialogs.DlgExportSqlScript";
 
 	/**
 	 * Serilisation ID
@@ -98,6 +104,12 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		btn.addActionListener(this);
 		btn.setActionCommand(DIALOG_LOG);
 		getContentPane().add(btn);
+		
+		// Button zum Anzeigen des Dialogs für Export des SQL-Script
+		btn = new JButton(DIALOG_EXPORT_SQL);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_EXPORT_SQL);
+		getContentPane().add(btn);
 
 		// Fenster Anzeigen
 		setVisible(true);
@@ -129,6 +141,12 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 			// Log-Dialog
 			else if(ae.getActionCommand().equals(DIALOG_LOG))
 				new DlgLogView(this);
+			
+			// Export SQL-Script
+			else if(ae.getActionCommand().equals(DIALOG_EXPORT_SQL)) {
+				DlgExportSqlScript dlg = new DlgExportSqlScript(this);
+				dlg.setVisible(true);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
