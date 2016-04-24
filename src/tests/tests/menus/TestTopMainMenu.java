@@ -19,157 +19,231 @@
 
 package tests.tests.menus;
 
-import javax.swing.JMenu;
+import static org.junit.Assert.assertEquals;
 
-import org.netbeans.jemmy.ClassReference;
-import org.netbeans.jemmy.Test;
-import org.netbeans.jemmy.operators.JFrameOperator;
-import org.netbeans.jemmy.operators.JMenuBarOperator;
+import org.junit.Before;
+import org.junit.Test;
 
-import haushaltsbuch.windows.WndMain;
-import tests.exception.GuiTestException;
-import tests.testcase.GuiTest;
+import haushaltsbuch.menus.MainTop;
 
 /**
  * Überprüft, ob alle Menü-Einträge vorhanden sind.
  * 
+ * In der Version 0.2 wurde von jemmy-Test zu junit-Test gewechselt.
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
-public class TestTopMainMenu extends GuiTest {
+public class TestTopMainMenu {
 	/**
-	 * Überprüft ob das Datei-Menü richtig ist.
-	 * 
-	 * @throws GuiTestException
+	 * Speichert das Hauptmenü
 	 */
-	private void testFileMenu(JMenu menu) throws GuiTestException{
-		test("Ist der Menü-Name Datei?", menu.getText().equals("Datei"));
-		test("Überprüfen ob der Beenden-Eintrag vorhanden ist",
-				menu.getItem(0).getText().equals("Beenden"));
+	private MainTop _menu;
+	
+	/**
+	 * Gibt an, an welcher Stelle das Datei-Menü liegen soll
+	 */
+	private static final int MENU_FILE = 0;
+	
+	/**
+	 * Gibt an, an welcher Stelle das Db-Menü liegen soll
+	 */
+	private static final int MENU_DB = 1;
+	
+	/**
+	 * Gibt an, an welcher Stelle das Export-Menü liegen soll
+	 */
+	private static final int MENU_EXPORT = 2;
+	
+	/**
+	 * Gibt an, an welcher Stelle das Report-Menü liegen soll
+	 */
+	private static final int MENU_REPORT = 3;
+	
+	/**
+	 * Gibt an, an welcher Stelle das Log-Menü liegen soll.
+	 */
+	private static final int MENU_LOG = 4;
+	
+	/**
+	 * Gibt an, an welcher Stelle das Hilfe-Menü liegen soll.
+	 */
+	private static final int MENU_HELP = 5;
+	
+	/**
+	 * Initalisiert das Menü
+	 */
+	@Before
+	public void setUp() {
+		_menu = new MainTop(null);
 	}
 	
 	/**
-	 * Überprüft ob das Datenbank-Menü richtig ist.
-	 * 
-	 * @throws GuiTestException
+	 * Überprüft, die richtige Anzahl an Menüs vorhanden ist.
 	 */
-	private void testDbMenu(JMenu menu) throws GuiTestException {
-		test("Ist der Menü-Name Datenbank?", 
-				menu.getText().equals("Datenbank"));
-		
-		test("Überprüfen, ob der Eintrag 'Kategorien' vorhanden ist",
-				menu.getItem(0).getText().equals("Kategorien"));
-		
-		test("Überprüfen, ob der Eintrag 'Geschäfte' vorhanden ist",
-				menu.getItem(1).getText().equals("Geschäfte"));
-		
-		test("Überprüfen, ob der Eintrag 'Einnahmen und Ausgaben' vorhanden ist",
-				menu.getItem(2).getText().equals("Einnahmen und Ausgaben"));
+	@Test
+	public void testHaveRightMenu() {
+		assertEquals(6, _menu.getMenuCount());
 	}
 	
 	/**
-	 * Überprüft ob das Log-Menü richtig ist.
-	 * 
-	 * @throws GuitestsException
+	 * Überprüft, ob das Datei-Menü vorhanden ist und den richtigen Text hat.
 	 */
-	private void testLogMenu(JMenu menu) throws GuiTestException {
-		test("Ist der Name des Menü Log?", menu.getText().equals("Log"));
-		test("Überprüfen, ob der Eintrag 'Anzeigen...' vorhanden ist",
-				menu.getItem(0).getText().equals("Anzeigen..."));
+	@Test
+	public void testHaveFileMenu() {
+		assertEquals("Datei", _menu.getMenu(MENU_FILE).getText());
 	}
 	
 	/**
-	 * Überprüft ob das Hilfe-Menü richtig ist.
-	 * 
-	 * @throws GuiTestException
+	 * Überprüft, ob das Datei-Menü genau 1 Menü-Punkt hat
 	 */
-	private void testHelpMenu(JMenu menu) throws GuiTestException{
-		test("Ist der Name des Menü Hilfer?", menu.getText().equals("Hilfe"));
-
-		test("Überprüfen, ob der Eintrag 'Lizenz...' vorhanden ist",
-				menu.getItem(0).getText().equals("Lizenz..."));
-		
-		test("Überprüfen, ob der Eintrag 'Über...' vorhanden ist",
-				menu.getItem(2).getText().equals("Über..."));
-	}
-
-	/**
-	 * Überprüft, ob das Report-Menü richtig ist.
-	 * 
-	 * @param menu
-	 * 
-	 * @throws GuiTestException
-	 */
-	private void testReportMenu(JMenu menu) throws GuiTestException {
-		test("Ist der Name des Menü Report?", menu.getText().equals("Report"));
-		
-		test("Überprüfen, ob der Eintrag 'Wochenübersicht' vorhanden ist",
-				menu.getItem(0).getText().equals("Wochenübersicht"));
-		
-		test("Überprüfen, ob der Eintrag 'Monatsübersicht' vorhanden ist",
-				menu.getItem(1).getText().equals("Monatsübersicht"));
-		
-		test("Überprüfen, ob der Eintrag 'Jahresübersicht' vorhanden ist",
-				menu.getItem(2).getText().equals("Jahresübersicht"));
-	}
-
-	/**
-	 * Überprüft, ob das Export-Menü richtig ist.
-	 * 
-	 * @param menu 
-	 * 
-	 * @throws GuiTestException Wird ausgelöst, wenn ein Test nicht korrekt
-	 * ausgeführt werden konnte.
-	 */
-	private void testExportMenu(JMenu menu) throws GuiTestException {
-		test("Ist der Name des Menü Export richtig?", menu.getText().equals("Export"));
-		
-		test("Überprüfen, ob der Eintrag 'SQL-Script' vorhanden ist",
-				menu.getItem(0).getText().equals("SQL-Script"));
+	@Test
+	public void testFileMenuHaveOneItem() {
+		assertEquals(1, _menu.getMenu(MENU_FILE).getItemCount());
 	}
 	
 	/**
-	 * Führt die einzelnen Tests aus
+	 * Überprüft, ob das Datei-Menu die richtigen Einträge hat.
 	 */
-	@Override
-	public int runIt(Object arg0) {
-		try {
-			// Start des Haupt-Programms
-			new ClassReference("haushaltsbuch.Main").startApplication();
-			
-			// Fenster des Hauptprogrammes
-			JFrameOperator wnd = new JFrameOperator(WndMain.TITLE);
-			
-			// MainMenu-Bar laden
-			JMenuBarOperator menu = new JMenuBarOperator(wnd);
-			
-			// Menü-Struktur überprüfen
-			int count = 0;
-			testFileMenu(menu.getMenu(count++));
-			testDbMenu(menu.getMenu(count++));
-			testExportMenu(menu.getMenu(count++));
-			testReportMenu(menu.getMenu(count++));
-			testLogMenu(menu.getMenu(count++));
-			testHelpMenu(menu.getMenu(count++));
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 1;
-		}
-		
-		// Da bisher nicht beendet mit 0 beenden (kein Fehler)
-		return 0;
+	@Test
+	public void testFileMenuHaveRightItems() {
+		assertEquals("Beenden", _menu.getMenu(MENU_FILE).getItem(0).getText());
 	}
-
+	
 	/**
-	 * Initalisiert die Test-Umgebung
-	 * 
-	 * @param args Paramter von der Kommandozeile
+	 * Überprüft, ob das Datenbank-Menü vorhanden ist und den richtigen Text
+	 * hat.
 	 */
-	public static void main(String[] args) {
-		System.setProperty("testing", "true");
-		Test.main(new String[] {"tests.tests.menus.TestTopMainMenu"});
+	@Test
+	public void testHaveDbMenu() {
+		assertEquals("Datenbank", _menu.getMenu(MENU_DB).getText());
 	}
-
+	
+	/**
+	 * Überprüft, ob das Datenbank-Menü genau 4 Menü-Punkte hat
+	 */
+	@Test
+	public void testDbMenuHaveFourItems() {
+		assertEquals(3, _menu.getMenu(MENU_DB).getItemCount());
+	}
+	
+	/**
+	 * Überprüft, ob das Datenbank-Menü die richtigen Einträge hat.
+	 */
+	@Test
+	public void testDbMenuHaveRightItems() {
+		assertEquals("Kategorien", _menu.getMenu(MENU_DB).getItem(0).getText());
+		assertEquals("Geschäfte", _menu.getMenu(MENU_DB).getItem(1).getText());
+		assertEquals("Einnahmen und Ausgaben",
+				_menu.getMenu(MENU_DB).getItem(2).getText());
+	}
+	
+	/**
+	 * Überprüft, ob das Export-Menü vorhanden ist und den richtigen Text
+	 * hat.
+	 */
+	@Test
+	public void testHaveExportMenu() {
+		assertEquals("Export", _menu.getMenu(MENU_EXPORT).getText());
+	}
+	
+	/**
+	 * Überprüft, ob das Export-Menü genau 1 Menü-Punkt hat
+	 */
+	@Test
+	public void testExportMenuHaveOneItem() {
+		assertEquals(1, _menu.getMenu(MENU_EXPORT).getItemCount());
+	}
+	
+	/**
+	 * Überprüft, ob das Export-Menü die richtigen Einträge hat.
+	 */
+	@Test
+	public void testExportMenuHaveRightItems() {
+		assertEquals("SQL-Script",
+				_menu.getMenu(MENU_EXPORT).getItem(0).getText());
+	}
+	
+	/**
+	 * Überprüft, ob das Report-Menü vorhanden ist und den richtigen Text
+	 * hat.
+	 */
+	@Test
+	public void testHaveReportMenu() {
+		assertEquals("Report", _menu.getMenu(MENU_REPORT).getText());
+	}
+	
+	/**
+	 * Überprüft, ob das Report-Menü genau 3 Menü-Punkte hat
+	 */
+	@Test
+	public void testDbMenuHaveThreeItems() {
+		assertEquals(3, _menu.getMenu(MENU_REPORT).getItemCount());
+	}
+	
+	/**
+	 * Überprüft, ob das Report-Menü die richtigen Einträge hat.
+	 */
+	@Test
+	public void testReportMenuHaveRightItems() {
+		assertEquals("Wochenübersicht",
+				_menu.getMenu(MENU_REPORT).getItem(0).getText());
+		assertEquals("Monatsübersicht",
+				_menu.getMenu(MENU_REPORT).getItem(1).getText());
+		assertEquals("Jahresübersicht",
+				_menu.getMenu(MENU_REPORT).getItem(2).getText());
+	}
+	
+	/**
+	 * Überprüft, ob das Log-Menü vorhanden ist und den richtigen Text
+	 * hat.
+	 */
+	@Test
+	public void testHaveLogMenu() {
+		assertEquals("Log", _menu.getMenu(MENU_LOG).getText());
+	}
+	
+	/**
+	 * Überprüft, ob das Log-Menü genau 1 Menü-Punkt hat
+	 */
+	@Test
+	public void testLogMenuHaveOneItem() {
+		assertEquals(1, _menu.getMenu(MENU_LOG).getItemCount());
+	}
+	
+	/**
+	 * Überprüft, ob das Log-Menü die richtigen Einträge hat.
+	 */
+	@Test
+	public void testLogMenuHaveRightItems() {
+		assertEquals("Anzeigen...", _menu.getMenu(MENU_LOG).getItem(0).getText());
+	}
+	
+	/**
+	 * Überprüft, ob das Hilfe-Menü vorhanden ist und den richtigen Text
+	 * hat.
+	 */
+	@Test
+	public void testHaveHelpMenu() {
+		assertEquals("Hilfe", _menu.getMenu(MENU_HELP).getText());
+	}
+	
+	/**
+	 * Überprüft, ob das Hilfe-Menü genau 2 Menü-Punkte hat
+	 */
+	@Test
+	public void testHelpMenuHaveThreeItems() {
+		assertEquals(3, _menu.getMenu(MENU_HELP).getItemCount());
+	}
+	
+	/**
+	 * Überprüft, ob das Hilfe-Menü die richtigen Einträge hat.
+	 */
+	@Test
+	public void testHelpMenuHaveRightItems() {
+		assertEquals("Lizenz", _menu.getMenu(MENU_HELP).getItem(0).getText());
+		assertEquals("Über...", _menu.getMenu(MENU_DB).getItem(2).getText());
+	}
 }
