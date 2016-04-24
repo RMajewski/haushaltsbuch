@@ -20,7 +20,6 @@
 package tests.tests.db.query;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 import java.util.GregorianCalendar;
 
@@ -87,7 +86,7 @@ public class TestMoney extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testCreateTableReturnHaveMoneyDetails() {
+	public void testCreateTableReturnHaveMoney() {
 		assertEquals(1, frequency(_money.createTable(),_table));
 	}
 	
@@ -105,7 +104,7 @@ public class TestMoney extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testInsertTableReturnHaveMoneyDetails() {
+	public void testInsertTableReturnHaveMoney() {
 		assertEquals(1, frequency(_money.insert(),_table));
 	}
 	
@@ -133,7 +132,7 @@ public class TestMoney extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testInsertLongBooleanStringTableReturnHaveMoneyDetails() {
+	public void testInsertLongBooleanStringTableReturnHaveMoney() {
 		assertEquals(1, frequency(_money.insert(100l, true, "'Dies ist ein Test'"),_table));
 	}
 	
@@ -158,102 +157,12 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#delete(int)} kein
-	 * Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testDeleteHasNoQuery() {
-		assertEquals(0, frequency(_money.delete(100), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#delete(int)} die
-	 * übergebene ID in der Rückgabe enthält.
-	 */
-	@Test
-	public void testDeleteHasId() {
-		assertEquals(1, frequency(_money.delete(100), "100"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#delete(int)} eine
-	 * leere Zeichenkette liefert, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterReturnNull() {
-		assertStringIsNotNull(_money.delete(-1));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#delete(int)} ein
-	 * Fragezeichen in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterHasNoQuery() {
-		assertEquals(1, frequency(_money.delete(-1), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#delete(int)} keine
-	 * ID in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterHasId() {
-		assertEquals(0, frequency(_money.delete(-1), "100"));
-	}
-	
-	/**
 	 * Testest, ob die Methode {@link db.query.Money#delete(int)} in
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testDeleteReturnHaveMoneyDetails() {
+	public void testDeleteReturnHaveMoney() {
 		assertEquals(1, frequency(_money.delete(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int)} drei
-	 * Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateHasThreeQuery() {
-		assertEquals(3, frequency(_money.update(100), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int)} die
-	 * übergebene ID in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateHasId() {
-		assertEquals(1, frequency(_money.update(100), "100"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int)} keine leere
-	 * Zeichenkette liefert, auch wenn als Parameter -1 übergeben wird
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterReturnNotNull() {
-		assertStringIsNotNull(_money.update(-1));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int)} vier
-	 * Fragezeichen in der Rückgabe enthält, wenn der PArameter -1 ist.
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterHasForeQuery() {
-		assertEquals(4, frequency(_money.update(-1), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int)} keine
-	 * ID in der Rückgabe enthält, wenn der Parameter -1 ist.
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterHasNoId() {
-		assertEquals(0, frequency(_money.update(-1), "-1"));
 	}
 	
 	/**
@@ -261,7 +170,7 @@ public class TestMoney extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testUpdateReturnHaveMoneyDetails() {
+	public void testUpdateReturnHaveMoney() {
 		assertEquals(1, frequency(_money.update(100),_table));
 	}
 	
@@ -308,7 +217,7 @@ public class TestMoney extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testUpdateDateTableReturnHaveMoneyDetails() {
+	public void testUpdateDateTableReturnHaveMoney() {
 		assertEquals(1, frequency(_money.update(100, 5175837l),_table));
 	}
 	
@@ -365,7 +274,7 @@ public class TestMoney extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testUpdateInOutReturnHaveMoneyDetails() {
+	public void testUpdateInOutReturnHaveMoney() {
 		assertEquals(1, frequency(_money.update(100, true),_table));
 	}
 	
@@ -440,7 +349,7 @@ public class TestMoney extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testUpdateCommentReturnHaveMoneyDetails() {
+	public void testUpdateCommentReturnHaveMoney() {
 		assertEquals(1, frequency(_money.update(100, "Dies ist ein Test"),_table));
 	}
 	
@@ -584,7 +493,7 @@ public class TestMoney extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testSelectReturnHaveMoneyDetails() {
+	public void testSelectReturnHaveMoney() {
 		assertEquals(1, frequency(_money.select(),_table));
 	}
 	

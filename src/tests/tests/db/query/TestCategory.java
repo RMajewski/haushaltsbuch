@@ -59,26 +59,8 @@ public class TestCategory extends TestHelper {
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
-	public void testCreateTableReturnHaveMoneyDetails() {
+	public void testCreateTableReturnHaveCategory() {
 		assertEquals(1, frequency(_category.createTable(),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} die
-	 * übergebene ID in der Rückgabe enthält.
-	 */
-	@Test
-	public void testDeleteHasId() {
-		assertEquals(1, frequency(_category.delete(100), "100"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} kein
-	 * Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testDeleteHasNoQuery() {
-		assertEquals(0, frequency(_category.delete(100), "?"));
 	}
 
 	/**
@@ -86,44 +68,8 @@ public class TestCategory extends TestHelper {
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
-	public void testDeleteReturnHaveMoneyDetails() {
+	public void testDeleteReturnHaveCategory() {
 		assertEquals(1, frequency(_category.delete(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} keine
-	 * ID in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterHasId() {
-		assertEquals(0, frequency(_category.delete(-1), "100"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} ein
-	 * Fragezeichen in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterHasNoQuery() {
-		assertEquals(1, frequency(_category.delete(-1), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} eine
-	 * leere Zeichenkette liefert, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterReturnNull() {
-		assertStringIsNotNull(_category.delete(-1));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#insert()} ein
-	 * Fragezeichen enthält.
-	 */
-	@Test
-	public void testInsertHasAQuery() {
-		assertEquals(1, frequency(_category.insert(), "?"));
 	}
 	
 	/**
@@ -131,7 +77,7 @@ public class TestCategory extends TestHelper {
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
-	public void testInsertReturnHaveMoneyDetails() {
+	public void testInsertReturnHaveCategory() {
 		assertEquals(1, frequency(_category.insert(),_table));
 	}
 	
@@ -149,7 +95,7 @@ public class TestCategory extends TestHelper {
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
-	public void testInsertStringReturnHaveMoneyDetails() {
+	public void testInsertStringReturnHaveCategory() {
 		assertEquals(1, frequency(_category.insert("Dies ist ein Test"),_table));
 	}
 	
@@ -197,53 +143,8 @@ public class TestCategory extends TestHelper {
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
-	public void testSelectReturnHaveMoneyDetails() {
-		assertEquals(1, frequency(_category.select(),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int)} die
-	 * übergebene ID in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateHasId() {
-		assertEquals(1, frequency(_category.update(100), "100"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int)} ein
-	 * Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateHasOneQuery() {
-		assertEquals(1, frequency(_category.update(100), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int)} keine
-	 * ID in der Rückgabe enthält, wenn der Parameter -1 ist.
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterHasNoId() {
-		assertEquals(0, frequency(_category.update(-1), "-1"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int)} zwei
-	 * Fragezeichen in der Rückgabe enthält, wenn der PArameter -1 ist.
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterHasOneQuery() {
-		assertEquals(2, frequency(_category.update(-1), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int)} keine leere
-	 * Zeichenkette liefert, auch wenn als Parameter -1 übergeben wird
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterReturnNotNull() {
-		assertStringIsNotNull(_category.update(-1));
+	public void testSelectReturnHaveCategory() {
+		assertEquals(1, frequency(_category.select(), _table));
 	}
 	
 	/**
@@ -251,8 +152,8 @@ public class TestCategory extends TestHelper {
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
-	public void testUpdateReturnHaveMoneyDetails() {
-		assertEquals(1, frequency(_category.update(100),_table));
+	public void testUpdateReturnHaveCategory() {
+		assertEquals(1, frequency(_category.update(100), _table));
 	}
 	
 	/**
@@ -338,7 +239,8 @@ public class TestCategory extends TestHelper {
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
-	public void testUpdateStringReturnHaveMoneyDetails() {
-		assertEquals(1, frequency(_category.update(100, "Dies ist ein Test"),_table));
+	public void testUpdateStringReturnHaveCategory() {
+		assertEquals(1, frequency(_category.update(100, "Dies ist ein Test"),
+				_table));
 	}
 }

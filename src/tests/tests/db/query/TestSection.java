@@ -80,7 +80,7 @@ public class TestSection extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testCreateTableReturnHaveMoneyDetails() {
+	public void testCreateTableReturnHaveSection() {
 		assertEquals(1, frequency(_section.createTable(),_table));
 	}
 
@@ -94,20 +94,11 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#insert()} ein
-	 * Fragezeichen enthält.
-	 */
-	@Test
-	public void testInsertHasAQuery() {
-		assertEquals(1, frequency(_section.insert(), "?"));
-	}
-	
-	/**
 	 * Testest, ob die Methode {@link db.query.Section#insert()} in
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testInsertReturnHaveMoneyDetails() {
+	public void testInsertReturnHaveSection() {
 		assertEquals(1, frequency(_section.insert(),_table));
 	}
 	
@@ -143,44 +134,8 @@ public class TestSection extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testInsertStringReturnHaveMoneyDetails() {
+	public void testInsertStringReturnHaveSection() {
 		assertEquals(1, frequency(_section.insert("Dies ist ein Test"),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#delete(int)} kein
-	 * Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testDeleteHasNoQuery() {
-		assertEquals(0, frequency(_section.delete(100), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#delete(int)} die
-	 * übergebene ID in der Rückgabe enthält.
-	 */
-	@Test
-	public void testDeleteHasId() {
-		assertEquals(1, frequency(_section.delete(100), "100"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#delete(int)} ein
-	 * Fragezeichen in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterHasNoQuery() {
-		assertEquals(1, frequency(_section.delete(-1), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#delete(int)} keine
-	 * ID in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterHasId() {
-		assertEquals(0, frequency(_section.delete(-1), "100"));
 	}
 	
 	/**
@@ -188,53 +143,8 @@ public class TestSection extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testDeleteReturnHaveMoneyDetails() {
+	public void testDeleteReturnHaveSection() {
 		assertEquals(1, frequency(_section.delete(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int)} ein
-	 * Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateHasOneQuery() {
-		assertEquals(1, frequency(_section.update(100), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int)} die
-	 * übergebene ID in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateHasId() {
-		assertEquals(1, frequency(_section.update(100), "100"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int)} keine leere
-	 * Zeichenkette liefert, auch wenn als Parameter -1 übergeben wird
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterReturnNotNull() {
-		assertStringIsNotNull(_section.update(-1));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int)} zwei
-	 * Fragezeichen in der Rückgabe enthält, wenn der PArameter -1 ist.
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterHasOneQuery() {
-		assertEquals(2, frequency(_section.update(-1), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int)} keine
-	 * ID in der Rückgabe enthält, wenn der Parameter -1 ist.
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterHasNoId() {
-		assertEquals(0, frequency(_section.update(-1), "-1"));
 	}
 	
 	/**
@@ -242,17 +152,8 @@ public class TestSection extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testUpdateReturnHaveMoneyDetails() {
+	public void testUpdateReturnHaveSection() {
 		assertEquals(1, frequency(_section.update(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int, String)}
-	 * keine leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testUpdateStringReturnNotNull() {
-		assertStringIsNotNull(_section.update(100, "name"));
 	}
 	
 	/**
@@ -338,7 +239,7 @@ public class TestSection extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testUpdateStringReturnHaveMoneyDetails() {
+	public void testUpdateStringReturnHaveSection() {
 		assertEquals(1, frequency(_section.update(100, "Dies ist ein Test"),_table));
 	}
 	
@@ -347,7 +248,7 @@ public class TestSection extends TestHelper {
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
-	public void testSelectReturnHaveMoneyDetails() {
+	public void testSelectReturnHaveSection() {
 		assertEquals(1, frequency(_section.select(),_table));
 	}
 }

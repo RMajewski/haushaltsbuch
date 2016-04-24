@@ -20,7 +20,6 @@
 package tests.tests.db.query;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -223,102 +222,12 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#delete(int)} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testDeleteReturnNotNull() {
-		assertStringIsNotNull(_moneyDetails.delete(100));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#delete(int)} kein
-	 * Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testDeleteHasNoQuery() {
-		assertEquals(0, frequency(_moneyDetails.delete(100), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#delete(int)} die
-	 * übergebene ID in der Rückgabe enthält.
-	 */
-	@Test
-	public void testDeleteHasId() {
-		assertEquals(1, frequency(_moneyDetails.delete(100), "100"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#delete(int)} ein
-	 * Fragezeichen in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterHasNoQuery() {
-		assertEquals(1, frequency(_moneyDetails.delete(-1), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#delete(int)} keine
-	 * ID in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterHasId() {
-		assertEquals(0, frequency(_moneyDetails.delete(-1), "100"));
-	}
-	
-	/**
 	 * Testest, ob die Methode {@link db.query.MoneyDetails#delete(int)} in
 	 * der Rückgabe 'money_details' enthält.
 	 */
 	@Test
 	public void testDeleteReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_moneyDetails.delete(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int)} fünf
-	 * Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateHasFiveQuery() {
-		assertEquals(5, frequency(_moneyDetails.update(100), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int)} die
-	 * übergebene ID in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateHasId() {
-		assertEquals(1, frequency(_moneyDetails.update(100), "100"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int)} keine leere
-	 * Zeichenkette liefert, auch wenn als Parameter -1 übergeben wird
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterReturnNotNull() {
-		assertStringIsNotNull(_moneyDetails.update(-1));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int)} sechs
-	 * Fragezeichen in der Rückgabe enthält, wenn der PArameter -1 ist.
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterHasSixQuery() {
-		assertEquals(6, frequency(_moneyDetails.update(-1), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int)} keine
-	 * ID in der Rückgabe enthält, wenn der Parameter -1 ist.
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterHasNoId() {
-		assertEquals(0, frequency(_moneyDetails.update(-1), "-1"));
 	}
 	
 	/**
