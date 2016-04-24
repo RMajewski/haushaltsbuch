@@ -36,12 +36,14 @@ import haushaltsbuch.helper.HelperCalendar;
  * In der Version 0.2 wurde die Klasse für Fit-Tests erweitert. Außerdem werden
  * die Konsolen-Ausgaben und die Fehler-Ausgaben in Dateien gespeichert.
  * 
+ * In der Version 0.3 wurde die Klasse für junit-Tests erweitert.
+ * 
  * @author René Majewski
  * 
- * @version 0.2
+ * @version 0.3
  * @since 0.1
  */
-public class GuiTestsHaushaltsbuch {
+public class TestsHaushaltsbuch {
 	/**
 	 * Speichert die Anzahl fehlgeschlagenen Tests
 	 */
@@ -58,9 +60,14 @@ public class GuiTestsHaushaltsbuch {
 	private long _time;
 	
 	/**
-	 * Speichert die länge alle Fit-Tests
+	 * Speichert die Zeit, die die Fit-Tests gebraucht haben
 	 */
 	private long _fitTime;
+	
+	/**
+	 * Speichert die Zeit, die die junit-Tests gebraucht haben
+	 */
+	private long _junitTime;
 	
 	/**
 	 * Speichert die Anzahl richtiger Behauptungen bei Fit-Tests
@@ -107,7 +114,7 @@ public class GuiTestsHaushaltsbuch {
 	/**
 	 * Initalisiert die Klasse
 	 */
-	public GuiTestsHaushaltsbuch() {
+	public TestsHaushaltsbuch() {
 		// Initalisierungen für Tests
 		_failCount = 0;
 		_passCount = 0;
@@ -119,6 +126,9 @@ public class GuiTestsHaushaltsbuch {
 		_fitIgnore = 0;
 		_fitExceptions = 0;
 		_fitTime = 0;
+		
+		// Initalisierungen für junit-Test
+		_junitTime = 0;
 	}
 	
 	/**
@@ -172,6 +182,7 @@ public class GuiTestsHaushaltsbuch {
 	public void runTest(String test) {
 		try {
 			long start = new Date().getTime();
+			System.out.print(test + ": ");
 			Process p = Runtime.getRuntime().exec("java -cp " +
 					System.getProperty("java.class.path")+
 					" -Dtesting=true " + test);
@@ -179,7 +190,6 @@ public class GuiTestsHaushaltsbuch {
 			
 			// Ausgabe wie der Test verlaufen ist
 			long ms = new Date().getTime() - start;
-			System.out.print(test + ": ");
 			if (exit == 0) {
 				_passCount++;
 				System.out.print("wurde erfolgreich ausgeführt");
@@ -310,6 +320,49 @@ public class GuiTestsHaushaltsbuch {
 	}
 	
 	/**
+	 * Führt den angegebenen junit-Test aus.
+	 * 
+	 * @param test Name des junit-Tests
+	 */
+	public void runJunit(String test) {
+		try {
+			long start = new Date().getTime();
+			System.out.print(test + ": ");
+			Process p = Runtime.getRuntime().exec("java -cp " +
+					System.getProperty("java.class.path")+
+					" -Dtesting=true org.junit.runner.JUnitCore " + test);
+			int exit = p.waitFor();
+			
+			// Ausgabe wie der Test verlaufen ist
+			long ms = new Date().getTime() - start;
+			if (exit == 0) {
+				_passCount++;
+				System.out.print("wurde erfolgreich ausgeführt");
+			} else {
+				_failCount++;
+				System.out.print("weißt Fehler auf");
+			}
+			System.out.print(" (Dauer des Tests: ");
+			System.out.print(String.valueOf(ms));
+			System.out.println(" ms)");
+			
+			// Vergangene Zeit neu berechnen
+			_time += ms;
+			_junitTime += ms;
+			
+			// Console-Ausgabe und Error-Ausgabe speichern
+			appendFile(FILE_NAME_CONSOLE, p.getInputStream(), test, start);
+			appendFile(FILE_NAME_ERROR, p.getErrorStream(), test, start);
+		} catch (IOException e) {
+			e.printStackTrace();
+			_failCount++;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			_failCount++;
+		}
+	}
+	
+	/**
 	 * Gibt die Statistik aus
 	 */
 	public void statistics() {
@@ -329,6 +382,7 @@ public class GuiTestsHaushaltsbuch {
 		System.out.println(String.valueOf(_failCount));
 		
 		// Behauptungen in Fit
+		System.out.println();
 		System.out.print("Fit-Behauptungen\trichtig: ");
 		System.out.print(String.valueOf(_fitRight));
 		System.out.print("\tfehlerhaft: ");
@@ -339,10 +393,13 @@ public class GuiTestsHaushaltsbuch {
 		System.out.println(String.valueOf(_fitExceptions));
 		
 		// Zeit ausgeben
+		System.out.println();
 		System.out.print("Dauer aller Tests (in Millisekunden): ");
 		System.out.println(String.valueOf(_time));
-		System.out.print("Daeuer aller Fit-Tests (in Millisekunden): ");
+		System.out.print("Dauer aller Fit-Tests (in Millisekunden): ");
 		System.out.println(String.valueOf(_fitTime));
+		System.out.print("Dauer aller junit-Tests (in Millisekunden): ");
+		System.out.println(String.valueOf(_junitTime));
 	}
 	
 	/**
@@ -353,10 +410,53 @@ public class GuiTestsHaushaltsbuch {
 	 */
 	public static void main(String[] args) {
 		// Test-Klasse vorbereiten
-		GuiTestsHaushaltsbuch tests = new GuiTestsHaushaltsbuch();
+		TestsHaushaltsbuch tests = new TestsHaushaltsbuch();
 		
-		// Menüs
-		tests.runTest(tests.tests.menus.TestTopMainMenu.class.getName());
+		// junit-Tests "comparators"
+		tests.runJunit("tests.tests.comparators.TestCompDouble");
+		tests.runJunit("tests.tests.comparators.TestCompId");
+		tests.runJunit("tests.tests.comparators.TestCompInt");
+		
+		// junit-Tests "datas"
+		tests.runJunit("tests.tests.datas.TestData");
+		tests.runJunit("tests.tests.datas.TestIdNameData");
+		tests.runJunit("tests.tests.datas.TestLogData");
+		tests.runJunit("tests.tests.datas.TestMoneyData");
+		tests.runJunit("tests.tests.datas.TestMoneyDetailsData");
+		tests.runJunit("tests.tests.datas.TestReportData");
+		tests.runJunit("tests.tests.datas.TestReportMonthData");
+		tests.runJunit("tests.tests.datas.TestReportWeekData");
+		tests.runJunit("tests.tests.datas.TestReportYearData");
+
+		// junit-Tests "db" und "db.query"
+		tests.runJunit("tests.tests.db.TestDbController");
+		tests.runJunit("tests.tests.db.query.TestCategory");
+		tests.runJunit("tests.tests.db.query.TestMoney");
+		tests.runJunit("tests.tests.db.query.TestMoneyDetails");
+		tests.runJunit("tests.tests.db.query.TestQueries");
+		tests.runJunit("tests.tests.db.query.TestQuery");
+		tests.runJunit("tests.tests.db.query.TestQueryInterface");
+		tests.runJunit("tests.tests.db.query.TestSection");
+		
+		// junit-Tests "helper"
+		tests.runJunit("tests.tests.helper.TestHelperCalendar");
+
+		// junit-Tests "menus"
+		tests.runJunit("tests.tests.menus.TestPopupMoneyList");
+		tests.runJunit("tests.tests.menus.TestPopupStandardList");
+		tests.runJunit("tests.tests.menus.TestTopMainMenu");
+
+		// junit-Tests "renderer"
+		tests.runJunit("tests.tests.renderer.TestLogViewListRenderer");
+		
+		// junit-Tests "tables.models"
+		tests.runJunit("tests.tests.tables.models.TestIdNameListModel");
+		tests.runJunit("tests.tests.tables.models.TestMoneyDetailsListModel");
+		tests.runJunit("tests.tests.tables.models.TestMoneyListModel");
+		tests.runJunit("tests.tests.tables.models.TestReportMonthModel");
+		tests.runJunit("tests.tests.tables.models.TestReportWeekModel");
+		tests.runJunit("tests.tests.tables.models.TestReportYearModel");
+
 		
 		// Hauptfenster
 		tests.runTest(tests.tests.windows.TestWndMain.class.getName());
@@ -365,6 +465,7 @@ public class GuiTestsHaushaltsbuch {
 		tests.runTest(tests.tests.windows.internal.TestWndCategoryList.class.getName());
 		tests.runTest(tests.tests.windows.internal.TestWndSectionList.class.getName());
 		tests.runTest(tests.tests.windows.internal.TestWndMoneyList.class.getName());
+
 		
 		// Fit-Test der Dialoge
 		tests.runFit("src/tests/fit/dialogs/DlgAbout.fit");

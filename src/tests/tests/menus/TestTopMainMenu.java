@@ -243,7 +243,7 @@ public class TestTopMainMenu {
 	 */
 	@Test
 	public void testHelpMenuHaveRightItems() {
-		assertEquals("Lizenz", _menu.getMenu(MENU_HELP).getItem(0).getText());
-		assertEquals("Über...", _menu.getMenu(MENU_DB).getItem(2).getText());
+		assertEquals("Lizenz...", _menu.getMenu(MENU_HELP).getItem(0).getText());
+		assertEquals("Über...", _menu.getMenu(MENU_HELP).getItem(2).getText());
 	}
 }
