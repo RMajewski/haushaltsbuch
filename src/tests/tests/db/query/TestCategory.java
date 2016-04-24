@@ -55,12 +55,15 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Category#createTable()} in
-	 * der Rückgabe 'category' enthält.
+	 * Testest, ob die Methode {@link db.query.Category#createTable()} die
+	 * richtig Rückgabe liefert.
 	 */
 	@Test
-	public void testCreateTableReturnHaveCategory() {
-		assertEquals(1, frequency(_category.createTable(),_table));
+	public void testCreateTableReturnIsRight() {
+		String test = "CREATE TABLE IF NOT EXISTS 'category' (" +
+					"'id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
+					"'name' TEXT);";
+		assertEquals(test, _category.createTable());
 	}
 
 	/**

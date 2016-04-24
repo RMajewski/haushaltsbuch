@@ -82,12 +82,17 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Money#createTable()} in
-	 * der Rückgabe 'money' enthält.
+	 * Testest, ob die Methode {@link db.query.Money#createTable()} die richtige
+	 * Rückgabe liefert.
 	 */
 	@Test
-	public void testCreateTableReturnHaveMoney() {
-		assertEquals(1, frequency(_money.createTable(),_table));
+	public void testCreateTableReturnIsRight() {
+		String test = "CREATE TABLE IF NOT EXISTS 'money' (" +
+				"'id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
+				"'date' INTEGER NOT NULL, " +
+				"'inout' INTEGER, " +
+				"'comment' TEXT)";
+		assertEquals(test, _money.createTable());
 	}
 	
 	/**
@@ -213,12 +218,13 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Money#update(int, long)} in
-	 * der Rückgabe 'money' enthält.
+	 * Testest, ob die Methode {@link db.query.Money#update(int, long)} die
+	 * richtig Rückgabe liefert.
 	 */
 	@Test
-	public void testUpdateDateTableReturnHaveMoney() {
-		assertEquals(1, frequency(_money.update(100, 5175837l),_table));
+	public void testUpdateDateReturnIsRight() {
+		String test = "UPDATE 'money' SET date = 5175837 WHERE id = 100";
+		assertEquals(test, _money.update(100, 5175837l));
 	}
 	
 	/**
@@ -270,21 +276,23 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Money#update(int, boolean)} in
-	 * der Rückgabe 'money' enthält.
+	 * Testest, ob die Methode {@link db.query.Money#update(int, boolean)} die
+	 * richtige Rückgabe liefert.
 	 */
 	@Test
-	public void testUpdateInOutReturnHaveMoney() {
-		assertEquals(1, frequency(_money.update(100, true),_table));
+	public void testUpdateInOutWithTrueAsParameterReturnIsRight() {
+		String test = "UPDATE 'money' SET inout = 1 WHERE id = 100";
+		assertEquals(test, _money.update(100, true));
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, String)}
-	 * keine leere Zeichenkette liefert
+	 * Testest, ob die Methode {@link db.query.Money#update(int, boolean)} die
+	 * richtige Rückgabe liefert.
 	 */
 	@Test
-	public void testUpdateCommentReturnNotNull() {
-		assertStringIsNotNull(_money.update(100, "Test"));
+	public void testUpdateInOutWithFalseAsParameterReturnIsRight() {
+		String test = "UPDATE 'money' SET inout = 0 WHERE id = 100";
+		assertEquals(test, _money.update(100, false));
 	}
 	
 	/**
@@ -345,12 +353,14 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Money#update(int, String)} in
-	 * der Rückgabe 'money' enthält.
+	 * Testest, ob die Methode {@link db.query.Money#update(int, String)} die
+	 * richtige Rückgabe liefert.
 	 */
 	@Test
-	public void testUpdateCommentReturnHaveMoney() {
-		assertEquals(1, frequency(_money.update(100, "Dies ist ein Test"),_table));
+	public void testUpdateCommentReturnIsRight() {
+		String test = "UPDATE 'money' SET comment = 'Dies ist ein Test' "
+				+ "WHERE id = 100";
+		assertEquals(test, _money.update(100, "Dies ist ein Test"));
 	}
 	
 	/**
@@ -472,11 +482,24 @@ public class TestMoney extends TestHelper {
 	
 	/**
 	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
-	 * den Tabellen-Namen in der Rückgabe enthält.
+	 * dir richtig Rückgabe liefert
 	 */
 	@Test
-	public void testUpdateIntBooleanReturnHaveTableName() {
-		assertEquals(1, frequency(_money.update(100, 17508170l, false), _table));
+	public void testUpdateIntBooleanWithFalseAsParameterReturnIsRight() {
+		String test = "UPDATE 'money' SET date = 17508170, inout = 0, "
+				+ "comment = '' WHERE id = 100";
+		assertEquals(test, _money.update(100, 17508170l, false));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
+	 * dir richtig Rückgabe liefert
+	 */
+	@Test
+	public void testUpdateIntBooleanWithTrueAsParameterReturnIsRight() {
+		String test = "UPDATE 'money' SET date = 17508170, inout = 1, "
+				+ "comment = '' WHERE id = 100";
+		assertEquals(test, _money.update(100, 17508170l, true));
 	}
 	
 	/**

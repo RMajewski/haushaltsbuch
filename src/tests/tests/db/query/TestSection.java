@@ -76,12 +76,15 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Section#createTable()} in
-	 * der Rückgabe 'money' enthält.
+	 * Testest, ob die Methode {@link db.query.Section#createTable()} die
+	 * richtige Rückgabe liefert.
 	 */
 	@Test
-	public void testCreateTableReturnHaveSection() {
-		assertEquals(1, frequency(_section.createTable(),_table));
+	public void testCreateTableReturnIsRight() {
+		StringBuilder test = new StringBuilder("CREATE TABLE IF NOT EXISTS " +
+				"'section' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
+				"'name' TEXT);");
+		assertEquals(test.toString(), _section.createTable());
 	}
 
 	/**

@@ -82,12 +82,16 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.MoneyDetails#createTable()} in
-	 * der Rückgabe 'money_details' enthält.
+	 * Testest, ob die Methode {@link db.query.MoneyDetails#createTable()} die
+	 * richtige Rückgabe liefert.
 	 */
 	@Test
-	public void testCreateTableReturnHaveMoneyDetails() {
-		assertEquals(1, frequency(_moneyDetails.createTable(),_table));
+	public void testCreateTableReturnIsRight() {
+		StringBuilder test = new StringBuilder("CREATE TABLE IF NOT EXISTS " +
+				"'money_details' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
+				"'moneyid' INTEGER NOT NULL, 'categoryid' INTEGER NOT NULL, " +
+				"'sectionid' INTEGER NOT NULL, 'money' DOUBLE, 'comment' TEXT)");
+		assertEquals(test.toString(), _moneyDetails.createTable());
 	}
 	
 	/**
@@ -219,6 +223,20 @@ public class TestMoneyDetails extends TestHelper{
 	@Test
 	public void testInsertIntIntIntDoubleStringReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_moneyDetails.insert(100, 200, 300, 10.45, "Dies ist ein Test"),_table));
+	}
+	
+	/**
+	 * Testest, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * die richtige Rückgabe liefert.
+	 */
+	@Test
+	public void testInsertIntIntIntDoubleStringReturnIsRight() {
+		StringBuilder test = new StringBuilder();
+		test.append("INSERT INTO 'money_details' ('moneyid', 'categoryid', ");
+		test.append("'sectionid', 'money', 'comment') VALUES(100, 200, 300, ");
+		test.append("10.45, \"Dies ist ein Test\");");
+		assertEquals(test.toString(), _moneyDetails.insert(100, 200, 300, 10.45, 
+				"Dies ist ein Test"));
 	}
 	
 	/**
@@ -447,6 +465,18 @@ public class TestMoneyDetails extends TestHelper{
 	@Test
 	public void testUpdateIntIntIntIntDoubleMinusOneAsIdReturnHasOneQuery() {
 		assertEquals(1, frequency(_moneyDetails.update(-1, 200, 300, 400, 10.89), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
+	 * die richtige Rückgabe liefert.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleReturnIsRight() {
+		String test = "UPDATE 'money_details' SET moneyid = 200, "
+				+ "categoryid = 300, sectionid = 400, money = 10.89, "
+				+ "comment = \"\" WHERE id = 100";
+		assertEquals(test, _moneyDetails.update(100, 200, 300, 400, 10.89));
 	}
 	
 	/**

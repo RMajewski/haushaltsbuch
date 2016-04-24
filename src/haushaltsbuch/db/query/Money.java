@@ -271,7 +271,8 @@ public class Money extends Query {
 	 */
 	public String update(int id, String comment) {
 		// Abfrage zum ändern der Beschreibung im angegeben Datensatz
-		StringBuilder ret = new StringBuilder("UPDATE 'money' SET comment ='?' WHERE id = ?");
+		StringBuilder ret = new StringBuilder("UPDATE 'money' SET comment = "
+				+ "'?' WHERE id = ?");
 
 		// ID einfügen
 		replaceId(id, ret, true);
