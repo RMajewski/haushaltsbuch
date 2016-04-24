@@ -50,7 +50,12 @@ public class WndCategoryList extends WndTableFrame {
 	/**
 	 * Serialisation ID
 	 */
-	private static final long serialVersionUID = -3602076466416544711L;	
+	private static final long serialVersionUID = -3602076466416544711L;
+	
+	/**
+	 * Speichert den Fenster-Titel
+	 */
+	public static final String WND_TITLE = "Kategorien";
 	
 	/**
 	 * Initalisiert den Dialog und die Tabelle. Anschließend wird der
@@ -85,7 +90,7 @@ public class WndCategoryList extends WndTableFrame {
 		_table.setRowSorter(sorter);
 
 		// Titel
-		setTitle("Kategorien");
+		setTitle(WND_TITLE);
 		
 		// Anzeigen
 		pack();

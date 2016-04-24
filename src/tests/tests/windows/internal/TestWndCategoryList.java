@@ -21,6 +21,8 @@ package tests.tests.windows.internal;
 
 import org.netbeans.jemmy.Test;
 
+import haushaltsbuch.tables.models.IdNameListModel;
+import haushaltsbuch.windows.internal.WndCategoryList;
 import tests.testcase.GuiWndIdNameTest;
 
 /**
@@ -33,13 +35,28 @@ import tests.testcase.GuiWndIdNameTest;
  */
 public class TestWndCategoryList extends GuiWndIdNameTest {
 	/**
+	 * Speichert wie das Fenster geöffnet werden soll.
+	 */
+	private static final String _menuPath = "Datenbank|Kategorien";
+	
+	/**
+	 * Initalisiert die Klasse
+	 * 
+	 * @throws Exception 
+	 */
+	public TestWndCategoryList() throws Exception {
+		// Testet, ob das Fenster richtig initalisiert wurde
+		testInit(WndCategoryList.WND_TITLE, _menuPath, false);
+	}
+	
+	/**
 	 * Führt den Test aus
 	 */
 	@Override
 	public int runIt(Object arg0) {
 		try {
-			// Testet, ob das Fenster richtig initalisiert wurde
-			testInit("Kategorien", "Datenbank|Kategorien");
+			// Initalisiert das Fenster
+			testInit(WndCategoryList.WND_TITLE, _menuPath, true);
 			
 			// Spaltenüberschriften
 			test("Ist der Name der Spalte 0 'ID'?",
@@ -73,6 +90,16 @@ public class TestWndCategoryList extends GuiWndIdNameTest {
 		
 		// Da bisher nicht beendet mit 0 beenden (kein Fehler)
 		return 0;
+	}
+	
+	/**
+	 * Ermittelt den Namen der Kategorie aus der selektierten Zeile.
+	 * 
+	 * @return Name der Kategorie aus der selektierten Zeile
+	 */
+	public String getTableSelectName() {
+		return ((IdNameListModel)_table.getModel()).getRowDataAt(
+				_table.getSelectedRow()).getName();
 	}
 
 	/**

@@ -7,8 +7,7 @@
 		<h2>Hauptfenster</h2>
 		<p>In diesen Test wird überprüft, ob das Menü angezeigt wird, ob der
 		Desktop für die Unterfenster eingerichtet wurde, ob die StatusBar
-		angezeigt wird. Zum Schluss wird das Hauptfenster über Datei -> Beenden
-		beendet. Hier wird überprüft, ob das Fenster dabei geschlossen wird.
+		angezeigt wird.</p>
 		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
 			<tbody>
 				<tr>

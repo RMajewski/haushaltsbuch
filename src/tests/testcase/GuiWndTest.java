@@ -19,6 +19,7 @@
 
 package tests.testcase;
 
+import java.awt.Component;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
@@ -32,6 +33,7 @@ import org.netbeans.jemmy.operators.JInternalFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
 import org.netbeans.jemmy.operators.JPopupMenuOperator;
 import org.netbeans.jemmy.operators.JTableOperator;
+import org.netbeans.jemmy.operators.JTextFieldOperator;
 import org.netbeans.jemmy.operators.Operator;
 
 import haushaltsbuch.db.DbController;
@@ -69,6 +71,11 @@ public abstract class GuiWndTest extends GuiTest {
 	protected JInternalFrameOperator _frame;
 	
 	/**
+	 * Speichert den Dialog
+	 */
+	protected JDialogOperator _dlg;
+	
+	/**
 	 * Testet, ob die Menü-Einträge "Ändern" und "Löschen" richtig gesetzt
 	 * sind.
 	 * 
@@ -95,13 +102,15 @@ public abstract class GuiWndTest extends GuiTest {
 	 * 
 	 * @param menu Name des Menü-Eintrages, welches das Fenster startet.
 	 * 
+	 * @param runTest Sollen Tests ausgeführt werden?
+	 * 
 	 * @throws GuiTestException
 	 * @throws SQLException
 	 * @throws ClassNotFoundException 
 	 * @throws NoSuchMethodException 
 	 * @throws InvocationTargetException 
 	 */
-	protected void testInit(String name, String menu) 
+	protected void testInit(String name, String menu, boolean runTest) 
 			throws GuiTestException, SQLException, InvocationTargetException,
 			NoSuchMethodException, ClassNotFoundException {
 		// Datenbank vorbereiten
@@ -122,7 +131,16 @@ public abstract class GuiWndTest extends GuiTest {
 		
 		// Übeprüfen ob es eine Tabelle besitz
 		_table = new JTableOperator(_frame);
-		test("Wurde eine Tabelle eingefügt?", _table.isEnabled());
+		if (runTest)
+			test("Wurde eine Tabelle eingefügt?", existsTable());
+	}
+	
+	/**
+	 * Ruft das Popup-Menü auf.
+	 */
+	public void callPopup() {
+		_table.clickMouse(1, Operator.getPopupMouseButton());			
+		_popup = new JPopupMenuOperator();
 	}
 	
 	/**
@@ -137,9 +155,7 @@ public abstract class GuiWndTest extends GuiTest {
 	 * @throws GuiTestException
 	 */
 	protected void testPopupMenu(int itemCount) throws GuiTestException {
-		// Popup-Menü öffnen
-		_table.clickMouse(1, Operator.getPopupMouseButton());			
-		_popup = new JPopupMenuOperator();
+		callPopup();
 		
 		test("Hat das Popup-Menü " + itemCount + " Einträge?", 
 				_popup.getComponentCount() == itemCount);
@@ -222,5 +238,125 @@ public abstract class GuiWndTest extends GuiTest {
 		
 		// Keine Selektion in der Tabelle
 		checkPopupItemEnabled(false);
+	}
+	
+	/**
+	 * Ermittelt, ob eine Tabelle im Unterfenster vorhanden ist.
+	 * 
+	 * @return <b>true</b>, wenn eine Tabelle vorhanden ist. <b>false</b>, wenn
+	 * nicht.
+	 */
+	public boolean existsTable() {
+		return _table.isEnabled();
+	}
+	
+	/**
+	 * Ermittelt wie viele Spalten die Tabelle hat.
+	 * 
+	 * @return Anzahl der Tabellen-Spalten
+	 */
+	public int getTableColumnCount() {
+		return _table.getColumnCount();
+	}
+	
+	/**
+	 * Ermittelt wie viele Zeilen die Tabelle hat.
+	 * 
+	 * @return Anzahl der Tabellen-Zeilen
+	 */
+	public int getTableRowCount() {
+		return _table.getRowCount();
+	}
+	
+	/**
+	 * Ermittelt die Überschrift der angegeben Spalte.
+	 * 
+	 * @param column Spalte, von der die Überschrift ermittelt werden soll.
+	 * 
+	 * @return Überschrift der Spalte
+	 */
+	public String getColumnHeader(int column) {
+		return String.valueOf(
+				_table.getColumnModel().getColumn(column).getHeaderValue());
+	}
+	
+	/**
+	 * Gibt den angebenen Popup-Menü-Eintrag zurück.
+	 * 
+	 * @param item Eintrag, der zurück gegeben werden soll.
+	 * 
+	 * @return Eintrag aus Popup-Menü
+	 */
+	public JMenuItem getPopupItem(int item) {
+		return (JMenuItem)_popup.getComponent(item);
+	}
+	
+	/**
+	 * Ermittelt die Anzahl der Item im Popup-Menü.
+	 * 
+	 * @return Anzahl der Items im Popup-Menü
+	 */
+	public int getPopupItemCount() {
+		return _popup.getComponentCount();
+	}
+	
+	/**
+	 * Simuliert einen Klick auf denen angegeben Popup-Menü Eintrag.
+	 * 
+	 * @param path Welcher Menü-Eintrag soll gedrückt werden?
+	 */
+	public void pushPopup(String path) {
+		_popup.pushMenuNoBlock(path);
+	}
+	
+	/**
+	 * Fängt einen Dialog mit dem angegebenen Namen ab.
+	 * 
+	 * @param name Name des Dialogs
+	 */
+	public void waitDlg(String name) {
+		_dlg = new JDialogOperator(_wnd, name);
+	}
+	
+	/**
+	 * Überprüft ob der Dialog angezeigt wird.
+	 * 
+	 * @return Wird der Dialog angezeigt?
+	 */
+	public boolean isDialogVisible() {
+		return _dlg.isVisible();
+	}
+	
+	/**
+	 * Fügt in das Textfeld des Dialoges den angegebenen Namen ein.
+	 * 
+	 * @param name Name der in das Texfeld eingefügt werden soll.
+	 */
+	public void setDialogText(String name) {
+		JTextFieldOperator txt = new JTextFieldOperator(_dlg);
+		txt.setText(name);
+	}
+	
+	/**
+	 * Drückt den Abbrechen-Button im Dialog
+	 */
+	public void pushDialogCancel() {
+		new JButtonOperator(_dlg, "Abbrechen").push();
+	}
+	
+	/**
+	 * Drückt den Ok-Button im Dialog
+	 */
+	public void pushDialogOk() {
+		new JButtonOperator(_dlg, "OK").push();
+	}
+	
+	/**
+	 * Selektiert in der Tabelle die angebene Zeile.
+	 * 
+	 * @param row Zeile, die selektiert werden soll.
+	 */
+	public void tableSelectRow(int row) {
+		_table.selectCell(row, 0);
 	}
 }
