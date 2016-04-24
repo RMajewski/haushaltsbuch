@@ -17,7 +17,7 @@
 * sind dem Lizenztext zu entnehmen.
 */ 
 
-package tests.tests.windows.internal;
+package tests.testcase;
 
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;

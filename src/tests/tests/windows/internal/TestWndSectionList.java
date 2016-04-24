@@ -21,6 +21,8 @@ package tests.tests.windows.internal;
 
 import org.netbeans.jemmy.Test;
 
+import tests.testcase.GuiWndIdNameTest;
+
 /**
  * Enthält die GUI-Tests für das Unterfenster 
  * {@link windows.internal.WndSectionList}.
@@ -79,6 +81,6 @@ public class TestWndSectionList extends GuiWndIdNameTest {
 	 */
 	public static void main(String[] args) {
 		System.setProperty("testing", "true");
-		Test.main(new String[] {"test.windows.internal.TestWndSectionList"});
+		Test.main(new String[] {"tests.tests.windows.internal.TestWndSectionList"});
 	}
 }

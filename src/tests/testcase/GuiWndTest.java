@@ -17,7 +17,7 @@
 * sind dem Lizenztext zu entnehmen.
 */ 
 
-package tests.tests.windows.internal;
+package tests.testcase;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
@@ -37,7 +37,6 @@ import org.netbeans.jemmy.operators.Operator;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.windows.WndMain;
 import tests.exception.GuiTestException;
-import tests.testcase.GuiTest;
 
 /**
  * Von dieser Klasse werden die Test-Klassen abgeleitet, die die Unterfenster
@@ -109,7 +108,7 @@ public abstract class GuiWndTest extends GuiTest {
 		DbController.getInstance().prepaireDatabase();
 		
 		// Start des Haupt-Programms
-		new ClassReference("Main").startApplication();
+		new ClassReference("haushaltsbuch.Main").startApplication();
 		
 		// Fenster des Hauptprogrammes
 		_wnd = new JFrameOperator(WndMain.TITLE);

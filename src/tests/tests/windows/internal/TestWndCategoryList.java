@@ -21,6 +21,8 @@ package tests.tests.windows.internal;
 
 import org.netbeans.jemmy.Test;
 
+import tests.testcase.GuiWndIdNameTest;
+
 /**
  * Testet das Unterfenster {@link windows.internal.WndCategoryList}.
  * 
@@ -80,6 +82,6 @@ public class TestWndCategoryList extends GuiWndIdNameTest {
 	 */
 	public static void main(String[] args) {
 		System.setProperty("testing", "true");
-		Test.main(new String[] {"test.windows.internal.TestWndCategoryList"});
+		Test.main(new String[] {"tests.tests.windows.internal.TestWndCategoryList"});
 	}
 }

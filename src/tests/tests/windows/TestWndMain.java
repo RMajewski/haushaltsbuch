@@ -45,7 +45,7 @@ public class TestWndMain extends GuiTest {
 	public int runIt(Object arg0) {
 		try {
 			// Start des Haupt-Programms
-			new ClassReference("Main").startApplication();
+			new ClassReference("haushaltsbuch.Main").startApplication();
 			
 			// Fenster des Hauptprogrammes
 			JFrameOperator wnd = new JFrameOperator(WndMain.TITLE);
@@ -73,7 +73,7 @@ public class TestWndMain extends GuiTest {
 	 */
 	public static void main(String[] args) {
 		System.setProperty("testing", "true");
-		Test.main(new String[] {"test.windows.TestWndMain"});
+		Test.main(new String[] {"tests.tests.windows.TestWndMain"});
 	}
 
 }

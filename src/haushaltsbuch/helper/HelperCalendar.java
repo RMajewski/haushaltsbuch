@@ -65,6 +65,19 @@ public class HelperCalendar {
 	}
 	
 	/**
+	 * Wandelt ein long-Wert in Datum und Zeit in einer lesbaren Zeichenkette
+	 * um.
+	 * 
+	 * @param datetime long-Wert, der umgewandelt werden soll
+	 * 
+	 * @return Lesbare Zeichenkette
+	 */
+	public static String datetimeToString(long datetime) {
+		return DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
+				DateFormat.MEDIUM).format(new Date(datetime));
+	}
+	
+	/**
 	 * Ermittelt aus der angegebenen Monats-Nummer der englischen Monats-Namen.
 	 * Ist die Nummer außerhalb des gültigen Bereiches wird eine leere
 	 * Zeichenkette zurück gegeben.

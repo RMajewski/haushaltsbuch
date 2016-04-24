@@ -29,6 +29,7 @@ import org.netbeans.jemmy.operators.Operator;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.tables.models.MoneyListModel;
 import tests.exception.GuiTestException;
+import tests.testcase.GuiWndTest;
 
 /**
  * Enhält die GUI-Tests für das Unterfenster
@@ -215,6 +216,6 @@ public class TestWndMoneyList extends GuiWndTest {
 	 */
 	public static void main(String[] args) {
 		System.setProperty("testing", "true");
-		Test.main(new String[] {"test.windows.internal.TestWndMoneyList"});
+		Test.main(new String[] {"tests.tests.windows.internal.TestWndMoneyList"});
 	}
 }

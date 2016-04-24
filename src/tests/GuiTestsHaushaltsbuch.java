@@ -19,10 +19,16 @@
 
 package tests;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Date;
+
+import haushaltsbuch.helper.HelperCalendar;
 
 /**
  * Diese Klasse wird benutzt, um alle GUI-Tests auszuführen.
@@ -47,14 +53,14 @@ public class GuiTestsHaushaltsbuch {
 	private int _passCount;
 	
 	/**
-	 * Speichert die Start-Zeit
+	 * Speichert die Zeit, die alle Tests gebraucht haben.
 	 */
-	private long _startTime;
+	private long _time;
 	
 	/**
-	 * Speichert die Start-Zeit für die Fit-Tests
+	 * Speichert die länge alle Fit-Tests
 	 */
-	private long _fitStartTime;
+	private long _fitTime;
 	
 	/**
 	 * Speichert die Anzahl richtiger Behauptungen bei Fit-Tests
@@ -105,13 +111,57 @@ public class GuiTestsHaushaltsbuch {
 		// Initalisierungen für Tests
 		_failCount = 0;
 		_passCount = 0;
-		_startTime = new Date().getTime();
+		_time = 0;
 		
 		// Initalisierungen für Fit-Tests
 		_fitRight = 0;
 		_fitWrong = 0;
 		_fitIgnore = 0;
 		_fitExceptions = 0;
+		_fitTime = 0;
+	}
+	
+	/**
+	 * Schreibt den angegeben InputStream in die angegebene Datei.
+	 * 
+	 * @param file Name der Datei
+	 * 
+	 * @param is InputStream der in die Datei geschrieben werden soll.
+	 * 
+	 * @param test Name des Tests
+	 * 
+	 * @param start Start-Zeitpunkt des Tests
+	 * @throws IOException 
+	 */
+	private void appendFile(String file, InputStream is, String test,
+			long start) throws IOException {
+		// Datei öffnen
+		FileWriter fw = new FileWriter(file, true);
+		BufferedWriter bw = new BufferedWriter(fw);
+		
+		// 2 Zeilen abstand zum vorherigen Eintrag
+		bw.newLine();
+		bw.newLine();
+		
+		// Test-Name und Start schreiben
+		bw.write(test);
+		bw.write(" (Start: ");
+		bw.write(HelperCalendar.datetimeToString(start));
+		bw.write(")");
+		bw.newLine();
+		
+		// Daten aus InputStream schreiben
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		String line;
+		while((line = br.readLine()) != null) {
+			bw.write(line);
+			bw.newLine();
+		}
+		
+		// Datei schließen
+		br.close();
+		bw.close();
+		fw.close();
 	}
 	
 	/**
@@ -140,6 +190,13 @@ public class GuiTestsHaushaltsbuch {
 			System.out.print(" (Dauer des Tests: ");
 			System.out.print(String.valueOf(ms));
 			System.out.println(" ms)");
+			
+			// Vergangene Zeit neu berechnen
+			_time += ms;
+			
+			// Console-Ausgabe und Error-Ausgabe speichern
+			appendFile(FILE_NAME_CONSOLE, p.getInputStream(), test, start);
+			appendFile(FILE_NAME_ERROR, p.getErrorStream(), test, start);
 		} catch (IOException e) {
 			e.printStackTrace();
 			_failCount++;
@@ -223,23 +280,26 @@ public class GuiTestsHaushaltsbuch {
 			
 			// Dauer ausgeben
 			System.out.println(" (Dauer des Tests: " + ms + " ms)");
+			_time += ms;
+			_fitTime += ms;
 			
 			// Console in Datei speichern
-			FileOutputStream out = new FileOutputStream(FILE_NAME_CONSOLE,
-					true);
-			byte[] buffer = new byte[0xFFFF];
-			
-			for (int len; (len = p.getInputStream().read(buffer)) != -1;)
-				out.write(buffer, 0, len);
-			out.close();
+			appendFile(FILE_NAME_CONSOLE, p.getInputStream(), fit, start);
 
-			// Console in Datei speichern
-			out = new FileOutputStream(FILE_NAME_ERROR, true);
-			buffer = new byte[0xFFFF];
-			
-			for (int len; (len = p.getErrorStream().read(buffer)) != -1;)
-				out.write(buffer, 0, len);
-			out.close();
+			// Error auslesen
+			InputStream is = p.getErrorStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if ((line.indexOf("right") > -1) &&
+						(line.indexOf("wrong") > -1)) {
+					String[] tmp = line.split(" ");
+					_fitRight += Integer.valueOf(tmp[0]);
+					_fitWrong += Integer.valueOf(tmp[2]);
+					_fitIgnore += Integer.valueOf(tmp[4]);
+					_fitExceptions += Integer.valueOf(tmp[6]);
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			_failCount++;
@@ -253,9 +313,7 @@ public class GuiTestsHaushaltsbuch {
 	 * Gibt die Statistik aus
 	 */
 	public void statistics() {
-		// Zeit stoppen
-		long stop = new Date().getTime();
-		
+		System.out.println();
 		System.out.println();
 		
 		// Gesamt-Anzahl
@@ -270,10 +328,21 @@ public class GuiTestsHaushaltsbuch {
 		System.out.print("\t\tAnzahl Fehler: ");
 		System.out.println(String.valueOf(_failCount));
 		
+		// Behauptungen in Fit
+		System.out.print("Fit-Behauptungen\trichtig: ");
+		System.out.print(String.valueOf(_fitRight));
+		System.out.print("\tfehlerhaft: ");
+		System.out.print(String.valueOf(_fitWrong));
+		System.out.print("\tignoriert: ");
+		System.out.print(String.valueOf(_fitIgnore));
+		System.out.print("\tFehler: ");
+		System.out.println(String.valueOf(_fitExceptions));
+		
 		// Zeit ausgeben
-		long ms = stop - _startTime;
 		System.out.print("Dauer aller Tests (in Millisekunden): ");
-		System.out.println(String.valueOf(ms));
+		System.out.println(String.valueOf(_time));
+		System.out.print("Daeuer aller Fit-Tests (in Millisekunden): ");
+		System.out.println(String.valueOf(_fitTime));
 	}
 	
 	/**
@@ -286,16 +355,16 @@ public class GuiTestsHaushaltsbuch {
 		// Test-Klasse vorbereiten
 		GuiTestsHaushaltsbuch tests = new GuiTestsHaushaltsbuch();
 		
-//		// Menüs
-//		tests.runTest(tests.tests.menus.TestTopMainMenu.class.getName());
-//		
-//		// Hauptfenster
-//		tests.runTest(tests.tests.windows.TestWndMain.class.getName());
-//		
-//		// Unterfenster
-//		tests.runTest(tests.tests.windows.internal.TestWndCategoryList.class.getName());
-//		tests.runTest(tests.tests.windows.internal.TestWndSectionList.class.getName());
-//		tests.runTest(tests.tests.windows.internal.TestWndMoneyList.class.getName());
+		// Menüs
+		tests.runTest(tests.tests.menus.TestTopMainMenu.class.getName());
+		
+		// Hauptfenster
+		tests.runTest(tests.tests.windows.TestWndMain.class.getName());
+		
+		// Unterfenster
+		tests.runTest(tests.tests.windows.internal.TestWndCategoryList.class.getName());
+		tests.runTest(tests.tests.windows.internal.TestWndSectionList.class.getName());
+		tests.runTest(tests.tests.windows.internal.TestWndMoneyList.class.getName());
 		
 		// Fit-Test der Dialoge
 		tests.runFit("src/tests/fit/dialogs/DlgAbout.fit");
