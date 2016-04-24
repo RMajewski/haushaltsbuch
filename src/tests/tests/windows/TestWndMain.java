@@ -19,6 +19,8 @@
 
 package tests.tests.windows;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.netbeans.jemmy.ClassReference;
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JFrameOperator;
@@ -37,6 +39,24 @@ import tests.testcase.GuiTest;
  * @since 0.1
  */
 public class TestWndMain extends GuiTest {
+	
+	/**
+	 * Speichert das Hauptfenster.
+	 */
+	private JFrameOperator _wnd;
+	
+	/**
+	 * Initalisiert die Klasse
+	 * 
+	 * @throws Exception
+	 */
+	public TestWndMain() throws Exception {
+		// Start des Haupt-Programms
+		new ClassReference("haushaltsbuch.Main").startApplication();
+		
+		// Fenster des Hauptprogrammes
+		_wnd = new JFrameOperator(WndMain.TITLE);
+	}
 
 	/**
 	 * Führt die einzelnen Tests aus.
@@ -44,19 +64,13 @@ public class TestWndMain extends GuiTest {
 	@Override
 	public int runIt(Object arg0) {
 		try {
-			// Start des Haupt-Programms
-			new ClassReference("haushaltsbuch.Main").startApplication();
-			
-			// Fenster des Hauptprogrammes
-			JFrameOperator wnd = new JFrameOperator(WndMain.TITLE);
-			
-			test("Gibt es ein Menü?", new JMenuBarOperator(wnd).isEnabled());
+			test("Gibt es ein Menü?", new JMenuBarOperator(_wnd).isEnabled());
 			
 			test("Wurde die StatusBar eingefügt?", 
-					new JLabelOperator(wnd).getText().equals("Ready"));
+					new JLabelOperator(_wnd).getText().equals("Ready"));
 			
 			test("Desktop für die Unterfenster eingefügt?",
-					wnd.getContentPane().getComponent(0).getClass().getName().equals("javax.swing.JDesktopPane"));
+					_wnd.getContentPane().getComponent(0).getClass().getName().equals("javax.swing.JDesktopPane"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 1;
@@ -64,6 +78,37 @@ public class TestWndMain extends GuiTest {
 		
 		// Da bisher nicht beendet mit 0 beenden (kein Fehler)
 		return 0;
+	}
+
+	/**
+	 * Gibt zurück, ob das HauptMeni initalisiert und ins Hauptfenster eingefügt
+	 * wurde.
+	 * 
+	 * @return Wurde das Menü initalisiert?
+	 */
+	public boolean havMainMenu() {
+		return new JMenuBarOperator(_wnd).isEnabled();
+	}
+
+
+	/**
+	 * Gibt zurück, ob im Hauptfenster der Dekstop für die unterfenster vorbereitet
+	 * wurde.
+	 * 
+	 * @return Wurde der Desktop initalisiert?
+	 */
+	public boolean isDekstopInit() {
+		return _wnd.getContentPane().getComponent(0).getClass().getName().equals("javax.swing.JDesktopPane");
+	}
+
+	/**
+	 * Gibt zurück, ob im Hauptfenster die StatusBar initalisiert und angezeigt
+	 * wird.
+	 * 
+	 * @return Wurde die StatusBar initalisiert?
+	 */
+	public boolean haveAStatusBar() {
+		return new JLabelOperator(_wnd).getText().equals("Ready");
 	}
 
 	/**
@@ -75,5 +120,4 @@ public class TestWndMain extends GuiTest {
 		System.setProperty("testing", "true");
 		Test.main(new String[] {"tests.tests.windows.TestWndMain"});
 	}
-
 }

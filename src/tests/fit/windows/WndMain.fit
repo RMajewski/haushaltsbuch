@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Hauptfenster</title>
+	</head>
+	<body>
+		<h2>Hauptfenster</h2>
+		<p>In diesen Test wird überprüft, ob das Menü angezeigt wird, ob der
+		Desktop für die Unterfenster eingerichtet wurde, ob die StatusBar
+		angezeigt wird. Zum Schluss wird das Hauptfenster über Datei -> Beenden
+		beendet. Hier wird überprüft, ob das Fenster dabei geschlossen wird.
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.FixtureWndMain</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveAMainMenu</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDesktopInit</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveAStatusBar</td>
+					<td>true</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

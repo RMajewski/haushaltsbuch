@@ -273,9 +273,9 @@ public class TestsHaushaltsbuch {
 			long start = new Date().getTime();
 			System.out.print(fit + ": ");
 			Process p = Runtime.getRuntime().exec("java -cp " +
-					"bin:" + PATH_BIB + "/fit.jar:" + PATH_BIB + "/jemmy.jar" +
-					" -Dtesting=true fit.FileRunner " + fit + " " +
-					result.toString());
+					"bin:" + PATH_BIB + "/fit.jar:" + PATH_BIB + "/jemmy.jar:" +
+					PATH_BIB + "sqlite-jdbc-3.8.11.2.jar -Dtesting=true "
+					+ "fit.FileRunner " + fit + " " + result.toString());
 			int exit = p.waitFor();
 			long ms = new Date().getTime() - start;
 			
@@ -458,9 +458,6 @@ public class TestsHaushaltsbuch {
 		tests.runJunit("tests.tests.tables.models.TestReportYearModel");
 
 		
-		// Hauptfenster
-		tests.runTest(tests.tests.windows.TestWndMain.class.getName());
-		
 		// Unterfenster
 		tests.runTest(tests.tests.windows.internal.TestWndCategoryList.class.getName());
 		tests.runTest(tests.tests.windows.internal.TestWndSectionList.class.getName());
@@ -473,6 +470,9 @@ public class TestsHaushaltsbuch {
 		tests.runFit("src/tests/fit/dialogs/DlgLicense.fit");
 		tests.runFit("src/tests/fit/dialogs/DlgLogView.fit");
 		tests.runFit("src/tests/fit/dialogs/DlgReport.fit");
+		
+		// Fit-Test der Hauptfenster
+		tests.runFit("src/tests/fit/windows/WndMain.fit");
 		
 		
 		// Statistik ausgeben
