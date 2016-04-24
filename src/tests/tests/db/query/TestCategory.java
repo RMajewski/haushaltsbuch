@@ -55,36 +55,6 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob der richtige Tabellen-Name gesetzt wurde.
-	 * 
-	 * @see db.query.Category#Category()
-	 */
-	@Test
-	public void testRightTableName() {
-		assertEquals("category", _category.getTableName());
-	}
-	
-	/**
-	 * Testet, ob die richtigen Spalten-Namen gesetzt wurden.
-	 * 
-	 * @see db.query.Category#Category()
-	 */
-	@Test
-	public void testRightColumnNames() {
-		assertEquals("id", _category.getColumnNames().get(0));
-		assertEquals("name", _category.getColumnNames().get(1));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#createTable()} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testCreateTableReturnNotNull() {
-		assertStringIsNotNull(_category.createTable());
-	}
-	
-	/**
 	 * Testest, ob die Methode {@link db.query.Category#createTable()} in
 	 * der Rückgabe 'category' enthält.
 	 */
@@ -92,14 +62,59 @@ public class TestCategory extends TestHelper {
 	public void testCreateTableReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_category.createTable(),_table));
 	}
-
+	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#insert()} keine leere
-	 * Zeichenkette liefert.
+	 * Testet, ob die Methode {@link db.query.Category#delete(int)} die
+	 * übergebene ID in der Rückgabe enthält.
 	 */
 	@Test
-	public void testInsertReturnNotNull() {
-		assertStringIsNotNull(_category.insert());
+	public void testDeleteHasId() {
+		assertEquals(1, frequency(_category.delete(100), "100"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Category#delete(int)} kein
+	 * Fragezeichen in der Rückgabe enthält.
+	 */
+	@Test
+	public void testDeleteHasNoQuery() {
+		assertEquals(0, frequency(_category.delete(100), "?"));
+	}
+
+	/**
+	 * Testest, ob die Methode {@link db.query.Category#delete(int)} in
+	 * der Rückgabe 'category' enthält.
+	 */
+	@Test
+	public void testDeleteReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_category.delete(100),_table));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Category#delete(int)} keine
+	 * ID in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
+	 */
+	@Test
+	public void testDeleteWithNullAsParameterHasId() {
+		assertEquals(0, frequency(_category.delete(-1), "100"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Category#delete(int)} ein
+	 * Fragezeichen in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
+	 */
+	@Test
+	public void testDeleteWithNullAsParameterHasNoQuery() {
+		assertEquals(1, frequency(_category.delete(-1), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Category#delete(int)} eine
+	 * leere Zeichenkette liefert, wenn der Parameter <b>-1</b> ist.
+	 */
+	@Test
+	public void testDeleteWithNullAsParameterReturnNull() {
+		assertStringIsNotNull(_category.delete(-1));
 	}
 	
 	/**
@@ -121,33 +136,6 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#insert(String)} keine
-	 * leere Zeichenkette liefert, auch wenn der Parameter <b>null</b> ist.
-	 */
-	@Test
-	public void testInsertStringWithNullAsParameterReturnNotNull() {
-		assertStringIsNotNull(_category.insert(null));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#insert(String)} ein
-	 * Fragezeichen enhält, wenn der Parameter <b>null</b> ist.
-	 */
-	@Test
-	public void testInsertStringWithNullAsParameterHasOneQuery() {
-		assertEquals(1, frequency(_category.insert(null), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#insert(String)} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testInsertStringReturnNotNull() {
-		assertStringIsNotNull(_category.insert("test"));
-	}
-	
-	/**
 	 * Testet, ob die Methode {@link db.query.Category#insert(String)} kein
 	 * Fragezeichen zurück gibt.
 	 */
@@ -166,84 +154,51 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} keine
-	 * leere Zeichenkette liefert.
+	 * Testet, ob die Methode {@link db.query.Category#insert(String)} ein
+	 * Fragezeichen enhält, wenn der Parameter <b>null</b> ist.
 	 */
 	@Test
-	public void testDeleteReturnNotNull() {
-		assertStringIsNotNull(_category.delete(100));
+	public void testInsertStringWithNullAsParameterHasOneQuery() {
+		assertEquals(1, frequency(_category.insert(null), "?"));
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} kein
-	 * Fragezeichen in der Rückgabe enthält.
+	 * Testet, ob die Methode {@link db.query.Category#insert(String)} keine
+	 * leere Zeichenkette liefert, auch wenn der Parameter <b>null</b> ist.
 	 */
 	@Test
-	public void testDeleteHasNoQuery() {
-		assertEquals(0, frequency(_category.delete(100), "?"));
+	public void testInsertStringWithNullAsParameterReturnNotNull() {
+		assertStringIsNotNull(_category.insert(null));
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} die
-	 * übergebene ID in der Rückgabe enthält.
+	 * Testet, ob die richtigen Spalten-Namen gesetzt wurden.
+	 * 
+	 * @see db.query.Category#Category()
 	 */
 	@Test
-	public void testDeleteHasId() {
-		assertEquals(1, frequency(_category.delete(100), "100"));
+	public void testRightColumnNames() {
+		assertEquals("id", _category.getColumnNames().get(0));
+		assertEquals("name", _category.getColumnNames().get(1));
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} eine
-	 * leere Zeichenkette liefert, wenn der Parameter <b>-1</b> ist.
+	 * Testet, ob der richtige Tabellen-Name gesetzt wurde.
+	 * 
+	 * @see db.query.Category#Category()
 	 */
 	@Test
-	public void testDeleteWithNullAsParameterReturnNull() {
-		assertStringIsNotNull(_category.delete(-1));
+	public void testRightTableName() {
+		assertEquals("category", _category.getTableName());
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} ein
-	 * Fragezeichen in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterHasNoQuery() {
-		assertEquals(1, frequency(_category.delete(-1), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#delete(int)} keine
-	 * ID in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterHasId() {
-		assertEquals(0, frequency(_category.delete(-1), "100"));
-	}
-	
-	/**
-	 * Testest, ob die Methode {@link db.query.Category#delete(int)} in
+	 * Testest, ob die Methode {@link db.query.Category#select()} in
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
-	public void testDeleteReturnHaveMoneyDetails() {
-		assertEquals(1, frequency(_category.delete(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int)} keine leere
-	 * Zeichenkette liefert.
-	 */
-	@Test
-	public void testUpdateReturnNotNull() {
-		assertStringIsNotNull(_category.update(100));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int)} ein
-	 * Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateHasOneQuery() {
-		assertEquals(1, frequency(_category.update(100), "?"));
+	public void testSelectReturnHaveMoneyDetails() {
+		assertEquals(1, frequency(_category.select(),_table));
 	}
 	
 	/**
@@ -256,21 +211,12 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int)} keine leere
-	 * Zeichenkette liefert, auch wenn als Parameter -1 übergeben wird
+	 * Testet, ob die Methode {@link db.query.Category#update(int)} ein
+	 * Fragezeichen in der Rückgabe enthält.
 	 */
 	@Test
-	public void testUpdateMinusOneAsParameterReturnNotNull() {
-		assertStringIsNotNull(_category.update(-1));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int)} zwei
-	 * Fragezeichen in der Rückgabe enthält, wenn der PArameter -1 ist.
-	 */
-	@Test
-	public void testUpdateMinusOneAsParameterHasOneQuery() {
-		assertEquals(2, frequency(_category.update(-1), "?"));
+	public void testUpdateHasOneQuery() {
+		assertEquals(1, frequency(_category.update(100), "?"));
 	}
 	
 	/**
@@ -283,30 +229,30 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
+	 * Testet, ob die Methode {@link db.query.Category#update(int)} zwei
+	 * Fragezeichen in der Rückgabe enthält, wenn der PArameter -1 ist.
+	 */
+	@Test
+	public void testUpdateMinusOneAsParameterHasOneQuery() {
+		assertEquals(2, frequency(_category.update(-1), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Category#update(int)} keine leere
+	 * Zeichenkette liefert, auch wenn als Parameter -1 übergeben wird
+	 */
+	@Test
+	public void testUpdateMinusOneAsParameterReturnNotNull() {
+		assertStringIsNotNull(_category.update(-1));
+	}
+	
+	/**
 	 * Testest, ob die Methode {@link db.query.Category#update(int)} in
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
 	public void testUpdateReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_category.update(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
-	 * keine leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testUpdateStringReturnNotNull() {
-		assertStringIsNotNull(_category.update(100, "name"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
-	 * kein Fragezeichen in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateStringHasNoQuery() {
-		assertEquals(0, frequency(_category.update(100, "test"), "?"));
 	}
 	
 	/**
@@ -331,11 +277,21 @@ public class TestCategory extends TestHelper {
 	
 	/**
 	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
-	 * keine leere Zeichenkette liefert, der Parameter für die ID ist -1.
+	 * kein Fragezeichen in der Rückgabe enthält.
 	 */
 	@Test
-	public void testUpdateStringMinusOneAsParameterReturnNotNull() {
-		assertStringIsNotNull(_category.update(-1, "name"));
+	public void testUpdateStringHasNoQuery() {
+		assertEquals(0, frequency(_category.update(100, "test"), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
+	 * kein Fragezeichen in der Rückgabe enthält. Der Parameter für den Namen
+	 * is <b>null</b>. Der Parameter für die ID ist -1.
+	 */
+	@Test
+	public void testUpdateStringMinusOneAndNullAsParametersHasTwoQueries() {
+		assertEquals(2, frequency(_category.update(-1, null), "?"));
 	}
 	
 	/**
@@ -346,6 +302,15 @@ public class TestCategory extends TestHelper {
 	@Test
 	public void testUpdateStringMinusOneAsParameterHasOneQuery() {
 		assertEquals(1, frequency(_category.update(-1, "test"), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
+	 * keine leere Zeichenkette liefert, der Parameter für die ID ist -1.
+	 */
+	@Test
+	public void testUpdateStringMinusOneAsParameterReturnNotNull() {
+		assertStringIsNotNull(_category.update(-1, "name"));
 	}
 	
 	/**
@@ -369,39 +334,11 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
-	 * kein Fragezeichen in der Rückgabe enthält. Der Parameter für den Namen
-	 * is <b>null</b>. Der Parameter für die ID ist -1.
-	 */
-	@Test
-	public void testUpdateStringMinusOneAndNullAsParametersHasTwoQueries() {
-		assertEquals(2, frequency(_category.update(-1, null), "?"));
-	}
-	
-	/**
 	 * Testest, ob die Methode {@link db.query.Category#update(int, String)} in
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
 	public void testUpdateStringReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_category.update(100, "Dies ist ein Test"),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Category#select()} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testSelectReturnNotNull() {
-		assertStringIsNotNull(_category.select());
-	}
-	
-	/**
-	 * Testest, ob die Methode {@link db.query.Category#select()} in
-	 * der Rückgabe 'category' enthält.
-	 */
-	@Test
-	public void testSelectReturnHaveMoneyDetails() {
-		assertEquals(1, frequency(_category.select(),_table));
 	}
 }

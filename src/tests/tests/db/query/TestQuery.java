@@ -154,28 +154,6 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
-	 * Testem ob die Datenbank-Abfrage, um alle Datensätze aufzulisten,
-	 * kein <b>null</b> als Rückgabe hat.
-	 * 
-	 * {@link db.query.Query#select()}
-	 */
-	@Test
-	public void testSelectReturnIsNotNull() {
-		assertFalse(_query.select() == null);
-	}
-	
-	/**
-	 * Testet, ob die Datenbank-Abfrage, um alle Datensätze aufzulisten,
-	 * keine leere Zeichenkette zurück gibt.
-	 * 
-	 * {@link db.query.Query#select()}
-	 */
-	@Test
-	public void testSelectReturnIsNotEmpty() {
-		assertFalse(_query.select().isEmpty());
-	}
-	
-	/**
 	 * Testet, ob die Datenbank-Abfrage, um alle Datensätze aufzulisten,
 	 * richtig erzeugt wurde.
 	 * 
@@ -191,28 +169,6 @@ public class TestQuery extends TestHelper {
 		ret.append(_table);
 		ret.append(" ORDER BY id ASC");
 		assertEquals(ret.toString(), _query.select());
-	}
-	
-	/**
-	 * Teste, ob die Datenbank-Abfrage, um einen Datensatz zu löschen,
-	 * kein <b>null</b> als Rückgabe hat.
-	 * 
-	 * {@link db.query.Query#delete(int)}
-	 */
-	@Test
-	public void testDeleteReturnIsNotNull() {
-		assertFalse(_query.delete(100) == null);
-	}
-	
-	/**
-	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz zu löschen,
-	 * keine leere Zeichenkette zurück gibt.
-	 * 
-	 * {@link db.query.Query#delete(int)}
-	 */
-	@Test
-	public void testDeleteReturnIsNotEmpty() {
-		assertFalse(_query.delete(100).isEmpty());
 	}
 	
 	/**
@@ -264,28 +220,6 @@ public class TestQuery extends TestHelper {
 	@Test
 	public void testDeleteWithMinusOneReturnHasOneQuery() {
 		assertEquals(1, frequency(_query.delete(-1), "?"));
-	}
-	
-	/**
-	 * Testem ob die Datenbank-Abfrage, um einen Datensatz zu ändern,
-	 * kein <b>null</b> als Rückgabe hat.
-	 * 
-	 * {@link db.query.Query#update(int)}
-	 */
-	@Test
-	public void testUpdateReturnIsNotNull() {
-		assertFalse(_query.update(100) == null);
-	}
-	
-	/**
-	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz zu ändern,
-	 * keine leere Zeichenkette zurück gibt.
-	 * 
-	 * {@link db.query.Query#update(int)}
-	 */
-	@Test
-	public void testUpdateReturnIsNotEmpty() {
-		assertFalse(_query.update(100).isEmpty());
 	}
 	
 	/**
@@ -344,28 +278,6 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
-	 * Teste, ob die Datenbank-Abfrage, um einen Datensatz einzufügen,
-	 * kein <b>null</b> als Rückgabe hat.
-	 * 
-	 * {@link db.query.Query#insert()}
-	 */
-	@Test
-	public void testInsertReturnIsNotNull() {
-		assertFalse(_query.insert() == null);
-	}
-	
-	/**
-	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz einzufügen,
-	 * keine leere Zeichenkette zurück gibt.
-	 * 
-	 * {@link db.query.Query#insert()}
-	 */
-	@Test
-	public void testInsertReturnIsNotEmpty() {
-		assertFalse(_query.insert().isEmpty());
-	}
-	
-	/**
 	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz einzufügen,
 	 * richtig erzeugt wurde.
 	 * 
@@ -395,28 +307,6 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
-	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
-	 * gibt.
-	 * 
-	 * {@link db.query.Query#statusInsertOk()}
-	 */
-	@Test
-	public void testStatusInsertOkReturnIsNotNull() {
-		assertFalse(_query.statusInsertOk() == null);
-	}
-	
-	/**
-	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
-	 * enthält.
-	 * 
-	 * {@link db.query.Query#statusInsertOk()}
-	 */
-	@Test
-	public void testStatusInsertOkReturnIsNotEmpty() {
-		assertFalse(_query.statusInsertOk().isEmpty());
-	}
-	
-	/**
 	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
 	 * hat. 
 	 * 
@@ -431,28 +321,6 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
-	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
-	 * gibt.
-	 * 
-	 * {@link db.query.Query#statusInsertError()}
-	 */
-	@Test
-	public void testStatusInsertErrorReturnIsNotNull() {
-		assertFalse(_query.statusInsertError() == null);
-	}
-	
-	/**
-	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
-	 * enthält.
-	 * 
-	 * {@link db.query.Query#statusInsertError()}
-	 */
-	@Test
-	public void testStatusInsertErrorReturnIsNotEmpty() {
-		assertFalse(_query.statusInsertError().isEmpty());
-	}
-	
-	/**
 	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
 	 * hat. 
 	 * 
@@ -464,28 +332,6 @@ public class TestQuery extends TestHelper {
 		ret.append(_table);
 		ret.append("' konnte kein Datensatz eingefügt werden.");
 		assertEquals(ret.toString(), _query.statusInsertError());
-	}
-	
-	/**
-	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
-	 * gibt.
-	 * 
-	 * {@link db.query.Query#statusUpdateOk(int)}
-	 */
-	@Test
-	public void testStatusUpdateOkReturnIsNotNull() {
-		assertFalse(_query.statusUpdateOk(100) == null);
-	}
-	
-	/**
-	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
-	 * enthält.
-	 * 
-	 * {@link db.query.Query#statusUpdateOk(int)}
-	 */
-	@Test
-	public void testStatusUpdateOkReturnIsNotEmpty() {
-		assertFalse(_query.statusUpdateOk(100).isEmpty());
 	}
 	
 	/**
@@ -506,28 +352,6 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
-	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
-	 * gibt.
-	 * 
-	 * {@link db.query.Query#statusUpdateError(int)}
-	 */
-	@Test
-	public void testStatusUpdateErrorReturnIsNotNull() {
-		assertFalse(_query.statusUpdateError(100) == null);
-	}
-	
-	/**
-	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
-	 * enthält.
-	 * 
-	 * {@link db.query.Query#statusUpdateError(int)}
-	 */
-	@Test
-	public void testStatusUpdateErrorReturnIsNotEmpty() {
-		assertFalse(_query.statusUpdateError(100).isEmpty());
-	}
-	
-	/**
 	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
 	 * hat. 
 	 * 
@@ -542,28 +366,6 @@ public class TestQuery extends TestHelper {
 		ret.append(_table);
 		ret.append("' konnte nicht geändert werden.");
 		assertEquals(ret.toString(), _query.statusUpdateError(id));
-	}
-	
-	/**
-	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
-	 * gibt.
-	 * 
-	 * {@link db.query.Query#statusDeleteOk(int)}
-	 */
-	@Test
-	public void testStatusDeleteOkReturnIsNotNull() {
-		assertFalse(_query.statusDeleteOk(100) == null);
-	}
-	
-	/**
-	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
-	 * enthält.
-	 * 
-	 * {@link db.query.Query#statusDeleteOk(int)}
-	 */
-	@Test
-	public void testStatusDeleteOkReturnIsNotEmpty() {
-		assertFalse(_query.statusDeleteOk(100).isEmpty());
 	}
 	
 	/**
@@ -584,28 +386,6 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
-	 * Teste, ob die Nachricht für die StatusBar keine <b>null</b> zurück
-	 * gibt.
-	 * 
-	 * {@link db.query.Query#statusDeleteError(int)}
-	 */
-	@Test
-	public void testStatusDeleteErrorReturnIsNotNull() {
-		assertFalse(_query.statusDeleteError(100) == null);
-	}
-	
-	/**
-	 * Testet, ob die nAchricht für die StatusBar keine leere Zeichenkette
-	 * enthält.
-	 * 
-	 * {@link db.query.Query#statusDeleteError(int)}
-	 */
-	@Test
-	public void testStatusDeleteErrorReturnIsNotEmpty() {
-		assertFalse(_query.statusDeleteError(100).isEmpty());
-	}
-	
-	/**
 	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
 	 * hat. 
 	 * 
@@ -623,27 +403,6 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
-	 * Teste, ob die Anzahl an Datensätzen nicht <b>null</b> zurück gibt. 
-	 * 
-	 * {@link db.query.Query#count()}
-	 */
-	@Test
-	public void testCountReturnIsNotNull() {
-		assertFalse(_query.count() == null);
-	}
-	
-	/**
-	 * Testet, ob die Anzahl an Datensätzen keine leere Zeichenkette zurück
-	 * gibt.
-	 * 
-	 * {@link db.query.Query#count()}
-	 */
-	@Test
-	public void testCountReturnIsNotEmpty() {
-		assertFalse(_query.count().isEmpty());
-	}
-	
-	/**
 	 * Testet, die Anzahl an Datensätzen die richtige Abfrage zurück
 	 * gibt.
 	 * 
@@ -655,28 +414,6 @@ public class TestQuery extends TestHelper {
 		ret.append(_table);
 		ret.append("'");
 		assertEquals(ret.toString(), _query.count());
-	}
-	
-	/**
-	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, nicht
-	 *  <b>null</b> zurück gibt. 
-	 * 
-	 * {@link db.query.Query#search(String, String)}
-	 */
-	@Test
-	public void testSearchReturnIsNotNull() {
-		assertFalse(_query.search(_col1, "test") == null);
-	}
-	
-	/**
-	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, keine
-	 * leere Zeichenkette zurück gibt.
-	 * 
-	 * {@link db.query.Query#search(String, String)}
-	 */
-	@Test
-	public void testSearchReturnIsNotEmpty() {
-		assertFalse(_query.search(_col1, "test").isEmpty());
 	}
 	
 	/**
@@ -700,28 +437,6 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, nicht
-	 *  <b>null</b> zurück gibt. 
-	 * 
-	 * {@link db.query.Query#search(String, int)}
-	 */
-	@Test
-	public void testSearchStringIntReturnIsNotNull() {
-		assertFalse(_query.search(_col1, 100) == null);
-	}
-	
-	/**
-	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, keine
-	 * leere Zeichenkette zurück gibt.
-	 * 
-	 * {@link db.query.Query#search(String, int)}
-	 */
-	@Test
-	public void testSearchStringIntReturnIsNotEmpty() {
-		assertFalse(_query.search(_col1, 100).isEmpty());
-	}
-	
-	/**
 	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, die
 	 * richtige Abfrage zurück gibt.
 	 * 
@@ -739,28 +454,6 @@ public class TestQuery extends TestHelper {
 		ret.append(_col1);
 		ret.append(" = 100 ORDER BY id ASC");
 		assertEquals(ret.toString(), _query.search(_col1, 100));
-	}
-	
-	/**
-	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, nicht
-	 *  <b>null</b> zurück gibt. 
-	 * 
-	 * {@link db.query.Query#sort(String)}
-	 */
-	@Test
-	public void testSortStringReturnIsNotNull() {
-		assertFalse(_query.sort(_col1) == null);
-	}
-	
-	/**
-	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, keine
-	 * leere Zeichenkette zurück gibt.
-	 * 
-	 * {@link db.query.Query#sort(String)}
-	 */
-	@Test
-	public void testSortStringReturnIsNotEmpty() {
-		assertFalse(_query.sort(_col1).isEmpty());
 	}
 	
 	/**

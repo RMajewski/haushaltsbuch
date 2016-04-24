@@ -83,30 +83,12 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#createTable()} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testCreateTableReturnNotNull() {
-		assertStringIsNotNull(_moneyDetails.createTable());
-	}
-	
-	/**
 	 * Testest, ob die Methode {@link db.query.MoneyDetails#createTable()} in
 	 * der Rückgabe 'money_details' enthält.
 	 */
 	@Test
 	public void testCreateTableReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_moneyDetails.createTable(),_table));
-	}
-
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert()} keine leere
-	 * Zeichenkette liefert.
-	 */
-	@Test
-	public void testInsertReturnNotNull() {
-		assertStringIsNotNull(_moneyDetails.insert());
 	}
 	
 	/**
@@ -125,15 +107,6 @@ public class TestMoneyDetails extends TestHelper{
 	@Test
 	public void testInsertTableReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_moneyDetails.insert(),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
-	 * keine leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testInsertIntIntIntDoubleStringReturnNotNull() {
-		assertStringIsNotNull(_moneyDetails.insert(100, 200, 300, 10.34, "Dies ist ein Test"));
 	}
 	
 	/**
@@ -277,15 +250,6 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#delete(int)} eine
-	 * leere Zeichenkette liefert, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterReturnNull() {
-		assertStringIsNotNull(_moneyDetails.delete(-1));
-	}
-	
-	/**
 	 * Testet, ob die Methode {@link db.query.MoneyDetails#delete(int)} ein
 	 * Fragezeichen in der Rückgabe enthält, wenn der Parameter <b>-1</b> ist.
 	 */
@@ -310,15 +274,6 @@ public class TestMoneyDetails extends TestHelper{
 	@Test
 	public void testDeleteReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_moneyDetails.delete(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int)} keine leere
-	 * Zeichenkette liefert.
-	 */
-	@Test
-	public void testUpdateReturnNotNull() {
-		assertStringIsNotNull(_moneyDetails.update(100));
 	}
 	
 	/**
@@ -376,30 +331,12 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#select()} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testSelectReturnNotNull() {
-		assertStringIsNotNull(_moneyDetails.select());
-	}
-	
-	/**
 	 * Testest, ob die Methode {@link db.query.MoneyDetails#select()} in
 	 * der Rückgabe 'money_details' enthält.
 	 */
 	@Test
 	public void testSelectReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_moneyDetails.select(),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#select(int)} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testSelectIntReturnNotNull() {
-		assertStringIsNotNull(_moneyDetails.select(100));
 	}
 	
 	/**
@@ -418,24 +355,6 @@ public class TestMoneyDetails extends TestHelper{
 	@Test
 	public void testSelectIntReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_moneyDetails.select(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
-	 * keine <b>null</b> zurück gibt.
-	 */
-	@Test
-	public void testUpdateIntIntIntIntDoubleStringReturnNotNull() {
-		assertFalse(_moneyDetails.update(100, 200, 300, 400, 10.89, "Dies ist ein Test") == null);
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
-	 * keine leere Zeichenkette zurück gibt.
-	 */
-	@Test
-	public void testUpdateIntIntIntIntDoubleStringReturnNotEmpty() {
-		assertFalse(_moneyDetails.update(100, 200, 300, 400, 10.89, "Dies ist ein Test").isEmpty());
 	}
 	
 	/**
@@ -542,24 +461,6 @@ public class TestMoneyDetails extends TestHelper{
 	@Test
 	public void testUpdateIntIntIntIntDoubleStringEmptyAsCommentReturnHasOneQuery() {
 		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, new String()), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
-	 * keine <b>null</b> zurück gibt.
-	 */
-	@Test
-	public void testUpdateIntIntIntIntDoubleReturnNotNull() {
-		assertFalse(_moneyDetails.update(100, 200, 300, 400, 10.89) == null);
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
-	 * keine leere Zeichenkette zurück gibt.
-	 */
-	@Test
-	public void testUpdateIntIntIntIntDoubleReturnNotEmpty() {
-		assertFalse(_moneyDetails.update(100, 200, 300, 400, 10.89).isEmpty());
 	}
 	
 	/**

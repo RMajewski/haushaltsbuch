@@ -76,15 +76,6 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#createTable()} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testCreateTableReturnNotNull() {
-		assertStringIsNotNull(_section.createTable());
-	}
-	
-	/**
 	 * Testest, ob die Methode {@link db.query.Section#createTable()} in
 	 * der Rückgabe 'money' enthält.
 	 */
@@ -139,15 +130,6 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#insert(String)} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testInsertStringReturnNotNull() {
-		assertStringIsNotNull(_section.insert("test"));
-	}
-	
-	/**
 	 * Testet, ob die Methode {@link db.query.Section#insert(String)} kein
 	 * Fragezeichen zurück gibt.
 	 */
@@ -166,15 +148,6 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#delete(int)} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testDeleteReturnNotNull() {
-		assertStringIsNotNull(_section.delete(100));
-	}
-	
-	/**
 	 * Testet, ob die Methode {@link db.query.Section#delete(int)} kein
 	 * Fragezeichen in der Rückgabe enthält.
 	 */
@@ -190,15 +163,6 @@ public class TestSection extends TestHelper {
 	@Test
 	public void testDeleteHasId() {
 		assertEquals(1, frequency(_section.delete(100), "100"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#delete(int)} eine
-	 * leere Zeichenkette liefert, wenn der Parameter <b>-1</b> ist.
-	 */
-	@Test
-	public void testDeleteWithNullAsParameterReturnNull() {
-		assertStringIsNotNull(_section.delete(-1));
 	}
 	
 	/**
@@ -226,15 +190,6 @@ public class TestSection extends TestHelper {
 	@Test
 	public void testDeleteReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_section.delete(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int)} keine leere
-	 * Zeichenkette liefert.
-	 */
-	@Test
-	public void testUpdateReturnNotNull() {
-		assertStringIsNotNull(_section.update(100));
 	}
 	
 	/**
@@ -385,15 +340,6 @@ public class TestSection extends TestHelper {
 	@Test
 	public void testUpdateStringReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_section.update(100, "Dies ist ein Test"),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Section#select()} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testSelectReturnNotNull() {
-		assertStringIsNotNull(_section.select());
 	}
 	
 	/**

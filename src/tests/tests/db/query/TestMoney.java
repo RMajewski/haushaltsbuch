@@ -83,30 +83,12 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#createTable()} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testCreateTableReturnNotNull() {
-		assertStringIsNotNull(_money.createTable());
-	}
-	
-	/**
 	 * Testest, ob die Methode {@link db.query.Money#createTable()} in
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
 	public void testCreateTableReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_money.createTable(),_table));
-	}
-
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#insert()} keine leere
-	 * Zeichenkette liefert.
-	 */
-	@Test
-	public void testInsertReturnNotNull() {
-		assertStringIsNotNull(_money.insert());
 	}
 	
 	/**
@@ -125,15 +107,6 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testInsertTableReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_money.insert(),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#insert(long, boolean, String)}
-	 * keine leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testInsertDateBooleanStringReturnNotNull() {
-		assertStringIsNotNull(_money.insert(7919156, true, "Dies ist ein Test"));
 	}
 	
 	/**
@@ -182,15 +155,6 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testInsertLongBooleanStringWithOutgoingReturnHasZero() {
 		assertEquals(1, frequency(_money.insert(7777l, false, "Test"), "0"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#delete(int)} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testDeleteReturnNotNull() {
-		assertStringIsNotNull(_money.delete(100));
 	}
 	
 	/**
@@ -245,15 +209,6 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testDeleteReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_money.delete(100),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int)} keine leere
-	 * Zeichenkette liefert.
-	 */
-	@Test
-	public void testUpdateReturnNotNull() {
-		assertStringIsNotNull(_money.update(100));
 	}
 	
 	/**
@@ -312,15 +267,6 @@ public class TestMoney extends TestHelper {
 	
 	/**
 	 * Testet, ob die Methode {@link db.query.Money#update(int, long)}
-	 * keine leere Zeichenkette liefert
-	 */
-	@Test
-	public void testUpdateDateReturnNotNull() {
-		assertStringIsNotNull(_money.update(100, 177691l));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long)}
 	 * kein Fragenzeichen enthält.
 	 */
 	@Test
@@ -364,15 +310,6 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testUpdateDateTableReturnHaveMoneyDetails() {
 		assertEquals(1, frequency(_money.update(100, 5175837l),_table));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, boolean)}
-	 * keine leere Zeichenkette liefert
-	 */
-	@Test
-	public void testUpdateInOutReturnNotNull() {
-		assertStringIsNotNull(_money.update(100, true));
 	}
 	
 	/**
@@ -508,34 +445,6 @@ public class TestMoney extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
-	 * keine <b>null</b> zurück gibt.
-	 */
-	@Test
-	public void testUpdateIntBooleanStringReturnNotNull() {
-		assertFalse(_money.update(100, 1750170l, false, "Dies ist ein Test") == null);
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
-	 * keine leere Zeichenkette zurück gibt.
-	 */
-	@Test
-	public void testUpdateIntBooleanStringReturnNotEmpty() {
-		assertFalse(_money.update(100, 1750815701l, false, "Dies ist ein Test").isEmpty());
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
-	 * keine <b>?</b> in der Rückgabe enthält.
-	 */
-	@Test
-	public void testUpdateIntBooleanStringReturnNoQuery() {
-		assertEquals(0, frequency(_money.update(100, 157081750l, false, "Dies ist ein Test"), "?"));
-	}
-	
-	
-	/**
 	 * Test, ob die Methode {@link db.query.Money#update(int, long, boolean, String)}
 	 * die ID in der Rückgabe enthält.
 	 */
@@ -614,24 +523,6 @@ public class TestMoney extends TestHelper {
 	
 	/**
 	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
-	 * keine <b>null</b> zurück gibt.
-	 */
-	@Test
-	public void testUpdateIntBooleanReturnNotNull() {
-		assertFalse(_money.update(100, 1750170l, false) == null);
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
-	 * keine leere Zeichenkette zurück gibt.
-	 */
-	@Test
-	public void testUpdateIntBooleanReturnNotEmpty() {
-		assertFalse(_money.update(100, 1750815701l, false).isEmpty());
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#update(int, long, boolean)}
 	 * keine <b>?</b> in der Rückgabe enthält.
 	 */
 	@Test
@@ -686,15 +577,6 @@ public class TestMoney extends TestHelper {
 	@Test
 	public void testUpdateIntBooleanMinusOneAsIdReturnHasOneQuery() {
 		assertEquals(1, frequency(_money.update(-1, 1740704l, false), "?"));
-	}
-	
-	/**
-	 * Testet, ob die Methode {@link db.query.Money#select()} keine
-	 * leere Zeichenkette liefert.
-	 */
-	@Test
-	public void testSelectReturnNotNull() {
-		assertStringIsNotNull(_money.select());
 	}
 	
 	/**
