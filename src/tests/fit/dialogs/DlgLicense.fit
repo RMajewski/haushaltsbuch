@@ -36,6 +36,11 @@
 					<td>isVisible</td>
 					<td>false</td>
 				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table></body>
 </html>

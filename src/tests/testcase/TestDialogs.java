@@ -54,6 +54,15 @@ public abstract class TestDialogs implements Scenario {
 	public boolean dlgIsVisible() {
 		return _dlg.isVisible();
 	}
+	
+	/**
+	 * Gibt das Hauptfenster zurück
+	 * 
+	 * @return Hauptfenster
+	 */
+	public JFrameOperator getFrame() {
+		return _frame;
+	}
 
 	/**
 	 * Führt die Tests aus

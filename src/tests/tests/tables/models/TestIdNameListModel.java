@@ -21,18 +21,13 @@ package tests.tests.tables.models;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -41,7 +36,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import haushaltsbuch.datas.IdNameData;
 import haushaltsbuch.db.DbController;
-import haushaltsbuch.db.query.Category;
 import haushaltsbuch.tables.models.IdNameListModel;
 
 /**

@@ -123,6 +123,11 @@
 					<td>preferencesCount</td>
 					<td>0</td>
 				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table>
 		
@@ -203,6 +208,11 @@
 					<td>getPreferenceExportDataMoneyDetails</td>
 					<td>1</td>
 				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table>
 		
@@ -268,6 +278,11 @@
 					<td>preferencesCount</td>
 					<td>0</td>
 				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table>
 		
@@ -373,6 +388,11 @@
 					<td>check</td>
 					<td>getPreferenceExportDataMoneyDetails</td>
 					<td>null</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
 				</tr>
 			</tbody>
 		</table>
@@ -480,6 +500,11 @@
 					<td>getPreferenceExportDataMoneyDetails</td>
 					<td>null</td>
 				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table>
 		
@@ -585,6 +610,11 @@
 					<td>check</td>
 					<td>getPreferenceExportDataMoneyDetails</td>
 					<td>null</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
 				</tr>
 			</tbody>
 		</table>
@@ -692,6 +722,11 @@
 					<td>getPreferenceExportDataMoneyDetails</td>
 					<td>null</td>
 				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table>
 		
@@ -797,6 +832,11 @@
 					<td>check</td>
 					<td>getPreferenceExportDataMoneyDetails</td>
 					<td>null</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
 				</tr>
 			</tbody>
 		</table>
@@ -904,6 +944,11 @@
 					<td>getPreferenceExportDataMoneyDetails</td>
 					<td>null</td>
 				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table>
 		
@@ -1010,6 +1055,11 @@
 					<td>getPreferenceExportDataMoneyDetails</td>
 					<td>null</td>
 				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table>
 		
@@ -1115,6 +1165,11 @@
 					<td>check</td>
 					<td>getPreferenceExportDataMoneyDetails</td>
 					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
 				</tr>
 			</tbody>
 		</table>

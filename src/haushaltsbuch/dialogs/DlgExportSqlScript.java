@@ -30,8 +30,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 
-import org.netbeans.jemmy.ComponentChooser;
-
 /**
  * Zeigt die Einstellungen für den Export des SQL-Scripten.
  * 

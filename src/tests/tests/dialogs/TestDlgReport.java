@@ -20,11 +20,8 @@
 package tests.tests.dialogs;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import org.netbeans.jemmy.ClassReference;
-import org.netbeans.jemmy.Scenario;
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JCheckBoxOperator;
@@ -35,9 +32,7 @@ import org.netbeans.jemmy.operators.JRadioButtonOperator;
 import org.netbeans.jemmy.operators.JTabbedPaneOperator;
 
 import haushaltsbuch.datas.ReportPreferencesData;
-import haushaltsbuch.dialogs.DlgExportSqlScript;
 import haushaltsbuch.dialogs.DlgReport;
-import haushaltsbuch.helper.HelperCalendar;
 import tests.apps.TestDialogApplication;
 import tests.testcase.TestDialogs;
 

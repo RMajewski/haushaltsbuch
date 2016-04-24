@@ -50,4 +50,12 @@ public class FixtureDialogs extends ActionFixture {
 		return String.valueOf(_test.dlgIsVisible());
 	}
 	
+	/**
+	 * Beendet die Test-Applikation
+	 */
+	public void applicationEnd() {
+		if (_test.getFrame() != null)
+			_test.getFrame().dispose();
+	}
+	
 }

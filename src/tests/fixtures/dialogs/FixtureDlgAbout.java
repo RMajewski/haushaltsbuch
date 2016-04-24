@@ -19,7 +19,6 @@
 
 package tests.fixtures.dialogs;
 
-import fit.ActionFixture;
 import tests.tests.dialogs.TestDlgAbout;
 
 /**

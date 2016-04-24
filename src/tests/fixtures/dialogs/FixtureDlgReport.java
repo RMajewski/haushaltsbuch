@@ -19,12 +19,9 @@
 
 package tests.fixtures.dialogs;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import fit.ActionFixture;
-import haushaltsbuch.datas.Data;
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.datas.ReportWeekData;
 import haushaltsbuch.helper.HelperCalendar;

@@ -20,8 +20,8 @@
 package tests;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -223,6 +223,23 @@ public class GuiTestsHaushaltsbuch {
 			
 			// Dauer ausgeben
 			System.out.println(" (Dauer des Tests: " + ms + " ms)");
+			
+			// Console in Datei speichern
+			FileOutputStream out = new FileOutputStream(FILE_NAME_CONSOLE,
+					true);
+			byte[] buffer = new byte[0xFFFF];
+			
+			for (int len; (len = p.getInputStream().read(buffer)) != -1;)
+				out.write(buffer, 0, len);
+			out.close();
+
+			// Console in Datei speichern
+			out = new FileOutputStream(FILE_NAME_ERROR, true);
+			buffer = new byte[0xFFFF];
+			
+			for (int len; (len = p.getErrorStream().read(buffer)) != -1;)
+				out.write(buffer, 0, len);
+			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 			_failCount++;
@@ -282,7 +299,7 @@ public class GuiTestsHaushaltsbuch {
 		
 		// Fit-Test der Dialoge
 		tests.runFit("src/tests/fit/dialogs/DlgAbout.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScript.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScript.fit");
 		tests.runFit("src/tests/fit/dialogs/DlgLicense.fit");
 		tests.runFit("src/tests/fit/dialogs/DlgLogView.fit");
 		tests.runFit("src/tests/fit/dialogs/DlgReport.fit");

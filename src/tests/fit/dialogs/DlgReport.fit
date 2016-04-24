@@ -64,6 +64,11 @@
 					<td>getPreferencesCount</td>
 					<td>0</td>
 				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table>
 
@@ -210,6 +215,11 @@
 					<td>check</td>
 					<td>preferenceDateTo</td>
 					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
 				</tr>
 			</tbody>
 		</table>

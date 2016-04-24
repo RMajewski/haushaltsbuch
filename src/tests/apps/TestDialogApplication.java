@@ -24,7 +24,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import haushaltsbuch.datas.ReportPreferencesData;
@@ -33,7 +32,6 @@ import haushaltsbuch.dialogs.DlgExportSqlScript;
 import haushaltsbuch.dialogs.DlgLicense;
 import haushaltsbuch.dialogs.DlgLogView;
 import haushaltsbuch.dialogs.DlgReport;
-import tests.tests.dialogs.TestDlgAbout;
 
 /**
  * Ruft zum testen den angegebenen Dialog auf, damit er mit Jemmy und Fit

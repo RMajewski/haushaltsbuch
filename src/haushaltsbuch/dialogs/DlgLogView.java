@@ -19,21 +19,21 @@
 
 package haushaltsbuch.dialogs;
 
+import java.awt.BorderLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import haushaltsbuch.datas.LogData;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.renderer.LogViewListRenderer;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JButton;
 
 /**
  * In diesen Dialog wird das Log angezeigt.

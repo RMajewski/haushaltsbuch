@@ -28,9 +28,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
-import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -39,11 +37,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.db.DbController;
-import haushaltsbuch.db.query.Category;
 import haushaltsbuch.db.query.Money;
 import haushaltsbuch.db.query.MoneyDetails;
 import haushaltsbuch.db.query.Queries;
-import haushaltsbuch.db.query.Section;
 import haushaltsbuch.tables.models.MoneyListModel;
 
 /**

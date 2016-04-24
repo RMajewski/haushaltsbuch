@@ -19,8 +19,6 @@
 
 package tests.fixtures.dialogs;
 
-import java.lang.reflect.InvocationTargetException;
-
 import fit.ColumnFixture;
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.helper.HelperCalendar;
