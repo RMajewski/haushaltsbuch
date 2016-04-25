@@ -75,7 +75,7 @@ public class FixtureWndCategoryList extends FixtureWndTables {
 	 * Drückt den Popup-Menü Eintrag "Ändern"
 	 */
 	public void pushPopupChange() {
-		_test.pushPopup("Ändern");
+		_test.pushNoBlockPopup("Ändern");
 		_test.waitDlg("Kategorie ändern");
 	}
 	
@@ -83,7 +83,7 @@ public class FixtureWndCategoryList extends FixtureWndTables {
 	 * Drückt den Popop-Menü-Eintrag "Neu"
 	 */
 	public void pushPopupInsert() {
-		_test.pushPopup("Neu");
+		_test.pushNoBlockPopup("Neu");
 		_test.waitDlg("Kategorie erstellen");
 	}
 	

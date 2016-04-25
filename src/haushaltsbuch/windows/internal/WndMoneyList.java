@@ -42,6 +42,10 @@ import haushaltsbuch.tables.models.MoneyListModel;
  * @since 0.1
  */
 public class WndMoneyList extends WndTableFrame {
+	/**
+	 * Speichert den Titel des Fensters.
+	 */
+	public static final String WND_TITLE = "Einnahmen und Ausgaben";
 
 	/**
 	 * Serilisation ID
@@ -56,7 +60,7 @@ public class WndMoneyList extends WndTableFrame {
 		super();
 
 		// Titel
-		setTitle("Einnahmen und Ausgaben");
+		setTitle(WND_TITLE);
 		
 		// Popup-Menü initalisieren
 		_popup = new PopupMoneyList(this);

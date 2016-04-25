@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Liste der Einnahmen und Ausgaben (Details)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Liste der Einnahmen und Ausgaben (Details)</h2>
+		
+		<p>In diesem Test wird ein Datensatz ausgewählt. Danach wird auf den
+		Popup-Menü-Eintrag Details geklickt. Es wird das folgende Unterfenster
+		abgebrochen. Nun wird doppelt auf die 1. Zeile geklickt. Es wird
+		kontrolliert, ob das Details-Fenster geöffnet wurde.
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndMoneyList</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>databaseInsertMoney</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPopupDetailsItemEnable</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectRowOne</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPopupDetailsItemEnable</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushPopupDetails</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushWindowClose</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>doubleClickOnRow0</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>true</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

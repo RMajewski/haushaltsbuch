@@ -458,10 +458,6 @@ public class TestsHaushaltsbuch {
 		tests.runJunit("tests.tests.tables.models.TestReportYearModel");
 
 		
-		// Unterfenster
-		tests.runTest(tests.tests.windows.internal.TestWndMoneyList.class.getName());
-
-		
 		// Fit-Test der Dialoge
 		tests.runFit("src/tests/fit/dialogs/DlgAbout.fit");
 		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptCancel.fit");
@@ -489,6 +485,10 @@ public class TestsHaushaltsbuch {
 		tests.runFit("src/tests/fit/windows/internal/WndSectionInsert.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndSectionListChange.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndSectionListDelete.fit");
+		tests.runFit("src/tests/fit/windows/internal/WndMoneyListInsert.fit");
+		tests.runFit("src/tests/fit/windows/internal/WndMoneyListChange.fit");
+		tests.runFit("src/tests/fit/windows/internal/WndMoneyListDelete.fit");
+		tests.runFit("src/tests/fit/windows/internal/WndMoneyListDetails.fit");
 		
 		// Statistik ausgeben
 		tests.statistics();

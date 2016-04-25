@@ -49,7 +49,7 @@ public class FixtureWndSectionList extends FixtureWndTables {
 	 * Drückt den Popup-Menü Eintrag "Ändern"
 	 */
 	public void pushPopupChange() {
-		_test.pushPopup("Ändern");
+		_test.pushNoBlockPopup("Ändern");
 		_test.waitDlg("Geschäft ändern");
 	}
 	
@@ -57,7 +57,7 @@ public class FixtureWndSectionList extends FixtureWndTables {
 	 * Drückt den Popop-Menü-Eintrag "Neu"
 	 */
 	public void pushPopupInsert() {
-		_test.pushPopup("Neu");
+		_test.pushNoBlockPopup("Neu");
 		_test.waitDlg("Geschäft erstellen");
 	}
 	

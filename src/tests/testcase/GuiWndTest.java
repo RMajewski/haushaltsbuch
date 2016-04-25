@@ -36,6 +36,7 @@ import org.netbeans.jemmy.operators.JTextFieldOperator;
 import org.netbeans.jemmy.operators.Operator;
 
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.tables.models.MoneyListModel;
 import haushaltsbuch.windows.WndMain;
 import tests.exception.GuiTestException;
 
@@ -304,8 +305,17 @@ public abstract class GuiWndTest extends GuiTest {
 	 * 
 	 * @param path Welcher Menü-Eintrag soll gedrückt werden?
 	 */
-	public void pushPopup(String path) {
+	public void pushNoBlockPopup(String path) {
 		_popup.pushMenuNoBlock(path);
+	}
+	
+	/**
+	 * Simuliert einen Klick auf denen angegeben Popup-Menü Eintrag.
+	 * 
+	 * @param path Welcher Menü-Eintrag soll gedrückt werden?
+	 */
+	public void pushPopup(String path) {
+		_popup.pushMenu(path);
 	}
 	
 	/**
@@ -389,5 +399,12 @@ public abstract class GuiWndTest extends GuiTest {
 	 */
 	public void tableDoubleClick(int row) {
 		_table.clickMouse(row, 0, 2);
+	}
+	
+	/**
+	 * Veranlasst die Tabelle die Daten neu einzulesen.
+	 */
+	public void tableRefreshData() {
+		((MoneyListModel)_table.getModel()).dataRefresh(true);
 	}
 }

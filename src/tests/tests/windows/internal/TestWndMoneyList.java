@@ -28,6 +28,8 @@ import org.netbeans.jemmy.operators.Operator;
 
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.tables.models.MoneyListModel;
+import haushaltsbuch.windows.internal.WndMoneyList;
+import haushaltsbuch.windows.internal.WndSectionList;
 import tests.exception.GuiTestException;
 import tests.testcase.GuiWndTest;
 
@@ -41,6 +43,23 @@ import tests.testcase.GuiWndTest;
  * @since 0.1
  */
 public class TestWndMoneyList extends GuiWndTest {
+	/**
+	 * Speichert wie das Fenster geöffnet werden soll.
+	 */
+	private static final String _menuPath = "Datenbank|Einnahmen und Ausgaben";
+	
+	/**
+	 * Speichert das Fenster zum Einfügen und Ändern
+	 */
+	private JInternalFrameOperator _wndInsert;
+	
+	/**
+	 * Initalisiert die Klasse
+	 */
+	public TestWndMoneyList() throws Exception {
+		testInit(WndMoneyList.WND_TITLE, _menuPath, false);
+	}
+
 	/**
 	 * Testet, ob die Menü-Einträge "Ändern", "Löschen" und "Details" richtig
 	 * gesetzt sind.
@@ -88,7 +107,7 @@ public class TestWndMoneyList extends GuiWndTest {
 	public int runIt(Object arg0) {
 		try {
 			// Testet, ob das Fenster richtig initalisiert wurde
-			testInit("Einnahmen und Ausgaben", "Datenbank|Einnahmen und Ausgaben");
+			testInit(WndMoneyList.WND_TITLE, _menuPath, true);
 			
 			// Datensatz einfügen und Daten aktualisieren in der Tabelle
 			DbController.getInstance().createStatement().executeUpdate(
@@ -207,6 +226,77 @@ public class TestWndMoneyList extends GuiWndTest {
 		
 		test("Neu->Abbrechen sollte sich in der Tabelle nichts geändert haben",
 				row == _table.getRowCount());
+	}
+	
+	/**
+	 * Fängt das Einfügen/Ändern Fenster ab.
+	 */
+	public void waitWindow(String name) {
+		_wndInsert = new JInternalFrameOperator(_wnd, name);
+	}
+	
+	/**
+	 * Überprüft, ob das für Einfügen/Ändern angezeigt wird.
+	 * 
+	 * @return Wird das Unterfenster angezeigt?
+	 */
+	public boolean isWindowVisible() {
+		return _wndInsert.isVisible();
+	}
+	
+	/**
+	 * Drückt den Abbrechen-Button im Unterfenster
+	 */
+	public void pushWindowCancel() {
+		new JButtonOperator(_wndInsert, "Abbrechen").push();
+	}
+	
+	/**
+	 * Beendet das Unterfenster
+	 */
+	public void windowClose() {
+		_wndInsert.setVisible(false);
+	}
+	
+	/**
+	 * Ermittelt das ID aus der selektierten Zeile.
+	 * 
+	 * @return ID der selektierten Zeile
+	 */
+	public int getTableSelectedId() {
+		return ((MoneyListModel)_table.getModel()).getRowDataAt(
+				_table.getSelectedRow()).getId();
+	}
+	
+	/**
+	 * Ermittelt das Datum aus der selektierten Zeile.
+	 * 
+	 * @return Datum der selektierten Zeile
+	 */
+	public String getTableSelectedDate() {
+		return ((MoneyListModel)_table.getModel()).getRowDataAt(
+				_table.getSelectedRow()).getDateAsString();
+	}
+	
+	/**
+	 * Ermittelt ob es sich in der selektieren Zeile eine Einahme oder Ausgabe
+	 * ist.
+	 * 
+	 * @return Einnahme oder Ausgabe der selektierten Zeile?
+	 */
+	public boolean getTableSelectedInOut() {
+		return ((MoneyListModel)_table.getModel()).getRowDataAt(
+				_table.getSelectedRow()).getInOut();
+	}
+	
+	/**
+	 * Ermittelt den Kommentar aus der selektierten Zeile.
+	 * 
+	 * @return Kommentar der selektierten Zeile
+	 */
+	public String getTableSelectedComment() {
+		return ((MoneyListModel)_table.getModel()).getRowDataAt(
+				_table.getSelectedRow()).getComment();
 	}
 
 	/**

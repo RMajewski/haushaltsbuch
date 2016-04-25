@@ -21,6 +21,7 @@ package tests.fixtures;
 
 import fit.ActionFixture;
 import tests.testcase.GuiWndTest;
+import tests.tests.windows.internal.TestWndMoneyList;
 
 /**
  * Von diesem Fixture werden alle Fixture abgeleitet, die Unterfenster mit
@@ -58,6 +59,33 @@ public class FixtureWndTables extends ActionFixture {
 	 */
 	public String columnHeader1() {
 		return _test.getColumnHeader(1);
+	}
+	
+	/**
+	 * Ermittelt die Überschrift der Spalte 2
+	 * 
+	 * @return Überschrift der Spalte 2
+	 */
+	public String columnHeader2() {
+		return _test.getColumnHeader(2);
+	}
+	
+	/**
+	 * Ermittelt die Überschrift der Spalte 3
+	 * 
+	 * @return Überschrift der Spalte 3
+	 */
+	public String columnHeader3() {
+		return _test.getColumnHeader(3);
+	}
+	
+	/**
+	 * Ermittelt die Überschrift der Spalte 4
+	 * 
+	 * @return Überschrift der Spalte 4
+	 */
+	public String columnHeader4() {
+		return _test.getColumnHeader(4);
 	}
 	
 	/**
@@ -184,7 +212,7 @@ public class FixtureWndTables extends ActionFixture {
 	 * Drückt den Popup-Menü Eintrag "Löschen"
 	 */
 	public void pushPopupDelete() {
-		_test.pushPopup("Löschen");
+		_test.pushNoBlockPopup("Löschen");
 		_test.waitDlg("Datensatz löschen");
 	}
 	
@@ -193,6 +221,25 @@ public class FixtureWndTables extends ActionFixture {
 	 */
 	public void selectRowOne() {
 		_test.tableSelectRow(0);
+	}
+	
+	/**
+	 * Ermittelt, ob ein Popup-Menü-Eintrag "Details" existiert
+	 * 
+	 * @return Existiert der Popup-Menü-Eintrag "Details"?
+	 */
+	public String popupHaveDetailsItem() {
+		return String.valueOf(_test.getPopupItem(4).getText().equals(
+				"Details"));
+	}
+	
+	/**
+	 * Ermittelt, ob das Unterfenster angezeigt wird.
+	 * 
+	 * @return Wird das Unterfenster angezeigt?
+	 */
+	public String isWindowVisible() {
+		return String.valueOf(((TestWndMoneyList)_test).isWindowVisible());
 	}
 	
 }
