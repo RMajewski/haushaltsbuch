@@ -80,7 +80,6 @@ public class TestWndMoneyChange extends GuiWndTest {
 						true, "Dies ist ein Test"));
 		
 		// Fenster für Einnahmen und Ausgaben aufrufen
-		String date = HelperCalendar.dateToString(new Date().getTime());
 		testInit(WndMoneyList.WND_TITLE, TestWndMoneyList.MENU_PATH, false);
 		
 		// Fenster fürs Einfügen aufrufen
@@ -127,7 +126,6 @@ public class TestWndMoneyChange extends GuiWndTest {
 
 	@Override
 	public int runIt(Object arg0) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
@@ -206,6 +204,15 @@ public class TestWndMoneyChange extends GuiWndTest {
 	public String getTextFromDate() {
 		return _date.getText();
 	}
+	
+	/**
+	 * Ermittelt, ob das Fenster angezeigt wird oder nicht.
+	 * 
+	 * @return Wird das Fenster angezeigt?
+	 */
+	public boolean isWindowVisible() {
+		return _wndChange.isVisible();
+	}
 
 	/**
 	 * Ruft das Testprogramm auf
@@ -215,15 +222,6 @@ public class TestWndMoneyChange extends GuiWndTest {
 	public static void main(String[] args) {
 		System.setProperty("testing", "true");
 		Test.main(new String[] {"tests.tests.windows.internal.TestWndMoneyChange"});
-	}
-	
-	/**
-	 * Ermittelt, ob das Fenster angezeigt wird oder nicht.
-	 * 
-	 * @return Wird das Fenster angezeigt?
-	 */
-	public boolean isWindowVisible() {
-		return _wndChange.isVisible();
 	}
 
 }

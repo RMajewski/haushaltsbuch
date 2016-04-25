@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Einnahmen und Ausgaben Einfügen (Einfügen)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Einnahmen und Ausgaben Einfügen (Einfügen)</h2>
+		
+		<p>Startet das Fenster zum eingaben der Details für die Einnahmen und
+		die Ausgaben. Es wird der Text aus dem Betrag-Feld gelöscht und auf
+		Speichern geklickt. Nun wird überprüft, ob sich ein Hinweis-Dialog
+		öffnet. Als nächstes wird versucht ein Wort in das Text-Feld für den
+		Betrag einzugeben. Nachdem das Textfeld den Fokus verloren hat, so wird
+		das Text-Feld automatisch geleert. Zum Schluss wird ein Betrag und ein
+		Kommentar eingetragen und dann auf Speichern geklickt. Es sollte ein
+		neuer Datensatz erstellt worden sein.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndMoneyDetailsChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveCategoryComboBox</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveSectionComboBox</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveMoneyTextField</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveCommentTextArea</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveCancelButton</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveSaveButton</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setMoneyText</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushNoBlockSave</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDialogVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDialogOk</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setMoneyText</td>
+					<td>Test</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>focusCommentArea</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getMoney</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setMoneyText</td>
+					<td>15.78</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setCommentTextArea</td>
+					<td>Dies ist ein Test</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushSave</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>2</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

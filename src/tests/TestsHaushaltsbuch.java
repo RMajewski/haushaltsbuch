@@ -494,6 +494,7 @@ public class TestsHaushaltsbuch {
 		tests.runFit("src/tests/fit/windows/internal/WndMoneyDetailsListDelete.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndMoneyChangeInsert.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndMoneyChangeNotInsert.fit");
+		tests.runFit("src/tests/fit/windows/internal/WndMoneyDetailsChangeInsert.fit");
 		
 		// Statistik ausgeben
 		tests.statistics();
