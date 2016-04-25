@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Liste der Kategorien (Löschen)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Liste der Kategorien (Löschen)</h2>
+		
+		<p>In diesem Test wird ein Datensatz ausgewählt. Danach wird auf den
+		Popup-Menü-Eintrag Löschen geklickt. Es wird das folgende Dialog-Fenster
+		abgebrochen. Nun wird kontrolliert, dass kein Datensatz gelöscht wurde.
+		Löschen wird erneut angeklickt und diesmal im Dialog bestätigt, dass
+		gelöscht werden soll. Zum Schluß wird überprüft, ob auch tatsächlich der
+		Datensatz gelöscht wurde.
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndSectionList</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>14</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPopupDeleteItemEnable</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectRowOne</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPopupDeleteItemEnable</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushPopupDelete</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDialogVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDialogNo</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDialogVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>14</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushPopupDelete</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDialogYes</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>13</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

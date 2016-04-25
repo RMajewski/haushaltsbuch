@@ -19,7 +19,6 @@
 
 package tests.testcase;
 
-import java.awt.Component;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
@@ -381,5 +380,14 @@ public abstract class GuiWndTest extends GuiTest {
 	 */
 	public int getTableSelectedRow() {
 		return _table.getSelectedRow();
+	}
+	
+	/**
+	 * Klickt auf die angegebene Zeile doppelt.
+	 * 
+	 * @param row Zeile, auf die doppelt geklickt werden soll.
+	 */
+	public void tableDoubleClick(int row) {
+		_table.clickMouse(row, 0, 2);
 	}
 }

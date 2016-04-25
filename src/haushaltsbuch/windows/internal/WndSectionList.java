@@ -46,6 +46,11 @@ import haushaltsbuch.tables.models.IdNameListModel;
  * @since 0.1
  */
 public class WndSectionList extends WndTableFrame {
+	
+	/**
+	 * Speichert den Titel des Fensters
+	 */
+	public static final String WND_TITLE = "Geschäfte";
 
 	/**
 	 * Serilisation ID
@@ -61,7 +66,7 @@ public class WndSectionList extends WndTableFrame {
 		super();
 		
 		// Title
-		setTitle("Geschäfte");
+		setTitle(WND_TITLE);
 		
 		// Tabelle initalisieren
 		IdNameListModel model = new IdNameListModel(DbController.queries().section().select()); 
@@ -152,10 +157,9 @@ public class WndSectionList extends WndTableFrame {
 				
 				// Geschäft ändern
 				String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Geschäft ändern", JOptionPane.OK_CANCEL_OPTION);
-				if ((cc != null) && !cc.isEmpty() && (cc.compareTo(data.getName()) != 0)) {
+				if ((cc != null) && !cc.isEmpty() && !cc.equals(data.getName())) {
 					Statement stm = DbController.getInstance().createStatement();
 					if (stm.executeUpdate(DbController.queries().section().update(data.getId(), cc)) > 0) {
-					}
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusUpdateOk(data.getId()));
 					} else {
 						StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusUpdateError(data.getId()));
@@ -163,11 +167,12 @@ public class WndSectionList extends WndTableFrame {
 	
 					// Tabelle neu zeichnen
 					((IdNameListModel)_table.getModel()).dataRefresh(true);
-				} catch (SQLException e) {
-					StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-					e.printStackTrace();
 				}
+			} catch (SQLException e) {
+				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+				e.printStackTrace();
 			}
+		}
 	}
 
 }

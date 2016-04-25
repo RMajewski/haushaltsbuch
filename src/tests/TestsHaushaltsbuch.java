@@ -459,8 +459,6 @@ public class TestsHaushaltsbuch {
 
 		
 		// Unterfenster
-//		tests.runTest(tests.tests.windows.internal.TestWndCategoryList.class.getName());
-		tests.runTest(tests.tests.windows.internal.TestWndSectionList.class.getName());
 		tests.runTest(tests.tests.windows.internal.TestWndMoneyList.class.getName());
 
 		
@@ -488,7 +486,9 @@ public class TestsHaushaltsbuch {
 		tests.runFit("src/tests/fit/windows/internal/WndCategoryListInsert.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndCategoryListChange.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndCategoryListDelete.fit");
-		
+		tests.runFit("src/tests/fit/windows/internal/WndSectionInsert.fit");
+		tests.runFit("src/tests/fit/windows/internal/WndSectionListChange.fit");
+		tests.runFit("src/tests/fit/windows/internal/WndSectionListDelete.fit");
 		
 		// Statistik ausgeben
 		tests.statistics();

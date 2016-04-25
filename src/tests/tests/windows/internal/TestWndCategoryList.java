@@ -45,7 +45,6 @@ public class TestWndCategoryList extends GuiWndIdNameTest {
 	 * @throws Exception 
 	 */
 	public TestWndCategoryList() throws Exception {
-		// Testet, ob das Fenster richtig initalisiert wurde
 		testInit(WndCategoryList.WND_TITLE, _menuPath, false);
 	}
 	

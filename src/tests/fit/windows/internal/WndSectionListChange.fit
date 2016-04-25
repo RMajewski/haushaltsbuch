@@ -1,10 +1,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Unterfenster: Liste der Kategorien (Ändern)</title>
+		<title>Unterfenster: Liste der Geschäfte (Ändern)</title>
 	</head>
 	<body>
-		<h2>Unterfenster: Liste der Kategorien (Ändern)</h2>
+		<h2>Unterfenster: Liste der Geschäfte (Ändern)</h2>
 	
 		<p>In diesem Test wird eine Zeile in der Tabelle ausgewählt. Danach wird
 		im Popup-Menü auf den Menü-Eintrag Ändern geklickt. Der sich öffnende
@@ -20,7 +20,7 @@
 				</tr>
 				<tr>
 					<td>start</td>
-					<td>tests.fixtures.windows.internal.FixtureWndCategoryList</td>
+					<td>tests.fixtures.windows.internal.FixtureWndSectionList</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
@@ -40,28 +40,18 @@
 				</tr>
 				<tr>
 					<td>check</td>
-					<td>isPopupChangeItemEnable</td>
-					<td>true</td>
+					<td>getSelectedCategory</td>
+					<td>jobcenter</td>
 				</tr>
 				<tr>
 					<td>press</td>
 					<td>openPopup</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>press</td>
-					<td>pushPopupChange</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
 					<td>check</td>
-					<td>getSelectedCategory</td>
-					<td>Lebensmittel</td>
-				</tr>
-				<tr>
-					<td>press</td>
-					<td>openPopup</td>
-					<td>&nbsp;</td>
+					<td>isPopupChangeItemEnable</td>
+					<td>true</td>
 				</tr>
 				<tr>
 					<td>press</td>
@@ -75,7 +65,7 @@
 				</tr>
 				<tr>
 					<td>enter</td>
-					<td>setCategory</td>
+					<td>setSection</td>
 					<td>Test</td>
 				</tr>
 				<tr>
@@ -91,7 +81,7 @@
 				<tr>
 					<td>check</td>
 					<td>getSelectedCategory</td>
-					<td>Lebensmittel</td>
+					<td>jobcenter</td>
 				</tr>
 				<tr>
 					<td>press</td>
@@ -105,7 +95,7 @@
 				</tr>
 				<tr>
 					<td>enter</td>
-					<td>setCategory</td>
+					<td>setSection</td>
 					<td></td>
 				</tr>
 				<tr>
@@ -121,7 +111,7 @@
 				<tr>
 					<td>check</td>
 					<td>getSelectedCategory</td>
-					<td>Lebensmittel</td>
+					<td>jobcenter</td>
 				</tr>
 				<tr>
 					<td>press</td>
@@ -135,7 +125,7 @@
 				</tr>
 				<tr>
 					<td>enter</td>
-					<td>setCategory</td>
+					<td>setSection</td>
 					<td>Test</td>
 				</tr>
 				<tr>

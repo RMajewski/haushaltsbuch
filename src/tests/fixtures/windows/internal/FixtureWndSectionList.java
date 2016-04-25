@@ -23,30 +23,51 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JMenuItem;
-
-import fit.ActionFixture;
 import haushaltsbuch.db.DbController;
 import tests.fixtures.FixtureWndTables;
-import tests.tests.windows.internal.TestWndCategoryList;
+import tests.tests.windows.internal.TestWndSectionList;
 
 /**
- * Stellt die Funktionen für den Fit-Test des Unterfensters "Kategorien" bereit.
+ * Stellt die Schnittstelle zwischen den Fit-Tests für das Fenster
+ * WndSectionList und dem Test-Programm TestWndSectionList dar.
  * 
  * @author René Majewski
  *
  * @version 0.1
  * @since 0.2
  */
-public class FixtureWndCategoryList extends FixtureWndTables {
+public class FixtureWndSectionList extends FixtureWndTables {
+
 	/**
 	 * Initalisiert die Klasse
-	 * 
-	 * @throws Exception Wird geworfen, wenn ein Fehler aufgetreten ist. 
 	 */
-	public FixtureWndCategoryList() throws Exception {
-		_test = new TestWndCategoryList();
-		_tableName = "category";
+	public FixtureWndSectionList() throws Exception {
+		_test = new TestWndSectionList();
+	}
+	
+	/**
+	 * Drückt den Popup-Menü Eintrag "Ändern"
+	 */
+	public void pushPopupChange() {
+		_test.pushPopup("Ändern");
+		_test.waitDlg("Geschäft ändern");
+	}
+	
+	/**
+	 * Drückt den Popop-Menü-Eintrag "Neu"
+	 */
+	public void pushPopupInsert() {
+		_test.pushPopup("Neu");
+		_test.waitDlg("Geschäft erstellen");
+	}
+	
+	/**
+	 * Übergibt den Text-Feld im Dialog den Namen
+	 * 
+	 * @param name Name der Kategorie
+	 */
+	public void setSection(String name) {
+		_test.setDialogText(name);
 	}
 	
 	/**
@@ -58,7 +79,7 @@ public class FixtureWndCategoryList extends FixtureWndTables {
 	 */
 	public String getLastCategory() throws SQLException {
 		Statement stm = DbController.getInstance().createStatement();
-		ResultSet rs = stm.executeQuery("SELECT name FROM category ORDER BY id DESC");
+		ResultSet rs = stm.executeQuery("SELECT name FROM section ORDER BY id DESC");
 		return rs.getString("name");
 	}
 	
@@ -68,31 +89,14 @@ public class FixtureWndCategoryList extends FixtureWndTables {
 	 * @return Name der Kategorie der selektieren Zeile
 	 */
 	public String getSelectedCategory() {
-		return ((TestWndCategoryList)_test).getTableSelectName();
+		return ((TestWndSectionList)_test).getTableSelectName();
 	}
 	
 	/**
-	 * Drückt den Popup-Menü Eintrag "Ändern"
+	 * Es wird auf die 1. Zeile doppelt geklickt.
 	 */
-	public void pushPopupChange() {
-		_test.pushPopup("Ändern");
-		_test.waitDlg("Kategorie ändern");
-	}
-	
-	/**
-	 * Drückt den Popop-Menü-Eintrag "Neu"
-	 */
-	public void pushPopupInsert() {
-		_test.pushPopup("Neu");
-		_test.waitDlg("Kategorie erstellen");
-	}
-	
-	/**
-	 * Übergibt den Text-Feld im Dialog den Namen
-	 * 
-	 * @param name Name der Kategorie
-	 */
-	public void setCategory(String name) {
-		_test.setDialogText(name);
+	public void tableDoubleClick() {
+		_test.tableDoubleClick(0);
+		_test.waitDlg("Geschäft ändern");
 	}
 }

@@ -1,18 +1,17 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Unterfenster: Liste der Kategorien (Ändern)</title>
+		<title>Unterfenster: Liste der Geschäfte (Neu)</title>
 	</head>
 	<body>
-		<h2>Unterfenster: Liste der Kategorien (Ändern)</h2>
-	
-		<p>In diesem Test wird eine Zeile in der Tabelle ausgewählt. Danach wird
-		im Popup-Menü auf den Menü-Eintrag Ändern geklickt. Der sich öffnende
-		Dialog wird abgebrochen. Es wird überprüft, ob sich der Datensatz nicht
-		geändert hat. Nun wird erneut auf den Popup-Menü-Eintrag Ändern
-		geklickt. Es wird ein Name für die Kategorie eingegeben und auf Ok
-		geklickt. Nun sollte sich der Name der ausgewählten Kategorie geändert
-		haben.</p>
+		<h2>Unterfenster: Liste der Geschäfte (Neu)</h2>
+		<p>Startet das Fenster über das Menü. Danach wird überprüft, ob die
+		Spalten-Überschriften der Tabelle und die Zeilenanzahl richtig sind.
+		Danach werden die Einträge für das Popup-Menü überprüft. Nun wird das
+		Menü-Feld Einfügen angeklickt. Der sich öffnende Dialog wird abgebrochen
+		und überprüft, ob er keinen neuen Datensatz angelegt hat. Zum Schluss
+		wird noch einmal einfügen aufgerufen und versucht ein neuer Datensatz
+		anzulegen. Dieser sollte in der Datenbank abgespeichert worden sein.</p>
 		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
 			<tbody>
 				<tr>
@@ -20,8 +19,33 @@
 				</tr>
 				<tr>
 					<td>start</td>
-					<td>tests.fixtures.windows.internal.FixtureWndCategoryList</td>
+					<td>tests.fixtures.windows.internal.FixtureWndSectionList</td>
 					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveTable</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableColumnCount</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>columnHeader0</td>
+					<td>ID</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>columnHeader1</td>
+					<td>Geschäft</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>14</td>
 				</tr>
 				<tr>
 					<td>press</td>
@@ -30,42 +54,27 @@
 				</tr>
 				<tr>
 					<td>check</td>
-					<td>isPopupChangeItemEnable</td>
-					<td>false</td>
-				</tr>
-				<tr>
-					<td>press</td>
-					<td>selectRowOne</td>
-					<td>&nbsp;</td>
+					<td>popupItemCount</td>
+					<td>3</td>
 				</tr>
 				<tr>
 					<td>check</td>
-					<td>isPopupChangeItemEnable</td>
+					<td>popupHaveInsertItem</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>popupHaveChangeItem</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>popupHaveDeleteItem</td>
 					<td>true</td>
 				</tr>
 				<tr>
 					<td>press</td>
-					<td>openPopup</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>press</td>
-					<td>pushPopupChange</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>check</td>
-					<td>getSelectedCategory</td>
-					<td>Lebensmittel</td>
-				</tr>
-				<tr>
-					<td>press</td>
-					<td>openPopup</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>press</td>
-					<td>pushPopupChange</td>
+					<td>pushPopupInsert</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
@@ -75,7 +84,7 @@
 				</tr>
 				<tr>
 					<td>enter</td>
-					<td>setCategory</td>
+					<td>setSection</td>
 					<td>Test</td>
 				</tr>
 				<tr>
@@ -90,8 +99,8 @@
 				</tr>
 				<tr>
 					<td>check</td>
-					<td>getSelectedCategory</td>
-					<td>Lebensmittel</td>
+					<td>getTableRowCount</td>
+					<td>14</td>
 				</tr>
 				<tr>
 					<td>press</td>
@@ -100,12 +109,12 @@
 				</tr>
 				<tr>
 					<td>press</td>
-					<td>pushPopupChange</td>
+					<td>pushPopupInsert</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
 					<td>enter</td>
-					<td>setCategory</td>
+					<td>setSection</td>
 					<td></td>
 				</tr>
 				<tr>
@@ -119,23 +128,18 @@
 					<td>14</td>
 				</tr>
 				<tr>
-					<td>check</td>
-					<td>getSelectedCategory</td>
-					<td>Lebensmittel</td>
-				</tr>
-				<tr>
 					<td>press</td>
 					<td>openPopup</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
 					<td>press</td>
-					<td>pushPopupChange</td>
+					<td>pushPopupInsert</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
 					<td>enter</td>
-					<td>setCategory</td>
+					<td>setSection</td>
 					<td>Test</td>
 				</tr>
 				<tr>
@@ -146,21 +150,11 @@
 				<tr>
 					<td>check</td>
 					<td>getTableRowCount</td>
-					<td>14</td>
+					<td>15</td>
 				</tr>
 				<tr>
 					<td>check</td>
-					<td>getTableSelectedRow</td>
-					<td>-1</td>
-				</tr>
-				<tr>
-					<td>press</td>
-					<td>selectRowOne</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>check</td>
-					<td>getSelectedCategory</td>
+					<td>getLastCategory</td>
 					<td>Test</td>
 				</tr>
 			</tbody>

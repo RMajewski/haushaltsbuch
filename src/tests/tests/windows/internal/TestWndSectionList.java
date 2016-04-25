@@ -21,6 +21,9 @@ package tests.tests.windows.internal;
 
 import org.netbeans.jemmy.Test;
 
+import haushaltsbuch.tables.models.IdNameListModel;
+import haushaltsbuch.windows.internal.WndCategoryList;
+import haushaltsbuch.windows.internal.WndSectionList;
 import tests.testcase.GuiWndIdNameTest;
 
 /**
@@ -31,13 +34,25 @@ import tests.testcase.GuiWndIdNameTest;
  */
 public class TestWndSectionList extends GuiWndIdNameTest {
 	/**
+	 * Speichert wie das Fenster geöffnet werden soll.
+	 */
+	private static final String _menuPath = "Datenbank|Geschäfte";
+	
+	/**
+	 * Initalisiert die Klasse
+	 */
+	public TestWndSectionList() throws Exception{
+		testInit(WndSectionList.WND_TITLE, _menuPath, false);
+	}
+	
+	/**
 	 * Führt den Test aus
 	 */
 	@Override
 	public int runIt(Object arg0) {
 		try {
 			// Testet, ob das Fenster richtig initalisiert wurde
-			testInit("Geschäfte", "Datenbank|Geschäfte");
+			testInit(WndSectionList.WND_TITLE, _menuPath, true);
 			
 			// Spaltenüberschriften
 			test("Ist der Name der Spalte 0 'ID'?",
@@ -72,6 +87,16 @@ public class TestWndSectionList extends GuiWndIdNameTest {
 		
 		// Da bisher nicht beendet mit 0 beenden (kein Fehler)
 		return 0;
+	}
+	
+	/**
+	 * Ermittelt den Namen des Geschäftes aus der selektierten Zeile.
+	 * 
+	 * @return Name des Geschäftes aus der selektierten Zeile
+	 */
+	public String getTableSelectName() {
+		return ((IdNameListModel)_table.getModel()).getRowDataAt(
+				_table.getSelectedRow()).getName();
 	}
 
 	/**
