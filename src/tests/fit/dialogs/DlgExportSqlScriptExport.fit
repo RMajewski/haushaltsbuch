@@ -1,0 +1,95 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Export SQL-Script (Export)</title>
+	</head>
+	<body>
+		<h2>Dialog: Export SQL-Script (Export)</h2>
+		
+		<p>Überprüft, der Dialog beendet wurde und die Einstellungen gespeichert
+		wurden, nachdem der Export-Button gedrückt wurde.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.dialogs.FixtureDlgExportSqlScript</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushExport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isCancel</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferencesCount</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportTableCategory</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportTableSection</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportTableMoney</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportTableMoneyDetails</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportDataCategory</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportDataSection</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportDataMoney</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportDataMoneyDetails</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</body>
+</html>

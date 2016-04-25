@@ -179,6 +179,20 @@ public class FixtureWndCategoryList extends ActionFixture {
 	}
 	
 	/**
+	 * Drückt im Dialog den Nein-Button
+	 */
+	public void pushDialogNo() {
+		_test.pushDialogNo();
+	}
+	
+	/**
+	 * Drückt im Dialog den Ja-Button
+	 */
+	public void pushDialogYes() {
+		_test.pushDialogYes();
+	}
+	
+	/**
 	 * Liest aus der Datenbank die letzte Kategorie und gibt deren Namen zurück.
 	 * 
 	 * @return Name der letzten Kategorie
@@ -201,6 +215,15 @@ public class FixtureWndCategoryList extends ActionFixture {
 	}
 	
 	/**
+	 * Ermittelt, ob der Popup-Menü Eintrag "Löschen" benutzbar ist oder nicht.
+	 * 
+	 * @return Ist der Eintrag "Löschen" benutzbar?
+	 */
+	public String isPopupDeleteItemEnable() {
+		return String.valueOf(_test.getPopupItem(2).isEnabled());
+	}
+	
+	/**
 	 * Selektiert in der Tabelle die erste Zeile.
 	 */
 	public void selectRowOne() {
@@ -216,11 +239,28 @@ public class FixtureWndCategoryList extends ActionFixture {
 	}
 	
 	/**
+	 * Drückt den Popup-Menü Eintrag "Löschen"
+	 */
+	public void pushPopupDelete() {
+		_test.pushPopup("Löschen");
+		_test.waitDlg("Datensatz löschen");
+	}
+	
+	/**
 	 * Ermittelt den Namen der Kategorie aus der selektieren Zeile.
 	 * 
 	 * @return Name der Kategorie der selektieren Zeile
 	 */
 	public String getSelectedCategory() {
 		return _test.getTableSelectName();
+	}
+	
+	/**
+	 * Ermittelt welche Zeile in der Tabelle ausgewählt ist.
+	 * 
+	 * @return Ausgewählte Zeile in der Tabelle
+	 */
+	public String getTableSelectedRow() {
+		return String.valueOf(_test.getTableSelectedRow());
 	}
 }

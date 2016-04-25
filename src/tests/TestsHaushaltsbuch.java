@@ -55,19 +55,19 @@ public class TestsHaushaltsbuch {
 	private int _passCount;
 	
 	/**
-	 * Speichert die Zeit, die alle Tests gebraucht haben.
+	 * Speichert die Zeit, die die GUI-Tests gebraucht haben
 	 */
-	private long _time;
+	private long _timeGui;
 	
 	/**
 	 * Speichert die Zeit, die die Fit-Tests gebraucht haben
 	 */
-	private long _fitTime;
+	private long _timeFit;
 	
 	/**
 	 * Speichert die Zeit, die die junit-Tests gebraucht haben
 	 */
-	private long _junitTime;
+	private long _timeJunit;
 	
 	/**
 	 * Speichert die Anzahl richtiger Behauptungen bei Fit-Tests
@@ -118,17 +118,17 @@ public class TestsHaushaltsbuch {
 		// Initalisierungen für Tests
 		_failCount = 0;
 		_passCount = 0;
-		_time = 0;
+		_timeGui = 0;
 		
 		// Initalisierungen für Fit-Tests
 		_fitRight = 0;
 		_fitWrong = 0;
 		_fitIgnore = 0;
 		_fitExceptions = 0;
-		_fitTime = 0;
+		_timeFit = 0;
 		
 		// Initalisierungen für junit-Test
-		_junitTime = 0;
+		_timeJunit = 0;
 	}
 	
 	/**
@@ -202,7 +202,7 @@ public class TestsHaushaltsbuch {
 			System.out.println(" ms)");
 			
 			// Vergangene Zeit neu berechnen
-			_time += ms;
+			_timeGui += ms;
 			
 			// Console-Ausgabe und Error-Ausgabe speichern
 			appendFile(FILE_NAME_CONSOLE, p.getInputStream(), test, start);
@@ -290,8 +290,7 @@ public class TestsHaushaltsbuch {
 			
 			// Dauer ausgeben
 			System.out.println(" (Dauer des Tests: " + ms + " ms)");
-			_time += ms;
-			_fitTime += ms;
+			_timeFit += ms;
 			
 			// Console in Datei speichern
 			appendFile(FILE_NAME_CONSOLE, p.getInputStream(), fit, start);
@@ -347,8 +346,7 @@ public class TestsHaushaltsbuch {
 			System.out.println(" ms)");
 			
 			// Vergangene Zeit neu berechnen
-			_time += ms;
-			_junitTime += ms;
+			_timeJunit += ms;
 			
 			// Console-Ausgabe und Error-Ausgabe speichern
 			appendFile(FILE_NAME_CONSOLE, p.getInputStream(), test, start);
@@ -394,12 +392,14 @@ public class TestsHaushaltsbuch {
 		
 		// Zeit ausgeben
 		System.out.println();
-		System.out.print("Dauer aller Tests (in Millisekunden): ");
-		System.out.println(String.valueOf(_time));
-		System.out.print("Dauer aller Fit-Tests (in Millisekunden): ");
-		System.out.println(String.valueOf(_fitTime));
 		System.out.print("Dauer aller junit-Tests (in Millisekunden): ");
-		System.out.println(String.valueOf(_junitTime));
+		System.out.println(String.valueOf(_timeJunit));
+		System.out.print("Dauer aller GUI-Tests (in Millisekunden): ");
+		System.out.println(String.valueOf(_timeGui));
+		System.out.print("Dauer aller Fit-Tests (in Millisekunden): ");
+		System.out.println(String.valueOf(_timeFit));
+		System.out.print("Dauer aller Tests (in Millisekunden): ");
+		System.out.println(String.valueOf(_timeJunit + _timeGui + _timeFit));
 	}
 	
 	/**
@@ -459,20 +459,35 @@ public class TestsHaushaltsbuch {
 
 		
 		// Unterfenster
-		tests.runTest(tests.tests.windows.internal.TestWndCategoryList.class.getName());
+//		tests.runTest(tests.tests.windows.internal.TestWndCategoryList.class.getName());
 		tests.runTest(tests.tests.windows.internal.TestWndSectionList.class.getName());
 		tests.runTest(tests.tests.windows.internal.TestWndMoneyList.class.getName());
 
 		
 		// Fit-Test der Dialoge
 		tests.runFit("src/tests/fit/dialogs/DlgAbout.fit");
-//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScript.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptCancel.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptExport.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptNoPreferences.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableCategory.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableSection.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableMoney.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableMoneyDetails.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataCategory.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataSection.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataMoney.fit");
+		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataMoneyDetails.fit");
 		tests.runFit("src/tests/fit/dialogs/DlgLicense.fit");
 		tests.runFit("src/tests/fit/dialogs/DlgLogView.fit");
 		tests.runFit("src/tests/fit/dialogs/DlgReport.fit");
 		
-		// Fit-Test der Hauptfenster
+		// Fit-Tests der Hauptfenster
 		tests.runFit("src/tests/fit/windows/WndMain.fit");
+		
+		// Fit-Tests der Unterfenster
+		tests.runFit("src/tests/fit/windows/internal/WndCategoryListInsert.fit");
+		tests.runFit("src/tests/fit/windows/internal/WndCategoryListChange.fit");
+		tests.runFit("src/tests/fit/windows/internal/WndCategoryListDelete.fit");
 		
 		
 		// Statistik ausgeben

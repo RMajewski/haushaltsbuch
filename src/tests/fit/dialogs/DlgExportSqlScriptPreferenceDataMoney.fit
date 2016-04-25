@@ -1,0 +1,120 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Export SQL-Script (Einstellung: Daten von 'money')</title>
+	</head>
+	<body>
+		<h2>Dialog: Export SQL-Script (Einstellung: Daten von 'money')</h2>
+		
+		<p>Überprüft, ob die Einstellung für den Export der Tabellen-Daten für
+		die Tabelle "money" richtig gespeichert wurde, wenn alle anderen
+		Einstellungen abgewählt wurden.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.dialogs.FixtureDlgExportSqlScript</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportTableCategory</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportTableSection</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportTableMoney</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportTableMoneyDetails</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportDataCategory</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportDataSection</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportDataMoney</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportDataMoneyDetails</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushExport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferencesCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportTableCategory</td>
+					<td>null</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportTableSection</td>
+					<td>null</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportTableMoney</td>
+					<td>null</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportTableMoneyDetails</td>
+					<td>null</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportDataCategory</td>
+					<td>null</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportDataSection</td>
+					<td>null</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportDataMoney</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportDataMoneyDetails</td>
+					<td>null</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

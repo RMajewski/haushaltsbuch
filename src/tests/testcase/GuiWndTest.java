@@ -352,11 +352,34 @@ public abstract class GuiWndTest extends GuiTest {
 	}
 	
 	/**
+	 * Drückt den Nein-Button im Dialog
+	 */
+	public void pushDialogNo() {
+		new JButtonOperator(_dlg, "Nein").push();
+	}
+	
+	/**
+	 * Drückt den Ja-Button im Dialog
+	 */
+	public void pushDialogYes() {
+		new JButtonOperator(_dlg, "Ja").push();
+	}
+	
+	/**
 	 * Selektiert in der Tabelle die angebene Zeile.
 	 * 
 	 * @param row Zeile, die selektiert werden soll.
 	 */
 	public void tableSelectRow(int row) {
 		_table.selectCell(row, 0);
+	}
+	
+	/**
+	 * Ermittelt welche Zeile in der Tabelle selektiert ist.
+	 * 
+	 * @return Zeilennummer der Zeile, die in der Tabelle selektiert ist.
+	 */
+	public int getTableSelectedRow() {
+		return _table.getSelectedRow();
 	}
 }

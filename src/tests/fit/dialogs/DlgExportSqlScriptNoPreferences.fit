@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Export SQL-Script (Keine Einstellungen)</title>
+	</head>
+	<body>
+		<h2>Dialog: Export SQL-Script (Keine Einstellungen)</h2>
+		
+		<p>Wählt alle Auswahl-Boxen ab und überprüft, ob keine Einstellungen
+		gespeichert wurden.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.dialogs.FixtureDlgExportSqlScript</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportTableCategory</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportTableSection</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportTableMoney</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportTableMoneyDetails</td>
+					<td>false</td>
+				</tr>
+				<tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportDataCategory</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportDataSection</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportDataMoney</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportDataMoneyDetails</td>
+					<td>false</td>
+				</tr>
+					<td>press</td>
+					<td>pushExport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferencesCount</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
