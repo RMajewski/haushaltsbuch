@@ -66,4 +66,20 @@ public class FixtureWndMain extends ActionFixture{
 	public String haveAStatusBar() {
 		return String.valueOf(_test.haveAStatusBar());
 	}
+	
+	/**
+	 * Beendet das Programm über Datei -> Beenden
+	 */
+	public void pushFileEnd() {
+		_test.pushFileEnde();
+	}
+	
+	/**
+	 * Ermittelt, ob das Hauptfenster angezeigt wird.
+	 * 
+	 * @return Wird das Hauptfenster angezeigt?
+	 */
+	public String isWindowVisible() {
+		return String.valueOf(_test.isWindowVisible());
+	}
 }

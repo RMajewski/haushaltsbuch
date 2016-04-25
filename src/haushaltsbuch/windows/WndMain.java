@@ -144,7 +144,7 @@ public class WndMain extends JFrame implements ActionListener {
 		{
 			// Programm beenden
 			case MainTop.FILE_END:
-				System.exit(0);
+				dispose();
 				break;
 				
 			// Linzez-Dialog

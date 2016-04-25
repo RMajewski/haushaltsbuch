@@ -110,6 +110,22 @@ public class TestWndMain extends GuiTest {
 	public boolean haveAStatusBar() {
 		return new JLabelOperator(_wnd).getText().equals("Ready");
 	}
+	
+	/**
+	 * Drückt den Eintrag "Beenden" im Menü "Datei"
+	 */
+	public void pushFileEnde() {
+		new JMenuBarOperator(_wnd).pushMenu("Datei|Beenden");
+	}
+	
+	/**
+	 * Ermittelt, ob das Fenster angezeigt wird oder nicht.
+	 * 
+	 * @return Wird das Fenster angezeigt?
+	 */
+	public boolean isWindowVisible() {
+		return _wnd.isVisible();
+	}
 
 	/**
 	 * Initalisiert die Test-Umgebung

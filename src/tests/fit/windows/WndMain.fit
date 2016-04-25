@@ -33,6 +33,16 @@
 					<td>haveAStatusBar</td>
 					<td>true</td>
 				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushFileEnd</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>false</td>
+				</tr>
 			</tbody>
 		</table>
 	</body>
