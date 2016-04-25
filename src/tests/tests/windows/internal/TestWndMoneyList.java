@@ -46,7 +46,7 @@ public class TestWndMoneyList extends GuiWndTest {
 	/**
 	 * Speichert wie das Fenster geöffnet werden soll.
 	 */
-	private static final String _menuPath = "Datenbank|Einnahmen und Ausgaben";
+	public static final String MENU_PATH = "Datenbank|Einnahmen und Ausgaben";
 	
 	/**
 	 * Speichert das Fenster zum Einfügen und Ändern
@@ -57,7 +57,7 @@ public class TestWndMoneyList extends GuiWndTest {
 	 * Initalisiert die Klasse
 	 */
 	public TestWndMoneyList() throws Exception {
-		testInit(WndMoneyList.WND_TITLE, _menuPath, false);
+		testInit(WndMoneyList.WND_TITLE, MENU_PATH, false);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class TestWndMoneyList extends GuiWndTest {
 	public int runIt(Object arg0) {
 		try {
 			// Testet, ob das Fenster richtig initalisiert wurde
-			testInit(WndMoneyList.WND_TITLE, _menuPath, true);
+			testInit(WndMoneyList.WND_TITLE, MENU_PATH, true);
 			
 			// Datensatz einfügen und Daten aktualisieren in der Tabelle
 			DbController.getInstance().createStatement().executeUpdate(

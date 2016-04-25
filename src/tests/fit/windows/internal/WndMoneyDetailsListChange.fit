@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Liste der Einnahmen und Ausgaben Details (Ändern)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Liste der Einnahmen und Ausgaben Details (Ändern)</h2>
+		<p>Startet das Fenster über das Menü. Es wird überprüft, ob der
+		Popup-Menü Eintrag "Ändern" nicht anklickbar ist. Nun wird eine Zeile in 
+		der Tabelle selektiert. Es wird erneut überprüft, ob "Ändern" anklickbar
+		ist. Nun wird der Popup-Menü-Eintrag "Ändern" angeklickt. Der sich
+		öffnende Dialog wird abgebrochen und überprüft, ob der selektierte
+		Datensatz nicht geändert wurde.</p>
+		
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndMoneyDetailsList</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPopupChangeItemEnable</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectRowOne</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPopupChangeItemEnable</td>
+					<td>true</td>
+				</tr>10.89
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushPopupChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushWindowCancel</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSelectedId</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSelectedCategory</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSelectedSection</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSelectedMoney</td>
+					<td>10.89</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSelectedComment</td>
+					<td>Dies ist ein Test</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

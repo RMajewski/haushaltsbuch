@@ -482,7 +482,7 @@ public class TestsHaushaltsbuch {
 		tests.runFit("src/tests/fit/windows/internal/WndCategoryListInsert.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndCategoryListChange.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndCategoryListDelete.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndSectionInsert.fit");
+		tests.runFit("src/tests/fit/windows/internal/WndSectionListInsert.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndSectionListChange.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndSectionListDelete.fit");
 		tests.runFit("src/tests/fit/windows/internal/WndMoneyListInsert.fit");

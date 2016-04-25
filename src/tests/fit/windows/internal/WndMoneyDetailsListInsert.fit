@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Liste der Einnahmen und Ausgaben Details (Neu)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Liste der Einnahmen und Ausgaben Details(Neu)</h2>
+		<p>Startet das Fenster über das Menü. Danach wird überprüft, ob die
+		Spalten-Überschriften der Tabelle und die Zeilenanzahl richtig sind.
+		Danach werden die Einträge für das Popup-Menü überprüft. Nun wird das
+		Menü-Feld Einfügen angeklickt. Der sich öffnende Dialog wird abgebrochen
+		und überprüft, ob er keinen neuen Datensatz angelegt hat.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndMoneyDetailsList</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveTable</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableColumnCount</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>columnHeader0</td>
+					<td>ID</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>columnHeader1</td>
+					<td>Kategorie</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>columnHeader2</td>
+					<td>Geschäft</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>columnHeader3</td>
+					<td>Betrag</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>columnHeader4</td>
+					<td>Beschreibung</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>popupItemCount</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>popupHaveInsertItem</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>popupHaveChangeItem</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>popupHaveDeleteItem</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushPopupInsert</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushWindowCancel</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>1</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

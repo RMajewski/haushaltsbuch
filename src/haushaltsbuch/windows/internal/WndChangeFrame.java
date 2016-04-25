@@ -91,10 +91,10 @@ public abstract class WndChangeFrame extends WndInternalFrame implements ActionL
 		_data = data;
 		
 		// Fenster-Titel
-		if (_data == null)
+		if ((_data == null) || (_data.getId() == -1))
 			setTitle("Neuen Datensatz erstellen");
 		else
-			setTitle("Datensätz ändern");
+			setTitle("Datensatz ändern");
 	
 		// GridBag-Layout initalisieren und setzen
 		_gbl = new GridBagLayout();
