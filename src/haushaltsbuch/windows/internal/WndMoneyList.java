@@ -27,6 +27,7 @@ import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
 
+import haushaltsbuch.comparators.CompDateString;
 import haushaltsbuch.comparators.CompInt;
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.db.DbController;
@@ -83,6 +84,7 @@ public class WndMoneyList extends WndTableFrame {
 		
 		// Zusätzliche Comparatoren setzen
 		sorter.setComparator(0, new CompInt());
+		sorter.setComparator(1, new CompDateString());
 		
 		// Welche Liste soll beim Start sortiert sein?
 		List<SortKey> sk = new ArrayList<SortKey>();
@@ -122,7 +124,7 @@ public class WndMoneyList extends WndTableFrame {
 		super.setPopupItemEnable(enable);
 		((PopupMoneyList)_popup).setMenuItemEnable(PopupMoneyList.VISIBLE_DETAILS, enable);
 	}
-
+	
 	/**
 	 * Reagiert auf die einzelnen Einträge im Popup-Menü
 	 * 
