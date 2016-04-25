@@ -22,6 +22,7 @@ package haushaltsbuch.tables.models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -141,7 +142,8 @@ public class MoneyDetailsListModel extends AbstractTableModel
 				
 			// Betrag
 			case 3:
-				return _list.get(row).getMoney();
+				
+				return new DecimalFormat("0.00").format(_list.get(row).getMoney());
 				
 			// Beschreibung
 			case 4:

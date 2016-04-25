@@ -19,6 +19,8 @@
 
 package haushaltsbuch.tables.models;
 
+import java.text.DecimalFormat;
+
 import javax.swing.table.AbstractTableModel;
 
 import haushaltsbuch.datas.ReportMonthData;
@@ -94,15 +96,15 @@ public class ReportMonthModel extends AbstractTableModel {
 				
 			// Einnahmen
 			case 1:
-				return _data.incoming(col);
+				return new DecimalFormat("0.00").format(_data.incoming(col));
 				
 			// Ausgaben
 			case 2:
-				return _data.outgoing(col);
+				return new DecimalFormat("0.00").format(_data.outgoing(col));
 				
 			// Differenz
 			case 3:
-				return _data.deviation(col);
+				return new DecimalFormat("0.00").format(_data.deviation(col));
 		}
 		
 		// Standard-Rückgabe

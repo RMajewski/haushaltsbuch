@@ -19,6 +19,8 @@
 
 package haushaltsbuch.tables.models;
 
+import java.text.DecimalFormat;
+
 import javax.swing.table.AbstractTableModel;
 
 import haushaltsbuch.datas.ReportWeekData;
@@ -94,7 +96,7 @@ public class ReportWeekModel extends AbstractTableModel {
 					return _data.getDateTo(row);
 				
 				// 'von' und 'bis' nicht ausgewählt
-				return _data.incoming(row);
+				return new DecimalFormat("0.00").format(_data.incoming(row));
 				
 			// 3. Spalte
 			case 2:
@@ -104,33 +106,33 @@ public class ReportWeekModel extends AbstractTableModel {
 				
 				// 'von' oder 'bis' ausgewählt
 				if (_data.drawDateFrom() || _data.drawDateTo())
-					return _data.incoming(row);
+					return new DecimalFormat("0.00").format( _data.incoming(row));
 				
 				// 'von' und 'bis' nicht ausgewählt
-				return _data.outgoing(row);
+				return new DecimalFormat("0.00").format(_data.outgoing(row));
 				
 			// 4. Spalte
 			case 3:
 				// 'von' und 'bis' ausgewählt
 				if (_data.drawDateFrom() && _data.drawDateTo())
-					return _data.incoming(row);
+					return new DecimalFormat("0.00").format(_data.incoming(row));
 				
 				// 'von' oder 'bis' ausgewählt
 				if (_data.drawDateFrom() || _data.drawDateTo())
-					return _data.outgoing(row);
+					return new DecimalFormat("0.00").format(_data.outgoing(row));
 				
 				// 'von' und 'bis' nicht ausgewählt
-				return _data.deviation(row);
+				return new DecimalFormat("0.00").format(_data.deviation(row));
 				
 			// 5. Spalte
 			case 4:
 				// 'von' und 'bis' ausgewählt
 				if (_data.drawDateFrom() && _data.drawDateTo())
-					return _data.outgoing(row);
+					return new DecimalFormat("0.00").format(_data.outgoing(row));
 				
 				// 'von' oder 'bis' ausgewählt
 				if (_data.drawDateFrom() || _data.drawDateTo())
-					return _data.deviation(row);
+					return new DecimalFormat("0.00").format(_data.deviation(row));
 				
 				return null;
 				
@@ -138,7 +140,7 @@ public class ReportWeekModel extends AbstractTableModel {
 			case 5:
 				// 'von' und 'bis' ausgewählt
 				if (_data.drawDateFrom() && _data.drawDateTo())
-					return _data.deviation(row);
+					return new DecimalFormat("0.00").format(_data.deviation(row));
 				
 				return null;
 		}
