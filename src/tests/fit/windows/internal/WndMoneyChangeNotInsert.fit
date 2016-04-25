@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Einnahmen und Ausgaben Einfügen (Einfügen)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Einnahmen und Ausgaben Einfügen (Einfügen)</h2>
+		
+		<p>Startet das Fenster zum eingaben der Date für Einnahmen und Ausgaben.
+		Es wird das Fenster mit Speichern beendet. Nun wird überprüft, ob es
+		keinen neuen Eintrag in die Datenbank-Tabelle "money" gibt.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndMoneyChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushSave</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

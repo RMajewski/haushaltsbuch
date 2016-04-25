@@ -92,7 +92,7 @@ public class WndMoneyChange extends WndChangeFrame {
 		ButtonGroup bg = new ButtonGroup();
 		
 		// Radion-Button für die Einnahme
-		_rbIn = new JRadioButton("Einname");
+		_rbIn = new JRadioButton("Einnahme");
 		addComponent(_gbl, _rbIn, 2, 2, 2, 1, 0, 0);
 		_rbIn.setSelected(true);
 		bg.add(_rbIn);
@@ -132,7 +132,7 @@ public class WndMoneyChange extends WndChangeFrame {
 			// Überprüfen ob kein Datum eingegeben wurde
 			if (_txtDate.getText().isEmpty()) {
 				// Benutzer darauf hinweisen
-				JOptionPane.showConfirmDialog(this, "Sie haben vergessen ein Datum einzugeben.", "Datum", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showConfirmDialog(this, "Sie haben vergessen ein Datum einzugeben.", "Datum",JOptionPane.CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
 				
 				// Focus setzen
 				_txtDate.requestFocus();

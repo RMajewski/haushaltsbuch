@@ -19,10 +19,6 @@
 
 package tests.fixtures;
 
-import fit.ActionFixture;
-import tests.testcase.GuiWndTest;
-import tests.tests.windows.internal.TestWndMoneyList;
-
 /**
  * Von diesem Fixture werden alle Fixture abgeleitet, die Unterfenster mit
  * Tabellen testen.
@@ -32,17 +28,7 @@ import tests.tests.windows.internal.TestWndMoneyList;
  * @version 0.1
  * @version 0.2
  */
-public class FixtureWndTables extends ActionFixture {
-	/**
-	 * Speichert den Namen der Datenbank-Tabelle
-	 */
-	protected String _tableName;
-
-	/**
-	 * Speichert die Test-Klasse
-	 */
-	protected GuiWndTest _test;
-	
+public class FixtureWndTables extends FixtureWnd {
 	/**
 	 * Ermittelt die Überschrift der Spalte 0
 	 * 
@@ -121,102 +107,6 @@ public class FixtureWndTables extends ActionFixture {
 	}
 	
 	/**
-	 * Ermittelt ob der Dialog angezeigt wird.
-	 */
-	public String isDialogVisible() {
-		return String.valueOf(_test.isDialogVisible());
-	}
-	
-	/**
-	 * Ermittelt, ob der Popup-Menü Eintrag "Ändern" benutzbar ist oder nicht.
-	 * 
-	 * @return Ist der Eintrag "Ändern" benutzbar?
-	 */
-	public String isPopupChangeItemEnable() {
-		return String.valueOf(_test.getPopupItem(1).isEnabled());
-	}
-	
-	/**
-	 * Ermittelt, ob der Popup-Menü Eintrag "Löschen" benutzbar ist oder nicht.
-	 * 
-	 * @return Ist der Eintrag "Löschen" benutzbar?
-	 */
-	public String isPopupDeleteItemEnable() {
-		return String.valueOf(_test.getPopupItem(2).isEnabled());
-	}
-	
-	/**
-	 * Öffnet das Popup-Menü
-	 */
-	public void openPopup() {
-		_test.callPopup();
-	}
-	
-	/**
-	 * Überprüft, ob das Popup-Menü einen Eintrag "Ändern" hat.
-	 */
-	public String popupHaveChangeItem() {
-		return String.valueOf(_test.getPopupItem(1).getText().equals("Ändern"));
-	}
-	
-	/**
-	 * Überprüft, ob das Popup-Menü einen Eintrag "Löschen" hat.
-	 */
-	public String popupHaveDeleteItem() {
-		return String.valueOf(_test.getPopupItem(2).getText().equals("Löschen"));
-	}
-	
-	/**
-	 * Überprüft, ob das Popup-Menü einen Eintrag "Neu" hat
-	 */
-	public String popupHaveInsertItem() {
-		return String.valueOf(_test.getPopupItem(0).getText().equals("Neu"));
-	}
-	
-	/**
-	 * Ermittelt die Anzahl der Items im Popup-Menü
-	 */
-	public String popupItemCount() {
-		return String.valueOf(_test.getPopupItemCount());
-	}
-	
-	/**
-	 * Drückt im Dialog den Abbrechen-Button
-	 */
-	public void pushDialogCancel() {
-		_test.pushDialogCancel();
-	}
-	
-	/**
-	 * Drückt im Dialog den Nein-Button
-	 */
-	public void pushDialogNo() {
-		_test.pushDialogNo();
-	}
-	
-	/**
-	 * Drückt im Dialog den Ok-Button
-	 */
-	public void pushDialogOk() {
-		_test.pushDialogOk();
-	}
-	
-	/**
-	 * Drückt im Dialog den Ja-Button
-	 */
-	public void pushDialogYes() {
-		_test.pushDialogYes();
-	}
-	
-	/**
-	 * Drückt den Popup-Menü Eintrag "Löschen"
-	 */
-	public void pushPopupDelete() {
-		_test.pushNoBlockPopup("Löschen");
-		_test.waitDlg("Datensatz löschen");
-	}
-	
-	/**
 	 * Selektiert in der Tabelle die erste Zeile.
 	 */
 	public void selectRowOne() {
@@ -231,15 +121,6 @@ public class FixtureWndTables extends ActionFixture {
 	public String popupHaveDetailsItem() {
 		return String.valueOf(_test.getPopupItem(4).getText().equals(
 				"Details"));
-	}
-	
-	/**
-	 * Ermittelt, ob das Unterfenster angezeigt wird.
-	 * 
-	 * @return Wird das Unterfenster angezeigt?
-	 */
-	public String isWindowVisible() {
-		return String.valueOf(((TestWndMoneyList)_test).isWindowVisible());
 	}
 	
 }

@@ -46,7 +46,6 @@ public class FixtureWndCategoryList extends FixtureWndTables {
 	 */
 	public FixtureWndCategoryList() throws Exception {
 		_test = new TestWndCategoryList();
-		_tableName = "category";
 	}
 	
 	/**
