@@ -29,9 +29,13 @@ import javax.swing.JInternalFrame;
 /**
  * Diese Klasse stellt für das GridBag-Layout Helfer zur Verfügung.
  * 
+ * In der Version 0.2 wird ein Attribut implementiert, welches angibt, ob das
+ * Fenster ein Datenbank-Fenster ist und die Buttons für die Datenbank in der
+ * ToolBar benötigt.
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class WndInternalFrame extends JInternalFrame {
@@ -42,11 +46,20 @@ public class WndInternalFrame extends JInternalFrame {
 	private static final long serialVersionUID = 5666026630627138150L;
 	
 	/**
+	 * Gibt an, ob das Fenster ein Datenbank-Fenster ist. Die
+	 * Standard-Einstellung ist <b>false</b>
+	 */
+	private boolean _enableDbElements;
+	
+	/**
 	 * Initalisieren der Eigenschaften
 	 */
 	public WndInternalFrame() {
 		// Klasse initalisieren
 		super();
+		
+		// Standardmäßig kein Datenbank-Fenster
+		setEnableDbElements(false);
 		
 		// Fenstergröße
 		setSize(600,400);
@@ -112,5 +125,25 @@ public class WndInternalFrame extends JInternalFrame {
 		gbc.weighty = weighty;
 		gbl.setConstraints(c, gbc);
 		add(c);
+	}
+
+	/**
+	 * Gibt zurück, ob dieses Fenster die Datenbank-Elemente der ToolBar
+	 * benötigt.
+	 * 
+	 * @return Werden die Datenbank-Elemente der ToolBar benötigt?
+	 */
+	public boolean isEnableDbElements() {
+		return _enableDbElements;
+	}
+
+	/**
+	 * Es wird gespeichert, ob die Datenbank-Elemente der ToolBar benötigt
+	 * werden.
+	 * 
+	 * @param Gibt an, ob die Datenbank-Elemente der ToolBar benötigt werden.
+	 */
+	public void setEnableDbElements(boolean _enableDbElements) {
+		this._enableDbElements = _enableDbElements;
 	}
 }

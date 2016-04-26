@@ -23,18 +23,38 @@ import java.awt.Window;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JToolBar;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 
 import haushaltsbuch.actions.DbChange;
 import haushaltsbuch.actions.DbDelete;
 import haushaltsbuch.actions.DbInsert;
 import haushaltsbuch.actions.Report;
+import haushaltsbuch.events.ToolBarDbElementEvent;
+import haushaltsbuch.listener.ToolBarDbElementListener;
 
-public class ToolBarMain extends JToolBar {
+public class ToolBarMain extends JToolBar 
+	implements InternalFrameListener, ToolBarDbElementListener {
 
 	/**
 	 * Serilisation ID
 	 */
 	private static final long serialVersionUID = 2160111024076691110L;
+	
+	/**
+	 * Speichert den Button zum einfügen eines neuen Datensatzes
+	 */
+	private DbInsert _insert;
+	
+	/**
+	 * Speichert den Button zum ändern eines Datensatzes
+	 */
+	private DbChange _change;
+	
+	/**
+	 * Speichert den Button zum löschen eines Datensatzes
+	 */
+	private DbDelete _delete;
 
 	/**
 	 * Initalisiert die ToolBar
@@ -51,10 +71,78 @@ public class ToolBarMain extends JToolBar {
 		setName("MainToolBar");
 		
 		// Neu, Ändern und Löschen
-		add(new DbInsert(desktop));
-		add(new DbChange(desktop));
-		add(new DbDelete(desktop));
+		_insert = new DbInsert(desktop);
+		add(_insert);
+
+		_change = new DbChange(desktop);
+		add(_change);
+
+		_delete = new DbDelete(desktop);
+		add(_delete);
+		
+		setDbEnable(false);
+		
 		addSeparator();
 		add(new Report(desktop, owner));
+	}
+	
+	/**
+	 * Änder die Benutzbarkeit der Buttons zum Einfügen einen Neuen Datensatzes,
+	 * zum Ändern einen Datensatzes und zum Löschen eines Datensatzes.
+	 * 
+	 * @param enable Können die Buttons benutzt werden?
+	 */
+	private void setDbEnable(boolean enable) {
+		_insert.setEnabled(enable);
+		_change.setEnabled(enable);
+		_delete.setEnabled(enable);
+	}
+
+	@Override
+	public void internalFrameActivated(InternalFrameEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void internalFrameClosed(InternalFrameEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void internalFrameClosing(InternalFrameEvent e) {
+	}
+
+	@Override
+	public void internalFrameDeactivated(InternalFrameEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void internalFrameDeiconified(InternalFrameEvent e) {
+	}
+
+	@Override
+	public void internalFrameIconified(InternalFrameEvent e) {
+	}
+
+	@Override
+	public void internalFrameOpened(InternalFrameEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Wird ausgelöst, wenn im Datenbank-Fenster eine Zeile selektiert wurde
+	 * oder die Selektion aufgehoben wurde.
+	 * 
+	 * @param e Ereignis-Daten.
+	 */
+	@Override
+	public void setDbElementsEnable(ToolBarDbElementEvent e) {
+		_change.setEnabled(e.isEnable());
+		_delete.setEnabled(e.isEnable());
 	}
 }

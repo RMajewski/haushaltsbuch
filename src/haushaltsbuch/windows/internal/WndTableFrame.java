@@ -38,6 +38,7 @@ import javax.swing.table.AbstractTableModel;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.db.query.Query;
 import haushaltsbuch.elements.StatusBar;
+import haushaltsbuch.events.ToolBarDbElementEventMulticaster;
 import haushaltsbuch.listener.PopupMenuMouseListener;
 import haushaltsbuch.menus.PopupStandardList;
 import haushaltsbuch.tables.models.DbModelInterface;
@@ -46,9 +47,12 @@ import haushaltsbuch.tables.models.DbModelInterface;
  * Erzeugt das Fenster mit einer Tabelle. Von diesem Fenster werden alle
  * Fenster abgeleitet, die Tabellen benutzen, um Daten anzuzeigen.
  * 
+ * In der Version 0.2 wird eine Cast-Klasse implementiert, die die Listener
+ * verwaltet, an die das Ereignis ToolBarDbElementEvent gesendet werden soll.
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public abstract class WndTableFrame extends WndInternalFrame
@@ -70,11 +74,23 @@ public abstract class WndTableFrame extends WndInternalFrame
 	protected JPopupMenu _popup;
 	
 	/**
+	 * Speichert die Verwaltung der Listener für das Ereignis
+	 * ToolBarDbElementEvent.
+	 */
+	private ToolBarDbElementEventMulticaster _dbEvent;
+	
+	/**
 	 * Im Konstruktor wird "nur" das Popup-Menü initalisiert.
 	 */
 	public WndTableFrame() {
 		// Klasse initalisieren
 		super();
+		
+		// Initalisiert die Verwaltung der ToolBarDbElementListener
+		_dbEvent = new ToolBarDbElementEventMulticaster();
+		
+		// Speichern, dass es ein Datenbank-Fenster ist
+		setEnableDbElements(true);
 		
 		// Größenänderung des Fenster zulassen 
 		setResizable(true);

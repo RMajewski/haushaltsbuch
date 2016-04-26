@@ -28,9 +28,12 @@ import org.netbeans.jemmy.operators.JComponentOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JInternalFrameOperator;
+import org.netbeans.jemmy.operators.JMenuBarOperator;
 
+import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgReport;
 import haushaltsbuch.windows.WndMain;
+import tests.apps.TestToolBarApplication;
 import tests.testcase.GuiTest;
 
 /**
@@ -69,10 +72,13 @@ public class TestToolBarMainFit extends GuiTest {
 	 */
 	public TestToolBarMainFit() throws Exception {
 		// Start des Haupt-Programms
-		new ClassReference("haushaltsbuch.Main").startApplication();
+		new ClassReference("tests.apps.TestToolBarApplication").startApplication();
+		
+		// Datenabnk vorbereiten
+		DbController.getInstance().prepaireDatabase();
 		
 		// Fenster des Hauptprogrammes
-		_wnd = new JFrameOperator(WndMain.TITLE);
+		_wnd = new JFrameOperator(TestToolBarApplication.TITLE);
 		
 		// ToolBar abfangen
 		_toolbar = new JComponentOperator(_wnd, 4);
@@ -121,6 +127,33 @@ public class TestToolBarMainFit extends GuiTest {
 	public String getDialogTitle() {
 		return _dlg.getTitle();
 	}
+	
+	/**
+	 * Ermittelt ob der Button "Neu" benutzbar ist.
+	 * 
+	 * @return Ist "Neu" benutzbar
+	 */
+	public boolean isButtonInsertEnable() {
+		return new JButtonOperator((JButton)_toolbar.getComponent(0)).isEnabled();
+	}
+	
+	/**
+	 * Ermittelt ob der Button "Ändern" benutzbar ist.
+	 * 
+	 * @return Ist "Ändern" benutzbar
+	 */
+	public boolean isButtonChangeEnable() {
+		return new JButtonOperator((JButton)_toolbar.getComponent(1)).isEnabled();
+	}
+	
+	/**
+	 * Ermittelt ob der Button "Löschen" benutzbar ist.
+	 * 
+	 * @return Ist "Löschen" benutzbar
+	 */
+	public boolean isButtonDeleteEnable() {
+		return new JButtonOperator((JButton)_toolbar.getComponent(2)).isEnabled();
+	}
 
 	/**
 	 * Führt die Tests aus.
@@ -128,6 +161,15 @@ public class TestToolBarMainFit extends GuiTest {
 	@Override
 	public int runIt(Object arg0) {
 		return 0;
+	}
+	
+	/**
+	 * Klickt auf den angegebenen Menü-Eintrag.
+	 * 
+	 * @param path Menü-Eintrag, der gedrückt werden soll
+	 */
+	public void pushMenu(String path) {
+		new JMenuBarOperator(_wnd).pushMenu(path);
 	}
 
 	/**

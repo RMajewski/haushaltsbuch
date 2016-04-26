@@ -72,9 +72,50 @@ public class FixtureToolBarMain extends ActionFixture {
 	}
 	
 	/**
+	 * Ermittelt ob der Button "Neu" benutzbar ist.
+	 * 
+	 * @return Ist "Neu" benutzbar?
+	 */
+	public String isInsertEnable() {
+		return String.valueOf(_test.isButtonInsertEnable());
+	}
+	
+	/**
+	 * Ermittelt ob der Button "Ändern" benutzbar ist.
+	 * 
+	 * @return Ist "Ändern" benutzbar?
+	 */
+	public String isChangeEnable() {
+		return String.valueOf(_test.isButtonChangeEnable());
+	}
+	
+	/**
+	 * Ermittelt ob der Button "Löschen" benutzbar ist.
+	 * 
+	 * @return Ist "Neu" benutzbar?
+	 */
+	public String isDeleteEnable() {
+		return String.valueOf(_test.isButtonDeleteEnable());
+	}
+	
+	/**
 	 * Ermittelt den Namen des Dialoges
 	 */
 	public String getDialogTitle() {
 		return _test.getDialogTitle();
+	}
+	
+	/**
+	 * Öffnet das Datenbank-Fenster der Kategorien
+	 */
+	public void pushDatabaseCategories() {
+		_test.pushMenu("Datenbank|Kategorien");
+	}
+	
+	/**
+	 * Öffnet das Test-Fenster
+	 */
+	public void pushTestTest() {
+		_test.pushMenu("Test|Test");
 	}
 }
