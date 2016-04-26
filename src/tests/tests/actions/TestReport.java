@@ -48,7 +48,7 @@ public class TestReport {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		_test = new Report();
+		_test = new Report(null, null);
 	}
 	
 	/**

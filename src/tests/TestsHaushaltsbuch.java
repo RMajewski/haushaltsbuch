@@ -482,6 +482,9 @@ public class TestsHaushaltsbuch {
 		tests.runFit("src/tests/fit/dialogs/DlgLogView.fit");
 		tests.runFit("src/tests/fit/dialogs/DlgReport.fit");
 		
+		// Fit-Test der Elemente
+		tests.runFit("src/tests/fit/elements/ToolbarMainReport.fit");
+		
 		// Fit-Tests der Hauptfenster
 		tests.runFit("src/tests/fit/windows/WndMain.fit");
 		

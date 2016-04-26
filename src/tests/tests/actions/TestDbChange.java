@@ -49,7 +49,7 @@ public class TestDbChange {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		_test = new DbChange();
+		_test = new DbChange(null);
 	}
 	
 	/**

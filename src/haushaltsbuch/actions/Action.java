@@ -24,6 +24,7 @@ import java.net.URL;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 
 public abstract class Action extends AbstractAction {
 	
@@ -38,6 +39,11 @@ public abstract class Action extends AbstractAction {
 	private static final long serialVersionUID = -3686095313000985478L;
 	
 	/**
+	 * Speichert den Desktop vom Hauptfenster.
+	 */
+	protected JDesktopPane _desktop;
+	
+	/**
 	 * Initalisiert die Klasse. Und legt die übergebenen Icons fest. Es wird
 	 * geprüft, ob die Icons geladen werden kann. Ist dies nicht der Fall, so
 	 * wird nicht versucht diese zu laden.
@@ -45,10 +51,15 @@ public abstract class Action extends AbstractAction {
 	 * @param small Name des Icons für das Menü
 	 * 
 	 * @param big Name des Icons für die ToolBar
+	 * 
+	 * @param desktop Dekstop des Hauptfensters
 	 */
-	public Action(String small, String big) {
+	public Action(String small, String big, JDesktopPane desktop) {
 		// Klasse initalisieren
 		super();
+		
+		// Dekstop speichern
+		_desktop = desktop;
 		
 		// Icon für Menüs
 		URL url = Action.class.getClassLoader().getResource(ICON_PATH + small);

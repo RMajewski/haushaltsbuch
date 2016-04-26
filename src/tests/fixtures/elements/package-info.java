@@ -17,40 +17,13 @@
 * sind dem Lizenztext zu entnehmen.
 */ 
 
-package tests.tests.actions;
-
-import java.awt.event.ActionEvent;
-
-import haushaltsbuch.actions.Action;
-
 /**
- * Implementiert die abstrakte Klasse {@link haushaltsbuch.actions.Action}. Dies
- * ist notwendig, damit die Tests für diese Klasse ausgeführt werden können.
+ * In diesen Package werden alle Fit-Schnitstellen zusammen gefasst, die für
+ * die Fit-Tests für die Elemente gebraucht werden.
  * 
  * @author René Majewski
  *
  * @version 0.1
  * @since 0.2
  */
-public class TestActionImplementation extends Action {
-
-	/**
-	 * Serilisation ID
-	 */
-	private static final long serialVersionUID = -727117647121785702L;
-
-	/**
-	 * Initalisiert diese Klasse
-	 */
-	public TestActionImplementation(String small, String big) {
-		super(small, big, null);
-	}
-
-	/**
-	 * Leere Implementierung
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	}
-
-}
+package tests.fixtures.elements;

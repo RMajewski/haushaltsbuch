@@ -19,7 +19,13 @@
 
 package haushaltsbuch.actions;
 
+import java.awt.Window;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JDesktopPane;
+
+import haushaltsbuch.datas.ReportPreferencesData;
+import haushaltsbuch.windows.internal.WndReports;
 
 /**
  * Implementiert die Aktion, die ein Report öffnet.
@@ -34,21 +40,40 @@ public class Report extends Action {
 	 * Speichert das Kommando, um das Report-Fenster zu öffnen.
 	 */
 	public static final String COMMAND = "Report";
+	
+	/**
+	 * Speichert, welches Fenster dieses Fenster aufgerufen hat.
+	 */
+	private Window _owner;
 
 	/**
 	 * Initalisiert die Aktion.
+	 * 
+	 * @param desktop
+	 * 
+	 * @param owner Zu diesem Fenster gehört die ToolBar
 	 */
-	public Report() {
-		super("report_small.png", "report_big.png");
+	public Report(JDesktopPane desktop, Window owner) {
+		super("report_small.png", "report_big.png", desktop);
+		
+		_owner = owner;
 
 		putValue(Action.NAME, "Report");
 		putValue(Action.MNEMONIC_KEY, 1);
 		putValue(Action.ACTION_COMMAND_KEY, COMMAND);
 	}
 	
-	
+	/**
+	 * Erzeugt ein einen neuen Report.
+	 * 
+	 * @param e Daten des Eventes
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		WndReports wnd = new WndReports(ReportPreferencesData.TYPE_MONTH, 
+				_owner);
+		_desktop.add(wnd);
+		wnd.toFront();
 	}
 
 }

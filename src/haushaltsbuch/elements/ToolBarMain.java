@@ -19,6 +19,9 @@
 
 package haushaltsbuch.elements;
 
+import java.awt.Window;
+
+import javax.swing.JDesktopPane;
 import javax.swing.JToolBar;
 
 import haushaltsbuch.actions.DbChange;
@@ -35,16 +38,23 @@ public class ToolBarMain extends JToolBar {
 
 	/**
 	 * Initalisiert die ToolBar
+	 * 
+	 * @param desktop Desktop des Hauptfensters.
+	 * 
+	 * @param owner Zu diesem Fenster gehört die ToolBar
 	 */
-	public ToolBarMain() {
+	public ToolBarMain(JDesktopPane desktop, Window owner) {
 		// Toolbar initalisieren
 		super();
 		
+		// Name
+		setName("MainToolBar");
+		
 		// Neu, Ändern und Löschen
-		add(new DbInsert());
-		add(new DbChange());
-		add(new DbDelete());
+		add(new DbInsert(desktop));
+		add(new DbChange(desktop));
+		add(new DbDelete(desktop));
 		addSeparator();
-		add(new Report());
+		add(new Report(desktop, owner));
 	}
 }

@@ -21,6 +21,8 @@ package haushaltsbuch.actions;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JDesktopPane;
+
 /**
  * Implementiert die Aktion, die beim obersten Datenbankfenster veranlasst, dass
  * der selektierte Datensatz gelösch t wird.
@@ -39,9 +41,11 @@ public class DbDelete extends Action {
 	
 	/**
 	 * Initalisiert die Aktion.
+	 * 
+	 * @param desktop Desktop des Hauptfensters.
 	 */
-	public DbDelete() {
-		super("delete_small.png", "delete_big.png");
+	public DbDelete(JDesktopPane desktop) {
+		super("delete_small.png", "delete_big.png", desktop);
 
 		putValue(Action.NAME, "Löschen");
 		putValue(Action.MNEMONIC_KEY, 1);

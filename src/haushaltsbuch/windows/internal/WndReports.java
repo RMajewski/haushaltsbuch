@@ -22,6 +22,7 @@ package haushaltsbuch.windows.internal;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -81,13 +82,21 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 	private ReportPreferencesData _preference;
 	
 	/**
+	 * Speichert das Fenster, dass dieses Fenster aufgeruefen hat.
+	 */
+	private Window _owner;
+	
+	/**
 	 * Initalisiert das Fenster
 	 * 
 	 * @param report Welcher Report soll erstellt werden?
+	 * 
+	 * @param owner Fenster, dass dieses Unterfenster erzeugt hat.
 	 */
-	public WndReports(int report) {
+	public WndReports(int report, Window owner) {
 		// Klasse initalisieren
 		super();
+		_owner = owner;
 		
 		// Größe einstellen
 		setSize(1000, 700);
@@ -140,7 +149,7 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 	 */
 	public void createDlgReport() {
 		// Einstellungen aufrufen
-		DlgReport dlg = new DlgReport(_preference, null);
+		DlgReport dlg = new DlgReport(_preference, _owner);
 		_preference = dlg.getData();
 		
 		// Überprüfen ob ob der Report angezeigt werden soll

@@ -48,7 +48,7 @@ public class TestDbInsert {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		_test = new DbInsert();
+		_test = new DbInsert(null);
 	}
 	
 	/**

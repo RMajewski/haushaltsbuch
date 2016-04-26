@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Element: ToolBar -> Report</title>
+	</head>
+	<body>
+		<h2>Element: ToolBar -> Report</h2>
+		<p>Überprüft, ob sich das Report-Fenster öffnet, wenn auf den
+		Report-Button geklickt wird.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">
+						fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.elements.FixtureToolBarMain</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getToolBarName</td>
+					<td>MainToolBar</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushReport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDialogVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDialogTitle</td>
+					<td>Einstellungen um Report zu erzeugen</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

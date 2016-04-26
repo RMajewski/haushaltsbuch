@@ -98,7 +98,7 @@ public class WndMain extends JFrame implements ActionListener {
 		add(_desktop);
 		
 		// ToolBar initalisieren und anzeigen
-		add(new ToolBarMain(), BorderLayout.NORTH);
+		add(new ToolBarMain(_desktop, this), BorderLayout.NORTH);
 		
 		// StatusBar initalisieren und anzeigen
 		status = StatusBar.getInstance();
@@ -184,17 +184,17 @@ public class WndMain extends JFrame implements ActionListener {
 				
 			// Wochenübersicht anzeigen
 			case MainTop.REPORT_WEEK:
-				newWindow(new WndReports(ReportPreferencesData.TYPE_WEEK));
+				newWindow(new WndReports(ReportPreferencesData.TYPE_WEEK, this));
 				break;
 				
 			// Monatsübersicht anzeigen
 			case MainTop.REPORT_MONTH:
-				newWindow(new WndReports(ReportPreferencesData.TYPE_MONTH));
+				newWindow(new WndReports(ReportPreferencesData.TYPE_MONTH, this));
 				break;
 				
 			// Jahresübersicht anzeigen
 			case MainTop.REPORT_YEAR:
-				newWindow(new WndReports(ReportPreferencesData.TYPE_YEAR));
+				newWindow(new WndReports(ReportPreferencesData.TYPE_YEAR, this));
 				break;
 				
 			// Export der Daten als SQL-Script

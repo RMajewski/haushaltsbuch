@@ -49,7 +49,7 @@ public class TestDbDelete {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		_test = new DbDelete();
+		_test = new DbDelete(null);
 	}
 	
 	/**

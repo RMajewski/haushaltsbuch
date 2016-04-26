@@ -21,6 +21,8 @@ package haushaltsbuch.actions;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JDesktopPane;
+
 /**
  * Stellt die Aktion dar, die vom obersten Datenbank-Fenster veranlasst, dass
  * sich das Fenster zum ändern des selektierten Datensatzes öffnet.
@@ -38,9 +40,11 @@ public class DbChange extends Action {
 	
 	/**
 	 * Initalisiert diese Klasse
+	 * 
+	 * @param desktop Desktop des Hauptfensters.
 	 */
-	public DbChange() {
-		super("change_small.png", "change_big.png");
+	public DbChange(JDesktopPane desktop) {
+		super("change_small.png", "change_big.png", desktop);
 		
 		putValue(Action.NAME, "Ändern");
 		putValue(Action.MNEMONIC_KEY, 1);
