@@ -194,6 +194,7 @@ public class TestWndMoneyChange extends GuiWndTest {
 	 */
 	public void setFocusToIn() {
 		_in.requestFocus();
+		_in.waitHasFocus();
 	}
 	
 	/**

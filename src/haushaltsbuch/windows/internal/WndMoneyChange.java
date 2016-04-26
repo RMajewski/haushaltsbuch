@@ -20,9 +20,13 @@
 package haushaltsbuch.windows.internal;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFormattedTextField;
@@ -34,6 +38,7 @@ import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.tables.models.MoneyListModel;
+import tests.tests.windows.internal.TestWndMoneyChange;
 
 
 /**
@@ -87,6 +92,32 @@ public class WndMoneyChange extends WndChangeFrame {
 		// Textfeld für das Datum
 		_txtDate = new JFormattedTextField(new SimpleDateFormat("dd.MM.yyyy"));
 		addComponent(_gbl, _txtDate, 2, 0, 2, 1, 0.8, 0);
+		_txtDate.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				GregorianCalendar gc = new GregorianCalendar();
+				gc.setTime(new Date());
+				String res = _txtDate.getText();
+				
+				String[] tmp = res.split("\\.");
+				String date = new String();
+				
+				if (tmp.length == 1)
+					date = res + 
+							String.valueOf(gc.get(GregorianCalendar.MONTH) + 1) + 
+							"." + String.valueOf(gc.get(GregorianCalendar.YEAR));
+				
+				if (tmp.length == 2)
+					date = res + String.valueOf(gc.get(GregorianCalendar.YEAR));
+				
+				_txtDate.setText(date);
+				System.out.println();
+				System.out.println();
+				System.out.println(res);
+				System.out.println();
+				System.out.println();
+			}
+		});
 		
 		// ButtonGroup initalisieren
 		ButtonGroup bg = new ButtonGroup();

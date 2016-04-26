@@ -139,8 +139,9 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 	
 	/**
 	 * Übergibt den Fokus an den Radio-Button "Einnahme"
+	 * @throws InterruptedException 
 	 */
-	public void focusRadioButtonIn() {
+	public void focusRadioButtonIn() throws InterruptedException {
 		((TestWndMoneyChange)_test).setFocusToIn();
 	}
 	
@@ -166,7 +167,7 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 		String[] tmp = ((TestWndMoneyChange)_test).getTextFromDate().split(".");
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(new Date());
-		int month = gc.get(GregorianCalendar.MONTH);
+		int month = gc.get(GregorianCalendar.MONTH) + 1;
 		int year = gc.get(GregorianCalendar.YEAR);
 		
 		// Überprüfen ob der Monat und das Jahr hinzugefügt wurden.
