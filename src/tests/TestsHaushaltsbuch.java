@@ -412,6 +412,13 @@ public class TestsHaushaltsbuch {
 		// Test-Klasse vorbereiten
 		TestsHaushaltsbuch tests = new TestsHaushaltsbuch();
 		
+		// junit-Tests "actions"
+		tests.runJunit("tests.tests.actions.Action");
+		tests.runJunit("tests.tests.actions.DbInsert");
+		tests.runJunit("tests.tests.actions.DbDelete");
+		tests.runJunit("tests.tests.actions.DbChange");
+		tests.runJunit("tests.tests.actions.Report");
+		
 		// junit-Tests "comparators"
 		tests.runJunit("tests.tests.comparators.TestCompDouble");
 		tests.runJunit("tests.tests.comparators.TestCompId");

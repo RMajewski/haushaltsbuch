@@ -19,6 +19,7 @@
 
 package haushaltsbuch.windows;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -33,6 +34,7 @@ import haushaltsbuch.dialogs.DlgAbout;
 import haushaltsbuch.dialogs.DlgLicense;
 import haushaltsbuch.dialogs.DlgLogView;
 import haushaltsbuch.elements.StatusBar;
+import haushaltsbuch.elements.ToolBarMain;
 import haushaltsbuch.export.SqlScript;
 import haushaltsbuch.menus.MainTop;
 import haushaltsbuch.windows.internal.WndCategoryList;
@@ -94,6 +96,9 @@ public class WndMain extends JFrame implements ActionListener {
 		// Dekstop initalisieren
 		_desktop = new JDesktopPane();
 		add(_desktop);
+		
+		// ToolBar initalisieren und anzeigen
+		add(new ToolBarMain(), BorderLayout.NORTH);
 		
 		// StatusBar initalisieren und anzeigen
 		status = StatusBar.getInstance();
