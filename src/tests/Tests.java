@@ -39,11 +39,14 @@ public class Tests {
 	public static void main(String[] args) {
 		TestCore test = new TestCore();
 		try {
-			test.readConfig("tests/tests.xml");
+			if (test.readConfig("tests/tests.xml")) {
+				test.checkFileExists();
+				test.run();
+				test.createResultHtml();
+			}
 		} catch (XMLStreamException e) {
 			e.printStackTrace();
 		}
-		test.checkFileExists();
 	}
 
 }

@@ -20,9 +20,10 @@
 package tests.core;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.stream.XMLInputFactory;
@@ -211,17 +212,15 @@ public class TestCore {
 	public void checkFileExists() {
 		listCheckFiles(_gui);
 		listCheckFiles(_junit);
-		listCheckFitFiles(_fit);
+		listCheckFitFiles();
 	}
 	
 	/**
 	 * Durchläuft die angegebene Liste und prüft, ob die Dateien existieren.
-	 * 
-	 * @param list Liste, die durchlaufen werden soll.
 	 */
-	private void listCheckFitFiles(List<TestFitSuiteData> list) {
-		for (int i = 0; i < list.size(); i++)
-			suiteCheckFiles(list.get(i), "fit");
+	private void listCheckFitFiles() {
+		for (int i = 0; i < _fit.size(); i++)
+			suiteCheckFiles(_fit.get(i), "fit");
 	}
 
 	/**
@@ -261,8 +260,8 @@ public class TestCore {
 	 * @return Verzeichnis und Datei als eine Zeichenkette
 	 */
 	private String composeFileName(String path, String name, String extension) {
-		return new String(path + "." + name).replaceAll("\\.", "/") + "." + 
-				extension;
+		return new String(path + "." + name).replaceAll("\\.", "/") + 
+				"." + extension;
 	}
 	
 	/**
@@ -283,6 +282,79 @@ public class TestCore {
 	 * Führt die einzelnen Tests aus
 	 */
 	public void run() {
+		runGui();
+		runJunit();
+		runFitList();
+	}
+	
+	/**
+	 * Führt die einzelnen GUI-Tests aus
+	 */
+	private void runGui() {
+		for (int i = 0; i < _gui.size(); i++) {
+			
+		}
+	}
+	
+	/**
+	 * Führt die einzelnen junit-Tests aus
+	 */
+	private void runJunit() {
+		for (int suite = 0; suite < _junit.size(); suite++) {
+			// Test-Suite Name
+			System.out.println(_junit.get(suite).getName());
+			// juni-Tests ausführen
+			for (int test = 0; test < _junit.get(suite).testCount(); test++) {
+				String name = _junit.get(suite).getPackage() + "." +
+						_junit.get(suite).getTest(test).getName();
+				
+				try {
+					_junit.get(suite).getTest(test).setStart(
+							new Date().getTime());
+
+					System.out.print(name + ": ");
+					Process p = Runtime.getRuntime().exec("java -cp " +
+							System.getProperty("java.class.path")+
+							" -Dtesting=true org.junit.runner.JUnitCore " +
+							name);
+					
+					int exit = p.waitFor();
+					_junit.get(suite).getTest(test).setExitStatus(exit);
+					
+					// Ausgabe wie der Test verlaufen ist
+					_junit.get(suite).getTest(test).setEnd(
+							new Date().getTime());
+
+					if (exit == 0)
+						System.out.print("wurde erfolgreich ausgeführt");
+					else
+						System.out.print("weißt Fehler auf");
+
+					System.out.print(" (Dauer des Tests: ");
+					System.out.print(String.valueOf(
+							_junit.get(suite).getTest(test).getDurationTime()));
+					System.out.println(" ms)");
+					
+					// Console-Ausgabe und Error-Ausgabe speichern
+					_junit.get(suite).getTest(test).setError(p.getErrorStream());
+					_junit.get(suite).getTest(test).setIn(p.getInputStream());
+				} catch (IOException e) {
+					e.printStackTrace();
+					_junit.get(suite).getTest(test).setExitStatus(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					_junit.get(suite).getTest(test).setExitStatus(100);
+				}
+			} // for über alle Tests
+			
+			System.out.println();
+		} // for über alle Test-Suites
+	}
+	
+	/**
+	 * Für einzelnen Fit-Tests aus
+	 */
+	private void runFitList() {
 		
 	}
 	

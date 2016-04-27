@@ -121,7 +121,7 @@ public class TestData {
 	 * @return Dauer des Tests
 	 */
 	public long getDurationTime() {
-		return _start - _end;
+		return _end - _start;
 	}
 	
 	/**
