@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JDesktopPane;
 
 import haushaltsbuch.datas.ReportPreferencesData;
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.windows.internal.WndReports;
 
 /**
@@ -49,11 +50,11 @@ public class Report extends Action {
 	/**
 	 * Initalisiert die Aktion.
 	 * 
-	 * @param desktop
+	 * @param desktop Desktop des Hauptfensters
 	 * 
 	 * @param owner Zu diesem Fenster gehört die ToolBar
 	 */
-	public Report(JDesktopPane desktop, Window owner) {
+	public Report(Desktop desktop, Window owner) {
 		super("report_small.png", "report_big.png", desktop);
 		
 		_owner = owner;
@@ -70,10 +71,8 @@ public class Report extends Action {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		WndReports wnd = new WndReports(ReportPreferencesData.TYPE_MONTH, 
-				_owner);
-		_desktop.add(wnd);
-		wnd.toFront();
+		_desktop.add(new WndReports(null, ReportPreferencesData.TYPE_MONTH,
+				_owner));
 	}
 
 }

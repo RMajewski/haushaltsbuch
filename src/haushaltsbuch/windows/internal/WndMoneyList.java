@@ -31,6 +31,7 @@ import haushaltsbuch.comparators.CompDateString;
 import haushaltsbuch.comparators.CompInt;
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.menus.PopupMoneyList;
 import haushaltsbuch.tables.models.MoneyListModel;
 
@@ -55,10 +56,12 @@ public class WndMoneyList extends WndTableFrame {
 
 	/**
 	 * Initalisiert das Fenster
+	 * 
+	 * @param desktop Desktop des Hauptfensters
 	 */
-	public WndMoneyList() {
+	public WndMoneyList(Desktop desktop) {
 		// Fenster initalisieren
-		super();
+		super(desktop);
 
 		// Titel
 		setTitle(WND_TITLE);
@@ -109,7 +112,7 @@ public class WndMoneyList extends WndTableFrame {
 	protected void tableRowDoubleClick() {
 		if (_table.getSelectedRow() > -1) {
 			MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
-			newWindow(new WndMoneyDetailsList(data));
+			newWindow(new WndMoneyDetailsList(_desktop, data));
 		}
 	}
 	
@@ -136,7 +139,7 @@ public class WndMoneyList extends WndTableFrame {
 		switch (ae.getActionCommand()) {
 			// Neuen Eintrag erstellen
 			case PopupMoneyList.NEW:
-				newWindow(new WndMoneyChange(null, this));
+				newWindow(new WndMoneyChange(_desktop, null, this));
 				break;
 				
 			// Einen Eintrag ändern
@@ -147,7 +150,7 @@ public class WndMoneyList extends WndTableFrame {
 					MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
 					
 					// Fenster zum ändern der Daten anzeigen
-					newWindow(new WndMoneyChange(data, this));
+					newWindow(new WndMoneyChange(_desktop, data, this));
 				}
 				break;
 				

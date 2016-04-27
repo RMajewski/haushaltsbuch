@@ -26,6 +26,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 
+import haushaltsbuch.elements.Desktop;
+
 public abstract class Action extends AbstractAction {
 	
 	/**
@@ -41,7 +43,7 @@ public abstract class Action extends AbstractAction {
 	/**
 	 * Speichert den Desktop vom Hauptfenster.
 	 */
-	protected JDesktopPane _desktop;
+	protected Desktop _desktop;
 	
 	/**
 	 * Initalisiert die Klasse. Und legt die übergebenen Icons fest. Es wird
@@ -54,7 +56,7 @@ public abstract class Action extends AbstractAction {
 	 * 
 	 * @param desktop Dekstop des Hauptfensters
 	 */
-	public Action(String small, String big, JDesktopPane desktop) {
+	public Action(String small, String big, Desktop desktop) {
 		// Klasse initalisieren
 		super();
 		

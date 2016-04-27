@@ -33,6 +33,7 @@ import javax.swing.table.TableRowSorter;
 import haushaltsbuch.comparators.CompInt;
 import haushaltsbuch.datas.IdNameData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.menus.PopupStandardList;
 import haushaltsbuch.tables.models.IdNameListModel;
@@ -60,10 +61,12 @@ public class WndCategoryList extends WndTableFrame {
 	/**
 	 * Initalisiert den Dialog und die Tabelle. Anschließend wird der
 	 * Dialog angezeigt.
+	 * 
+	 * @param desktop Desktop des Hauptfensters
 	 */
-	public WndCategoryList() {
+	public WndCategoryList(Desktop desktop) {
 		// Dialog initalieren
-		super();
+		super(desktop);
 		
 		// Tabelle initalisieren
 		IdNameListModel model = new IdNameListModel(DbController.queries().category().select());

@@ -26,6 +26,8 @@ import java.awt.Insets;
 
 import javax.swing.JInternalFrame;
 
+import haushaltsbuch.elements.Desktop;
+
 /**
  * Diese Klasse stellt für das GridBag-Layout Helfer zur Verfügung.
  * 
@@ -52,11 +54,21 @@ public class WndInternalFrame extends JInternalFrame {
 	private boolean _enableDbElements;
 	
 	/**
-	 * Initalisieren der Eigenschaften
+	 * Speichert den Desktop
 	 */
-	public WndInternalFrame() {
+	protected Desktop _desktop;
+	
+	/**
+	 * Initalisieren der Eigenschaften
+	 * 
+	 * @param desktop Desktop des Hauptfensters
+	 */
+	public WndInternalFrame(Desktop desktop) {
 		// Klasse initalisieren
 		super();
+		
+		// Desktop speichern
+		_desktop = desktop;
 		
 		// Standardmäßig kein Datenbank-Fenster
 		setEnableDbElements(false);
@@ -76,15 +88,8 @@ public class WndInternalFrame extends JInternalFrame {
 	 * 
 	 * @param wnd Fenster, das den Focus erhalten soll
 	 */
-	protected void newWindow(JInternalFrame wnd) {
-		getDesktopPane().add(wnd);
-		wnd.moveToFront();
-		try {
-			wnd.setSelected(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+	protected void newWindow(WndInternalFrame wnd) {
+		_desktop.addInternalFrame(wnd);
 	}
 
 	/**

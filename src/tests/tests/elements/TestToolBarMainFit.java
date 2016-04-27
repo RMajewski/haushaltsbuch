@@ -29,10 +29,12 @@ import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JInternalFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
+import org.netbeans.jemmy.operators.JTableOperator;
 
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgReport;
 import haushaltsbuch.windows.WndMain;
+import haushaltsbuch.windows.internal.WndCategoryList;
 import tests.apps.TestToolBarApplication;
 import tests.testcase.GuiTest;
 
@@ -66,6 +68,11 @@ public class TestToolBarMainFit extends GuiTest {
 	 * Speichert die ToolBar
 	 */
 	private JComponentOperator _toolbar;
+	
+	/**
+	 * Speichert die Tabelle
+	 */
+	private JTableOperator _table;
 	
 	/**
 	 * Initalisiert die Klasse und die Tests.
@@ -170,6 +177,23 @@ public class TestToolBarMainFit extends GuiTest {
 	 */
 	public void pushMenu(String path) {
 		new JMenuBarOperator(_wnd).pushMenu(path);
+	}
+	
+	/**
+	 * Es wird das Datenbank-Fenster abgefangen.
+	 */
+	public void openDatabaseWindow() {
+		_frame = new JInternalFrameOperator(_wnd, WndCategoryList.WND_TITLE);
+		_table = new JTableOperator(_frame);
+	}
+	
+	/**
+	 * Selektiert in der Tabelle die angegebene Zeile.
+	 * 
+	 * @param row Zeile, die selektiert werden soll
+	 */
+	public void selectTableRow(int row) {
+		_table.selectCell(row, 0);
 	}
 
 	/**

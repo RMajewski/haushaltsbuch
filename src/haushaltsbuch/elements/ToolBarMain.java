@@ -32,6 +32,7 @@ import haushaltsbuch.actions.DbInsert;
 import haushaltsbuch.actions.Report;
 import haushaltsbuch.events.ToolBarDbElementEvent;
 import haushaltsbuch.listener.ToolBarDbElementListener;
+import haushaltsbuch.windows.internal.WndInternalFrame;
 
 public class ToolBarMain extends JToolBar 
 	implements InternalFrameListener, ToolBarDbElementListener {
@@ -63,7 +64,7 @@ public class ToolBarMain extends JToolBar
 	 * 
 	 * @param owner Zu diesem Fenster gehört die ToolBar
 	 */
-	public ToolBarMain(JDesktopPane desktop, Window owner) {
+	public ToolBarMain(Desktop desktop, Window owner) {
 		// Toolbar initalisieren
 		super();
 		
@@ -100,14 +101,17 @@ public class ToolBarMain extends JToolBar
 
 	@Override
 	public void internalFrameActivated(InternalFrameEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (((WndInternalFrame)e.getInternalFrame()).isEnableDbElements())
+			_insert.setEnabled(true);
+		else
+			_insert.setEnabled(false);
 	}
 
 	@Override
 	public void internalFrameClosed(InternalFrameEvent e) {
-		// TODO Auto-generated method stub
-		
+		_insert.setEnabled(false);
+		_change.setEnabled(false);
+		_delete.setEnabled(false);
 	}
 
 	@Override
@@ -116,8 +120,9 @@ public class ToolBarMain extends JToolBar
 
 	@Override
 	public void internalFrameDeactivated(InternalFrameEvent e) {
-		// TODO Auto-generated method stub
-		
+		_insert.setEnabled(false);
+		_change.setEnabled(false);
+		_delete.setEnabled(false);
 	}
 
 	@Override
@@ -128,10 +133,16 @@ public class ToolBarMain extends JToolBar
 	public void internalFrameIconified(InternalFrameEvent e) {
 	}
 
+	/**
+	 * Wird aufgerufen, wenn ein Fenster geöffnet wurde.
+	 */
 	@Override
 	public void internalFrameOpened(InternalFrameEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (((WndInternalFrame)e.getInternalFrame()).isEnableDbElements())
+			_insert.setEnabled(true);
+		else
+			_insert.setEnabled(false);
+		System.out.println(e.getInternalFrame().getTitle() + " wurde geöffnet");
 	}
 
 	/**

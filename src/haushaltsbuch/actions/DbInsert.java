@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JDesktopPane;
 
+import haushaltsbuch.elements.Desktop;
+
 /**
  * Stellt die Aktion dar, die vom obersten Datenbank-Fenster veranlasst, dass
  * sich das Fenster zum einfügen eines neuen Datensatzes öffnet.
@@ -49,7 +51,7 @@ public class DbInsert extends Action {
 	 * 
 	 * @param desktop Desktop des Hauptfensters
 	 */
-	public DbInsert(JDesktopPane desktop) {
+	public DbInsert(Desktop desktop) {
 		super("insert_small.png", "insert_big.png", desktop);
 		
 		putValue(Action.NAME, "Neu");

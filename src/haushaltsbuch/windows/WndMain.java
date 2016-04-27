@@ -33,6 +33,7 @@ import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgAbout;
 import haushaltsbuch.dialogs.DlgLicense;
 import haushaltsbuch.dialogs.DlgLogView;
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.elements.ToolBarMain;
 import haushaltsbuch.export.SqlScript;
@@ -59,12 +60,17 @@ public class WndMain extends JFrame implements ActionListener {
 	/**
 	 * StatusBar
 	 */
-	private StatusBar status;
+	private StatusBar _status;
+	
+	/**
+	 * Speichert die ToolBar
+	 */
+	private ToolBarMain _toolbar;
 	
 	/**
 	 * Speichert den Desktop
 	 */
-	private JDesktopPane _desktop;
+	private Desktop _desktop;
 	
 	/**
 	 * Speichert den Namen des Fensters
@@ -94,37 +100,24 @@ public class WndMain extends JFrame implements ActionListener {
 		setJMenuBar(new MainTop(this));
 		
 		// Dekstop initalisieren
-		_desktop = new JDesktopPane();
+		_desktop = new Desktop();
 		add(_desktop);
 		
 		// ToolBar initalisieren und anzeigen
-		add(new ToolBarMain(_desktop, this), BorderLayout.NORTH);
+		_toolbar = new ToolBarMain(_desktop, this);
+		_desktop.setToolBar(_toolbar);
+		add(_toolbar, BorderLayout.NORTH);
 		
 		// StatusBar initalisieren und anzeigen
-		status = StatusBar.getInstance();
-		getContentPane().add(status, java.awt.BorderLayout.SOUTH);
+		_status = StatusBar.getInstance();
+		getContentPane().add(_status, java.awt.BorderLayout.SOUTH);
 		
 		// Datenbank vorbereiten
 		prepaireDatabase();
 		
 		// anzeigen
-		status.setMessageAsOk("Ready");
+		_status.setMessageAsOk("Ready");
 		setVisible(true);
-	}
-	
-	/**
-	 * Erzeugt ein das Fenster und gibt ihm dem Focus
-	 * 
-	 * @param wnd Fenster, das erzeugt werden soll
-	 */
-	private void newWindow(JInternalFrame wnd) {
-		_desktop.add(wnd);
-		wnd.moveToFront();
-		try {
-			wnd.setSelected(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
 	}
 
 	/**
@@ -164,17 +157,17 @@ public class WndMain extends JFrame implements ActionListener {
 			
 			// Kategorien anzeigen
 			case MainTop.DB_CATEGORY:
-				newWindow(new WndCategoryList());
+				_desktop.addInternalFrame(new WndCategoryList(_desktop));
 				break;
 				
 			// Geschäfte anzeigen
 			case MainTop.DB_SECTION:
-				newWindow(new WndSectionList());
+				_desktop.addInternalFrame(new WndSectionList(_desktop));
 				break;
 				
 			// Money-Datensätze anzeigen
 			case MainTop.DB_MONEY:
-				newWindow(new WndMoneyList());
+				_desktop.addInternalFrame(new WndMoneyList(_desktop));
 				break;
 				
 			// Log anzeigen
@@ -184,17 +177,17 @@ public class WndMain extends JFrame implements ActionListener {
 				
 			// Wochenübersicht anzeigen
 			case MainTop.REPORT_WEEK:
-				newWindow(new WndReports(ReportPreferencesData.TYPE_WEEK, this));
+				_desktop.addInternalFrame(new WndReports(_desktop, ReportPreferencesData.TYPE_WEEK, this));
 				break;
 				
 			// Monatsübersicht anzeigen
 			case MainTop.REPORT_MONTH:
-				newWindow(new WndReports(ReportPreferencesData.TYPE_MONTH, this));
+				_desktop.addInternalFrame(new WndReports(_desktop, ReportPreferencesData.TYPE_MONTH, this));
 				break;
 				
 			// Jahresübersicht anzeigen
 			case MainTop.REPORT_YEAR:
-				newWindow(new WndReports(ReportPreferencesData.TYPE_YEAR, this));
+				_desktop.addInternalFrame(new WndReports(_desktop, ReportPreferencesData.TYPE_YEAR, this));
 				break;
 				
 			// Export der Daten als SQL-Script

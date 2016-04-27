@@ -36,6 +36,7 @@ import javax.swing.JTextArea;
 
 import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.tables.models.MoneyDetailsListModel;
 
@@ -104,12 +105,14 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 	/**
 	 * Initalisiert das Fenster
 	 * 
+	 * @param desktop Desktop des Hauptfensters
+	 * 
 	 * @param data Datensatz, dessen Daten geändert werden sollen
 	 * 
 	 * @param frame Fenster, welches dieses Fenster aufgereufen hat
 	 */
-	public WndMoneyDetailsChange(MoneyDetailsData data, WndTableFrame frame) {
-		super(data, frame);
+	public WndMoneyDetailsChange(Desktop desktop, MoneyDetailsData data, WndTableFrame frame) {
+		super(desktop, data, frame);
 		
 		// Label für die Kategorie
 		JLabel label = new JLabel("Kategorie");

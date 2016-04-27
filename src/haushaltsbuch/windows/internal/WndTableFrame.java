@@ -37,9 +37,12 @@ import javax.swing.table.AbstractTableModel;
 
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.db.query.Query;
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
+import haushaltsbuch.events.ToolBarDbElementEvent;
 import haushaltsbuch.events.ToolBarDbElementEventMulticaster;
 import haushaltsbuch.listener.PopupMenuMouseListener;
+import haushaltsbuch.listener.ToolBarDbElementListener;
 import haushaltsbuch.menus.PopupStandardList;
 import haushaltsbuch.tables.models.DbModelInterface;
 
@@ -77,17 +80,19 @@ public abstract class WndTableFrame extends WndInternalFrame
 	 * Speichert die Verwaltung der Listener für das Ereignis
 	 * ToolBarDbElementEvent.
 	 */
-	private ToolBarDbElementEventMulticaster _dbEvent;
+	private ToolBarDbElementEventMulticaster _dbEventListener;
 	
 	/**
 	 * Im Konstruktor wird "nur" das Popup-Menü initalisiert.
+	 * 
+	 * @param desktop Desktop des Hauptfensters.
 	 */
-	public WndTableFrame() {
+	public WndTableFrame(Desktop desktop) {
 		// Klasse initalisieren
-		super();
+		super(desktop);
 		
 		// Initalisiert die Verwaltung der ToolBarDbElementListener
-		_dbEvent = new ToolBarDbElementEventMulticaster();
+		_dbEventListener = new ToolBarDbElementEventMulticaster();
 		
 		// Speichern, dass es ein Datenbank-Fenster ist
 		setEnableDbElements(true);
@@ -206,9 +211,42 @@ public abstract class WndTableFrame extends WndInternalFrame
 	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		if (_table.getSelectedRow() > -1)
+		if (_table.getSelectedRow() > -1) {
 			setPopupItemEnable(true);
-		else
+			fireSetDbElementsEnable(true);
+		} else {
 			setPopupItemEnable(false);
+			fireSetDbElementsEnable(false);
+		}
+	}
+	
+	/**
+	 * Fügt einen ToolBarDbEventListener zur Liste hinzu.
+	 * 
+	 * @param listener Neuer Listener, der zu Liste hinzugefügt werden soll.
+	 */
+	public void addToolBarDbEventListener(ToolBarDbElementListener listener) {
+		_dbEventListener.add(listener);
+	}
+	
+	/**
+	 * Löscht den angegebenen Listener aus der Liste der ToolBarDbEventListener.
+	 * 
+	 * @param listener Listener, der aus der Liste gelöscht werden soll.
+	 */
+	public void removeToolBarDbEventListener(ToolBarDbElementListener listener) {
+		_dbEventListener.remove(listener);
+	}
+	
+	/**
+	 * Erzeugt das Ereignis setDbElementsEnable und schickt es an die
+	 * eingetragenen Listener.
+	 * 
+	 * @param enable Sollen die Datenbank-Element "Ändern" und "Löschen"
+	 * benutzbar sein oder nicht?
+	 */
+	public void fireSetDbElementsEnable(boolean enable) {
+		_dbEventListener.setDbElementsEnable(new ToolBarDbElementEvent(_table,
+				enable));
 	}
 }

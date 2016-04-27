@@ -31,8 +31,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.ToolBarMain;
 import haushaltsbuch.windows.internal.WndCategoryList;
+import haushaltsbuch.windows.internal.WndInternalFrame;
 
 public class TestToolBarApplication extends JFrame implements ActionListener {
 	/**
@@ -48,7 +50,7 @@ public class TestToolBarApplication extends JFrame implements ActionListener {
 	/**
 	 * Speichert den Desktop
 	 */
-	JDesktopPane _desktop;
+	Desktop _desktop;
 	
 	/**
 	 * Initalisiert das Fenster
@@ -82,11 +84,13 @@ public class TestToolBarApplication extends JFrame implements ActionListener {
 		setJMenuBar(bar);
 		
 		// Desktop einfügen
-		_desktop = new JDesktopPane();
+		_desktop = new Desktop();
 		add(_desktop);
 		
 		// ToolBar initalisieren und anzeigen
-		add(new ToolBarMain(_desktop, this), BorderLayout.NORTH);
+		ToolBarMain toolbar = new ToolBarMain(_desktop, this);
+		_desktop.setToolBar(toolbar);
+		add(toolbar, BorderLayout.NORTH);
 		
 		// Fenster anzeigen
 		setVisible(true);
@@ -100,19 +104,12 @@ public class TestToolBarApplication extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// Kategorien anzeigen
 		if (e.getActionCommand().equals("Category")) {
-			WndCategoryList category = new WndCategoryList();
-			_desktop.add(category);
-			category.toFront();
-			try {
-				category.setSelected(true);
-			} catch (PropertyVetoException e1) {
-				e1.printStackTrace();
-			}
+			_desktop.addInternalFrame(new WndCategoryList(_desktop));
+			
 		} else if (e.getActionCommand().equals("Test")) {
-			JInternalFrame wnd = new JInternalFrame();
-			wnd.setSize(100, 100);
+			WndInternalFrame wnd = new WndInternalFrame(_desktop);
 			wnd.setVisible(true);
-			_desktop.add(wnd);
+			_desktop.addInternalFrame(wnd);;
 			wnd.toFront();
 			try {
 				wnd.setSelected(true);

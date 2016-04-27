@@ -36,6 +36,7 @@ import javax.swing.JRadioButton;
 
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.tables.models.MoneyListModel;
 import tests.tests.windows.internal.TestWndMoneyChange;
@@ -75,15 +76,17 @@ public class WndMoneyChange extends WndChangeFrame {
 	/**
 	 * Initalisiert das Fenster.
 	 * 
+	 * @param desktop Desktop des Hauptfensters
+	 * 
 	 * @param data Datensatz, der geändert werden soll. Wird <b>null</b>
 	 * angegeben, so wird ein neuer Datensatz erstellt.
 	 * 
 	 * @param frame Fenster, aus dem dieses Fenster aufgerufen wurde.
 	 */
-	public WndMoneyChange(MoneyData data, WndTableFrame frame) {
+	public WndMoneyChange(Desktop desktop, MoneyData data, WndTableFrame frame) {
 		
 		// Fenster initalisieren
-		super(data, frame);
+		super(desktop, data, frame);
 		
 		// Label für das Datum
 		JLabel label = new JLabel("Datum");

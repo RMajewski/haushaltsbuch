@@ -110,6 +110,7 @@ public class FixtureToolBarMain extends ActionFixture {
 	 */
 	public void pushDatabaseCategories() {
 		_test.pushMenu("Datenbank|Kategorien");
+		_test.openDatabaseWindow();
 	}
 	
 	/**
@@ -117,5 +118,12 @@ public class FixtureToolBarMain extends ActionFixture {
 	 */
 	public void pushTestTest() {
 		_test.pushMenu("Test|Test");
+	}
+	
+	/**
+	 * Selektiert in der Tabelle die 1. Zeile
+	 */
+	public void selectTableRow() {
+		_test.selectTableRow(0);
 	}
 }

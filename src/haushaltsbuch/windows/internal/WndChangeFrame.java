@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import haushaltsbuch.datas.Data;
+import haushaltsbuch.elements.Desktop;
 
 /**
  * Zeigt die Elemente an, damit der Benutzer Daten ändern kann. In diesem
@@ -78,13 +79,13 @@ public abstract class WndChangeFrame extends WndInternalFrame implements ActionL
 	protected GridBagLayout _gbl; 
 	
 	/**
-	 * 
+	 * @param desktop
 	 * @param data
 	 * @param frame
 	 */
-	public WndChangeFrame(Data data, WndTableFrame frame) {
+	public WndChangeFrame(Desktop desktop, Data data, WndTableFrame frame) {
 		// Klasse initalisieren
-		super();
+		super(desktop);
 		
 		// Daten speichern
 		_frame = frame;

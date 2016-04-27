@@ -39,6 +39,7 @@ import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.datas.ReportWeekData;
 import haushaltsbuch.datas.ReportYearData;
 import haushaltsbuch.dialogs.DlgReport;
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.ReportGraphic;
 import haushaltsbuch.tables.models.ReportMonthModel;
 import haushaltsbuch.tables.models.ReportWeekModel;
@@ -89,13 +90,15 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 	/**
 	 * Initalisiert das Fenster
 	 * 
+	 * @param desktop Desktop des Hauptfensters
+	 * 
 	 * @param report Welcher Report soll erstellt werden?
 	 * 
 	 * @param owner Fenster, dass dieses Unterfenster erzeugt hat.
 	 */
-	public WndReports(int report, Window owner) {
+	public WndReports(Desktop desktop, int report, Window owner) {
 		// Klasse initalisieren
-		super();
+		super(desktop);
 		_owner = owner;
 		
 		// Größe einstellen

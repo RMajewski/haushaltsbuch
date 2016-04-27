@@ -34,6 +34,7 @@ import haushaltsbuch.comparators.CompInt;
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.menus.PopupStandardList;
 import haushaltsbuch.tables.models.MoneyDetailsListModel;
 
@@ -62,11 +63,13 @@ public class WndMoneyDetailsList extends WndTableFrame {
 	 * Initalisiert das Fenster und speichert die Daten des angegebenen
 	 * Money-Datensatzes.
 	 * 
+	 * @param desktop Dekstop des Hauptfensters.
+	 * 
 	 * @param money Zugehöriger Money-Datensatz
 	 */
-	public WndMoneyDetailsList(MoneyData money) {
+	public WndMoneyDetailsList(Desktop desktop, MoneyData money) {
 		// Klasse initalisiern
-		super();
+		super(desktop);
 		
 		// Datsatz aus 'money' speichern
 		_money = money;
@@ -133,7 +136,7 @@ public class WndMoneyDetailsList extends WndTableFrame {
 			case PopupStandardList.NEW:
 				data = new MoneyDetailsData(-1);
 				data.setMoneyId(_money.getId());
-				newWindow(new WndMoneyDetailsChange(data, this));
+				newWindow(new WndMoneyDetailsChange(_desktop, data, this));
 				break;
 				
 			// Ändern
@@ -165,6 +168,6 @@ public class WndMoneyDetailsList extends WndTableFrame {
 	@Override
 	protected void tableRowDoubleClick() {
 		if (_table.getSelectedRow() > -1)
-			newWindow(new WndMoneyDetailsChange(((MoneyDetailsListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()), this));
+			newWindow(new WndMoneyDetailsChange(_desktop, ((MoneyDetailsListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()), this));
 	}
 }
