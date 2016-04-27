@@ -20,13 +20,42 @@
 package tests.core;
 
 /**
- * Liest die "test.xml" ein und erstellt die jeweiligen Listen daraus.
+ * Speichert die Daten für eine Fit-Test-Suite.
  * 
  * @author René Majewski
  *
  * @version 0.1
  * @since 0.2
  */
-public class XmlParser {
+public class TestFitSuiteData extends TestSuiteData {
+
+	/**
+	 * Initalisiert die Daten.
+	 */
+	public TestFitSuiteData() {
+		super();
+	}
+	
+	/**
+	 * Fügt den angegebenen Fit-Test der Liste der Tests hinzu.
+	 * 
+	 * @param test Fit-Test, der der Liste hinzugefügt werden soll.
+	 */
+	public void addTest(TestFitData test) {
+		super.addTest(test);
+	}
+	
+	/**
+	 * Gibt den über index angegebenen Fit-Test zurück.
+	 * 
+	 * @param index Stelle, an der der Fit-Test steht, der zurück gegeben werden
+	 * soll.
+	 * 
+	 * @return Ermittelter Fit-Test
+	 */
+	@Override
+	public TestFitData getTest(int index) {
+		return (TestFitData) super.getTest(index);
+	}
 
 }

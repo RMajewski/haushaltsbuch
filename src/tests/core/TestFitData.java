@@ -51,12 +51,10 @@ public class TestFitData extends TestData {
 	/**
 	 * Initalisiert dies Daten der Klasse
 	 * 
-	 * @param name Name des Tests.
-	 * 
 	 * @see TestData#TestData(String)
 	 */
-	public TestFitData(String name) {
-		super(name);
+	public TestFitData() {
+		super();
 		
 		_exception = 0;
 		_ignore = 0;

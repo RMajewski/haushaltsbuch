@@ -3,6 +3,7 @@
 		<resultPath>result</resultPath>
 		<srcPath>src</srcPath>
 		<maxDuration>30000</maxDuration>
+		<htmlOut>true</htmlOut>
 	</config>
 	
 	<guiTests/>

@@ -67,19 +67,16 @@ public class TestData {
 	
 	/**
 	 * Initalisiert die Daten dieser Klasse
-	 * 
-	 * @param name Name des Tests. Hier wird nur der Name des Tests angegeben,
-	 * ohne Datei-Type und ohne Path.
 	 */
-	public TestData(String name) {
-		_name = name;
+	public TestData() {
+		_name = new String();
 		_end = 0;
 		_start = 0;
 		_error = null;
 		_exitStatus = -1;
 		_in = null;
 		_start = 0;
-		_exists = true;
+		_exists = false;
 	}
 	
 	/**

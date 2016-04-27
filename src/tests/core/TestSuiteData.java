@@ -53,16 +53,12 @@ public class TestSuiteData {
 	
 	/**
 	 * Initalisiert die Daten 
-	 * 
-	 * @param name Name der Test-Suite
-	 * 
-	 * @param packname Name des Packages
 	 */
-	public TestSuiteData(String name, String packname) {
-		_name = name;
+	public TestSuiteData() {
+		_name = new String();
 		_tests = new ArrayList<TestData>();
-		_package = packname;
-		_exists = true;
+		_package = new String();
+		_exists = false;
 	}
 	
 	/**
