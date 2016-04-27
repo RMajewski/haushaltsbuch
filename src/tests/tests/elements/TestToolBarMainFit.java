@@ -35,6 +35,7 @@ import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgReport;
 import haushaltsbuch.windows.WndMain;
 import haushaltsbuch.windows.internal.WndCategoryList;
+import haushaltsbuch.windows.internal.WndMoneyList;
 import tests.apps.TestToolBarApplication;
 import tests.testcase.GuiTest;
 
@@ -52,27 +53,27 @@ public class TestToolBarMainFit extends GuiTest {
 	/**
 	 * Speichert das Hauptfenster.
 	 */
-	private JFrameOperator _wnd;
+	protected JFrameOperator _wnd;
 	
 	/**
 	 * Speichert das Unterfenster
 	 */
-	private JInternalFrameOperator _frame;
+	protected JInternalFrameOperator _frame;
 	
 	/**
 	 * Speichert den Dialog für Report-Einstellungen
 	 */
-	private JDialogOperator _dlg;
+	protected JDialogOperator _dlg;
 	
 	/**
 	 * Speichert die ToolBar
 	 */
-	private JComponentOperator _toolbar;
+	protected JComponentOperator _toolbar;
 	
 	/**
 	 * Speichert die Tabelle
 	 */
-	private JTableOperator _table;
+	protected JTableOperator _table;
 	
 	/**
 	 * Initalisiert die Klasse und die Tests.
@@ -123,6 +124,8 @@ public class TestToolBarMainFit extends GuiTest {
 	 * @return Wird der Dialog angezeigt?
 	 */
 	public boolean isDialogVisible() {
+		if (_dlg == null)
+			return false;
 		return _dlg.isVisible();
 	}
 	
@@ -132,7 +135,18 @@ public class TestToolBarMainFit extends GuiTest {
 	 * @return Titel des Dialogs
 	 */
 	public String getDialogTitle() {
+		if (_dlg == null)
+			return null;
 		return _dlg.getTitle();
+	}
+	
+	/**
+	 * Ermittelt den Namen des Fensters
+	 * 
+	 * @return Name des Fensters
+	 */
+	public String getInternalFrameTitle() {
+		return _frame.getTitle();
 	}
 	
 	/**
@@ -181,9 +195,11 @@ public class TestToolBarMainFit extends GuiTest {
 	
 	/**
 	 * Es wird das Datenbank-Fenster abgefangen.
+	 * 
+	 * @param name Name des Fensters, das abgefangen werden soll.
 	 */
-	public void openDatabaseWindow() {
-		_frame = new JInternalFrameOperator(_wnd, WndCategoryList.WND_TITLE);
+	public void openDatabaseWindow(String name) {
+		_frame = new JInternalFrameOperator(_wnd, name);
 		_table = new JTableOperator(_frame);
 	}
 	
@@ -194,6 +210,30 @@ public class TestToolBarMainFit extends GuiTest {
 	 */
 	public void selectTableRow(int row) {
 		_table.selectCell(row, 0);
+	}
+	
+	/**
+	 * Klickt auf das ToolBar-Element "Neu"
+	 */
+	public void pushInsert() {
+		new JButtonOperator((JButton)_toolbar.getComponent(0)).pushNoBlock();
+		_dlg = new JDialogOperator(_wnd, "Kategorie erstellen");
+	}
+	
+	/**
+	 * Klickt auf das ToolBar-Element "Ändern"
+	 */
+	public void pushChange() {
+		new JButtonOperator((JButton)_toolbar.getComponent(1)).pushNoBlock();
+		_dlg = new JDialogOperator(_wnd, "Kategorie ändern");
+	}
+	
+	/**
+	 * Klickt auf das ToolBar-Element "Löschen
+	 */
+	public void pushDelete() {
+		new JButtonOperator((JButton)_toolbar.getComponent(2)).pushNoBlock();
+		_dlg = new JDialogOperator(_wnd, "Datensatz löschen");
 	}
 
 	/**

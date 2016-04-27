@@ -107,42 +107,22 @@ public class WndCategoryList extends WndTableFrame {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		IdNameListModel model = (IdNameListModel)_table.getModel();
-
-		try {
-			Statement stm = DbController.getInstance().createStatement();
-			
-			// Welcher Popup-Menü-Punkt wurde ausgewählt?
-			switch (ae.getActionCommand()) {
-				// Neu
-				case PopupStandardList.NEW:
-					String nc = JOptionPane.showInputDialog(this, "Neue Kategorie", "Kategorie erstellen", JOptionPane.OK_CANCEL_OPTION);
-					if (nc != null && !nc.isEmpty()) {
-						if (stm.executeUpdate(DbController.queries().category().insert(nc)) > 0) {
-							StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusInsertOk());
-						} else {
-							StatusBar.getInstance().setMessageAsError(DbController.queries().category().statusInsertError());
-						}
-
-						// Tabelle neu zeichnen
-						model.dataRefresh(true);
-					}
-					break;
-					
-				// Löschen
-				case PopupStandardList.DELETE:
-					if (_table.getSelectedRow() > -1)
-						delete(model.getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().category());
-					break;
-					
-				// Ändern
-				case PopupStandardList.CHANGE:
-					tableRowDoubleClick();
-					break;
-			}
-		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-			e.printStackTrace();
+		// Welcher Popup-Menü-Punkt wurde ausgewählt?
+		switch (ae.getActionCommand()) {
+			// Neu
+			case PopupStandardList.NEW:
+				insert();
+				break;
+				
+			// Löschen
+			case PopupStandardList.DELETE:
+				delete();
+				break;
+				
+			// Ändern
+			case PopupStandardList.CHANGE:
+				tableRowDoubleClick();
+				break;
 		}
 	}
 
@@ -174,5 +154,53 @@ public class WndCategoryList extends WndTableFrame {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * Wird aufgerufen, wenn ein neuer Datensatz eingefügt werden soll.
+	 */
+	@Override
+	public void insert() {
+		IdNameListModel model = (IdNameListModel)_table.getModel();
+
+		try {
+			Statement stm = DbController.getInstance().createStatement();
+				
+			String nc = JOptionPane.showInputDialog(this, "Neue Kategorie", "Kategorie erstellen", JOptionPane.OK_CANCEL_OPTION);
+			if (nc != null && !nc.isEmpty()) {
+				if (stm.executeUpdate(DbController.queries().category().insert(nc)) > 0) {
+					StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusInsertOk());
+				} else {
+					StatusBar.getInstance().setMessageAsError(DbController.queries().category().statusInsertError());
+				}
+	
+				// Tabelle neu zeichnen
+				model.dataRefresh(true);
+			}
+		} catch (SQLException e) {
+			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Wird aufgerufen, wenn ein Datensatz geändert werden soll.
+	 */
+	@Override
+	public void change() {
+		tableRowDoubleClick();
+	}
+
+	/**
+	 * Wird aufgerufen, wenn ein Datensatz gelöscht werden soll.
+	 */
+	@Override
+	public void delete() {
+		IdNameListModel model = (IdNameListModel)_table.getModel();
+		
+		System.out.println("WndCategoryList.delete() wurde aufgerufen"); 
+
+		if (_table.getSelectedRow() > -1)
+			delete(model.getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().category());
 	}
 }

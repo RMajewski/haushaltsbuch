@@ -21,10 +21,16 @@ package haushaltsbuch.events;
 
 import java.util.EventObject;
 
+import haushaltsbuch.windows.internal.WndTableFrame;
+
 /**
- * Speichert die Daten
+ * Speichert die Daten für das Ereignis, wenn ein Datenbank-Fenster der ToolBar
+ * mitteilt, ob die Datenbank-Elemente aktiviert oder deaktiviert werden sollen.
+ * 
  * @author René Majewski
  *
+ * @version 0.1
+ * @since 0.2
  */
 public class ToolBarDbElementEvent extends EventObject {
 	/**
@@ -32,6 +38,11 @@ public class ToolBarDbElementEvent extends EventObject {
 	 * oder nicht.
 	 */
 	private boolean _enable;
+	
+	/**
+	 * Speichert das Datenbank-Fenster, dass das Ereignis ausgelöst hat
+	 */
+	private WndTableFrame _frame;
 
 	/**
 	 * Serialisation ID
@@ -44,10 +55,17 @@ public class ToolBarDbElementEvent extends EventObject {
 	 * @param source Von welchen Element wurde das Event ausgelöst?
 	 * 
 	 * @param enable Sollen die Elemente "Ändern" und "Löschen" benutzbar sein?
+	 * 
+	 * @param frame Datenbank-Fenster, dass das Ergeignis ausgelöst hat.
 	 */
-	public ToolBarDbElementEvent(Object source, boolean enable) {
+	public ToolBarDbElementEvent(Object source, boolean enable,
+			WndTableFrame frame) {
 		super(source);
 		_enable = enable;
+		
+		if (frame == null)
+			throw new IllegalArgumentException("There was null as a parameter.");
+		_frame = frame;
 	}
 	
 	/**
@@ -60,4 +78,12 @@ public class ToolBarDbElementEvent extends EventObject {
 		return _enable;
 	}
 
+	/**
+	 * Gibt das Datenbank-Fenster zurück, welches das Ereignis ausgelöst hat.
+	 * 
+	 * @return Datenbank-Fenster, dass dieses Ereignis ausgelöst hat.
+	 */
+	public WndTableFrame getFrame() {
+		return _frame;
+	}
 }

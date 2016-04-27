@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JDesktopPane;
 
 import haushaltsbuch.elements.Desktop;
+import haushaltsbuch.windows.internal.WndTableFrame;
 
 /**
  * Implementiert die Aktion, die beim obersten Datenbankfenster veranlasst, dass
@@ -59,7 +60,7 @@ public class DbDelete extends Action {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if ((_frame != null) && (_frame instanceof WndTableFrame))
+			((WndTableFrame)_frame).delete();
 	}
 }

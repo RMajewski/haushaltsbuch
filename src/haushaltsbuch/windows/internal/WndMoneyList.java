@@ -139,26 +139,17 @@ public class WndMoneyList extends WndTableFrame {
 		switch (ae.getActionCommand()) {
 			// Neuen Eintrag erstellen
 			case PopupMoneyList.NEW:
-				newWindow(new WndMoneyChange(_desktop, null, this));
+				insert();
 				break;
 				
 			// Einen Eintrag ändern
 			case PopupMoneyList.CHANGE:
-				// Wurde ein Datensatz ausgewählt?
-				if (_table.getSelectedRow() > -1) {
-					// Datensatz ermitteln
-					MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
-					
-					// Fenster zum ändern der Daten anzeigen
-					newWindow(new WndMoneyChange(_desktop, data, this));
-				}
+				change();
 				break;
 				
 			// Einen Eintrag löschen
 			case PopupMoneyList.DELETE:
-				// Wurde ein Datensatz ausgewählt?
-				if (_table.getSelectedRow() > -1)
-					delete(((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().money());
+				delete();
 				break;
 				
 			// Details anzeigen
@@ -166,5 +157,38 @@ public class WndMoneyList extends WndTableFrame {
 				tableRowDoubleClick();
 				break;
 		}
+	}
+
+	/**
+	 * Wird aufgerufen, wenn ein Datensatz eingefügt werden soll.
+	 */
+	@Override
+	public void insert() {
+		newWindow(new WndMoneyChange(_desktop, null, this));
+	}
+
+	/**
+	 * Wird aufgerufen, wenn der selektierte Datensatz geändert werden soll
+	 */
+	@Override
+	public void change() {
+		// Wurde ein Datensatz ausgewählt?
+		if (_table.getSelectedRow() > -1) {
+			// Datensatz ermitteln
+			MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+			
+			// Fenster zum ändern der Daten anzeigen
+			newWindow(new WndMoneyChange(_desktop, data, this));
+		}
+	}
+
+	/**
+	 * Wird aufgerufen, wenn der selektierte Datensatz gelöscht werden soll.
+	 */
+	@Override
+	public void delete() {
+		// Wurde ein Datensatz ausgewählt?
+		if (_table.getSelectedRow() > -1)
+			delete(((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().money());
 	}
 }

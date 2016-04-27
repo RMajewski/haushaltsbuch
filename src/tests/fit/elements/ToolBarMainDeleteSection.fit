@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Element: ToolBar -> Ändern</title>
+	</head>
+	<body>
+		<h2>Element: ToolBar -> Ändern</h2>
+		<p>Es wird ein Datenbank-Fenster geöffnet und in der Tabelle eine Zeile
+		selektiert. Danach wird auf das Element "Löschen" geklickt. Nun wird
+		überprüft, ob der Dialog zum Löschen des selektierten
+		Datenbank-Eintrages geöffnet wurde.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">
+						fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.elements.FixtureToolBarMainSection</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getToolBarName</td>
+					<td>MainToolBar</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDatabaseSection</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectTableRow</td>
+					<td>&nbsp</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDeleteEnable</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDelete</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDialogVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDialogTitle</td>
+					<td>Datensatz löschen</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

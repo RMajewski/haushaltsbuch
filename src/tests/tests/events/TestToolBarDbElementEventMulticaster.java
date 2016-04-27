@@ -30,6 +30,8 @@ import org.junit.Test;
 import haushaltsbuch.events.ToolBarDbElementEvent;
 import haushaltsbuch.events.ToolBarDbElementEventMulticaster;
 import haushaltsbuch.listener.ToolBarDbElementListener;
+import haushaltsbuch.windows.internal.WndInternalFrame;
+import haushaltsbuch.windows.internal.WndTableFrame;
 
 /**
  * Testet die Klasse
@@ -104,14 +106,16 @@ public class TestToolBarDbElementEventMulticaster {
 	}
 	
 	/**
-	 * Testet, ob ein das Event an alle gespeicherten Listener gesandt wird.
+	 * Testet, ob das Event an alle gespeicherten Listener gesandt wird.
 	 */
 	@Test
 	public void testSetDbElementsEnableToAllListener() {
 		ToolBarDbElementEventMulticaster l2 = mock(
 				ToolBarDbElementEventMulticaster.class);
+		WndTableFrame frame = mock(WndTableFrame.class);
 		
-		ToolBarDbElementEvent e = new ToolBarDbElementEvent(new Object(), true);
+		ToolBarDbElementEvent e = new ToolBarDbElementEvent(new Object(), true,
+				frame);
 		
 		_test.add(l2);
 		_test.add(_listener);

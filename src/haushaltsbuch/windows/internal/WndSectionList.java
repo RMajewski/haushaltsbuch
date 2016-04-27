@@ -108,41 +108,21 @@ public class WndSectionList extends WndTableFrame {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		IdNameListModel model = (IdNameListModel)_table.getModel();
-
-		try {
-			Statement stm = DbController.getInstance().createStatement();
-			
-			// Welcher Popup-Menü-Punkt wurde ausgewählt?
-			switch (ae.getActionCommand()) {
-				// Neu
-				case PopupStandardList.NEW:
-					String nc = JOptionPane.showInputDialog(this, "Neues Geschäft", "Geschäft erstellen", JOptionPane.OK_CANCEL_OPTION);
-					if (nc != null && !nc.isEmpty()) {
-						if (stm.executeUpdate(DbController.queries().section().insert(nc)) > 0) {
-							StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusInsertOk());
-						} else {
-							StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusInsertError());
-						}
-
-						// Tabelle neu zeichnen
-						model.dataRefresh(true);
-					}
-					break;
-					
-				// Löschen
-				case PopupStandardList.DELETE:
-					if (_table.getSelectedRow() >= 0)
-						delete(model.getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().section());
-					break;
-					
-				// Ändern
-				case PopupStandardList.CHANGE:
-					tableRowDoubleClick();
-			}
-		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-			e.printStackTrace();
+		// Welcher Popup-Menü-Punkt wurde ausgewählt?
+		switch (ae.getActionCommand()) {
+			// Neu
+			case PopupStandardList.NEW:
+				insert();
+				break;
+				
+			// Löschen
+			case PopupStandardList.DELETE:
+				delete();
+				break;
+				
+			// Ändern
+			case PopupStandardList.CHANGE:
+				tableRowDoubleClick();
 		}
 	}
 
@@ -176,6 +156,52 @@ public class WndSectionList extends WndTableFrame {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * Wird aufgerufen, wenn ein neuer Datensatz eingefügt werden soll.
+	 */
+	@Override
+	public void insert() {
+		IdNameListModel model = (IdNameListModel)_table.getModel();
+
+		try {
+			Statement stm = DbController.getInstance().createStatement();
+			
+			String nc = JOptionPane.showInputDialog(this, "Neues Geschäft", "Geschäft erstellen", JOptionPane.OK_CANCEL_OPTION);
+			if (nc != null && !nc.isEmpty()) {
+				if (stm.executeUpdate(DbController.queries().section().insert(nc)) > 0) {
+					StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusInsertOk());
+				} else {
+					StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusInsertError());
+				}
+	
+				// Tabelle neu zeichnen
+				model.dataRefresh(true);
+			}
+		} catch (SQLException e) {
+			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Wird aufgerufen, wenn der selektierte Datensatz geändert werden soll
+	 */
+	@Override
+	public void change() {
+		tableRowDoubleClick();
+	}
+
+	/**
+	 * Wird aufgerufen, wenn der selektierte Datensatz gelöscht werden soll.
+	 */
+	@Override
+	public void delete() {
+		IdNameListModel model = (IdNameListModel)_table.getModel();
+
+		if (_table.getSelectedRow() >= 0)
+			delete(model.getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().section());
 	}
 
 }

@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Element: ToolBar -> Neu</title>
+	</head>
+	<body>
+		<h2>Element: ToolBar -> Neu</h2>
+		<p>Es wird ein Datenbank-Fenster geöffnet. Danach wird auf das Element
+		"Neu" geklickt. Nun wird überprüft, ob das Fenster zum eingeben eines
+		neuen Datenbank-Eintrages geöffnet wurde.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">
+						fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.elements.FixtureToolBarMain</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getToolBarName</td>
+					<td>MainToolBar</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDatabaseCategories</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isInsertEnable</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushInsert</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDialogVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDialogTitle</td>
+					<td>Kategorie erstellen</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

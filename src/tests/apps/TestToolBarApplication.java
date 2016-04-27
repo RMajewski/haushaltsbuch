@@ -33,8 +33,11 @@ import javax.swing.JMenuItem;
 
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.ToolBarMain;
+import haushaltsbuch.menus.MainTop;
 import haushaltsbuch.windows.internal.WndCategoryList;
 import haushaltsbuch.windows.internal.WndInternalFrame;
+import haushaltsbuch.windows.internal.WndMoneyList;
+import haushaltsbuch.windows.internal.WndSectionList;
 
 public class TestToolBarApplication extends JFrame implements ActionListener {
 	/**
@@ -67,19 +70,12 @@ public class TestToolBarApplication extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// Menü erstellen
-		JMenuBar bar = new JMenuBar();
-		JMenu menu = new JMenu("Datenbank");
-		JMenuItem item = new JMenuItem("Kategorien");
-		item.addActionListener(this);
-		item.setActionCommand("Category");
-		menu.add(item);
-		bar.add(menu);
-		
-		item = new JMenuItem("Test");
+		JMenuItem item = new JMenuItem("Test");
 		item.addActionListener(this);
 		item.setActionCommand("Test");
-		menu = new JMenu("Test");
+		JMenu menu = new JMenu("Test");
 		menu.add(item);
+		MainTop bar = new MainTop(this);
 		bar.add(menu);
 		setJMenuBar(bar);
 		
@@ -103,10 +99,19 @@ public class TestToolBarApplication extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Kategorien anzeigen
-		if (e.getActionCommand().equals("Category")) {
+		if (e.getActionCommand().equals(MainTop.DB_CATEGORY))
 			_desktop.addInternalFrame(new WndCategoryList(_desktop));
-			
-		} else if (e.getActionCommand().equals("Test")) {
+		
+		// Geschäfte anzeigen
+		else if (e.getActionCommand().equals(MainTop.DB_SECTION))
+			_desktop.addInternalFrame(new WndSectionList(_desktop));
+		
+		// Einnahmen und Ausgaben anzeigen
+		else if (e.getActionCommand().equals(MainTop.DB_MONEY))
+			_desktop.addInternalFrame(new WndMoneyList(_desktop));
+		
+		// Test-Fenster
+		else if (e.getActionCommand().equals("Test")) {
 			WndInternalFrame wnd = new WndInternalFrame(_desktop);
 			wnd.setVisible(true);
 			_desktop.addInternalFrame(wnd);;

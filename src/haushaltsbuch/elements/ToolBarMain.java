@@ -73,45 +73,42 @@ public class ToolBarMain extends JToolBar
 		
 		// Neu, Ändern und Löschen
 		_insert = new DbInsert(desktop);
+		_insert.setEnabled(false);
 		add(_insert);
 
 		_change = new DbChange(desktop);
+		_change.setEnabled(false);
 		add(_change);
 
 		_delete = new DbDelete(desktop);
+		_delete.setEnabled(false);
 		add(_delete);
-		
-		setDbEnable(false);
 		
 		addSeparator();
 		add(new Report(desktop, owner));
 	}
-	
-	/**
-	 * Änder die Benutzbarkeit der Buttons zum Einfügen einen Neuen Datensatzes,
-	 * zum Ändern einen Datensatzes und zum Löschen eines Datensatzes.
-	 * 
-	 * @param enable Können die Buttons benutzt werden?
-	 */
-	private void setDbEnable(boolean enable) {
-		_insert.setEnabled(enable);
-		_change.setEnabled(enable);
-		_delete.setEnabled(enable);
-	}
 
 	@Override
 	public void internalFrameActivated(InternalFrameEvent e) {
-		if (((WndInternalFrame)e.getInternalFrame()).isEnableDbElements())
+		if (((WndInternalFrame)e.getInternalFrame()).isEnableDbElements()) {
 			_insert.setEnabled(true);
-		else
+			_insert.setFrame((WndInternalFrame)e.getInternalFrame());
+		} else {
 			_insert.setEnabled(false);
+			_insert.deleteFrame();
+		}
 	}
 
 	@Override
 	public void internalFrameClosed(InternalFrameEvent e) {
 		_insert.setEnabled(false);
+		_insert.deleteFrame();
+		
 		_change.setEnabled(false);
+		_change.deleteFrame();
+		
 		_delete.setEnabled(false);
+		_delete.deleteFrame();
 	}
 
 	@Override
@@ -121,8 +118,13 @@ public class ToolBarMain extends JToolBar
 	@Override
 	public void internalFrameDeactivated(InternalFrameEvent e) {
 		_insert.setEnabled(false);
+		_insert.deleteFrame();
+		
 		_change.setEnabled(false);
+		_change.deleteFrame();
+		
 		_delete.setEnabled(false);
+		_delete.deleteFrame();
 	}
 
 	@Override
@@ -138,11 +140,13 @@ public class ToolBarMain extends JToolBar
 	 */
 	@Override
 	public void internalFrameOpened(InternalFrameEvent e) {
-		if (((WndInternalFrame)e.getInternalFrame()).isEnableDbElements())
+		if (((WndInternalFrame)e.getInternalFrame()).isEnableDbElements()) {
 			_insert.setEnabled(true);
-		else
+			_insert.setFrame((WndInternalFrame)e.getInternalFrame());
+		} else {
 			_insert.setEnabled(false);
-		System.out.println(e.getInternalFrame().getTitle() + " wurde geöffnet");
+			_insert.deleteFrame();
+		}
 	}
 
 	/**
@@ -155,5 +159,12 @@ public class ToolBarMain extends JToolBar
 	public void setDbElementsEnable(ToolBarDbElementEvent e) {
 		_change.setEnabled(e.isEnable());
 		_delete.setEnabled(e.isEnable());
+		if (e.isEnable()) {
+			_change.setFrame(e.getFrame());
+			_delete.setFrame(e.getFrame());
+		} else {
+			_change.deleteFrame();
+			_delete.deleteFrame();
+		}
 	}
 }

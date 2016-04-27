@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JDesktopPane;
 
 import haushaltsbuch.elements.Desktop;
+import haushaltsbuch.windows.internal.WndTableFrame;
 
 /**
  * Stellt die Aktion dar, die vom obersten Datenbank-Fenster veranlasst, dass
@@ -66,6 +67,8 @@ public class DbInsert extends Action {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		if ((_frame != null) && (_frame instanceof WndTableFrame))
+			((WndTableFrame)_frame).insert();
 	}
 
 }

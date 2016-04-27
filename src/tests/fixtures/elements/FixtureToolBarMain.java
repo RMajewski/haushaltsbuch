@@ -20,6 +20,7 @@
 package tests.fixtures.elements;
 
 import fit.ActionFixture;
+import haushaltsbuch.windows.internal.WndCategoryList;
 import tests.tests.elements.TestToolBarMainFit;
 
 /**
@@ -37,7 +38,7 @@ public class FixtureToolBarMain extends ActionFixture {
 	/**
 	 * Speichert die Instanz des Testprogrammes.
 	 */
-	private TestToolBarMainFit _test;
+	protected TestToolBarMainFit _test;
 	
 	/**
 	 * Initalisiert die Klasse
@@ -110,7 +111,7 @@ public class FixtureToolBarMain extends ActionFixture {
 	 */
 	public void pushDatabaseCategories() {
 		_test.pushMenu("Datenbank|Kategorien");
-		_test.openDatabaseWindow();
+		_test.openDatabaseWindow(WndCategoryList.WND_TITLE);
 	}
 	
 	/**
@@ -125,5 +126,44 @@ public class FixtureToolBarMain extends ActionFixture {
 	 */
 	public void selectTableRow() {
 		_test.selectTableRow(0);
+	}
+	
+	/**
+	 * Drückt auf das ToolBar-Element "Neu"
+	 */
+	public void pushInsert() {
+		_test.pushInsert();
+	}
+	
+	/**
+	 * Ermittelt, ob das Fenster angezeigt wird.
+	 * 
+	 * @return Wird das Fenster angezeigt?
+	 */
+	public String isWindowVisible() {
+		return String.valueOf(_test.isInternalFrameVisible());
+	}
+	
+	/**
+	 * Ermittelt de Namen des Fensters
+	 * 
+	 * @return Name des Fensters
+	 */
+	public String getWindowTitle() {
+		return _test.getInternalFrameTitle();
+	}
+	
+	/**
+	 * Drückt auf das Element "Ändern"
+	 */
+	public void pushChange() {
+		_test.pushChange();
+	}
+	
+	/**
+	 * Drückt auf das Element "Löschen"
+	 */
+	public void pushDelete() {
+		_test.pushDelete();
 	}
 }

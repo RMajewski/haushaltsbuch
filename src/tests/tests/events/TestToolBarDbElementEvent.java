@@ -20,11 +20,13 @@
 package tests.tests.events;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import haushaltsbuch.events.ToolBarDbElementEvent;
+import haushaltsbuch.windows.internal.WndTableFrame;
 
 /**
  * Testet das Ereignis {@link haushaltsbuch.events.ToolBarDbElementEvent}.
@@ -42,13 +44,19 @@ public class TestToolBarDbElementEvent {
 	private ToolBarDbElementEvent _event;
 	
 	/**
+	 * Speichert das Mock-Objekt des Datenbank-Fensters
+	 */
+	WndTableFrame _frame;
+	
+	/**
 	 * Initalisiert die Tests.
 	 * 
 	 * @throws Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		_event = new ToolBarDbElementEvent(new Object(), true);
+		_frame = mock(WndTableFrame.class);
+		_event = new ToolBarDbElementEvent(new Object(), true, _frame);
 	}
 
 	/**
@@ -59,7 +67,18 @@ public class TestToolBarDbElementEvent {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testToolBarDbElementEventWithNullAsSource() {
-		_event = new ToolBarDbElementEvent(null, false);
+		_event = new ToolBarDbElementEvent(null, false, _frame);
+	}
+
+	/**
+	 * Überprüft, ob ein Fehler ausgelöst wird, wenn null als "frame" übergeben
+	 * wird.
+	 * 
+	 * @see haushaltsbuch.events.ToolBarDbElementEvent
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testToolBarDbElementEventWithNullAsFrame() {
+		_event = new ToolBarDbElementEvent(new Object(), false, null);
 	}
 	
 	/**
@@ -83,4 +102,11 @@ public class TestToolBarDbElementEvent {
 		assertTrue(_event.isEnable());
 	}
 
+	/**
+	 * Testet, ob das Datenbank-Fenster richtig zurück gegeben wird.
+	 */
+	@Test
+	public void testGetDatabaseFrame() {
+		assertEquals(_frame, _event.getFrame());
+	}
 }

@@ -52,6 +52,9 @@ import haushaltsbuch.tables.models.DbModelInterface;
  * 
  * In der Version 0.2 wird eine Cast-Klasse implementiert, die die Listener
  * verwaltet, an die das Ereignis ToolBarDbElementEvent gesendet werden soll.
+ * Es werden auch noch abstrakte Methoden hinzugefügt, die das Fenster zum
+ * eingeben eines neues Datensatzes, zum ändern eines Datensatzes und zum
+ * löschen Datensatzes öffnen.
  * 
  * @author René Majewski
  * 
@@ -247,6 +250,21 @@ public abstract class WndTableFrame extends WndInternalFrame
 	 */
 	public void fireSetDbElementsEnable(boolean enable) {
 		_dbEventListener.setDbElementsEnable(new ToolBarDbElementEvent(_table,
-				enable));
+				enable, this));
 	}
+	
+	/**
+	 * Wird aufgerufen, wenn ein neuer Datensatz eingefügt werden soll.
+	 */
+	public abstract void insert();
+	
+	/**
+	 * Wird aufgerufen, wenn ein Datensatz geändert werden soll.
+	 */
+	public abstract void change();
+	
+	/**
+	 * Wird aufgerufen, wenn ein Datenatz gelöscht werden soll.
+	 */
+	public abstract void delete();
 }

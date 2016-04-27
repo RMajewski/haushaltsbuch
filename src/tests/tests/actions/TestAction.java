@@ -20,11 +20,13 @@
 package tests.tests.actions;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import haushaltsbuch.actions.Action;
+import haushaltsbuch.windows.internal.WndInternalFrame;
 
 /**
  * Testet die Klasse {@link haushaltsbuch.actions.Action}.
@@ -81,5 +83,50 @@ public class TestAction {
 	public void testIsSetBigIcon() {
 		assertNotNull(_action.getValue(Action.LARGE_ICON_KEY));
 	}
+	
+	/**
+	 * Überprüft, ob das gespeicherte Fenster zurück gegeben wird.
+	 * 
+	 * @see haushaltsbuch.actions.Action#getFrame()
+	 */
+	@Test
+	public void testGetFrame() {
+		assertNull(_action.getFrame());
+	}
+	
+	/**
+	 * Überprüft, ob auch ein Fenster gespeichert wird.
+	 * 
+	 * @see haushaltsbuch.actions.Action#setFrame(haushaltsbuch.windows.internal.WndInternalFrame)
+	 */
+	@Test
+	public void testSetFrame() {
+		WndInternalFrame frame = mock(WndInternalFrame.class);
+		_action.setFrame(frame);
+		assertEquals(frame, _action.getFrame());
+	}
 
+	/**
+	 * Überprüft, ob ein Fehler ausgelöst wird, wenn <b>null</b> statt einem
+	 * Fenster übergeben wird.
+	 * 
+	 * @see haushaltsbuch.actions.Action#setFrame(WndInternalFrame)
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetFrameWithNullAsParamterThrowsIllegalArgumentException() {
+		_action.setFrame(null);
+	}
+	
+	/**
+	 * Überprüft, ob das Fenster auch wieder gelöscht wird.
+	 * 
+	 * @see haushaltsbuch.actions.Action#deleteFrame()
+	 */
+	@Test
+	public void testDeleteFrame() {
+		WndInternalFrame frame = mock(WndInternalFrame.class);
+		_action.setFrame(frame);
+		_action.deleteFrame();
+		assertEquals(null, _action.getFrame());
+	}
 }

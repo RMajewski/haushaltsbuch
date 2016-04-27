@@ -122,21 +122,11 @@ public class WndMoneyDetailsList extends WndTableFrame {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		// Datensatz ermitteln
-		MoneyDetailsData data;
-		if (_table.getSelectedRow() > -1) {
-			data = ((MoneyDetailsListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
-		} else {
-			data = new MoneyDetailsData(-1);
-		}
-		
 		// Was soll ausgeführt werden?
 		switch(ae.getActionCommand()) {
 			// Neu
 			case PopupStandardList.NEW:
-				data = new MoneyDetailsData(-1);
-				data.setMoneyId(_money.getId());
-				newWindow(new WndMoneyDetailsChange(_desktop, data, this));
+				insert();
 				break;
 				
 			// Ändern
@@ -146,9 +136,7 @@ public class WndMoneyDetailsList extends WndTableFrame {
 				
 			// Löschen
 			case PopupStandardList.DELETE:
-				// Wurde ein Datensatz ausgewählt?
-				if (_table.getSelectedRow() > -1)
-					delete(((MoneyDetailsListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().moneyDetails());
+				delete();
 				break;
 		}
 	}
@@ -169,5 +157,33 @@ public class WndMoneyDetailsList extends WndTableFrame {
 	protected void tableRowDoubleClick() {
 		if (_table.getSelectedRow() > -1)
 			newWindow(new WndMoneyDetailsChange(_desktop, ((MoneyDetailsListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()), this));
+	}
+
+	/**
+	 * Wird auf gerufen, wenn ein neuer Datensatz eingefügt werden soll.
+	 */
+	@Override
+	public void insert() {
+		MoneyDetailsData data = new MoneyDetailsData(-1);
+		data.setMoneyId(_money.getId());
+		newWindow(new WndMoneyDetailsChange(_desktop, data, this));
+	}
+
+	/**
+	 * Wird aufgerufen, wenn ein selektierter Datensatz geändert werden soll.
+	 */
+	@Override
+	public void change() {
+		tableRowDoubleClick();
+	}
+
+	/**
+	 * Wird aufgerufen, wenn ein selektierter Datensatz gelöscht werden soll.
+	 */
+	@Override
+	public void delete() {
+		// Wurde ein Datensatz ausgewählt?
+		if (_table.getSelectedRow() > -1)
+			delete(((MoneyDetailsListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().moneyDetails());
 	}
 }

@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JDesktopPane;
 
 import haushaltsbuch.elements.Desktop;
+import haushaltsbuch.windows.internal.WndTableFrame;
 
 /**
  * Stellt die Aktion dar, die vom obersten Datenbank-Fenster veranlasst, dass
@@ -55,8 +56,8 @@ public class DbChange extends Action {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+		if ((_frame != null) && (_frame instanceof WndTableFrame))
+			((WndTableFrame)_frame).change();
 	}
 
 }

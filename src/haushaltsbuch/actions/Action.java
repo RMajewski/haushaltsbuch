@@ -27,7 +27,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 
 import haushaltsbuch.elements.Desktop;
+import haushaltsbuch.windows.internal.WndInternalFrame;
 
+/**
+ * Implementiert die Methoden, die in allen Aktionen der ToolBar vorhanden sein
+ * sollen.
+ * 
+ * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.2
+ */
 public abstract class Action extends AbstractAction {
 	
 	/**
@@ -46,6 +56,11 @@ public abstract class Action extends AbstractAction {
 	protected Desktop _desktop;
 	
 	/**
+	 * Speichert das Fenster, in welchem die Aktion durchgeführt werden soll.
+	 */
+	protected WndInternalFrame _frame;
+	
+	/**
 	 * Initalisiert die Klasse. Und legt die übergebenen Icons fest. Es wird
 	 * geprüft, ob die Icons geladen werden kann. Ist dies nicht der Fall, so
 	 * wird nicht versucht diese zu laden.
@@ -60,6 +75,9 @@ public abstract class Action extends AbstractAction {
 		// Klasse initalisieren
 		super();
 		
+		// Kein Fenster zum ausführen der Aktion vorhanden
+		deleteFrame();
+		
 		// Dekstop speichern
 		_desktop = desktop;
 		
@@ -72,6 +90,37 @@ public abstract class Action extends AbstractAction {
 		url = Action.class.getClassLoader().getResource(ICON_PATH + big);
 		if (url != null)
 			putValue(Action.LARGE_ICON_KEY, new ImageIcon(url));
+	}
+	
+	/**
+	 * Setzt das Fenster, in dem die Aktion ausgeführt werden soll.
+	 * 
+	 * @param frame Fenster, in dem die Aktion ausgeführt werden soll.
+	 * 
+	 * @throws IllegalArgumentException Dieser Fehler wird ausgelöst, wenn null
+	 * als Parameter übergeben wird.
+	 */
+	public void setFrame(WndInternalFrame frame) 
+			throws IllegalArgumentException {
+		if (frame == null)
+			throw new IllegalArgumentException("Where was null as a paramter.");
+		_frame = frame;
+	}
+	
+	/**
+	 * Gibt das Fenster zurück, in welchem die Aktion ausgeführt werden soll.
+	 * 
+	 * @return Gespeichertes Fenster, in dem die Aktion ausgeführt werden soll.
+	 */
+	public WndInternalFrame getFrame() {
+		return _frame;
+	}
+	
+	/**
+	 * Lösche das Fenster, in welchem die Aktion ausgeführt werden soll.
+	 */
+	public void deleteFrame() {
+		_frame = null;
 	}
 
 }
