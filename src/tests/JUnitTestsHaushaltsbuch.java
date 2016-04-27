@@ -29,6 +29,7 @@ import org.junit.runners.Suite;
  * 
  * @version 0.1
  * @since 0.1
+ * @deprecated
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

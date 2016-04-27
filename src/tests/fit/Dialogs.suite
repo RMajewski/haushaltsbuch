@@ -1,3 +1,0 @@
-<fitsuite name="Dialogs" desc="Testet die Dialoge">
-    <testref>dialogs/DlgAbout.fit</testref>
-</fitsuite>
