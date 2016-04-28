@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.xml.stream.XMLInputFactory;
@@ -316,7 +317,7 @@ public class TestCore {
 	public void run() {
 //		runGui();
 //		runJunit();
-		runFitList();
+//		runFitList();
 	}
 	
 	/**
@@ -486,6 +487,32 @@ public class TestCore {
 	 * Erstellt die HTML-Datei mit den Resultaten
 	 */
 	public void createResultHtml()  {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(new Date());
 		
+		String htmlFile = _resultPath + File.separator + "Ergebnisse_" +
+				gc.get(GregorianCalendar.YEAR) +
+				gc.get(GregorianCalendar.MONTH) +
+				gc.get(GregorianCalendar.DAY_OF_MONTH) +
+				gc.get(GregorianCalendar.HOUR_OF_DAY) +
+				gc.get(GregorianCalendar.MINUTE) +
+				gc.get(GregorianCalendar.SECOND) +
+				".html";
+		try {
+			HtmlOut html = new HtmlOut(htmlFile);
+			html.htmlHead();
+			
+			html.guiHead();
+			
+			html.junitHead();
+			html.suiteStart("test", "test.test");
+			html.suiteEnd();
+			
+			html.fitHead();
+			
+			html.htmlEnd();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
