@@ -121,6 +121,20 @@ public class HtmlOut {
 	}
 	
 	/**
+	 * Erstellt die Stylesheets
+	 * 
+	 * @throws IOEXception
+	 */
+	private void stylesheets() throws IOException {
+		_bw.write("\t\t<style>"); _bw.newLine();
+		_bw.write(".pass {background-color: #0F0;}");
+		_bw.write(".wrong {background-color: #F00;}");
+		_bw.write(".ignore {background-color: #AAAAAA}");
+		_bw.write(".exception {background-color: #FF0}");
+		_bw.write("\t\t</style>"); _bw.newLine();
+	}
+	
+	/**
 	 * Gibt den HTML-Kopf aus
 	 * 
 	 * @throws IOException 
@@ -140,6 +154,7 @@ public class HtmlOut {
 		_bw.write("\t\t<meta http-equiv=\"content-type\" "
 				+ "content=\"text/html; charset=UTF-8\">");
 		_bw.newLine();
+		stylesheets();
 		_bw.write("\t</head>"); _bw.newLine();
 		_bw.write("\t<body>"); _bw.newLine();
 		_bw.write("\t\t<h1>Ergebniss der Tests vom ");
@@ -215,8 +230,26 @@ public class HtmlOut {
 	 * @param name Name der Test-Suite
 	 * 
 	 * @param pack Name des Package
+	 * 
+	 * @param right Anzahl richtiger Tests
+	 * 
+	 * @param wrong Anzahl falscher Tests
+	 * 
+	 * @param ignore Anzahl ignorierter Tests
+	 * 
+	 * @param exception Anzahl Fehlerhafter Tests
 	 */
-	public void suiteStart(String name, String pack) throws IOException {
+	public void suiteStart(String name, String pack, int right, int wrong, 
+			int ignore, int exception) throws IOException {
+		
+		String rightColspan = new String();
+		if (wrong == -1)
+			rightColspan = " colspan=\"2\"";
+		
+		String exceptionColspan = new String();
+		if (ignore == -1)
+			exceptionColspan = " colspan=\"2\"";
+		
 		_bw.write("\t\t<table width=\"100%\" border=\"1\">"); _bw.newLine();
 		_bw.write("\t\t\t<tr>"); _bw.newLine();
 		
@@ -225,10 +258,31 @@ public class HtmlOut {
 		_bw.write("</td>");
 		_bw.newLine();
 		
-		_bw.write("\t\t\t\t<td>&nbsp;</td>"); _bw.newLine();
-		_bw.write("\t\t\t\t<td>&nbsp;</td>"); _bw.newLine();
-		_bw.write("\t\t\t\t<td>&nbsp;</td>"); _bw.newLine();
-		_bw.write("\t\t\t\t<td>&nbsp;</td>"); _bw.newLine();
+		_bw.write("\t\t\t\t<td class=\"pass\"");_bw.write(rightColspan);
+		_bw.write(">");
+		_bw.write(String.valueOf(right));
+		_bw.write("</td>");
+		_bw.newLine();
+		
+		if (wrong > -1) {		
+			_bw.write("\t\t\t\t<td class=\"wrong\">");
+			_bw.write(String.valueOf(wrong));
+			_bw.write("</td>");
+			_bw.newLine();
+		}
+		
+		if (ignore > -1) {
+			_bw.write("\t\t\t\t<td class=\"ignore\">");
+			_bw.write(String.valueOf(ignore));
+			_bw.write("</td>");
+			_bw.newLine();
+		}
+		
+		_bw.write("\t\t\t\t<td class=\"exception\"");
+		_bw.write(exceptionColspan);
+		_bw.write(">");
+		_bw.write(String.valueOf(exception));
+		_bw.write("</td>"); _bw.newLine();
 
 		_bw.write("\t\t\t</tr>"); _bw.newLine();
 
