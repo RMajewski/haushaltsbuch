@@ -505,8 +505,9 @@ public class TestCore {
 			html.guiHead();
 			
 			html.junitHead();
-			html.suiteStart("test", "test.test", 0, 0, 0, 0);
-			html.suiteEnd();
+			html.test("Test", 0, 0, 0, 0);
+			html.test("Test2", 0, 0);
+			html.suiteHtml("test", "test.test", 0, 0);
 			
 			html.fitHead();
 			

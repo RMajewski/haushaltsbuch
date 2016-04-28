@@ -44,6 +44,11 @@ public class HtmlOut {
 	private BufferedWriter _bw;
 	
 	/**
+	 * Speichert den HTML-Code für die Tests
+	 */
+	private StringBuilder _tests;
+	
+	/**
 	 * Es sollen die Bibliotheken für die GUI-Tests ausgegeben werden.
 	 */
 	private static final short BIB_GUI = 1;
@@ -68,6 +73,9 @@ public class HtmlOut {
 	public HtmlOut(String file) throws IOException {
 		// Daten speichern
 		_htmlFile = file;
+		
+		// Daten initalisieren
+		_tests = new StringBuilder();
 		
 		// Writer zum ausgeben öffnen.
 		_writer = new FileWriter(new File(_htmlFile));
@@ -239,7 +247,7 @@ public class HtmlOut {
 	 * 
 	 * @param exception Anzahl Fehlerhafter Tests
 	 */
-	public void suiteStart(String name, String pack, int right, int wrong, 
+	public void suiteHtml(String name, String pack, int right, int wrong, 
 			int ignore, int exception) throws IOException {
 		
 		String rightColspan = new String();
@@ -294,13 +302,118 @@ public class HtmlOut {
 		_bw.newLine();
 
 		_bw.write("\t\t\t</tr>"); _bw.newLine();
+		
+		// Tests ausgeben
+		_bw.write(_tests.toString());
+		_bw.newLine();
+		
+		// Tests neu initalisieren
+		_tests = new StringBuilder();
+		
+		// Ende der Tabelle
+		_bw.write("\t\t</table>");
+		_bw.newLine();
 	}
 	
 	/**
-	 * Beendet die Tabelle für eine Test-Suite
+	 * Gibt den Beginn einer Tabelle aus. In der Tabelle stehen die Ergebnisse
+	 * der Test der Suites.
+	 * 
+	 * @param name Name der Test-Suite
+	 * 
+	 * @param pack Name des Package
+	 * 
+	 * @param right Anzahl richtiger Tests
+	 * 
+	 * @param exception Anzahl Fehlerhafter Tests
+	 * 
+	 * @throws IOException
 	 */
-	public void suiteEnd() throws IOException {
-		_bw.write("\t\t</table>");
-		_bw.newLine();
+	public void suiteHtml(String name, String pack, int right, int exception)
+		throws IOException {
+		suiteHtml(name, pack, right, -1, -1, exception);
+	}
+	
+	/**
+	 * Erzeugt den HTML-Code für einen Test
+	 * 
+	 * @param name Name der Test-Suite
+	 * 
+	 * @param right Anzahl richtiger Tests
+	 * 
+	 * @param wrong Anzahl falscher Tests
+	 * 
+	 * @param ignore Anzahl ignorierter Tests
+	 * 
+	 * @param exception Anzahl Fehlerhafter Tests
+	 * 
+	 * @throws IOExcetption
+	 */
+	public void test(String name, int right, int wrong, int ignore,
+			int exception) throws IOException {
+		String rightColspan = new String();
+		if (wrong == -1)
+			rightColspan = " colspan=\"2\"";
+		
+		String exceptionColspan = new String();
+		if (ignore == -1)
+			exceptionColspan = " colspan=\"2\"";
+		
+		String nl = "";
+		
+		_tests.append("\t\t\t<tr>");
+		_tests.append(nl);
+		
+		_tests.append("\t\t\t\t<td>");
+		_tests.append(String.valueOf(name));
+		_tests.append("</td>");
+		_tests.append(nl);
+		
+		_tests.append("\t\t\t\t<td class=\"pass\"");
+		_tests.append(rightColspan);
+		_tests.append(">");
+		_tests.append(String.valueOf(right));
+		_tests.append("</td>");
+		_tests.append(nl);
+		
+		if (wrong > -1) {
+			_tests.append("\t\t\t\t<td class=\"wrong\">");
+			_tests.append(String.valueOf(wrong));
+			_tests.append("</td>");
+			_tests.append(nl);
+		}
+		
+		if (ignore > -1) {
+			_tests.append("\t\t\t\t<td class=\"ignore\">");
+			_tests.append(String.valueOf(ignore));
+			_tests.append("</td>");
+			_tests.append(nl);
+		}
+		
+		_tests.append("\t\t\t\t<td class=\"exception\"");
+		_tests.append(exceptionColspan);
+		_tests.append(">");
+		_tests.append(String.valueOf(exception));
+		_tests.append("</td>");
+		_tests.append(nl);
+		
+		_tests.append("\t\t\t</tr>");
+		_tests.append(nl);
+	}
+	
+	/**
+	 * Erzeugt den HTML-Code für einen Test
+	 * 
+	 * @param name Name der Test-Suite
+	 * 
+	 * @param right Anzahl richtiger Tests
+	 * 
+	 * @param exception Anzahl Fehlerhafter Tests
+	 * 
+	 * @throws IOExcetption
+	 */
+	public void test(String name, int right, int exception) 
+			throws IOException {
+		test(name, right, -1, -1, exception);
 	}
 }
