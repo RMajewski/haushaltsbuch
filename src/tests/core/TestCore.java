@@ -464,9 +464,9 @@ public class TestCore {
 									Integer.valueOf(tmp[0]));
 							_fit.get(suite).getTest(test).setWrong(
 									Integer.valueOf(tmp[2]));
-							_fit.get(suite).getTest(test).setRight(
+							_fit.get(suite).getTest(test).setIgnore(
 									Integer.valueOf(tmp[4]));
-							_fit.get(suite).getTest(test).setRight(
+							_fit.get(suite).getTest(test).setException(
 									Integer.valueOf(tmp[6]));
 						}
 					}
@@ -527,30 +527,31 @@ public class TestCore {
 	private void htmlFit(HtmlOut html) throws IOException {
 		for (int suite = 0; suite < _fit.size(); suite++) {
 			int right = 0;
+			int wrong = 0;
+			int ignore = 0;
 			int exception = 0;
 			
 			for (int test = 0; test < _fit.get(suite).testCount(); test++) {
-				int rightTest = 0;
-				int exceptionTest = 0;
-				
-				// Überprüfen, ob der Test positiv abgelaufen ist.
-				if (_fit.get(suite).getTest(test).getExitStatus() == 0)
-					rightTest++;
-				else 
-					exceptionTest++;
+				int rightTest = _fit.get(suite).getTest(test).getRight();
+				int wrongTest = _fit.get(suite).getTest(test).getWrong();
+				int ignoreTest = _fit.get(suite).getTest(test).getIgnore();
+				int exceptionTest = _fit.get(suite).getTest(test).getException();
 				
 				// Ausgabe des Tests
 				html.test( _fit.get(suite).getTest(test).getName(),
-						rightTest, exceptionTest);
+						rightTest, wrongTest, ignoreTest, exceptionTest);
 				
 				// Fehler bzw. Richtig für Test-Suite erhöhen
 				right += rightTest;
+				wrong += wrongTest;
+				ignore += ignoreTest;
 				exception += exceptionTest;
 			} // for über alle Tests
 			
 			// Ausgabe für die Test-Suite
 			html.suiteHtml(_fit.get(suite).getName(),
-					_fit.get(suite).getPackage(), right, exception);
+					_fit.get(suite).getPackage(), right, wrong, ignore, 
+						exception);
 		} // for über alle Test-Suits
 	}
 

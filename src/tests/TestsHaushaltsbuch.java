@@ -26,6 +26,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Date;
 
 import haushaltsbuch.helper.HelperCalendar;
@@ -307,6 +308,8 @@ public class TestsHaushaltsbuch {
 					_fitWrong += Integer.valueOf(tmp[2]);
 					_fitIgnore += Integer.valueOf(tmp[4]);
 					_fitExceptions += Integer.valueOf(tmp[6]);
+					System.out.println(Arrays.toString(tmp));
+					System.out.println(tmp[2]);
 				}
 			}
 		} catch (IOException e) {
@@ -411,100 +414,100 @@ public class TestsHaushaltsbuch {
 	public static void main(String[] args) {
 		// Test-Klasse vorbereiten
 		TestsHaushaltsbuch tests = new TestsHaushaltsbuch();
-		
-		// junit-Tests "actions"
-		tests.runJunit("tests.tests.actions.Action");
-		tests.runJunit("tests.tests.actions.DbInsert");
-		tests.runJunit("tests.tests.actions.DbDelete");
-		tests.runJunit("tests.tests.actions.DbChange");
-		tests.runJunit("tests.tests.actions.Report");
-		
-		// junit-Tests "comparators"
-		tests.runJunit("tests.tests.comparators.TestCompDouble");
-		tests.runJunit("tests.tests.comparators.TestCompId");
-		tests.runJunit("tests.tests.comparators.TestCompInt");
-		
-		// junit-Tests "datas"
-		tests.runJunit("tests.tests.datas.TestData");
-		tests.runJunit("tests.tests.datas.TestIdNameData");
-		tests.runJunit("tests.tests.datas.TestLogData");
-		tests.runJunit("tests.tests.datas.TestMoneyData");
-		tests.runJunit("tests.tests.datas.TestMoneyDetailsData");
-		tests.runJunit("tests.tests.datas.TestReportData");
-		tests.runJunit("tests.tests.datas.TestReportMonthData");
-		tests.runJunit("tests.tests.datas.TestReportWeekData");
-		tests.runJunit("tests.tests.datas.TestReportYearData");
-
-		// junit-Tests "db" und "db.query"
-		tests.runJunit("tests.tests.db.TestDbController");
-		tests.runJunit("tests.tests.db.query.TestCategory");
-		tests.runJunit("tests.tests.db.query.TestMoney");
-		tests.runJunit("tests.tests.db.query.TestMoneyDetails");
-		tests.runJunit("tests.tests.db.query.TestQueries");
-		tests.runJunit("tests.tests.db.query.TestQuery");
-		tests.runJunit("tests.tests.db.query.TestQueryInterface");
-		tests.runJunit("tests.tests.db.query.TestSection");
-		
-		// junit-Tests "helper"
-		tests.runJunit("tests.tests.helper.TestHelperCalendar");
-
-		// junit-Tests "menus"
-		tests.runJunit("tests.tests.menus.TestPopupMoneyList");
-		tests.runJunit("tests.tests.menus.TestPopupStandardList");
-		tests.runJunit("tests.tests.menus.TestTopMainMenu");
-
-		// junit-Tests "renderer"
-		tests.runJunit("tests.tests.renderer.TestLogViewListRenderer");
-		
-		// junit-Tests "tables.models"
-		tests.runJunit("tests.tests.tables.models.TestIdNameListModel");
-		tests.runJunit("tests.tests.tables.models.TestMoneyDetailsListModel");
-		tests.runJunit("tests.tests.tables.models.TestMoneyListModel");
-		tests.runJunit("tests.tests.tables.models.TestReportMonthModel");
-		tests.runJunit("tests.tests.tables.models.TestReportWeekModel");
-		tests.runJunit("tests.tests.tables.models.TestReportYearModel");
+//		
+//		// junit-Tests "actions"
+//		tests.runJunit("tests.tests.actions.Action");
+//		tests.runJunit("tests.tests.actions.DbInsert");
+//		tests.runJunit("tests.tests.actions.DbDelete");
+//		tests.runJunit("tests.tests.actions.DbChange");
+//		tests.runJunit("tests.tests.actions.Report");
+//		
+//		// junit-Tests "comparators"
+//		tests.runJunit("tests.tests.comparators.TestCompDouble");
+//		tests.runJunit("tests.tests.comparators.TestCompId");
+//		tests.runJunit("tests.tests.comparators.TestCompInt");
+//		
+//		// junit-Tests "datas"
+//		tests.runJunit("tests.tests.datas.TestData");
+//		tests.runJunit("tests.tests.datas.TestIdNameData");
+//		tests.runJunit("tests.tests.datas.TestLogData");
+//		tests.runJunit("tests.tests.datas.TestMoneyData");
+//		tests.runJunit("tests.tests.datas.TestMoneyDetailsData");
+//		tests.runJunit("tests.tests.datas.TestReportData");
+//		tests.runJunit("tests.tests.datas.TestReportMonthData");
+//		tests.runJunit("tests.tests.datas.TestReportWeekData");
+//		tests.runJunit("tests.tests.datas.TestReportYearData");
+//
+//		// junit-Tests "db" und "db.query"
+//		tests.runJunit("tests.tests.db.TestDbController");
+//		tests.runJunit("tests.tests.db.query.TestCategory");
+//		tests.runJunit("tests.tests.db.query.TestMoney");
+//		tests.runJunit("tests.tests.db.query.TestMoneyDetails");
+//		tests.runJunit("tests.tests.db.query.TestQueries");
+//		tests.runJunit("tests.tests.db.query.TestQuery");
+//		tests.runJunit("tests.tests.db.query.TestQueryInterface");
+//		tests.runJunit("tests.tests.db.query.TestSection");
+//		
+//		// junit-Tests "helper"
+//		tests.runJunit("tests.tests.helper.TestHelperCalendar");
+//
+//		// junit-Tests "menus"
+//		tests.runJunit("tests.tests.menus.TestPopupMoneyList");
+//		tests.runJunit("tests.tests.menus.TestPopupStandardList");
+//		tests.runJunit("tests.tests.menus.TestTopMainMenu");
+//
+//		// junit-Tests "renderer"
+//		tests.runJunit("tests.tests.renderer.TestLogViewListRenderer");
+//		
+//		// junit-Tests "tables.models"
+//		tests.runJunit("tests.tests.tables.models.TestIdNameListModel");
+//		tests.runJunit("tests.tests.tables.models.TestMoneyDetailsListModel");
+//		tests.runJunit("tests.tests.tables.models.TestMoneyListModel");
+//		tests.runJunit("tests.tests.tables.models.TestReportMonthModel");
+//		tests.runJunit("tests.tests.tables.models.TestReportWeekModel");
+//		tests.runJunit("tests.tests.tables.models.TestReportYearModel");
 
 		
 		// Fit-Test der Dialoge
 		tests.runFit("src/tests/fit/dialogs/DlgAbout.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptCancel.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptExport.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptNoPreferences.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableCategory.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableSection.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableMoney.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableMoneyDetails.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataCategory.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataSection.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataMoney.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataMoneyDetails.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgLicense.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgLogView.fit");
-		tests.runFit("src/tests/fit/dialogs/DlgReport.fit");
-		
-		// Fit-Test der Elemente
-		tests.runFit("src/tests/fit/elements/ToolbarMainReport.fit");
-		
-		// Fit-Tests der Hauptfenster
-		tests.runFit("src/tests/fit/windows/WndMain.fit");
-		
-		// Fit-Tests der Unterfenster
-		tests.runFit("src/tests/fit/windows/internal/WndCategoryListInsert.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndCategoryListChange.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndCategoryListDelete.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndSectionListInsert.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndSectionListChange.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndSectionListDelete.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndMoneyListInsert.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndMoneyListChange.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndMoneyListDelete.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndMoneyListDetails.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndMoneyDetailsListInsert.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndMoneyDetailsListChange.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndMoneyDetailsListDelete.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndMoneyChangeInsert.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndMoneyChangeNotInsert.fit");
-		tests.runFit("src/tests/fit/windows/internal/WndMoneyDetailsChangeInsert.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptCancel.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptExport.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptNoPreferences.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableCategory.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableSection.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableMoney.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceTableMoneyDetails.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataCategory.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataSection.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataMoney.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgExportSqlScriptPreferenceDataMoneyDetails.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgLicense.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgLogView.fit");
+//		tests.runFit("src/tests/fit/dialogs/DlgReport.fit");
+//		
+//		// Fit-Test der Elemente
+//		tests.runFit("src/tests/fit/elements/ToolbarMainReport.fit");
+//		
+//		// Fit-Tests der Hauptfenster
+//		tests.runFit("src/tests/fit/windows/WndMain.fit");
+//		
+//		// Fit-Tests der Unterfenster
+//		tests.runFit("src/tests/fit/windows/internal/WndCategoryListInsert.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndCategoryListChange.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndCategoryListDelete.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndSectionListInsert.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndSectionListChange.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndSectionListDelete.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndMoneyListInsert.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndMoneyListChange.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndMoneyListDelete.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndMoneyListDetails.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndMoneyDetailsListInsert.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndMoneyDetailsListChange.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndMoneyDetailsListDelete.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndMoneyChangeInsert.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndMoneyChangeNotInsert.fit");
+//		tests.runFit("src/tests/fit/windows/internal/WndMoneyDetailsChangeInsert.fit");
 		
 		// Statistik ausgeben
 		tests.statistics();
