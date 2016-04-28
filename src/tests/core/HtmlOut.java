@@ -266,27 +266,34 @@ public class HtmlOut {
 		_bw.write("</td>");
 		_bw.newLine();
 		
-		_bw.write("\t\t\t\t<td class=\"pass\"");_bw.write(rightColspan);
+		_bw.write("\t\t\t\t<td");
+		_bw.write(testClass(right, "pass"));
+		_bw.write(rightColspan);
 		_bw.write(">");
 		_bw.write(String.valueOf(right));
 		_bw.write("</td>");
 		_bw.newLine();
 		
 		if (wrong > -1) {		
-			_bw.write("\t\t\t\t<td class=\"wrong\">");
+			_bw.write("\t\t\t\t<td");
+			_bw.write(testClass(wrong, "wrong"));
+			_bw.write(">");
 			_bw.write(String.valueOf(wrong));
 			_bw.write("</td>");
 			_bw.newLine();
 		}
 		
 		if (ignore > -1) {
-			_bw.write("\t\t\t\t<td class=\"ignore\">");
+			_bw.write("\t\t\t\t<td");
+			_bw.write(testClass(ignore, "ignore"));
+			_bw.write(">");
 			_bw.write(String.valueOf(ignore));
 			_bw.write("</td>");
 			_bw.newLine();
 		}
 		
-		_bw.write("\t\t\t\t<td class=\"exception\"");
+		_bw.write("\t\t\t\t<td");
+		_bw.write(testClass(exception, "exception"));
 		_bw.write(exceptionColspan);
 		_bw.write(">");
 		_bw.write(String.valueOf(exception));
@@ -313,6 +320,25 @@ public class HtmlOut {
 		// Ende der Tabelle
 		_bw.write("\t\t</table>");
 		_bw.newLine();
+	}
+	
+	/**
+	 * Überprüft, ob der angegebene Test größer 0 ist. Wenn dies der Fall ist,
+	 * so wird die angegebene Klasse ausgegebenen.
+	 * 
+	 * @param test Test, der überprüft werden soll.
+	 * 
+	 * @param className Name der Klasse die ausgegeben werden soll.
+	 * 
+	 * @return Klasse, wenn test > 0 ist. Ansonnsten leere Zeichenkette.
+	 */
+	private String testClass(int test, String className) {
+		String ret = new String();
+		
+		if (test > 0)
+			ret = " class=\"" + className + "\"";
+		
+		return ret;
 	}
 	
 	/**
@@ -371,7 +397,8 @@ public class HtmlOut {
 		_tests.append("</td>");
 		_tests.append(nl);
 		
-		_tests.append("\t\t\t\t<td class=\"pass\"");
+		_tests.append("\t\t\t\t<td");
+		_tests.append(testClass(right, "pass"));
 		_tests.append(rightColspan);
 		_tests.append(">");
 		_tests.append(String.valueOf(right));
@@ -379,20 +406,25 @@ public class HtmlOut {
 		_tests.append(nl);
 		
 		if (wrong > -1) {
-			_tests.append("\t\t\t\t<td class=\"wrong\">");
+			_tests.append("\t\t\t\t<td");
+			_tests.append(testClass(wrong, "wrong"));
+			_tests.append(">");
 			_tests.append(String.valueOf(wrong));
 			_tests.append("</td>");
 			_tests.append(nl);
 		}
 		
 		if (ignore > -1) {
-			_tests.append("\t\t\t\t<td class=\"ignore\">");
+			_tests.append("\t\t\t\t<td");
+			_tests.append(testClass(ignore, "ignore"));
+			_tests.append(">");
 			_tests.append(String.valueOf(ignore));
 			_tests.append("</td>");
 			_tests.append(nl);
 		}
 		
-		_tests.append("\t\t\t\t<td class=\"exception\"");
+		_tests.append("\t\t\t\t<td");
+		_tests.append(testClass(exception, "exception"));
 		_tests.append(exceptionColspan);
 		_tests.append(">");
 		_tests.append(String.valueOf(exception));

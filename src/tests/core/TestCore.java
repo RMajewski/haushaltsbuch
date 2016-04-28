@@ -317,7 +317,7 @@ public class TestCore {
 	public void run() {
 		runGui();
 		runJunit();
-//		runFitList();
+		runFitList();
 	}
 	
 	/**
@@ -491,12 +491,12 @@ public class TestCore {
 		gc.setTime(new Date());
 		
 		String htmlFile = _resultPath + File.separator + "Ergebnisse_" +
-				gc.get(GregorianCalendar.YEAR) +
-				gc.get(GregorianCalendar.MONTH) +
-				gc.get(GregorianCalendar.DAY_OF_MONTH) +
-				gc.get(GregorianCalendar.HOUR_OF_DAY) +
-				gc.get(GregorianCalendar.MINUTE) +
-				gc.get(GregorianCalendar.SECOND) +
+//				gc.get(GregorianCalendar.YEAR) +
+//				gc.get(GregorianCalendar.MONTH) +
+//				gc.get(GregorianCalendar.DAY_OF_MONTH) +
+//				gc.get(GregorianCalendar.HOUR_OF_DAY) +
+//				gc.get(GregorianCalendar.MINUTE) +
+//				gc.get(GregorianCalendar.SECOND) +
 				".html";
 		try {
 			HtmlOut html = new HtmlOut(htmlFile);
@@ -509,6 +509,7 @@ public class TestCore {
 			htmlGui(_junit, html);
 			
 			html.fitHead();
+			htmlFit(html);
 			
 			html.htmlEnd();
 		} catch (IOException e) {
@@ -516,6 +517,43 @@ public class TestCore {
 		}
 	}
 	
+	/**
+	 * Erstellt die HTML-Ausgabe für die Fit-Tests.
+	 * 
+	 * @param html Klasse, die die HTML-Ausgabe erzeugt.
+	 * 
+	 * @throws IOException
+	 */
+	private void htmlFit(HtmlOut html) throws IOException {
+		for (int suite = 0; suite < _fit.size(); suite++) {
+			int right = 0;
+			int exception = 0;
+			
+			for (int test = 0; test < _fit.get(suite).testCount(); test++) {
+				int rightTest = 0;
+				int exceptionTest = 0;
+				
+				// Überprüfen, ob der Test positiv abgelaufen ist.
+				if (_fit.get(suite).getTest(test).getExitStatus() == 0)
+					rightTest++;
+				else 
+					exceptionTest++;
+				
+				// Ausgabe des Tests
+				html.test( _fit.get(suite).getTest(test).getName(),
+						rightTest, exceptionTest);
+				
+				// Fehler bzw. Richtig für Test-Suite erhöhen
+				right += rightTest;
+				exception += exceptionTest;
+			} // for über alle Tests
+			
+			// Ausgabe für die Test-Suite
+			html.suiteHtml(_fit.get(suite).getName(),
+					_fit.get(suite).getPackage(), right, exception);
+		} // for über alle Test-Suits
+	}
+
 	/**
 	 * Erstellt die HTML-Ausgabe für die GUI-Tests und die junit-Tests.
 	 * 
@@ -538,9 +576,9 @@ public class TestCore {
 				
 				// Überprüfen, ob der Test positiv abgelaufen ist.
 				if (list.get(suite).getTest(test).getExitStatus() == 0)
-					right++;
+					rightTest++;
 				else 
-					exception++;
+					exceptionTest++;
 				
 				// Ausgabe des Tests
 				html.test( list.get(suite).getTest(test).getName(),
@@ -548,7 +586,7 @@ public class TestCore {
 				
 				// Fehler bzw. Richtig für Test-Suite erhöhen
 				right += rightTest;
-				exception += exception;
+				exception += exceptionTest;
 			} // for über alle Tests
 			
 			// Ausgabe für die Test-Suite
