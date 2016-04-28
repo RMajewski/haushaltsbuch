@@ -19,9 +19,11 @@
 
 package tests.core;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -65,6 +67,21 @@ public class TestCore {
 	 * konnte.
 	 */
 	private boolean _configParse;
+	
+	/**
+	 * Speichert das Verzeichnis für die Ergebnisse
+	 */
+	private String _resultPath;
+	
+	/**
+	 * Speichert das Verzeichnis für den Source-Code
+	 */
+	private String _srcPath;
+	
+	/**
+	 * Speichert das Verzeichnis zu den Bibliotheken
+	 */
+	private String _bibPath;
 
 	/**
 	 * Initalisiert die Test-Verwalung
@@ -189,6 +206,21 @@ public class TestCore {
 							test.setName(str);
 							suite.addTest(test);
 							break;
+							
+						// Result-Pfad
+						case "resultPath":
+							_resultPath = str;
+							break;
+							
+						// Source-Pfad
+						case "srcPath":
+							_srcPath = str;
+							break;
+							
+						// Bibliotheks-Pfad
+						case "bibPath":
+							_bibPath = str;
+							break;
 					}
 					break;
 					
@@ -282,8 +314,8 @@ public class TestCore {
 	 * Führt die einzelnen Tests aus
 	 */
 	public void run() {
-		runGui();
-		runJunit();
+//		runGui();
+//		runJunit();
 		runFitList();
 	}
 	
@@ -303,6 +335,7 @@ public class TestCore {
 		for (int suite = 0; suite < _junit.size(); suite++) {
 			// Test-Suite Name
 			System.out.println(_junit.get(suite).getName());
+			
 			// juni-Tests ausführen
 			for (int test = 0; test < _junit.get(suite).testCount(); test++) {
 				String name = _junit.get(suite).getPackage() + "." +
@@ -355,7 +388,98 @@ public class TestCore {
 	 * Für einzelnen Fit-Tests aus
 	 */
 	private void runFitList() {
-		
+		for (int suite = 0; suite < _fit.size(); suite++) {
+			// Test-Suite Name
+			System.out.println(_junit.get(suite).getName());
+			
+			for (int test = 0; test < _fit.get(suite).testCount(); test++) {
+				// Name der Fit-Datei
+				String fit = composeFileName(_srcPath + "." + 
+						_fit.get(suite).getPackage(), 
+						_fit.get(suite).getTest(test).getName(), "fit");
+				
+				// Überprüfen, ob die Datei existiert
+				File f = new File(fit);
+				if (!f.exists() || f.isDirectory()) {
+					_fit.get(suite).getTest(test).setExitStatus(100);
+					System.out.println("Die Fit-Datei: '" + fit +
+							"' existiert nicht oder ist ein Verzeichnis");
+					continue;
+				}
+				
+				// Überprüfen ob das Result-Verzeichnis existiert
+				String resultPath = _resultPath + File.separator + "fit" + 
+						_fit.get(suite).getPackage().replaceAll("\\.", 
+								File.separator);
+				File r = new File(resultPath);
+				if (!r.exists()) {
+					// Verzeichnis anlegen
+					r.mkdirs();
+				}
+				
+				// Name der Result-Datei ermitteln und als Endung html
+				String resultFileName = resultPath + File.separator + 
+						_fit.get(suite).getTest(test).getName() + ".html";
+				
+				// Ausführen
+				try {
+					_fit.get(suite).getTest(test).setStart(new Date().getTime());
+
+					System.out.print(fit + ": ");
+					Process p = Runtime.getRuntime().exec("java -cp " +
+							"bin:" + _bibPath + "/fit.jar:" + _bibPath + "/jemmy.jar:" +
+							_bibPath + "sqlite-jdbc-3.8.11.2.jar -Dtesting=true "
+							+ "fit.FileRunner " + fit + " " + resultFileName);
+					int exit = p.waitFor();
+					
+					// Endzeit ermitteln
+					_fit.get(suite).getTest(test).setEnd(new Date().getTime());
+					
+					// Überpüfen ob Exit-Status 0 ist
+					_fit.get(suite).getTest(test).setExitStatus(exit);
+					if (exit == 0)
+						System.out.print("wurde erfolgreich ausgeführt.");
+					else
+						System.out.print("weißt einen Fehler auf.");
+					
+					
+					// Dauer ausgeben
+					System.out.println(" (Dauer des Tests: " + 
+							_fit.get(suite).getTest(test).getDurationTime() 
+							+ " ms)");
+					
+					// Console in Datei speichern
+					_fit.get(suite).getTest(test).setIn(p.getInputStream());
+
+					// Error auslesen
+					InputStream is = p.getErrorStream();
+					BufferedReader br = new BufferedReader(new InputStreamReader(is));
+					String line;
+					while ((line = br.readLine()) != null) {
+						if ((line.indexOf("right") > -1) &&
+								(line.indexOf("wrong") > -1)) {
+							String[] tmp = line.split(" ");
+							_fit.get(suite).getTest(test).setRight(
+									Integer.valueOf(tmp[0]));
+							_fit.get(suite).getTest(test).setWrong(
+									Integer.valueOf(tmp[2]));
+							_fit.get(suite).getTest(test).setRight(
+									Integer.valueOf(tmp[4]));
+							_fit.get(suite).getTest(test).setRight(
+									Integer.valueOf(tmp[6]));
+						}
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+					_fit.get(suite).getTest(test).setExitStatus(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					_fit.get(suite).getTest(test).setExitStatus(100);
+				}
+				
+			} // for über die Fit-Tests
+			
+		} // for über die Fit-Suites
 	}
 	
 	/**
