@@ -315,8 +315,8 @@ public class TestCore {
 	 * Führt die einzelnen Tests aus
 	 */
 	public void run() {
-//		runGui();
-//		runJunit();
+		runGui();
+		runJunit();
 //		runFitList();
 	}
 	
@@ -503,11 +503,10 @@ public class TestCore {
 			html.htmlHead();
 			
 			html.guiHead();
+			htmlGui(_gui, html);
 			
 			html.junitHead();
-			html.test("Test", 0, 0, 0, 0);
-			html.test("Test2", 0, 0);
-			html.suiteHtml("test", "test.test", 0, 0);
+			htmlGui(_junit, html);
 			
 			html.fitHead();
 			
@@ -515,5 +514,47 @@ public class TestCore {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Erstellt die HTML-Ausgabe für die GUI-Tests und die junit-Tests.
+	 * 
+	 * @param list Liste der Test-Suites, wo die HTML-Ausgabe erstellt werden
+	 * soll.
+	 * 
+	 * @param html Klasse, die die HTML-Ausgabe erzeugt.
+	 * 
+	 * @throws IOException
+	 */
+	private void htmlGui(List<TestSuiteData> list, HtmlOut html) 
+			throws IOException {
+		for (int suite = 0; suite < list.size(); suite++) {
+			int right = 0;
+			int exception = 0;
+			
+			for (int test = 0; test < list.get(suite).testCount(); test++) {
+				int rightTest = 0;
+				int exceptionTest = 0;
+				
+				// Überprüfen, ob der Test positiv abgelaufen ist.
+				if (list.get(suite).getTest(test).getExitStatus() == 0)
+					right++;
+				else 
+					exception++;
+				
+				// Ausgabe des Tests
+				html.test( list.get(suite).getTest(test).getName(),
+						rightTest, exceptionTest);
+				
+				// Fehler bzw. Richtig für Test-Suite erhöhen
+				right += rightTest;
+				exception += exception;
+			} // for über alle Tests
+			
+			// Ausgabe für die Test-Suite
+			html.suiteHtml(list.get(suite).getName(),
+					list.get(suite).getPackage(), right, exception);
+		} // for über alle Test-Suits
+		
 	}
 }

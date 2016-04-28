@@ -334,6 +334,8 @@ public class HtmlOut {
 		suiteHtml(name, pack, right, -1, -1, exception);
 	}
 	
+	// FIXME Ausgabe der Zeit!!!
+	
 	/**
 	 * Erzeugt den HTML-Code für einen Test
 	 * 
