@@ -19,11 +19,17 @@
 
 package tests.core;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.Reader;
+import java.util.Arrays;
 import java.util.Date;
 
 import haushaltsbuch.helper.HelperCalendar;
@@ -104,7 +110,7 @@ public class HtmlOut {
 		
 		// junit
 		if (bib == BIB_JUNIT) {
-			_bw.write("\t\t\t\t<li>junit 4</li>");
+			_bw.write("\t\t\t\t<li>junit 4.12</li>");
 			_bw.newLine();
 		}
 		
@@ -387,7 +393,7 @@ public class HtmlOut {
 	 * 
 	 * @param exception Anzahl Fehlerhafter Tests
 	 * 
-	 * @param in Ausgabe der Konsole
+	 * @param console Ausgabe der Konsole
 	 * 
 	 * @param error Ausgabe der Fehler
 	 * 
@@ -396,7 +402,7 @@ public class HtmlOut {
 	 * @throws IOExcetption
 	 */
 	public void test(String name, int right, int wrong, int ignore,
-			int exception, long time, InputStream in, InputStream error) 
+			int exception, long time, InputStream console, InputStream error) 
 					throws IOException {
 		String rightColspan = new String();
 		if (wrong == -1)
@@ -406,13 +412,29 @@ public class HtmlOut {
 		if (ignore == -1)
 			exceptionColspan = " colspan=\"2\"";
 		
-		String nl = "";
+		String nl = System.getProperty("line.separator");
 		
 		_tests.append("\t\t\t<tr>");
 		_tests.append(nl);
 		
 		_tests.append("\t\t\t\t<td>");
 		_tests.append(String.valueOf(name));
+		_tests.append("<div class=\"testout\">");
+		
+		String tmp = streamOut(console);
+		if ((tmp != null) && !tmp.isEmpty()) {
+			_tests.append("<div class=\"console\">");
+			_tests.append(tmp);
+			_tests.append("</div>");
+		}
+
+		tmp = streamOut(error);
+		if ((tmp != null) && !tmp.isEmpty()) {
+			_tests.append("<div class=\"error\"");
+			_tests.append(tmp);
+			_tests.append("</div>");
+		}
+		_tests.append("</div>");
 		_tests.append("</td>");
 		_tests.append(nl);
 		
@@ -459,6 +481,35 @@ public class HtmlOut {
 		_tests.append(nl);
 	}
 	
+	/**
+	 * Liest den angegebenen Stream aus und gibt diesen als String zurück. Die
+	 * Zeichen "Neue Zeile" werden durch ein "<br/>" ersetzt.
+	 * 
+	 * @param is Stream, der ausgelesen werden soll.
+	 * 
+	 * @return Ausgelesener Stream.
+	 */
+	private String streamOut(InputStream is) throws IOException {
+		// Rückgabe vorbereiten
+		StringBuilder buffer = new StringBuilder();
+		
+		// Stream auslesen
+		if (is != null) {
+			InputStreamReader isr = new InputStreamReader(is);
+			if (isr.ready()) {
+				BufferedReader br = new BufferedReader(isr);
+				String line;
+				while ((line = br.readLine()) != null) {
+					buffer.append(line);
+					buffer.append("<br/>");
+				}
+			}
+		}
+		
+		// Rückgabe
+		return buffer.toString();
+	}
+
 	/**
 	 * Erzeugt den HTML-Code für einen Test
 	 * 

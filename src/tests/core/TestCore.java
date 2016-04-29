@@ -324,8 +324,49 @@ public class TestCore {
 	 * Führt die einzelnen GUI-Tests aus
 	 */
 	private void runGui() {
-		for (int i = 0; i < _gui.size(); i++) {
+		for (int suite = 0; suite < _gui.size(); suite++) {
+			// Test-Suite Name
+			System.out.println(_gui.get(suite).getName());
 			
+			// gui-Tests ausführen
+			for (int test = 0; test < _gui.get(suite).testCount(); suite++) {
+				String name = _gui.get(suite).getPackage() + "." +
+						_gui.get(suite).getTest(test).getName();
+				try {
+					_gui.get(suite).getTest(test).setStart(
+							new Date().getTime());
+
+					System.out.print(name + ": ");
+					Process p = Runtime.getRuntime().exec("java -cp " +
+							System.getProperty("java.class.path")+
+							" -Dtesting=true " + test);
+					int exit = p.waitFor();
+					
+					// Ausgabe wie der Test verlaufen ist
+					_gui.get(suite).getTest(test).setEnd(new Date().getTime());
+					_gui.get(suite).getTest(test).setExitStatus(exit);
+					if (exit == 0)
+						System.out.print("wurde erfolgreich ausgeführt");
+					else
+						System.out.print("weißt Fehler auf");
+					
+					System.out.print(" (Dauer des Tests: ");
+					System.out.print(String.valueOf(
+							_gui.get(suite).getTest(test).getDurationTime()));
+					System.out.println(" ms)");
+					
+					// Console-Ausgabe und Error-Ausgabe speichern
+					_gui.get(suite).getTest(test).setError(p.getErrorStream());
+					_gui.get(suite).getTest(test).setIn(p.getInputStream());
+				} catch (IOException e) {
+					e.printStackTrace();
+					_gui.get(suite).getTest(test).setExitStatus(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					_gui.get(suite).getTest(test).setExitStatus(100);
+				}
+				
+			}
 		}
 	}
 	
