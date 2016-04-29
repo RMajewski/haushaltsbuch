@@ -23,6 +23,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 
 import haushaltsbuch.helper.HelperCalendar;
@@ -246,9 +247,11 @@ public class HtmlOut {
 	 * @param ignore Anzahl ignorierter Tests
 	 * 
 	 * @param exception Anzahl Fehlerhafter Tests
+	 * 
+	 * @param time Zeit, die die Suite insgesamt gebraucht hat.
 	 */
 	public void suiteHtml(String name, String pack, int right, int wrong, 
-			int ignore, int exception) throws IOException {
+			int ignore, int exception, long time) throws IOException {
 		
 		String rightColspan = new String();
 		if (wrong == -1)
@@ -298,12 +301,18 @@ public class HtmlOut {
 		_bw.write(">");
 		_bw.write(String.valueOf(exception));
 		_bw.write("</td>"); _bw.newLine();
+		
+		// Zeit
+		_bw.write("\t\t\t\t<td>");
+		_bw.write(String.valueOf(time));
+		_bw.write("</td>"); _bw.newLine();
 
 		_bw.write("\t\t\t</tr>"); _bw.newLine();
 
 		_bw.write("\t\t\t<tr>"); _bw.newLine();
 		
-		_bw.write("\t\t\t\t<td colspan=\"5\">Package: ");
+		// Ausgabe des Package-Namen
+		_bw.write("\t\t\t\t<td colspan=\"6\">Package: ");
 		_bw.write(pack);
 		_bw.write("</td>");
 		_bw.newLine();
@@ -353,11 +362,14 @@ public class HtmlOut {
 	 * 
 	 * @param exception Anzahl Fehlerhafter Tests
 	 * 
+	 * @param time Zeit, die die Test-Suite insgesamt gebraucht hat
+	 * 
 	 * @throws IOException
 	 */
-	public void suiteHtml(String name, String pack, int right, int exception)
+	public void suiteHtml(String name, String pack, int right, int exception,
+			long time)
 		throws IOException {
-		suiteHtml(name, pack, right, -1, -1, exception);
+		suiteHtml(name, pack, right, -1, -1, exception, time);
 	}
 	
 	// FIXME Ausgabe der Zeit!!!
@@ -375,10 +387,17 @@ public class HtmlOut {
 	 * 
 	 * @param exception Anzahl Fehlerhafter Tests
 	 * 
+	 * @param in Ausgabe der Konsole
+	 * 
+	 * @param error Ausgabe der Fehler
+	 * 
+	 * @param time Zeit, die der Test gebraucht hat
+	 * 
 	 * @throws IOExcetption
 	 */
 	public void test(String name, int right, int wrong, int ignore,
-			int exception) throws IOException {
+			int exception, long time, InputStream in, InputStream error) 
+					throws IOException {
 		String rightColspan = new String();
 		if (wrong == -1)
 			rightColspan = " colspan=\"2\"";
@@ -431,6 +450,11 @@ public class HtmlOut {
 		_tests.append("</td>");
 		_tests.append(nl);
 		
+		_tests.append("\t\t\t\t<td>");
+		_tests.append(time);
+		_tests.append("</td>");
+		_tests.append(nl);
+		
 		_tests.append("\t\t\t</tr>");
 		_tests.append(nl);
 	}
@@ -444,10 +468,16 @@ public class HtmlOut {
 	 * 
 	 * @param exception Anzahl Fehlerhafter Tests
 	 * 
+	 * @param time Zeit, die der Test gebraucht hat
+	 * 
+	 * @param in Ausgabe der Konsole
+	 * 
+	 * @param error Ausgabe der Fehler
+	 * 
 	 * @throws IOExcetption
 	 */
-	public void test(String name, int right, int exception) 
-			throws IOException {
-		test(name, right, -1, -1, exception);
+	public void test(String name, int right, int exception, long time,
+			InputStream console, InputStream error) throws IOException {
+		test(name, right, -1, -1, exception, time, console, error);
 	}
 }

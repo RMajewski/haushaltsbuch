@@ -530,28 +530,33 @@ public class TestCore {
 			int wrong = 0;
 			int ignore = 0;
 			int exception = 0;
+			long time = 0;
 			
 			for (int test = 0; test < _fit.get(suite).testCount(); test++) {
 				int rightTest = _fit.get(suite).getTest(test).getRight();
 				int wrongTest = _fit.get(suite).getTest(test).getWrong();
 				int ignoreTest = _fit.get(suite).getTest(test).getIgnore();
 				int exceptionTest = _fit.get(suite).getTest(test).getException();
+				long timeTest = _fit.get(suite).getTest(test).getDurationTime();
 				
 				// Ausgabe des Tests
 				html.test( _fit.get(suite).getTest(test).getName(),
-						rightTest, wrongTest, ignoreTest, exceptionTest);
+						rightTest, wrongTest, ignoreTest, exceptionTest,
+						timeTest, _fit.get(suite).getTest(test).getIn(),
+						_fit.get(suite).getTest(test).getError());
 				
 				// Fehler bzw. Richtig für Test-Suite erhöhen
 				right += rightTest;
 				wrong += wrongTest;
 				ignore += ignoreTest;
 				exception += exceptionTest;
+				time += timeTest;
 			} // for über alle Tests
 			
 			// Ausgabe für die Test-Suite
 			html.suiteHtml(_fit.get(suite).getName(),
 					_fit.get(suite).getPackage(), right, wrong, ignore, 
-						exception);
+						exception, time);
 		} // for über alle Test-Suits
 	}
 
@@ -570,10 +575,12 @@ public class TestCore {
 		for (int suite = 0; suite < list.size(); suite++) {
 			int right = 0;
 			int exception = 0;
+			long time = 0;
 			
 			for (int test = 0; test < list.get(suite).testCount(); test++) {
 				int rightTest = 0;
 				int exceptionTest = 0;
+				long timeTest = list.get(suite).getTest(test).getDurationTime();
 				
 				// Überprüfen, ob der Test positiv abgelaufen ist.
 				if (list.get(suite).getTest(test).getExitStatus() == 0)
@@ -583,16 +590,19 @@ public class TestCore {
 				
 				// Ausgabe des Tests
 				html.test( list.get(suite).getTest(test).getName(),
-						rightTest, exceptionTest);
+						rightTest, exceptionTest, time,
+						list.get(suite).getTest(test).getIn(),
+						list.get(suite).getTest(test).getError());
 				
 				// Fehler bzw. Richtig für Test-Suite erhöhen
 				right += rightTest;
 				exception += exceptionTest;
+				time += timeTest;
 			} // for über alle Tests
 			
 			// Ausgabe für die Test-Suite
 			html.suiteHtml(list.get(suite).getName(),
-					list.get(suite).getPackage(), right, exception);
+					list.get(suite).getPackage(), right, exception, time);
 		} // for über alle Test-Suits
 		
 	}
