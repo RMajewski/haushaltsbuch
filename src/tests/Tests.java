@@ -39,7 +39,7 @@ public class Tests {
 	public static void main(String[] args) {
 		TestCore test = new TestCore();
 		try {
-			if (test.readConfig("tests/tests.xml")) {
+			if (test.readConfig("tests/testcore_test.xml")) {
 				test.checkFileExists();
 				test.run();
 				test.createResultHtml();

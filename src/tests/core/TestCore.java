@@ -329,7 +329,7 @@ public class TestCore {
 			System.out.println(_gui.get(suite).getName());
 			
 			// gui-Tests ausführen
-			for (int test = 0; test < _gui.get(suite).testCount(); suite++) {
+			for (int test = 0; test < _gui.get(suite).testCount(); test++) {
 				String name = _gui.get(suite).getPackage() + "." +
 						_gui.get(suite).getTest(test).getName();
 				try {
@@ -339,7 +339,7 @@ public class TestCore {
 					System.out.print(name + ": ");
 					Process p = Runtime.getRuntime().exec("java -cp " +
 							System.getProperty("java.class.path")+
-							" -Dtesting=true " + test);
+							" -Dtesting=true " + name);
 					int exit = p.waitFor();
 					
 					// Ausgabe wie der Test verlaufen ist

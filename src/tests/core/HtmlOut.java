@@ -19,7 +19,6 @@
 
 package tests.core;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -27,9 +26,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.io.Reader;
-import java.util.Arrays;
 import java.util.Date;
 
 import haushaltsbuch.helper.HelperCalendar;
@@ -54,6 +50,11 @@ public class HtmlOut {
 	 * Speichert den HTML-Code für die Tests
 	 */
 	private StringBuilder _tests;
+	
+	/**
+	 * Speichert die Aktuelle ID des Testes.
+	 */
+	private int _id;
 	
 	/**
 	 * Es sollen die Bibliotheken für die GUI-Tests ausgegeben werden.
@@ -83,6 +84,7 @@ public class HtmlOut {
 		
 		// Daten initalisieren
 		_tests = new StringBuilder();
+		_id = 1;
 		
 		// Writer zum ausgeben öffnen.
 		_writer = new FileWriter(new File(_htmlFile));
@@ -138,15 +140,38 @@ public class HtmlOut {
 	/**
 	 * Erstellt die Stylesheets
 	 * 
-	 * @throws IOEXception
+	 * @throws IOException
 	 */
 	private void stylesheets() throws IOException {
 		_bw.write("\t\t<style>"); _bw.newLine();
-		_bw.write(".pass {background-color: #0F0;}");
-		_bw.write(".wrong {background-color: #F00;}");
-		_bw.write(".ignore {background-color: #AAAAAA}");
-		_bw.write(".exception {background-color: #FF0}");
+		_bw.write(".pass {background-color: #0F0;}"); _bw.newLine();
+		_bw.write(".wrong {background-color: #F00;}"); _bw.newLine();
+		_bw.write(".ignore {background-color: #AAAAAA;}"); _bw.newLine();
+		_bw.write(".exception {background-color: #FF0;}"); _bw.newLine();
+		_bw.write(".testoutInvisible {display: none;}"); _bw.newLine();
+		_bw.write(".testoutVisible {display: block;}"); _bw.newLine();
+		_bw.write(".right {float: right;}"); _bw.newLine();
 		_bw.write("\t\t</style>"); _bw.newLine();
+	}
+	
+	/**
+	 * Erstellt den Java-Scriot
+	 * 
+	 * @throws IOException
+	 */
+	private void javaScript() throws IOException {
+		_bw.write("\t\t<script type=\"text/javascript\">"); _bw.newLine();
+		_bw.write("function toogleDisplayId(id) {"); _bw.newLine();
+		
+		_bw.write("if (window.document.getElementById(\"id_\" + id ).className == ");
+		_bw.write("\"testoutInvisible\")"); _bw.newLine();
+		_bw.write("window.document.getElementById(\"id_\" + id).className = \"testoutVisible\";");
+		_bw.newLine();
+		_bw.write("else");
+		_bw.newLine();
+		_bw.write("window.document.getElementById(\"id_\" + id).className = \"testoutInvisible\";");
+		_bw.write("}"); _bw.newLine();
+		_bw.write("\t\t</script>"); _bw.newLine();
 	}
 	
 	/**
@@ -170,6 +195,7 @@ public class HtmlOut {
 				+ "content=\"text/html; charset=UTF-8\">");
 		_bw.newLine();
 		stylesheets();
+		javaScript();
 		_bw.write("\t</head>"); _bw.newLine();
 		_bw.write("\t<body>"); _bw.newLine();
 		_bw.write("\t\t<h1>Ergebniss der Tests vom ");
@@ -418,8 +444,18 @@ public class HtmlOut {
 		_tests.append(nl);
 		
 		_tests.append("\t\t\t\t<td>");
+		_tests.append("<a name=\"id_");
+		_tests.append(_id);
+		_tests.append("\">");
 		_tests.append(String.valueOf(name));
-		_tests.append("<div class=\"testout\">");
+		_tests.append("</a>");
+		_tests.append("<div class=\"right\"><a href=\"");
+		_tests.append("javascript:toogleDisplayId(");
+		_tests.append(_id);
+		_tests.append(")\">Ausgabe</a></div>");
+		_tests.append("<div class=\"testoutInvisible\" id=\"id_");
+		_tests.append(_id++);
+		_tests.append("\">");
 		
 		String tmp = streamOut(console);
 		if ((tmp != null) && !tmp.isEmpty()) {
