@@ -56,7 +56,7 @@ public class TestCore {
 	/**
 	 * Speichert die junit-Tests
 	 */
-	private List<TestSuiteData> _junit;
+	private List<TestJunitSuiteData> _junit;
 	
 	/**
 	 * Speichert die Fit-Tests
@@ -90,7 +90,7 @@ public class TestCore {
 	public TestCore() {
 		// Listen initalisieren
 		_gui = new ArrayList<TestSuiteData>();
-		_junit = new ArrayList<TestSuiteData>();
+		_junit = new ArrayList<TestJunitSuiteData>();
 		_fit = new ArrayList<TestFitSuiteData>();
 		_configParse = false;
 	}
@@ -155,8 +155,10 @@ public class TestCore {
 							
 						// Neue Test-Suite
 						case "testSuite":
-							if ((type == 1) || (type == 2))
+							if (type == 1)
 								suite = new TestSuiteData();
+							else if (type == 2)
+								suite = new TestJunitSuiteData();
 							else if (type == 3)
 								suite = new TestFitSuiteData();
 							break;
@@ -171,8 +173,10 @@ public class TestCore {
 							
 						// Neuer Test
 						case "test":
-							if ((type == 1) || (type == 2))
+							if (type == 1)
 								test = new TestData();
+							else if (type == 2)
+								test = new TestJunitData();
 							else if (type == 3)
 								test = new TestFitData();
 							break;
@@ -187,7 +191,7 @@ public class TestCore {
 							if (type == 1)
 								_gui.add(suite);
 							else if (type == 2)
-								_junit.add(suite);
+								_junit.add((TestJunitSuiteData)suite);
 							else if (type == 3)
 								_fit.add((TestFitSuiteData)suite);
 							break;
@@ -244,7 +248,7 @@ public class TestCore {
 	 */
 	public void checkFileExists() {
 		listCheckFiles(_gui);
-		listCheckFiles(_junit);
+		listCheckJunitFiles();
 		listCheckFitFiles();
 	}
 	
@@ -254,6 +258,15 @@ public class TestCore {
 	private void listCheckFitFiles() {
 		for (int i = 0; i < _fit.size(); i++)
 			suiteCheckFiles(_fit.get(i), "fit");
+	}
+	
+	/**
+	 * Durchläuft die junit-Suuite-Liste und prüft, ob die Dateien existieren.
+	 */
+	private void listCheckJunitFiles() {
+		for (int i = 0; i < _junit.size(); i++)
+			suiteCheckFiles(_junit.get(i), "java");
+		
 	}
 
 	/**
@@ -413,6 +426,33 @@ public class TestCore {
 					// Console-Ausgabe und Error-Ausgabe speichern
 					_junit.get(suite).getTest(test).setError(p.getErrorStream());
 					_junit.get(suite).getTest(test).setIn(p.getInputStream());
+
+					InputStream is = p.getInputStream();
+					BufferedReader br = new BufferedReader(new InputStreamReader(is));
+					String line;
+					while ((line = br.readLine()) != null) {
+						if (line.indexOf("OK (") > -1) {
+							String ok = new String("OK (");
+							
+							String tmp = line.substring(ok.length(),
+									line.indexOf(" tests)"));
+							_junit.get(suite).getTest(test).setOk(
+									Integer.valueOf(tmp));
+						} else if (line.indexOf("Tests run") > -1) {
+							String ok = new String("Tests run: ");
+							String fail = new String(",  Failures: ");
+							int indexOk = ok.length();
+							int indexFail = line.indexOf(fail);
+
+							_junit.get(suite).getTest(test).setOk(
+									Integer.valueOf(line.substring(indexOk, 
+											indexFail)));
+							
+							indexFail += fail.length();
+							_junit.get(suite).getTest(test).setFail(
+									Integer.valueOf(line.substring(indexFail)));
+						}
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 					_junit.get(suite).getTest(test).setExitStatus(100);
@@ -547,7 +587,7 @@ public class TestCore {
 			htmlGui(_gui, html);
 			
 			html.junitHead();
-			htmlGui(_junit, html);
+			htmlJunit(html);
 			
 			html.fitHead();
 			htmlFit(html);
@@ -557,7 +597,43 @@ public class TestCore {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Erstellt die HTML-Ausgabe für die Fit-Tests.
+	 * 
+	 * @param html Klasse, die die HTML-Ausgabe erzeugt.
+	 * 
+	 * @throws IOException
+	 */
+	private void htmlJunit(HtmlOut html) throws IOException {
+		for (int suite = 0; suite < _junit.size(); suite++) {
+			int ok = 0;
+			int fail = 0;
+			long time = 0;
+			
+			for (int test = 0; test < _junit.get(suite).testCount(); test++) {
+				int okTest = _junit.get(suite).getTest(test).getOk();
+				int failTest = _junit.get(suite).getTest(test).getFail();
+				long timeTest = _junit.get(suite).getTest(test).getDurationTime();
+				
+				// Ausgabe des Tests
+				html.test( _junit.get(suite).getTest(test).getName(),
+						okTest, failTest, timeTest, 
+						_junit.get(suite).getTest(test).getIn(),
+						_junit.get(suite).getTest(test).getError());
+				
+				// Fehler bzw. Richtig für Test-Suite erhöhen
+				ok += okTest;
+				fail += failTest;
+				time += timeTest;
+			} // for über alle Tests
+			
+			// Ausgabe für die Test-Suite
+			html.suiteHtml(_junit.get(suite).getName(),
+					_junit.get(suite).getPackage(), ok, fail, time);
+		} // for über alle Test-Suits
+	}
+
 	/**
 	 * Erstellt die HTML-Ausgabe für die Fit-Tests.
 	 * 
