@@ -427,7 +427,9 @@ public class TestCore {
 					_junit.get(suite).getTest(test).setError(p.getErrorStream());
 					_junit.get(suite).getTest(test).setIn(p.getInputStream());
 
+					// FIXME Stream für Ausgabe kopieren
 					InputStream is = p.getInputStream();
+					is.mark(is.available());
 					BufferedReader br = new BufferedReader(new InputStreamReader(is));
 					String line;
 					while ((line = br.readLine()) != null) {
@@ -453,6 +455,7 @@ public class TestCore {
 									Integer.valueOf(line.substring(indexFail)));
 						}
 					}
+					is.reset();
 				} catch (IOException e) {
 					e.printStackTrace();
 					_junit.get(suite).getTest(test).setExitStatus(100);
@@ -534,6 +537,7 @@ public class TestCore {
 					_fit.get(suite).getTest(test).setIn(p.getInputStream());
 
 					// Error auslesen
+					// FIXME Stream für Ausgabe kopieren 
 					InputStream is = p.getErrorStream();
 					BufferedReader br = new BufferedReader(new InputStreamReader(is));
 					String line;
