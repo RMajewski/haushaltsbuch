@@ -425,10 +425,17 @@ public class HtmlOut {
 	 * 
 	 * @param time Zeit, die der Test gebraucht hat
 	 * 
+	 * @param fit Gibt an, ob die Links zu den Fit-Ergebnis-Dateien erstellt
+	 * werden sollen oder nicht.
+	 * 
+	 * @param path Gibt das Verzeichnis an, in dem die Fit-Ausgabe-Dateien
+	 * liegen.
+	 * 
 	 * @throws IOExcetption
 	 */
 	public void test(String name, int right, int wrong, int ignore,
-			int exception, long time, InputStream console, InputStream error) 
+			int exception, long time, InputStream console, InputStream error,
+			boolean fit, String path) 
 					throws IOException {
 		String rightColspan = new String();
 		if (wrong == -1)
@@ -444,11 +451,20 @@ public class HtmlOut {
 		_tests.append(nl);
 		
 		_tests.append("\t\t\t\t<td>");
-		_tests.append("<a name=\"id_");
-		_tests.append(_id);
-		_tests.append("\">");
+		
+		if (fit) {
+			_tests.append("<a href=\"");
+			_tests.append(path);
+			_tests.append(File.separator);
+			_tests.append(name);
+			_tests.append(".html\">");
+		}
+		
 		_tests.append(String.valueOf(name));
-		_tests.append("</a>");
+		
+		if (fit)
+			_tests.append("</a>");
+		
 		_tests.append("<div class=\"right\"><a href=\"");
 		_tests.append("javascript:toogleDisplayId(");
 		_tests.append(_id);
@@ -565,6 +581,6 @@ public class HtmlOut {
 	 */
 	public void test(String name, int right, int exception, long time,
 			InputStream console, InputStream error) throws IOException {
-		test(name, right, -1, -1, exception, time, console, error);
+		test(name, right, -1, -1, exception, time, console, error, false, null);
 	}
 }

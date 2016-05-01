@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -64,6 +65,11 @@ public class TestCore {
 	private List<TestFitSuiteData> _fit;
 	
 	/**
+	 * Speichert das Result-Verzeichnis für die Fit-Tests
+	 */
+	private String _fitResult;
+	
+	/**
 	 * Speichert, ob die Konfigurations-Datei fehlerfrei eingelesen werden
 	 * konnte.
 	 */
@@ -93,6 +99,16 @@ public class TestCore {
 		_junit = new ArrayList<TestJunitSuiteData>();
 		_fit = new ArrayList<TestFitSuiteData>();
 		_configParse = false;
+		
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(new Date());
+		DecimalFormat df = new DecimalFormat("00");
+		_fitResult = df.format(gc.get(GregorianCalendar.YEAR)) +
+				df.format(gc.get(GregorianCalendar.MONTH) + 1) +
+				df.format(gc.get(GregorianCalendar.DAY_OF_MONTH)) +
+				df.format(gc.get(GregorianCalendar.HOUR_OF_DAY)) +
+				df.format(gc.get(GregorianCalendar.MINUTE)) +
+				df.format(gc.get(GregorianCalendar.SECOND));
 	}
 
 	/**
@@ -330,7 +346,7 @@ public class TestCore {
 	public void run() {
 		runGui();
 		runJunit();
-		runFitList();
+		runFit();
 	}
 	
 	/**
@@ -427,7 +443,6 @@ public class TestCore {
 					_junit.get(suite).getTest(test).setError(p.getErrorStream());
 					_junit.get(suite).getTest(test).setIn(p.getInputStream());
 
-					// FIXME Stream für Ausgabe kopieren
 					InputStream is = p.getInputStream();
 					is.mark(is.available());
 					BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -472,7 +487,7 @@ public class TestCore {
 	/**
 	 * Für einzelnen Fit-Tests aus
 	 */
-	private void runFitList() {
+	private void runFit() {
 		for (int suite = 0; suite < _fit.size(); suite++) {
 			// Test-Suite Name
 			System.out.println(_junit.get(suite).getName());
@@ -486,14 +501,17 @@ public class TestCore {
 				// Überprüfen, ob die Datei existiert
 				File f = new File(fit);
 				if (!f.exists() || f.isDirectory()) {
+					_fit.get(suite).getTest(test).setExists(false);
 					_fit.get(suite).getTest(test).setExitStatus(100);
 					System.out.println("Die Fit-Datei: '" + fit +
 							"' existiert nicht oder ist ein Verzeichnis");
 					continue;
 				}
+				_fit.get(suite).getTest(suite).setExists(true);
 				
 				// Überprüfen ob das Result-Verzeichnis existiert
-				String resultPath = _resultPath + File.separator + "fit" + 
+				String resultPath = _resultPath + File.separator + _fitResult + 
+						File.separator + 
 						_fit.get(suite).getPackage().replaceAll("\\.", 
 								File.separator);
 				File r = new File(resultPath);
@@ -537,7 +555,6 @@ public class TestCore {
 					_fit.get(suite).getTest(test).setIn(p.getInputStream());
 
 					// Error auslesen
-					// FIXME Stream für Ausgabe kopieren 
 					InputStream is = p.getErrorStream();
 					BufferedReader br = new BufferedReader(new InputStreamReader(is));
 					String line;
@@ -575,14 +592,10 @@ public class TestCore {
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(new Date());
 		
+		
+		
 		String htmlFile = _resultPath + File.separator + "Ergebnisse_" +
-//				gc.get(GregorianCalendar.YEAR) +
-//				gc.get(GregorianCalendar.MONTH) +
-//				gc.get(GregorianCalendar.DAY_OF_MONTH) +
-//				gc.get(GregorianCalendar.HOUR_OF_DAY) +
-//				gc.get(GregorianCalendar.MINUTE) +
-//				gc.get(GregorianCalendar.SECOND) +
-				".html";
+				_fitResult + ".html";
 		try {
 			HtmlOut html = new HtmlOut(htmlFile);
 			html.htmlHead();
@@ -664,7 +677,10 @@ public class TestCore {
 				html.test( _fit.get(suite).getTest(test).getName(),
 						rightTest, wrongTest, ignoreTest, exceptionTest,
 						timeTest, _fit.get(suite).getTest(test).getIn(),
-						_fit.get(suite).getTest(test).getError());
+						_fit.get(suite).getTest(test).getError(), true,
+						_fitResult + File.separator + 
+						_fit.get(suite).getPackage().replaceAll("\\.", 
+								File.separator));
 				
 				// Fehler bzw. Richtig für Test-Suite erhöhen
 				right += rightTest;
