@@ -507,7 +507,7 @@ public class TestCore {
 							"' existiert nicht oder ist ein Verzeichnis");
 					continue;
 				}
-				_fit.get(suite).getTest(suite).setExists(true);
+				_fit.get(suite).getTest(test).setExists(true);
 				
 				// Überprüfen ob das Result-Verzeichnis existiert
 				String resultPath = _resultPath + File.separator + _fitResult + 
