@@ -44,7 +44,7 @@
 		<testSuite>
 			<name>Datenbank-Verbindung</name>
 			<package>tests.tests.db</package>
-			<test>testDbController</test>
+			<test>TestDbController</test>
 		</testSuite>
 		<testSuite>
 			<name>Datenbank-Abfragen</name>
@@ -66,7 +66,7 @@
 			<name>Ereignisse</name>
 			<package>tests.tests.events</package>
 			<test>TestToolBarDbElementEvent</test>
-			<test>TestToolBarDbElementEventMultivaster</test>
+			<test>TestToolBarDbElementEventMulticaster</test>
 		</testSuite>
 		<testSuite>
 			<name>Helfer</name>
@@ -88,11 +88,11 @@
 		<testSuite>
 			<name>Renderer</name>
 			<package>tests.tests.renderer</package>
-			<test>TestLogViewListRenderwr</test>
+			<test>TestLogViewListRenderer</test>
 		</testSuite>
 		<testSuite>
 			<name>Tabellen-Modelle</name>
-			<package>tests.tests.models</package>
+			<package>tests.tests.tables.models</package>
 			<test>TestIdNameListModel</test>
 			<test>TestMoneyDetailsListModel</test>
 			<test>TestMoneyListModel</test>

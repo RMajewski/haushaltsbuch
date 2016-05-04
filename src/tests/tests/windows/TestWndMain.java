@@ -98,7 +98,7 @@ public class TestWndMain extends GuiTest {
 	 * @return Wurde der Desktop initalisiert?
 	 */
 	public boolean isDekstopInit() {
-		return _wnd.getContentPane().getComponent(0).getClass().getName().equals("javax.swing.JDesktopPane");
+		return _wnd.getContentPane().getComponent(0).getClass().getName().equals("haushaltsbuch.elements.Desktop");
 	}
 
 	/**

@@ -522,10 +522,11 @@ public class TestCore {
 					_fit.get(suite).getTest(test).setStart(new Date().getTime());
 
 					System.out.print(fit + ": ");
-					Process p = Runtime.getRuntime().exec("java -cp " +
+					String exec = "java -cp " +
 							"bin:" + _bibPath + "/fit.jar:" + _bibPath + "/jemmy.jar:" +
-							_bibPath + "sqlite-jdbc-3.8.11.2.jar -Dtesting=true "
-							+ "fit.FileRunner " + fit + " " + resultFileName);
+							_bibPath + "/sqlite-jdbc-3.8.11.2.jar -Dtesting=true "
+							+ "fit.FileRunner " + fit + " " + resultFileName;
+					Process p = Runtime.getRuntime().exec(exec);
 					int exit = p.waitFor();
 					
 					// Endzeit ermitteln
