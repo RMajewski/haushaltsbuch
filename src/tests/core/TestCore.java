@@ -70,12 +70,6 @@ public class TestCore {
 	private String _fitResult;
 	
 	/**
-	 * Speichert, ob die Konfigurations-Datei fehlerfrei eingelesen werden
-	 * konnte.
-	 */
-	private boolean _configParse;
-	
-	/**
 	 * Speichert das Verzeichnis für die Ergebnisse
 	 */
 	private String _resultPath;
@@ -98,7 +92,6 @@ public class TestCore {
 		_gui = new ArrayList<TestSuiteData>();
 		_junit = new ArrayList<TestJunitSuiteData>();
 		_fit = new ArrayList<TestFitSuiteData>();
-		_configParse = false;
 		
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(new Date());
@@ -256,7 +249,7 @@ public class TestCore {
 		}
 		
 		// Wurde die Konfigurations-Datei richtig gelesen?
-		return _configParse = true;
+		return true;
 	}
 	
 	/**
