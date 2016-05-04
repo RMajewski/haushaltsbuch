@@ -110,6 +110,7 @@
 			<test>DlgLicense</test>
 			<test>DlgLogView</test>
 			<test>DlgReport</test>
+			<test>DlgInfo</test>
 		</testSuite>
 		<testSuite>
 			<name>Export SQL-Script</name>

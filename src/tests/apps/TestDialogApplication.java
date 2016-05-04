@@ -29,6 +29,7 @@ import javax.swing.JFrame;
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.dialogs.DlgAbout;
 import haushaltsbuch.dialogs.DlgExportSqlScript;
+import haushaltsbuch.dialogs.DlgInfo;
 import haushaltsbuch.dialogs.DlgLicense;
 import haushaltsbuch.dialogs.DlgLogView;
 import haushaltsbuch.dialogs.DlgReport;
@@ -72,6 +73,11 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	 * Gibt an, dass der Report-Dialog angezeigt werden soll.
 	 */
 	public static final String DIALOG_REPORT = "test.dialogs.DlgReport";
+	
+	/**
+	 * Gibt an, dass der Informations-Dialog angezeigt werden soll.
+	 */
+	public static final String DIALOG_INFO = "test.dialogs.DlgInfo";
 
 	/**
 	 * Serilisation ID
@@ -126,6 +132,12 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		btn.addActionListener(this);
 		btn.setActionCommand(DIALOG_REPORT);
 		getContentPane().add(btn);
+		
+		// Button zum Anzeigen des Info-Dialoges
+		btn = new JButton(DIALOG_INFO);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_INFO);
+		getContentPane().add(btn);
 
 		// Fenster Anzeigen
 		setVisible(true);
@@ -176,6 +188,11 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 			// Report-Dialog
 			else if(ae.getActionCommand().equals(DIALOG_REPORT))
 				new DlgReport(_rpd, this);
+			
+			// Info-Dialog
+			else if(ae.getActionCommand().equals(DIALOG_INFO)) {
+				new DlgInfo("Test", "Dies ist ein Test!", this);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

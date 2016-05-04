@@ -36,6 +36,7 @@ import javax.swing.JTextArea;
 
 import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.dialogs.DlgInfo;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.tables.models.MoneyDetailsListModel;
@@ -198,7 +199,7 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 				// Überprüfen ob Betrag eingegeben wurde.
 				if (_txtMoney.getText().isEmpty()) {
 					// Benutzer darauf hinweisen
-					JOptionPane.showConfirmDialog(this, "Sie haben vergessen den Betrag einzugeben.", "Betrag", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+					new DlgInfo("Betrag", "Sie haben vergessen den Betrag einzugeben.", null);
 					
 					// Focus setzen
 					_txtMoney.requestFocus();

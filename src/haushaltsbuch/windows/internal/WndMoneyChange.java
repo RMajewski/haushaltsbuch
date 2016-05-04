@@ -19,6 +19,8 @@
 
 package haushaltsbuch.windows.internal;
 
+import java.awt.Frame;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -36,6 +38,7 @@ import javax.swing.JRadioButton;
 
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.dialogs.DlgInfo;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.tables.models.MoneyListModel;
@@ -166,7 +169,9 @@ public class WndMoneyChange extends WndChangeFrame {
 			// Überprüfen ob kein Datum eingegeben wurde
 			if (_txtDate.getText().isEmpty()) {
 				// Benutzer darauf hinweisen
-				JOptionPane.showConfirmDialog(this, "Sie haben vergessen ein Datum einzugeben.", "Datum",JOptionPane.CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				new DlgInfo("Datum", 
+						"Sie haben vergessen ein Datum einzugeben.",
+						null);
 				
 				// Focus setzen
 				_txtDate.requestFocus();
