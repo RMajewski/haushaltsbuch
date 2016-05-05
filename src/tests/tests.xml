@@ -61,6 +61,7 @@
 			<name>Komponenten</name>
 			<package>tests.tests.elements</package>
 			<test>TestStatusBar</test>
+			<test>TestReportGraphic</test>
 		</testSuite>
 		<testSuite>
 			<name>Ereignisse</name>

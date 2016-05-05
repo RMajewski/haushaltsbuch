@@ -120,6 +120,7 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Grafische Ansicht", null, panel_1, null);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		_report = new ReportGraphic();
 		panel_1.add(_report);
