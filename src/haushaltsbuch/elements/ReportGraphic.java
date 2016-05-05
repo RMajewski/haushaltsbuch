@@ -24,6 +24,8 @@ import java.awt.Graphics;
 
 import javax.swing.JComponent;
 
+import haushaltsbuch.datas.ReportData;
+
 /**
  * Stellt den Report Grafisch da.
  * 
@@ -65,6 +67,31 @@ public class ReportGraphic extends JComponent {
 	protected Color _colorDeviation;
 	
 	/**
+	 * Speichert die Daten für den Report
+	 */
+	protected ReportData _data;
+	
+	/**
+	 * Speichert die Beschriftung für die X-Achse
+	 */
+	protected String _xLegend;
+	
+	/**
+	 * Speichert die Beschriftung für die Y-Achse
+	 */
+	protected String _yLegend;
+	
+	/**
+	 * Speichert, ob die Beschriftung für die X-Achse ausgegeben werden soll
+	 */
+	protected boolean _drawXLegend;
+	
+	/**
+	 * Speichert, ob die Beschriftung für die Y-Achse ausgegeben werden soll
+	 */
+	protected boolean _drawYLegend;
+	
+	/**
 	 * Initalisiert die Klasse
 	 */
 	public ReportGraphic() {
@@ -82,6 +109,15 @@ public class ReportGraphic extends JComponent {
 		
 		// Hintergrund setzen
 		setBackground(Color.WHITE);
+		
+		// Daten vorbereiten
+		_data = null;
+		
+		// Legenden
+		_xLegend = new String();
+		_drawXLegend = false;
+		_yLegend = new String();
+		_drawYLegend = false;
 	}
 	
 	/**
@@ -92,6 +128,8 @@ public class ReportGraphic extends JComponent {
 		// Hintergrund zeichnen
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
+		
+		// Hilfslinien zeichnen
 	}
 	
 	/**
@@ -183,5 +221,99 @@ public class ReportGraphic extends JComponent {
 	 */
 	public void setDeviationColor(Color color) {
 		_colorDeviation = color;
+	}
+	
+	/**
+	 * Gibt die gespeicherten Daten zurück.
+	 * 
+	 * @return Gespeicherte Daten
+	 */
+	public ReportData getData() {
+		return _data;
+	}
+	
+	/**
+	 * Speichert die neuen Daten
+	 * 
+	 * @param data Neue Daten
+	 */
+	public void setData(ReportData data) {
+		_data = data;
+	}
+	
+	/**
+	 * Gibt zurück, ob die Legende für die X-Achse dargestellt werden soll oder
+	 * nicht.
+	 * 
+	 * @return Soll die Legende der X-Achse angezeigt werden?
+	 */
+	public boolean drawXLegend() {
+		return _drawXLegend;
+	}
+	
+	/**
+	 * Speichert, ob die Legnede für die X-Achse dargestellt werden solle oder
+	 * nicht.
+	 * 
+	 * @return Soll die Legend der X-Achse angezeigt werden?
+	 */
+	public void setDrawXLegend(boolean x) {
+		_drawXLegend = x;
+	}
+	
+	/**
+	 * Gibt die gespeicherte Legende der X-Achse zurück.
+	 * 
+	 * @return Gespeicherte Legende der X-Achse.
+	 */
+	public String getXLegend() {
+		return _xLegend;
+	}
+	
+	/**
+	 * Legt die Legende der X-Achse neu fest.
+	 * 
+	 * @param legend Neue Legende der X-Achse
+	 */
+	public void setXLegend(String legend) {
+		_xLegend = legend;
+	}
+	
+	/**
+	 * Gibt zurück, ob die Legende für die Y-Achse dargestellt werden soll oder
+	 * nicht.
+	 * 
+	 * @return Soll die Legende der Y-Achse angezeigt werden?
+	 */
+	public boolean drawYLegend() {
+		return _drawYLegend;
+	}
+	
+	/**
+	 * Speichert, ob die Legnede für die Y-Achse dargestellt werden solle oder
+	 * nicht.
+	 * 
+	 * @return Soll die Legend der Y-Achse angezeigt werden?
+	 */
+	public void setDrawYLegend(boolean y) {
+		_drawYLegend = y;
+	}
+	
+	/**
+	 * Gibt die gespeicherte Legende der Y-Achse zurück.
+	 * 
+	 * @return Gespeicherte Legende der Y-Achse.
+	 */
+	public String getYLegend() {
+		return _yLegend;
+	}
+	
+	/**
+	 * Legt die Legende der Y-Achse neu fest.
+	 * 
+	 * @param legend Neue Legende der Y-Achse
+	 */
+	public void setYLegend(String legend) {
+		_yLegend = legend;
 	}
 }

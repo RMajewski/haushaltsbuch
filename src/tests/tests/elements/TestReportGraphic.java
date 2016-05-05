@@ -20,12 +20,14 @@
 package tests.tests.elements;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.awt.Color;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import haushaltsbuch.datas.ReportData;
 import haushaltsbuch.elements.ReportGraphic;
 
 /**
@@ -143,5 +145,97 @@ public class TestReportGraphic {
 	public void testSetDeviationColor() {
 		_test.setDeviationColor(Color.BLACK);
 		assertEquals(Color.BLACK, _test.getDeviationColor());
+	}
+	
+	/**
+	 * Überprüft, ob nach der Initalisation keine Daten gespeichert sind.
+	 */
+	@Test
+	public void testNoDataAfterInit() {
+		assertNull(_test.getData());
+	}
+	
+	/**
+	 * Überprüft, ob die Daten richtig geändert werden.
+	 */
+	@Test
+	public void testSetData() {
+		ReportData rd = mock(ReportData.class);
+		_test.setData(rd);
+		assertEquals(rd, _test.getData());
+	}
+	
+	/**
+	 * Überprüft, ob die X-Achse nicht ausgegeben werden soll, nachdem
+	 * initalisiert wurde ist.
+	 */
+	@Test
+	public void testDrawXLegend() {
+		assertFalse(_test.drawXLegend());
+	}
+	
+	/**
+	 * Überprüft, ob die Ausgabe der X-Achse richtig geändert werden kann.
+	 */
+	@Test
+	public void testSetDrawXLegend() {
+		_test.setDrawXLegend(true);
+		assertTrue(_test.drawXLegend());
+	}
+	
+	/**
+	 * Überprüft, ob die Y-Achse nicht ausgegeben werden soll, nachdem
+	 * initalisiert wurde ist.
+	 */
+	@Test
+	public void testDrawYLegend() {
+		assertFalse(_test.drawYLegend());
+	}
+	
+	/**
+	 * Überprüft, ob die Ausgabe der Y-Achse richtig geändert werden kann.
+	 */
+	@Test
+	public void testSetDrawYLegend() {
+		_test.setDrawYLegend(true);
+		assertTrue(_test.drawYLegend());
+	}
+	
+	/**
+	 * Überprüft, ob die Legende der X-Achse nach der initalisation eine leere
+	 * Zeichenkette ist.
+	 */
+	@Test
+	public void testGetXLegend() {
+		assertTrue(_test.getXLegend().isEmpty());
+	}
+	
+	/**
+	 * Überprüft, ob die Legende der X-Achse neu gesetzt werden kann.
+	 */
+	@Test
+	public void testSetXLegend() {
+		String test = new String("Dies ist ein Test");
+		_test.setXLegend(test);
+		assertEquals(test, _test.getXLegend());
+	}
+	
+	/**
+	 * Überprüft, ob die Legende der Y-Achse nach der initalisation eine leere
+	 * Zeichenkette ist.
+	 */
+	@Test
+	public void testGetYLegend() {
+		assertTrue(_test.getYLegend().isEmpty());
+	}
+	
+	/**
+	 * Überprüft, ob die Legende der Y-Achse neu gesetzt werden kann.
+	 */
+	@Test
+	public void testSetYLegend() {
+		String test = new String("Dies ist ein Test");
+		_test.setYLegend(test);
+		assertEquals(test, _test.getYLegend());
 	}
 }
