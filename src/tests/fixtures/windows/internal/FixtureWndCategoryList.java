@@ -27,6 +27,7 @@ import javax.swing.JMenuItem;
 
 import fit.ActionFixture;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.elements.StatusBar;
 import tests.fixtures.FixtureWndTables;
 import tests.tests.windows.internal.TestWndCategoryList;
 
@@ -93,5 +94,14 @@ public class FixtureWndCategoryList extends FixtureWndTables {
 	 */
 	public void setCategory(String name) {
 		_test.setDialogText(name);
+	}
+	
+	/**
+	 * Ermittelt die angezeigte Status-Nachricht
+	 * 
+	 * @return Angezeigte Status-Nachricht
+	 */
+	public String getStatusMessage() {
+		return StatusBar.getInstance().getText();
 	}
 }

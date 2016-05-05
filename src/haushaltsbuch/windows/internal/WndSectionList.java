@@ -20,6 +20,7 @@
 package haushaltsbuch.windows.internal;
 
 import java.awt.event.ActionEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -170,10 +171,15 @@ public class WndSectionList extends WndTableFrame {
 			
 			String nc = JOptionPane.showInputDialog(this, "Neues Geschäft", "Geschäft erstellen", JOptionPane.OK_CANCEL_OPTION);
 			if (nc != null && !nc.isEmpty()) {
-				if (stm.executeUpdate(DbController.queries().section().insert(nc)) > 0) {
-					StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusInsertOk());
+				ResultSet rs = stm.executeQuery(DbController.queries().section().search("name", nc));
+				if (!rs.next()) {
+					if (stm.executeUpdate(DbController.queries().section().insert(nc)) > 0) {
+						StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusInsertOk());
+					} else {
+						StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusInsertError());
+					}
 				} else {
-					StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusInsertError());
+					StatusBar.getInstance().setMessage("Geschäft schon verhanden");
 				}
 	
 				// Tabelle neu zeichnen

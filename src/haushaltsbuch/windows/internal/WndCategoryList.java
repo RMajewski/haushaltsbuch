@@ -20,6 +20,7 @@
 package haushaltsbuch.windows.internal;
 
 import java.awt.event.ActionEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -168,10 +169,15 @@ public class WndCategoryList extends WndTableFrame {
 				
 			String nc = JOptionPane.showInputDialog(this, "Neue Kategorie", "Kategorie erstellen", JOptionPane.OK_CANCEL_OPTION);
 			if (nc != null && !nc.isEmpty()) {
-				if (stm.executeUpdate(DbController.queries().category().insert(nc)) > 0) {
-					StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusInsertOk());
+				ResultSet rs = stm.executeQuery(DbController.queries().category().search("name", nc));
+				if (!rs.next()) {
+					if (stm.executeUpdate(DbController.queries().category().insert(nc)) > 0) {
+						StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusInsertOk());
+					} else {
+						StatusBar.getInstance().setMessageAsError(DbController.queries().category().statusInsertError());
+					}
 				} else {
-					StatusBar.getInstance().setMessageAsError(DbController.queries().category().statusInsertError());
+					StatusBar.getInstance().setMessage("Kategorie schon verhanden");
 				}
 	
 				// Tabelle neu zeichnen

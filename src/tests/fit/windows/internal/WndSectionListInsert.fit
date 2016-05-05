@@ -9,9 +9,11 @@
 		Spalten-Überschriften der Tabelle und die Zeilenanzahl richtig sind.
 		Danach werden die Einträge für das Popup-Menü überprüft. Nun wird das
 		Menü-Feld Einfügen angeklickt. Der sich öffnende Dialog wird abgebrochen
-		und überprüft, ob er keinen neuen Datensatz angelegt hat. Zum Schluss
-		wird noch einmal einfügen aufgerufen und versucht ein neuer Datensatz
-		anzulegen. Dieser sollte in der Datenbank abgespeichert worden sein.</p>
+		und überprüft, ob er keinen neuen Datensatz angelegt hat. Danach wird
+		noch einmal einfügen aufgerufen und versucht ein neuer Datensatz
+		anzulegen. Dieser sollte in der Datenbank abgespeichert worden sein. Zum
+		Schluss wird versucht eine Kategorie anzulegen, die schon existiert. Es
+		sollte kein neuer Datensatz angelegt werden.</p>
 		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
 			<tbody>
 				<tr>
@@ -156,6 +158,41 @@
 					<td>check</td>
 					<td>getLastCategory</td>
 					<td>Test</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>15</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushPopupInsert</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setSection</td>
+					<td>Test</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDialogOk</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>15</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getStatusMessage</td>
+					<td>Geschäft schon verhanden</td>
 				</tr>
 			</tbody>
 		</table>

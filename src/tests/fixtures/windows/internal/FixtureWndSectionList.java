@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.elements.StatusBar;
 import tests.fixtures.FixtureWndTables;
 import tests.tests.windows.internal.TestWndSectionList;
 
@@ -98,5 +99,14 @@ public class FixtureWndSectionList extends FixtureWndTables {
 	public void tableDoubleClick() {
 		_test.tableDoubleClick(0);
 		_test.waitDlg("Geschäft ändern");
+	}
+	
+	/**
+	 * Ermittelt die angezeigte Status-Nachricht
+	 * 
+	 * @return Angezeigte Status-Nachricht
+	 */
+	public String getStatusMessage() {
+		return StatusBar.getInstance().getText();
 	}
 }
