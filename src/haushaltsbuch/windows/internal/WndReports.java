@@ -33,6 +33,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import haushaltsbuch.datas.ReportMonthData;
 import haushaltsbuch.datas.ReportPreferencesData;
@@ -41,6 +43,7 @@ import haushaltsbuch.datas.ReportYearData;
 import haushaltsbuch.dialogs.DlgReport;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.ReportGraphic;
+import haushaltsbuch.tables.models.ReportModel;
 import haushaltsbuch.tables.models.ReportMonthModel;
 import haushaltsbuch.tables.models.ReportWeekModel;
 import haushaltsbuch.tables.models.ReportYearModel;
@@ -50,7 +53,8 @@ import haushaltsbuch.tables.models.ReportYearModel;
  * 
  * @author René Majewski
  */
-public class WndReports extends WndInternalFrame implements ActionListener {
+public class WndReports extends WndInternalFrame
+	implements ActionListener, ChangeListener {
 
 	/**
 	 * Serial ID
@@ -109,6 +113,7 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 		
 		// Design
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addChangeListener(this);
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
@@ -215,5 +220,27 @@ public class WndReports extends WndInternalFrame implements ActionListener {
 			setVisible(false);
 		} else if (ae.getActionCommand().equals(SETS))
 			createDlgReport();
+	}
+
+	/**
+	 * Reagiert darauf, wenn eine neue Registerkarte ausgewählt wird.
+	 * 
+	 * @param ce Event-Daten
+	 */
+	@Override
+	public void stateChanged(ChangeEvent ce) {
+		switch (((JTabbedPane)ce.getSource()).getSelectedIndex()) {
+			// Informationen in der Tabelle anzeigen
+		
+			// Diagramm anzeigen
+			case 1:
+				_report.setData(((ReportModel)_table.getModel()).getData());
+				_report.setXLegend("Wochen");
+				_report.setDrawXLegend(true);
+				_report.setYLegend("Euro");
+				_report.setDrawYLegend(true);
+				_report.repaint();
+				break;
+		}
 	}
 }

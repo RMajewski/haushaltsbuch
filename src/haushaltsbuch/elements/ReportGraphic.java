@@ -20,7 +20,12 @@
 package haushaltsbuch.elements;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComponent;
 
@@ -92,6 +97,21 @@ public class ReportGraphic extends JComponent {
 	protected boolean _drawYLegend;
 	
 	/**
+	 * Speichert die Liste für die Überschriften der X-Achse
+	 */
+	protected List<String> _xHeader;
+	
+	/**
+	 * Speichert den maximalen Wert der Y-Achse
+	 */
+	protected double _maxY;
+	
+	/**
+	 * Speichert den minimalen Wert der Y-Achse
+	 */
+	protected double _minY;
+	
+	/**
 	 * Initalisiert die Klasse
 	 */
 	public ReportGraphic() {
@@ -107,17 +127,23 @@ public class ReportGraphic extends JComponent {
 		_colorOut = Color.RED;
 		_colorDeviation = Color.YELLOW;
 		
-		// Hintergrund setzen
+		// Hintergrund- und Vordergrundfarbe setzen
 		setBackground(Color.WHITE);
+		setForeground(Color.BLACK);
 		
 		// Daten vorbereiten
 		_data = null;
+		_minY = 0.0;
+		_maxY = 0.0;
 		
 		// Legenden
 		_xLegend = new String();
 		_drawXLegend = false;
 		_yLegend = new String();
 		_drawYLegend = false;
+		
+		// Liste für Überschriften initalisieren
+		_xHeader = new ArrayList<String>();
 	}
 	
 	/**
@@ -129,7 +155,34 @@ public class ReportGraphic extends JComponent {
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
+		// Schrift-Einstellungen ermitteln
+		Font font = g.getFont();
+		FontMetrics metrics = g.getFontMetrics();
+		
 		// Hilfslinien zeichnen
+		
+		// Überschriften der X-Achse zeichnen
+		if (_xHeader.size() > 0) {
+			
+		}
+		
+		// Legende der X-Achse zeichnen
+		if (_drawXLegend && !_xLegend.isEmpty()) {
+			g.setColor(getForeground());
+			g.setFont(font.deriveFont(Font.BOLD));
+			g.drawString(_xLegend, (getWidth() / 2) - 
+					(metrics.stringWidth(_xLegend) / 2), getHeight() - 25);
+		}
+		
+		// Legende der Y-Achse zeichnen
+		if (_drawYLegend && !_yLegend.isEmpty()) {
+			AffineTransform at  = new AffineTransform();
+			at.rotate(Math.toRadians(-90));
+			g.setFont(font.deriveFont(at).deriveFont(Font.BOLD));
+			g.setColor(getForeground());
+			g.drawString(_yLegend, 25, (getHeight() / 2) - 
+					(metrics.stringWidth(_yLegend) / 2));
+		}
 	}
 	
 	/**
@@ -233,12 +286,35 @@ public class ReportGraphic extends JComponent {
 	}
 	
 	/**
-	 * Speichert die neuen Daten
+	 * Speichert die neuen Daten. Außerdem werden die Daten durchlaufen, um den
+	 * maximallen und minimalen Wert der Y-Achse zu ermitteln.
 	 * 
 	 * @param data Neue Daten
 	 */
 	public void setData(ReportData data) {
 		_data = data;
+		_maxY = 0.0;
+		_minY = 0.0;
+		
+		for (int i = 0; i < _data.getRowCount(); i++) {
+			if (_data.incoming(i) < _minY)
+				_minY = _data.incoming(i);
+			
+			else if (_data.incoming(i) > _maxY)
+				_maxY = _data.incoming(i);
+			
+			if (_data.outgoing(i) < _minY)
+				_minY = _data.outgoing(i);
+			
+			else if (_data.outgoing(i) > _maxY)
+				_maxY = _data.outgoing(i);
+			
+			if (_data.deviation(i) < _minY)
+				_minY = _data.deviation(i);
+			
+			else if (_data.deviation(i) > _maxY)
+				_maxY = _data.deviation(i);
+		}
 	}
 	
 	/**
@@ -315,5 +391,42 @@ public class ReportGraphic extends JComponent {
 	 */
 	public void setYLegend(String legend) {
 		_yLegend = legend;
+	}
+	
+	/**
+	 * Gibt die Liste mit den Überschriften für die X-Achse zurück.
+	 * 
+	 * @return Liste mit den Überschriften der X-Achse
+	 */
+	public List<String> getXHeader() {
+		return _xHeader;
+	}
+	
+	/**
+	 * Fügt eine Überschrift der X-Achse zur Liste hinzu
+	 * 
+	 * @param header Neue Überschrfit der X-Achse, die zur Liste hinzu gefügt
+	 * werden soll.
+	 */
+	public void addXHeader(String header) {
+		_xHeader.add(header);
+	}
+	
+	/**
+	 * Gibt den maximalen Wert der Y-Achse zurück.
+	 * 
+	 * @return Maximaler Wert der Y-Achse
+	 */
+	public double getMaxY() {
+		return _maxY;
+	}
+	
+	/**
+	 * Gibt den minimalen Wert der Y-Achse zurück.
+	 * 
+	 * @return Minimaler Wert der Y-Achse
+	 */
+	public double getMinY() {
+		return _minY;
 	}
 }

@@ -62,6 +62,14 @@ public class TestReportGraphic {
 	}
 	
 	/**
+	 * Überprüft, ob die Vordergrundfarbe richtig gesetzt wurde.
+	 */
+	@Test
+	public void testForegroundColor() {
+		assertEquals(Color.BLACK, _test.getForeground());
+	}
+	
+	/**
 	 * Überprüft, ob die Hilfslinien angezeigt werden sollen
 	 */
 	@Test
@@ -237,5 +245,43 @@ public class TestReportGraphic {
 		String test = new String("Dies ist ein Test");
 		_test.setYLegend(test);
 		assertEquals(test, _test.getYLegend());
+	}
+	
+	/**
+	 * Überprüft, ob keine Überschrift der X-Achse nach der Initalisierung
+	 * vorhanden ist.
+	 */
+	@Test
+	public void testGetXHeader() {
+		assertEquals(0, _test.getXHeader().size());
+	}
+	
+	/**
+	 * Überprüft, ob eine neue Überschrift der X-Achse zur Liste hinzu gefügt
+	 * werden kann.
+	 */
+	@Test
+	public void testAddXHeader() {
+		_test.addXHeader("Test");
+		assertEquals(1, _test.getXHeader().size());
+		assertEquals("Test", _test.getXHeader().get(0));
+	}
+	
+	/**
+	 * Überprüft, ob der minimale Wert der Y-Achse nach der Initalisierung 0.0
+	 * ist.
+	 */
+	@Test
+	public void testGetMinYAfterInit() {
+		assertEquals(0.0, _test.getMinY(), 0.0);
+	}
+	
+	/**
+	 * Überprüft, ob der maximale Wert der Y-Achse nach der Initalisierung 0.0
+	 * ist.
+	 */
+	@Test
+	public void testGetMaxYAfterInit() {
+		assertEquals(0.0, _test.getMaxY(), 0.0);
 	}
 }

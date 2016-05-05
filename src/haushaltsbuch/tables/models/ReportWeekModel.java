@@ -28,12 +28,14 @@ import haushaltsbuch.datas.ReportWeekData;
 /**
  * Zeigt die erhoben Daten der Wochenübersicht in der Tabelle an.
  * 
+ * In Version 0.2 werden die Daten im {@link ReportModel} gespeichert.
+ * 
  * @author René Majewski
  *
  * @since 0.2
  * @version 0.1
  */
-public class ReportWeekModel extends AbstractTableModel {
+public class ReportWeekModel extends ReportModel {
 
 	/**
 	 * Seriliastion ID
@@ -41,16 +43,10 @@ public class ReportWeekModel extends AbstractTableModel {
 	private static final long serialVersionUID = -6288084097390790965L;
 	
 	/**
-	 * Speichert die Daten
-	 */
-	private ReportWeekData _data;
-	
-	/**
 	 * Initalisiert die Klasse und die Daten
 	 */
 	public ReportWeekModel(ReportWeekData data) {
-		super();
-		_data = data;
+		super(data);
 	}
 
 	/**
@@ -83,17 +79,17 @@ public class ReportWeekModel extends AbstractTableModel {
 		switch (col) {
 			// Wochennummer
 			case 0:
-				return _data.getWeekNumber(row);
+				return ((ReportWeekData)_data).getWeekNumber(row);
 				
 			// 2. Spalte
 			case 1:
 				// 'von' aus gewählt
-				if (_data.drawDateFrom())
-					return _data.getDateFrom(row);
+				if (((ReportWeekData)_data).drawDateFrom())
+					return ((ReportWeekData)_data).getDateFrom(row);
 				
 				// 'bis' ausgewählt, aber 'von' nicht
-				if (_data.drawDateTo())
-					return _data.getDateTo(row);
+				if (((ReportWeekData)_data).drawDateTo())
+					return ((ReportWeekData)_data).getDateTo(row);
 				
 				// 'von' und 'bis' nicht ausgewählt
 				return new DecimalFormat("0.00").format(_data.incoming(row));
@@ -101,11 +97,13 @@ public class ReportWeekModel extends AbstractTableModel {
 			// 3. Spalte
 			case 2:
 				// 'von' ausgewählt und 'bis' ausgewählt
-				if (_data.drawDateFrom() && _data.drawDateTo())
-					return _data.getDateTo(row);
+				if (((ReportWeekData)_data).drawDateFrom() &&
+						((ReportWeekData)_data).drawDateTo())
+					return ((ReportWeekData)_data).getDateTo(row);
 				
 				// 'von' oder 'bis' ausgewählt
-				if (_data.drawDateFrom() || _data.drawDateTo())
+				if (((ReportWeekData)_data).drawDateFrom() ||
+						((ReportWeekData)_data).drawDateTo())
 					return new DecimalFormat("0.00").format( _data.incoming(row));
 				
 				// 'von' und 'bis' nicht ausgewählt
@@ -114,11 +112,13 @@ public class ReportWeekModel extends AbstractTableModel {
 			// 4. Spalte
 			case 3:
 				// 'von' und 'bis' ausgewählt
-				if (_data.drawDateFrom() && _data.drawDateTo())
+				if (((ReportWeekData)_data).drawDateFrom() &&
+						((ReportWeekData)_data).drawDateTo())
 					return new DecimalFormat("0.00").format(_data.incoming(row));
 				
 				// 'von' oder 'bis' ausgewählt
-				if (_data.drawDateFrom() || _data.drawDateTo())
+				if (((ReportWeekData)_data).drawDateFrom() ||
+						((ReportWeekData)_data).drawDateTo())
 					return new DecimalFormat("0.00").format(_data.outgoing(row));
 				
 				// 'von' und 'bis' nicht ausgewählt
@@ -127,11 +127,13 @@ public class ReportWeekModel extends AbstractTableModel {
 			// 5. Spalte
 			case 4:
 				// 'von' und 'bis' ausgewählt
-				if (_data.drawDateFrom() && _data.drawDateTo())
+				if (((ReportWeekData)_data).drawDateFrom() && 
+						((ReportWeekData)_data).drawDateTo())
 					return new DecimalFormat("0.00").format(_data.outgoing(row));
 				
 				// 'von' oder 'bis' ausgewählt
-				if (_data.drawDateFrom() || _data.drawDateTo())
+				if (((ReportWeekData)_data).drawDateFrom() ||
+						((ReportWeekData)_data).drawDateTo())
 					return new DecimalFormat("0.00").format(_data.deviation(row));
 				
 				return null;
@@ -139,7 +141,8 @@ public class ReportWeekModel extends AbstractTableModel {
 			// 6. Spalte
 			case 5:
 				// 'von' und 'bis' ausgewählt
-				if (_data.drawDateFrom() && _data.drawDateTo())
+				if (((ReportWeekData)_data).drawDateFrom() &&
+						((ReportWeekData)_data).drawDateTo())
 					return new DecimalFormat("0.00").format(_data.deviation(row));
 				
 				return null;

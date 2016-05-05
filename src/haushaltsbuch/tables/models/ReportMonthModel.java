@@ -28,22 +28,19 @@ import haushaltsbuch.datas.ReportMonthData;
 /**
  * Zeigt die erhoben Daten der Monatsübersicht in der Tabelle an.
  * 
+ * In Version 0.2 werden die Daten im {@link ReportModel} gespeichert.
+ * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.2
  */
-public class ReportMonthModel extends AbstractTableModel {
+public class ReportMonthModel extends ReportModel {
 
 	/**
 	 * Serilisation ID
 	 */
 	private static final long serialVersionUID = -3177528619056754348L;
-	
-	/**
-	 * Speichert die Daten
-	 */
-	private ReportMonthData _data;
 	
 	/**
 	 * Initalisiert diese Klasse.
@@ -52,10 +49,7 @@ public class ReportMonthModel extends AbstractTableModel {
 	 */
 	public ReportMonthModel(ReportMonthData data) {
 		// Initalisieren den Daten
-		super();
-		
-		// Speichern der Daten
-		_data = data;
+		super(data);
 	}
 
 	/**
@@ -92,7 +86,7 @@ public class ReportMonthModel extends AbstractTableModel {
 		switch (row) {
 			// Tag
 			case 0:
-				return _data.getDay(col);
+				return ((ReportMonthData)_data).getDay(col);
 				
 			// Einnahmen
 			case 1:

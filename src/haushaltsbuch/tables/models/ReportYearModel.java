@@ -28,12 +28,14 @@ import haushaltsbuch.datas.ReportYearData;
 /**
  * Zeigt die erhoben Daten der Jahresübersicht in der Tabelle an.
  * 
+ * In Version 0.2 werden die Daten im {@link ReportModel} gespeichert.
+ * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.2
  */
-public class ReportYearModel extends AbstractTableModel {
+public class ReportYearModel extends ReportModel {
 
 	/**
 	 * Serilisation ID
@@ -41,17 +43,12 @@ public class ReportYearModel extends AbstractTableModel {
 	private static final long serialVersionUID = 3659761143959889153L;
 	
 	/**
-	 * Speichert die Daten
-	 */
-	private ReportYearData _data;
-	
-	/**
 	 * Initalisiert dieses Model
 	 * 
 	 * @param data Daten, die angezeigt werden sollen
 	 */
 	public ReportYearModel(ReportYearData data) {
-		_data = data;
+		super(data);
 	}
 
 	/**
@@ -88,7 +85,7 @@ public class ReportYearModel extends AbstractTableModel {
 		switch (col) {
 			// Monats-Name
 			case 0:
-				return _data.getMonthName(row);
+				return ((ReportYearData)_data).getMonthName(row);
 				
 			// Einnahmen
 			case 1:
