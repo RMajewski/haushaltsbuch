@@ -252,8 +252,15 @@ public class ReportGraphic extends JComponent {
 			// Differenz
 			if (_data.deviation(i) != 0.0) {
 				g.setColor(_colorDeviation);
-				int h = (int)((_data.deviation(i) /_maxY) * zero);
-				g.fillRect((w * i) + 51 + (2 * w1), zero - h + 25, w1, h - 25);
+				if (_data.deviation(i) > 0.0) {
+					int h = (int)((_data.deviation(i) /_maxY) * zero);
+					g.fillRect((w * i) + 51 + (2 * w1), zero - h + 25, w1,
+							h - 25);
+				} else {
+					int h = (int)((_data.deviation(i) / _minY) * zero);
+					g.fillRect((w * i) + 51 + (2 * w1), zero, w1,
+							h - 25);
+				}
 			}
 		}
 	}
