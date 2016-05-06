@@ -163,12 +163,14 @@ public class ReportGraphic extends JComponent {
 		// Diagramm-Linien zeigen
 		int width = getWidth() - 100;
 		int height = getHeight() - 150;
+		int zero = height + 25;
 		g.setColor(getForeground());
 		g.setFont(font.deriveFont(Font.BOLD));
 		g.drawRect(50, 25, width, height);
 		
 		if (_minY < 0.0) {
-			g.drawLine(51, (height / 2) + 25, width + 49, (height / 2) + 25);
+			zero = (height / 2) + 25;
+			g.drawLine(51, zero, width + 49, zero);
 			g.drawString("0,00", 45 - metrics.stringWidth("0,00"),
 					(height / 2) + 25 + (metrics.getHeight() / 2));
 		}
@@ -227,6 +229,32 @@ public class ReportGraphic extends JComponent {
 			g.setColor(getForeground());
 			g.drawString(_yLegend, 25, (getHeight() / 2) - 
 					(metrics.stringWidth(_yLegend) / 2));
+		}
+		
+		// Daten ausgeben
+		int w = (width - 50) / _data.getRowCount();
+		int w1 = w / 3;
+		for (int i = 0; i < _data.getRowCount(); i++) {
+			// Einnahmen
+			if (_data.incoming(i) > 0.0) {
+				g.setColor(_colorIn);
+				int h = (int)((_data.incoming(i) /_maxY) * zero);
+				g.fillRect((w * i) + 51, zero - h + 25, w1, h - 25);
+			}
+			
+			// Ausgaben
+			if (_data.outgoing(i) > 0) {
+				g.setColor(_colorOut);
+				int h = (int)((_data.outgoing(i) /_maxY) * zero);
+				g.fillRect((w * i) + 51 + w1, zero - h + 25, w1, h - 25);
+			}
+			
+			// Differenz
+			if (_data.deviation(i) != 0.0) {
+				g.setColor(_colorDeviation);
+				int h = (int)((_data.deviation(i) /_maxY) * zero);
+				g.fillRect((w * i) + 51 + (2 * w1), zero - h + 25, w1, h - 25);
+			}
 		}
 	}
 	
