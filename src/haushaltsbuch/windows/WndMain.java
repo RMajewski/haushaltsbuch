@@ -177,17 +177,20 @@ public class WndMain extends JFrame implements ActionListener {
 				
 			// Wochenübersicht anzeigen
 			case MainTop.REPORT_WEEK:
-				_desktop.addInternalFrame(new WndReports(_desktop, ReportPreferencesData.TYPE_WEEK, this));
+				_desktop.addInternalFrame(new WndReports(_desktop, 
+						ReportPreferencesData.TYPE_WEEK, this));
 				break;
 				
 			// Monatsübersicht anzeigen
 			case MainTop.REPORT_MONTH:
-				_desktop.addInternalFrame(new WndReports(_desktop, ReportPreferencesData.TYPE_MONTH, this));
+				_desktop.addInternalFrame(new WndReports(_desktop, 
+						ReportPreferencesData.TYPE_MONTH, this));
 				break;
 				
 			// Jahresübersicht anzeigen
 			case MainTop.REPORT_YEAR:
-				_desktop.addInternalFrame(new WndReports(_desktop, ReportPreferencesData.TYPE_YEAR, this));
+				_desktop.addInternalFrame(new WndReports(_desktop, 
+						ReportPreferencesData.TYPE_YEAR, this));
 				break;
 				
 			// Export der Daten als SQL-Script

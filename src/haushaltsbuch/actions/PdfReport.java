@@ -22,30 +22,31 @@ package haushaltsbuch.actions;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.windows.internal.WndReports;
 
 /**
- * Implementiert die Aktion, die ein Report öffnet.
+ * Implementiert die Aktion, die ein PDF-Report erstellt.
  * 
  * @author René Majewski
  *
  * @version 0.1
  * @since 0.2
  */
-public class Report extends Action {
+public class PdfReport extends Action {
+	/**
+	 * Serilisation ID
+	 */
+	private static final long serialVersionUID = -1900846348420549686L;
+	
 	/**
 	 * Speichert das Kommando, um das Report-Fenster zu öffnen.
 	 */
-	public static final String COMMAND = "Report";
-	
-	/**
-	 * Speichert, welches Fenster dieses Fenster aufgerufen hat.
-	 */
-	private Window _owner;
+	public static final String COMMAND = "PdfReport";
 
 	/**
 	 * Initalisiert die Aktion.
@@ -54,25 +55,35 @@ public class Report extends Action {
 	 * 
 	 * @param owner Zu diesem Fenster gehört die ToolBar
 	 */
-	public Report(Desktop desktop, Window owner) {
-		super("report_small.png", "report_big.png", desktop);
-		
-		_owner = owner;
+	public PdfReport(Desktop desktop) {
+		super("pdf_small.png", "pdf_big.png", desktop);
 
-		putValue(Action.NAME, "Report");
-		putValue(Action.MNEMONIC_KEY, 1);
+		putValue(Action.NAME, "PDF-Report");
+		putValue(Action.MNEMONIC_KEY, 2);
 		putValue(Action.ACTION_COMMAND_KEY, COMMAND);
 	}
 	
 	/**
-	 * Erzeugt ein einen neuen Report.
+	 * Erzeugt das PDF für den Report.
 	 * 
 	 * @param e Daten des Eventes
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		_desktop.addInternalFrame(new WndReports(null,
-				ReportPreferencesData.TYPE_MONTH, _owner));
+		// Speichern-Dialog vorbereiten
+		JFileChooser chooser = new JFileChooser();
+		chooser.setDialogTitle("PDF speichern");
+		chooser.setDialogType(JFileChooser.SAVE_DIALOG);
+		chooser.setFileFilter(new FileNameExtensionFilter("PDF-Dateien: pdf",
+				"pdf"));
+		
+		
+		// Speichern Dialog aufrufen
+		int ret = chooser.showSaveDialog(_frame);
+		if (ret == JFileChooser.APPROVE_OPTION) {
+			System.out.println(chooser.getSelectedFile());
+		}
 	}
+
 
 }

@@ -54,6 +54,12 @@ public class WndInternalFrame extends JInternalFrame {
 	private boolean _enableDbElements;
 	
 	/**
+	 * Gibt an, ob das Fenster ein Report-Fenster ist. Die Standard-Einstellung
+	 * ist <b>false</b>
+	 */
+	private boolean _enablePdfReport;
+	
+	/**
 	 * Speichert den Desktop
 	 */
 	protected Desktop _desktop;
@@ -70,8 +76,9 @@ public class WndInternalFrame extends JInternalFrame {
 		// Desktop speichern
 		_desktop = desktop;
 		
-		// Standardmäßig kein Datenbank-Fenster
+		// Standardmäßig kein Datenbank-Fenster und kein Report-Fenster
 		setEnableDbElements(false);
+		setEnablePdfReport(false);
 		
 		// Fenstergröße
 		setSize(600,400);
@@ -150,5 +157,24 @@ public class WndInternalFrame extends JInternalFrame {
 	 */
 	public void setEnableDbElements(boolean _enableDbElements) {
 		this._enableDbElements = _enableDbElements;
+	}
+
+	/**
+	 * Gibt zurück, ob dieses Fenster das PDF-Report-Element der ToolBar
+	 * benötigt.
+	 * 
+	 * @return Wird das PDF-Report-Element der ToolBar benötigt?
+	 */
+	public boolean isEnablePdfReport() {
+		return _enablePdfReport;
+	}
+
+	/**
+	 * Es wird gespeichert, ob das PDF-Report-Element der ToolBar benötigt wird.
+	 * 
+	 * @param Gibt an, ob das PDF-Report-Element der ToolBar benötigt wird.
+	 */
+	public void setEnablePdfReport(boolean enablePdfReport) {
+		_enablePdfReport = enablePdfReport;
 	}
 }

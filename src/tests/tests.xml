@@ -18,6 +18,7 @@
 			<test>TestDbDelete</test>
 			<test>TestDbInsert</test>
 			<test>TestReport</test>
+			<test>TestPdfReport</test>
 		</testSuite>
 		<testSuite>
 			<name>Komparatoren</name>
@@ -62,6 +63,7 @@
 			<package>tests.tests.elements</package>
 			<test>TestStatusBar</test>
 			<test>TestReportGraphic</test>
+			<test>TestToolBarMain</test>
 		</testSuite>
 		<testSuite>
 			<name>Ereignisse</name>
@@ -156,6 +158,7 @@
 			<name>ToolBar: Andere</name>
 			<package>tests.fit.elements</package>
 			<test>ToolBarMainReport</test>
+			<test>ToolBarMainPdfReport</test>
 		</testSuite>
 		<testSuite>
 			<name>Hauptfenster</name>

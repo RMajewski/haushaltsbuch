@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Element: ToolBar -> PDF-Report</title>
+	</head>
+	<body>
+		<h2>Element: ToolBar -> PDF-Report</h2>
+		<p>Es wird geprüft, ob der PDF-Report nicht ausführbar ist. Danach wird
+		ein Report erstellt. Nun wird erneut überprüft, ob der PDF-Report
+		ausführbar ist. Nun wird auf den Eintrag "PDF-Report" geklickt. Es wird
+		geprüft, ob der Speichern-Dialog geöffnet wird.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">
+						fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.elements.FixtureToolBarMainPdfReport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getToolBarName</td>
+					<td>MainToolBar</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPdfReportEnabled</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushReport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDialogOk</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPdfReportEnabled</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushPdfReport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDialogTitle</td>
+					<td>PDF speichern</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

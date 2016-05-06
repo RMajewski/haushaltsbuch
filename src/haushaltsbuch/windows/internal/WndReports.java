@@ -104,6 +104,7 @@ public class WndReports extends WndInternalFrame
 		// Klasse initalisieren
 		super(desktop);
 		_owner = owner;
+		setEnablePdfReport(true);
 		
 		// Größe einstellen
 		setSize(1000, 700);

@@ -21,7 +21,6 @@ package haushaltsbuch.elements;
 
 import java.awt.Window;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JToolBar;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
@@ -29,10 +28,12 @@ import javax.swing.event.InternalFrameListener;
 import haushaltsbuch.actions.DbChange;
 import haushaltsbuch.actions.DbDelete;
 import haushaltsbuch.actions.DbInsert;
+import haushaltsbuch.actions.PdfReport;
 import haushaltsbuch.actions.Report;
 import haushaltsbuch.events.ToolBarDbElementEvent;
 import haushaltsbuch.listener.ToolBarDbElementListener;
 import haushaltsbuch.windows.internal.WndInternalFrame;
+import haushaltsbuch.windows.internal.WndReports;
 
 public class ToolBarMain extends JToolBar 
 	implements InternalFrameListener, ToolBarDbElementListener {
@@ -56,6 +57,11 @@ public class ToolBarMain extends JToolBar
 	 * Speichert den Button zum löschen eines Datensatzes
 	 */
 	private DbDelete _delete;
+	
+	/**
+	 * Speichert den Button zum Erzeugen eines PDF-Reportes
+	 */
+	private PdfReport _pdf;
 
 	/**
 	 * Initalisiert die ToolBar
@@ -86,6 +92,10 @@ public class ToolBarMain extends JToolBar
 		
 		addSeparator();
 		add(new Report(desktop, owner));
+		
+		_pdf = new PdfReport(desktop);
+		_pdf.setEnabled(false);
+		add(_pdf);
 	}
 
 	@Override
@@ -96,6 +106,11 @@ public class ToolBarMain extends JToolBar
 		} else {
 			_insert.setEnabled(false);
 			_insert.deleteFrame();
+		}
+		
+		if (((WndInternalFrame)e.getInternalFrame()).isEnablePdfReport()) {
+			_pdf.setEnabled(true);
+			_pdf.setFrame((WndInternalFrame)e.getInternalFrame());
 		}
 	}
 
@@ -109,6 +124,8 @@ public class ToolBarMain extends JToolBar
 		
 		_delete.setEnabled(false);
 		_delete.deleteFrame();
+		
+		_pdf.setEnabled(false);
 	}
 
 	@Override
@@ -125,6 +142,8 @@ public class ToolBarMain extends JToolBar
 		
 		_delete.setEnabled(false);
 		_delete.deleteFrame();
+		
+		_pdf.setEnabled(false);
 	}
 
 	@Override
@@ -146,6 +165,11 @@ public class ToolBarMain extends JToolBar
 		} else {
 			_insert.setEnabled(false);
 			_insert.deleteFrame();
+		}
+		
+		if (((WndInternalFrame)e.getInternalFrame()).isEnablePdfReport()) {
+			_pdf.setEnabled(true);
+			_pdf.setFrame((WndInternalFrame)e.getInternalFrame());
 		}
 	}
 

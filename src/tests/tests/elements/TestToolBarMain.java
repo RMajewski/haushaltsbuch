@@ -69,7 +69,7 @@ public class TestToolBarMain {
 	 */
 	@Test
 	public void testToolBarMainHaveFifeElements() {
-		assertEquals(5, _test.getComponentCount());
+		assertEquals(6, _test.getComponentCount());
 	}
 	
 	/**
@@ -114,5 +114,16 @@ public class TestToolBarMain {
 	public void testToolBarMainHaveActionReport() {
 		assertEquals("haushaltsbuch.actions.Report", 
 				((JButton)_test.getComponent(4)).getAction().getClass().getName());
+	}
+	
+	/**
+	 * Überprüft, ob die Aktion zum erzeugen eines PDF-Reportes eingefügt wurde.
+	 * 
+	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain()
+	 */
+	@Test
+	public void testToolBarMainHaveActionPdfReport() {
+		assertEquals("haushaltsbuch.actions.PdfReport",
+				((JButton)_test.getComponent(5)).getAction().getClass().getName());
 	}
 }
