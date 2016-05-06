@@ -35,8 +35,11 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfPage;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import haushaltsbuch.datas.ReportData;
@@ -136,25 +139,48 @@ public class Pdf extends Export {
 		try {
 			// PDF-Datei erzeugen und öffnen
 			Document doc = new Document();
-			PdfWriter.getInstance(doc, new FileOutputStream(file));
+			PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(file));
 			doc.open();
 			
 			// Meta-Daten erzeugen
 			createMetaData(doc);
 			
-			// Seiten-Eigenschaften
+			// Überprüfen, ob Tabelle eingefügt werden soll
+			int chapterCount = 1;
+			if (_preference.get(DlgExportPdf.EXPORT_TABLE) != null) {
+				// Überschrift für Tabelle
+				Chunk chTitle = new Chunk(title(false), _fontHeader);
+				Paragraph title = new Paragraph(chTitle);
+				Chapter chapter = new Chapter(title, chapterCount++);
+				
+				// Tabelle einfügen
+				insertTable(chapter);
+				
+				// ins Dokument einfügen
+				doc.add(chapter);
+			}
 			
-			
-			// Überschrift
-			Chunk chTitle = new Chunk(title(), _fontHeader);
-			Paragraph title = new Paragraph(chTitle);
-			Chapter chapter = new Chapter(title, 1);
-			
-			// Tabelle einfügen
-			insertTable(chapter);
-			
-			// ins Dokument einfügen
-			doc.add(chapter);
+			// Überprüftn, ob das Balekndiagramm eingefügt werden soll
+			if (_preference.get(DlgExportPdf.EXPORT_BAR_CHART) != null) {
+				// Überprüfen, ob eine neue Seite eingefügt werden soll.
+				if (_preference.get(DlgExportPdf.EXPORT_TABLE) != null)
+					doc.newPage();
+				
+				// Seiten-Einstellungen
+				doc.setPageSize(new Rectangle(doc.getPageSize().getHeight(),
+						doc.getPageSize().getWidth()));
+				
+				// Überschrift für das Diagramm
+				Chunk chTitle = new Chunk(title(true), _fontHeader);
+				Paragraph title = new Paragraph(chTitle);
+				Chapter chapter = new Chapter(title, chapterCount++);
+				
+				// Diagramm einfügen
+				insertChart(chapter);
+				
+				// Ins Dokument einfügen
+				doc.add(chapter);
+			}
 			
 			// PDF-Datei schließen
 			doc.close();
@@ -165,6 +191,14 @@ public class Pdf extends Export {
 		}
 	}
 	
+	/**
+	 * Erzeugt ein Diagramm
+	 * 
+	 * @param chap Kapitel, in das das Diagramm eingefügt werden soll.
+	 */
+	private void insertChart(Chapter chap) {
+	}
+
 	/**
 	 * Erzeugt die Tabelle mit den Daten
 	 * 
@@ -249,8 +283,10 @@ public class Pdf extends Export {
 
 	/**
 	 * Generiert den Titel
+	 * 
+	 * @param chart Gibt an, ob "Diagramm" mit ausgegeben werden soll.
 	 */
-	private String title() {
+	private String title(boolean chart) {
 		StringBuilder ret = new StringBuilder();
 		
 		switch (_data.getPreferences().getType()) {
@@ -271,6 +307,9 @@ public class Pdf extends Export {
 		
 		ret.append(String.valueOf(_data.getYear()));
 		
+		if (chart)
+			ret.append(" (Diagramm)");
+		
 		return ret.toString();
 	}
 	
@@ -280,7 +319,7 @@ public class Pdf extends Export {
 	 * @param doc PDF-Datei, in die die Meta-Daten geschrieben werden sollen.
 	 */
 	private void createMetaData(Document doc) {
-		doc.addTitle(title());
+		doc.addTitle(title(false));
 		doc.addAuthor(WndMain.TITLE);
 		doc.addCreator(WndMain.TITLE);
 	}
