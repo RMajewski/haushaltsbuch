@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Export Pdf (Keine Einstellungen)</title>
+	</head>
+	<body>
+		<h2>Dialog: Export Pdf (Keine Einstellungen)</h2>
+		
+		<p>Wählt alle Auswahl-Boxen ab und überprüft, ob keine Einstellungen
+		gespeichert wurden.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.dialogs.FixtureDlgExportPdf</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportTable</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushExport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferencesCount</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

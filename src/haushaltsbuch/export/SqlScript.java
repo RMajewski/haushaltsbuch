@@ -26,6 +26,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JFrame;
+
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgExportSqlScript;
 import haushaltsbuch.elements.StatusBar;
@@ -44,9 +46,9 @@ public class SqlScript extends Export {
 	/**
 	 * Initalisiert diese Klasse
 	 */
-	public SqlScript() {
+	public SqlScript(JFrame owner) {
 		// Dialog speichern
-		_dlg = new DlgExportSqlScript(null);
+		super(new DlgExportSqlScript(owner));
 	}
 	
 	/**

@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Export PDF (Einstellung: Export des Balkendiagrammes)</title>
+	</head>
+	<body>
+		<h2>Dialog: Export PDF (Einstellung: Export des Balkendiagrammes)</h2>
+		
+		<p>Überprüft, ob die Einstellung für den Export des Balkendiagrammes
+		richtig gespeichert wurde, wenn alle anderen Einstellungen abgewählt
+		wurden.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.dialogs.FixtureDlgExportPdf</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportTable</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setExportBarChart</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushExport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferencesCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportTable</td>
+					<td>null</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferenceExportBarChart</td>
+					<td>1</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

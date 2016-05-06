@@ -27,6 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.elements.Desktop;
+import haushaltsbuch.export.Pdf;
 import haushaltsbuch.windows.internal.WndReports;
 
 /**
@@ -70,19 +71,9 @@ public class PdfReport extends Action {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Speichern-Dialog vorbereiten
-		JFileChooser chooser = new JFileChooser();
-		chooser.setDialogTitle("PDF speichern");
-		chooser.setDialogType(JFileChooser.SAVE_DIALOG);
-		chooser.setFileFilter(new FileNameExtensionFilter("PDF-Dateien: pdf",
-				"pdf"));
-		
-		
-		// Speichern Dialog aufrufen
-		int ret = chooser.showSaveDialog(_frame);
-		if (ret == JFileChooser.APPROVE_OPTION) {
-			System.out.println(chooser.getSelectedFile());
-		}
+		Pdf pdf = new Pdf(_desktop.getMainWindow());
+		pdf.execute("PDF speichern", 
+				new FileNameExtensionFilter("PDF-Dateien pdf", "pdf"));
 	}
 
 

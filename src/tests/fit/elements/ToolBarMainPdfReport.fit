@@ -50,11 +50,6 @@
 					<td>pushPdfReport</td>
 					<td>&nbsp;</td>
 				</tr>
-				<tr>
-					<td>check</td>
-					<td>getDialogTitle</td>
-					<td>PDF speichern</td>
-				</tr>
 			</tbody>
 		</table>
 	</body>

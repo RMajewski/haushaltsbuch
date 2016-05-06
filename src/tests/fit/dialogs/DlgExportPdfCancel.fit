@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Export PDF (Abbrechen)</title>
+	</head>
+	<body>
+		<h2>Dialog: Export PDF (Abbrechen)</h2>
+		<p>Überprüft, ob alle Auswahl-Boxen vorhanden und nicht ausgewählt sind
+		und prüft, nach dem Abbrechen keine Einstellungen gespeichert 
+		wurden.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.dialogs.FixtureDlgExportPdf</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveExportTable</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isExportTableChecked</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveExportBarChart</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isExportBarChartChecked</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushCancel</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isCancel</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferencesCount</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

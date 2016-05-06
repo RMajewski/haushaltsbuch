@@ -51,6 +51,13 @@ public abstract class Export {
 	protected Map<String, Object> _preference;
 	
 	/**
+	 * Initalisiert die Klasse
+	 */
+	public Export(DlgExport dlg) {
+		_dlg = dlg;
+	}
+	
+	/**
 	 * Wird aufgerufen, wenn eine Datei ausgewählt wurde.
 	 * 
 	 * @param file Date, in die der Export gespeichert werden soll.
@@ -60,12 +67,17 @@ public abstract class Export {
 	/**
 	 * Es wird ein Speichern-Dialog aufgerufen. Wird eine Datei ausgewählt, so
 	 * so wird die Export-Methode aufgerufen, in der die Datei gefüllt wird.
+	 * 
+	 * @param title Titel des Datei-Dialoges
+	 * 
+	 * @param filter Filter für die Dateien
 	 */
-	public void execute() {
+	public void execute(String title, FileNameExtensionFilter filter) {
 		// Speichern-Dialog aufrufen
 		JFileChooser fc = new JFileChooser();
-		fc.setFileFilter(new FileNameExtensionFilter("SQL-Script", ".sql"));
-		int state = fc.showOpenDialog(null);
+		fc.setFileFilter(filter);
+		fc.setDialogTitle(title);
+		int state = fc.showSaveDialog(null);
 		
 		// Überprüfen ob der Dialog abgebrochen wurde
 		if (state == JFileChooser.CANCEL_OPTION)

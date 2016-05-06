@@ -28,6 +28,7 @@ import javax.swing.JFrame;
 
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.dialogs.DlgAbout;
+import haushaltsbuch.dialogs.DlgExportPdf;
 import haushaltsbuch.dialogs.DlgExportSqlScript;
 import haushaltsbuch.dialogs.DlgInfo;
 import haushaltsbuch.dialogs.DlgLicense;
@@ -68,6 +69,11 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	 * Gibt an, dass der Export-Dialog für das SQL-Script angezeigt werden soll.
 	 */
 	public static final String DIALOG_EXPORT_SQL = "tests.dialogs.DlgExportSqlScript";
+	
+	/**
+	 * Gibt an, dass der Export-Dialog für die PDF angezeigt werden soll.
+	 */
+	public static final String DIALOG_EXPORT_PDF = "tests.dialogs.DlgExportPdf";
 	
 	/**
 	 * Gibt an, dass der Report-Dialog angezeigt werden soll.
@@ -127,6 +133,12 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		btn.setActionCommand(DIALOG_EXPORT_SQL);
 		getContentPane().add(btn);
 		
+		// Button zum Anzeigen des Dialogs für Export der PDF-Datei
+		btn = new JButton(DIALOG_EXPORT_PDF);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_EXPORT_PDF);
+		getContentPane().add(btn);
+		
 		// Button zum Anzeigen des Report-Dialoges
 		btn = new JButton(DIALOG_REPORT);
 		btn.addActionListener(this);
@@ -182,6 +194,12 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 			// Export SQL-Script
 			else if(ae.getActionCommand().equals(DIALOG_EXPORT_SQL)) {
 				DlgExportSqlScript dlg = new DlgExportSqlScript(this);
+				dlg.setVisible(true);
+			}
+			
+			// Export PDF
+			else if (ae.getActionCommand().equals(DIALOG_EXPORT_PDF)) {
+				DlgExportPdf dlg = new DlgExportPdf(this);
 				dlg.setVisible(true);
 			}
 			

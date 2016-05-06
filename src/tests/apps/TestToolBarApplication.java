@@ -80,7 +80,7 @@ public class TestToolBarApplication extends JFrame implements ActionListener {
 		setJMenuBar(bar);
 		
 		// Desktop einfügen
-		_desktop = new Desktop();
+		_desktop = new Desktop(this);
 		add(_desktop);
 		
 		// ToolBar initalisieren und anzeigen

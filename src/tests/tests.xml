@@ -131,6 +131,15 @@
 			<test>DlgExportSqlScriptPreferenceDataCategory</test>
 		</testSuite>
 		<testSuite>
+			<name>Export PDF</name>
+			<package>tests.fit.dialogs</package>
+			<test>DlgExportPdfCancel</test>
+			<test>DlgExportPdfExport</test>
+			<test>DlgExportNoPreferences</test>
+			<test>DlgExportPreferenceBarChart</test>
+			<test>DlgExportPreferenceTable</test>
+		</testSuite>
+		<testSuite>
 			<name>ToolBar: Einfügen</name>
 			<package>tests.fit.elements</package>
 			<test>ToolBarMainInsertCategory</test>

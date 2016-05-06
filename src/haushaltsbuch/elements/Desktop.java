@@ -20,6 +20,7 @@
 package haushaltsbuch.elements;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 
 import haushaltsbuch.windows.internal.WndInternalFrame;
 import haushaltsbuch.windows.internal.WndTableFrame;
@@ -49,10 +50,16 @@ public class Desktop extends JDesktopPane {
 	private ToolBarMain _toolbar;
 	
 	/**
+	 * Speichert das Hauptfenster
+	 */
+	private JFrame _main;
+	
+	/**
 	 * Initalisiert den Desktop
 	 */
-	public Desktop() {
+	public Desktop(JFrame owner) {
 		super();
+		_main = owner;
 	}
 	
 	/**
@@ -63,6 +70,15 @@ public class Desktop extends JDesktopPane {
 	 */
 	public void setToolBar(ToolBarMain toolbar) {
 		_toolbar = toolbar;
+	}
+	
+	/**
+	 * Ermittelt das Hauptfenster und gibt dieses zurück.
+	 * 
+	 * @return Hauptfenster der Anwendung
+	 */
+	public JFrame getMainWindow() {
+		return _main;
 	}
 	
 	/**

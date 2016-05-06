@@ -27,6 +27,7 @@ import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.db.DbController;
@@ -100,7 +101,7 @@ public class WndMain extends JFrame implements ActionListener {
 		setJMenuBar(new MainTop(this));
 		
 		// Dekstop initalisieren
-		_desktop = new Desktop();
+		_desktop = new Desktop(this);
 		add(_desktop);
 		
 		// ToolBar initalisieren und anzeigen
@@ -195,7 +196,8 @@ public class WndMain extends JFrame implements ActionListener {
 				
 			// Export der Daten als SQL-Script
 			case MainTop.EXPORT_SQL_SCRIPT:
-				new SqlScript().execute();
+				new SqlScript(this).execute("SQL-Script speichern",
+						new FileNameExtensionFilter("SQL-Scripts sql", "sql"));
 				break;
 		}
 		

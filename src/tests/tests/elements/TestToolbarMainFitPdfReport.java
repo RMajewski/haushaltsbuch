@@ -43,7 +43,6 @@ public class TestToolbarMainFitPdfReport extends TestToolBarMainFit {
 	 */
 	public TestToolbarMainFitPdfReport() throws Exception {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	/**
@@ -67,7 +66,6 @@ public class TestToolbarMainFitPdfReport extends TestToolBarMainFit {
 	 */
 	public void pushToolBarButtonPdfReport() {
 		new JButtonOperator((JButton)_toolbar.getComponent(5)).pushNoBlock();
-		_dlg = new JDialogOperator(_wnd);
 	}
 
 	/**

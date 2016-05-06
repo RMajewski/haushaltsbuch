@@ -38,6 +38,11 @@ import haushaltsbuch.windows.internal.WndReports;
  */
 public class Report extends Action {
 	/**
+	 * Serilisation ID
+	 */
+	private static final long serialVersionUID = 6374563065336002790L;
+
+	/**
 	 * Speichert das Kommando, um das Report-Fenster zu öffnen.
 	 */
 	public static final String COMMAND = "Report";
