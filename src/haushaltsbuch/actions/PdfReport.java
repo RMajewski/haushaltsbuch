@@ -72,6 +72,7 @@ public class PdfReport extends Action {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Pdf pdf = new Pdf(_desktop.getMainWindow());
+		pdf.setReportData(((WndReports)_frame).getReportData());
 		pdf.execute("PDF speichern", 
 				new FileNameExtensionFilter("PDF-Dateien pdf", "pdf"));
 	}

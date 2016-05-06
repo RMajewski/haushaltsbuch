@@ -36,6 +36,7 @@ import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import haushaltsbuch.datas.ReportData;
 import haushaltsbuch.datas.ReportMonthData;
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.datas.ReportWeekData;
@@ -269,5 +270,14 @@ public class WndReports extends WndInternalFrame
 				_report.repaint();
 				break;
 		}
+	}
+	
+	/**
+	 * Gibt die gespeicherten Daten zurück.
+	 * 
+	 * @return Gespeicherte Daten
+	 */
+	public ReportData getReportData() {
+		return ((ReportModel)_table.getModel()).getData();
 	}
 }

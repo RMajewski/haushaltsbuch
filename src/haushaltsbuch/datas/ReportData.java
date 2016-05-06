@@ -124,6 +124,15 @@ public abstract class ReportData {
 	public void setPreferences(ReportPreferencesData preferences) {
 		_preferences = preferences;
 	}
+	
+	/**
+	 * Gibt die gespeicherten Einstellungen zurück.
+	 * 
+	 * @return Gespeicherte Einstellungen
+	 */
+	public ReportPreferencesData getPreferences() {
+		return _preferences;
+	}
 
 	/**
 	 * Ermittelt aus den Einstellungen, wie viele Spalten ausgegeben werden
