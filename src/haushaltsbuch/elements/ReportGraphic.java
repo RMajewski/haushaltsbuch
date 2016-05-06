@@ -24,6 +24,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -159,11 +160,55 @@ public class ReportGraphic extends JComponent {
 		Font font = g.getFont();
 		FontMetrics metrics = g.getFontMetrics();
 		
+		// Diagramm-Linien zeigen
+		int width = getWidth() - 100;
+		int height = getHeight() - 150;
+		g.setColor(getForeground());
+		g.setFont(font.deriveFont(Font.BOLD));
+		g.drawRect(50, 25, width, height);
+		
+		if (_minY < 0.0) {
+			g.drawLine(51, (height / 2) + 25, width + 49, (height / 2) + 25);
+			g.drawString("0,00", 45 - metrics.stringWidth("0,00"),
+					(height / 2) + 25 + (metrics.getHeight() / 2));
+		}
+		
+		// Max und Min beschriften
+		String tmp = new DecimalFormat("0.00").format(_maxY);
+		g.drawString(tmp, 45 - metrics.stringWidth(tmp), 25);
+		tmp = new DecimalFormat("0.00").format(_minY);
+		g.drawString(tmp, 45 - metrics.stringWidth(tmp), height + 25);
+		
 		// Hilfslinien zeichnen
+		if (_drawReferenceLines) {
+			g.setColor(_colorReferenceLines);
+			int h = height / 10;
+			
+			// Hilfslinien der Y-Achse
+			for (int i = h + 25; i < height; i += h)
+				g.drawLine(51, i, width + 49, i);
+			
+			// Hilfslinien der X-Achse
+			int w = width / _data.getRowCount();
+			for (int i = w + 50; i < width; i += w)
+				g.drawLine(i, 26, i, height + 24);
+		}
 		
 		// Überschriften der X-Achse zeichnen
 		if (_xHeader.size() > 0) {
-			
+			boolean t = false;
+			g.setColor(getForeground());
+			g.setFont(font.deriveFont(Font.BOLD));
+			int x = width / _data.getRowCount();
+			int y = 0;
+			for (int i = 0; i < _data.getRowCount(); i++) {
+				if (t)
+					y = getHeight() - 100;
+				else
+					y = getHeight() - 100 + metrics.getHeight();
+				t = !t;
+				g.drawString(_xHeader.get(i), (i * x) + 50, y);
+			}
 		}
 		
 		// Legende der X-Achse zeichnen

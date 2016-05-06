@@ -234,11 +234,37 @@ public class WndReports extends WndInternalFrame
 		
 			// Diagramm anzeigen
 			case 1:
+				// Diagramm vorbereiten
 				_report.setData(((ReportModel)_table.getModel()).getData());
-				_report.setXLegend("Wochen");
 				_report.setDrawXLegend(true);
 				_report.setYLegend("Euro");
 				_report.setDrawYLegend(true);
+				_report.setDrawReferenceLines(true);
+				
+				// Beschriftung X-Achse
+				for (int i = 0; i < _table.getModel().getRowCount(); i++)
+					_report.addXHeader(String.valueOf(
+							_table.getModel().getValueAt(i, 0)));
+				
+				// Überschrift der X-Achse setzen
+				switch (_preference.getType()) {
+					// Wochenübersicht
+					case ReportPreferencesData.TYPE_WEEK:
+						_report.setXLegend("Wochen");
+						break;
+						
+					// Monatsübersicht
+					case ReportPreferencesData.TYPE_MONTH:
+						_report.setXLegend("Tage");
+						break;
+						
+					// Jahresübersicht
+					case ReportPreferencesData.TYPE_YEAR:
+						_report.setXLegend("Monate");
+						break;
+				}
+				
+				// Diagramm neu zeichnen
 				_report.repaint();
 				break;
 		}

@@ -71,6 +71,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, ob die Hilfslinien angezeigt werden sollen
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#drawReferenceLines()
 	 */
 	@Test
 	public void testDrawReferenceLines() {
@@ -80,6 +82,8 @@ public class TestReportGraphic {
 	/**
 	 * Überprüft, ob die Einstellung zum anzeigen der Hilfslinien richtig
 	 * geändert wird.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setDrawReferenceLines(boolean)
 	 */
 	@Test
 	public void testSetDrawReferenceLines() {
@@ -89,6 +93,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, die Farbe der Hilfslinien
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#getReferenceLinesColor()
 	 */
 	@Test
 	public void testGetColorReferenceLines() {
@@ -97,6 +103,8 @@ public class TestReportGraphic {
 
 	/**
 	 * Überprüft, ob die Farbe der Hilfslinien richtig geändert wird.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setReferenceLineColor(Color)
 	 */
 	@Test
 	public void testSetReferenceLinesColor() {
@@ -106,6 +114,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, die Farbe der Einnahmen
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#getIncomingColor()
 	 */
 	@Test
 	public void testGetIncomingColor() {
@@ -114,6 +124,8 @@ public class TestReportGraphic {
 
 	/**
 	 * Überprüft, ob die Farbe der Einnahmen richtig geändert wird.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setIncomingColor(Color)
 	 */
 	@Test
 	public void testSetIncomingColor() {
@@ -123,6 +135,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, die Farbe der Ausgaben
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#getOutgoingColor()
 	 */
 	@Test
 	public void testGetOutgoingColor() {
@@ -131,6 +145,8 @@ public class TestReportGraphic {
 
 	/**
 	 * Überprüft, ob die Farbe der Ausgaben richtig geändert wird.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setOutgoingColor(Color)
 	 */
 	@Test
 	public void testSetOutgoingColor() {
@@ -140,6 +156,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, die Farbe der Differenz
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#getDeviationColor()
 	 */
 	@Test
 	public void testGetDeviationColor() {
@@ -148,6 +166,8 @@ public class TestReportGraphic {
 
 	/**
 	 * Überprüft, ob die Farbe der Differenz richtig geändert wird.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setDeviationColor(Color)
 	 */
 	@Test
 	public void testSetDeviationColor() {
@@ -157,6 +177,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, ob nach der Initalisation keine Daten gespeichert sind.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#getData()
 	 */
 	@Test
 	public void testNoDataAfterInit() {
@@ -165,6 +187,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, ob die Daten richtig geändert werden.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setData(ReportData)
 	 */
 	@Test
 	public void testSetData() {
@@ -176,6 +200,8 @@ public class TestReportGraphic {
 	/**
 	 * Überprüft, ob die X-Achse nicht ausgegeben werden soll, nachdem
 	 * initalisiert wurde ist.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#drawXLegend()
 	 */
 	@Test
 	public void testDrawXLegend() {
@@ -184,6 +210,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, ob die Ausgabe der X-Achse richtig geändert werden kann.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setDrawXLegend(boolean)
 	 */
 	@Test
 	public void testSetDrawXLegend() {
@@ -194,6 +222,8 @@ public class TestReportGraphic {
 	/**
 	 * Überprüft, ob die Y-Achse nicht ausgegeben werden soll, nachdem
 	 * initalisiert wurde ist.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#drawYLegend()
 	 */
 	@Test
 	public void testDrawYLegend() {
@@ -202,6 +232,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, ob die Ausgabe der Y-Achse richtig geändert werden kann.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setDrawYLegend(boolean)
 	 */
 	@Test
 	public void testSetDrawYLegend() {
@@ -212,6 +244,8 @@ public class TestReportGraphic {
 	/**
 	 * Überprüft, ob die Legende der X-Achse nach der initalisation eine leere
 	 * Zeichenkette ist.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#getXLegend()
 	 */
 	@Test
 	public void testGetXLegend() {
@@ -220,6 +254,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, ob die Legende der X-Achse neu gesetzt werden kann.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setXLegend(String)
 	 */
 	@Test
 	public void testSetXLegend() {
@@ -231,6 +267,8 @@ public class TestReportGraphic {
 	/**
 	 * Überprüft, ob die Legende der Y-Achse nach der initalisation eine leere
 	 * Zeichenkette ist.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#getYLegend()
 	 */
 	@Test
 	public void testGetYLegend() {
@@ -239,6 +277,8 @@ public class TestReportGraphic {
 	
 	/**
 	 * Überprüft, ob die Legende der Y-Achse neu gesetzt werden kann.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setYLegend(String)
 	 */
 	@Test
 	public void testSetYLegend() {
@@ -250,6 +290,8 @@ public class TestReportGraphic {
 	/**
 	 * Überprüft, ob keine Überschrift der X-Achse nach der Initalisierung
 	 * vorhanden ist.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#getXHeader()
 	 */
 	@Test
 	public void testGetXHeader() {
@@ -259,6 +301,8 @@ public class TestReportGraphic {
 	/**
 	 * Überprüft, ob eine neue Überschrift der X-Achse zur Liste hinzu gefügt
 	 * werden kann.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#addXHeader(String)
 	 */
 	@Test
 	public void testAddXHeader() {
@@ -270,6 +314,8 @@ public class TestReportGraphic {
 	/**
 	 * Überprüft, ob der minimale Wert der Y-Achse nach der Initalisierung 0.0
 	 * ist.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#getMinY()
 	 */
 	@Test
 	public void testGetMinYAfterInit() {
@@ -279,9 +325,36 @@ public class TestReportGraphic {
 	/**
 	 * Überprüft, ob der maximale Wert der Y-Achse nach der Initalisierung 0.0
 	 * ist.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#getMaxY()
 	 */
 	@Test
 	public void testGetMaxYAfterInit() {
 		assertEquals(0.0, _test.getMaxY(), 0.0);
+	}
+	
+	/**
+	 * Überprüft, ob nach übergabe der Daten, der minimale und der maximale Wert
+	 * der Y-Achse gesetzt wurde.
+	 * 
+	 * @see haushaltsbuch.elements.ReportGraphic#setData(ReportData)
+	 * @see haushaltsbuch.elements.ReportGraphic#getMaxY()
+	 * @see haushaltsbuch.elements.ReportGraphic#getMinY()
+	 */
+	@Test
+	public void testMinAndMaxYAfterSetData() {
+		double min = -10.77;
+		double max = 90.87;
+		
+		ReportData rd = mock(ReportData.class);
+		when(rd.deviation(0)).thenReturn(min);
+		when(rd.incoming(0)).thenReturn(max);
+		when(rd.outgoing(0)).thenReturn(0.0);
+		when(rd.getRowCount()).thenReturn(1);
+		
+		_test.setData(rd);
+		
+		assertEquals(min, _test.getMinY(), 0.0);
+		assertEquals(max, _test.getMaxY(), 0.0);
 	}
 }
