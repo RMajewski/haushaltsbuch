@@ -19,7 +19,6 @@
 
 package haushaltsbuch.export;
 
-import java.awt.Graphics2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,15 +27,12 @@ import java.text.DecimalFormat;
 
 import javax.swing.JFrame;
 
-import com.itextpdf.awt.PdfGraphics2D;
-import com.itextpdf.awt.geom.AffineTransform;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -44,7 +40,6 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import haushaltsbuch.datas.ReportData;
@@ -105,11 +100,23 @@ public class Pdf extends Export {
 	private static final String _fontNameBold = "fonts/helvaribold.ttf";
 	
 	/**
+	 * Speichert den Minimalwert für Y-Achse
+	 */
+	private double _minY;
+	
+	/**
+	 * Speichert den Maximalwert für die Y-Achse
+	 */
+	private double _maxY;
+	
+	/**
 	 * Initalisiert diese Klasse
 	 */
 	public Pdf(JFrame owner) {
 		// Dialog speichern
 		super(new DlgExportPdf(owner));
+		_minY = 0.0;
+		_maxY = 0.0;
 	}
 	
 	/**
@@ -119,6 +126,30 @@ public class Pdf extends Export {
 	 */
 	public void setReportData(ReportData data) {
 		_data = data;
+		
+		_minY = 0.0;
+		_maxY = 0.0;
+		
+		// Maximal- und Minimal-Wert für Y-Achse bestimmen
+		for (int i = 0; i < _data.getRowCount(); i++) {
+			if (_data.incoming(i) < _minY)
+				_minY = _data.incoming(i);
+			
+			else if (_data.incoming(i) > _maxY)
+				_maxY = _data.incoming(i);
+			
+			if (_data.outgoing(i) < _minY)
+				_minY = _data.outgoing(i);
+			
+			else if (_data.outgoing(i) > _maxY)
+				_maxY = _data.outgoing(i);
+			
+			if (_data.deviation(i) < _minY)
+				_minY = _data.deviation(i);
+			
+			else if (_data.deviation(i) > _maxY)
+				_maxY = _data.deviation(i);
+		}
 	}
 	
 	/**
@@ -237,6 +268,9 @@ public class Pdf extends Export {
 		// Farben setzen
 		BaseColor repLines = BaseColor.LIGHT_GRAY;
 		BaseColor normal = BaseColor.BLACK;
+		BaseColor in = BaseColor.GREEN;
+		BaseColor out = BaseColor.RED;
+		BaseColor dev = BaseColor.YELLOW;
 		
 		// Hilfslinien zeichnen
 		float w = width / _data.getRowCount();
@@ -287,6 +321,74 @@ public class Pdf extends Export {
 		canvas.setTextMatrix(0, 1, -1, 0, startX, startY + 50 + height / 2);
 		canvas.showText("Euro");
 		canvas.endText();
+		
+		// Zeichnen der Mittellinie und Ausgabe der Werte
+		float zero = startY + 50;
+		if (_minY < 0.0) {
+			zero = startY + 50 + height / 2;
+			canvas.setColorStroke(normal);
+			canvas.moveTo(startX + 100, zero);
+			canvas.lineTo(startX + 100 + width, zero);
+			canvas.closePathStroke();
+			
+			canvas.beginText();
+			canvas.setFontAndSize(_font.getBaseFont(), 12);
+			canvas.moveText(startX + 20, startY + 50 + height / 2);
+			canvas.showText("0,00");
+			canvas.endText();
+			
+			canvas.beginText();
+			canvas.setFontAndSize(_font.getBaseFont(), 12);
+			canvas.moveText(startX + 20, startY + 50 + height);
+			canvas.showText(new DecimalFormat("0.00").format(_maxY));
+			canvas.endText();
+			
+			canvas.beginText();
+			canvas.setFontAndSize(_font.getBaseFont(), 12);
+			canvas.moveText(startX + 20, startY + 50);
+			canvas.showText(new DecimalFormat("0.00").format(_minY));
+			canvas.endText();
+		}
+		
+		// Balken zeichnen
+		float barWidth = w / 3;
+		for (int row = 0; row < _data.getRowCount(); row++) {
+			// Einnahmen
+			if (_data.incoming(row) > 0.0) {
+				float bh = (float) ((_data.incoming(row) / _maxY) *
+						(height / 2));
+				canvas.setColorFill(in);
+				canvas.rectangle(startX + 100 + w * row,  zero, barWidth, bh);
+				canvas.fill();
+			}
+			
+			// Ausgaben
+			if (_data.outgoing(row) > 0.0) {
+				float bh = (float) ((_data.outgoing(row) / _maxY) *
+						(height / 2));
+				canvas.setColorFill(out);
+				canvas.rectangle(startX + 100 + w * row + barWidth,  zero,
+						barWidth, bh);
+				canvas.fill();
+			}
+
+			// Differenz
+			if (_data.deviation(row) > 0.0) {
+				float bh = (float) ((_data.deviation(row) / _maxY) *
+						(height / 2));
+				canvas.setColorFill(dev);
+				canvas.rectangle(startX + 100 + w * row + (2 * barWidth), zero,
+						barWidth, bh);
+				canvas.fill();
+			} else if (_data.deviation(row) < 0.0) {
+				float bh = (float) ((_data.deviation(row) / _minY) *
+						(height / 2));
+				canvas.setColorFill(dev);
+				canvas.rectangle(startX + 100 + w * row + (2 * barWidth),
+						startY + 50, barWidth, bh);
+				canvas.fill();
+			}
+		}
 		
 		// Rahmen zeichnen
 		canvas.setColorStroke(normal);
