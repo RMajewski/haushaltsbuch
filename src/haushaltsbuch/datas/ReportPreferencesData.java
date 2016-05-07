@@ -48,6 +48,16 @@ public class ReportPreferencesData {
 	public static final int TYPE_YEAR = 3;
 	
 	/**
+	 * Übersicht über die Kategorien soll erstellt werden
+	 */
+	public static final int TYPE_CATEGORY = 4;
+	
+	/**
+	 * Übersicht über die Geschäfte soll erstellt werden
+	 */
+	public static final int TYPE_SECTION = 5;
+	
+	/**
 	 * Speichert das Ende
 	 */
 	private int _finished;

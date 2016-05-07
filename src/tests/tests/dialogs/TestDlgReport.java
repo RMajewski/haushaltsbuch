@@ -66,6 +66,16 @@ public class TestDlgReport extends TestDialogs {
 	private JRadioButtonOperator _rbYear;
 	
 	/**
+	 * Speichert den Radio-Button zur Auswahl der Übersicht Geschäfte
+	 */
+	private JRadioButtonOperator _rbSection;
+	
+	/**
+	 * Speichert den Radio-Button zur Auswahl der Übersicht der Kategorien
+	 */
+	private JRadioButtonOperator _rbCategory;
+	
+	/**
 	 * Speichert die Einstellungen für den Report-Dialog.
 	 */
 	private ReportPreferencesData _rpd;
@@ -134,6 +144,8 @@ public class TestDlgReport extends TestDialogs {
 		_rbWeek = new JRadioButtonOperator(_dlg, "Wochenübersicht");
 		_rbMonth = new JRadioButtonOperator(_dlg, "Monatsübersicht");
 		_rbYear = new JRadioButtonOperator(_dlg, "Jahresübersicht");
+		_rbSection = new JRadioButtonOperator(_dlg, "Übersicht Geschäfte");
+		_rbCategory = new JRadioButtonOperator(_dlg, "Übersicht Kategorien");
 		
 		// Auswahl-Boxden ermitteln
 		_cbYear = new JComboBoxOperator(_dlg, 1);
@@ -237,6 +249,26 @@ public class TestDlgReport extends TestDialogs {
 	 */
 	public boolean isYearChecked() {
 		return _rbYear.isSelected();
+	}
+	
+	/**
+	 * Ermittelt ob der Radio-Button für die Übersicht der Geschäfte ausgewählt
+	 * ist oder nicht.
+	 * 
+	 * @return Radio-Button ausgewählt?
+	 */
+	public boolean isSectionChecked() {
+		return _rbSection.isSelected();
+	}
+	
+	/**
+	 * Ermittelt ob der Radio-Button für die Übersicht der Kategorien ausgewählt
+	 * ist oder nicht.
+	 * 
+	 * @return Radio-Button ausgewählt?
+	 */
+	public boolean isCategoryChecked() {
+		return _rbCategory.isSelected();
 	}
 	
 	/**

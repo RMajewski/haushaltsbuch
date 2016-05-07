@@ -212,6 +212,28 @@ public class TestReportPreferenceData {
 	}
 	
 	/**
+	 * Überprüft, ob der Wert für die Übersicht der Kategorien richtig gesetzt
+	 * ist.
+	 * 
+	 * @see datas.ReportPreferencesData#TYPE_CATEGORY
+	 */
+	@Test
+	public void testTypeCategory() {
+		assertEquals(4, ReportPreferencesData.TYPE_CATEGORY);
+	}
+	
+	/**
+	 * Überprüft, ob der Wert für die Übersicht der Geschäfte richtig gesetzt
+	 * ist.
+	 * 
+	 * @see datas.ReportPreferencesData#TYPE_SECTION
+	 */
+	@Test
+	public void testTypeSection() {
+		assertEquals(5, ReportPreferencesData.TYPE_SECTION);
+	}
+	
+	/**
 	 * Überprüft, ob die Anzahl der Einstellungen korrekt ermittelt wird.
 	 * 
 	 * @see datas.ReportPreferencesData#getPrefenceCount()

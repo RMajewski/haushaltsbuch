@@ -95,6 +95,14 @@ public class FixtureDlgReportColumn extends ColumnFixture {
 			case "Year":
 				t = ReportPreferencesData.TYPE_YEAR;
 				break;
+				
+			case "Section":
+				t = ReportPreferencesData.TYPE_SECTION;
+				break;
+				
+			case "Category":
+				t = ReportPreferencesData.TYPE_CATEGORY;
+				break;
 		}
 		
 		// Einstellungen erstellen
@@ -130,6 +138,12 @@ public class FixtureDlgReportColumn extends ColumnFixture {
 				
 			case ReportPreferencesData.TYPE_YEAR:
 				return "Year";
+				
+			case ReportPreferencesData.TYPE_SECTION:
+				return "Section";
+				
+			case ReportPreferencesData.TYPE_CATEGORY:
+				return "Category";
 		}
 		return null;
 	}
@@ -162,5 +176,25 @@ public class FixtureDlgReportColumn extends ColumnFixture {
 	 */
 	public String isYearChecked() {
 		return String.valueOf(_test.isYearChecked());
+	}
+	
+	/**
+	 * Ermittelt ob der Radio-Button für die Übersicht der Kategorien ausgewählt
+	 * ist oder nicht.
+	 * 
+	 * @return Radio-Button für die Übersicht der Kategorien ausgewählt?
+	 */
+	public String isCategoryChecked() {
+		return String.valueOf(_test.isCategoryChecked());
+	}
+	
+	/**
+	 * Ermittelt ob der Radio-Button für die Übersicht der Geschäfte ausgewählt
+	 * ist oder nicht.
+	 * 
+	 * @return Radio-Button für die Übersicht der Geschäfte ausgewählt?
+	 */
+	public String isSectionChecked() {
+		return String.valueOf(_test.isSectionChecked());
 	}
 }

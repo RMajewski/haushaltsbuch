@@ -108,6 +108,16 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 	private JRadioButton _rbYear;
 	
 	/**
+	 * Speichert den RadioButton zur Auswahl der Übersicht der Geschäfte
+	 */
+	private JRadioButton _rbSection;
+	
+	/**
+	 * Speichert den RadioButton zur Auswahl der Übersicht der Kategorien
+	 */
+	private JRadioButton _rbCategory;
+	
+	/**
 	 * Speichert die CheckBox für Wochenübersicht -> von
 	 */
 	private JCheckBox _cbWeekDateFrom;
@@ -168,6 +178,7 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		
 		JPanel panReport = new JPanel();
 		GridBagConstraints gbc_panReport = new GridBagConstraints();
+		gbc_panReport.gridheight = 2;
 		gbc_panReport.insets = new Insets(0, 0, 5, 0);
 		gbc_panReport.fill = GridBagConstraints.BOTH;
 		gbc_panReport.gridx = 3;
@@ -184,10 +195,18 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		_rbYear = new JRadioButton("Jahresübersicht");
 		panReport.add(_rbYear);
 		
+		_rbCategory = new JRadioButton("Übersicht Kategorien");
+		panReport.add(_rbCategory);
+		
+		_rbSection = new JRadioButton("Übersicht Geschäfte");
+		panReport.add(_rbSection);
+		
 		ButtonGroup g = new ButtonGroup();
 		g.add(_rbWeek);
 		g.add(_rbMonth);
 		g.add(_rbYear);
+		g.add(_rbCategory);
+		g.add(_rbSection);
 		
 		JLabel lblMonth = new JLabel("Monat");
 		GridBagConstraints gbc_lblMonth = new GridBagConstraints();
@@ -315,6 +334,16 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 			case ReportPreferencesData.TYPE_YEAR:
 				_rbYear.setSelected(true);
 				break;
+				
+			// Übersicht Kategorien
+			case ReportPreferencesData.TYPE_CATEGORY:
+				_rbCategory.setSelected(true);
+				break;
+				
+			// Übersicht Geschäfte
+			case ReportPreferencesData.TYPE_SECTION:
+				_rbSection.setSelected(true);
+				break;
 		}
 
 		// Daten für die Jahre
@@ -374,6 +403,14 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 			// Wurde Jahrsübersicht ausgewählt?
 			if (_rbYear.isSelected())
 				_data.setType(ReportPreferencesData.TYPE_YEAR);
+			
+			// Wurde Übersicht Kategorien ausgewählt?
+			if (_rbCategory.isSelected())
+				_data.setType(ReportPreferencesData.TYPE_CATEGORY);
+			
+			// Wurde Übersicht Geschäfte ausgewählt?
+			if (_rbSection.isSelected())
+				_data.setType(ReportPreferencesData.TYPE_SECTION);
 			
 			// Wurde Wochenübersicht 'von' ausgewählt?
 			if (_cbWeekDateFrom.isSelected())

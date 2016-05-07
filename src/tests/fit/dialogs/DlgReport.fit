@@ -77,7 +77,7 @@
 		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
 			<tbody>
 				<tr>
-					<td colspan="9">tests.fixtures.dialogs.FixtureDlgReportColumn</td>
+					<td colspan="11">tests.fixtures.dialogs.FixtureDlgReportColumn</td>
 				</tr>
 				<tr>
 					<td>month</td>
@@ -89,6 +89,8 @@
 					<td>isWeekChecked()</td>
 					<td>isMonthChecked()</td>
 					<td>isYearChecked()</td>
+					<td>isSectionChecked()</td>
+					<td>isCategoryChecked()</td>
 				</tr>
 				<tr>
 					<td>January</td>
@@ -98,6 +100,8 @@
 					<td>2014</td>
 					<td>Week</td>
 					<td>true</td>
+					<td>false</td>
+					<td>false</td>
 					<td>false</td>
 					<td>false</td>
 				</tr>
@@ -111,6 +115,8 @@
 					<td>false</td>
 					<td>true</td>
 					<td>false</td>
+					<td>false</td>
+					<td>false</td>
 				</tr>
 				<tr>
 					<td>November</td>
@@ -119,6 +125,34 @@
 					<td>November</td>
 					<td>2029</td>
 					<td>Year</td>
+					<td>false</td>
+					<td>false</td>
+					<td>true</td>
+					<td>false</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>June</td>
+					<td>2000</td>
+					<td>Section</td>
+					<td>June</td>
+					<td>2000</td>
+					<td>Section</td>
+					<td>false</td>
+					<td>false</td>
+					<td>false</td>
+					<td>true</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>December</td>
+					<td>2067</td>
+					<td>Category</td>
+					<td>December</td>
+					<td>2067</td>
+					<td>Category</td>
+					<td>false</td>
+					<td>false</td>
 					<td>false</td>
 					<td>false</td>
 					<td>true</td>
