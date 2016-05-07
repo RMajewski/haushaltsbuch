@@ -514,4 +514,25 @@ public class TestMoneyDetails extends TestHelper{
 		assertEquals(builder.toString(), _moneyDetails.sumCategoryId(name,
 				inout));
 	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#sumSectionId(int)}
+	 * die Datenbank-Abfrage generiert, um die Summe der Beträge des
+	 * ausgewählten Geschäftes zu ermitteln.
+	 */
+	@Test
+	public void testSumSectionId() {
+		String name = "Test";
+		int inout = 1;
+		StringBuilder builder = new StringBuilder("SELECT sum(money) FROM ");
+		builder.append(_table);
+		builder.append(" INNER JOIN money ON money.id = money_details.moneyid");
+		builder.append(" INNER JOIN section ON section.id = ");
+		builder.append(" money_details.sectionid WHERE section.name = '");
+		builder.append(name);
+		builder.append("' AND inout = ");
+		builder.append(inout);
+		assertEquals(builder.toString(), _moneyDetails.sumSectionId(name,
+				inout));
+	}
 }

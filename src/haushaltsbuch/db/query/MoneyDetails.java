@@ -343,4 +343,30 @@ public class MoneyDetails extends Query {
 		// Abfrage zurück geben
 		return ret.toString();
 	}
+	
+	/**
+	 * Erzeugt die Datenbankabfrage, um für das angegebene Geschäft alle Beträge
+	 * zu ermitteln.
+	 * 
+	 * @param section Name des Geschäftes
+	 * 
+	 * @param inout Legt fest, ob die Einnahmen oder die Ausgaben der Kategorie
+	 * ermittelt werden soll.
+	 * 
+	 * @return Summe der Beträge für das ausgewählte Geschäft
+	 */
+	public String sumSectionId(String section, int inout) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("SELECT sum(money) FROM ");
+		ret.append(_tableName);
+		ret.append(" INNER JOIN money ON money.id = money_details.moneyid");
+		ret.append(" INNER JOIN section ON section.id = ");
+		ret.append(" money_details.sectionid WHERE section.name = '");
+		ret.append(section);
+		ret.append("' AND inout = ");
+		ret.append(inout);
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
 }

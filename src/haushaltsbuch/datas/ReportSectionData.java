@@ -28,8 +28,9 @@ import javax.swing.table.TableColumnModel;
 
 import haushaltsbuch.db.DbController;
 
+
 /**
- * Speichert die Daten, die im Report Übersicht der Kategorien angezeigt werden
+ * Speichert die Daten, die im Report Übersicht der Geschäfte angezeigt werden
  * sollen.
  * 
  * @author René Majewski
@@ -37,20 +38,15 @@ import haushaltsbuch.db.DbController;
  * @version 0.1
  * @since 0.2
  */
-public class ReportCategoryData extends ReportData {
+public class ReportSectionData extends ReportData {
 	/**
 	 * Speichert die Namen der Kategorien
 	 */
-	private List<String> _categories;
+	private List<String> _sections;
 
-	/**
-	 * Initalisiert die Daten
-	 * 
-	 * @param preferences Einstellungen für den Report
-	 */
-	public ReportCategoryData(ReportPreferencesData preferences) {
+	public ReportSectionData(ReportPreferencesData preferences) {
 		super(preferences);
-		_categories = new ArrayList<String>();
+		_sections = new ArrayList<String>();
 		setPreferences(preferences);
 	}
 
@@ -72,7 +68,7 @@ public class ReportCategoryData extends ReportData {
 	 */
 	@Override
 	public int getRowCount() {
-		return _categories.size();
+		return _sections.size();
 	}
 
 	/**
@@ -82,21 +78,21 @@ public class ReportCategoryData extends ReportData {
 	 */
 	@Override
 	public void setColumnHeader(TableColumnModel tcm) {
-		tcm.getColumn(0).setHeaderValue("Kategorie");
+		tcm.getColumn(0).setHeaderValue("Geschäfte");
 		tcm.getColumn(1).setHeaderValue("Einnahmen");
 		tcm.getColumn(2).setHeaderValue("Ausgaben");
 		tcm.getColumn(3).setHeaderValue("Differenz");
 	}
 
 	/**
-	 * Gibt die angegebene Kategorie zurück.
+	 * Gibt das angegebene Geschäft zurück.
 	 * 
-	 * @param index Kategorie, die zurück gegeben werden soll.
+	 * @param index Geschäft, das zurück gegeben werden soll.
 	 * 
-	 * @return Angegebene Kategorie.
+	 * @return Angegebenes Geschäft.
 	 */
-	public String getCategory(int index) {
-		return _categories.get(index);
+	public String getSection(int index) {
+		return _sections.get(index);
 	}
 	
 	/**
@@ -111,7 +107,7 @@ public class ReportCategoryData extends ReportData {
 			// Listen vorbereiten
 			ResultSet rs = 
 					DbController.getInstance().createStatement().executeQuery(
-							DbController.queries().category().count());
+							DbController.queries().section().count());
 			_in = initDoubleList(rs.getInt(1));
 			_out = initDoubleList(rs.getInt(1));
 			
@@ -119,21 +115,21 @@ public class ReportCategoryData extends ReportData {
 			int count = 0;
 			
 			rs = DbController.getInstance().createStatement().executeQuery(
-						DbController.queries().category().sort("name"));
+						DbController.queries().section().sort("name"));
 			while (rs.next()) {
 				String name = rs.getString("name");
-				_categories.add(name);
+				_sections.add(name);
 				
 				// Einnahmen
 				ResultSet sum = 
 					DbController.getInstance().createStatement().executeQuery(
-							DbController.queries().moneyDetails().sumCategoryId(
+							DbController.queries().moneyDetails().sumSectionId(
 									name, MoneyData.INT_INCOMING));
 				_in.set(count, sum.getDouble(1));
 				
 				// Ausgaben
 				sum = DbController.getInstance().createStatement().executeQuery(
-						DbController.queries().moneyDetails().sumCategoryId(
+						DbController.queries().moneyDetails().sumSectionId(
 								name, MoneyData.INT_OUTGOING));
 				_out.set(count, sum.getDouble(1));
 				
@@ -144,4 +140,5 @@ public class ReportCategoryData extends ReportData {
 			e.printStackTrace();
 		}
 	}
+
 }

@@ -44,18 +44,16 @@ import org.powermock.core.classloader.annotations.PrepareOnlyThisForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import haushaltsbuch.datas.MoneyData;
-import haushaltsbuch.datas.ReportCategoryData;
 import haushaltsbuch.datas.ReportPreferencesData;
+import haushaltsbuch.datas.ReportSectionData;
 import haushaltsbuch.db.DbController;
-import haushaltsbuch.db.query.Category;
-import haushaltsbuch.db.query.Money;
 import haushaltsbuch.db.query.MoneyDetails;
 import haushaltsbuch.db.query.Queries;
-import haushaltsbuch.helper.HelperCalendar;
+import haushaltsbuch.db.query.Section;
 import tests.testcase.TestReports;
 
 /**
- * Testet die Klasse {@link datas.ReportCategoryData}.
+ * Testet die Klasse {@link datas.ReportSectionData}.
  * 
  * @author René Majewski
  *
@@ -64,11 +62,11 @@ import tests.testcase.TestReports;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareOnlyThisForTest({DbController.class})
-public class TestReportCategoryData extends TestReports {
+public class TestReportSectionData extends TestReports {
 	/**
 	 * Instanz der Monats-Daten
 	 */
-	private ReportCategoryData _data;
+	private ReportSectionData _data;
 	
 	/**
 	 * Speichert die Einnahmen
@@ -81,29 +79,19 @@ public class TestReportCategoryData extends TestReports {
 	private double _out;
 	
 	/**
-	 * Speichert die Id für die Einnahme
+	 * Speichert den Namen für das 1. Geschäft
 	 */
-	private int _inId;
+	private String _section1;
 	
 	/**
-	 * Speichert die Id für die Ausgabe
+	 * Speichert den Namen für das 2. Geschäft
 	 */
-	private int _outId;
+	private String _section2;
 	
 	/**
-	 * Speichert den Namen für die 1. Kategorie
+	 * Speichert den Namen für das 3. Geschäft
 	 */
-	private String _cat1;
-	
-	/**
-	 * Speichert den Namen für die 2. Kategorie
-	 */
-	private String _cat2;
-	
-	/**
-	 * Speichert den Namen für die 3. Kategorie
-	 */
-	private String _cat3;
+	private String _section3;
 	
 	/**
 	 * Speichert den Mock für den DbController
@@ -126,35 +114,33 @@ public class TestReportCategoryData extends TestReports {
 		// Daten für die Mocks festlegen
 		_in = 9.93;
 		_out = 7.66;
-		_inId = 100;
-		_outId = 200;
-		_cat1 = "Test1";
-		_cat2 = "Test2";
-		_cat3 = "Test3";
+		_section1 = "Test1";
+		_section2 = "Test2";
+		_section3 = "Test3";
 		
 		// Kategorien mocken
-		Category category = mock(Category.class);
-		when(category.count()).thenReturn("category_count");
-		when(category.sort("name")).thenReturn("category_sort");
+		Section section = mock(Section.class);
+		when(section.count()).thenReturn("section_count");
+		when(section.sort("name")).thenReturn("section_sort");
 
 		// MoneyDetails mocken
 		MoneyDetails details = mock(MoneyDetails.class);
-		when(details.sumCategoryId(_cat1, MoneyData.INT_INCOMING)).thenReturn(
+		when(details.sumSectionId(_section1, MoneyData.INT_INCOMING)).thenReturn(
 				"sum_in");
-		when(details.sumCategoryId(_cat1, MoneyData.INT_OUTGOING)).thenReturn(
+		when(details.sumSectionId(_section1, MoneyData.INT_OUTGOING)).thenReturn(
 				"sum_out");
-		when(details.sumCategoryId(_cat2, MoneyData.INT_INCOMING)).thenReturn(
+		when(details.sumSectionId(_section2, MoneyData.INT_INCOMING)).thenReturn(
 				"sum_0");
-		when(details.sumCategoryId(_cat2, MoneyData.INT_OUTGOING)).thenReturn(
+		when(details.sumSectionId(_section2, MoneyData.INT_OUTGOING)).thenReturn(
 				"sum_0");
-		when(details.sumCategoryId(_cat3, MoneyData.INT_INCOMING)).thenReturn(
+		when(details.sumSectionId(_section3, MoneyData.INT_INCOMING)).thenReturn(
 				"sum_0");
-		when(details.sumCategoryId(_cat3, MoneyData.INT_OUTGOING)).thenReturn(
+		when(details.sumSectionId(_section3, MoneyData.INT_OUTGOING)).thenReturn(
 				"sum_0");
 		
 		// Queries mocken
 		Queries queries = mock(Queries.class);
-		when(queries.category()).thenReturn(category);
+		when(queries.section()).thenReturn(section);
 		when(queries.moneyDetails()).thenReturn(details);
 		
 		// Statements, ResultSets und DbController-Mock
@@ -168,7 +154,7 @@ public class TestReportCategoryData extends TestReports {
 			
 			ResultSet rsCats = mock(ResultSet.class);
 			when(rsCats.next()).thenReturn(true, true, true, false);
-			when(rsCats.getString("name")).thenReturn(_cat1, _cat2, _cat3);
+			when(rsCats.getString("name")).thenReturn(_section1, _section2, _section3);
 			
 			ResultSet rsIn = mock(ResultSet.class);
 			when(rsIn.getDouble(1)).thenReturn(_in);
@@ -181,10 +167,10 @@ public class TestReportCategoryData extends TestReports {
 			
 			// Statements mocken
 			Statement stmCount = mock(Statement.class);
-			when(stmCount.executeQuery("category_count")).thenReturn(rsCount);
+			when(stmCount.executeQuery("section_count")).thenReturn(rsCount);
 			
 			Statement stmCats = mock(Statement.class);
-			when(stmCats.executeQuery("category_sort")).thenReturn(rsCats);
+			when(stmCats.executeQuery("section_sort")).thenReturn(rsCats);
 			
 			Statement stmIn = mock(Statement.class);
 			when(stmIn.executeQuery("sum_in")).thenReturn(rsIn);
@@ -209,15 +195,15 @@ public class TestReportCategoryData extends TestReports {
 		}
 		
 		// Instanz der Daten-Klassen erzeugen
-		_data = new ReportCategoryData(_rpd);
+		_data = new ReportSectionData(_rpd);
 	}
 	
 	/**
-	 * Testet, ob die Klase {@link datas.ReportCategoryData} von der Klasse
+	 * Testet, ob die Klase {@link datas.ReportSectionData} von der Klasse
 	 * {@link datas.ReportData} abgeleitet wurde.
 	 */
 	@Test
-	public void testReportCategoryDataExtendsReportData() {
+	public void testReportSectionDataExtendsReportData() {
 		assertEquals("haushaltsbuch.datas.ReportData", 
 				_data.getClass().getSuperclass().getName());
 	}
@@ -225,7 +211,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob die Richtige Anzahl an Spalten zurück gegeben werden.
 	 * 
-	 * @see datas.ReportCategoryData#getColumnCount()
+	 * @see datas.ReportSectionData#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCountReturnRightCount() {
@@ -236,7 +222,7 @@ public class TestReportCategoryData extends TestReports {
 	 * Überprüft, ob die richtige Anzahl an Zeilen zurück gegeben werden.
 	 * @throws SQLException 
 	 * 
-	 * @see datas.ReportCategoryData#getRowCount()
+	 * @see datas.ReportSectionData#getRowCount()
 	 */
 	@Test
 	public void testGetRowCount() throws SQLException {
@@ -269,22 +255,22 @@ public class TestReportCategoryData extends TestReports {
 		verify(tcm, times(1)).getColumn(2);
 		verify(tcm, times(1)).getColumn(3);
 		verify(tcm, never()).getColumn(4);
-		order.verify(tc, times(1)).setHeaderValue("Kategorie");
+		order.verify(tc, times(1)).setHeaderValue("Geschäfte");
 		order.verify(tc, times(1)).setHeaderValue("Einnahmen");
 		order.verify(tc, times(1)).setHeaderValue("Ausgaben");
 		order.verify(tc, times(1)).setHeaderValue("Differenz");
 	}
 	
 	/**
-	 * Überprüft, ob die richtigen Kategorien zurück gegeben werden.
+	 * Überprüft, ob die richtigen Geschäfte zurück gegeben werden.
 	 * 
-	 * @see datas.ReportCategoryData#getCategory(int)
+	 * @see datas.ReportCategoryData#getSection(int)
 	 */
 	@Test
-	public void testGetCategory() {
-		assertEquals(_cat1, _data.getCategory(0));
-		assertEquals(_cat2, _data.getCategory(1));
-		assertEquals(_cat3, _data.getCategory(2));
+	public void testGetSection() {
+		assertEquals(_section1, _data.getSection(0));
+		assertEquals(_section2, _data.getSection(1));
+		assertEquals(_section3, _data.getSection(2));
 	}
 	
 	/**
@@ -321,7 +307,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob für die Tage 2 bis 31 keine Ausgaben bestehen.
 	 * 
-	 * @see datas.ReportCategoryData#outgoing(int)
+	 * @see datas.ReportSectionData#outgoing(int)
 	 */
 	@Test
 	public void testOutgoingWithCategoryTwoAntThreeReturnZero() {

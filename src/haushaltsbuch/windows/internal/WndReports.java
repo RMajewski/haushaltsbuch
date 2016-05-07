@@ -40,6 +40,7 @@ import haushaltsbuch.datas.ReportCategoryData;
 import haushaltsbuch.datas.ReportData;
 import haushaltsbuch.datas.ReportMonthData;
 import haushaltsbuch.datas.ReportPreferencesData;
+import haushaltsbuch.datas.ReportSectionData;
 import haushaltsbuch.datas.ReportWeekData;
 import haushaltsbuch.datas.ReportYearData;
 import haushaltsbuch.dialogs.DlgReport;
@@ -48,6 +49,7 @@ import haushaltsbuch.elements.ReportGraphic;
 import haushaltsbuch.tables.models.ReportCategoryModel;
 import haushaltsbuch.tables.models.ReportModel;
 import haushaltsbuch.tables.models.ReportMonthModel;
+import haushaltsbuch.tables.models.ReportSectionModel;
 import haushaltsbuch.tables.models.ReportWeekModel;
 import haushaltsbuch.tables.models.ReportYearModel;
 
@@ -217,6 +219,18 @@ public class WndReports extends WndInternalFrame
 					// Spalten-Beschreibungen
 					dataCategory.setColumnHeader(_table.getColumnModel());
 					break;
+					
+				case ReportPreferencesData.TYPE_SECTION:
+					setTitle("Übersicht über die Geschäfte");
+					
+					// Tabellen-Modell initalisieren
+					ReportSectionData dataSection = new ReportSectionData(
+							_preference);
+					_table.setModel(new ReportSectionModel(dataSection));
+					
+					// Spalten-Beschreibungen
+					dataSection.setColumnHeader(_table.getColumnModel());
+					break;
 			}
 			
 			// Dialog anzeigen
@@ -283,6 +297,10 @@ public class WndReports extends WndInternalFrame
 					case ReportPreferencesData.TYPE_CATEGORY:
 						_report.setXLegend("Kategorien");
 						break;
+						
+					// Übersicht Geschäfte
+					case ReportPreferencesData.TYPE_SECTION:
+						_report.setXLegend("Geschäfte");
 				}
 				
 				// Diagramm neu zeichnen
