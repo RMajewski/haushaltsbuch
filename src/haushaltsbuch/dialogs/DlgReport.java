@@ -164,9 +164,9 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		tabbedPane.setEnabledAt(0, true);
 		GridBagLayout gbl_panMain = new GridBagLayout();
 		gbl_panMain.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_panMain.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_panMain.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panMain.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panMain.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panMain.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panMain.setLayout(gbl_panMain);
 		
 		JLabel lblReport = new JLabel("Report");
@@ -178,6 +178,7 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		
 		JPanel panReport = new JPanel();
 		GridBagConstraints gbc_panReport = new GridBagConstraints();
+		gbc_panReport.weighty = 0.1;
 		gbc_panReport.gridheight = 2;
 		gbc_panReport.insets = new Insets(0, 0, 5, 0);
 		gbc_panReport.fill = GridBagConstraints.BOTH;
@@ -212,30 +213,32 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		GridBagConstraints gbc_lblMonth = new GridBagConstraints();
 		gbc_lblMonth.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMonth.gridx = 1;
-		gbc_lblMonth.gridy = 3;
+		gbc_lblMonth.gridy = 4;
 		panMain.add(lblMonth, gbc_lblMonth);
 		
 		_cbMonth = new JComboBox<String>();
 		GridBagConstraints gbc_month = new GridBagConstraints();
+		gbc_month.weighty = 0.1;
 		gbc_month.insets = new Insets(0, 0, 5, 0);
 		gbc_month.fill = GridBagConstraints.HORIZONTAL;
 		gbc_month.gridx = 3;
-		gbc_month.gridy = 3;
+		gbc_month.gridy = 4;
 		panMain.add(_cbMonth, gbc_month);
 		
 		JLabel lblYear = new JLabel("Jahr");
 		GridBagConstraints gbc_lblYear = new GridBagConstraints();
 		gbc_lblYear.insets = new Insets(0, 0, 0, 5);
 		gbc_lblYear.gridx = 1;
-		gbc_lblYear.gridy = 5;
+		gbc_lblYear.gridy = 6;
 		panMain.add(lblYear, gbc_lblYear);
 		
 		_cbYear = new JComboBox<Integer>();
 		_cbYear.setEditable(true);
 		GridBagConstraints gbc_cbYear = new GridBagConstraints();
+		gbc_cbYear.weighty = 0.1;
 		gbc_cbYear.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cbYear.gridx = 3;
-		gbc_cbYear.gridy = 5;
+		gbc_cbYear.gridy = 6;
 		panMain.add(_cbYear, gbc_cbYear);
 		
 		JPanel panButtons = new JPanel();

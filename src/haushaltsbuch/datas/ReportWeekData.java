@@ -138,7 +138,7 @@ public class ReportWeekData extends ReportData {
 				double d = 0;
 				while(rsw.next()) {
 					Statement stm2 = DbController.getInstance().createStatement();
-					ResultSet rs = stm2.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
+					ResultSet rs = stm2.executeQuery(DbController.queries().moneyDetails().sumMoneyId(rsw.getInt("id")));
 					d += rs.getDouble(1);
 					rs.close();
 				}
@@ -152,7 +152,7 @@ public class ReportWeekData extends ReportData {
 				rsw = stm.executeQuery(DbController.queries().money().selectWeek(from, to, MoneyData.INT_OUTGOING));
 				while(rsw.next()) {
 					Statement stm2 = DbController.getInstance().createStatement();
-					ResultSet rs = stm2.executeQuery(DbController.queries().moneyDetails().sum(rsw.getInt("id")));
+					ResultSet rs = stm2.executeQuery(DbController.queries().moneyDetails().sumMoneyId(rsw.getInt("id")));
 					d += rs.getDouble(1);
 					rs.close();
 				}

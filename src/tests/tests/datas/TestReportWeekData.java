@@ -154,8 +154,8 @@ public class TestReportWeekData extends TestReports {
 		
 		// MoneyDetails mocken
 		MoneyDetails details = mock(MoneyDetails.class);
-		when(details.sum(_inId)).thenReturn("details_in");
-		when(details.sum(_outId)).thenReturn("details_out");
+		when(details.sumMoneyId(_inId)).thenReturn("details_in");
+		when(details.sumMoneyId(_outId)).thenReturn("details_out");
 		
 		// Queries mocken
 		Queries queries = mock(Queries.class);

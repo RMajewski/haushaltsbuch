@@ -307,12 +307,38 @@ public class MoneyDetails extends Query {
 	 * 
 	 * @return Summe der Beträge für den ausgewählen Money-Datensatz
 	 */
-	public String sum(int moneyid) {
+	public String sumMoneyId(int moneyid) {
 		// Abfrage vorbereiten
 		StringBuilder ret = new StringBuilder("SELECT sum(money) FROM ");
 		ret.append(_tableName);
 		ret.append(" WHERE moneyid = ");
 		ret.append(moneyid);
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Datenbankabfrage, um für die angegebene Kategorie-ID alle
+	 * Beträge ermittelt werden soll.
+	 * 
+	 * @param category Name der Kategorie
+	 * 
+	 * @param inout Legt fest, ob die Einnahmen oder die Ausgaben der Kategorie
+	 * ermittelt werden soll.
+	 * 
+	 * @return Summe der Beträge für die ausgewählte Kategorie
+	 */
+	public String sumCategoryId(String category, int inout) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("SELECT sum(money) FROM ");
+		ret.append(_tableName);
+		ret.append(" INNER JOIN money ON money.id = money_details.moneyid");
+		ret.append(" INNER JOIN category ON category.id = ");
+		ret.append(" money_details.categoryid WHERE category.name = '");
+		ret.append(category);
+		ret.append("' AND inout = ");
+		ret.append(inout);
 		
 		// Abfrage zurück geben
 		return ret.toString();

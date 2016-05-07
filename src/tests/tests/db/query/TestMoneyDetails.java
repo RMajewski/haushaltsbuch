@@ -480,17 +480,38 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#sum(int)} die
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#sumMoneyId(int)} die
 	 * Datenbank-Abfrage generiert, um die Summe der Beträge des ausgewählen
 	 * Money-Datensatzes zu ermitteln.
 	 */
 	@Test
-	public void testSum() {
+	public void testSumMoneyId() {
 		int id = 200;
 		StringBuilder builder = new StringBuilder("SELECT sum(money) FROM ");
 		builder.append(_table);
 		builder.append(" WHERE moneyid = ");
 		builder.append(id);
-		assertEquals(builder.toString(), _moneyDetails.sum(id));
+		assertEquals(builder.toString(), _moneyDetails.sumMoneyId(id));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link db.query.MoneyDetails#sumCategoryId(int)}
+	 * die Datenbank-Abfrage generiert, um die Summe der Beträge der
+	 * ausgewählten Kategorie zu ermitteln.
+	 */
+	@Test
+	public void testSumCategoryId() {
+		String name = "Test";
+		int inout = 1;
+		StringBuilder builder = new StringBuilder("SELECT sum(money) FROM ");
+		builder.append(_table);
+		builder.append(" INNER JOIN money ON money.id = money_details.moneyid");
+		builder.append(" INNER JOIN category ON category.id = ");
+		builder.append(" money_details.categoryid WHERE category.name = '");
+		builder.append(name);
+		builder.append("' AND inout = ");
+		builder.append(inout);
+		assertEquals(builder.toString(), _moneyDetails.sumCategoryId(name,
+				inout));
 	}
 }

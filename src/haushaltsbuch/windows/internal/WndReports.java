@@ -36,6 +36,7 @@ import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import haushaltsbuch.datas.ReportCategoryData;
 import haushaltsbuch.datas.ReportData;
 import haushaltsbuch.datas.ReportMonthData;
 import haushaltsbuch.datas.ReportPreferencesData;
@@ -44,6 +45,7 @@ import haushaltsbuch.datas.ReportYearData;
 import haushaltsbuch.dialogs.DlgReport;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.ReportGraphic;
+import haushaltsbuch.tables.models.ReportCategoryModel;
 import haushaltsbuch.tables.models.ReportModel;
 import haushaltsbuch.tables.models.ReportMonthModel;
 import haushaltsbuch.tables.models.ReportWeekModel;
@@ -203,6 +205,18 @@ public class WndReports extends WndInternalFrame
 					// Spalten-Beschreibungen
 					dataYear.setColumnHeader(_table.getColumnModel());
 					break;
+					
+				case ReportPreferencesData.TYPE_CATEGORY:
+					setTitle("Übersicht über die Kategorien");
+					
+					// Tabellen-Modell initalisieren
+					ReportCategoryData dataCategory = new ReportCategoryData(
+							_preference);
+					_table.setModel(new ReportCategoryModel(dataCategory));
+					
+					// Spalten-Beschreibungen
+					dataCategory.setColumnHeader(_table.getColumnModel());
+					break;
 			}
 			
 			// Dialog anzeigen
@@ -263,6 +277,11 @@ public class WndReports extends WndInternalFrame
 					// Jahresübersicht
 					case ReportPreferencesData.TYPE_YEAR:
 						_report.setXLegend("Monate");
+						break;
+						
+					// Übersicht Kategorien
+					case ReportPreferencesData.TYPE_CATEGORY:
+						_report.setXLegend("Kategorien");
 						break;
 				}
 				

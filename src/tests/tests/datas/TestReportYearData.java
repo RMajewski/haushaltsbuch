@@ -129,8 +129,8 @@ public class TestReportYearData extends TestReports {
 		
 		// MoneyDetails mocken
 		MoneyDetails details = mock(MoneyDetails.class);
-		when(details.sum(_inId)).thenReturn("in_details");
-		when(details.sum(_outId)).thenReturn("out_details");
+		when(details.sumMoneyId(_inId)).thenReturn("in_details");
+		when(details.sumMoneyId(_outId)).thenReturn("out_details");
 
 		// Queries mocken
 		Queries qs = mock(Queries.class);

@@ -114,7 +114,7 @@ public class TestMoneyListModel {
 			
 			// MonayDetails mocken
 			MoneyDetails details = mock(MoneyDetails.class);
-			when(details.sum(1)).thenReturn("sum");
+			when(details.sumMoneyId(1)).thenReturn("sum");
 			
 			// Queries mocken
 			Queries queries = mock(Queries.class);
