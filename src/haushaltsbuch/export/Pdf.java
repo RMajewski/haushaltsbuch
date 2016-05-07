@@ -19,13 +19,17 @@
 
 package haushaltsbuch.export;
 
+import java.awt.Graphics2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 import javax.swing.JFrame;
 
+import com.itextpdf.awt.PdfGraphics2D;
+import com.itextpdf.awt.geom.AffineTransform;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Chunk;
@@ -33,13 +37,14 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfName;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfPage;
+import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import haushaltsbuch.datas.ReportData;
@@ -90,6 +95,16 @@ public class Pdf extends Export {
 	private Font _fontHeader;
 	
 	/**
+	 * Speichert den Namen der Schriftdatei
+	 */
+	private static final String _fontName = "fonts/helvari.ttf";
+	
+	/**
+	 * Speichert den Namen der Schriftdatei für fett geschriebenes
+	 */
+	private static final String _fontNameBold = "fonts/helvaribold.ttf";
+	
+	/**
 	 * Initalisiert diese Klasse
 	 */
 	public Pdf(JFrame owner) {
@@ -120,26 +135,32 @@ public class Pdf extends Export {
 	 */
 	@Override
 	protected void export(File file) {
+		// Schriftart hinzufügen
+		FontFactory.register(_fontName);
+		FontFactory.register(_fontNameBold);
+		
 		// Initalisiert die Schriftarten
-		_font = new Font(FontFamily.HELVETICA, 12, Font.NORMAL,
-				BaseColor.BLACK);
+		_font = FontFactory.getFont(_fontName, BaseFont.CP1250, 
+				BaseFont.EMBEDDED, 12, Font.NORMAL, BaseColor.BLACK);
 		
-		_fontBold = new Font(FontFamily.HELVETICA, 12, Font.BOLD,
-				BaseColor.BLACK);
+		_fontBold = FontFactory.getFont(_fontNameBold, BaseFont.CP1250, 
+				BaseFont.EMBEDDED, 12, Font.BOLD, BaseColor.BLACK);
 		
-		_fontHeader = new Font(FontFamily.HELVETICA, 20, Font.BOLD,
-				BaseColor.BLACK);
+		_fontHeader = FontFactory.getFont(_fontNameBold, BaseFont.CP1250, 
+				BaseFont.EMBEDDED, 20, Font.BOLD, BaseColor.BLACK);
 		
-		_fontDeviationPlus = new Font(FontFamily.HELVETICA, 12, Font.NORMAL,
-				BaseColor.GREEN);
+		_fontDeviationPlus = FontFactory.getFont(_fontName, BaseFont.CP1250, 
+				BaseFont.EMBEDDED, 12, Font.NORMAL, BaseColor.GREEN);
 		
-		_fontDeviationMinus = new Font(FontFamily.HELVETICA, 12, Font.NORMAL,
+		_fontDeviationMinus = FontFactory.getFont(_fontName,
+				BaseFont.CP1250, BaseFont.EMBEDDED, 12, Font.NORMAL,
 				BaseColor.RED);
 		
 		try {
 			// PDF-Datei erzeugen und öffnen
 			Document doc = new Document();
-			PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(file));
+			PdfWriter writer = PdfWriter.getInstance(doc,
+					new FileOutputStream(file));
 			doc.open();
 			
 			// Meta-Daten erzeugen
@@ -175,11 +196,11 @@ public class Pdf extends Export {
 				Paragraph title = new Paragraph(chTitle);
 				Chapter chapter = new Chapter(title, chapterCount++);
 				
-				// Diagramm einfügen
-				insertChart(chapter);
-				
 				// Ins Dokument einfügen
 				doc.add(chapter);
+				
+				// Diagramm einfügen
+				insertChart(writer, doc);
 			}
 			
 			// PDF-Datei schließen
@@ -188,15 +209,89 @@ public class Pdf extends Export {
 			e.printStackTrace();
 		} catch (DocumentException e) {
 			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
 	/**
 	 * Erzeugt ein Diagramm
 	 * 
-	 * @param chap Kapitel, in das das Diagramm eingefügt werden soll.
+	 * @param writer Zugriff auf den PDF-Stream.
+	 * 
+	 * @param doc Zugriff auf das PDF-Dokument
+	 * @throws IOException 
+	 * @throws DocumentException 
 	 */
-	private void insertChart(Chapter chap) {
+	private void insertChart(PdfWriter writer, Document doc) throws DocumentException, IOException {
+		float width = doc.getPageSize().getWidth() - doc.leftMargin() -
+				doc.rightMargin() - 100;
+		float height = doc.getPageSize().getHeight() - doc.topMargin() -
+				doc.bottomMargin() - 150;
+		float startX = doc.leftMargin();
+		float startY = doc.bottomMargin();
+		
+		// Zum Zeichnen vorbereiten
+		PdfContentByte canvas = writer.getDirectContent();
+		
+		// Farben setzen
+		BaseColor repLines = BaseColor.LIGHT_GRAY;
+		BaseColor normal = BaseColor.BLACK;
+		
+		// Hilfslinien zeichnen
+		float w = width / _data.getRowCount();
+		canvas.setColorStroke(repLines);
+		
+		// X-Achse
+		for (int row = 1; row < _data.getRowCount(); row ++) {
+			canvas.moveTo(startX + 100 + w * row, startY + 50);
+			canvas.lineTo(startX + 100 + w * row, startY + height + 50);
+		}
+		
+		// Y-Achse
+		float h = height / 10;
+		for (int col = 1; col < 10; col++) {
+			canvas.moveTo(startX + 100, startY + 50 + col * h);
+			canvas.lineTo(startX + width + 100, startY + 50 + col * h);
+		}
+		
+		canvas.closePathStroke();
+		
+		// Legende X-Achse
+		String legend = firstColumnHeader();
+		canvas.beginText();
+		canvas.setFontAndSize(_fontBold.getBaseFont(), 12);
+		canvas.moveText(startX + 100 + width / 2, startY);
+		canvas.showText(legend);
+		canvas.endText();
+		
+		// Beschriftung Abschnitte
+		boolean top = false;
+		for (int row = 0; row < _data.getRowCount(); row++) {
+			float y = startY + 20;
+			if (top)
+				y += 12;
+			top = !top;
+			
+			canvas.beginText();
+			canvas.setFontAndSize(_font.getBaseFont(), 12);
+			canvas.moveText(startX + 100 + row * w, y);
+			canvas.showText(firstColumn(row));
+			canvas.endText();
+		}
+		
+		// Legende Y-Achse
+		canvas.beginText();
+		canvas.setFontAndSize(_fontBold.getBaseFont(), 12);
+		canvas.moveText(startX, startY + 50 + height / 2);
+		canvas.setTextMatrix(0, 1, -1, 0, startX, startY + 50 + height / 2);
+		canvas.showText("Euro");
+		canvas.endText();
+		
+		// Rahmen zeichnen
+		canvas.setColorStroke(normal);
+		canvas.rectangle(startX + 100, startY + 50, width, height);
+		canvas.closePathStroke();
 	}
 
 	/**
