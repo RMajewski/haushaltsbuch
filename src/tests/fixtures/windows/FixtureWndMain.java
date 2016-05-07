@@ -20,7 +20,6 @@
 package tests.fixtures.windows;
 
 import fit.ActionFixture;
-import tests.testcase.TestDialogs;
 import tests.tests.windows.TestWndMain;
 
 /**

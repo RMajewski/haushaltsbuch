@@ -31,7 +31,6 @@ import java.text.DecimalFormat;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import haushaltsbuch.datas.MoneyDetailsData;

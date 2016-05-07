@@ -21,16 +21,9 @@ package tests.tests.elements;
 
 import javax.swing.JButton;
 
-import org.netbeans.jemmy.ClassReference;
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
-import org.netbeans.jemmy.operators.JComponentOperator;
-import org.netbeans.jemmy.operators.JDialogOperator;
-import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JInternalFrameOperator;
-
-import haushaltsbuch.db.DbController;
-import tests.apps.TestToolBarApplication;
 
 /**
  * Implementiert das Testprogramm, um jemmy- und Fit-Tests auszufügen, um die

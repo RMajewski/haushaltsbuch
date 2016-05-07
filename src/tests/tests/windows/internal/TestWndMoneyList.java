@@ -29,7 +29,6 @@ import org.netbeans.jemmy.operators.Operator;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.tables.models.MoneyListModel;
 import haushaltsbuch.windows.internal.WndMoneyList;
-import haushaltsbuch.windows.internal.WndSectionList;
 import tests.exception.GuiTestException;
 import tests.testcase.GuiWndTest;
 

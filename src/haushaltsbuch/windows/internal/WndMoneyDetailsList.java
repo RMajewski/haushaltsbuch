@@ -146,6 +146,7 @@ public class WndMoneyDetailsList extends WndTableFrame {
 	 * 
 	 * @return Tabelle
 	 */
+	@Override
 	public JTable getTable() {
 		return _table;
 	}

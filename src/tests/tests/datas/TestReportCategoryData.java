@@ -19,7 +19,7 @@
 
 package tests.tests.datas;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -48,10 +48,8 @@ import haushaltsbuch.datas.ReportCategoryData;
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.db.query.Category;
-import haushaltsbuch.db.query.Money;
 import haushaltsbuch.db.query.MoneyDetails;
 import haushaltsbuch.db.query.Queries;
-import haushaltsbuch.helper.HelperCalendar;
 import tests.testcase.TestReports;
 
 /**
@@ -79,16 +77,6 @@ public class TestReportCategoryData extends TestReports {
 	 * Speichert die Ausgaben
 	 */
 	private double _out;
-	
-	/**
-	 * Speichert die Id für die Einnahme
-	 */
-	private int _inId;
-	
-	/**
-	 * Speichert die Id für die Ausgabe
-	 */
-	private int _outId;
 	
 	/**
 	 * Speichert den Namen für die 1. Kategorie
@@ -126,8 +114,6 @@ public class TestReportCategoryData extends TestReports {
 		// Daten für die Mocks festlegen
 		_in = 9.93;
 		_out = 7.66;
-		_inId = 100;
-		_outId = 200;
 		_cat1 = "Test1";
 		_cat2 = "Test2";
 		_cat3 = "Test3";

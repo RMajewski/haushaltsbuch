@@ -76,11 +76,6 @@ public class TestDlgReport extends TestDialogs {
 	private JRadioButtonOperator _rbCategory;
 	
 	/**
-	 * Speichert die Einstellungen für den Report-Dialog.
-	 */
-	private ReportPreferencesData _rpd;
-	
-	/**
 	 * Speichert die Auswahl-Box für das Jahr
 	 */
 	private JComboBoxOperator _cbYear;

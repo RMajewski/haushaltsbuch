@@ -25,12 +25,10 @@ import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JInternalFrameOperator;
 import org.netbeans.jemmy.operators.JRadioButtonOperator;
-import org.netbeans.jemmy.operators.JTableOperator;
 import org.netbeans.jemmy.operators.JTextAreaOperator;
 import org.netbeans.jemmy.operators.JTextFieldOperator;
 
 import haushaltsbuch.db.DbController;
-import haushaltsbuch.helper.HelperCalendar;
 import haushaltsbuch.windows.internal.WndMoneyList;
 import tests.testcase.GuiWndTest;
 

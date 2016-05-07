@@ -22,8 +22,6 @@ package haushaltsbuch.actions;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JDesktopPane;
-
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.windows.internal.WndReports;

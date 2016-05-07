@@ -19,14 +19,13 @@
 
 package tests.tests.elements;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import javax.swing.JButton;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import haushaltsbuch.actions.DbInsert;
 import haushaltsbuch.elements.ToolBarMain;
 
 /**

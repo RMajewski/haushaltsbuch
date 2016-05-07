@@ -21,7 +21,6 @@ package tests.fixtures.windows.internal;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import haushaltsbuch.db.DbController;
 import tests.fixtures.FixtureWnd;
@@ -167,6 +166,7 @@ public class FixtureWndMoneyDetailsChange extends FixtureWnd {
 	/**
 	 * Ermittelt ob das Fenster angezeigt wird.
 	 */
+	@Override
 	public String isWindowVisible() {
 		return String.valueOf(
 				((TestWndMoneyDetailsChange)_test).isWindowVisible());

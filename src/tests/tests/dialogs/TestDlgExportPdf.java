@@ -27,7 +27,6 @@ import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 
 import haushaltsbuch.dialogs.DlgExportPdf;
-import haushaltsbuch.dialogs.DlgExportSqlScript;
 import tests.apps.TestDialogApplication;
 import tests.testcase.TestDialogs;
 

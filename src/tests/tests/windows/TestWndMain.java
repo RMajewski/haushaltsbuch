@@ -19,8 +19,6 @@
 
 package tests.tests.windows;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.netbeans.jemmy.ClassReference;
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JFrameOperator;

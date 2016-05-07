@@ -21,7 +21,6 @@ package tests.fixtures.dialogs;
 
 import haushaltsbuch.dialogs.DlgExportPdf;
 import tests.tests.dialogs.TestDlgExportPdf;
-import tests.tests.dialogs.TestDlgExportSqlScript;
 
 /**
  * Beinhaltet die einzelnen Test-Schritte, die im FIT-Dokument angegeben sind.

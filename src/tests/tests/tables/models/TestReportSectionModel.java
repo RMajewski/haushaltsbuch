@@ -19,7 +19,7 @@
 
 package tests.tests.tables.models;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -31,9 +31,7 @@ import java.text.DecimalFormat;
 import org.junit.Before;
 import org.junit.Test;
 
-import haushaltsbuch.datas.ReportCategoryData;
 import haushaltsbuch.datas.ReportSectionData;
-import haushaltsbuch.tables.models.ReportSectionModel;
 import haushaltsbuch.tables.models.ReportSectionModel;
 import tests.testcase.TestReports;
 

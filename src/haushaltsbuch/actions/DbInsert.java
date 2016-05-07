@@ -21,8 +21,6 @@ package haushaltsbuch.actions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JDesktopPane;
-
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.windows.internal.WndTableFrame;
 

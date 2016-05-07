@@ -33,7 +33,6 @@ import haushaltsbuch.actions.Report;
 import haushaltsbuch.events.ToolBarDbElementEvent;
 import haushaltsbuch.listener.ToolBarDbElementListener;
 import haushaltsbuch.windows.internal.WndInternalFrame;
-import haushaltsbuch.windows.internal.WndReports;
 
 public class ToolBarMain extends JToolBar 
 	implements InternalFrameListener, ToolBarDbElementListener {

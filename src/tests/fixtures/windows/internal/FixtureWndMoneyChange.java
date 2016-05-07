@@ -28,7 +28,6 @@ import java.util.GregorianCalendar;
 import haushaltsbuch.db.DbController;
 import tests.fixtures.FixtureWnd;
 import tests.tests.windows.internal.TestWndMoneyChange;
-import tests.tests.windows.internal.TestWndMoneyList;
 
 /**
  * Stellt die Schnittstelle zwischen den Fit-Tests für das Fenster

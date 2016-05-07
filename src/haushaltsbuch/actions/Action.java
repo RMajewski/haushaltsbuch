@@ -24,7 +24,6 @@ import java.net.URL;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import javax.swing.JDesktopPane;
 
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.windows.internal.WndInternalFrame;

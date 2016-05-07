@@ -23,6 +23,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -44,7 +45,6 @@ import javax.swing.JTabbedPane;
 
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.datas.ReportWeekData;
-import java.awt.GridLayout;
 
 /**
  * Zeigt den Dialog an, um die Einstellungen für die Reports vorzunehmen.

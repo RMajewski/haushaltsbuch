@@ -19,13 +19,12 @@
 
 package tests.tests.actions;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import haushaltsbuch.actions.Action;
-import haushaltsbuch.actions.DbInsert;
 import haushaltsbuch.actions.Report;
 
 /**

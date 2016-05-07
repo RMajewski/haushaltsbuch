@@ -85,6 +85,7 @@ public class ReportWeekData extends ReportData {
 	/**
 	 * Gibt die Anzahl der Wochen für das ausgewählte Jahr zurück.
 	 */
+	@Override
 	public int getRowCount() {
 		return _weekCount + 1;
 	}
@@ -173,6 +174,7 @@ public class ReportWeekData extends ReportData {
 	 * 
 	 * @return Anzahl an Spalten
 	 */
+	@Override
 	public int getColumnCount() {
 		// 4 Spalten für die Wochennummern, Einnahmen und Ausgaben und Differenz
 		int ret = 4;
@@ -215,6 +217,7 @@ public class ReportWeekData extends ReportData {
 	 * 
 	 * @param tcm Spalten-Modell der Tabelle
 	 */
+	@Override
 	public void setColumnHeader(TableColumnModel tcm) {
 		// Spalten-Nummer
 		int column = 0;

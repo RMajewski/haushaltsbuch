@@ -19,15 +19,13 @@
 
 package tests.tests.actions;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import haushaltsbuch.actions.Action;
-import haushaltsbuch.actions.DbChange;
 import haushaltsbuch.actions.DbDelete;
-import haushaltsbuch.actions.DbInsert;
 
 /**
  * Testet die Aktion {@link haushaltsbuch.actions.DbDelete}.

@@ -24,7 +24,6 @@ import java.util.Date;
 
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.windows.internal.WndMoneyList;
-import haushaltsbuch.windows.internal.WndSectionList;
 import tests.tests.elements.TestToolBarMainFitMoney;
 
 /**

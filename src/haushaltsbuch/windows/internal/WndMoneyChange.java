@@ -19,8 +19,6 @@
 
 package haushaltsbuch.windows.internal;
 
-import java.awt.Frame;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -33,7 +31,6 @@ import java.util.GregorianCalendar;
 import javax.swing.ButtonGroup;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 import haushaltsbuch.datas.MoneyData;
@@ -42,7 +39,6 @@ import haushaltsbuch.dialogs.DlgInfo;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.tables.models.MoneyListModel;
-import tests.tests.windows.internal.TestWndMoneyChange;
 
 
 /**

@@ -155,8 +155,8 @@ public class WndInternalFrame extends JInternalFrame {
 	 * 
 	 * @param Gibt an, ob die Datenbank-Elemente der ToolBar benötigt werden.
 	 */
-	public void setEnableDbElements(boolean _enableDbElements) {
-		this._enableDbElements = _enableDbElements;
+	public void setEnableDbElements(boolean enableDbElements) {
+		this._enableDbElements = enableDbElements;
 	}
 
 	/**

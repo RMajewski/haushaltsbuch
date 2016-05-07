@@ -33,9 +33,6 @@ import org.netbeans.jemmy.operators.JTableOperator;
 
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgReport;
-import haushaltsbuch.windows.WndMain;
-import haushaltsbuch.windows.internal.WndCategoryList;
-import haushaltsbuch.windows.internal.WndMoneyList;
 import tests.apps.TestToolBarApplication;
 import tests.testcase.GuiTest;
 

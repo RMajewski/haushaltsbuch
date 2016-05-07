@@ -22,7 +22,6 @@ package tests.tests.windows.internal;
 import org.netbeans.jemmy.Test;
 
 import haushaltsbuch.tables.models.IdNameListModel;
-import haushaltsbuch.windows.internal.WndCategoryList;
 import haushaltsbuch.windows.internal.WndSectionList;
 import tests.testcase.GuiWndIdNameTest;
 

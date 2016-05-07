@@ -30,7 +30,6 @@ import org.junit.Test;
 import haushaltsbuch.events.ToolBarDbElementEvent;
 import haushaltsbuch.events.ToolBarDbElementEventMulticaster;
 import haushaltsbuch.listener.ToolBarDbElementListener;
-import haushaltsbuch.windows.internal.WndInternalFrame;
 import haushaltsbuch.windows.internal.WndTableFrame;
 
 /**

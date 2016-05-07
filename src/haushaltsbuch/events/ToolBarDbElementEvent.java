@@ -52,15 +52,15 @@ public class ToolBarDbElementEvent extends EventObject {
 	/**
 	 * Initalisiert die Daten.
 	 * 
-	 * @param source Von welchen Element wurde das Event ausgelöst?
+	 * @param src Von welchen Element wurde das Event ausgelöst?
 	 * 
 	 * @param enable Sollen die Elemente "Ändern" und "Löschen" benutzbar sein?
 	 * 
 	 * @param frame Datenbank-Fenster, dass das Ergeignis ausgelöst hat.
 	 */
-	public ToolBarDbElementEvent(Object source, boolean enable,
+	public ToolBarDbElementEvent(Object src, boolean enable,
 			WndTableFrame frame) {
-		super(source);
+		super(src);
 		_enable = enable;
 		
 		if (frame == null)

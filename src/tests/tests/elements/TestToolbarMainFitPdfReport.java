@@ -23,7 +23,6 @@ import javax.swing.JButton;
 
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
-import org.netbeans.jemmy.operators.JDialogOperator;
 
 /**
  * Implementiert das Testprogramm, um jemmy- und Fit-Tests auszufügen, um die

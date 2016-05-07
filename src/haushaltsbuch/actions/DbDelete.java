@@ -21,8 +21,6 @@ package haushaltsbuch.actions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JDesktopPane;
-
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.windows.internal.WndTableFrame;
 
@@ -36,7 +34,11 @@ import haushaltsbuch.windows.internal.WndTableFrame;
  * @since 0.2
  */
 public class DbDelete extends Action {
-
+	/**
+	 * Serilisation ID
+	 */
+	private static final long serialVersionUID = -1716582704584318855L;
+	
 	/**
 	 * Speichert das Kommando dieser Aktion.
 	 */

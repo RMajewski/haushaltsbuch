@@ -30,7 +30,6 @@ import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JLabelOperator;
 
-import haushaltsbuch.dialogs.DlgAbout;
 import tests.apps.TestDialogApplication;
 import tests.testcase.TestDialogs;
 

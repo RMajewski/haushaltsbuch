@@ -23,9 +23,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JMenuItem;
-
-import fit.ActionFixture;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.elements.StatusBar;
 import tests.fixtures.FixtureWndTables;

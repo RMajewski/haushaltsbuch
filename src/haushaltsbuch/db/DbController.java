@@ -138,6 +138,7 @@ public class DbController {
 		}
 		
 		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
 			public void run() {
 				close();
 			}

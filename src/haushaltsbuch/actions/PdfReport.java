@@ -19,13 +19,10 @@
 
 package haushaltsbuch.actions;
 
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.export.Pdf;
 import haushaltsbuch.windows.internal.WndReports;

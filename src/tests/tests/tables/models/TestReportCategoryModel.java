@@ -19,7 +19,7 @@
 
 package tests.tests.tables.models;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -32,7 +32,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import haushaltsbuch.datas.ReportCategoryData;
-import haushaltsbuch.datas.ReportMonthData;
 import haushaltsbuch.tables.models.ReportCategoryModel;
 import tests.testcase.TestReports;
 

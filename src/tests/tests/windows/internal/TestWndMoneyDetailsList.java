@@ -30,7 +30,6 @@ import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.helper.HelperCalendar;
 import haushaltsbuch.tables.models.MoneyDetailsListModel;
-import haushaltsbuch.windows.internal.WndMoneyDetailsList;
 import haushaltsbuch.windows.internal.WndMoneyList;
 import tests.testcase.GuiWndTest;
 

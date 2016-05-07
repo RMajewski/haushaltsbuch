@@ -21,8 +21,6 @@ package haushaltsbuch.tables.models;
 
 import java.text.DecimalFormat;
 
-import javax.swing.table.AbstractTableModel;
-
 import haushaltsbuch.datas.ReportMonthData;
 
 /**

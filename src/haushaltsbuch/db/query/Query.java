@@ -426,6 +426,7 @@ public abstract class Query implements QueryInterface {
 	 * @return Datenbank-Abfrage, wo nach einer bestimmten Spalte sortiert
 	 * wird.
 	 */
+	@Override
 	public String sort(String col) {
 		// Rückgabe vorbereiten
 		StringBuilder ret = new StringBuilder("SELECT ");
