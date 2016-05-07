@@ -44,6 +44,7 @@ import javax.swing.JTabbedPane;
 
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.datas.ReportWeekData;
+import java.awt.GridLayout;
 
 /**
  * Zeigt den Dialog an, um die Einstellungen für die Reports vorzunehmen.
@@ -178,14 +179,13 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		
 		JPanel panReport = new JPanel();
 		GridBagConstraints gbc_panReport = new GridBagConstraints();
-		gbc_panReport.weighty = 0.1;
 		gbc_panReport.gridheight = 2;
 		gbc_panReport.insets = new Insets(0, 0, 5, 0);
 		gbc_panReport.fill = GridBagConstraints.BOTH;
 		gbc_panReport.gridx = 3;
 		gbc_panReport.gridy = 1;
 		panMain.add(panReport, gbc_panReport);
-		panReport.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panReport.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		_rbWeek = new JRadioButton("Wochenübersicht");
 		panReport.add(_rbWeek);
@@ -218,7 +218,6 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		
 		_cbMonth = new JComboBox<String>();
 		GridBagConstraints gbc_month = new GridBagConstraints();
-		gbc_month.weighty = 0.1;
 		gbc_month.insets = new Insets(0, 0, 5, 0);
 		gbc_month.fill = GridBagConstraints.HORIZONTAL;
 		gbc_month.gridx = 3;
@@ -235,7 +234,6 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		_cbYear = new JComboBox<Integer>();
 		_cbYear.setEditable(true);
 		GridBagConstraints gbc_cbYear = new GridBagConstraints();
-		gbc_cbYear.weighty = 0.1;
 		gbc_cbYear.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cbYear.gridx = 3;
 		gbc_cbYear.gridy = 6;
