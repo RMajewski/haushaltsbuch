@@ -29,7 +29,7 @@ import org.junit.Test;
 import haushaltsbuch.elements.ToolBarMain;
 
 /**
- * Implementiert die Test der Klasse {@link haushaltsbar.elements.ToolBarMain}.
+ * Implementiert die Test der Klasse {@link haushaltsbuch.elements.ToolBarMain}.
  * 
  * @author René Majewski
  *
@@ -52,7 +52,7 @@ public class TestToolBarMain {
 	}
 	
 	/**
-	 * Überprüft, ob die {@link haushaltsbuch.elements.ToolbarMain} von der
+	 * Überprüft, ob die {@link haushaltsbuch.elements.ToolBarMain} von der
 	 * Klasse JToolBar abgeleitet wurde.
 	 */
 	@Test
@@ -64,7 +64,7 @@ public class TestToolBarMain {
 	/**
 	 * Überprüft, ob alle Elemente hinzugefügt wurden.
 	 * 
-	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain()
+	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain(haushaltsbuch.elements.Desktop, java.awt.Window)
 	 */
 	@Test
 	public void testToolBarMainHaveFifeElements() {
@@ -74,7 +74,7 @@ public class TestToolBarMain {
 	/**
 	 * Überprüft, ob die Aktion zum Neuen Datensatz einfügen, eingefügt wurde.
 	 * 
-	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain()
+	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain(haushaltsbuch.elements.Desktop, java.awt.Window)
 	 */
 	@Test
 	public void testToolBarMainHaveActionDbInsert() {
@@ -85,7 +85,7 @@ public class TestToolBarMain {
 	/**
 	 * Überprüft, ob die Aktion zum Datensatz Ändern, eingefügt wurde.
 	 * 
-	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain()
+	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain(haushaltsbuch.elements.Desktop, java.awt.Window)
 	 */
 	@Test
 	public void testToolBarMainHaveActionDbChange() {
@@ -96,7 +96,7 @@ public class TestToolBarMain {
 	/**
 	 * Überprüft, ob die Aktion zum Datensatz löschen, eingefügt wurde.
 	 * 
-	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain()
+	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain(haushaltsbuch.elements.Desktop, java.awt.Window)
 	 */
 	@Test
 	public void testToolBarMainHaveActionDbDelete() {
@@ -107,7 +107,7 @@ public class TestToolBarMain {
 	/**
 	 * Überprüft, ob die Aktion zum erzeugen eines Reportes, eingefügt wurde.
 	 * 
-	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain()
+	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain(haushaltsbuch.elements.Desktop, java.awt.Window)
 	 */
 	@Test
 	public void testToolBarMainHaveActionReport() {
@@ -118,7 +118,7 @@ public class TestToolBarMain {
 	/**
 	 * Überprüft, ob die Aktion zum erzeugen eines PDF-Reportes eingefügt wurde.
 	 * 
-	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain()
+	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain(haushaltsbuch.elements.Desktop, java.awt.Window)
 	 */
 	@Test
 	public void testToolBarMainHaveActionPdfReport() {

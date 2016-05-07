@@ -41,7 +41,7 @@ public class TestJunitData extends TestData {
 	/**
 	 * Initalisiert die Daten der Klasse
 	 * 
-	 * @see TestData#TestData(String)
+	 * @see TestData#TestData()
 	 */
 	public TestJunitData() {
 		super();

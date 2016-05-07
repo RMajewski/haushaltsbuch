@@ -27,21 +27,21 @@ import org.netbeans.jemmy.operators.JDialogOperator;
 
 /**
  * Implementiert das Testprogramm, um jemmy- und Fit-Tests auszufügen, um die
- * {@link haushaltsbuch.elementes.ToolBarMain} zu testen.
+ * {@link haushaltsbuch.elements.ToolBarMain} zu testen.
  * 
  * @author René Majewski
  *
  * @version 0.1
  * @since 0.2
  */
-public class TestToolbarMainFitSection extends TestToolBarMainFit {
+public class TestToolBarMainFitSection extends TestToolBarMainFit {
 
 	/**
 	 * Initalisiert das Testprogramm.
 	 * 
 	 * @throws Exception
 	 */
-	public TestToolbarMainFitSection() throws Exception {
+	public TestToolBarMainFitSection() throws Exception {
 		super();
 	}
 	

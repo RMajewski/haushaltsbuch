@@ -47,7 +47,7 @@ public abstract class ReportModel extends AbstractTableModel {
 	/**
 	 * Initalisiert diese Klasse.
 	 * 
-	 * @param preferences
+	 * @param data Daten, die angezeigt werden sollen.
 	 */
 	public ReportModel(ReportData data) {
 		// Initalisieren den Daten

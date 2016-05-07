@@ -53,7 +53,7 @@ import haushaltsbuch.db.query.Queries;
 import tests.testcase.TestReports;
 
 /**
- * Testet die Klasse {@link datas.ReportCategoryData}.
+ * Testet die Klasse {@link haushaltsbuch.datas.ReportCategoryData}.
  * 
  * @author René Majewski
  *
@@ -199,8 +199,8 @@ public class TestReportCategoryData extends TestReports {
 	}
 	
 	/**
-	 * Testet, ob die Klase {@link datas.ReportCategoryData} von der Klasse
-	 * {@link datas.ReportData} abgeleitet wurde.
+	 * Testet, ob die Klase {@link haushaltsbuch.datas.ReportCategoryData} von der Klasse
+	 * {@link haushaltsbuch.datas.ReportData} abgeleitet wurde.
 	 */
 	@Test
 	public void testReportCategoryDataExtendsReportData() {
@@ -211,7 +211,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob die Richtige Anzahl an Spalten zurück gegeben werden.
 	 * 
-	 * @see datas.ReportCategoryData#getColumnCount()
+	 * @see haushaltsbuch.datas.ReportCategoryData#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCountReturnRightCount() {
@@ -222,7 +222,7 @@ public class TestReportCategoryData extends TestReports {
 	 * Überprüft, ob die richtige Anzahl an Zeilen zurück gegeben werden.
 	 * @throws SQLException 
 	 * 
-	 * @see datas.ReportCategoryData#getRowCount()
+	 * @see haushaltsbuch.datas.ReportCategoryData#getRowCount()
 	 */
 	@Test
 	public void testGetRowCount() throws SQLException {
@@ -233,7 +233,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob die richtigen Spalten-Namen gesetzt werden.
 	 * 
-	 * @see datas.ReportCategoryData#setColumnHeader(javax.swing.table.TableColumnModel)
+	 * @see haushaltsbuch.datas.ReportCategoryData#setColumnHeader(javax.swing.table.TableColumnModel)
 	 */
 	@Test
 	public void testSetColumnHeader() {
@@ -264,7 +264,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob die richtigen Kategorien zurück gegeben werden.
 	 * 
-	 * @see datas.ReportCategoryData#getCategory(int)
+	 * @see haushaltsbuch.datas.ReportCategoryData#getCategory(int)
 	 */
 	@Test
 	public void testGetCategory() {
@@ -276,7 +276,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob für die 1. Kategorie Einnahmen bestehen.
 	 * 
-	 * @see datas.ReportCategoryData#incoming(int)
+	 * @see haushaltsbuch.datas.ReportCategoryData#incoming(int)
 	 */
 	@Test
 	public void testIncomingWithCategoryOneReturnRight() {
@@ -286,7 +286,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob für die restlichen Kategorien keine Einnahmen bestehen.
 	 * 
-	 * @see datas.ReportCategoryData#incoming(int)
+	 * @see haushaltsbuch.datas.ReportCategoryData#incoming(int)
 	 */
 	@Test
 	public void testIncomingWithCategoryTwoAndThreelveReturnZero() {
@@ -297,7 +297,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob für die 1. Kategorie Ausgaben bestehen.
 	 * 
-	 * @see datas.ReportCatgoryData#outgoing(int)
+	 * @see haushaltsbuch.datas.ReportCategoryData#outgoing(int)
 	 */
 	@Test
 	public void testOutgoingWithCategoryOneReturnRight() {
@@ -307,7 +307,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob für die Tage 2 bis 31 keine Ausgaben bestehen.
 	 * 
-	 * @see datas.ReportCategoryData#outgoing(int)
+	 * @see haushaltsbuch.datas.ReportCategoryData#outgoing(int)
 	 */
 	@Test
 	public void testOutgoingWithCategoryTwoAntThreeReturnZero() {
@@ -318,7 +318,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob für die 1. Kategorie die Differenz richtig ist.
 	 * 
-	 * @see datas.ReportCategoryData#deviation(int)
+	 * @see haushaltsbuch.datas.ReportCategoryData#deviation(int)
 	 */
 	@Test
 	public void testDeviationWithCategoryOneReturnRight() {
@@ -328,7 +328,7 @@ public class TestReportCategoryData extends TestReports {
 	/**
 	 * Überprüft, ob für die restlichen Kategorie die Differenz 0.00 ist.
 	 * 
-	 * @see datas.ReportCategoryData#deviation(int)
+	 * @see haushaltsbuch.datas.ReportCategoryData#deviation(int)
 	 */
 	@Test
 	public void testDeviationWithCategoryTwoAndThreeReturnZero() {

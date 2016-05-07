@@ -55,8 +55,8 @@ public class TestPopupMoneyList {
 	}
 	
 	/**
-	 * Testet, ob Klase {@link menus.PopupMoneyList} von der Klasse
-	 * {@link menus.PopupStandardList} abgeleitet ist.
+	 * Testet, ob Klase {@link haushaltsbuch.menus.PopupMoneyList} von der Klasse
+	 * {@link haushaltsbuch.menus.PopupStandardList} abgeleitet ist.
 	 */
 	@Test
 	public void testInheridedPopupStandardList() {
@@ -66,7 +66,7 @@ public class TestPopupMoneyList {
 	/**
 	 * Testet, ob es 5 Menü-Elemente gibt
 	 * 
-	 * @see menus.PopupMoneyList#PopupMoneyList(java.awt.event.ActionListener)
+	 * @see haushaltsbuch.menus.PopupMoneyList#PopupMoneyList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveFifeItems() {
@@ -76,7 +76,7 @@ public class TestPopupMoneyList {
 	/**
 	 * Testet, ob es einen Eintrag "Details" gibt
 	 * 
-	 * @see menus.PopupMoneyList#PopupMoneyList(java.awt.event.ActionListener)
+	 * @see haushaltsbuch.menus.PopupMoneyList#PopupMoneyList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveDetailsItem() {
@@ -87,7 +87,7 @@ public class TestPopupMoneyList {
 	/**
 	 * Überprüft, den ActionCommand für "Details" auf Richtigkeit.
 	 * 
-	 * @see menus.PopupMoneyList#DETAILS
+	 * @see haushaltsbuch.menus.PopupMoneyList#DETAILS
 	 */
 	@Test
 	public void testActionCommandChangeIsRight() {

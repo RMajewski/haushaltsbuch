@@ -32,7 +32,7 @@ import haushaltsbuch.datas.LogData;
 import haushaltsbuch.renderer.LogViewListRenderer;
 
 /**
- * Testet die Klasse {@link renderer.LogViewListRenderer}.
+ * Testet die Klasse {@link haushaltsbuch.renderer.LogViewListRenderer}.
  * 
  * @author René Majewski
  * 
@@ -72,7 +72,7 @@ public class TestLogViewListRenderer {
 	/**
 	 * Testet, ob die Nachricht angezeigt wird.
 	 * 
-	 * @see renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, datas.LogData, int, boolean, boolean)
+	 * @see haushaltsbuch.renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, LogData, int, boolean, boolean)
 	 */
 	@Test
 	public void testGetListCellRendererHaveSetMessageText() {
@@ -82,7 +82,7 @@ public class TestLogViewListRenderer {
 	/**
 	 * Testet, die richtige text-Farbe gesetzt wurde.
 	 * 
-	 * @see renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, datas.LogData, int, boolean, boolean)
+	 * @see haushaltsbuch.renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, LogData, int, boolean, boolean)
 	 */
 	@Test
 	public void testGetListCellRendererHaveSetRightForeground() {
@@ -93,7 +93,7 @@ public class TestLogViewListRenderer {
 	 * Testet, ob die entsprechende Hintergrundfarbe für "normale" Nachrichten
 	 * gesetzt wird.
 	 * 
-	 * @see renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, datas.LogData, int, boolean, boolean)
+	 * @see haushaltsbuch.renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, LogData, int, boolean, boolean)
 	 */
 	@Test
 	public void testGetListCellRendererSetRightBackgroundColorForNormalMessages() {
@@ -105,7 +105,7 @@ public class TestLogViewListRenderer {
 	 * Testet, ob die entsprechende Hintergrundfarbe für Warnungen
 	 * gesetzt wird.
 	 * 
-	 * @see renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, datas.LogData, int, boolean, boolean)
+	 * @see haushaltsbuch.renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, LogData, int, boolean, boolean)
 	 */
 	@Test
 	public void testGetListCellRendererSetRightbackgroundColorForWarnings() {
@@ -116,7 +116,7 @@ public class TestLogViewListRenderer {
 	 * Testet, ob die entsprechende Hintergrundfarbe für Fehler
 	 * gesetzt wird.
 	 * 
-	 * @see renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, datas.LogData, int, boolean, boolean)
+	 * @see haushaltsbuch.renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, LogData, int, boolean, boolean)
 	 */
 	@Test
 	public void testGetListCellRendererSetRightBackgroundColorForErrors() {
@@ -127,7 +127,7 @@ public class TestLogViewListRenderer {
 	 * Testet, ob die entsprechende Hintergrundfarbe für "In Ordnung"-
 	 * Nachrichten gesetzt wird.
 	 * 
-	 * @see renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, datas.LogData, int, boolean, boolean)
+	 * @see haushaltsbuch.renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, LogData, int, boolean, boolean)
 	 */
 	@Test
 	public void testGetListCellRendererSetRightBackgroundColorForOk() {
@@ -138,7 +138,7 @@ public class TestLogViewListRenderer {
 	 * Testet, ob die entsprechende Hintergrundfarbe für eine Selektierung
 	 * gesetzt wird.
 	 * 
-	 * @see renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, datas.LogData, int, boolean, boolean)
+	 * @see haushaltsbuch.renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, LogData, int, boolean, boolean)
 	 */
 	@Test
 	public void testGetListCellRendererSetRightBackgroundColorSelections() {
@@ -149,7 +149,7 @@ public class TestLogViewListRenderer {
 	 * Testet, ob die entsprechende Text-Farbe für eine Selektierung
 	 * gesetzt wird.
 	 * 
-	 * @see renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, datas.LogData, int, boolean, boolean)
+	 * @see haushaltsbuch.renderer.LogViewListRenderer#getListCellRendererComponent(javax.swing.JList, LogData, int, boolean, boolean)
 	 */
 	@Test
 	public void testGetListCellRendererSetRightForegroundColorSelections() {

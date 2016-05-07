@@ -110,7 +110,7 @@ public class ReportMonthData extends ReportData {
 	/**
 	 * Speichert die neuen Einstellungen. Außerdem werden die Daten eingelesen.
 	 * 
-	 * @param preference Neue Einstellungen
+	 * @param preferences Neue Einstellungen
 	 */
 	@Override
 	public void setPreferences(ReportPreferencesData preferences) {

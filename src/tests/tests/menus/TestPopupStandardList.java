@@ -56,7 +56,7 @@ public class TestPopupStandardList {
 	/**
 	 * Testet, ob das Popup-Menü 3 Einträge hat
 	 * 
-	 * @see menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
+	 * @see haushaltsbuch.menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveThreeItems() {
@@ -66,7 +66,7 @@ public class TestPopupStandardList {
 	/**
 	 * Testet, ob der Menü-Eintrag für "Neu" vorhanden ist
 	 * 
-	 * @see menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
+	 * @see haushaltsbuch.menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveInsertItem() {
@@ -76,7 +76,7 @@ public class TestPopupStandardList {
 	/**
 	 * Testet, ob der Menü-Eintrag für "Ändern" vorhanden ist
 	 * 
-	 * @see menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
+	 * @see haushaltsbuch.menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveChangeItem() {
@@ -86,7 +86,7 @@ public class TestPopupStandardList {
 	/**
 	 * Testet, ob der Menü-Eintrag für "Löschen" vorhanden ist
 	 * 
-	 * @see menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
+	 * @see haushaltsbuch.menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
 	 */
 	@Test
 	public void testHaveDeleteItem() {
@@ -96,7 +96,7 @@ public class TestPopupStandardList {
 	/**
 	 * Überprüft, den ActionCommand für "Neu" auf Richtigkeit.
 	 * 
-	 * @see menus.PopupStandardList#NEW
+	 * @see haushaltsbuch.menus.PopupStandardList#NEW
 	 */
 	@Test
 	public void testActionCommandNewIsRight() {
@@ -106,7 +106,7 @@ public class TestPopupStandardList {
 	/**
 	 * Überprüft, den ActionCommand für "Ändern" auf Richtigkeit.
 	 * 
-	 * @see menus.PopupStandardList#CHANGE
+	 * @see haushaltsbuch.menus.PopupStandardList#CHANGE
 	 */
 	@Test
 	public void testActionCommandChangeIsRight() {
@@ -116,7 +116,7 @@ public class TestPopupStandardList {
 	/**
 	 * Überprüft, den ActionCommand für "Löschen" auf Richtigkeit.
 	 * 
-	 * @see menus.PopupStandardList#DELETE
+	 * @see haushaltsbuch.menus.PopupStandardList#DELETE
 	 */
 	@Test
 	public void testActionCommandDELETEIsRight() {

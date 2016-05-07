@@ -28,7 +28,7 @@ import haushaltsbuch.db.query.Section;
 import tests.testcase.TestHelper;
 
 /**
- * Enthält die Tests, um die Klasse {@link db.query.Section} zu testen.
+ * Enthält die Tests, um die Klasse {@link haushaltsbuch.db.query.Section} zu testen.
  * 
  * @author René Majewski
  * 
@@ -57,7 +57,7 @@ public class TestSection extends TestHelper {
 	/**
 	 * Testet, ob der richtige Tabellen-Name gesetzt wurde.
 	 * 
-	 * @see db.query.Section#Section()
+	 * @see haushaltsbuch.db.query.Section#Section()
 	 */
 	@Test
 	public void testRightTableName() {
@@ -67,7 +67,7 @@ public class TestSection extends TestHelper {
 	/**
 	 * Testet, ob die richtigen Spalten-Namen gesetzt wurden.
 	 * 
-	 * @see db.query.Section#Section()
+	 * @see haushaltsbuch.db.query.Section#Section()
 	 */
 	@Test
 	public void testRightColumnNames() {
@@ -76,7 +76,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Section#createTable()} die
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Section#createTable()} die
 	 * richtige Rückgabe liefert.
 	 */
 	@Test
@@ -88,7 +88,7 @@ public class TestSection extends TestHelper {
 	}
 
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#insert()} keine leere
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#insert()} keine leere
 	 * Zeichenkette liefert.
 	 */
 	@Test
@@ -97,7 +97,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Section#insert()} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Section#insert()} in
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
@@ -106,7 +106,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#insert(String)} keine
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#insert(String)} keine
 	 * leere Zeichenkette liefert, auch wenn der Parameter <b>null</b> ist.
 	 */
 	@Test
@@ -115,7 +115,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#insert(String)} ein
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#insert(String)} ein
 	 * Fragezeichen enhält, wenn der Parameter <b>null</b> ist.
 	 */
 	@Test
@@ -124,7 +124,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#insert(String)} kein
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#insert(String)} kein
 	 * Fragezeichen zurück gibt.
 	 */
 	@Test
@@ -133,7 +133,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Section#insert(String)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Section#insert(String)} in
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
@@ -142,7 +142,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Section#delete(int)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Section#delete(int)} in
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
@@ -151,7 +151,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Section#update(int)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Section#update(int)} in
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
@@ -160,7 +160,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#update(int, String)}
 	 * kein Fragezeichen in der Rückgabe enthält.
 	 */
 	@Test
@@ -169,7 +169,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int String)} die
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#update(int String)} die
 	 * übergebene ID in der Rückgabe enthält.
 	 */
 	@Test
@@ -179,7 +179,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int, String)} den
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#update(int, String)} den
 	 * übergebenen Namen enthält.
 	 */
 	@Test
@@ -189,7 +189,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#update(int, String)}
 	 * keine leere Zeichenkette liefert, der Parameter für die ID ist -1.
 	 */
 	@Test
@@ -198,7 +198,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#update(int, String)}
 	 * kein Fragezeichen in der Rückgabe enthält, der Parameter für die ID ist
 	 * -1.
 	 */
@@ -208,7 +208,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int String)} die
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#update(int String)} die
 	 * übergebene ID in der Rückgabe nicht enthält. Der Parameter ist -1.
 	 */
 	@Test
@@ -218,7 +218,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#update(int, String)}
 	 * kein Fragezeichen in der Rückgabe enthält. Der Parameter für den Namen
 	 * is <b>null</b>
 	 */
@@ -228,7 +228,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Section#update(int, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Section#update(int, String)}
 	 * kein Fragezeichen in der Rückgabe enthält. Der Parameter für den Namen
 	 * is <b>null</b>. Der Parameter für die ID ist -1.
 	 */
@@ -238,7 +238,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Section#update(int, String)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Section#update(int, String)} in
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test
@@ -247,7 +247,7 @@ public class TestSection extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Section#select()} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Section#select()} in
 	 * der Rückgabe 'money' enthält.
 	 */
 	@Test

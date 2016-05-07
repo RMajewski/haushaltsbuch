@@ -55,7 +55,7 @@ public class SqlScript extends Export {
 	 * Schreibt den angegeben Text in den FileWriter und schließt die Zeile mit
 	 * dem entsprechenden Linien-Ende ab.
 	 * 
-	 * @param write FileWriter, in den die Daten geschrieben werden sollen.
+	 * @param writer FileWriter, in den die Daten geschrieben werden sollen.
 	 * 
 	 * @param line Text, der in einer Zeile stehen soll.
 	 * 
@@ -71,7 +71,7 @@ public class SqlScript extends Export {
 	 * Liest die Daten aus der Datenbank und schreibt sie in SQL-Commands,
 	 * welche in der ausgewählten Datei gespeichert werden.
 	 * 
-	 * @param write Geöffnete Datei, in die die erzeugten SQL-Commands
+	 * @param writer Geöffnete Datei, in die die erzeugten SQL-Commands
 	 * geschrieben werden sollen.
 	 * 
 	 * @throws IOException Wird ausgelöst, wenn es Probleme mit dem Zugriff auf
@@ -94,7 +94,7 @@ public class SqlScript extends Export {
 	 * Liest die Daten aus der Datenbank und schreibt sie in SQL-Commands,
 	 * welche in der ausgewählten Datei gespeichert werden.
 	 * 
-	 * @param write Geöffnete Datei, in die die erzeugten SQL-Commands
+	 * @param writer Geöffnete Datei, in die die erzeugten SQL-Commands
 	 * geschrieben werden sollen.
 	 * 
 	 * @throws IOException Wird ausgelöst, wenn es Probleme mit dem Zugriff auf
@@ -117,7 +117,7 @@ public class SqlScript extends Export {
 	 * Liest die Daten aus der Datenbank und schreibt sie in SQL-Commands,
 	 * welche in der ausgewählten Datei gespeichert werden.
 	 * 
-	 * @param write Geöffnete Datei, in die die erzeugten SQL-Commands
+	 * @param writer Geöffnete Datei, in die die erzeugten SQL-Commands
 	 * geschrieben werden sollen.
 	 * 
 	 * @throws IOException Wird ausgelöst, wenn es Probleme mit dem Zugriff auf
@@ -140,7 +140,7 @@ public class SqlScript extends Export {
 	 * Liest die Daten aus der Datenbank und schreibt sie in SQL-Commands,
 	 * welche in der ausgewählten Datei gespeichert werden.
 	 * 
-	 * @param write Geöffnete Datei, in die die erzeugten SQL-Commands
+	 * @param writer Geöffnete Datei, in die die erzeugten SQL-Commands
 	 * geschrieben werden sollen.
 	 * 
 	 * @throws IOException Wird ausgelöst, wenn es Probleme mit dem Zugriff auf

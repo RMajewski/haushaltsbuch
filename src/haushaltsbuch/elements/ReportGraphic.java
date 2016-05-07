@@ -410,8 +410,6 @@ public class ReportGraphic extends JComponent {
 	/**
 	 * Speichert, ob die Legnede für die X-Achse dargestellt werden solle oder
 	 * nicht.
-	 * 
-	 * @return Soll die Legend der X-Achse angezeigt werden?
 	 */
 	public void setDrawXLegend(boolean x) {
 		_drawXLegend = x;
@@ -448,8 +446,6 @@ public class ReportGraphic extends JComponent {
 	/**
 	 * Speichert, ob die Legnede für die Y-Achse dargestellt werden solle oder
 	 * nicht.
-	 * 
-	 * @return Soll die Legend der Y-Achse angezeigt werden?
 	 */
 	public void setDrawYLegend(boolean y) {
 		_drawYLegend = y;

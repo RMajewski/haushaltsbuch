@@ -28,7 +28,7 @@ import haushaltsbuch.db.query.MoneyDetails;
 import tests.testcase.TestHelper;
 
 /**
- * Testet die Klasse {@link db.query.MoneyDetails}
+ * Testet die Klasse {@link haushaltsbuch.db.query.MoneyDetails}
  * 
  * @author René Majewski
  * 
@@ -59,7 +59,7 @@ public class TestMoneyDetails extends TestHelper{
 	/**
 	 * Testet, ob der richtige Tabellen-Name gesetzt wurde.
 	 * 
-	 * @see db.query.MoneyDetails#MoneyDetails()
+	 * @see haushaltsbuch.db.query.MoneyDetails#MoneyDetails()
 	 */
 	@Test
 	public void testRightTableName() {
@@ -69,7 +69,7 @@ public class TestMoneyDetails extends TestHelper{
 	/**
 	 * Testet, ob die richtigen Spalten-Namen gesetzt wurden.
 	 * 
-	 * @see db.query.MoneyDetails#MoneyDetails()
+	 * @see haushaltsbuch.db.query.MoneyDetails#MoneyDetails()
 	 */
 	@Test
 	public void testRightColumnNames() {
@@ -82,7 +82,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.MoneyDetails#createTable()} die
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#createTable()} die
 	 * richtige Rückgabe liefert.
 	 */
 	@Test
@@ -95,7 +95,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert()} fünf
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert()} fünf
 	 * Fragezeichen enthält.
 	 */
 	@Test
@@ -104,7 +104,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.MoneyDetails#insert()} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert()} in
 	 * der Rückgabe 'money_details' enthält.
 	 */
 	@Test
@@ -113,7 +113,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * kein Fragezeichen enthält.
 	 */
 	@Test
@@ -122,7 +122,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * ein Fragezeichen in der Rückgabe enthält, wenn <b>-1</b> als 'moneyid'
 	 * übergeben wird.
 	 */
@@ -132,7 +132,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * die 'moneyid' in der Rückgabe enthält.
 	 */
 	@Test
@@ -141,7 +141,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * ein Fragezeichen in der Rückgabe enthält, wenn <b>-1</b> als
 	 * 'categoryid' übergeben wird.
 	 */
@@ -151,7 +151,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * die 'categoryid' in der Rückgabe enthält.
 	 */
 	@Test
@@ -160,7 +160,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * ein Fragezeichen in der Rückgabe enthält, wenn <b>-1</b> als
 	 * 'sectionid' übergeben wird.
 	 */
@@ -170,7 +170,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * die 'sectionid' in der Rückgabe enthält.
 	 */
 	@Test
@@ -179,7 +179,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * ein ? in der Rückgabe enthält, wenn die Beschreibung <b>null</b> ist.
 	 */
 	@Test
@@ -188,7 +188,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * ein ? in der Rückgabe enthält, wenn die Beschreibung eine leere
 	 * Zeichenkette ist.
 	 */
@@ -198,7 +198,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * das Geld in der Rückgabe enthält.
 	 */
 	@Test
@@ -207,7 +207,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * den Kommentar in der Rückgabe enthält.
 	 */
 	@Test
@@ -217,7 +217,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)} in
 	 * der Rückgabe 'money_details' enthält.
 	 */
 	@Test
@@ -226,7 +226,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.MoneyDetails#insert(int, int, int, double, String)}
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#insert(int, int, int, double, String)}
 	 * die richtige Rückgabe liefert.
 	 */
 	@Test
@@ -240,7 +240,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.MoneyDetails#delete(int)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#delete(int)} in
 	 * der Rückgabe 'money_details' enthält.
 	 */
 	@Test
@@ -249,7 +249,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.MoneyDetails#createTable()} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#createTable()} in
 	 * der Rückgabe 'money_details' enthält.
 	 */
 	@Test
@@ -258,7 +258,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.MoneyDetails#select()} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#select()} in
 	 * der Rückgabe 'money_details' enthält.
 	 */
 	@Test
@@ -267,7 +267,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#select(int)} ein
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#select(int)} ein
 	 * Fragenzeichen enthält, wenn <b>-1</b> als Parameter übergeben wird.
 	 */
 	@Test
@@ -276,7 +276,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.MoneyDetails#select(int)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#select(int)} in
 	 * der Rückgabe 'money_details' enthält.
 	 */
 	@Test
@@ -285,7 +285,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * keine <b>?</b> in der Rückgabe enthält.
 	 */
 	@Test
@@ -294,7 +294,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Test, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * die ID in der Rückgabe enthält.
 	 */
 	@Test
@@ -304,7 +304,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Test, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * die ID des zugehörigen Money-Datensatzes in der Rückgabe enthält.
 	 */
 	@Test
@@ -314,7 +314,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Test, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * die ID der Kategorie in der Rückgabe enthält.
 	 */
 	@Test
@@ -324,7 +324,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Test, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * die ID des Geschäftes in der Rückgabe enthält.
 	 */
 	@Test
@@ -334,7 +334,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Test, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * den Betrag in der Rückgabe enthält.
 	 */
 	@Test
@@ -344,7 +344,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * den Kommentar in der Rückgabe enthält.
 	 */
 	@Test
@@ -354,7 +354,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * den Tabellen-Namen in der Rückgabe enthält.
 	 */
 	@Test
@@ -363,7 +363,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
 	 */
 	@Test
@@ -372,7 +372,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * ein <b>?</b> enthält, wenn null als Kommentar übergeben wird.
 	 */
 	@Test
@@ -381,7 +381,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * ein <b>?</b> enthält, wenn eine leere Zeichenkette als Kommentar
 	 * übergeben wird.
 	 */
@@ -391,7 +391,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double)}
 	 * keine <b>?</b> in der Rückgabe enthält.
 	 */
 	@Test
@@ -400,7 +400,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
+	 * Test, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double)}
 	 * die ID in der Rückgabe enthält.
 	 */
 	@Test
@@ -410,7 +410,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
+	 * Test, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double)}
 	 * die ID des zugehörigen Money-Datensatzes in der Rückgabe enthält.
 	 */
 	@Test
@@ -420,7 +420,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
+	 * Test, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double)}
 	 * die ID der Kategorie in der Rückgabe enthält.
 	 */
 	@Test
@@ -430,7 +430,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
+	 * Test, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double)}
 	 * die ID des Geschäftes in der Rückgabe enthält.
 	 */
 	@Test
@@ -440,7 +440,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Test, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
+	 * Test, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double)}
 	 * den Betrag in der Rückgabe enthält.
 	 */
 	@Test
@@ -450,7 +450,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double)}
 	 * den Tabellen-Namen in der Rückgabe enthält.
 	 */
 	@Test
@@ -459,7 +459,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double)}
 	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
 	 */
 	@Test
@@ -468,7 +468,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#update(int, int, int, int, double)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double)}
 	 * die richtige Rückgabe liefert.
 	 */
 	@Test
@@ -480,7 +480,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#sumMoneyId(int)} die
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#sumMoneyId(int)} die
 	 * Datenbank-Abfrage generiert, um die Summe der Beträge des ausgewählen
 	 * Money-Datensatzes zu ermitteln.
 	 */
@@ -495,7 +495,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#sumCategoryId(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#sumCategoryId(String, int)}
 	 * die Datenbank-Abfrage generiert, um die Summe der Beträge der
 	 * ausgewählten Kategorie zu ermitteln.
 	 */
@@ -516,7 +516,7 @@ public class TestMoneyDetails extends TestHelper{
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.MoneyDetails#sumSectionId(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#sumSectionId(String, int)}
 	 * die Datenbank-Abfrage generiert, um die Summe der Beträge des
 	 * ausgewählten Geschäftes zu ermitteln.
 	 */

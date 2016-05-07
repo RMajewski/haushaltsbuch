@@ -34,7 +34,7 @@ import haushaltsbuch.datas.Data;
 import haushaltsbuch.datas.MoneyData;
 
 /**
- * Testet die Klasse {@link datas.MoneyData}
+ * Testet die Klasse {@link haushaltsbuch.datas.MoneyData}
  * 
  * @author René Majewski
  * 
@@ -82,8 +82,8 @@ public class TestMoneyData {
 	}
 	
 	/**
-	 * Testet ob die Klasse {@link datas.MoneyData} eine Instanz von der
-	 * Klasse {@link datas.Data} ist.
+	 * Testet ob die Klasse {@link haushaltsbuch.datas.MoneyData} eine Instanz von der
+	 * Klasse {@link haushaltsbuch.datas.Data} ist.
 	 */
 	@Test
 	public void testIdNameDataInstanceOfData() {
@@ -93,7 +93,7 @@ public class TestMoneyData {
 	/**
 	 * Testet, ob der Konstruktor ohne Argumente richtig initalisiert.
 	 * 
-	 * @see datas.MoneyData#MoneyData()
+	 * @see haushaltsbuch.datas.MoneyData#MoneyData()
 	 */
 	@Test
 	public void testMoneyData() {
@@ -107,7 +107,7 @@ public class TestMoneyData {
 	/**
 	 * Testet, ob der Konstruktor mit der übergebenen ID richtig initalisiert.
 	 * 
-	 * @see datas.MoneyData#MoneyData(int)
+	 * @see haushaltsbuch.datas.MoneyData#MoneyData(int)
 	 */
 	@Test
 	public void testMoneyDataInt() {
@@ -123,7 +123,7 @@ public class TestMoneyData {
 	 * Datums, der übergebenen Ein- oder Auszahlung und der übergebenen
 	 * Beschreibung richtig initalisiert.
 	 * 
-	 * @see datas.MoneyData#MoneyData(int, long, boolean, String)
+	 * @see haushaltsbuch.datas.MoneyData#MoneyData(int, long, boolean, String)
 	 */
 	@Test
 	public void testMoneyDataIntDateBooleanString() {
@@ -138,7 +138,7 @@ public class TestMoneyData {
 	 * Datums, der übergebenen Ein- oder Auszahlung und <b>null</b> als
 	 * Beschreibung richtig initalisiert.
 	 * 
-	 * @see datas.MoneyData#MoneyData(int, long, boolean, String)
+	 * @see haushaltsbuch.datas.MoneyData#MoneyData(int, long, boolean, String)
 	 */
 	@Test
 	public void testMoneyDataInitDateBooleanStringNullAsString() {
@@ -152,7 +152,7 @@ public class TestMoneyData {
 	/**
 	 * Testet, ob das Datum richtig zurück gegeben wird.
 	 * 
-	 * @see datas.MoneyData#getDate()
+	 * @see haushaltsbuch.datas.MoneyData#getDate()
 	 */
 	@Test
 	public void testGetDate() {
@@ -162,7 +162,7 @@ public class TestMoneyData {
 	/**
 	 * Testet, ob das Datum als Zeichenkette richtig zurück gegeben wird.
 	 * 
-	 * @see datas.MoneyData#getDateAsString()
+	 * @see haushaltsbuch.datas.MoneyData#getDateAsString()
 	 */
 	@Test
 	public void testGetDateAsString() {
@@ -173,7 +173,7 @@ public class TestMoneyData {
 	/**
 	 * Testet, ob das Datum richtig übernommen wird.
 	 * 
-	 * @see datas.MoneyData#setDate(long)
+	 * @see haushaltsbuch.datas.MoneyData#setDate(long)
 	 */
 	 @Test
 	 public void testSetDateLong() {
@@ -186,7 +186,7 @@ public class TestMoneyData {
 	  * Testet, ob aus einer Zeichenkette mit einem Datum der long-Wert richtig
 	  * ermittelt werden kann.
 	  * 
-	  * @see datas.MoneyData#setDate(String)
+	  * @see haushaltsbuch.datas.MoneyData#setDate(String)
 	  */
 	 @Test
 	 public void testSetDateString() {
@@ -195,7 +195,7 @@ public class TestMoneyData {
 	 }
 	 
 	 /**
-	  * Teste, die Methode {@link datas.MoneyData#setDate(String)} das aktuelle
+	  * Teste, die Methode {@link haushaltsbuch.datas.MoneyData#setDate(String)} das aktuelle
 	  * Datum speichert, wenn <b>null</b> als Zeichenkette übergeben wird.
 	  */
 	 @Test
@@ -205,7 +205,7 @@ public class TestMoneyData {
 	 }
 	 
 	 /**
-	  * Testet, ob die Methode {@link datas.MoneyData#setDate(String)} auch
+	  * Testet, ob die Methode {@link haushaltsbuch.datas.MoneyData#setDate(String)} auch
 	  * das ermittelte Datum als long-Wert zurück gibt.
 	  */
 	 @Test
@@ -216,7 +216,7 @@ public class TestMoneyData {
 	 /**
 	  * Testet, ob die Ein- oder Auszahlung richtig zurück gegeben wird.
 	  * 
-	  * @see datas.MoneyData#getInOut()
+	  * @see haushaltsbuch.datas.MoneyData#getInOut()
 	  */
 	 @Test
 	 public void testGetInOut() {
@@ -225,10 +225,10 @@ public class TestMoneyData {
 	 
 	 /**
 	  * Testet, ob Einnahme ausgegeben wird, wenn an
-	  * {@link datas.MoneyData#setInOut(boolean)} {@link datas.MoneyData#INCOMING}
+	  * {@link haushaltsbuch.datas.MoneyData#setInOut(boolean)} {@link haushaltsbuch.datas.MoneyData#INCOMING}
 	  * übergeben wurde.
 	  * 
-	  * @see datas.MoneyData#getInOutAsString()
+	  * @see haushaltsbuch.datas.MoneyData#getInOutAsString()
 	  */
 	 @Test
 	 public void testGetInOutAsStringWithIncoming() {
@@ -238,10 +238,10 @@ public class TestMoneyData {
 	 
 	 /**
 	  * Testet, ob Ausgabe ausgegeben wird, wenn an
-	  * {@link datas.MoneyData#setInOut(boolean)} {@link datas.MoneyData#OUTGOING}
+	  * {@link haushaltsbuch.datas.MoneyData#setInOut(boolean)} {@link haushaltsbuch.datas.MoneyData#OUTGOING}
 	  * übergeben wurde.
 	  * 
-	  * @see datas.MoneyData#getInOutAsString()
+	  * @see haushaltsbuch.datas.MoneyData#getInOutAsString()
 	  */
 	 @Test
 	 public void testGetInOutAsStringWithOutgoing() {
@@ -252,7 +252,7 @@ public class TestMoneyData {
 	 /**
 	  * Testet, ob die Ein- oder Auszahlung richtig übernommen wird.
 	  * 
-	  * @see datas.MoneyData#setInOut(boolean)
+	  * @see haushaltsbuch.datas.MoneyData#setInOut(boolean)
 	  */
 	 @Test
 	 public void testSetInOut() {
@@ -263,7 +263,7 @@ public class TestMoneyData {
 	 /**
 	  * Testet, ob die Beschreibung richtig zurück gegeben wird.
 	  * 
-	  * @see datas.MoneyData#getComment()
+	  * @see haushaltsbuch.datas.MoneyData#getComment()
 	  */
 	 @Test
 	 public void testGetComment() {
@@ -273,7 +273,7 @@ public class TestMoneyData {
 	 /**
 	  * Testet, ob die Beschreibung richtig übernommen wird.
 	  * 
-	  * @see datas.MoneyData#setComment(String)
+	  * @see haushaltsbuch.datas.MoneyData#setComment(String)
 	  */
 	 @Test
 	 public void testSetComment() {
@@ -286,7 +286,7 @@ public class TestMoneyData {
 	  * Testet, ob eine leere Zeichenkette erzeugt wird, wenn <b>null</b>
 	  * übergeben wird.
 	  * 
-	  * @see datas.MoneyData#setComment(String)
+	  * @see haushaltsbuch.datas.MoneyData#setComment(String)
 	  */
 	 @Test
 	 public void testSetCommentNullAsParameter() {
@@ -298,7 +298,7 @@ public class TestMoneyData {
 	  * Testet, ob die Konstante für die Ausgabe richtig initalisiert
 	  * wurde.
 	  * 
-	  * @see datas.MoneyData#OUTGOING
+	  * @see haushaltsbuch.datas.MoneyData#OUTGOING
 	  */
 	 @Test
 	 public void testOutgoing() {
@@ -309,7 +309,7 @@ public class TestMoneyData {
 	  * Testet, ob die int-Konstante für die Ausgabe richtig initalisiert
 	  * wurde.
 	  * 
-	  * @see datas.MoneyData#INT_OUTGOING
+	  * @see haushaltsbuch.datas.MoneyData#INT_OUTGOING
 	  */
 	 @Test
 	 public void testIntOutgoing() {
@@ -320,7 +320,7 @@ public class TestMoneyData {
 	  * Testet, ob die Konstante für eine Einzahlung richtig initalisiert
 	  * wurde.
 	  * 
-	  * @see datas.MoneyData#INCOMING
+	  * @see haushaltsbuch.datas.MoneyData#INCOMING
 	  */
 	 @Test
 	 public void testIncoming() {
@@ -331,7 +331,7 @@ public class TestMoneyData {
 	  * Testet, ob die int-Konstante für die Einnahme richtig initalisiert
 	  * wurde.
 	  * 
-	  * @see datas.MoneyData#INT_INCOMING
+	  * @see haushaltsbuch.datas.MoneyData#INT_INCOMING
 	  */
 	 @Test
 	 public void testIntIncoming() {

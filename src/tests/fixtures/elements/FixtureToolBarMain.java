@@ -25,8 +25,8 @@ import tests.tests.elements.TestToolBarMainFit;
 
 /**
  * Implementiert die Schnittstelle zwischen den Fit-Tests für die
- * {@link haushaltsbuch.elementes.ToolBarMain} und dem Testprogramm
- * {@link tests.tests.elements.TestToolbarMain}.
+ * {@link haushaltsbuch.elements.ToolBarMain} und dem Testprogramm
+ * {@link tests.tests.elements.TestToolBarMain}.
  * 
  * @author René Majewski
  *

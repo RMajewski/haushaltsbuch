@@ -34,7 +34,7 @@ import haushaltsbuch.tables.models.ReportYearModel;
 import tests.testcase.TestReports;
 
 /**
- * Testet das Tabellen-Model {@link tables.models.ReportYearModel}
+ * Testet das Tabellen-Model {@link haushaltsbuch.tables.models.ReportYearModel}
  * 
  * @author René Majewski
  *
@@ -73,7 +73,7 @@ public class TestReportYearModel extends TestReports {
 	/**
 	 * Testet, ob die Spalten-Anzahl richtig ermittelt wird.
 	 * 
-	 * @see tables.models.ReportYearModel#getColumnCount()
+	 * @see haushaltsbuch.tables.models.ReportYearModel#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -86,7 +86,7 @@ public class TestReportYearModel extends TestReports {
 	/**
 	 * Testet, ob die Zeilen-Anzahl richtig ermittelt wird.
 	 * 
-	 * @see tables.models.ReportYearModel#getRowCount()
+	 * @see haushaltsbuch.tables.models.ReportYearModel#getRowCount()
 	 */
 	@Test
 	public void testGetRowCount() {
@@ -99,7 +99,7 @@ public class TestReportYearModel extends TestReports {
 	/**
 	 * Testet, ob der Monat richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportYearModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportYearModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtZeroColumn() {
@@ -118,7 +118,7 @@ public class TestReportYearModel extends TestReports {
 	/**
 	 * Testet, ob die Einnahmen richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportYearModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportYearModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtOneColumn() {
@@ -138,7 +138,7 @@ public class TestReportYearModel extends TestReports {
 	/**
 	 * Testet, ob die Ausgaben richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportYearModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportYearModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtTwoColumn() {
@@ -158,7 +158,7 @@ public class TestReportYearModel extends TestReports {
 	/**
 	 * Testet, ob die Ausgaben richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportYearModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportYearModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtThreeColumn() {

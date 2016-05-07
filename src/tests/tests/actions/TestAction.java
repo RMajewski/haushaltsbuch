@@ -57,7 +57,7 @@ public class TestAction {
 	}
 
 	/**
-	 * Überprüft, ob die Klasse {@link haushaltsbuch.action.Action} von der
+	 * Überprüft, ob die Klasse {@link haushaltsbuch.actions.Action} von der
 	 * Klasse AbstractAction abgeleitet wurde.
 	 */
 	@Test
@@ -69,7 +69,7 @@ public class TestAction {
 	/**
 	 * Überprüft, ob das Icon für die Menüs gesetzt wurde.
 	 * 
-	 * @see haushaltsbuch.actions.Action#Action(String, String)
+	 * @see haushaltsbuch.actions.Action#Action(String, String, haushaltsbuch.elements.Desktop)
 	 */
 	@Test
 	public void testIsSetSmallIcon() {
@@ -79,7 +79,7 @@ public class TestAction {
 	/**
 	 * Überprüft, ob das Icon für die Toolbar gesetzt wurde.
 	 * 
-	 * @see haushaltsbuch.actions.Action#Action(String, String)
+	 * @see haushaltsbuch.actions.Action#Action(String, String, haushaltsbuch.elements.Desktop)
 	 */
 	@Test
 	public void testIsSetBigIcon() {

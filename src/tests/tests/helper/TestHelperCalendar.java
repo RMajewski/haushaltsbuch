@@ -31,7 +31,7 @@ import org.junit.Test;
 import haushaltsbuch.helper.HelperCalendar;
 
 /**
- * Implementiert Tests für die Klasse {@link helper.HelperCalendar}.
+ * Implementiert Tests für die Klasse {@link haushaltsbuch.helper.HelperCalendar}.
  * 
  * @author René Majewski
  *
@@ -63,7 +63,7 @@ public class TestHelperCalendar {
 	/**
 	 * Testet, ob die Kalender-Instanz nicht null ist.
 	 * 
-	 * @see helper.HelperCalendar#createCalendar(int)
+	 * @see haushaltsbuch.helper.HelperCalendar#createCalendar(int)
 	 */
 	@Test
 	public void testCreatecalendarReturnNotNull() {
@@ -73,7 +73,7 @@ public class TestHelperCalendar {
 	/**
 	 * Testet, ob das Jahr in der Kalender-Instanz richtig gesetzt wurde.
 	 * 
-	 * @see helper.HelperCalendar#createCalendar(int)
+	 * @see haushaltsbuch.helper.HelperCalendar#createCalendar(int)
 	 */
 	@Test
 	public void testCreateCalendarReturnHasRightYear() {
@@ -84,7 +84,7 @@ public class TestHelperCalendar {
 	/**
 	 * Testet, ob der Monat in der Kalender-Instanz richtig gesetzt wurde.
 	 * 
-	 * @see helper.HelperCalendar#createCalendar(int)
+	 * @see haushaltsbuch.helper.HelperCalendar#createCalendar(int)
 	 */
 	@Test
 	public void testCreateCalendarReturnHasRightMonth() {
@@ -95,7 +95,7 @@ public class TestHelperCalendar {
 	/**
 	 * Testet, ob der Tag in der Kalender-Instanz richtig gesetzt wurde.
 	 * 
-	 * @see helper.HelperCalendar#createCalendar(int)
+	 * @see haushaltsbuch.helper.HelperCalendar#createCalendar(int)
 	 */
 	@Test
 	public void testCreateCalendarReturnHasRightDay() {
@@ -105,7 +105,7 @@ public class TestHelperCalendar {
 	/**
 	 * Testet, ob die Stunde in der Kalender-Instanz richtig gesetzt wurde.
 	 * 
-	 * @see helper.HelperCalendar#createCalendar(int)
+	 * @see haushaltsbuch.helper.HelperCalendar#createCalendar(int)
 	 */
 	@Test
 	public void testCreateCalendarReturnHasRightHour() {
@@ -115,7 +115,7 @@ public class TestHelperCalendar {
 	/**
 	 * Testet, ob die Minute in der Kalender-Instanz richtig gesetzt wurde.
 	 * 
-	 * @see helper.HelperCalendar#createCalendar(int)
+	 * @see haushaltsbuch.helper.HelperCalendar#createCalendar(int)
 	 */
 	@Test
 	public void testCreateCalendarReturnHasRightMinute() {
@@ -125,7 +125,7 @@ public class TestHelperCalendar {
 	/**
 	 * Testet, ob die Sekunde in der Kalender-Instanz richtig gesetzt wurde.
 	 * 
-	 * @see helper.HelperCalendar#createCalendar(int)
+	 * @see haushaltsbuch.helper.HelperCalendar#createCalendar(int)
 	 */
 	@Test
 	public void testCreateCalendarReturnHasRightSecond() {
@@ -136,7 +136,7 @@ public class TestHelperCalendar {
 	 * Testet, ob die Millisekunde in der Kalender-Instanz richtig gesetzt
 	 * wurde.
 	 * 
-	 * @see helper.HelperCalendar#createCalendar(int)
+	 * @see haushaltsbuch.helper.HelperCalendar#createCalendar(int)
 	 */
 	@Test
 	public void testCreateCalendarReturnHasRightHourMilliSecond() {
@@ -147,7 +147,7 @@ public class TestHelperCalendar {
 	 * Testet, ob der angegeben long-Wert richtig in eine Lesbare Zeichenkette
 	 * umgewandelt wird.
 	 * 
-	 * @see helper.HelperCalendar#dateToString(long)
+	 * @see haushaltsbuch.helper.HelperCalendar#dateToString(long)
 	 */
 	@Test
 	public void testDateToString() {
@@ -159,7 +159,7 @@ public class TestHelperCalendar {
 	 * Testet, ob der zurück gegbene Wert richtig ist. Es werden die 12 
 	 * verschiedenen Möglichkeiten getestet.
 	 * 
-	 * @see helper.HelperCalendar#enStringToMonth(String)
+	 * @see haushaltsbuch.helper.HelperCalendar#enStringToMonth(String)
 	 */
 	@Test
 	public void testEnStringToMonthReturnRigth() {
@@ -180,7 +180,7 @@ public class TestHelperCalendar {
 	/**
 	 * Testet, ob bei einem falschen Manatsnamen -1 zurück gegeben wird.
 	 * 
-	 * @see helper.HelperCalendar#enStringToMonth(String)
+	 * @see haushaltsbuch.helper.HelperCalendar#enStringToMonth(String)
 	 */
 	@Test
 	public void testEnStringToMonthWrongParameterReturnMinusOne() {
@@ -191,7 +191,7 @@ public class TestHelperCalendar {
 	 * Testet, ob bei einer leeren Zeichenkette als Paramter -1 zurück gegeben
 	 * wird.
 	 * 
-	 * @see helper.HelperCalendar#enStringToMonth(String)
+	 * @see haushaltsbuch.helper.HelperCalendar#enStringToMonth(String)
 	 */
 	@Test
 	public void testEnStringToMonthEmptyAsParameterReturnMinusOne() {
@@ -201,7 +201,7 @@ public class TestHelperCalendar {
 	/**
 	 * Testet, ob bei einer <b>null</b> als Paramter -1 zurück gegeben wird.
 	 * 
-	 * @see helper.HelperCalendar#enStringToMonth(String)
+	 * @see haushaltsbuch.helper.HelperCalendar#enStringToMonth(String)
 	 */
 	@Test
 	public void testEnStringToMonthNullAsParameterReturnMinusOne() {

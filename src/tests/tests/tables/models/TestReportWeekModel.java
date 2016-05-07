@@ -35,7 +35,7 @@ import haushaltsbuch.tables.models.ReportWeekModel;
 import tests.testcase.TestReports;
 
 /**
- * Testet das Tabellen-Model {@link tables.models.ReportWeekModel}.
+ * Testet das Tabellen-Model {@link haushaltsbuch.tables.models.ReportWeekModel}.
  * 
  * @author René Majewski
  *
@@ -75,7 +75,7 @@ public class TestReportWeekModel extends TestReports {
 	/**
 	 * Überprüft, ob die richtige Anzahl an Spalten zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportWeekModel#getColumnCount()
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -87,7 +87,7 @@ public class TestReportWeekModel extends TestReports {
 	/**
 	 * Überprüft, ob die richtige Anzahl an Zeilen zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportWeekModel#getRowCount()
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getRowCount()
 	 */
 	@Test
 	public void testGetRowCount() {
@@ -99,7 +99,7 @@ public class TestReportWeekModel extends TestReports {
 	/**
 	 * Testet, ob die Wochennummer richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtZeroColumn() {
@@ -113,7 +113,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es werden
 	 * keinerlei Einstellungen gemacht.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtOneColumnWithoutPreferences() {
@@ -137,7 +137,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die
 	 * "von"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtOneColumnWithDateFrom() {
@@ -164,7 +164,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die
 	 * "bis"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtOneColumnWithDateTo() {
@@ -191,7 +191,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es sollen die
 	 * "bis"-Spalte und die "von"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtOneColumnWithDateFromAndDateTo() {
@@ -218,7 +218,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Ausgabe richtig zurück gegeben wird. Es werden
 	 * keinerlei Einstellungen gemacht.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtTwoColumnWithoutPreferences() {
@@ -245,7 +245,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "von"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtTwoColumnWithDateFrom() {
@@ -272,7 +272,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "bis"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtTwoColumnWithDateTo() {
@@ -299,7 +299,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es sollen die
 	 * "bis"-Spalte und die "von"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtTwoColumnWithDateFromAndDateTo() {
@@ -326,7 +326,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte Einnahme richtig zurück gegeben wird. Es werden
 	 * keinerlei Einstellungen gemacht.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtThreeColumnWithoutPreferences() {
@@ -350,7 +350,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "von"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtThreeColumnWithDateFrom() {
@@ -377,7 +377,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "bis"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtThreeColumnWithDateTo() {
@@ -404,7 +404,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "von"-Spalte und "bis"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtThreeColumnWithDateFromAndDateTo() {
@@ -431,7 +431,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte Einnahme richtig zurück gegeben wird. Es werden
 	 * keinerlei Einstellungen gemacht.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtFourColumnWithoutPreferences() {
@@ -453,7 +453,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "von"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtFourColumnWithDateFrom() {
@@ -480,7 +480,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "bis"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtFourColumnWithDateTo() {
@@ -507,7 +507,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "von"-Spalte und "bis"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtFourColumnWithDateFromAndDateTo() {
@@ -534,7 +534,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte Einnahme richtig zurück gegeben wird. Es werden
 	 * keinerlei Einstellungen gemacht.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtFiveColumnWithoutPreferences() {
@@ -556,7 +556,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "von"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtFiveColumnWithDateFrom() {
@@ -578,7 +578,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "bis"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtFiveColumnWithDateTo() {
@@ -600,7 +600,7 @@ public class TestReportWeekModel extends TestReports {
 	 * Testet, ob die Spalte richtig zurück gegeben wird. Es soll die 
 	 * "von"-Spalte und "bis"-Spalte mit ausgegeben werden.
 	 * 
-	 * @see tables.models.ReportWeekModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportWeekModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtFiveColumnWithDateFromAndDateTo() {

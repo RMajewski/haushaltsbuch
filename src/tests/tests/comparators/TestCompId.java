@@ -27,7 +27,7 @@ import haushaltsbuch.comparators.CompId;
 import haushaltsbuch.datas.Data;
 
 /**
- * Testet den Comparator {@link comparators.CompId}.
+ * Testet den Comparator {@link haushaltsbuch.comparators.CompId}.
  * 
  * @author René Majewski
  *
@@ -39,7 +39,7 @@ public class TestCompId {
 	/**
 	 * Testet ob -1 raus kommt, wenn die 1. ID kleiner als die 2. ID is.
 	 * 
-	 * @see comparators.CompId#compare(datas.Data, datas.Data)
+	 * @see haushaltsbuch.comparators.CompId#compare(Data, Data)
 	 */
 	@Test
 	public void testCompareLesser() {
@@ -50,7 +50,7 @@ public class TestCompId {
 	/**
 	 * Testet ob 0 raus kommt, wenn die 1. ID gleich der 2. ID is.
 	 * 
-	 * @see comparators.CompId#compare(datas.Data, datas.Data)
+	 * @see haushaltsbuch.comparators.CompId#compare(Data, Data)
 	 */
 	@Test
 	public void testCompareEqaul() {
@@ -61,7 +61,7 @@ public class TestCompId {
 	/**
 	 * Testet ob 1 raus kommt, wenn die 1 ID größer als die 2. ID is.
 	 * 
-	 * @see comparators.CompId#compare(datas.Data, datas.Data)
+	 * @see haushaltsbuch.comparators.CompId#compare(Data, Data)
 	 */
 	@Test
 	public void testCompareBigger() {

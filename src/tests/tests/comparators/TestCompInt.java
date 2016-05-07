@@ -26,7 +26,7 @@ import org.junit.Test;
 import haushaltsbuch.comparators.CompInt;
 
 /**
- * Testet den Comparator {@link comparators.CompInt}.
+ * Testet den Comparator {@link haushaltsbuch.comparators.CompInt}.
  * 
  * @author René Majewski
  *
@@ -38,7 +38,7 @@ public class TestCompInt {
 	/**
 	 * Testet ob -1 raus kommt, wenn die 1. Zahl kleiner als die 2. Zahl is.
 	 * 
-	 * @see comparators.CompInt#compare(datas.Data, datas.Data)
+	 * @see haushaltsbuch.comparators.CompInt#compare(Integer, Integer)
 	 */
 	@Test
 	public void testCompareLesser() {
@@ -49,7 +49,7 @@ public class TestCompInt {
 	/**
 	 * Testet ob 0 raus kommt, wenn die 1. Zahl gleich der 2. Zahl is.
 	 * 
-	 * @see comparators.CompInt#compare(datas.Data, datas.Data)
+	 * @see haushaltsbuch.comparators.CompInt#compare(Integer, Integer)
 	 */
 	@Test
 	public void testCompareEqual() {
@@ -60,7 +60,7 @@ public class TestCompInt {
 	/**
 	 * Testet ob 1 raus kommt, wenn die 1 Zahl größer als die 2. Zahl is.
 	 * 
-	 * @see comparators.CompInt#compare(datas.Data, datas.Data)
+	 * @see haushaltsbuch.comparators.CompInt#compare(Integer, Integer)
 	 */
 	@Test
 	public void testCompareBigger() {

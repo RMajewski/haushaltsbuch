@@ -573,7 +573,7 @@ public class HtmlOut {
 	 * 
 	 * @param time Zeit, die der Test gebraucht hat
 	 * 
-	 * @param in Ausgabe der Konsole
+	 * @param console Ausgabe der Konsole
 	 * 
 	 * @param error Ausgabe der Fehler
 	 * 

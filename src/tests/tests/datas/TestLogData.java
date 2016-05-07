@@ -30,7 +30,7 @@ import org.junit.Test;
 import haushaltsbuch.datas.LogData;
 
 /**
- * Testet die Klasse {@link datas.LogData}.
+ * Testet die Klasse {@link haushaltsbuch.datas.LogData}.
  * 
  * @author René Majewski
  * 
@@ -64,7 +64,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#LogData()}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#LogData()}.
 	 */
 	@Test
 	public void testLogData() {
@@ -74,7 +74,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#LogData(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String)}.
 	 */
 	@Test
 	public void testLogDataString() {
@@ -83,7 +83,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#LogData(java.lang.String, short)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String, short)}.
 	 */
 	@Test
 	public void testLogDataStringShort() {
@@ -93,7 +93,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#getMessage()}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#getMessage()}.
 	 */
 	@Test
 	public void testGetMessage() {
@@ -101,7 +101,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#getOut()}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#getOut()}.
 	 */
 	@Test
 	public void testGetOut() {
@@ -109,7 +109,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setMessage(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessage(java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessage() {
@@ -119,7 +119,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setMessageAsNoOut(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsNoOut(java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageAsNoOut() {
@@ -129,7 +129,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setMessageAsError(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsError(java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageAsError() {
@@ -139,7 +139,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setMessageAsWarning(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsWarning(java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageAsWarning() {
@@ -149,7 +149,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setMessageAsOk(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsOk(java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageAsOk() {
@@ -159,7 +159,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setOut(short)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setOut(short)}.
 	 */
 	@Test
 	public void testSetOut() {
@@ -168,7 +168,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#LogData(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String)}.
 	 */
 	@Test
 	public void testLogDataStringWithNull() {
@@ -178,7 +178,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#LogData(java.lang.String, short)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String, short)}.
 	 */
 	@Test
 	public void testLogDataStringShortWithString() {
@@ -188,7 +188,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setMessage(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessage(java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageWithNull() {
@@ -198,7 +198,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setMessageAsNoOut(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsNoOut(java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageAsNoOutWithNull() {
@@ -208,7 +208,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setMessageAsError(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsError(java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageAsErrorWithNull() {
@@ -218,7 +218,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setMessageAsWarning(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsWarning(java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageAsWarningWithNull() {
@@ -228,7 +228,7 @@ public class TestLogData {
 	}
 
 	/**
-	 * Test method for {@link datas.LogData#setMessageAsOk(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsOk(java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageAsOkWithNull() {

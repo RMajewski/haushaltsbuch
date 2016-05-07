@@ -19,12 +19,12 @@
 
 package tests.fixtures.elements;
 
-import tests.tests.elements.TestToolbarMainFitPdfReport;
+import tests.tests.elements.TestToolBarMainFitPdfReport;
 
 /**
  * Implementiert die Schnittstelle zwischen den Fit-Tests für die
- * {@link haushaltsbuch.elementes.ToolBarMain} und dem Testprogramm
- * {@link tests.tests.elements.TestToolbarMainPdfReport}.
+ * {@link haushaltsbuch.elements.ToolBarMain} und dem Testprogramm
+ * {@link tests.tests.elements.TestToolBarMainFitPdfReport}.
  * 
  * @author René Majewski
  *
@@ -40,7 +40,7 @@ public class FixtureToolBarMainPdfReport extends FixtureToolBarMain {
 	 */
 	public FixtureToolBarMainPdfReport() throws Exception {
 		super();
-		_test = new TestToolbarMainFitPdfReport();
+		_test = new TestToolBarMainFitPdfReport();
 	}
 	
 	/**
@@ -49,21 +49,21 @@ public class FixtureToolBarMainPdfReport extends FixtureToolBarMain {
 	 * @return Ist der Button "PDF-Report" anklickbar?
 	 */
 	public String isPdfReportEnabled() {
-		return String.valueOf(((TestToolbarMainFitPdfReport)_test).istButtonPdfReportEnabled());
+		return String.valueOf(((TestToolBarMainFitPdfReport)_test).istButtonPdfReportEnabled());
 	}
 	
 	/**
 	 * Drück im Dialog den Button OK.
 	 */
 	public void pushDialogOk() {
-		((TestToolbarMainFitPdfReport)_test).pushDialogReportCreate();
+		((TestToolBarMainFitPdfReport)_test).pushDialogReportCreate();
 	}
 	
 	/**
 	 * Drückt den ToolBar-Button "PDF-Report"
 	 */
 	public void pushPdfReport() {
-		((TestToolbarMainFitPdfReport)_test).pushToolBarButtonPdfReport();
+		((TestToolBarMainFitPdfReport)_test).pushToolBarButtonPdfReport();
 	}
 
 }

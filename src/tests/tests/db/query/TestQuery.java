@@ -27,7 +27,7 @@ import org.junit.Test;
 import tests.testcase.TestHelper;
 
 /**
- * Testet die Klasse {@link db.query.Query}
+ * Testet die Klasse {@link haushaltsbuch.db.query.Query}
  * 
  * @author René Majewski
  * 
@@ -72,7 +72,7 @@ public class TestQuery extends TestHelper {
 	
 	/**
 	 * Testet, ob der Tabellen-Name richtig zurück gegeben wird.
-	 * {@link db.query.Query#getTableName()}
+	 * {@link haushaltsbuch.db.query.Query#getTableName()}
 	 */
 	@Test
 	public void testGetTableName() {
@@ -81,7 +81,7 @@ public class TestQuery extends TestHelper {
 	
 	/**
 	 * Testet, ob die Liste mit den Spalten-Namen richtig zurück gegeben wird.
-	 * {@link db.query.Query#getColumnNames()}
+	 * {@link haushaltsbuch.db.query.Query#getColumnNames()}
 	 */
 	@Test
 	public void testGetColoumnNames() {
@@ -91,7 +91,7 @@ public class TestQuery extends TestHelper {
 	
 	/**
 	 * Testet, ob die die richtige Anzahl an Spalten zurück gegeben wird.
-	 * {@link db.query.Query#getCloumnCount()}
+	 * {@link haushaltsbuch.db.query.Query#getCloumnCount()}
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -99,7 +99,7 @@ public class TestQuery extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob kein Fragezeichen von der Methode {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
+	 * Testet, ob kein Fragezeichen von der Methode {@link haushaltsbuch.db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 * überschrieben wird, wenn eine -1 als id übergeben wird.
 	 */
 	@Test
@@ -111,7 +111,7 @@ public class TestQuery extends TestHelper {
 	/**
 	 * Testet, ob es nur noch ein Fragezeichen gibt, wenn eine richtige ID
 	 * angegeben wird.
-	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
+	 * {@link haushaltsbuch.db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
 	public void testreplaceIdWithFalseAsLastReturnHasOneQuery() {
@@ -122,7 +122,7 @@ public class TestQuery extends TestHelper {
 	/**
 	 * Testet, ob es nur noch ein Fragezeichen gibt, wenn eine richtige ID
 	 * angegeben wird.
-	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
+	 * {@link haushaltsbuch.db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
 	public void testreplaceIdWithFalseAsLastReturnIsRight() {
@@ -133,7 +133,7 @@ public class TestQuery extends TestHelper {
 	/**
 	 * Testet, ob es nur noch ein Fragezeichen gibt, wenn eine richtige ID
 	 * angegeben wird.
-	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
+	 * {@link haushaltsbuch.db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
 	public void testreplaceIdWithTrueAsLastReturnHasOneQuery() {
@@ -144,7 +144,7 @@ public class TestQuery extends TestHelper {
 	/**
 	 * Testet, ob es nur noch ein Fragezeichen gibt, wenn eine richtige ID
 	 * angegeben wird.
-	 * {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
+	 * {@link haushaltsbuch.db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 */
 	@Test
 	public void testreplaceIdWithTrueAsLastReturnIsRight() {
@@ -156,7 +156,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Datenbank-Abfrage, um alle Datensätze aufzulisten,
 	 * richtig erzeugt wurde.
 	 * 
-	 * {@link db.query.Query#select()}
+	 * {@link haushaltsbuch.db.query.Query#select()}
 	 */
 	@Test
 	public void testSelectReturnIsRight() {
@@ -174,7 +174,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz zu löschen,
 	 * richtig erzeugt wurde.
 	 * 
-	 * {@link db.query.Query#delete(int)}
+	 * {@link haushaltsbuch.db.query.Query#delete(int)}
 	 */
 	@Test
 	public void testDeleteReturnIsRight() {
@@ -190,7 +190,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz zu löschen,
 	 * keine Fragezeichen in der Rückgabe enthält.
 	 * 
-	 * {@link db.query.Query#delete(int)}
+	 * {@link haushaltsbuch.db.query.Query#delete(int)}
 	 */
 	@Test
 	public void testDeleteReturnHaveZeroQuery() {
@@ -201,7 +201,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz zu löschen,
 	 * die ID in der Rückgabe enthält.
 	 * 
-	 * {@link db.query.Query#delete(int)}
+	 * {@link haushaltsbuch.db.query.Query#delete(int)}
 	 */
 	@Test
 	public void testDeleteReturnHaveId() {
@@ -214,7 +214,7 @@ public class TestQuery extends TestHelper {
 	 * ein Fragezeichen in der Rückgabe enthält, wenn <b>-1</b> als ID
 	 * übergeben wird.
 	 * 
-	 * {@link db.query.Query#delete(int)}
+	 * {@link haushaltsbuch.db.query.Query#delete(int)}
 	 */
 	@Test
 	public void testDeleteWithMinusOneReturnHasOneQuery() {
@@ -225,7 +225,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz zu ändern,
 	 * richtig erzeugt wurde.
 	 * 
-	 * {@link db.query.Query#update(int)}
+	 * {@link haushaltsbuch.db.query.Query#update(int)}
 	 */
 	@Test
 	public void testUpdateReturnIsRight() {
@@ -245,7 +245,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz zu ändern,
 	 * zwei Fragezeichen in der Rückgabe enthält.
 	 * 
-	 * {@link db.query.Query#update(int)}
+	 * {@link haushaltsbuch.db.query.Query#update(int)}
 	 */
 	@Test
 	public void testUpdateReturnHaveTwoQuery() {
@@ -256,7 +256,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz zu ändern,
 	 * die ID in der Rückgabe enthält.
 	 * 
-	 * {@link db.query.Query#update(int)}
+	 * {@link haushaltsbuch.db.query.Query#update(int)}
 	 */
 	@Test
 	public void testUpdateReturnHaveId() {
@@ -269,7 +269,7 @@ public class TestQuery extends TestHelper {
 	 * drei Fragezeichen in der Rückgabe enthält, wenn <b>-1</b> als ID
 	 * übergeben wird.
 	 * 
-	 * {@link db.query.Query#update(int)}
+	 * {@link haushaltsbuch.db.query.Query#update(int)}
 	 */
 	@Test
 	public void testUpdateWithMinusOneReturnHasThreeQueries() {
@@ -280,7 +280,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz einzufügen,
 	 * richtig erzeugt wurde.
 	 * 
-	 * {@link db.query.Query#insert()}
+	 * {@link haushaltsbuch.db.query.Query#insert()}
 	 */
 	@Test
 	public void testInsertReturnIsRight() {
@@ -298,7 +298,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Datenbank-Abfrage, um einen Datensatz einzufügen,
 	 * zwei Fragezeichen in der Rückgabe enthält.
 	 * 
-	 * {@link db.query.Query#insert()}
+	 * {@link haushaltsbuch.db.query.Query#insert()}
 	 */
 	@Test
 	public void testUpdateReturnHaveTwoQueries() {
@@ -309,7 +309,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
 	 * hat. 
 	 * 
-	 * {@link db.query.Query#statusInsertOk()}
+	 * {@link haushaltsbuch.db.query.Query#statusInsertOk()}
 	 */
 	@Test
 	public void testStatusInsertOkReturnIsRight() {
@@ -323,7 +323,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
 	 * hat. 
 	 * 
-	 * {@link db.query.Query#statusInsertError()}
+	 * {@link haushaltsbuch.db.query.Query#statusInsertError()}
 	 */
 	@Test
 	public void testStatusInsertErrorReturnIsRight() {
@@ -337,7 +337,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
 	 * hat. 
 	 * 
-	 * {@link db.query.Query#statusUpdateOk(int)}
+	 * {@link haushaltsbuch.db.query.Query#statusUpdateOk(int)}
 	 */
 	@Test
 	public void testStatusUpdateOkReturnIsRight() {
@@ -354,7 +354,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
 	 * hat. 
 	 * 
-	 * {@link db.query.Query#statusUpdateError(int)}
+	 * {@link haushaltsbuch.db.query.Query#statusUpdateError(int)}
 	 */
 	@Test
 	public void testStatusUpdateErrorReturnIsRight() {
@@ -371,7 +371,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
 	 * hat. 
 	 * 
-	 * {@link db.query.Query#statusDeleteOk(int)}
+	 * {@link haushaltsbuch.db.query.Query#statusDeleteOk(int)}
 	 */
 	@Test
 	public void testStatusDeleteOkReturnIsRight() {
@@ -388,7 +388,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Nachricht für die StatusBar den richtigen Rückgabe-Wert
 	 * hat. 
 	 * 
-	 * {@link db.query.Query#statusDeleteError(int)}
+	 * {@link haushaltsbuch.db.query.Query#statusDeleteError(int)}
 	 */
 	@Test
 	public void testStatusDeleteErrorReturnIsRight() {
@@ -405,7 +405,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, die Anzahl an Datensätzen die richtige Abfrage zurück
 	 * gibt.
 	 * 
-	 * {@link db.query.Query#count()}
+	 * {@link haushaltsbuch.db.query.Query#count()}
 	 */
 	@Test
 	public void testCountReturnIsRight() {
@@ -419,7 +419,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, die
 	 * richtige Abfrage zurück gibt.
 	 * 
-	 * {@link db.query.Query#search(String, String)}
+	 * {@link haushaltsbuch.db.query.Query#search(String, String)}
 	 */
 	@Test
 	public void testSearchReturnIsRight() {
@@ -439,7 +439,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, die
 	 * richtige Abfrage zurück gibt.
 	 * 
-	 * {@link db.query.Query#search(String, int)}
+	 * {@link haushaltsbuch.db.query.Query#search(String, int)}
 	 */
 	@Test
 	public void testSearchStringIntReturnIsRight() {
@@ -459,7 +459,7 @@ public class TestQuery extends TestHelper {
 	 * Testet, ob die Abfrage, in der ein Datensatz ausgewählt wird, die
 	 * richtige Abfrage zurück gibt.
 	 * 
-	 * {@link db.query.Query#sort(String)}
+	 * {@link haushaltsbuch.db.query.Query#sort(String)}
 	 */
 	@Test
 	public void testSortStringReturnIsRight() {

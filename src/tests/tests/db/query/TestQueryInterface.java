@@ -29,7 +29,7 @@ import haushaltsbuch.db.query.QueryInterface;
 import tests.testcase.TestHelper;
 
 /**
- * Testet ob das {@link db.query.QueryInterface}-Interface alle Methoden
+ * Testet ob das {@link haushaltsbuch.db.query.QueryInterface}-Interface alle Methoden
  * deklariert hat.
  * 
  * @author René Majewski
@@ -48,7 +48,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 
 	/**
-	 * Testet ob die Methode {@link db.query.QueryInterface#createTable()}
+	 * Testet ob die Methode {@link haushaltsbuch.db.query.QueryInterface#createTable()}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -57,7 +57,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#createTable()}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#createTable()}
 	 * keine Parameter hat.
 	 */
 	@Test
@@ -67,7 +67,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testetm, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#createTable()} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#createTable()} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -76,7 +76,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 
 	/**
-	 * Testet ob die Methode {@link db.query.QueryInterface#insert()}
+	 * Testet ob die Methode {@link haushaltsbuch.db.query.QueryInterface#insert()}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -85,7 +85,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#insert()}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#insert()}
 	 * keine Parameter hat.
 	 */
 	@Test
@@ -95,7 +95,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testetm, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#insert()} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#insert()} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -104,7 +104,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 
 	/**
-	 * Testet ob die Methode {@link db.query.QueryInterface#update(int)}
+	 * Testet ob die Methode {@link haushaltsbuch.db.query.QueryInterface#update(int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -113,7 +113,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#update(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#update(int)}
 	 * ein Parameter von Typ int besitzt.
 	 */
 	@Test
@@ -124,7 +124,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testetm, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#update(int id)} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#update(int id)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -133,7 +133,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 
 	/**
-	 * Testet ob die Methode {@link db.query.QueryInterface#delete(int)}
+	 * Testet ob die Methode {@link haushaltsbuch.db.query.QueryInterface#delete(int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -142,7 +142,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#delete(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#delete(int)}
 	 * ein Parameter von Typ int besitzt.
 	 */
 	@Test
@@ -153,7 +153,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#delete(int)} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#delete(int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -162,7 +162,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#select()}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#select()}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -171,7 +171,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#select()}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#select()}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -181,7 +181,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#select()} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#select()} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -190,7 +190,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusInsertOk()}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusInsertOk()}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -199,7 +199,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusInsertOk()}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusInsertOk()}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -209,7 +209,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#statusInsertOk()} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#statusInsertOk()} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -218,7 +218,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusInsertError()}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusInsertError()}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -227,7 +227,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusInsertError()}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusInsertError()}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -237,7 +237,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#statusInsertError()} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#statusInsertError()} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -246,7 +246,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateOk(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusUpdateOk(int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -255,7 +255,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateOk(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusUpdateOk(int)}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -266,7 +266,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#statusUpdateOk(int)} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#statusUpdateOk(int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -275,7 +275,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateError(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusUpdateError(int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -284,7 +284,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusUpdateError(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusUpdateError(int)}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -295,7 +295,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#statusUpdateError(int)} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#statusUpdateError(int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -304,7 +304,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteOk(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusDeleteOk(int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -313,7 +313,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteOk(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusDeleteOk(int)}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -324,7 +324,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#statusDeleteOk(int)} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#statusDeleteOk(int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -333,7 +333,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteError(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusDeleteError(int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -342,7 +342,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#statusDeleteError(int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#statusDeleteError(int)}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -353,7 +353,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#statusDeleteError(int)} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#statusDeleteError(int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -362,7 +362,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#count()}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#count()}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -371,7 +371,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#count()}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#count()}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -381,7 +381,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#count()} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#count()} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -390,7 +390,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#search(String, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#search(String, String)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -399,7 +399,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#search(String, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#search(String, String)}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -409,7 +409,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#search(String, String)} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#search(String, String)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -418,7 +418,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#search(String, int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#search(String, int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -427,7 +427,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#search(String, int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#search(String, int)}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -437,7 +437,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#search(String, int)} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#search(String, int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test
@@ -446,7 +446,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#search(String, int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#search(String, int)}
 	 * deklariert wurde.
 	 */
 	@Test
@@ -455,7 +455,7 @@ public class TestQueryInterface extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.QueryInterface#search(String, int)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.QueryInterface#search(String, int)}
 	 * keinen Parameter besitzt.
 	 */
 	@Test
@@ -466,7 +466,7 @@ public class TestQueryInterface extends TestHelper {
 	
 	/**
 	 * Testet, ob der Rückgabewert der Methode
-	 * {@link db.query.QueryInterface#search(String, int)} vom Typ
+	 * {@link haushaltsbuch.db.query.QueryInterface#search(String, int)} vom Typ
 	 * {@link java.lang.String} ist.
 	 */
 	@Test

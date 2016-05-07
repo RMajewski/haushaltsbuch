@@ -27,7 +27,7 @@ import org.netbeans.jemmy.operators.JInternalFrameOperator;
 
 /**
  * Implementiert das Testprogramm, um jemmy- und Fit-Tests auszufügen, um die
- * {@link haushaltsbuch.elementes.ToolBarMain} zu testen.
+ * {@link haushaltsbuch.elements.ToolBarMain} zu testen.
  * 
  * @author René Majewski
  *

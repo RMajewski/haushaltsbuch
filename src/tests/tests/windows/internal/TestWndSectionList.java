@@ -27,7 +27,7 @@ import tests.testcase.GuiWndIdNameTest;
 
 /**
  * Enthält die GUI-Tests für das Unterfenster 
- * {@link windows.internal.WndSectionList}.
+ * {@link haushaltsbuch.windows.internal.WndSectionList}.
  * 
  * @author René Majewski
  */

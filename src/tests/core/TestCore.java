@@ -308,7 +308,7 @@ public class TestCore {
 	 * 
 	 * @param path Verzeichnis, in dem sich die Datei befindet
 	 * 
-	 * @param file Datei-Name
+	 * @param name Datei-Name
 	 * 
 	 * @param extension Datei-Endung
 	 * 

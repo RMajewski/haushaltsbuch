@@ -33,7 +33,7 @@ import haushaltsbuch.datas.LogData;
 import haushaltsbuch.elements.StatusBar;
 
 /**
- * Testet die Klasse {@link elements.StatusBar}
+ * Testet die Klasse {@link haushaltsbuch.elements.StatusBar}
  * 
  * @author René Majewski
  * 
@@ -64,7 +64,7 @@ public class TestStatusBar {
 	/**
 	 * Testet, ob die StatusBar von JLabel abgeleitet wurde.
 	 * 
-	 * @see elements.StatusBar
+	 * @see haushaltsbuch.elements.StatusBar
 	 */
 	@Test
 	public void testStatusBarDerivedJLabel() {
@@ -74,7 +74,7 @@ public class TestStatusBar {
 	/**
 	 * Testet, ob die zurück gegebene Instanz nicht null ist.
 	 * 
-	 * @see elements.StatusBar#getInstance()
+	 * @see haushaltsbuch.elements.StatusBar#getInstance()
 	 */
 	@Test
 	public void testGetInstanceReturnNotNull() {
@@ -82,7 +82,7 @@ public class TestStatusBar {
 	}
 	
 	/**
-	 * Testet, ob {@link elements.StatusBar#getInstance()} eine Instanz von
+	 * Testet, ob {@link haushaltsbuch.elements.StatusBar#getInstance()} eine Instanz von
 	 * StatusBar zurück gibt.
 	 */
 	@Test
@@ -92,9 +92,9 @@ public class TestStatusBar {
 	
 	/**
 	 * Testet, ob die StatusBar initalisiert wurde, auch wenn vorher
-	 * {@link elements.StatusBar#close()} aufgerufen wurde.
+	 * {@link haushaltsbuch.elements.StatusBar#close()} aufgerufen wurde.
 	 * 
-	 * @see elements.StatusBar#getInstance()
+	 * @see haushaltsbuch.elements.StatusBar#getInstance()
 	 */
 	@Test
 	public void testGetInstanceAfterCloser() {
@@ -105,7 +105,7 @@ public class TestStatusBar {
 	/**
 	 * Testet, ob eine initalisierte Liste (ohne Einträge) zurück gebenen wird.
 	 * 
-	 * @see elements.StatusBar#getLog()
+	 * @see haushaltsbuch.elements.StatusBar#getLog()
 	 */
 	@Test
 	public void testGetLog() {
@@ -117,7 +117,7 @@ public class TestStatusBar {
 	/**
 	 * Testet, ob eine "normale" Nachricht in die Liste eingefügt werden wird.
 	 * 
-	 * @see elements.StatusBar#setMessage(String)
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
 	 */
 	@Test
 	public void testSetMessageInsertList() {
@@ -132,7 +132,7 @@ public class TestStatusBar {
 	/**
 	 * Testet, ob eine "normale" Nachricht angezeigt wird.
 	 * 
-	 * @see elements.StatusBar#setMessage(String)
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
 	 */
 	@Test
 	public void testSetMessageDrawMessage() {
@@ -145,7 +145,7 @@ public class TestStatusBar {
 	/**
 	 * Testet, ob eine Warnung in die Liste eingefügt werden wird.
 	 * 
-	 * @see elements.StatusBar#setMessage(String)
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
 	 */
 	@Test
 	public void testSetMessageAsWarningInsertList() {
@@ -160,7 +160,7 @@ public class TestStatusBar {
 	/**
 	 * Testet, ob eine Warnung angezeigt wird.
 	 * 
-	 * @see elements.StatusBar#setMessage(String)
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
 	 */
 	@Test
 	public void testSetMessageAsWarningDrawMessage() {
@@ -173,7 +173,7 @@ public class TestStatusBar {
 	/**
 	 * Testet, ob ein Fehler in die Liste eingefügt werden wird.
 	 * 
-	 * @see elements.StatusBar#setMessage(String)
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
 	 */
 	@Test
 	public void testSetMessageAsErrorInsertList() {
@@ -188,7 +188,7 @@ public class TestStatusBar {
 	/**
 	 * Testet, ob ein Fehler angezeigt wird.
 	 * 
-	 * @see elements.StatusBar#setMessage(String)
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
 	 */
 	@Test
 	public void testSetMessageAsErrorDrawMessage() {
@@ -202,7 +202,7 @@ public class TestStatusBar {
 	 * Testet, ob eine Nachricht, die nicht angezeigt werden soll, in die
 	 * Liste eingefügt wird.
 	 * 
-	 * @see elements.StatusBar#setMessage(String)
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
 	 */
 	@Test
 	public void testSetMessageAsNoOutInsertList() {
@@ -218,7 +218,7 @@ public class TestStatusBar {
 	 * Testet, ob eine Nachricht, die nicht angezeigt werden soll, auch nicht
 	 * angezeigt wird.
 	 * 
-	 * @see elements.StatusBar#setMessage(String)
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
 	 */
 	@Test
 	public void testSetMessageAsNoOutDrawMessage() {
@@ -231,7 +231,7 @@ public class TestStatusBar {
 	 * Testet, ob eine alles "In Ordnung"-Nachricht in die Liste eingefügt
 	 * werden wird.
 	 * 
-	 * @see elements.StatusBar#setMessage(String)
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
 	 */
 	@Test
 	public void testSetMessageAsOkInsertList() {
@@ -246,7 +246,7 @@ public class TestStatusBar {
 	/**
 	 * Testet, ob eine alles "In Ordnung"-Nachricht angezeigt wird.
 	 * 
-	 * @see elements.StatusBar#setMessage(String)
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
 	 */
 	@Test
 	public void testSetMessageAsOkDrawMessage() {

@@ -30,7 +30,7 @@ import haushaltsbuch.comparators.CompDateString;
 import haushaltsbuch.helper.HelperCalendar;
 
 /**
- * Testet die Klasse {@link haushaltsbuch.comparators.CompStringDate}
+ * Testet die Klasse {@link haushaltsbuch.comparators.CompDateString}
  * 
  * @author René Majewski
  *

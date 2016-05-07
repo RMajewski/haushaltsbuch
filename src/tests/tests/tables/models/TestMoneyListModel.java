@@ -43,7 +43,7 @@ import haushaltsbuch.db.query.Queries;
 import haushaltsbuch.tables.models.MoneyListModel;
 
 /**
- * Testet das Datenbank-Model {@link tables.models.MoneyListModel}
+ * Testet das Datenbank-Model {@link haushaltsbuch.tables.models.MoneyListModel}
  * 
  * @author René Majewski
  * 
@@ -139,7 +139,7 @@ public class TestMoneyListModel {
 	/**
 	 * Testet, ob die Anzahl der Spalten richtig wiedergegeben wird.
 	 * 
-	 * @see tables.models.MoneyListModel#getColumnCount()
+	 * @see haushaltsbuch.tables.models.MoneyListModel#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -149,7 +149,7 @@ public class TestMoneyListModel {
 	/**
 	 * Testet, ob die Anzahl an Zeilen richtig wiedergegeben wurde.
 	 * 
-	 * @see tables.models.MoneyListModel#getRowCount()
+	 * @see haushaltsbuch.tables.models.MoneyListModel#getRowCount()
 	 */
 	@Test
 	public void testGetRowCount() {
@@ -157,7 +157,7 @@ public class TestMoneyListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.MoneyListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.MoneyListModel#getValueAt(int, int)}
 	 * die ID liefert, wenn Spalte 0 ausgewählt ist.
 	 */
 	@Test
@@ -166,7 +166,7 @@ public class TestMoneyListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.MoneyListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.MoneyListModel#getValueAt(int, int)}
 	 * das Datum liefert, wenn Spalte 1 ausgewählt ist.
 	 */
 	@Test
@@ -176,7 +176,7 @@ public class TestMoneyListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.MoneyListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.MoneyListModel#getValueAt(int, int)}
 	 * die Einnahme bzw die Ausgabe liefert, wenn Spalte 2 ausgewählt ist.
 	 */
 	@Test
@@ -186,7 +186,7 @@ public class TestMoneyListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.MoneyListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.MoneyListModel#getValueAt(int, int)}
 	 * die Beschreibung liefert, wenn Spalte 4 ausgewählt ist.
 	 */
 	@Test
@@ -195,7 +195,7 @@ public class TestMoneyListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.MoneyListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.MoneyListModel#getValueAt(int, int)}
 	 * den Betrag liefert, wenn Spalte 3 ausgewählt ist.
 	 */
 	@Test
@@ -224,7 +224,7 @@ public class TestMoneyListModel {
 	 * Testet, ob die Daten der angegebenen Zeile richtig zurück gegeben
 	 * wurden.
 	 * 
-	 * @see tables.models.MoneyListModel#getRowDataAt(int)
+	 * @see haushaltsbuch.tables.models.MoneyListModel#getRowDataAt(int)
 	 */
 	@Test
 	public void testGetRowDataAt() {

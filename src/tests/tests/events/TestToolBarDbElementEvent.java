@@ -86,7 +86,7 @@ public class TestToolBarDbElementEvent {
 	/**
 	 * Testet, ob der Konstruktor richtig initalisiert hat.
 	 * 
-	 * @see haushaltsbuch.events.ToolBarDbElementEvent#ToolBarDbElementEvent(Object, boolean)
+	 * @see haushaltsbuch.events.ToolBarDbElementEvent#ToolBarDbElementEvent(Object, boolean, WndTableFrame)
 	 */
 	@Test
 	public void testToolBarDbElementEvent() {

@@ -22,7 +22,7 @@ package tests.tests.db.query;
 import haushaltsbuch.db.query.Query;
 
 /**
- * Beinhaltet eine Implementation der {@link db.query.Query}-Klasse zum
+ * Beinhaltet eine Implementation der {@link haushaltsbuch.db.query.Query}-Klasse zum
  * testen der implementierten Methoden.
  * 
  * @author René Majewski
@@ -49,7 +49,7 @@ public class TestQueryImplementation extends Query {
 	}
 	
 	/**
-	 * Ruft zum testen die Methode {@link db.query.Query#replaceId(int, StringBuilder, boolean)}
+	 * Ruft zum testen die Methode {@link haushaltsbuch.db.query.Query#replaceId(int, StringBuilder, boolean)}
 	 * auf
 	 * 
 	 * @param id ID, die in die Zeichenkette geschrieben werden soll.

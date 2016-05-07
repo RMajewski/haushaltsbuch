@@ -58,7 +58,7 @@ import haushaltsbuch.helper.HelperCalendar;
 import tests.testcase.TestReports;
 
 /**
- * Testet die Daten-Klasse {@link datas.ReportWeekData}
+ * Testet die Daten-Klasse {@link haushaltsbuch.datas.ReportWeekData}
  * 
  * @author René Majewski
  *
@@ -241,7 +241,7 @@ public class TestReportWeekData extends TestReports {
 	}
 	
 	/**
-	 * Überprüft, ob die Konstante {@link datas.ReportWeekData#DRAW_DATE_FROM}
+	 * Überprüft, ob die Konstante {@link haushaltsbuch.datas.ReportWeekData#DRAW_DATE_FROM}
 	 * richtig gesetzt ist.
 	 */
 	@Test
@@ -250,7 +250,7 @@ public class TestReportWeekData extends TestReports {
 	}
 	
 	/**
-	 * Überprüft, ob die Konstante {@link datas.ReportWeekData#DRAW_DATE_TO}
+	 * Überprüft, ob die Konstante {@link haushaltsbuch.datas.ReportWeekData#DRAW_DATE_TO}
 	 * richtig gesetzt ist.
 	 */
 	@Test
@@ -261,7 +261,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft ob das ausgewählte Jahre richtig wiedergegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#getYear()
+	 * @see haushaltsbuch.datas.ReportWeekData#getYear()
 	 */
 	@Test
 	public void testGetYear() {
@@ -271,7 +271,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, die Einstellungen neu gesetzt werden können
 	 * 
-	 * @see datas.ReportWeekData#setPreferences(ReportPreferences)
+	 * @see haushaltsbuch.datas.ReportWeekData#setPreferences(ReportPreferencesData)
 	 */
 	@Test
 	public void testSetPreferences() {
@@ -319,7 +319,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Anzahl der Wochennummern für 2016 korrekt zurück
 	 * gegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#ReportWeekData(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#ReportWeekData(ReportPreferencesData)
 	 */
 	@Test
 	public void testGetWeekNumbersFor2016() {
@@ -333,7 +333,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Anzahl der Wochennummern für 2000 korrekt zurück
 	 * gegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#getWeekNumber(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getWeekNumber(int)
 	 */
 	@Test
 	public void testGetWeekNumbersFor2000() {
@@ -348,7 +348,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft ob die Wochennummern richtig zurück gegeben werden
 	 * 
-	 * @see datas.ReportWeekData#getWeekNumber(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getWeekNumber(int)
 	 */
 	@Test
 	public void testGetWeekNumber() {
@@ -360,7 +360,7 @@ public class TestReportWeekData extends TestReports {
 	 * Anzahl Spalten ermitteln, wenn keine zusätzlichen Daten angezeigt werden
 	 * sollen.
 	 * 
-	 * @see datas.ReportWeekData#getColumnCount()
+	 * @see haushaltsbuch.datas.ReportWeekData#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -371,7 +371,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Anzahl der Spalten stimmen, wenn zusätzlich noch die
 	 * Spalte "bis" mit angegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#getColumnCount()
+	 * @see haushaltsbuch.datas.ReportWeekData#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCountWithDateTo() {
@@ -387,7 +387,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Anzahl der Spalten stimmen, wenn zusätzlich noch die
 	 * Spalte "von" mit angegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#getColumnCount()
+	 * @see haushaltsbuch.datas.ReportWeekData#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCountWithDateFrom() {
@@ -403,7 +403,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Anzahl der Spalten stimmen, wenn zusätzlich noch die
 	 * Spalte "von" und die Spalte "bis" mit angegeben werden.
 	 * 
-	 * @see datas.ReportWeekData#getColumnCount()
+	 * @see haushaltsbuch.datas.ReportWeekData#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCountWithDateFromAndDateTo() {
@@ -419,7 +419,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können.
 	 * 
-	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 * @see haushaltsbuch.datas.ReportWeekData#setColumnHeader(TableColumnModel)
 	 */
 	@Test
 	public void testSetColumnHeader() {
@@ -449,7 +449,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
 	 * Standard-Spalten wird noch die Spalte "von" angezeigt.
 	 * 
-	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 * @see haushaltsbuch.datas.ReportWeekData#setColumnHeader(TableColumnModel)
 	 */
 	@Test
 	public void testSetColumnHeaderWithDateFrom() {
@@ -483,7 +483,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
 	 * Standard-Spalten wird noch die Spalte "bis" angezeigt.
 	 * 
-	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 * @see haushaltsbuch.datas.ReportWeekData#setColumnHeader(TableColumnModel)
 	 */
 	@Test
 	public void testSetColumnHeaderWithDateTo() {
@@ -516,7 +516,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Spaltenüberschriften gesetzt werden können. Neben den
 	 * Standard-Spalten wird noch die Spalten "von" und "bis" angezeigt.
 	 * 
-	 * @see datas.ReportWeekData#setHeader(TableColumnModel)
+	 * @see haushaltsbuch.datas.ReportWeekData#setColumnHeader(TableColumnModel)
 	 */
 	@Test
 	public void testSetColumnHeaderWithDateFromAndDateTo() {
@@ -552,7 +552,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Einnahmen für die angegebene Woche richtig zurück
 	 * gegeben werden.
 	 * 
-	 * @see datas.ReportWeekData#incoming(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#incoming(int)
 	 */
 	@Test
 	public void testIncoming() {
@@ -563,7 +563,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob die Einnahmen für die 1. Woche richtig ermittelt wurden.
 	 * 
-	 * @see datas.ReportWeekData#incoming(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#incoming(int)
 	 */
 	@Test
 	public void testIncomingWeekZero() {
@@ -574,7 +574,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Ausgaben für die angegebene Woche richtig zurück
 	 * gegeben werden.
 	 * 
-	 * @see datas.ReportWeekData#outgoing(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#outgoing(int)
 	 */
 	@Test
 	public void testOutgoing() {
@@ -585,7 +585,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob die Ausgaben für die 1. Woche richtig ermittelt wurden.
 	 * 
-	 * @see datas.ReportWeekData#incoming(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#incoming(int)
 	 */
 	@Test
 	public void testOutgoingWeekZero() {
@@ -596,7 +596,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob die Differenz für die angegebene Woche richtig zurück
 	 * gegeben werden.
 	 * 
-	 * @see datas.ReportWeekData#deviation(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#deviation(int)
 	 */
 	@Test
 	public void testDeviation() {
@@ -607,7 +607,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob die Differenz für die 1. Woche richtig ermittelt wurden.
 	 * 
-	 * @see datas.ReportWeekData#deviation(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#deviation(int)
 	 */
 	@Test
 	public void testDeviationWeekZero() {
@@ -618,7 +618,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, dass die Spalte 'von' angezeigt werden soll, wenn dies in den
 	 * Einstellungen angegeben ist.
 	 * 
-	 * @see datas.ReportWeekData#drawDateFrom()
+	 * @see haushaltsbuch.datas.ReportWeekData#drawDateFrom()
 	 */
 	@Test
 	public void testDrawDateFromReturnIsTrueWithOneInPreferences() {
@@ -630,7 +630,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, dass die Spalte 'von' nicht angezeigt werden soll, wenn es 
 	 * keine Angabe in den Einstellungen gibt.
 	 * 
-	 * @see datas.ReportWeekData#drawDateFrom()
+	 * @see haushaltsbuch.datas.ReportWeekData#drawDateFrom()
 	 */
 	@Test
 	public void TestDrawDateFromReturnIsFalse() {
@@ -641,7 +641,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, dass die Spalte 'von' nicht angezeigt werden soll, wenn in den
 	 * Einstellungen eine 0 vermerkt ist.
 	 * 
-	 * @see datas.ReportWeekData#drawDateFrom()
+	 * @see haushaltsbuch.datas.ReportWeekData#drawDateFrom()
 	 */
 	@Test
 	public void TestDrawDateFromReturnIsFalseWithZeroInPreferences() {
@@ -653,7 +653,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, dass die Spalte 'bis' angezeigt werden soll, wenn dies in den
 	 * Einstellungen angegeben ist.
 	 * 
-	 * @see datas.ReportWeekData#drawDateTo()
+	 * @see haushaltsbuch.datas.ReportWeekData#drawDateTo()
 	 */
 	@Test
 	public void testDrawDateToReturnIsTrueWithOneInPreferences() {
@@ -665,7 +665,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, dass die Spalte 'bis' nicht angezeigt werden soll, wenn es 
 	 * keine Angabe in den Einstellungen gibt.
 	 * 
-	 * @see datas.ReportWeekData#drawDateTo()
+	 * @see haushaltsbuch.datas.ReportWeekData#drawDateTo()
 	 */
 	@Test
 	public void TestDrawDateToReturnIsFalse() {
@@ -676,7 +676,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, dass die Spalte 'bis' nicht angezeigt werden soll, wenn in den
 	 * Einstellungen eine 0 vermerkt ist.
 	 * 
-	 * @see datas.ReportWeekData#drawDateTo()
+	 * @see haushaltsbuch.datas.ReportWeekData#drawDateTo()
 	 */
 	@Test
 	public void TestDrawDateToReturnIsFalseWithZeroInPreferences() {
@@ -687,7 +687,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob der 1. Wochentag nicht <b>null</b> ist.
 	 * 
-	 * @see datas.ReportWeekData#getDateFrom(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateFrom(int)
 	 */
 	@Test
 	public void TestGetDateFromReturnNotNull() {
@@ -697,7 +697,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob der 1. Wochentag keine leere Zeichenkette ist.
 	 * 
-	 * @see datas.ReportWeekData#getDateFrom(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateFrom(int)
 	 */
 	@Test
 	public void TestGetDateFromReturnNotEmpty() {
@@ -708,7 +708,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob eine leere Zeichenkette zurück gegeben wird, wenn die Woche
 	 * kleiner 0 ist.
 	 * 
-	 * @see datas.ReportWeekData#getDateFrom(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateFrom(int)
 	 */
 	@Test
 	public void TestGetDateFromReturnIsEmptyWithMinusOneAsParameter() {
@@ -718,7 +718,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob der 1. Wochentag richtig zurück gegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#getDateFrom(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateFrom(int)
 	 */
 	@Test
 	public void TestGetDateFromReturnIsRight() {
@@ -733,7 +733,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüftb, ob der 1. Tag in 2016 als 1. Tag in der 0. Woche zurück
 	 * gegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#getDareFrom(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateFrom(int)
 	 */
 	@Test
 	public void TestGetDateFromWithZoroAsParameterReturnTheFirstDayIn2016() {
@@ -747,7 +747,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob der letzte Wochentag nicht <b>null</b> ist.
 	 * 
-	 * @see datas.ReportWeekData#getDateTo(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateTo(int)
 	 */
 	@Test
 	public void TestGetDateToReturnNotNull() {
@@ -757,7 +757,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob der letzte Wochentag keine leere Zeichenkette ist.
 	 * 
-	 * @see datas.ReportWeekData#getDateTo(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateTo(int)
 	 */
 	@Test
 	public void TestGetDateToReturnNotEmpty() {
@@ -768,7 +768,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob eine leere Zeichenkette zurück gegeben wird, wenn die Woche
 	 * kleiner 0 ist.
 	 * 
-	 * @see datas.ReportWeekData#getDateTo(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateTo(int)
 	 */
 	@Test
 	public void TestGetDateToReturnIsEmptyWithMinusOneAsParameter() {
@@ -778,7 +778,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob der letzte Wochentag richtig zurück gegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#getDateTo(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateTo(int)
 	 */
 	@Test
 	public void TestGetDateToReturnIsRight() {
@@ -793,7 +793,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob 0 zurück gegeben wird, wenn eine Woche kleiner 0 angegeben
 	 * wird.
 	 * 
-	 * @see datas.ReportWeekData#getDateFromAsLong(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateFromAsLong(int)
 	 */
 	@Test
 	public void TestGetDateAsLongReturnZeroWithMinusOneAsParamter() {
@@ -803,7 +803,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob der richtige <b>long</b>-Wert zurück gegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#getDateFromAsLong(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateFromAsLong(int)
 	 */
 	@Test
 	public void TestGetDateFromAsLongReturnIsRight() {
@@ -817,7 +817,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob der richtige <b>long</b>-Wert zurück gegeben wird, wenn
 	 * die 0. Woche ausgewählt wird.
 	 * 
-	 * @see datas.ReportWeekData#getDateFromAsLong(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateFromAsLong(int)
 	 */
 	@Test
 	public void TestGetDateFromAsLongReturnTheFirstDayOf2016() {
@@ -829,7 +829,7 @@ public class TestReportWeekData extends TestReports {
 	 * Überprüft, ob 0 zurück gegeben wird, wenn eine Woche kleiner 0 angegeben
 	 * wird.
 	 * 
-	 * @see datas.ReportWeekData#getDateToAsLong(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateToAsLong(int)
 	 */
 	@Test
 	public void TestGetDateToAsLongReturnZeroWithMinusOneAsParamter() {
@@ -839,7 +839,7 @@ public class TestReportWeekData extends TestReports {
 	/**
 	 * Überprüft, ob der richtige <b>long</b>-Wert zurück gegeben wird.
 	 * 
-	 * @see datas.ReportWeekData#getDateToAsLong(int)
+	 * @see haushaltsbuch.datas.ReportWeekData#getDateToAsLong(int)
 	 */
 	@Test
 	public void TestGetDateToAsLongReturnIsRight() {

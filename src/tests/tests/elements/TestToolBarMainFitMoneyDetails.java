@@ -34,7 +34,7 @@ import haushaltsbuch.windows.internal.WndMoneyList;
 
 /**
  * Implementiert das Testprogramm, um jemmy- und Fit-Tests auszufügen, um die
- * {@link haushaltsbuch.elementes.ToolBarMain} zu testen.
+ * {@link haushaltsbuch.elements.ToolBarMain} zu testen.
  * 
  * @author René Majewski
  *

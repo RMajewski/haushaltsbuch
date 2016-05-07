@@ -34,7 +34,7 @@ import tests.testcase.GuiWndTest;
 
 /**
  * Enhält die GUI-Tests für das Unterfenster
- * {@link windows.internal.WndMoneyList}.
+ * {@link haushaltsbuch.windows.internal.WndMoneyList}.
  * 
  * @author René Majewski
  * 

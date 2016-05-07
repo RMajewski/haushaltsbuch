@@ -66,7 +66,7 @@ public class TestReportSectionModel extends TestReports {
 	/**
 	 * Testet, ob die Spalten-Anzahl richtig ermittelt wird.
 	 * 
-	 * @see tables.models.ReportSectionModel#getColumnCount()
+	 * @see haushaltsbuch.tables.models.ReportSectionModel#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -79,7 +79,7 @@ public class TestReportSectionModel extends TestReports {
 	/**
 	 * Testet, ob die Zeilen-Anzahl richtig ermittelt wird.
 	 * 
-	 * @see tables.models.ReportSectionModel#getRowCount()
+	 * @see haushaltsbuch.tables.models.ReportSectionModel#getRowCount()
 	 */
 	@Test
 	public void testGetRowCount() {
@@ -92,7 +92,7 @@ public class TestReportSectionModel extends TestReports {
 	/**
 	 * Testet, ob der Name der Kategorie richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportSectionModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportSectionModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtZeroColumn() {
@@ -112,7 +112,7 @@ public class TestReportSectionModel extends TestReports {
 	/**
 	 * Testet, ob die Einnahmen richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportSectionModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportSectionModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtOneColumn() {
@@ -133,7 +133,7 @@ public class TestReportSectionModel extends TestReports {
 	/**
 	 * Testet, ob die Ausgaben richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportSectionModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportSectionModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtTwoColumn() {
@@ -154,7 +154,7 @@ public class TestReportSectionModel extends TestReports {
 	/**
 	 * Testet, ob die Differenz richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportSectionModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportSectionModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtThreeColumn() {

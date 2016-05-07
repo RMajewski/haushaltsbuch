@@ -28,7 +28,7 @@ import haushaltsbuch.db.query.Queries;
 import haushaltsbuch.db.query.QueryInterface;
 
 /**
- * Es wird die Klasse {@link db.query.Queries} getestet.
+ * Es wird die Klasse {@link haushaltsbuch.db.query.Queries} getestet.
 
  * @author René Majewski
  * 
@@ -37,8 +37,8 @@ import haushaltsbuch.db.query.QueryInterface;
  */
 public class TestQueries {
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#category} ein Objekt der
-	 * Klasse {@link db.query.Category} ist.
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#category} ein Objekt der
+	 * Klasse {@link haushaltsbuch.db.query.Category} ist.
 	 */
 	@Test
 	public void testCategoryRightClassName() {
@@ -46,8 +46,8 @@ public class TestQueries {
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#category} das Interface
-	 * {@link db.query.QueryInterface} implementiert.
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#category} das Interface
+	 * {@link haushaltsbuch.db.query.QueryInterface} implementiert.
 	 */
 	@Test
 	public void testCategoryInstanceofQueryInterface() {
@@ -55,8 +55,8 @@ public class TestQueries {
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#section} ein Objekt der
-	 * Klasse {@link db.query.Section} ist.
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#section} ein Objekt der
+	 * Klasse {@link haushaltsbuch.db.query.Section} ist.
 	 */
 	@Test
 	public void testSectionRightClassName() {
@@ -64,8 +64,8 @@ public class TestQueries {
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#section} das Interface
-	 * {@link db.query.QueryInterface} implementiert.
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#section} das Interface
+	 * {@link haushaltsbuch.db.query.QueryInterface} implementiert.
 	 */
 	@Test
 	public void testSectionInstanceofQueryInterface() {
@@ -73,8 +73,8 @@ public class TestQueries {
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#moneyDetails} ein Objekt
-	 * der Klasse {@link db.query.MoneyDetails} ist.
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#moneyDetails} ein Objekt
+	 * der Klasse {@link haushaltsbuch.db.query.MoneyDetails} ist.
 	 */
 	@Test
 	public void testMoneyDetailsRightClassName() {
@@ -82,8 +82,8 @@ public class TestQueries {
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#moneyDetails} das Interface
-	 * {@link db.query.QueryInterface} implementiert.
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#moneyDetails} das Interface
+	 * {@link haushaltsbuch.db.query.QueryInterface} implementiert.
 	 */
 	@Test
 	public void testMoneyDetailsInstanceofQueryInterface() {
@@ -91,8 +91,8 @@ public class TestQueries {
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#money} ein Objekt der
-	 * Klasse {@link db.query.Money} ist.
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#money} ein Objekt der
+	 * Klasse {@link haushaltsbuch.db.query.Money} ist.
 	 */
 	@Test
 	public void testMoneyRightClassName() {
@@ -100,8 +100,8 @@ public class TestQueries {
 	}
 	
 	/**
-	 * Testet ob das Attribut {@link db.query.Queries#money} das Interface
-	 * {@link db.query.QueryInterface} implementiert.
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#money} das Interface
+	 * {@link haushaltsbuch.db.query.QueryInterface} implementiert.
 	 */
 	@Test
 	public void testMoneyInstanceofQueryInterface() {

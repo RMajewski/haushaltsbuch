@@ -91,7 +91,7 @@ public class TestData {
 	/**
 	 * Gibt die Startzeit zurück
 	 * 
-	 * @param Startzeit des Tests
+	 * @return Startzeit des Tests
 	 */
 	public long getStart() {
 		return _start;

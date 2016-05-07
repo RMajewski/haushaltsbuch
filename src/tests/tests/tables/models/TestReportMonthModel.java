@@ -64,7 +64,7 @@ public class TestReportMonthModel extends TestReports {
 	/**
 	 * Testet, ob die Spalten-Anzahl richtig ermittelt wird.
 	 * 
-	 * @see tables.models.ReportMonthModel#getColumnCount()
+	 * @see haushaltsbuch.tables.models.ReportMonthModel#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -77,7 +77,7 @@ public class TestReportMonthModel extends TestReports {
 	/**
 	 * Testet, ob die Zeilen-Anzahl richtig ermittelt wird.
 	 * 
-	 * @see tables.models.ReportMonthModel#getRowCount()
+	 * @see haushaltsbuch.tables.models.ReportMonthModel#getRowCount()
 	 */
 	@Test
 	public void testGetRowCount() {
@@ -90,7 +90,7 @@ public class TestReportMonthModel extends TestReports {
 	/**
 	 * Testet, ob der Tag richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportMonthModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportMonthModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtZeroColumn() {
@@ -110,7 +110,7 @@ public class TestReportMonthModel extends TestReports {
 	/**
 	 * Testet, ob die Einnahmen richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportMonthModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportMonthModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtOneColumn() {
@@ -130,7 +130,7 @@ public class TestReportMonthModel extends TestReports {
 	/**
 	 * Testet, ob die Ausgaben richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportMonthModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportMonthModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtTwoColumn() {
@@ -150,7 +150,7 @@ public class TestReportMonthModel extends TestReports {
 	/**
 	 * Testet, ob die Ausgaben richtig zurück gegeben wird.
 	 * 
-	 * @see tables.models.ReportMonthModel#getValueAt(int, int)
+	 * @see haushaltsbuch.tables.models.ReportMonthModel#getValueAt(int, int)
 	 */
 	@Test
 	public void testGetValueAtThreeColumn() {

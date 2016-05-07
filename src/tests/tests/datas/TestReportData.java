@@ -63,7 +63,7 @@ public class TestReportData extends TestReports {
 	/**
 	 * Testet, ob der Konstruktor richtig initalisiert.
 	 * 
-	 * @see datas.ReportData#ReportData(ReportPreferencesData)
+	 * @see haushaltsbuch.datas.ReportData#ReportData(ReportPreferencesData)
 	 */
 	@Test
 	public void testReportData() {
@@ -75,7 +75,7 @@ public class TestReportData extends TestReports {
 	 * Testet, ob aus dem übergebenen Long-Wert ein lesbares Daten erstellt
 	 * werden konnte.
 	 * 
-	 * @see datas.ReportData#getDateAsString(long)
+	 * @see haushaltsbuch.datas.ReportData#getDateAsString(long)
 	 */
 	@Test
 	public void testGetDateAsString() {
@@ -87,7 +87,7 @@ public class TestReportData extends TestReports {
 	/**
 	 * Testet, ob die Einstellungen richtig übernommen werden.
 	 * 
-	 * @see datas.ReportData#setPreferences(ReportPreferencesData)
+	 * @see haushaltsbuch.datas.ReportData#setPreferences(ReportPreferencesData)
 	 */
 	@Test
 	public void testSetPreferences() {
@@ -103,7 +103,7 @@ public class TestReportData extends TestReports {
 	/**
 	 * Testet, ob das Jahr richtig zurück gegeben wird.
 	 * 
-	 * @see datas.ReportData#getYear()
+	 * @see haushaltsbuch.datas.ReportData#getYear()
 	 */
 	@Test
 	public void testGetYear() {
@@ -114,7 +114,7 @@ public class TestReportData extends TestReports {
 	/**
 	 * Testet, ob der Monat richtig zurück gegeben wird.
 	 * 
-	 * @see datas.ReportData#getMonth()
+	 * @see haushaltsbuch.datas.ReportData#getMonth()
 	 */
 	@Test
 	public void testGetMonth() {
@@ -125,7 +125,7 @@ public class TestReportData extends TestReports {
 	/**
 	 * Testet, ob 0 zurück gegeben wird, da die Listen noch nicht gefüllt sind.
 	 * 
-	 * @see datas.ReportData#incoming(int)
+	 * @see haushaltsbuch.datas.ReportData#incoming(int)
 	 */
 	@Test
 	public void testIncoming() {
@@ -135,7 +135,7 @@ public class TestReportData extends TestReports {
 	/**
 	 * Testet, ob 0 zurück gegeben wird, da die Listen noch nicht gefüllt sind.
 	 * 
-	 * @see datas.ReportData#outgoing(int)
+	 * @see haushaltsbuch.datas.ReportData#outgoing(int)
 	 */
 	@Test
 	public void testOutgoing() {
@@ -145,7 +145,7 @@ public class TestReportData extends TestReports {
 	/**
 	 * Testet, ob 0 zurück gegeben wird, da die Listen noch nicht gefüllt sind.
 	 * 
-	 * @see datas.ReportData#deviation(int)
+	 * @see haushaltsbuch.datas.ReportData#deviation(int)
 	 */
 	@Test
 	public void testDeviation() {
@@ -154,7 +154,7 @@ public class TestReportData extends TestReports {
 	
 	/**
 	 * Überprüft ob die abstrakte Methode
-	 * {@link datas.ReportData#getColumnCount()} existiert.
+	 * {@link haushaltsbuch.datas.ReportData#getColumnCount()} existiert.
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -163,7 +163,7 @@ public class TestReportData extends TestReports {
 	
 	/**
 	 * Überprüft ob die abstrakte Methode
-	 * {@link datas.ReportData#getColumnCount()} keine Parameter hat.
+	 * {@link haushaltsbuch.datas.ReportData#getColumnCount()} keine Parameter hat.
 	 */
 	@Test
 	public void testGetColumnCountNoParameter() {
@@ -172,7 +172,7 @@ public class TestReportData extends TestReports {
 	
 	/**
 	 * Überprüft ob der Rückgabe-Type der abstrakten Methode
-	 * {@link datas.ReportData#getColumnCount()} int ist.
+	 * {@link haushaltsbuch.datas.ReportData#getColumnCount()} int ist.
 	 */
 	@Test
 	public void testGetColumnCountReturnInt() {
@@ -182,7 +182,7 @@ public class TestReportData extends TestReports {
 	
 	/**
 	 * Überprüft ob die abstrakte Methode
-	 * {@link datas.ReportData#getRowCount()} existiert.
+	 * {@link haushaltsbuch.datas.ReportData#getRowCount()} existiert.
 	 */
 	@Test
 	public void testGetRowCount() {
@@ -191,7 +191,7 @@ public class TestReportData extends TestReports {
 	
 	/**
 	 * Überprüft ob die abstrakte Methode
-	 * {@link datas.ReportData#getRowCount()} keine Parameter hat.
+	 * {@link haushaltsbuch.datas.ReportData#getRowCount()} keine Parameter hat.
 	 */
 	@Test
 	public void testGetRowCountNoParameter() {
@@ -200,7 +200,7 @@ public class TestReportData extends TestReports {
 	
 	/**
 	 * Überprüft ob der Rückgabe-Type der abstrakten Methode
-	 * {@link datas.ReportData#getRowCount()} int ist.
+	 * {@link haushaltsbuch.datas.ReportData#getRowCount()} int ist.
 	 */
 	@Test
 	public void testGetRowCountReturnInt() {
@@ -210,7 +210,7 @@ public class TestReportData extends TestReports {
 	
 	/**
 	 * Überprüft ob die abstrakte Methode
-	 * {@link datas.ReportData#setColumnHeader(javax.swing.table.TableColumnModel)}
+	 * {@link haushaltsbuch.datas.ReportData#setColumnHeader(javax.swing.table.TableColumnModel)}
 	 * existiert.
 	 */
 	@Test
@@ -220,7 +220,7 @@ public class TestReportData extends TestReports {
 	
 	/**
 	 * Überprüft ob die abstrakte Methode
-	 * {@link datas.ReportData#setColumnHeader(javax.swing.table.TableColumnModel)}
+	 * {@link haushaltsbuch.datas.ReportData#setColumnHeader(javax.swing.table.TableColumnModel)}
 	 * einen Parameter vom Typ int hat.
 	 */
 	@Test
@@ -233,7 +233,7 @@ public class TestReportData extends TestReports {
 	
 	/**
 	 * Überprüft ob der Rückgabe-Type der abstrakten Methode
-	 * {@link datas.ReportData#getColumnCount()} int ist.
+	 * {@link haushaltsbuch.datas.ReportData#getColumnCount()} int ist.
 	 */
 	@Test
 	public void testSetColumnHeaderNoReturnType() {
@@ -244,7 +244,7 @@ public class TestReportData extends TestReports {
 	/**
 	 * Überprüft, ob auch wirklich eine Double-List zurück gegeben wird.
 	 * 
-	 * @see datas.ReportData#initDoubleList(int)
+	 * @see haushaltsbuch.datas.ReportData#initDoubleList(int)
 	 */
 	@Test
 	public void testInitDoubleListRightType() {
@@ -255,7 +255,7 @@ public class TestReportData extends TestReports {
 	/**
 	 * Überprüft, ob die Double-Liste richtig initalisiert wurde.
 	 * 
-	 * @see datas.ReportData#initDoubleList(int)
+	 * @see haushaltsbuch.datas.ReportData#initDoubleList(int)
 	 */
 	@Test
 	public void testInitDoubleList() {

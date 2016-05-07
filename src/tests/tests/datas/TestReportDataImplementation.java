@@ -27,7 +27,7 @@ import haushaltsbuch.datas.ReportData;
 import haushaltsbuch.datas.ReportPreferencesData;
 
 /**
- * Beinhaltet eine Implementation der Klasse {@link datas.ReportData}, um die
+ * Beinhaltet eine Implementation der Klasse {@link haushaltsbuch.datas.ReportData}, um die
  * dort implementierten Methoden zu testen.
  * 
  * @author René Majewski

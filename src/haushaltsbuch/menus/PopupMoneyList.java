@@ -25,11 +25,11 @@ import javax.swing.JMenuItem;
 
 /**
  * Initalisiert das Standart-Popup-Menü um Einträge, die speziell im
- * Fenster {@link windows.internal.WndMoneyList} gebraucht werden.
+ * Fenster {@link haushaltsbuch.windows.internal.WndMoneyList} gebraucht werden.
  * 
  * @author René Majewski
  *
- * @see menus.PopupStandardList
+ * @see haushaltsbuch.menus.PopupStandardList
  *
  * @version 0.1
  * @since 0.1

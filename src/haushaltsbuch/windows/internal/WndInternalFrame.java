@@ -153,7 +153,8 @@ public class WndInternalFrame extends JInternalFrame {
 	 * Es wird gespeichert, ob die Datenbank-Elemente der ToolBar benötigt
 	 * werden.
 	 * 
-	 * @param Gibt an, ob die Datenbank-Elemente der ToolBar benötigt werden.
+	 * @param enableDbElements Gibt an, ob die Datenbank-Elemente der ToolBar
+	 * benötigt werden.
 	 */
 	public void setEnableDbElements(boolean enableDbElements) {
 		this._enableDbElements = enableDbElements;
@@ -172,7 +173,8 @@ public class WndInternalFrame extends JInternalFrame {
 	/**
 	 * Es wird gespeichert, ob das PDF-Report-Element der ToolBar benötigt wird.
 	 * 
-	 * @param Gibt an, ob das PDF-Report-Element der ToolBar benötigt wird.
+	 * @param enablePdfReport Gibt an, ob das PDF-Report-Element der ToolBar
+	 * benötigt wird.
 	 */
 	public void setEnablePdfReport(boolean enablePdfReport) {
 		_enablePdfReport = enablePdfReport;

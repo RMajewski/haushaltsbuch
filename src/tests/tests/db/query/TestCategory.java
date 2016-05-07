@@ -28,7 +28,7 @@ import haushaltsbuch.db.query.Category;
 import tests.testcase.TestHelper;
 
 /**
- * Enthält die Tests, um die Klasse {@link db.query.Category} zu testen.
+ * Enthält die Tests, um die Klasse {@link haushaltsbuch.db.query.Category} zu testen.
  * 
  * @author René Majewski
  * 
@@ -55,7 +55,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Category#createTable()} die
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Category#createTable()} die
 	 * richtig Rückgabe liefert.
 	 */
 	@Test
@@ -67,7 +67,7 @@ public class TestCategory extends TestHelper {
 	}
 
 	/**
-	 * Testest, ob die Methode {@link db.query.Category#delete(int)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Category#delete(int)} in
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
@@ -76,7 +76,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Category#insert()} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Category#insert()} in
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
@@ -85,7 +85,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#insert(String)} kein
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#insert(String)} kein
 	 * Fragezeichen zurück gibt.
 	 */
 	@Test
@@ -94,7 +94,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Category#insert(String)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Category#insert(String)} in
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
@@ -103,7 +103,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#insert(String)} ein
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#insert(String)} ein
 	 * Fragezeichen enhält, wenn der Parameter <b>null</b> ist.
 	 */
 	@Test
@@ -112,7 +112,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#insert(String)} keine
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#insert(String)} keine
 	 * leere Zeichenkette liefert, auch wenn der Parameter <b>null</b> ist.
 	 */
 	@Test
@@ -123,7 +123,7 @@ public class TestCategory extends TestHelper {
 	/**
 	 * Testet, ob die richtigen Spalten-Namen gesetzt wurden.
 	 * 
-	 * @see db.query.Category#Category()
+	 * @see haushaltsbuch.db.query.Category#Category()
 	 */
 	@Test
 	public void testRightColumnNames() {
@@ -134,7 +134,7 @@ public class TestCategory extends TestHelper {
 	/**
 	 * Testet, ob der richtige Tabellen-Name gesetzt wurde.
 	 * 
-	 * @see db.query.Category#Category()
+	 * @see haushaltsbuch.db.query.Category#Category()
 	 */
 	@Test
 	public void testRightTableName() {
@@ -142,7 +142,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Category#select()} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Category#select()} in
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
@@ -151,7 +151,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Category#update(int)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Category#update(int)} in
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test
@@ -160,7 +160,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int String)} die
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#update(int String)} die
 	 * übergebene ID in der Rückgabe enthält.
 	 */
 	@Test
@@ -170,7 +170,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int, String)} den
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#update(int, String)} den
 	 * übergebenen Namen enthält.
 	 */
 	@Test
@@ -180,7 +180,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#update(int, String)}
 	 * kein Fragezeichen in der Rückgabe enthält.
 	 */
 	@Test
@@ -189,7 +189,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#update(int, String)}
 	 * kein Fragezeichen in der Rückgabe enthält. Der Parameter für den Namen
 	 * is <b>null</b>. Der Parameter für die ID ist -1.
 	 */
@@ -199,7 +199,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#update(int, String)}
 	 * kein Fragezeichen in der Rückgabe enthält, der Parameter für die ID ist
 	 * -1.
 	 */
@@ -209,7 +209,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#update(int, String)}
 	 * keine leere Zeichenkette liefert, der Parameter für die ID ist -1.
 	 */
 	@Test
@@ -218,7 +218,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int String)} die
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#update(int String)} die
 	 * übergebene ID in der Rückgabe nicht enthält. Der Parameter ist -1.
 	 */
 	@Test
@@ -228,7 +228,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testet, ob die Methode {@link db.query.Category#update(int, String)}
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.Category#update(int, String)}
 	 * kein Fragezeichen in der Rückgabe enthält. Der Parameter für den Namen
 	 * is <b>null</b>
 	 */
@@ -238,7 +238,7 @@ public class TestCategory extends TestHelper {
 	}
 	
 	/**
-	 * Testest, ob die Methode {@link db.query.Category#update(int, String)} in
+	 * Testest, ob die Methode {@link haushaltsbuch.db.query.Category#update(int, String)} in
 	 * der Rückgabe 'category' enthält.
 	 */
 	@Test

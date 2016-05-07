@@ -29,7 +29,7 @@ import haushaltsbuch.datas.Data;
 import haushaltsbuch.datas.MoneyDetailsData;
 
 /**
- * Testet die Klasse {@link datas.MoneyDetailsData}
+ * Testet die Klasse {@link haushaltsbuch.datas.MoneyDetailsData}
  * 
  * @author René Majewski
  * 
@@ -89,8 +89,8 @@ public class TestMoneyDetailsData {
 	}
 	
 	/**
-	 * Testet ob die Klasse {@link datas.MoneyDetailsData} eine Instanz von der
-	 * Klasse {@link datas.Data} ist.
+	 * Testet ob die Klasse {@link haushaltsbuch.datas.MoneyDetailsData} eine Instanz von der
+	 * Klasse {@link haushaltsbuch.datas.Data} ist.
 	 */
 	@Test
 	public void testIdNameDataInstanceOfData() {
@@ -100,7 +100,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob der Konstruktor ohne Argumente richtig initalisiert
 	 * 
-	 * @see datas.MoneyDetailsData#MoneyDetailsData()
+	 * @see haushaltsbuch.datas.MoneyDetailsData#MoneyDetailsData()
 	 */
 	@Test
 	public void testMoneyDetailsData() {
@@ -116,7 +116,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob der Konstruktor mit der übergebenen ID richtig initalisiert.
 	 * 
-	 * @see datas.MoneyDetailsData#MoneyDetailsData(int)
+	 * @see haushaltsbuch.datas.MoneyDetailsData#MoneyDetailsData(int)
 	 */
 	@Test
 	public void testMoneyDetailsDataInt() {
@@ -133,7 +133,7 @@ public class TestMoneyDetailsData {
 	 * Testet, ob der Konstruktor mit allen übergebenen Daten richtig
 	 * initalisiert.
 	 * 
-	 * @see datas.MoneyDetailsData#MoneyDetailsData(int, int, int, int, double, String)
+	 * @see haushaltsbuch.datas.MoneyDetailsData#MoneyDetailsData(int, int, int, int, double, String)
 	 */
 	@Test
 	public void testMoneyDetailsDataIntIntIntIntDoubleString() {
@@ -150,7 +150,7 @@ public class TestMoneyDetailsData {
 	 * initalisiert, auch wenn als Beschreibung <b>null</b> übergebenen wird.
 	 * So sollte als Beschreibunge eine leere Zeichenkette gespeichert werden.
 	 * 
-	 * @see datas.MoneyDetailsData#MoneyDetailsData(int, int, int, int, double, String)
+	 * @see haushaltsbuch.datas.MoneyDetailsData#MoneyDetailsData(int, int, int, int, double, String)
 	 */
 	@Test
 	public void testMoneyDetailsDataIntIntIntIntDoubleStringNullAsString() {
@@ -166,7 +166,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob die ID des Money Datensatzes richtig zurück gegeben wird.
 	 * 
-	 * @see datas.MoneyDetailsData#getMoneyId()
+	 * @see haushaltsbuch.datas.MoneyDetailsData#getMoneyId()
 	 */
 	@Test
 	public void testGetMoneyId() {
@@ -176,7 +176,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob die ID des Money Datensatzes richtig übernommen wird.
 	 * 
-	 * @see datas.MoneyDetailsData#setMoneyId(int)
+	 * @see haushaltsbuch.datas.MoneyDetailsData#setMoneyId(int)
 	 */
 	@Test
 	public void testSetMoneyId() {
@@ -188,7 +188,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob die der Kategory richtig zurück gegeben wird.
 	 * 
-	 * @see datas.MoneyDetailsData#getCategoryId()
+	 * @see haushaltsbuch.datas.MoneyDetailsData#getCategoryId()
 	 */
 	@Test
 	public void testGetCategoryId() {
@@ -198,7 +198,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob die ID der Kategory richtig übernommen wird.
 	 * 
-	 * @see datas.MoneyDetailsData#setCategoryId(int)
+	 * @see haushaltsbuch.datas.MoneyDetailsData#setCategoryId(int)
 	 */
 	@Test
 	public void testSetCategoryId() {
@@ -210,7 +210,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob die ID des Geschäftes richtig zurück gegeben wird.
 	 * 
-	 * @see datas.MoneyDetailsData#getSectionId()
+	 * @see haushaltsbuch.datas.MoneyDetailsData#getSectionId()
 	 */
 	@Test
 	public void testGetSectionid() {
@@ -220,7 +220,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob die ID des Geschäftes richtig übernommen wird.
 	 * 
-	 * @see datas.MoneyDetailsData#setSectionId(int)
+	 * @see haushaltsbuch.datas.MoneyDetailsData#setSectionId(int)
 	 */
 	@Test
 	public void testSetSectionId() {
@@ -232,7 +232,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob das Geld richtig zurück gegeben wird.
 	 * 
-	 * @see datas.MoneyDetailsData#getMoney()
+	 * @see haushaltsbuch.datas.MoneyDetailsData#getMoney()
 	 */
 	@Test
 	public void testGetMoney() {
@@ -242,7 +242,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob das Geld richtig übernommen wird.
 	 * 
-	 * @see datas.MoneyDetailsData#getMoney()
+	 * @see haushaltsbuch.datas.MoneyDetailsData#getMoney()
 	 */
 	@Test
 	public void testSetMoney() {
@@ -254,7 +254,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob die Beschreibung richtig zurück gegeben wird.
 	 * 
-	 * @see datas.MoneyDetailsData#getComment()
+	 * @see haushaltsbuch.datas.MoneyDetailsData#getComment()
 	 */
 	@Test
 	public void testGetComment() {
@@ -264,7 +264,7 @@ public class TestMoneyDetailsData {
 	/**
 	 * Testet, ob die Beschreibung richtig übernommen wird.
 	 * 
-	 * @see datas.MoneyDetailsData#setComment(String)
+	 * @see haushaltsbuch.datas.MoneyDetailsData#setComment(String)
 	 */
 	@Test
 	public void testSetComment() {
@@ -277,7 +277,7 @@ public class TestMoneyDetailsData {
 	 * Testet, ob für die Beschreibung eine leere Zeichenkette gespeichert
 	 * wird, <b>null</b> als Argument übergeben wird.
 	 * 
-	 * @see datas.MoneyDetailsData#setComment(String)
+	 * @see haushaltsbuch.datas.MoneyDetailsData#setComment(String)
 	 */
 	@Test
 	public void testSetCommentNullAsParameter() {

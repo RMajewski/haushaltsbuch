@@ -195,9 +195,6 @@ public abstract class Query implements QueryInterface {
 	 * und des gespeicherten Tabellen-Namens erstellt.
 	 * 
 	 * @return Datenbank-Abfrage um neuen Datensatz einzufügen
-	 * 
-	 * @param quotes Bei <b>true</b> werden die Anführungszeichen gesetzt.
-	 * Bei <b>false</b> werden keine Anführungszeichen gesetzt.
 	 */
 	public String insertWithId() {
 		// Abfrage vorbereiten

@@ -52,8 +52,8 @@ public class TestDbChange {
 	}
 	
 	/**
-	 * Es wird überprüft, ob die Klasse {@link haushaltsbuch.DbInsert.DbChange}
-	 * von der Klasse {@link haushaltsbuch.action.Action} abgeleitet wurde.
+	 * Es wird überprüft, ob die Klasse {@link haushaltsbuch.actions.DbChange}
+	 * von der Klasse {@link haushaltsbuch.actions.Action} abgeleitet wurde.
 	 */
 	@Test
 	public void testDbNewInheritedAction() {

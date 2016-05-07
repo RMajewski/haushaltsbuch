@@ -43,7 +43,7 @@ public class ReportMonthModel extends ReportModel {
 	/**
 	 * Initalisiert diese Klasse.
 	 * 
-	 * @param preferences
+	 * @param data Daten der Monatsübersicht
 	 */
 	public ReportMonthModel(ReportMonthData data) {
 		// Initalisieren den Daten

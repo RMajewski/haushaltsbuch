@@ -159,7 +159,7 @@ public class MoneyDetailsListModel extends AbstractTableModel
 	 * liegende Tabelle angewiesen, dass neu gezeichnet werden muss. Bei
 	 * <b>false</b> wird dies nicht ausgelöst.
 	 * 
-	 * @see tables.models.DbModelInterface
+	 * @see haushaltsbuch.tables.models.DbModelInterface
 	 */
 	@Override
 	public void dataRefresh(boolean repaint) {

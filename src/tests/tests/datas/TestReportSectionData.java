@@ -53,7 +53,7 @@ import haushaltsbuch.db.query.Section;
 import tests.testcase.TestReports;
 
 /**
- * Testet die Klasse {@link datas.ReportSectionData}.
+ * Testet die Klasse {@link haushaltsbuch.datas.ReportSectionData}.
  * 
  * @author René Majewski
  *
@@ -199,8 +199,8 @@ public class TestReportSectionData extends TestReports {
 	}
 	
 	/**
-	 * Testet, ob die Klase {@link datas.ReportSectionData} von der Klasse
-	 * {@link datas.ReportData} abgeleitet wurde.
+	 * Testet, ob die Klase {@link haushaltsbuch.datas.ReportSectionData} von der Klasse
+	 * {@link haushaltsbuch.datas.ReportData} abgeleitet wurde.
 	 */
 	@Test
 	public void testReportSectionDataExtendsReportData() {
@@ -211,7 +211,7 @@ public class TestReportSectionData extends TestReports {
 	/**
 	 * Überprüft, ob die Richtige Anzahl an Spalten zurück gegeben werden.
 	 * 
-	 * @see datas.ReportSectionData#getColumnCount()
+	 * @see haushaltsbuch.datas.ReportSectionData#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCountReturnRightCount() {
@@ -222,7 +222,7 @@ public class TestReportSectionData extends TestReports {
 	 * Überprüft, ob die richtige Anzahl an Zeilen zurück gegeben werden.
 	 * @throws SQLException 
 	 * 
-	 * @see datas.ReportSectionData#getRowCount()
+	 * @see haushaltsbuch.datas.ReportSectionData#getRowCount()
 	 */
 	@Test
 	public void testGetRowCount() throws SQLException {
@@ -233,7 +233,7 @@ public class TestReportSectionData extends TestReports {
 	/**
 	 * Überprüft, ob die richtigen Spalten-Namen gesetzt werden.
 	 * 
-	 * @see datas.ReportCategoryData#setColumnHeader(javax.swing.table.TableColumnModel)
+	 * @see haushaltsbuch.datas.ReportCategoryData#setColumnHeader(javax.swing.table.TableColumnModel)
 	 */
 	@Test
 	public void testSetColumnHeader() {
@@ -264,7 +264,7 @@ public class TestReportSectionData extends TestReports {
 	/**
 	 * Überprüft, ob die richtigen Geschäfte zurück gegeben werden.
 	 * 
-	 * @see datas.ReportCategoryData#getSection(int)
+	 * @see haushaltsbuch.datas.ReportSectionData#getSection(int)
 	 */
 	@Test
 	public void testGetSection() {
@@ -274,9 +274,9 @@ public class TestReportSectionData extends TestReports {
 	}
 	
 	/**
-	 * Überprüft, ob für die 1. Kategorie Einnahmen bestehen.
+	 * Überprüft, ob für das 1. Geschäft Einnahmen bestehen.
 	 * 
-	 * @see datas.ReportCategoryData#incoming(int)
+	 * @see haushaltsbuch.datas.ReportSectionData#incoming(int)
 	 */
 	@Test
 	public void testIncomingWithCategoryOneReturnRight() {
@@ -286,7 +286,7 @@ public class TestReportSectionData extends TestReports {
 	/**
 	 * Überprüft, ob für die restlichen Kategorien keine Einnahmen bestehen.
 	 * 
-	 * @see datas.ReportCategoryData#incoming(int)
+	 * @see haushaltsbuch.datas.ReportSectionData#incoming(int)
 	 */
 	@Test
 	public void testIncomingWithCategoryTwoAndThreelveReturnZero() {
@@ -295,9 +295,9 @@ public class TestReportSectionData extends TestReports {
 	}
 	
 	/**
-	 * Überprüft, ob für die 1. Kategorie Ausgaben bestehen.
+	 * Überprüft, ob für das 1. Geschäft Ausgaben bestehen.
 	 * 
-	 * @see datas.ReportCatgoryData#outgoing(int)
+	 * @see haushaltsbuch.datas.ReportSectionData#outgoing(int)
 	 */
 	@Test
 	public void testOutgoingWithCategoryOneReturnRight() {
@@ -305,9 +305,9 @@ public class TestReportSectionData extends TestReports {
 	}
 	
 	/**
-	 * Überprüft, ob für die Tage 2 bis 31 keine Ausgaben bestehen.
+	 * Überprüft, ob für die restlichen Geschäfte keine Ausgaben bestehen.
 	 * 
-	 * @see datas.ReportSectionData#outgoing(int)
+	 * @see haushaltsbuch.datas.ReportSectionData#outgoing(int)
 	 */
 	@Test
 	public void testOutgoingWithCategoryTwoAntThreeReturnZero() {
@@ -316,9 +316,9 @@ public class TestReportSectionData extends TestReports {
 	}
 	
 	/**
-	 * Überprüft, ob für die 1. Kategorie die Differenz richtig ist.
+	 * Überprüft, ob für das 1. Geschäft die Differenz richtig ist.
 	 * 
-	 * @see datas.ReportCategoryData#deviation(int)
+	 * @see haushaltsbuch.datas.ReportSectionData#deviation(int)
 	 */
 	@Test
 	public void testDeviationWithCategoryOneReturnRight() {
@@ -326,9 +326,9 @@ public class TestReportSectionData extends TestReports {
 	}
 	
 	/**
-	 * Überprüft, ob für die restlichen Kategorie die Differenz 0.00 ist.
+	 * Überprüft, ob für die restlichen Geschäfte die Differenz 0.00 ist.
 	 * 
-	 * @see datas.ReportCategoryData#deviation(int)
+	 * @see haushaltsbuch.datas.ReportSectionData#deviation(int)
 	 */
 	@Test
 	public void testDeviationWithCategoryTwoAndThreeReturnZero() {

@@ -122,7 +122,7 @@ public class Pdf extends Export {
 	/**
 	 * Speichert die Daten des Reports.
 	 * 
-	 * @param report Daten des Reports
+	 * @param data Daten des Reports
 	 */
 	public void setReportData(ReportData data) {
 		_data = data;

@@ -29,7 +29,7 @@ import haushaltsbuch.datas.Data;
 import haushaltsbuch.datas.IdNameData;
 
 /**
- * Teste die Klasse {@link datas.IdNameData}
+ * Teste die Klasse {@link haushaltsbuch.datas.IdNameData}
  * 
  * @author René Majewski
  * 
@@ -65,8 +65,8 @@ public class TestIdNameData {
 	}
 	
 	/**
-	 * Testet ob die Klasse {@link datas.IdNameData} eine Instanz von der
-	 * Klasse {@link datas.Data} ist.
+	 * Testet ob die Klasse {@link haushaltsbuch.datas.IdNameData} eine Instanz von der
+	 * Klasse {@link haushaltsbuch.datas.Data} ist.
 	 */
 	@Test
 	public void testIdNameDataInstanceOfData() {
@@ -75,7 +75,7 @@ public class TestIdNameData {
 	
 	/**
 	 * Testet, ob der Konstruktor ohne Argemente richtig initalisiert.
-	 * ({@link datas.IdNameData#IdNameData()}) 
+	 * ({@link haushaltsbuch.datas.IdNameData#IdNameData()}) 
 	 *
 	 */
 	@Test
@@ -87,7 +87,7 @@ public class TestIdNameData {
 	
 	/**
 	 * Testet, ob der Konstruktor mit der übergebenen ID richtig initalisiert.
-	 * ({@link datas.IdNameData#IdNameData(int)})
+	 * ({@link haushaltsbuch.datas.IdNameData#IdNameData(int)})
 	 */
 	@Test
 	public void testIdNameDataInt() {
@@ -99,7 +99,7 @@ public class TestIdNameData {
 	/**
 	 * Testet, ob der Konstruktor mit der übergebenen ID und den übergebenen
 	 * Namen richtig arbeitet.
-	 * ({@link datas.IdNameData#IdNameData(int, String)})
+	 * ({@link haushaltsbuch.datas.IdNameData#IdNameData(int, String)})
 	 */
 	@Test
 	public void testIdNameDataIntString() {
@@ -111,7 +111,7 @@ public class TestIdNameData {
 	 * Testet, ob der Konstruktor mit der übergebenen ID und einen null-Objekt
 	 * als Name richtig arbeitet (leeren Namen erzeugt)
 	 * 
-	 * @see datas.IdNameData#IdNameData(int, String)
+	 * @see haushaltsbuch.datas.IdNameData#IdNameData(int, String)
 	 */
 	@Test
 	public void testIdNameDataIntStringWithNull() {
@@ -122,7 +122,7 @@ public class TestIdNameData {
 	
 	/**
 	 * Testet, ob der Namen richtig zurück gegeben wird.
-	 * {@link datas.IdNameData#getName()}
+	 * {@link haushaltsbuch.datas.IdNameData#getName()}
 	 */
 	@Test
 	public void testGetName() {
@@ -131,7 +131,7 @@ public class TestIdNameData {
 	
 	/**
 	 * Testet, ob der Name richtig übernommen wird.
-	 * {@link datas.IdNameData#setName(String)}
+	 * {@link haushaltsbuch.datas.IdNameData#setName(String)}
 	 */
 	@Test
 	public void testSetName() {
@@ -142,7 +142,7 @@ public class TestIdNameData {
 	
 	/**
 	 * Testet, ob ein leerer Name erzeugt wird, wenn null übergeben wird.
-	 * {@link datas.IdNameData#setName(String)}
+	 * {@link haushaltsbuch.datas.IdNameData#setName(String)}
 	 */
 	@Test
 	public void testSetNameWithNull() {

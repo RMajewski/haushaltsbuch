@@ -43,7 +43,7 @@ import haushaltsbuch.db.query.Section;
 import haushaltsbuch.tables.models.MoneyDetailsListModel;
 
 /**
- * Testet die Klasse {@link tables.models.MoneyDetailsListModel}
+ * Testet die Klasse {@link haushaltsbuch.tables.models.MoneyDetailsListModel}
  * 
  * @author René Majewski
  * 
@@ -158,7 +158,7 @@ public class TestMoneyDetailsListModel {
 	/**
 	 * Testet, ob die Anzahl der Spalten richtig wiedergegeben wird.
 	 * 
-	 * @see tables.models.MoneyDetailsListModel#getColumnCount()
+	 * @see haushaltsbuch.tables.models.MoneyDetailsListModel#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -168,7 +168,7 @@ public class TestMoneyDetailsListModel {
 	/**
 	 * Testet, ob die Anzahl an Zeilen richtig wiedergegeben wurde.
 	 * 
-	 * @see tables.models.MoneyDetailsListModel#getRowCount()
+	 * @see haushaltsbuch.tables.models.MoneyDetailsListModel#getRowCount()
 	 */
 	@Test
 	public void testGetRowCount() {
@@ -176,7 +176,7 @@ public class TestMoneyDetailsListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.IdNameListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.IdNameListModel#getValueAt(int, int)}
 	 * die ID liefert, wenn Spalte 0 ausgewählt ist.
 	 */
 	@Test
@@ -185,7 +185,7 @@ public class TestMoneyDetailsListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.IdNameListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.IdNameListModel#getValueAt(int, int)}
 	 * den Namen der Kategorie liefert, wenn Spalte 1 ausgewählt ist.
 	 */
 	@Test
@@ -209,7 +209,7 @@ public class TestMoneyDetailsListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.IdNameListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.IdNameListModel#getValueAt(int, int)}
 	 * den Namen des Geschäftes liefert, wenn Spalte 2 ausgewählt ist.
 	 */
 	@Test
@@ -233,7 +233,7 @@ public class TestMoneyDetailsListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.IdNameListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.IdNameListModel#getValueAt(int, int)}
 	 * den Betrag liefert, wenn Spalte 3 ausgewählt ist.
 	 */
 	@Test
@@ -242,7 +242,7 @@ public class TestMoneyDetailsListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.IdNameListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.IdNameListModel#getValueAt(int, int)}
 	 * den Kommentar liefert, wenn Spalte 4 ausgewählt ist.
 	 */
 	@Test
@@ -254,7 +254,7 @@ public class TestMoneyDetailsListModel {
 	 * Testet, ob die Daten der angegebenen Zeile richtig zurück gegeben
 	 * wurden.
 	 * 
-	 * @see tables.models.MoneyDetailsListModel#getRowDataAt(int)
+	 * @see haushaltsbuch.tables.models.MoneyDetailsListModel#getRowDataAt(int)
 	 */
 	@Test
 	public void testGetRowDataAt() {

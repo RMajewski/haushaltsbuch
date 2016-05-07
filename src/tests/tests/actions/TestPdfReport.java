@@ -51,8 +51,8 @@ public class TestPdfReport {
 	}
 	
 	/**
-	 * Es wird überprüft, ob die Klasse {@link haushaltsbuch.DbInsert.PdfReport}
-	 * von der Klasse {@link haushaltsbuch.action.Action} abgeleitet wurde.
+	 * Es wird überprüft, ob die Klasse {@link haushaltsbuch.actions.PdfReport}
+	 * von der Klasse {@link haushaltsbuch.actions.Action} abgeleitet wurde.
 	 */
 	@Test
 	public void testDbNewInheritedAction() {

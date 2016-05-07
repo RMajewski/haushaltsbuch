@@ -51,7 +51,7 @@ public class TestFitData extends TestData {
 	/**
 	 * Initalisiert dies Daten der Klasse
 	 * 
-	 * @see TestData#TestData(String)
+	 * @see TestData#TestData()
 	 */
 	public TestFitData() {
 		super();

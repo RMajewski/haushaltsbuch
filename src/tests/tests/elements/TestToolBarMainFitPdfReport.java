@@ -26,21 +26,21 @@ import org.netbeans.jemmy.operators.JButtonOperator;
 
 /**
  * Implementiert das Testprogramm, um jemmy- und Fit-Tests auszufügen, um die
- * {@link haushaltsbuch.elementes.ToolBarMain} zu testen.
+ * {@link haushaltsbuch.elements.ToolBarMain} zu testen.
  * 
  * @author René Majewski
  *
  * @version 0.1
  * @since 0.2
  */
-public class TestToolbarMainFitPdfReport extends TestToolBarMainFit {
+public class TestToolBarMainFitPdfReport extends TestToolBarMainFit {
 
 	/**
 	 * Initalisiert die Tests.
 	 * 
 	 * @throws Exception
 	 */
-	public TestToolbarMainFitPdfReport() throws Exception {
+	public TestToolBarMainFitPdfReport() throws Exception {
 		super();
 	}
 	

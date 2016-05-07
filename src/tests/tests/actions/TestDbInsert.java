@@ -28,7 +28,7 @@ import haushaltsbuch.actions.Action;
 import haushaltsbuch.actions.DbInsert;
 
 /**
- * Implementiert die Test für die Aktion {@link haushaltsbuch.DbInsert.DbNew}.
+ * Implementiert die Test für die Aktion {@link haushaltsbuch.actions.DbInsert}.
  * 
  * @author René Majewski
  *
@@ -51,8 +51,8 @@ public class TestDbInsert {
 	}
 	
 	/**
-	 * Es wird überprüft, ob die Klasse {@link haushaltsbuch.DbInsert.DbNew} von
-	 * der Klasse {@link haushaltsbuch.action.Action} abgeleitet wurde.
+	 * Es wird überprüft, ob die Klasse {@link haushaltsbuch.actions.DbInsert} von
+	 * der Klasse {@link haushaltsbuch.actions.Action} abgeleitet wurde.
 	 */
 	@Test
 	public void testDbNewInheritedAction() {

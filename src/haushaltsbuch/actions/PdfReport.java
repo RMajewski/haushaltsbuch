@@ -50,8 +50,6 @@ public class PdfReport extends Action {
 	 * Initalisiert die Aktion.
 	 * 
 	 * @param desktop Desktop des Hauptfensters
-	 * 
-	 * @param owner Zu diesem Fenster gehört die ToolBar
 	 */
 	public PdfReport(Desktop desktop) {
 		super("pdf_small.png", "pdf_big.png", desktop);

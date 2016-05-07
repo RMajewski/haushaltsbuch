@@ -20,12 +20,12 @@
 package tests.fixtures.elements;
 
 import haushaltsbuch.windows.internal.WndSectionList;
-import tests.tests.elements.TestToolbarMainFitSection;
+import tests.tests.elements.TestToolBarMainFitSection;
 
 /**
  * Implementiert die Schnittstelle zwischen den Fit-Tests für die
- * {@link haushaltsbuch.elementes.ToolBarMain} und dem Testprogramm
- * {@link tests.tests.elements.TestToolbarMainSection}.
+ * {@link haushaltsbuch.elements.ToolBarMain} und dem Testprogramm
+ * {@link tests.tests.elements.TestToolBarMainFitSection}.
  * 
  * @author René Majewski
  *
@@ -40,7 +40,7 @@ public class FixtureToolBarMainSection extends FixtureToolBarMain {
 	 * @throws Exception
 	 */
 	public FixtureToolBarMainSection() throws Exception {
-		_test = new TestToolbarMainFitSection();
+		_test = new TestToolBarMainFitSection();
 	}
 	
 	/**

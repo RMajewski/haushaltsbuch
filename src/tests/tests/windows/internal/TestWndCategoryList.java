@@ -26,7 +26,7 @@ import haushaltsbuch.windows.internal.WndCategoryList;
 import tests.testcase.GuiWndIdNameTest;
 
 /**
- * Testet das Unterfenster {@link windows.internal.WndCategoryList}.
+ * Testet das Unterfenster {@link haushaltsbuch.windows.internal.WndCategoryList}.
  * 
  * @author René Majewski
  * 

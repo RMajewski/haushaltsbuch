@@ -39,7 +39,7 @@ import haushaltsbuch.db.DbController;
 import haushaltsbuch.tables.models.IdNameListModel;
 
 /**
- * Testet die Klasse {@link tables.models.IdNameListModel} 
+ * Testet die Klasse {@link haushaltsbuch.tables.models.IdNameListModel} 
  * @author René Majewski
  * 
  * @version 0.1
@@ -95,7 +95,7 @@ public class TestIdNameListModel {
 	/**
 	 * Testet, ob die Anzahl der Spalten richtig gesetzt ist.
 	 * 
-	 * @see tables.models.IdNameListModel#getColumnCount()
+	 * @see haushaltsbuch.tables.models.IdNameListModel#getColumnCount()
 	 */
 	@Test
 	public void testGetColumnCount() {
@@ -111,7 +111,7 @@ public class TestIdNameListModel {
 	}
 
 	/**
-	 * Testet, ob {@link tables.models.IdNameListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.IdNameListModel#getValueAt(int, int)}
 	 * die ID liefert, wenn Spalte 0 ausgewählt ist.
 	 */
 	@Test
@@ -120,7 +120,7 @@ public class TestIdNameListModel {
 	}
 	
 	/**
-	 * Testet, ob {@link tables.models.IdNameListModel#getValueAt(int, int)}
+	 * Testet, ob {@link haushaltsbuch.tables.models.IdNameListModel#getValueAt(int, int)}
 	 * der Name geliefert wird, wenn Spalte 1 ausgewählt ist.
 	 */
 	@Test

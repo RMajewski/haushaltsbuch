@@ -27,7 +27,7 @@ import org.junit.Test;
 import haushaltsbuch.datas.Data;
 
 /**
- * Testet die Klasse {@link datas.Data}
+ * Testet die Klasse {@link haushaltsbuch.datas.Data}
  * 
  * @author René Majewski
  * 
@@ -59,7 +59,7 @@ public class TestData {
 	/**
 	 * Testet, ob die Klasse richtig initalisiert wurde.
 	 * 
-	 * @see datas.Data#Data(int)
+	 * @see haushaltsbuch.datas.Data#Data(int)
 	 */
 	@Test
 	public void testDataInt() {
@@ -68,7 +68,7 @@ public class TestData {
 	
 	/**
 	 * Testet, ob die ID richtig zurück gegeben wird.
-	 * {@link datas.IdNameData#getId()}
+	 * {@link haushaltsbuch.datas.IdNameData#getId()}
 	 */
 	@Test
 	public void testGetId() {
@@ -77,7 +77,7 @@ public class TestData {
 	
 	/**
 	 * Testet, ob die ID richtig übernommen wird.
-	 * {@link datas.IdNameData#setId(int)}
+	 * {@link haushaltsbuch.datas.IdNameData#setId(int)}
 	 */
 	@Test
 	public void testSetId() {

@@ -64,7 +64,7 @@ public class TestSuiteData {
 	/**
 	 * Legt den Namen fest
 	 * 
-	 * @param Neuer Name der Test-Suite
+	 * @param name Neuer Name der Test-Suite
 	 */
 	public void setName(String name) {
 		_name = name;

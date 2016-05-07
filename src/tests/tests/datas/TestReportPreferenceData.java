@@ -28,7 +28,7 @@ import org.junit.Test;
 import haushaltsbuch.datas.ReportPreferencesData;
 
 /**
- * Tests für die Klasse {@link datas.ReportPreferencesData}
+ * Tests für die Klasse {@link haushaltsbuch.datas.ReportPreferencesData}
  * 
  * @author René Majewski
  * 
@@ -83,7 +83,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft ob richtig initalisiert wird
 	 * 
-	 * @see datas.ReportPreferencesData#ReportData(int, int, int)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#ReportPreferencesData(int, int, int, int)
 	 */
 	@Test
 	public void testReportData() {
@@ -96,7 +96,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob der Monat richtig zurück gegeben wird.
 	 * 
-	 * @see datas.ReportPreferencesData#getMonth()
+	 * @see haushaltsbuch.datas.ReportPreferencesData#getMonth()
 	 */
 	@Test
 	public void testGetMonth() {
@@ -106,7 +106,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob das Jahr richtig zurück gegeben wird.
 	 * 
-	 * @see datas.ReportPreferencesData#getYear()
+	 * @see haushaltsbuch.datas.ReportPreferencesData#getYear()
 	 */
 	@Test
 	public void testGetYear() {
@@ -116,7 +116,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob das Ende richtig zurück gegeben wird.
 	 * 
-	 * @see datas.ReportPreferencesData#getFinished()
+	 * @see haushaltsbuch.datas.ReportPreferencesData#getFinished()
 	 */
 	@Test
 	public void testGetFinished() {
@@ -126,7 +126,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob der Monat richtig gesetzt wird.
 	 * 
-	 * @see datas.ReportPreferencesData#setMonth(int)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#setMonth(int)
 	 */
 	@Test
 	public void testSetMonth() {
@@ -138,7 +138,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob das Jahr richtig gesetzt wird.
 	 * 
-	 * @see datas.ReportPreferencesData#setYear(int)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#setYear(int)
 	 */
 	@Test
 	public void testSetYear() {
@@ -150,7 +150,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob das Ende richtig gesetzt wird.
 	 * 
-	 * @see datas.ReportPreferencesData#setFinished(int)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#setFinished(int)
 	 */
 	@Test
 	public void testSetFinished() {
@@ -162,7 +162,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob der Report-Type richtig zurück gegeben wird.
 	 * 
-	 * @see datas.ReportPreferencesData#setType()
+	 * @see haushaltsbuch.datas.ReportPreferencesData#setType(int)
 	 */
 	@Test
 	public void testGetType() {
@@ -172,7 +172,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob der Report-Type richtig gesetzt wird.
 	 * 
-	 * @see datas.ReportPreferencesData#setType(int)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#setType(int)
 	 */
 	@Test
 	public void testSetType() {
@@ -184,7 +184,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob der Wert für die Wochenübersicht richtig gesetzt ist.
 	 * 
-	 * @see datas.ReportPreferencesData#TYPE_WEEK
+	 * @see haushaltsbuch.datas.ReportPreferencesData#TYPE_WEEK
 	 */
 	@Test
 	public void testTypeWeek() {
@@ -194,7 +194,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob der Wert für die Monatsübersicht richtig gesetzt ist.
 	 * 
-	 * @see datas.ReportPreferencesData#TYPE_MONTH
+	 * @see haushaltsbuch.datas.ReportPreferencesData#TYPE_MONTH
 	 */
 	@Test
 	public void testTypeMonth() {
@@ -204,7 +204,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob der Wert für die jahrenübersicht richtig gesetzt ist.
 	 * 
-	 * @see datas.ReportPreferencesData#TYPE_YEAR
+	 * @see haushaltsbuch.datas.ReportPreferencesData#TYPE_YEAR
 	 */
 	@Test
 	public void testTypeYEAR() {
@@ -215,7 +215,7 @@ public class TestReportPreferenceData {
 	 * Überprüft, ob der Wert für die Übersicht der Kategorien richtig gesetzt
 	 * ist.
 	 * 
-	 * @see datas.ReportPreferencesData#TYPE_CATEGORY
+	 * @see haushaltsbuch.datas.ReportPreferencesData#TYPE_CATEGORY
 	 */
 	@Test
 	public void testTypeCategory() {
@@ -226,7 +226,7 @@ public class TestReportPreferenceData {
 	 * Überprüft, ob der Wert für die Übersicht der Geschäfte richtig gesetzt
 	 * ist.
 	 * 
-	 * @see datas.ReportPreferencesData#TYPE_SECTION
+	 * @see haushaltsbuch.datas.ReportPreferencesData#TYPE_SECTION
 	 */
 	@Test
 	public void testTypeSection() {
@@ -236,7 +236,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob die Anzahl der Einstellungen korrekt ermittelt wird.
 	 * 
-	 * @see datas.ReportPreferencesData#getPrefenceCount()
+	 * @see haushaltsbuch.datas.ReportPreferencesData#getPreferenceCount()
 	 */
 	@Test
 	public void testGetPreferenceCount() {
@@ -246,7 +246,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob die Einstellung korrekt zurück gegeben wird.
 	 * 
-	 * @see datas.ReportPreferencesData#getPrefence(String)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#getPreference(String)
 	 */
 	@Test
 	public void testGetPreference() {
@@ -258,7 +258,7 @@ public class TestReportPreferenceData {
 	 * Überprüft, ob <b>null</b> zurück geliefert wird, wenn der Schlüssel
 	 * <b>null</b> ist.
 	 * 
-	 * @see datas.ReportPreferencesData#getPrefence(String)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#getPreference(String)
 	 */
 	@Test
 	public void testGetPreferenceWithNullAsKey() {
@@ -269,7 +269,7 @@ public class TestReportPreferenceData {
 	 * Überprüft, ob <b>null</b> zurück geliefert wird, wenn der Schlüssel
 	 * eine leere Zeichenkette ist.
 	 * 
-	 * @see datas.ReportPreferencesData#getPrefence(String)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#getPreference(String)
 	 */
 	@Test
 	public void testGetPreferenceWithEmptyAsKey() {
@@ -279,7 +279,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Fügt eine Einstellung hinzu.
 	 * 
-	 * @see datas.ReportPreferencesData#setPreference(String, Object)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#setPreference(String, Object)
 	 */
 	@Test
 	public void testSetPreferenceWithValidKey() {
@@ -291,7 +291,7 @@ public class TestReportPreferenceData {
 	 * Überprüft, ob die Einstellung nicht gespeichert wird, wenn als Schlüssel
 	 * <b>null</b> übergeben wird.
 	 * 
-	 * @see datas.ReportPreferencesData#setPreference(String, Object)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#setPreference(String, Object)
 	 */
 	@Test
 	public void testSetPreferenceWithNullAsKeyNotInsert() {
@@ -303,7 +303,7 @@ public class TestReportPreferenceData {
 	 * Überprüft, ob die Einstellung nicht gespeichert wird, wenn als Schlüssel
 	 * eine leere Zeichenkette übergeben wird.
 	 * 
-	 * @see datas.ReportPreferencesData#setPreference(String, Object)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#setPreference(String, Object)
 	 */
 	@Test
 	public void testSetPreferenceWithEmptyAsKeyNotInsert() {
@@ -315,7 +315,7 @@ public class TestReportPreferenceData {
 	 * Überprüft, ob die Einstellung geändert wird, wenn sie schon existiert,
 	 * also nicht doppelt angelegt wird.
 	 * 
-	 * @see datas.ReportPreferencesData#setPreference(String, Object)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#setPreference(String, Object)
 	 */
 	@Test
 	public void testSetPreferenceChangePreference() {
@@ -332,7 +332,7 @@ public class TestReportPreferenceData {
 	 * Überprüft, ob die Einstellung nicht gespeichert wird, wenn als
 	 * Einstellung <b>null</b> übergeben wird.
 	 * 
-	 * @see datas.ReportPreferencesData#setPreference(String, Object)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#setPreference(String, Object)
 	 */
 	@Test
 	public void testSetPreferenceWithNullAsPreferenceNotInsert() {
@@ -343,7 +343,7 @@ public class TestReportPreferenceData {
 	/**
 	 * Überprüft, ob die angegebene Einstellung gelöscht wurde.
 	 * 
-	 * @see datas.ReportPreferencesData#removePreference(String)
+	 * @see haushaltsbuch.datas.ReportPreferencesData#removePreference(String)
 	 */
 	@Test
 	public void testRemovePreference() {
