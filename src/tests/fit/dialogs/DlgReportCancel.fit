@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Report Einstellungen</title>
+	</head>
+	<body>
+		<h2>Dialog: Report Einstellungen</h2>
+		<p>Überprüft, ob nach dem Abbrechen der Dialog beendet wurde und keine
+		Einstellung übernommen wurden. Es wurde die Jahresübersicht als Report
+		voreingestellt.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">
+						fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.dialogs.FixtureDlgReport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWeekChecked</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isMonthChecked</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isYearChecked</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getYearActual</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getMonthActual</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushCancel</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferencesCount</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

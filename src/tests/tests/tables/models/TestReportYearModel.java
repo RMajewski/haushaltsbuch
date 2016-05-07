@@ -26,6 +26,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.text.DecimalFormat;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -127,7 +129,8 @@ public class TestReportYearModel extends TestReports {
 		
 		when(_data.incoming(col)).thenReturn(d);
 
-		assertEquals(d, (double)_model.getValueAt(col, 1), 0);
+		assertEquals(new DecimalFormat("0.00").format(d),
+				_model.getValueAt(col, 1));
 		
 		verify(_data, never()).getMonthName(col);
 		verify(_data, times(1)).incoming(col);
@@ -147,7 +150,8 @@ public class TestReportYearModel extends TestReports {
 		
 		when(_data.outgoing(col)).thenReturn(d);
 
-		assertEquals(d, (double)_model.getValueAt(col, 2), 0);
+		assertEquals(new DecimalFormat("0.00").format(d),
+				_model.getValueAt(col, 2));
 		
 		verify(_data, never()).getMonthName(col);
 		verify(_data, never()).incoming(col);
@@ -167,7 +171,8 @@ public class TestReportYearModel extends TestReports {
 		
 		when(_data.deviation(col)).thenReturn(d);
 
-		assertEquals(d, (double)_model.getValueAt(col, 3), 0);
+		assertEquals(new DecimalFormat("0.00").format(d),
+				_model.getValueAt(col, 3));
 		
 		verify(_data, never()).getMonthName(col);
 		verify(_data, never()).outgoing(col);

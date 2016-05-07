@@ -41,6 +41,8 @@
 			<test>TestReportPreferenceData</test>
 			<test>TestReportWeekData</test>
 			<test>TestReportYearData</test>
+			<test>TestReportCategoryData</test>
+			<test>TestReportSectionData</test>
 		</testSuite>
 		<testSuite>
 			<name>Datenbank-Verbindung</name>
@@ -102,6 +104,8 @@
 			<test>TestReportMonthModel</test>
 			<test>TestReportWeekModel</test>
 			<test>TestReportYearModel</test>
+			<test>TestReportSectionModel</test>
+			<test>TestReportCategoryModel</test>
 		</testSuite>
 	</junitTests>
 	
@@ -112,8 +116,13 @@
 			<test>DlgAbout</test>
 			<test>DlgLicense</test>
 			<test>DlgLogView</test>
-			<test>DlgReport</test>
 			<test>DlgInfo</test>
+		</testSuite>
+		<testSuite>
+			<name>Report-Dialog</name>
+			<package>tests.fit.dialogs</package>
+			<test>DlgReportCancel</test>
+			<test>DlgReportCreate</test>
 		</testSuite>
 		<testSuite>
 			<name>Export SQL-Script</name>

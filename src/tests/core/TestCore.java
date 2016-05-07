@@ -483,7 +483,7 @@ public class TestCore {
 	private void runFit() {
 		for (int suite = 0; suite < _fit.size(); suite++) {
 			// Test-Suite Name
-			System.out.println(_junit.get(suite).getName());
+			System.out.println(_fit.get(suite).getName());
 			
 			for (int test = 0; test < _fit.get(suite).testCount(); test++) {
 				// Name der Fit-Datei

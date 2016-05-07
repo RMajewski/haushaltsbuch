@@ -26,6 +26,7 @@ import static org.mockito.Mockito.when;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -238,7 +239,8 @@ public class TestMoneyDetailsListModel {
 	 */
 	@Test
 	public void testGetValueAtWithThreeAsColReturnMoney() {
-		assertEquals(_money, _model.getValueAt(0, 3));
+		assertEquals(new DecimalFormat("0.00").format(_money),
+				_model.getValueAt(0, 3));
 	}
 
 	/**
