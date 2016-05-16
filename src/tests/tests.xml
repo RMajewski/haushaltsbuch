@@ -5,11 +5,37 @@
 		<bibPath>..</bibPath>
 		<maxDuration>30000</maxDuration>
 		<htmlOut>true</htmlOut>
+		<systemProperty>
+			<property>testing="true"</property>
+		</systemProperty>
 	</config>
 	
-	<guiTests/>
+	<testGroup>
+		<testRunner>org.testsuite.core.JemmyTestRunner</testRunner>
+		<extension>java</extension>
+		<description>[h2]GUI-Tests[/h2][p]Die GUI-Tests beinhalten Test die die Oberfläche testen. Sie werden mit Jemmy ausgeführt.[/p]</description>
+		<libraries>
+			<library version="2.3.1.1" name="jemmy">jemmy.jar</library>
+		</libraries>
+	</testGroup>
 	
-	<junitTests>
+	<testGroup>
+		<testRunner>org.testsuite.core.JunitTestRunner</testRunner>
+		<extension>java</extension>
+		<description>[h2]junit-Tests[/h2][p]Die junit-Tests testen einzelne Klassen. Diese Klassen sind in den Tests meist isoliert.[/p]</description>
+		<libraries>
+			<library version="4.12" name="junit" path="/usr/share/eclipse/plugins/org.junit_4.12.0.v201504281640">junit.jar</library>
+			<library version="1.10.19" name="Mockito">mockito-all-1.10.19.jar</library>
+			<library version="1.6.3" name="PowerMockito">powermock-mockito-1.6.3-full.jar</library>
+			<library version="2.2.2" name="cglib">cglib-nodep-2.2.2.jar</library>
+			<library version="3.20.0" name="javassist">javassist-3.20.0-GA.jar</library>
+			<library version="2.1" name="objenesis">objenesis-2.1.jar</library>
+			<library version="1.3.0" name="hamcrest" path="/usr/share/eclipse/plugins/">org.hamcrest.core_1.3.0.v201303031735.jar</library>
+		</libraries>
+		<classpath>
+			<path>bin</path>
+			<path>resource</path>
+		</classpath>
 		<testSuite>
 			<name>Aktionen</name>
 			<package>tests.tests.actions</package>
@@ -107,9 +133,20 @@
 			<test>TestReportSectionModel</test>
 			<test>TestReportCategoryModel</test>
 		</testSuite>
-	</junitTests>
+	</testGroup>
 	
-	<fitTests>
+	<testGroup>
+		<testRunner>org.testsuite.core.FitTestRunner</testRunner>
+		<extension>fit</extension>
+		<description>[h2]Fit-Tests[/h2][p]Die Fit-Tests testen die Funktionalität der einzelnen Fenster. Dazu wurde die Fenster teilweise in einer Testumgebung geöffnet.[/p]</description>
+		<libraries>
+			<library version="2.3.1.1" name="jemmy">jemmy.jar</library>
+			<library version="1.1" name="fit">fit.jar</library>
+		</libraries>
+		<classpath>
+			<path>bin</path>
+			<path>resource</path>
+		</classpath>
 		<testSuite>
 			<name>Informations-Dialoge</name>
 			<package>tests.fit.dialogs</package>
@@ -211,5 +248,5 @@
 			<test>WndSectionListChange</test>
 			<test>WndSectionListDelete</test>
 		</testSuite>
-	</fitTests>
+	</testGroup>
 </tests>

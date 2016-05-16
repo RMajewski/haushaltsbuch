@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Report Einstellungen</title>
+	</head>
+	<body>
+		<h2>Dialog: Report Einstellungen</h2>
+		
+		<p>Überprüft, ob die Einstellungen übernommen werden, wenn auf den
+		Button "Report erstellen" geklickt wurde. Es wird die Wochenübersicht
+		ausgewählt, das Jahr und der Monat. Außerdem werden für die
+		Wochenübersicht noch die Spalten "von" und "bis" ausewählt.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">
+						fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.dialogs.FixtureDlgReport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setYear</td>
+					<td>2000</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setMonth</td>
+					<td>March</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setWeek</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setDateFrom</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDateFromChecked</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDateToChecked</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushCreateReport</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferencesCount</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferenceYear</td>
+					<td>2000</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferenceMonth</td>
+					<td>March</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferenceType</td>
+					<td>Week</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferenceDateFrom</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>preferenceDateTo</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>applicationEnd</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

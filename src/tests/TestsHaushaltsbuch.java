@@ -19,9 +19,9 @@
 
 package tests;
 
-import javax.xml.stream.XMLStreamException;
+import java.io.File;
 
-import tests.core.TestCore;
+import org.testsuite.core.TestsRun;
 
 /**
  * Diese Klasse wird benutzt, um alle GUI-Tests auszuführen.
@@ -35,9 +35,12 @@ import tests.core.TestCore;
  * und die Ausführung der Tests und die Generierung der Ergebnisse als HTML 
  * werden in den Klassen der tests.core-Klassen implementiert.
  * 
+ * In der Version 0.5 wird die Bibliothek "testsuite" in ver Version 0.2
+ * genutzt, um die Tests auszuführen.
+ * 
  * @author René Majewski
  * 
- * @version 0.4
+ * @version 0.5
  * @since 0.1
  */
 public class TestsHaushaltsbuch {
@@ -46,19 +49,10 @@ public class TestsHaushaltsbuch {
 	 * Ruft die einzelnen Tests auf
 	 * 
 	 * @param args Übergebene Kommandozeilen-Parameter
-	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) {
-		TestCore test = new TestCore();
-		try {
-			if (test.readConfig("tests/tests.xml")) {
-				test.checkFileExists();
-				test.run();
-				test.createResultHtml();
-			}
-		} catch (XMLStreamException e) {
-			e.printStackTrace();
-		}
-}
+		TestsRun.run("src" + File.separator + "tests" + File.separator + 
+				"tests.xml");
+	}
 
 }
