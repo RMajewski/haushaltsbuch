@@ -22,6 +22,7 @@ package haushaltsbuch.windows.internal;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.beans.PropertyVetoException;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -32,6 +33,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.db.DbController;
@@ -223,16 +225,28 @@ public class WndMoneyChange extends WndChangeFrame {
 				e.printStackTrace();
 			}
 			
-			// Tabelle updaten
-			if (_frame != null) {
-				((MoneyListModel)_frame.getTable().getModel()).dataRefresh(true);
-			}
-			
 			// Beenden
 			try {
 				 setClosed(true);
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+			
+			// Tabelle updaten
+			if (_frame != null) {
+				((MoneyListModel)_frame.getTable().getModel()).dataRefresh(true);
+				
+				if (_data == null) {
+					_frame.moveToFront();
+					try {
+						_frame.setSelected(true);
+					} catch (PropertyVetoException e) {
+						e.printStackTrace();
+					}
+					_frame.getTable().setRowSelectionInterval(
+							_frame.getTable().getRowCount() -1, 
+							_frame.getTable().getRowCount() -1);
+				}
 			}
 			
 			// Methode beenden
