@@ -23,6 +23,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,7 +34,10 @@ import java.text.DecimalFormat;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.text.BadLocationException;
 
 import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
@@ -146,10 +152,6 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 		_txtMoney.addFocusListener(this);
 		addComponent(_gbl, _txtMoney, 2, 4, 2, 1, 0, 0);
 		
-		// Text-Bereich für die Beschreibung
-		_txtComment = new JTextArea();
-		addComponent(_gbl, _txtComment, 2, 6, 2, 4, 0, 0.5);
-		
 		// Kategorien füllen
 		queriesAddComboBox(DbController.queries().category().sort("name"),
 				((MoneyDetailsData)_data).getCategoryId(),
@@ -213,7 +215,9 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 					money = ((Number)_txtMoney.getValue()).doubleValue();
 				
 				// Beschreibung ermitteln
-				String comment = _txtComment.getText();
+				_txtComment.selectAll();
+				String comment = _txtComment.getSelectedText();
+				System.out.println(comment);
 				
 				// Neuer Datensatz oder Datensatz ändern?
 				if (_data.getId() == -1) {

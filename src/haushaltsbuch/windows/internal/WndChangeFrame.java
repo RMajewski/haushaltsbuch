@@ -102,7 +102,9 @@ public abstract class WndChangeFrame extends WndInternalFrame implements ActionL
 		setLayout(_gbl);
 		
 		// Mehrzeiliger Text für die Beschreibung
-		_txtComment = new JTextArea();
+		_txtComment = new JTextArea(13, 55);
+		_txtComment.setLineWrap(true);
+		_txtComment.setWrapStyleWord(true);
 		addComponent(_gbl, new JScrollPane(_txtComment), 2, 5, 2, 4, 0.8, 0.5);
 		
 		// Speichern-Button
