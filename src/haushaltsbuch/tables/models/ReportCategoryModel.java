@@ -23,6 +23,7 @@ import java.text.DecimalFormat;
 
 import haushaltsbuch.datas.ReportCategoryData;
 import haushaltsbuch.datas.ReportData;
+import haushaltsbuch.helper.HelperNumbersOut;
 
 
 /**
@@ -87,15 +88,15 @@ public class ReportCategoryModel extends ReportModel {
 				
 			// Einnahmen
 			case 1:
-				return new DecimalFormat("0.00").format(_data.incoming(col));
+				return HelperNumbersOut.sum(_data.incoming(col));
 				
 			// Ausgaben
 			case 2:
-				return new DecimalFormat("0.00").format(_data.outgoing(col));
+				return HelperNumbersOut.sum(_data.outgoing(col));
 				
 			// Differenz
 			case 3:
-				return new DecimalFormat("0.00").format(_data.deviation(col));
+				return HelperNumbersOut.sum(_data.deviation(col));
 		}
 	
 		// Standard-Rückgabe

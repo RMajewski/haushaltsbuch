@@ -31,6 +31,7 @@ import javax.swing.table.AbstractTableModel;
 import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.elements.StatusBar;
+import haushaltsbuch.helper.HelperNumbersOut;
 
 /**
  * Gibt die Daten für die Tabelle 'money_details' aus.
@@ -143,7 +144,7 @@ public class MoneyDetailsListModel extends AbstractTableModel
 			// Betrag
 			case 3:
 				
-				return new DecimalFormat("0.00").format(_list.get(row).getMoney());
+				return HelperNumbersOut.sum(_list.get(row).getMoney());
 				
 			// Beschreibung
 			case 4:

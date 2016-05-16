@@ -30,6 +30,7 @@ import javax.swing.table.AbstractTableModel;
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.elements.StatusBar;
+import haushaltsbuch.helper.HelperNumbersOut;
 
 /**
  * Gibt die Daten für die Tabelle 'money' aus.
@@ -118,13 +119,13 @@ public class MoneyListModel extends AbstractTableModel
 				try {
 					Statement stm = DbController.getInstance().createStatement();
 					ResultSet rs = stm.executeQuery(DbController.queries().moneyDetails().sumMoneyId(_list.get(row).getId()));
-					ret = rs.getDouble("sum");
+					ret = rs.getDouble(1);
 					rs.close();
 				} catch (SQLException e) {
 					StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-					e.getStackTrace();
+					e.printStackTrace();
 				}
-				return ret;
+				return HelperNumbersOut.sum(ret);
 			
 			// Beschreibung
 			case 4:

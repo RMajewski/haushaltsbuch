@@ -22,6 +22,7 @@ package haushaltsbuch.tables.models;
 import java.text.DecimalFormat;
 
 import haushaltsbuch.datas.ReportYearData;
+import haushaltsbuch.helper.HelperNumbersOut;
 
 /**
  * Zeigt die erhoben Daten der Jahresübersicht in der Tabelle an.
@@ -87,15 +88,15 @@ public class ReportYearModel extends ReportModel {
 				
 			// Einnahmen
 			case 1:
-				return new DecimalFormat("0.00").format(_data.incoming(row));
+				return HelperNumbersOut.sum(_data.incoming(row));
 				
 			// Ausgaben
 			case 2:
-				return new DecimalFormat("0.00").format(_data.outgoing(row));
+				return HelperNumbersOut.sum(_data.outgoing(row));
 				
 			// Differenz
 			case 3:
-				return new DecimalFormat("0.00").format(_data.deviation(row));
+				return HelperNumbersOut.sum(_data.deviation(row));
 		}
 		
 		// Standart-Rückgabe-Wert

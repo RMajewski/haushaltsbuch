@@ -48,6 +48,7 @@ import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.datas.ReportWeekData;
 import haushaltsbuch.datas.ReportYearData;
 import haushaltsbuch.dialogs.DlgExportPdf;
+import haushaltsbuch.helper.HelperNumbersOut;
 import haushaltsbuch.windows.WndMain;
 
 /**
@@ -340,13 +341,13 @@ public class Pdf extends Export {
 			canvas.beginText();
 			canvas.setFontAndSize(_font.getBaseFont(), 12);
 			canvas.moveText(startX + 20, startY + 50 + height);
-			canvas.showText(new DecimalFormat("0.00").format(_maxY));
+			canvas.showText(HelperNumbersOut.sum(_maxY));
 			canvas.endText();
 			
 			canvas.beginText();
 			canvas.setFontAndSize(_font.getBaseFont(), 12);
 			canvas.moveText(startX + 20, startY + 50);
-			canvas.showText(new DecimalFormat("0.00").format(_minY));
+			canvas.showText(HelperNumbersOut.sum(_minY));
 			canvas.endText();
 		}
 		
@@ -416,10 +417,10 @@ public class Pdf extends Export {
 		for (int row = 0; row < _data.getRowCount(); row++) {
 			table.addCell(new Phrase(new Chunk(firstColumn(row), _font)));
 			table.addCell(new Phrase(new Chunk(
-					new DecimalFormat("0.00").format(_data.incoming(row)),
+					HelperNumbersOut.sum(_data.incoming(row)),
 					_font)));
 			table.addCell(new Phrase(new Chunk(
-					new DecimalFormat("0.00").format(_data.outgoing(row)),
+					HelperNumbersOut.sum(_data.outgoing(row)),
 					_font)));
 			
 			Font font = _font;
@@ -429,7 +430,7 @@ public class Pdf extends Export {
 				font = _fontDeviationMinus;
 			
 			table.addCell(new Phrase(new Chunk(
-					new DecimalFormat("0.00").format(_data.deviation(row)),
+					HelperNumbersOut.sum(_data.deviation(row)),
 					font)));
 		}
 		

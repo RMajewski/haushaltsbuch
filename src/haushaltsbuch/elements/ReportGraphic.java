@@ -31,6 +31,7 @@ import java.util.List;
 import javax.swing.JComponent;
 
 import haushaltsbuch.datas.ReportData;
+import haushaltsbuch.helper.HelperNumbersOut;
 
 /**
  * Stellt den Report Grafisch da.
@@ -176,9 +177,9 @@ public class ReportGraphic extends JComponent {
 		}
 		
 		// Max und Min beschriften
-		String tmp = new DecimalFormat("0.00").format(_maxY);
+		String tmp = HelperNumbersOut.sum(_maxY);
 		g.drawString(tmp, 45 - metrics.stringWidth(tmp), 25);
-		tmp = new DecimalFormat("0.00").format(_minY);
+		tmp = HelperNumbersOut.sum(_minY);
 		g.drawString(tmp, 45 - metrics.stringWidth(tmp), height + 25);
 		
 		// Hilfslinien zeichnen

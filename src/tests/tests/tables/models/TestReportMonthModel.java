@@ -32,6 +32,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import haushaltsbuch.datas.ReportMonthData;
+import haushaltsbuch.helper.HelperNumbersOut;
 import haushaltsbuch.tables.models.ReportMonthModel;
 import tests.testcase.TestReports;
 
@@ -121,8 +122,7 @@ public class TestReportMonthModel extends TestReports {
 		
 		when(_data.incoming(col)).thenReturn(d);
 
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(col, 1));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(col, 1));
 		
 		verify(_data, never()).getDay(col);
 		verify(_data, times(1)).incoming(col);
@@ -142,8 +142,7 @@ public class TestReportMonthModel extends TestReports {
 		
 		when(_data.outgoing(col)).thenReturn(d);
 
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(col, 2));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(col, 2));
 		
 		verify(_data, never()).getDay(col);
 		verify(_data, never()).incoming(col);
@@ -163,8 +162,7 @@ public class TestReportMonthModel extends TestReports {
 		
 		when(_data.deviation(col)).thenReturn(d);
 
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(col, 3));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(col, 3));
 		
 		verify(_data, never()).getDay(col);
 		verify(_data, never()).incoming(col);

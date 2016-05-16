@@ -23,6 +23,7 @@ import java.text.DecimalFormat;
 
 import haushaltsbuch.datas.ReportData;
 import haushaltsbuch.datas.ReportSectionData;
+import haushaltsbuch.helper.HelperNumbersOut;
 
 /**
  * Zeigt die erhoben Daten der Übersicht der Geschäfte in der Tabelle an.
@@ -86,15 +87,15 @@ public class ReportSectionModel extends ReportModel {
 				
 			// Einnahmen
 			case 1:
-				return new DecimalFormat("0.00").format(_data.incoming(col));
+				return HelperNumbersOut.sum(_data.incoming(col));
 				
 			// Ausgaben
 			case 2:
-				return new DecimalFormat("0.00").format(_data.outgoing(col));
+				return HelperNumbersOut.sum(_data.outgoing(col));
 				
 			// Differenz
 			case 3:
-				return new DecimalFormat("0.00").format(_data.deviation(col));
+				return HelperNumbersOut.sum(_data.deviation(col));
 		}
 	
 		// Standard-Rückgabe

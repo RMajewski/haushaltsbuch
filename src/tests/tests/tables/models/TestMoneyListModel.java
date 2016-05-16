@@ -205,7 +205,7 @@ public class TestMoneyListModel {
 		try {
 			// ResultSet
 			ResultSet rs = mock(ResultSet.class);
-			when(rs.getDouble("sum")).thenReturn(sum);
+			when(rs.getDouble(1)).thenReturn(sum);
 			
 			// Statement
 			Statement stm = mock(Statement.class);

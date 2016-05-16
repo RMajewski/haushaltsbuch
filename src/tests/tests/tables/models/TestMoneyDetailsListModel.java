@@ -41,6 +41,7 @@ import haushaltsbuch.db.query.Category;
 import haushaltsbuch.db.query.MoneyDetails;
 import haushaltsbuch.db.query.Queries;
 import haushaltsbuch.db.query.Section;
+import haushaltsbuch.helper.HelperNumbersOut;
 import haushaltsbuch.tables.models.MoneyDetailsListModel;
 
 /**
@@ -239,8 +240,7 @@ public class TestMoneyDetailsListModel {
 	 */
 	@Test
 	public void testGetValueAtWithThreeAsColReturnMoney() {
-		assertEquals(new DecimalFormat("0.00").format(_money),
-				_model.getValueAt(0, 3));
+		assertEquals(HelperNumbersOut.sum(_money), _model.getValueAt(0, 3));
 	}
 
 	/**

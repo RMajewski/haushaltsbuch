@@ -22,6 +22,7 @@ package haushaltsbuch.tables.models;
 import java.text.DecimalFormat;
 
 import haushaltsbuch.datas.ReportWeekData;
+import haushaltsbuch.helper.HelperNumbersOut;
 
 /**
  * Zeigt die erhoben Daten der Wochenübersicht in der Tabelle an.
@@ -90,7 +91,7 @@ public class ReportWeekModel extends ReportModel {
 					return ((ReportWeekData)_data).getDateTo(row);
 				
 				// 'von' und 'bis' nicht ausgewählt
-				return new DecimalFormat("0.00").format(_data.incoming(row));
+				return HelperNumbersOut.sum(_data.incoming(row));
 				
 			// 3. Spalte
 			case 2:
@@ -102,37 +103,37 @@ public class ReportWeekModel extends ReportModel {
 				// 'von' oder 'bis' ausgewählt
 				if (((ReportWeekData)_data).drawDateFrom() ||
 						((ReportWeekData)_data).drawDateTo())
-					return new DecimalFormat("0.00").format( _data.incoming(row));
+					return HelperNumbersOut.sum( _data.incoming(row));
 				
 				// 'von' und 'bis' nicht ausgewählt
-				return new DecimalFormat("0.00").format(_data.outgoing(row));
+				return HelperNumbersOut.sum(_data.outgoing(row));
 				
 			// 4. Spalte
 			case 3:
 				// 'von' und 'bis' ausgewählt
 				if (((ReportWeekData)_data).drawDateFrom() &&
 						((ReportWeekData)_data).drawDateTo())
-					return new DecimalFormat("0.00").format(_data.incoming(row));
+					return HelperNumbersOut.sum(_data.incoming(row));
 				
 				// 'von' oder 'bis' ausgewählt
 				if (((ReportWeekData)_data).drawDateFrom() ||
 						((ReportWeekData)_data).drawDateTo())
-					return new DecimalFormat("0.00").format(_data.outgoing(row));
+					return HelperNumbersOut.sum(_data.outgoing(row));
 				
 				// 'von' und 'bis' nicht ausgewählt
-				return new DecimalFormat("0.00").format(_data.deviation(row));
+				return HelperNumbersOut.sum(_data.deviation(row));
 				
 			// 5. Spalte
 			case 4:
 				// 'von' und 'bis' ausgewählt
 				if (((ReportWeekData)_data).drawDateFrom() && 
 						((ReportWeekData)_data).drawDateTo())
-					return new DecimalFormat("0.00").format(_data.outgoing(row));
+					return HelperNumbersOut.sum(_data.outgoing(row));
 				
 				// 'von' oder 'bis' ausgewählt
 				if (((ReportWeekData)_data).drawDateFrom() ||
 						((ReportWeekData)_data).drawDateTo())
-					return new DecimalFormat("0.00").format(_data.deviation(row));
+					return HelperNumbersOut.sum(_data.deviation(row));
 				
 				return null;
 				
@@ -141,7 +142,7 @@ public class ReportWeekModel extends ReportModel {
 				// 'von' und 'bis' ausgewählt
 				if (((ReportWeekData)_data).drawDateFrom() &&
 						((ReportWeekData)_data).drawDateTo())
-					return new DecimalFormat("0.00").format(_data.deviation(row));
+					return HelperNumbersOut.sum(_data.deviation(row));
 				
 				return null;
 		}

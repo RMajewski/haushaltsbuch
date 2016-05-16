@@ -33,6 +33,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import haushaltsbuch.datas.ReportWeekData;
+import haushaltsbuch.helper.HelperNumbersOut;
 import haushaltsbuch.tables.models.ReportWeekModel;
 import tests.testcase.TestReports;
 
@@ -125,8 +126,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(false);
 		when(_data.drawDateTo()).thenReturn(false);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 1));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 1));
 		
 		verify(_data, times(1)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -231,8 +231,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(false);
 		when(_data.drawDateTo()).thenReturn(false);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 2));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 2));
 		
 		verify(_data, times(2)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -259,8 +258,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(true);
 		when(_data.drawDateTo()).thenReturn(false);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 2));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 2));
 		
 		verify(_data, times(2)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -287,8 +285,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(false);
 		when(_data.drawDateTo()).thenReturn(true);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 2));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 2));
 		
 		verify(_data, times(2)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -342,8 +339,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(false);
 		when(_data.drawDateTo()).thenReturn(false);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 3));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 3));
 		
 		verify(_data, times(2)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -367,8 +363,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(true);
 		when(_data.drawDateTo()).thenReturn(false);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 3));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 3));
 		
 		verify(_data, times(2)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -395,8 +390,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(false);
 		when(_data.drawDateTo()).thenReturn(true);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 3));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 3));
 		
 		verify(_data, times(2)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -423,8 +417,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(true);
 		when(_data.drawDateTo()).thenReturn(true);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 3));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 3));
 		
 		verify(_data, times(1)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -473,8 +466,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(true);
 		when(_data.drawDateTo()).thenReturn(false);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 4));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 4));
 		
 		verify(_data, times(2)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -501,8 +493,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(false);
 		when(_data.drawDateTo()).thenReturn(true);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 4));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 4));
 		
 		verify(_data, times(2)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -529,8 +520,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(true);
 		when(_data.drawDateTo()).thenReturn(true);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 4));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 4));
 		
 		verify(_data, times(1)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
@@ -623,8 +613,7 @@ public class TestReportWeekModel extends TestReports {
 		when(_data.drawDateFrom()).thenReturn(true);
 		when(_data.drawDateTo()).thenReturn(true);
 		
-		assertEquals(new DecimalFormat("0.00").format(d),
-				_model.getValueAt(row, 5));
+		assertEquals(HelperNumbersOut.sum(d), _model.getValueAt(row, 5));
 		
 		verify(_data, times(1)).drawDateFrom();
 		verify(_data, times(1)).drawDateTo();
