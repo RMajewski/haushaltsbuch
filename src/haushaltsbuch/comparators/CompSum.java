@@ -19,30 +19,45 @@
 
 package haushaltsbuch.comparators;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Comparator;
 
 /**
- * Vergleicht die beiden Fließkomma-Zahlen miteinander.
+ * Vergleicht die beiden Beträge miteinander. Die Beträge sollten das Format
+ * "0.00" aufweisen.
  * 
  * @author René Majewski
- * 
+ *
  * @version 0.1
- * @since 0.2
+ * @since 0.3
  */
-public class CompDouble implements Comparator<Double>{
+public class CompSum implements Comparator<String> {
 
 	/**
-	 * Vergleicht die beiden Zahlen miteinander. Es wird -1 zurück
-	 * gegeben, wenn die Zahl d1 kleiner als die Zahl d2. Sind beide Zahlen
-	 * gleich groß, so wird 0 zurück geben. Ist die Zahl größer von d1 als die
-	 * Zahl d2, so wird 1 zurück gegeben.
+	 * Vergleicht die beiden Beträge miteinander. Es wird -1 zurück
+	 * gegeben, wenn sum1 kleiner als is als sum2. Sind beide Beträge
+	 * gleich groß, so wird 0 zurück geben. Ist die sum1 größer als sum2
+	 * so wird 1 zurück gegeben.
 	 */
 	@Override
-	public int compare(Double d1, Double d2) {
+	public int compare(String sum1, String sum2) {
+		DecimalFormat df = new DecimalFormat("0.00");
+		double d1 = 0, d2 = 0;
+		try {
+			d1 = df.parse(sum1).doubleValue();
+			d2 = df.parse(sum2).doubleValue();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		if (d1 < d2)
 			return -1;
-		if ((d1 - d2) == 0)
+		
+		if (d1 == d2)
 			return 0;
+		
 		return 1;
 	}
 

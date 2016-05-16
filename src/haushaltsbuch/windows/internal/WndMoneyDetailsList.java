@@ -31,6 +31,7 @@ import javax.swing.table.TableRowSorter;
 
 import haushaltsbuch.comparators.CompDouble;
 import haushaltsbuch.comparators.CompInt;
+import haushaltsbuch.comparators.CompSum;
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
@@ -100,7 +101,7 @@ public class WndMoneyDetailsList extends WndTableFrame {
 		
 		// Zusätzliche Comparatoren setzen
 		sorter.setComparator(0, new CompInt());
-		sorter.setComparator(3, new CompDouble());
+		sorter.setComparator(3, new CompSum());
 		
 		// Welche Liste soll beim Start sortiert sein?
 		List<SortKey> sk = new ArrayList<SortKey>();
