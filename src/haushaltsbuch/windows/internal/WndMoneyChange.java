@@ -114,12 +114,10 @@ public class WndMoneyChange extends WndChangeFrame {
 				if (tmp.length == 2)
 					date = res + String.valueOf(gc.get(GregorianCalendar.YEAR));
 				
+				if (tmp.length == 3)
+					date = res;
+				
 				_txtDate.setText(date);
-				System.out.println();
-				System.out.println();
-				System.out.println(res);
-				System.out.println();
-				System.out.println();
 			}
 		});
 		
