@@ -111,7 +111,9 @@ public class WndMoneyList extends WndTableFrame {
 	@Override
 	protected void tableRowDoubleClick() {
 		if (_table.getSelectedRow() > -1) {
-			MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+			MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(
+					_table.getRowSorter().convertRowIndexToModel(
+							_table.getSelectedRow()));
 			newWindow(new WndMoneyDetailsList(_desktop, data));
 		}
 	}
@@ -175,7 +177,9 @@ public class WndMoneyList extends WndTableFrame {
 		// Wurde ein Datensatz ausgewählt?
 		if (_table.getSelectedRow() > -1) {
 			// Datensatz ermitteln
-			MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+			MoneyData data = ((MoneyListModel)_table.getModel()).getRowDataAt(
+					_table.getRowSorter().convertRowIndexToModel(
+							_table.getSelectedRow()));
 			
 			// Fenster zum ändern der Daten anzeigen
 			newWindow(new WndMoneyChange(_desktop, data, this));
@@ -189,6 +193,9 @@ public class WndMoneyList extends WndTableFrame {
 	public void delete() {
 		// Wurde ein Datensatz ausgewählt?
 		if (_table.getSelectedRow() > -1)
-			delete(((MoneyListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().money());
+			delete(((MoneyListModel)_table.getModel()).getRowDataAt(
+					_table.getRowSorter().convertRowIndexToModel(
+							_table.getSelectedRow())).getId(), 
+					DbController.queries().money());
 	}
 }

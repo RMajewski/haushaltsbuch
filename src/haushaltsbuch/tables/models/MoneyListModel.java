@@ -173,16 +173,16 @@ public class MoneyListModel extends AbstractTableModel
 	 * Gibt den Datensatz der angegeben Zeile zurück. Wurde <b>-1</b> als ID
 	 * übergeben, so wird ein leerer Datensatz zurück gegeben.
 	 * 
-	 * @param row Zeile, die als Datensatz zurück gegeben werden soll.
+	 * @param row Zeile, in der der Datensatz steht.
 	 * 
-	 * @return Datensatz der angegeben Zeile
+	 * @return Selektierter Datensatz
 	 */
 	@Override
 	public MoneyData getRowDataAt(int row) {
-		if (row == -1)
-			return new MoneyData();
-		else
+		if (row > -1)
 			return _list.get(row);
+		
+		return new MoneyData();
 	}
 
 }

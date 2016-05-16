@@ -135,7 +135,10 @@ public class WndCategoryList extends WndTableFrame {
 		if (_table.getSelectedRow() >= 0) {
 			try {
 				// Daten ermitteln
-				IdNameData data = ((IdNameListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+				IdNameData data = 
+						((IdNameListModel)_table.getModel()).getRowDataAt(
+								_table.getRowSorter().convertRowIndexToModel(
+										_table.getSelectedRow()));
 				
 				// Kategorie ändern
 				String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Kategorie ändern", JOptionPane.OK_CANCEL_OPTION);
@@ -207,6 +210,9 @@ public class WndCategoryList extends WndTableFrame {
 		System.out.println("WndCategoryList.delete() wurde aufgerufen"); 
 
 		if (_table.getSelectedRow() > -1)
-			delete(model.getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().category());
+			delete(model.getRowDataAt(
+					_table.getRowSorter().convertRowIndexToModel(
+							_table.getSelectedRow())).getId(), 
+					DbController.queries().category());
 	}
 }

@@ -137,7 +137,10 @@ public class WndSectionList extends WndTableFrame {
 		if (_table.getSelectedRow() >= 0) {
 			try {
 				// Daten ermitteln
-				IdNameData data = ((IdNameListModel)_table.getModel()).getRowDataAt(_table.getSelectedRow());
+				IdNameData data = 
+						((IdNameListModel)_table.getModel()).getRowDataAt(
+								_table.getRowSorter().convertRowIndexToModel(
+										_table.getSelectedRow()));
 				
 				// Geschäft ändern
 				String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Geschäft ändern", JOptionPane.OK_CANCEL_OPTION);
@@ -207,7 +210,10 @@ public class WndSectionList extends WndTableFrame {
 		IdNameListModel model = (IdNameListModel)_table.getModel();
 
 		if (_table.getSelectedRow() >= 0)
-			delete(model.getRowDataAt(_table.getSelectedRow()).getId(), DbController.queries().section());
+			delete(model.getRowDataAt(
+					_table.getRowSorter().convertRowIndexToModel(
+							_table.getSelectedRow())).getId(), 
+					DbController.queries().section());
 	}
 
 }
