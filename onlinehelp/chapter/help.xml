@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
 <chapters>
 	<chapter href="main.xml" />
+	<chapter href="category.xml" />
+	<chapter href="section.xml" />
+	<chapter href="money.xml" />
+	<chapter href="money_details.xml" />
+	<chapter href="report.xml" />
 	<chapter href="library.xml" />
 </chapters>	

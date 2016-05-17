@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+		 xml:id="money_details">
+	<title>Details zu Einnahmen und Ausgaben</title>
+	<para>
+		In diesem Kapitel wird der Umgang mit Details zu den Einnahmen und
+		Ausgaben beschrieben.
+	</para>
+</chapter>

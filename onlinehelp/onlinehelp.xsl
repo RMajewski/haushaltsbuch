@@ -11,5 +11,5 @@
   	<xsl:param name="l10n.gentext.language">de</xsl:param>
   	<xsl:param name="javahelp.encoding">UTF-8</xsl:param>
   
-  	<xsl:include href="docbook-xsl-1.75.2/javahelp/javahelp.xsl"/>
+  	<xsl:include href="docbook-xsl-1.75.2/javahelp/javahelp2.xsl"/>
 </xsl:stylesheet>
