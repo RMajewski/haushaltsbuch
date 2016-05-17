@@ -8,3 +8,6 @@ src/org/**/*
 src/org/*
 result/**/*
 result/*
+onlinehelp/help_all.xml
+resource/help/**/*
+resource/help/*
