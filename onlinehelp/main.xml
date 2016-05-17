@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE chapter>
+<chapter xmlns="http://docbook.org/ns/docbook"
+		 xml:id="main">
+	<title>Haushaltsbuch</title>
+	<para>
+		Ich habe mich zu diesem Projekt entschlossen, da ich kein für mich
+		passendes Haushaltsbuch-Programm, -App gefunden habe.
+	</para>
+	<para>
+		Benutzte Programmiersprache: java Version 1.7.9.95
+	</para>
+	<para>
+		Quellcode-Verzeichnis: src
+		Ressourcen-Verzeichnis: resource
+	</para>
+	<para>
+		Verzeichnis für Junit- und Jemmy-Tests: src/tests
+		Verzeichnis für Fit-Tests: src/tests/fit
+	</para>
+	<para>Benutzte Bibliotheken:</para>
+	<para>
+		<itemizedlist>
+			<listitem><para>SQLite (sqlite-jdbc-3.8.11.2.jar)</para></listitem>
+			<listitem><para>JavaHelp (jh.jar)</para></listitem>
+			<listitem><para>docbook Version 1.75.2 (Link: <ulink href="http://www.docbook.com">www.docbook.com</ulink>)</para></listitem>
+		</itemizedlist>
+	</para>
+</chapter>

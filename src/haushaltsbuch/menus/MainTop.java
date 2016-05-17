@@ -21,9 +21,12 @@ package haushaltsbuch.menus;
 
 import java.awt.event.ActionListener;
 
+import javax.help.CSH;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import haushaltsbuch.help.Help;
 
 /**
  * Hauptmenü, welches am oberen Bildschirm angezeigt wird.
@@ -176,8 +179,18 @@ public class MainTop extends JMenuBar {
 		JMenu ret = new JMenu("Hilfe");
 		ret.setMnemonic('H');
 		
+		// Onlinehilfe
+		JMenuItem item = new JMenuItem("Onlinehilfe");
+		item.setMnemonic('O');
+		item.addActionListener(new CSH.DisplayHelpFromSource(
+				Help.getInstance().getHelpBroker()));
+		ret.add(item);
+		
+		// Trennlinie
+		ret.addSeparator();
+		
 		// Lizenz ...
-		JMenuItem item = new JMenuItem("Lizenz...");
+		item = new JMenuItem("Lizenz...");
 		item.setMnemonic('L');
 		item.setActionCommand(HELP_LICENSE);
 		item.addActionListener(listener);

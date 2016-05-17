@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<book xmlns="http://docbook.org/ns/docbook"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd"
+	version="5.0">
+
+	<info>
+		<title>Haushaltsbuch - Onlinehilfe</title>
+		<author>
+			<personname>
+				<firstname>René</firstname>
+				<surname>Majewski</surname>
+			</personname>
+		</author>
+		<copyright>
+			<year>2016</year>
+			<holder>René Majewski</holder>
+		</copyright>
+	</info>
+	
+	<chapter xmlns="http://docbook.org/ns/docbook"
+			 xml:id="main">
+		<title>Haushaltsbuch</title>
+		<para>
+			Ich habe mich zu diesem Projekt entschlossen, da ich kein für mich
+			passendes Haushaltsbuch-Programm, -App gefunden habe.
+		</para>
+		<para>
+			Benutzte Programmiersprache: java Version 1.7.9.95
+		</para>
+		<para>
+			Quellcode-Verzeichnis: src
+			Ressourcen-Verzeichnis: resource
+		</para>
+		<para>
+			Verzeichnis für Junit- und Jemmy-Tests: src/tests
+			Verzeichnis für Fit-Tests: src/tests/fit
+		</para>
+		<para>
+			Benutzte Bibliotheken:
+			<itemizedlist>
+				<listitem>
+					<para>SQLite (sqlite-jdbc-3.8.11.2.jar)</para>
+				</listitem>
+				<listitem>
+					<para>JavaHelp (jh.jar)</para>
+				</listitem>
+				<listitem>
+					<para>docbook Version 1.75.2 (Link: www.docbook.com)</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</chapter>
+	
+</book>
+
