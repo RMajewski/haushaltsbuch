@@ -5,5 +5,22 @@
 <toc version="1.0">
    <tocitem target="d4e1" text="Haushaltsbuch - Onlinehilfe">
       <tocitem target="main" text="Haushaltsbuch"/>
+      <tocitem target="libraries" text="Verwendete Bibliotheken">
+         <tocitem target="library_sqlite" text="SQLite"/>
+         <tocitem target="library_javahelp" text="JavaHelp"/>
+         <tocitem target="library_itextpdf" text="ItextPDF"/>
+         <tocitem target="library_docbook" text="docbook"/>
+         <tocitem target="library_testsuite" text="testsuite"/>
+         <tocitem target="library_saxon" text="Saxon"/>
+         <tocitem target="library_jemmy" text="Jemmy"/>
+         <tocitem target="library_fit" text="Fit"/>
+         <tocitem target="library_junit" text="Junit"/>
+         <tocitem target="library_cglib" text="cglib"/>
+         <tocitem target="library_hamcrest" text="Hamcrest"/>
+         <tocitem target="library_javassist" text="Javassist"/>
+         <tocitem target="library_mockito" text="Mockito"/>
+         <tocitem target="library_objenesis" text="Objenesis"/>
+         <tocitem target="library_powermock" text="PowerMock"/>
+      </tocitem>
    </tocitem>
 </toc>
