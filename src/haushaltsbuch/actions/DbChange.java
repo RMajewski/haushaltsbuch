@@ -54,6 +54,8 @@ public class DbChange extends Action {
 		putValue(Action.NAME, "Ändern");
 		putValue(Action.MNEMONIC_KEY, 1);
 		putValue(Action.ACTION_COMMAND_KEY, COMMAND);
+		putValue(Action.SHORT_DESCRIPTION, 
+				"Ändert den ausgewählten Datensatz.");
 	}
 
 	@Override

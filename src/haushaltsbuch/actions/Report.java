@@ -65,6 +65,8 @@ public class Report extends Action {
 		putValue(Action.NAME, "Report");
 		putValue(Action.MNEMONIC_KEY, 1);
 		putValue(Action.ACTION_COMMAND_KEY, COMMAND);
+		putValue(Action.SHORT_DESCRIPTION,
+				"Ruft den Einstellungs-Dialog für die Reports auf.");
 	}
 	
 	/**
