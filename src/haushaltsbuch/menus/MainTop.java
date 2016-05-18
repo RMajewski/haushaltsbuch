@@ -22,6 +22,7 @@ package haushaltsbuch.menus;
 import java.awt.event.ActionListener;
 
 import javax.help.CSH;
+import javax.help.HelpBroker;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -182,6 +183,7 @@ public class MainTop extends JMenuBar {
 		// Onlinehilfe
 		JMenuItem item = new JMenuItem("Onlinehilfe");
 		item.setMnemonic('O');
+		CSH.setHelpIDString(item, "main");
 		item.addActionListener(new CSH.DisplayHelpFromSource(
 				Help.getInstance().getHelpBroker()));
 		ret.add(item);
@@ -192,8 +194,9 @@ public class MainTop extends JMenuBar {
 		// Lizenz ...
 		item = new JMenuItem("Lizenz...");
 		item.setMnemonic('L');
-		item.setActionCommand(HELP_LICENSE);
-		item.addActionListener(listener);
+		CSH.setHelpIDString(item, "license");
+		item.addActionListener(new CSH.DisplayHelpFromSource(
+				Help.getInstance().getHelpBroker()));
 		ret.add(item);
 		
 		// Trennlinie

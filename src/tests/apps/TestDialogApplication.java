@@ -32,7 +32,6 @@ import haushaltsbuch.dialogs.DlgExportPdf;
 import haushaltsbuch.dialogs.DlgExportSqlScript;
 import haushaltsbuch.dialogs.DlgInfo;
 import haushaltsbuch.dialogs.DlgInputChange;
-import haushaltsbuch.dialogs.DlgLicense;
 import haushaltsbuch.dialogs.DlgLogView;
 import haushaltsbuch.dialogs.DlgReport;
 
@@ -55,11 +54,6 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	 * Gibt an, dass der "Über..."-Dialog angezeigt werden soll.
 	 */
 	public static final String DIALOG_ABOUT = "tests.dialogs.DlgAbout";
-	
-	/**
-	 * Gibt an, dass der Lizenz-Dialog angezeigt werden soll.
-	 */
-	public static final String DIALOG_LICENSE = "tests.dialogs.DlgLicense";
 	
 	/**
 	 * Gibt an, dass der Log angezeigt werden soll.
@@ -138,12 +132,6 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		JButton btn = new JButton(DIALOG_ABOUT);
 		btn.addActionListener(this);
 		btn.setActionCommand(DIALOG_ABOUT);
-		getContentPane().add(btn);
-		
-		// Button für Lizenez-Dialog anzeigen
-		btn = new JButton(DIALOG_LICENSE);
-		btn.addActionListener(this);
-		btn.setActionCommand(DIALOG_LICENSE);
 		getContentPane().add(btn);
 		
 		// Button zum Anzeigen des Logs
@@ -232,11 +220,6 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 				// "Über..."-Dialog
 				case DIALOG_ABOUT:
 					new DlgAbout(this);
-					break;
-				
-				// Lizenz-Dialog
-				case DIALOG_LICENSE:
-					new DlgLicense(this);
 					break;
 				
 				// Log-Dialog

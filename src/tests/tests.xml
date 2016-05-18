@@ -162,7 +162,6 @@
 			<name>Informations-Dialoge</name>
 			<package>tests.fit.dialogs</package>
 			<test>DlgAbout</test>
-			<test>DlgLicense</test>
 			<test>DlgLogView</test>
 			<test>DlgInfo</test>
 		</testSuite>

@@ -30,7 +30,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgAbout;
-import haushaltsbuch.dialogs.DlgLicense;
 import haushaltsbuch.dialogs.DlgLogView;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
@@ -151,11 +150,6 @@ public class WndMain extends JFrame implements ActionListener {
 			// Programm beenden
 			case MainTop.FILE_END:
 				dispose();
-				break;
-				
-			// Linzez-Dialog
-			case MainTop.HELP_LICENSE:
-				new DlgLicense(this);
 				break;
 				
 			// Über-Dialog

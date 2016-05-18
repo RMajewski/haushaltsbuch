@@ -234,8 +234,8 @@ public class TestTopMainMenu {
 	 * Überprüft, ob das Hilfe-Menü genau 2 Menü-Punkte hat
 	 */
 	@Test
-	public void testHelpMenuHaveThreeItems() {
-		assertEquals(3, _menu.getMenu(MENU_HELP).getItemCount());
+	public void testHelpMenuHaveFiveItems() {
+		assertEquals(5, _menu.getMenu(MENU_HELP).getItemCount());
 	}
 	
 	/**
@@ -243,7 +243,9 @@ public class TestTopMainMenu {
 	 */
 	@Test
 	public void testHelpMenuHaveRightItems() {
-		assertEquals("Lizenz...", _menu.getMenu(MENU_HELP).getItem(0).getText());
-		assertEquals("Über...", _menu.getMenu(MENU_HELP).getItem(2).getText());
+		assertEquals("Onlinehilfe", 
+				_menu.getMenu(MENU_HELP).getItem(0).getText());
+		assertEquals("Lizenz...", _menu.getMenu(MENU_HELP).getItem(2).getText());
+		assertEquals("Über...", _menu.getMenu(MENU_HELP).getItem(4).getText());
 	}
 }
