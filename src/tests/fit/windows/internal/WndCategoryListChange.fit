@@ -44,16 +44,6 @@
 					<td>true</td>
 				</tr>
 				<tr>
-					<td>press</td>
-					<td>openPopup</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>press</td>
-					<td>pushPopupChange</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
 					<td>check</td>
 					<td>getSelectedCategory</td>
 					<td>Lebensmittel</td>
@@ -71,6 +61,11 @@
 				<tr>
 					<td>check</td>
 					<td>isDialogVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getCategoryName</td>
 					<td>true</td>
 				</tr>
 				<tr>

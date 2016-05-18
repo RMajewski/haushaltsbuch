@@ -94,6 +94,15 @@ public class FixtureWndCategoryList extends FixtureWndTables {
 	}
 	
 	/**
+	 * Ermittelt von den Text-Feld im Dialog den Namen
+	 * 
+	 * @param return Name, der im Text-Feld steht
+	 */
+	public void getCategoryName() {
+		return 
+	}
+	
+	/**
 	 * Ermittelt die angezeigte Status-Nachricht
 	 * 
 	 * @return Angezeigte Status-Nachricht

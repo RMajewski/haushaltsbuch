@@ -1,11 +1,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Dialog: Lizenz</title>
+		<title>Dialog: Kategorie ändern (Abbrechen)</title>
 	</head>
 	<body>
-		<h2>
-			Dialog: Lizenz</h2>
+		<h2>Dialog: Kategorie ändern (Abbrechen)</h2>
 		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
 			<tbody>
 				<tr>
@@ -13,7 +12,12 @@
 				</tr>
 				<tr>
 					<td>start</td>
-					<td colspan="2">tests.fixtures.dialogs.FixtureDlgInfo</td>
+					<td colspan="2">tests.fixtures.dialogs.FixtureDlgInputChange</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>startCategoryChange</td>
+					<td>&nbsp;</td>
 				</tr>
 				<tr>
 					<td>check</td>
@@ -32,22 +36,27 @@
 				</tr>
 				<tr>
 					<td>check</td>
-					<td>haveInfoIcon</td>
+					<td>haveCancelButton</td>
 					<td>true</td>
 				</tr>
 				<tr>
 					<td>check</td>
 					<td>getTitle</td>
-					<td>Test</td>
+					<td>Kategorie ändern</td>
 				</tr>
 				<tr>
 					<td>check</td>
-					<td>getMessage</td>
-					<td>Dies ist ein Test!</td>
+					<td>getLabelText</td>
+					<td>Kategorie</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getText</td>
+					<td>Test</td>
 				</tr>
 				<tr>
 					<td>press</td>
-					<td>pushOk</td>
+					<td>pushCancel</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
@@ -56,10 +65,11 @@
 					<td>false</td>
 				</tr>
 				<tr>
-					<td>press</td>
-					<td>applicationEnd</td>
-					<td>&nbsp;</td>
+					<td>check</td>
+					<td>getExitStatus</td>
+					<td>-1</td>
 				</tr>
 			</tbody>
-		</table></body>
+		</table>
+	</body>
 </html>
