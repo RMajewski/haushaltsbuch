@@ -1,4 +1,4 @@
-Open-Source-Lizenz für die Europäische Union
+#Open-Source-Lizenz für die Europäische Union
 
 V.1.1
 
@@ -21,8 +21,7 @@ lizenzieren möchte.
 
 
 
-1. Begriffsbestimmungen
------------------------
+##1. Begriffsbestimmungen
 
 Für diese Lizenz gelten folgende Begriffsbestimmungen:
 
@@ -65,8 +64,8 @@ natürliche oder juristische Personen.
 
 
 
-2. Umfang der Lizenzrechte
---------------------------
+##2. Umfang der Lizenzrechte
+
 Der Lizenzgeber erteilt Ihnen hiermit für die Gültigkeitsdauer der am Originalwerk
 bestehenden Urheberrechte eine weltweite, unentgeltliche, nicht-ausschließliche,
 unterlizenzierbare Lizenz, die Sie berechtigt:
@@ -103,8 +102,7 @@ erteilten Nutzungsrechte am Werk notwendig ist.
 
 
 
-3. Zugänglichmachung des Quellcodes
------------------------------------
+##3. Zugänglichmachung des Quellcodes
 
 Der Lizenzgeber kann das Werk entweder als Quellcode oder als ausführbaren Code
 zur Verfügung stellen. Stellt er es als ausführbaren Code zur Verfügung, so stellt er
@@ -117,8 +115,7 @@ zugänglich macht.
 
 
 
-4. Einschränkungen des Urheberrechts
-------------------------------------
+##4. Einschränkungen des Urheberrechts
 
 Es ist nicht Zweck dieser Lizenz, Ausnahmen oder Schranken der ausschließlichen
 Rechte des Urhebers am Originalwerk oder der Software, die dem Lizenznehmer
@@ -127,8 +124,7 @@ dieser Lizenz unberührt.
 
 
 
-5. Pflichten des Lizenznehmers
-------------------------------
+##5. Pflichten des Lizenznehmers
 
 Die Einräumung der oben genannten Rechte ist an mehrere Beschränkungen und
 Pflichten für den Lizenznehmer gebunden:
@@ -175,8 +171,7 @@ Wiedergabe des Urheberrechtshinweises erforderlich ist.
 
 
 
-6. Urheber und Bearbeiter
--------------------------
+##6. Urheber und Bearbeiter
 
 Der ursprüngliche Lizenzgeber gewährleistet, dass er das Urheberrecht am
 Originalwerk innehat oder dieses an ihn lizenziert wurde und, dass er befugt ist, diese
@@ -192,8 +187,7 @@ zum Werk unter den Bedingungen dieser Lizenz.
 
 
 
-7. Gewährleistungsausschluss
-----------------------------
+##7. Gewährleistungsausschluss
 
 Die Arbeit an diesem Werk wird laufend fortgeführt; es wird durch unzählige
 Bearbeiter ständig verbessert. Das Werk ist nicht vollendet und kann daher Fehler
@@ -210,8 +204,7 @@ Bedingung für die Einräumung von Rechten an dem Werk.
 
 
 
-8. Haftungsausschluss/Haftungsbeschränkung
-------------------------------------------
+##8. Haftungsausschluss/Haftungsbeschränkung
 
 Außer in Fällen von Vorsatz oder der Verursachung von Personenschäden haftet der
 Lizenzgeber nicht für direkte oder indirekte, materielle oder immaterielle Schäden
@@ -224,8 +217,7 @@ Produkthaftung, soweit die entsprechenden Regelungen auf das Werk anwendbar sind
 
 
 
-9. Zusatzvereinbarungen
------------------------
+##9. Zusatzvereinbarungen
 
 Wenn Sie das Originalwerk oder Bearbeitungen verbreiten, können Sie
 Zusatzvereinbarungen schließen über die entgeltliche Erbringung von Supportleistungen,
@@ -240,8 +232,7 @@ gegen sie geltend gemacht werden oder eine Haftungsverpflichtung entsteht.
 
 
 
-10. Annahme der Lizenz
-----------------------
+##10. Annahme der Lizenz
 
 Sie können den Bestimmungen dieser Lizenz zustimmen, indem Sie das Symbol
 „Lizenz annehmen“ unter dem Fenster mit dem Lizenztext anklicken oder indem Sie
@@ -257,8 +248,7 @@ Werks oder dessen Vervielfältigungen.
 
 
 
-11. Informationspflichten
--------------------------
+##11. Informationspflichten
 
 Wenn Sie das Werk verbreiten und/oder zugänglich machen (beispielsweise, indem Sie
 es zum Herunterladen von einer Website anbieten), müssen Sie über den
@@ -270,8 +260,7 @@ und vervielfältigt werden kann, erforderlich sind.
 
 
 
-12. Beendigung der Lizenz
--------------------------
+##12. Beendigung der Lizenz
 
 Die Lizenz und die damit eingeräumten Rechte erlöschen automatisch, wenn der
 Lizenznehmer gegen die Lizenzbedingungen verstößt.
@@ -282,8 +271,7 @@ gestellt worden ist, solange diese Personen die Lizenzbedingungen erfüllen.
 
 
 
-13. Sonstiges
--------------
+##13. Sonstiges
 
 Unbeschadet der Bestimmungen unter Artikel. 9 stellt die Lizenz die vollständige
 Vereinbarung der Parteien über das lizenzierte Werk dar.
@@ -304,8 +292,7 @@ berufen.
 
 
 
-14. Gerichtsstand
------------------
+##14. Gerichtsstand
 
 Für alle Streitigkeiten über die Auslegung dieser Lizenz zwischen der Europäischen
 Kommission als Lizenzgeberin und einem Lizenznehmer ist der Gerichtshof der
@@ -319,8 +306,7 @@ hat.
 
 
 
-15. Anwendbares Recht
----------------------
+##15. Anwendbares Recht
 
 Diese Lizenz unterliegt dem Recht des Mitgliedstaates der Europäischen Union, in
 dem der Lizenzgeber seinen Wohnsitz oder seinen eingetragenen Sitz hat.
@@ -334,7 +320,7 @@ einem Lizenznehmer bestehen;
 Wohnsitz oder eingetragenen Sitz in einem Mitgliedstaat der Europäischen Union
 verfügt.
 
-================================================================================
+---
 
 Anhang
 

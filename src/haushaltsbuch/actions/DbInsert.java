@@ -56,6 +56,7 @@ public class DbInsert extends Action {
 		putValue(Action.NAME, "Neu");
 		putValue(Action.MNEMONIC_KEY, 1);
 		putValue(Action.ACTION_COMMAND_KEY, COMMAND);
+		putValue(Action.SHORT_DESCRIPTION, "Fügt einen neuen Datensatz hinzu.");
 	}
 
 	/**

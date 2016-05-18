@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+		 xml:id="report">
+	<title>Report</title>
+	<para>
+		In diesem Kapitel wird das Erstellen von Reports beschrieben. Die
+		erstellten Reports können als PDF-Datei exportiert werden.
+	</para>
+</chapter>

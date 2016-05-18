@@ -55,6 +55,8 @@ public class DbDelete extends Action {
 		putValue(Action.NAME, "Löschen");
 		putValue(Action.MNEMONIC_KEY, 1);
 		putValue(Action.ACTION_COMMAND_KEY, COMMAND);
+		putValue(Action.SHORT_DESCRIPTION,
+				"Löscht den ausgewählten Datensatz.");
 	}
 
 	/**

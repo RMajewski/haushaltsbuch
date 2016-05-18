@@ -81,7 +81,7 @@ public class FixtureWndCategoryList extends FixtureWndTables {
 	 */
 	public void pushPopupInsert() {
 		_test.pushNoBlockPopup("Neu");
-		_test.waitDlg("Kategorie erstellen");
+		_test.waitDlg("Neue Kategorie eingeben");
 	}
 	
 	/**
@@ -100,5 +100,20 @@ public class FixtureWndCategoryList extends FixtureWndTables {
 	 */
 	public String getStatusMessage() {
 		return StatusBar.getInstance().getText();
+	}
+	
+	/**
+	 * Ermittelt, ob im Text-Feld des Dialogs etwas steht.
+	 * 
+	 * @return Steht etwas im Text-Feld des Dialoges?
+	 */
+	public boolean hasCategoryName() {
+		String name = ((TestWndCategoryList)_test).getDialogTextFieldText();
+		System.out.println();
+		System.out.println();
+		System.out.println(name);
+		System.out.println();
+		System.out.println();
+		return (name != null) && !name.isEmpty();
 	}
 }

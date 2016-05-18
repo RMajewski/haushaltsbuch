@@ -26,7 +26,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
@@ -34,6 +33,7 @@ import javax.swing.table.TableRowSorter;
 import haushaltsbuch.comparators.CompInt;
 import haushaltsbuch.datas.IdNameData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.dialogs.DlgInputChange;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.menus.PopupStandardList;
@@ -42,9 +42,12 @@ import haushaltsbuch.tables.models.IdNameListModel;
 /**
  * In diesen Dialog werden die einzelnen Kategorien angezeigt.
  * 
+ * In Version 0.2 wird der eigene Eingabe-Dialog zum Einfügen oder Ändern einer
+ * Kategorie benutzt.
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class WndCategoryList extends WndTableFrame {
@@ -141,7 +144,12 @@ public class WndCategoryList extends WndTableFrame {
 										_table.getSelectedRow()));
 				
 				// Kategorie ändern
-				String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Kategorie ändern", JOptionPane.OK_CANCEL_OPTION);
+				DlgInputChange dlg = new DlgInputChange(
+						DlgInputChange.WND_CATEGORY, DlgInputChange.TYPE_CHANGE,
+						data.getName(), _desktop.getMainWindow());
+				String cc = null;
+				if (dlg.getExit() == DlgInputChange.EXIT_OK)
+					cc = dlg.getInput();
 				if ((cc != null) && !cc.isEmpty() && (cc.compareTo(data.getName()) != 0)) {
 					Statement stm = DbController.getInstance().createStatement();
 					if (stm.executeUpdate(DbController.queries().category().update(data.getId(), cc)) > 0) {
@@ -170,7 +178,12 @@ public class WndCategoryList extends WndTableFrame {
 		try {
 			Statement stm = DbController.getInstance().createStatement();
 				
-			String nc = JOptionPane.showInputDialog(this, "Neue Kategorie", "Kategorie erstellen", JOptionPane.OK_CANCEL_OPTION);
+			DlgInputChange dlg = new DlgInputChange(
+					DlgInputChange.WND_CATEGORY, DlgInputChange.TYPE_INSERT,
+					null, _desktop.getMainWindow());
+			String nc = null;
+			if (dlg.getExit() == DlgInputChange.EXIT_OK)
+				nc = dlg.getInput();
 			if (nc != null && !nc.isEmpty()) {
 				ResultSet rs = stm.executeQuery(DbController.queries().category().search("name", nc));
 				if (!rs.next()) {

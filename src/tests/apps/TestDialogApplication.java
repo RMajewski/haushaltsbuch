@@ -31,7 +31,7 @@ import haushaltsbuch.dialogs.DlgAbout;
 import haushaltsbuch.dialogs.DlgExportPdf;
 import haushaltsbuch.dialogs.DlgExportSqlScript;
 import haushaltsbuch.dialogs.DlgInfo;
-import haushaltsbuch.dialogs.DlgLicense;
+import haushaltsbuch.dialogs.DlgInputChange;
 import haushaltsbuch.dialogs.DlgLogView;
 import haushaltsbuch.dialogs.DlgReport;
 
@@ -54,11 +54,6 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	 * Gibt an, dass der "Über..."-Dialog angezeigt werden soll.
 	 */
 	public static final String DIALOG_ABOUT = "tests.dialogs.DlgAbout";
-	
-	/**
-	 * Gibt an, dass der Lizenz-Dialog angezeigt werden soll.
-	 */
-	public static final String DIALOG_LICENSE = "tests.dialogs.DlgLicense";
 	
 	/**
 	 * Gibt an, dass der Log angezeigt werden soll.
@@ -84,6 +79,30 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	 * Gibt an, dass der Informations-Dialog angezeigt werden soll.
 	 */
 	public static final String DIALOG_INFO = "test.dialogs.DlgInfo";
+	
+	/**
+	 * Gibt an, dass eine neue Kategorie erstellt werden soll.
+	 */
+	public static final String DIALOG_INPUTCHANGE_CATEGORY_INSERT = 
+				"test.dialogs.DlgInputChange.Category.Insert";
+	
+	/**
+	 * Gibt an, dass eine Kategorie geändert werden soll.
+	 */
+	public static final String DIALOG_INPUTCHANGE_CATEGORY_CHANGE = 
+				"test.dialogs.DlgInputChange.Category.Change";
+	
+	/**
+	 * Gibt an, dass ein neues Geschäft erstellt werden soll.
+	 */
+	public static final String DIALOG_INPUTCHANGE_SECTION_INSERT = 
+				"test.dialogs.DlgInputChange.Section.Insert";
+	
+	/**
+	 * Gibt an, dass ein Geschäft geändert werden soll.
+	 */
+	public static final String DIALOG_INPUTCHANGE_SECTION_CHANGE = 
+				"test.dialogs.DlgInputChange.Section.Change";
 
 	/**
 	 * Serilisation ID
@@ -115,12 +134,6 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		btn.setActionCommand(DIALOG_ABOUT);
 		getContentPane().add(btn);
 		
-		// Button für Lizenez-Dialog anzeigen
-		btn = new JButton(DIALOG_LICENSE);
-		btn.addActionListener(this);
-		btn.setActionCommand(DIALOG_LICENSE);
-		getContentPane().add(btn);
-		
 		// Button zum Anzeigen des Logs
 		btn = new JButton(DIALOG_LOG);
 		btn.addActionListener(this);
@@ -149,6 +162,30 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		btn = new JButton(DIALOG_INFO);
 		btn.addActionListener(this);
 		btn.setActionCommand(DIALOG_INFO);
+		getContentPane().add(btn);
+		
+		// Button zum Dialog zur Eingabe einer neuen Kategorie
+		btn = new JButton(DIALOG_INPUTCHANGE_CATEGORY_INSERT);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_INPUTCHANGE_CATEGORY_INSERT);
+		getContentPane().add(btn);
+		
+		// Button zum Dialog zur Änderung einer Kategorie
+		btn = new JButton(DIALOG_INPUTCHANGE_CATEGORY_CHANGE);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_INPUTCHANGE_CATEGORY_CHANGE);
+		getContentPane().add(btn);
+		
+		// Button zum Dialog zur Eingabe eines neuen Geschäftes
+		btn = new JButton(DIALOG_INPUTCHANGE_SECTION_INSERT);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_INPUTCHANGE_SECTION_INSERT);
+		getContentPane().add(btn);
+		
+		// Button zum Dialog zur Änderung eines Geschäftes
+		btn = new JButton(DIALOG_INPUTCHANGE_SECTION_CHANGE);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_INPUTCHANGE_SECTION_CHANGE);
 		getContentPane().add(btn);
 
 		// Fenster Anzeigen
@@ -179,37 +216,62 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		try {
-			// "Über..."-Dialog
-			if (ae.getActionCommand().equals(DIALOG_ABOUT))
-				new DlgAbout(this);
-			
-			// Lizenz-Dialog
-			else if(ae.getActionCommand().equals(DIALOG_LICENSE))
-				new DlgLicense(this);
-			
-			// Log-Dialog
-			else if(ae.getActionCommand().equals(DIALOG_LOG))
-				new DlgLogView(this);
-			
-			// Export SQL-Script
-			else if(ae.getActionCommand().equals(DIALOG_EXPORT_SQL)) {
-				DlgExportSqlScript dlg = new DlgExportSqlScript(this);
-				dlg.setVisible(true);
-			}
-			
-			// Export PDF
-			else if (ae.getActionCommand().equals(DIALOG_EXPORT_PDF)) {
-				DlgExportPdf dlg = new DlgExportPdf(this);
-				dlg.setVisible(true);
-			}
-			
-			// Report-Dialog
-			else if(ae.getActionCommand().equals(DIALOG_REPORT))
-				new DlgReport(_rpd, this);
-			
-			// Info-Dialog
-			else if(ae.getActionCommand().equals(DIALOG_INFO)) {
-				new DlgInfo("Test", "Dies ist ein Test!", this);
+			switch (ae.getActionCommand()) {
+				// "Über..."-Dialog
+				case DIALOG_ABOUT:
+					new DlgAbout(this);
+					break;
+				
+				// Log-Dialog
+				case DIALOG_LOG:
+					new DlgLogView(this);
+					break;
+				
+				// Export SQL-Script
+				case DIALOG_EXPORT_SQL:
+					DlgExportSqlScript dlg = new DlgExportSqlScript(this);
+					dlg.setVisible(true);
+					break;
+				
+				// Export PDF
+				case DIALOG_EXPORT_PDF:
+					DlgExportPdf dlg2 = new DlgExportPdf(this);
+					dlg2.setVisible(true);
+					break;
+				
+				// Report-Dialog
+				case DIALOG_REPORT:
+					new DlgReport(_rpd, this);
+					break;
+				
+				// Info-Dialog
+				case DIALOG_INFO:
+					new DlgInfo("Test", "Dies ist ein Test!", this);
+					break;
+					
+				// Neue Kategorie
+				case DIALOG_INPUTCHANGE_CATEGORY_INSERT:
+					new DlgInputChange(DlgInputChange.WND_CATEGORY, 
+							DlgInputChange.TYPE_INSERT, null, this);
+					break;
+					
+				// Kategorie ändern
+				case DIALOG_INPUTCHANGE_CATEGORY_CHANGE:
+					new DlgInputChange(DlgInputChange.WND_CATEGORY,
+							DlgInputChange.TYPE_CHANGE, "Test", this);
+					break;
+					
+				// Neues Geschäft
+				case DIALOG_INPUTCHANGE_SECTION_INSERT:
+					new DlgInputChange(DlgInputChange.WND_SECTION,
+							DlgInputChange.TYPE_INSERT, null, this);
+					break;
+					
+				// Geschäft ändern
+				case DIALOG_INPUTCHANGE_SECTION_CHANGE:
+					new DlgInputChange(DlgInputChange.WND_SECTION,
+							DlgInputChange.TYPE_CHANGE, "Test", this);
+					break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

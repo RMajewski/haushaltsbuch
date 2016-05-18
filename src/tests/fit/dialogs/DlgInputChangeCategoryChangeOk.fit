@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Kategorie ändern (Ok)</title>
+	</head>
+	<body>
+		<h2>Dialog: Kategorie ändern (Ok)</h2>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td colspan="2">tests.fixtures.dialogs.FixtureDlgInputChange</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>startCategoryChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isModal</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTitle</td>
+					<td>Kategorie ändern</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getLabelText</td>
+					<td>Kategorie</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getText</td>
+					<td>Test</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setText</td>
+					<td>Neu</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushOk</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getExitStatus</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getText</td>
+					<td>Neu</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

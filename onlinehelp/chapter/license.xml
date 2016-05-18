@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<chapter xml:id="license">
+	<title>Open-Source-Lizenz für die Europäische Union</title>
+	<para>V.1.1</para>
+	<para>EUPL &#169; Europäische Gemeinschaft 2007</para>
+	<para>
+		Diese Open-Source-Lizenz für die Europäische Union („EUPL“ -> „European
+		Union Public Licence“) gilt für Werke oder Software (im Sinne der
+		nachfolgenden Begriffsbestimmung), die unter EUPL-Bedingungen zur 
+		Verfügung gestellt werden. Das Werk darf nur in der durch diese Lizenz
+		gestatteten Form genutzt werden (insoweit eine solche Nutzung dem
+		Urheber vorbehalten ist).
+	</para>
+	<para>
+		Das Originalwerk wird unter den Bedingungen dieser Lizenz zur Verfügung
+		gestellt, wenn der Lizenzgeber (im Sinne der nachfolgenden
+		Begriffsbestimmung) den folgenden Hinweis unmittelbar hinter dem
+		Urheberrechtshinweis dieses Werks anbringt:
+	</para>
+	<para>
+		Lizenziert unter EUPL V. 1.1
+		oder in einer anderen Form zum Ausdruck bringt, dass er es unter der
+		EUPL lizenzieren möchte.
+	</para>
+
+	<sect1 xml:id="license_1">
+		<title>1. Begriffsbestimmungen</title>
+		<para>
+			<itemizedlist>
+				<title>
+					Für diese Lizenz gelten folgende Begriffsbestimmungen:
+				</title>
+				<listitem>
+					<para>Lizenz: diese Lizenz.</para>
+				</listitem>
+				<listitem>
+					<para>
+						Originalwerk oder die Software: die Software, die vom
+						Lizenzgeber unter dieser Lizenz verbreitet und/oder 
+						zugänglich gemacht wird, und zwar als Quellcode und 
+						gegebenenfalls auch als ausführbarer Code.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Bearbeitungen: Werke oder Software, die der Lizenznehmer
+						auf der Grundlage des Originalwerks oder seiner
+						Bearbeitungen schaffen kann. In dieser Lizenz wird nicht
+						festgelegt, wie umfangreich die Änderung oder wie stark
+						die Abhängigkeit vom Originalwerk für eine Einstufung
+						als Bearbeitung sein muss; dies bestimmt sich nach dem
+						Urheberrecht, das in dem unter Artikel 15 aufgeführten
+						Land anwendbar ist.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Werk: das Originalwerk und/oder seine Bearbeitungen.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Quellcode: diejenige Form des Werkes, die zur Auffassung
+						durch den Menschen bestimmt ist und die am besten
+						geeignet ist, um vom Menschen verstanden und verändert
+						zu werden.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Ausführbarer Code: die – üblicherweise – kompilierte
+						Form des Werks, die von einem Computer als Programm
+						ausgeführt werden soll.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Lizenzgeber: die natürliche oder juristische Person, die
+						das Werk unter der Lizenz verbreitet und/oder zugänglich
+						macht.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Bearbeiter: jede natürliche oder juristische Person, die
+						das Werk unter der Lizenz verändert oder auf andere
+						Weise zur Schaffung einer Bearbeitung beiträgt.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Lizenznehmer („Sie“): jede natürliche oder juristische
+						Person, die die Software unter den Lizenzbedingungen
+						nutzt.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Verbreitung und/oder Zugänglichmachung: alle Formen von
+						Verkauf, Überlassung, Verleih, Vermietung, Verbreitung,
+						Weitergabe, Übermittlung oder anderweitiger Online- oder
+						Offline-Bereitstellung von Vervielfältigungen des Werks
+						oder Zugänglichmachung seiner wesentlichen Funktionen
+						für dritte natürliche oder juristische Personen.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect1>
+	<sect1 xml:id="license_2">
+		<title>2. Umfang der Lizenzrechte</title>
+		<para>
+			Der Lizenzgeber erteilt Ihnen hiermit für die Gültigkeitsdauer der
+			am Originalwerk bestehenden Urheberrechte eine weltweite,
+			unentgeltliche, nicht-ausschließliche, unterlizenzierbare Lizenz,
+			die Sie berechtigt:
+			<itemizedlist>
+				<listitem>
+					<para>das Werk uneingeschränkt zu nutzen,</para>
+				</listitem>
+				<listitem>
+					<para>das Werk zu vervielfältigen,</para>
+				</listitem>
+				<listitem>
+					<para>
+						das Originalwerk zu verändern und Bearbeitungen auf der
+						Grundlage des Werks zu schaffen,
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						das Werk öffentlich zugänglich zu machen, was das Recht
+						einschließt, das Werk oder Vervielfältigungsstücke davon
+						öffentlich bereit zu stellen oder wahrnehmbar zu machen
+						oder das Werk, soweit möglich, öffentlich aufzuführen,
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						das Werk oder Vervielfältigungen davon zu verbreiten,
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						das Werk oder Vervielfältigungen davon zu vermieten oder
+						zu verleihen,
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						das Werk oder Vervielfältigungen davon weiter zu
+						lizenzieren.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+		<para>
+			Für die Wahrnehmung dieser Rechte können beliebige, derzeit bekannte
+			oder künftige Medien, Träger und Formate verwendet werden, soweit
+			das geltende Recht dem nicht entgegensteht.
+		</para>
+		<para>
+			Für die Länder, in denen Urheberpersönlichkeitsrechte an dem Werk
+			bestehen, verzichtet der Lizenzgeber im gesetzlich zulässigen Umfang
+			auf seine Urheberpersönlichkeitsrechte, um die Lizenzierung der oben
+			aufgeführten Verwertungsrechte wirksam durchführen zu können.
+		</para>
+		<para>
+			Der Lizenzgeber erteilt dem Lizenznehmer ein nicht ausschließliches,
+			unentgeltliches Nutzungsrecht an seinen Patenten, sofern dies zur
+			Ausübung der durch die Lizenz erteilten Nutzungsrechte am Werk
+			notwendig ist.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_3">
+		<title>3. Zugänglichmachung des Quellcodes</title>
+		<para>
+			Der Lizenzgeber kann das Werk entweder als Quellcode oder als
+			ausführbaren Code zur Verfügung stellen. Stellt er es als
+			ausführbaren Code zur Verfügung, so stellt er darüber hinaus eine
+			maschinenlesbare Kopie des Quellcodes für jedes von ihm verbreitete
+			Vervielfältigungsstück des Werks zur Verfügung, oder er verweist in 
+			einem Vermerk im Anschluss an den dem Werk beigefügten
+			Urheberrechtshinweis auf einen Speicherort, an dem problemlos und
+			unentgeltlich auf den Quellcode zugegriffen werden kann, solange der
+			Lizenzgeber das Werk verbreitet und/oder zugänglich macht.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_4">
+		<title>4. Einschränkungen des Urheberrechts</title>
+		<para>
+			Es ist nicht Zweck dieser Lizenz, Ausnahmen oder Schranken der
+			ausschließlichen Rechte des Urhebers am Originalwerk oder der
+			Software, die dem Lizenznehmer zugute kommen, einzuschränken. Auch
+			die Erschöpfung dieser Rechte bleibt von dieser Lizenz unberührt.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_5">
+		<title>5. Pflichten des Lizenznehmers</title>
+		<para>
+			Die Einräumung der oben genannten Rechte ist an mehrere
+			Beschränkungen und Pflichten für den Lizenznehmer gebunden:
+		</para>
+		<para>
+			<emphasis>
+				Urheberrechtshinweis, Lizenztext, Nennung des Bearbeiters:
+			</emphasis>
+			Der Lizenznehmer muss alle Urheberrechts-, Patent- oder
+			Markenrechtshinweise und alle Hinweise auf die Lizenz und den 
+			Haftungsausschluss unverändert lassen. Jedem von ihm verbreiteten
+			und/oder zugänglich gemachten Vervielfältigungsstück des Werks muss
+			der Lizenznehmer diese Hinweise sowie diese Lizenz beifügen. Der 
+			Lizenznehmer muss auf jedem abgeleiteten Werk deutlich darauf
+			hinweisen, dass das Werk geändert wurde und das Datum der 
+			Bearbeitung angeben.
+		</para>
+		<para>
+			<emphasis>„Copyleft“-Klausel:</emphasis>
+			Der Lizenznehmer darf Vervielfältigungen des Originalwerks oder
+			Bearbeitungen nur unter den Bedingungen dieser EUPL oder einer
+			neueren Version dieser Lizenz verbreiten und/oder zugänglich machen,
+			außer wenn das Originalwerk ausdrücklich nur unter dieser
+			Lizenzversion verbreitet werden darf. Der Lizenznehmer (der zum 
+			Lizenzgeber wird) darf für das Werk oder die Bearbeitung keine
+			zusätzlichen Bedingungen anbieten oder vorschreiben, die die
+			Bedingungen dieser Lizenz verändern oder einschränken.
+		</para>
+		<para>
+			<emphasis>Kompatibilitäts-Klausel:</emphasis>
+			Wenn der Lizenznehmer Bearbeitungen, die auf dem Originalwerk und
+			einem anderen Werk, das unter einer kompatiblen Lizenz lizenziert
+			wurde, basieren, oder die Kopien dieser Bearbeitungen verbreitet
+			oder zugänglich macht, kann dies unter den Bedingungen dieser
+			kompatiblen Lizenz erfolgen. Unter „kompatibler Lizenz“ ist eine im
+			Anhang dieser Lizenz angeführte Lizenz zu verstehen. Sollten die 
+			Verpflichtungen des Lizenznehmers aus der kompatiblen Lizenz mit
+			denjenigen aus der vorliegenden Lizenz (EUPL) in Konflikt stehen,
+			werden die Verpflichtungen aus der kompatiblen Lizenz Vorrang haben.
+		</para>
+		<para>
+			<emphasis>Bereitstellung des Quellcodes:</emphasis>
+			Wenn der Lizenznehmer Vervielfältigungsstücke des Werks verbreitet
+			und/oder zugänglich macht, muss er eine maschinenlesbare Fassung des
+			Quellcodes mitliefern oder einen Speicherort angeben, über den 
+			problemlos und unentgeltlich so lange auf diesen Quellcode 
+			zugegriffen werden kann, wie der Lizenznehmer das Werk verbreitet
+			und/oder zugänglich macht.
+		</para>
+		<para>
+			<emphasis>Rechtsschutz:</emphasis>
+			Diese Lizenz erlaubt nicht die Benutzung von Kennzeichen, Marken
+			oder geschützten Namensrechten des Lizenzgebers, soweit dies nicht
+			für die angemessene und übliche Beschreibung der Herkunft des Werks
+			und der inhaltlichen Wiedergabe des Urheberrechtshinweises
+			erforderlich ist.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_6">
+		<title>6. Urheber und Bearbeiter</title>
+		<para>
+			Der ursprüngliche Lizenzgeber gewährleistet, dass er das
+			Urheberrecht am Originalwerk innehat oder dieses an ihn lizenziert
+			wurde und, dass er befugt ist, diese Lizenz zu erteilen.
+		</para>
+		<para>
+			Jeder Bearbeiter gewährleistet, dass er das Urheberrecht an den von
+			ihm vorgenommenen Änderungen des Werks besitzt und befugt ist, diese
+			Lizenz zu erteilen.
+		</para>
+		<para>
+			Jedes Mal, wenn Sie die Lizenz annehmen, erteilen Ihnen der
+			ursprüngliche Lizenzgeber und alle folgenden Bearbeiter eine
+			Befugnis zur Nutzung ihrer Beiträge zum Werk unter den Bedingungen
+			dieser Lizenz.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_7">
+		<title>7. Gewährleistungsausschluss</title>
+		<para>
+			Die Arbeit an diesem Werk wird laufend fortgeführt; es wird durch
+			unzählige Bearbeiter ständig verbessert. Das Werk ist nicht
+			vollendet und kann daher Fehler („bugs“) enthalten, die dieser Art
+			der Softwareentwicklung inhärent sind.
+		</para>
+		<para>
+			Aus den genannten Gründen wird das Werk unter dieser Lizenz „so wie
+			es ist“ ohne jegliche Gewährleistung zur Verfügung gestellt. Dies
+			gilt unter anderem – aber nicht ausschließlich – für Marktreife,
+			Verwendbarkeit für einen bestimmten Zweck, Mängelfreiheit,
+			Richtigkeit sowie Nichtverletzung von anderen Immaterialgüterrechten
+			als dem Urheberrecht (vgl. dazu Artikel 6 dieser Lizenz).
+		</para>
+		<para>
+			Dieser Gewährleistungsausschluss ist wesentlicher Bestandteil der
+			Lizenz und Bedingung für die Einräumung von Rechten an dem Werk.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_8">
+		<title>8. Haftungsausschluss/Haftungsbeschränkung</title>
+		<para>
+			Außer in Fällen von Vorsatz oder der Verursachung von
+			Personenschäden haftet der Lizenzgeber nicht für direkte oder
+			indirekte, materielle oder immaterielle Schäden irgendwelcher Art,
+			die aus der Lizenz oder der Benutzung des Werks folgen; dies gilt 
+			unter anderem, aber nicht ausschließlich, für Firmenwertverluste,
+			Produktionsausfall, Computerausfall oder Computerfehler,
+			Datenverlust oder wirtschaftliche Schäden, und zwar auch dann, wenn
+			der Lizenzgeber auf die Möglichkeit solcher Schädenhingewiesen 
+			wurde. Unabhängig davon haftet der Lizenzgeber im Rahmen der
+			gesetzlichen Produkthaftung, soweit die entsprechenden Regelungen
+			auf das Werk anwendbar sind.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_9">
+		<title>9. Zusatzvereinbarungen</title>
+		<para>
+			Wenn Sie das Originalwerk oder Bearbeitungen verbreiten, können Sie 
+			Zusatzvereinbarungen schließen über die entgeltliche Erbringung von
+			Supportleistungen, Gewährleistung, Haftungsfreistellung oder andere
+			Haftungsverpflichtungen und/oder andere Dienst- oder
+			Haftungsleistungen im Einklang mit dieser Lizenz. Sie dürfen solche 
+			Verpflichtungen indessen nur in Ihrem eigenen Namen und auf Ihre
+			eigene Verantwortung eingehen, nicht jedoch im Namen des
+			ursprünglichen Lizenzgebers oder eines anderen Bearbeiters, und nur,
+			wenn Sie sich gegenüber allen Bearbeitern verpflichten, sie zu 
+			entschädigen, zu verteidigen und von der Haftung freizustellen,
+			falls aufgrund der von Ihnen eingegangenen
+			Gewährleistungsverpflichtung oder Haftungsübernahme Forderungen 
+			gegen sie geltend gemacht werden oder eine Haftungsverpflichtung
+			entsteht.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_10">
+		<title>10. Annahme der Lizenz</title>
+		<para>
+			Sie können den Bestimmungen dieser Lizenz zustimmen, indem Sie das
+			Symbol „Lizenz annehmen“ unter dem Fenster mit dem Lizenztext
+			anklicken oder indem Sie Ihre Zustimmung auf vergleichbare Weise in
+			einer nach anwendbarem Recht zulässigen Form geben. Das Anklicken
+			des Symbols gilt als Anzeichen Ihrer eindeutigen und
+			unwiderruflichen Annahme der Lizenz und der darin enthaltenen 
+			Klauseln und Bedingungen.
+		</para>
+		<para>
+			In gleicher Weise gilt als Zeichen der eindeutigen und
+			unwiderruflichen Zustimmung die Ausübung eines Rechtes, das in
+			Artikel 2 dieser Lizenz angeführt ist, wie das Erstellen einer
+			Bearbeitung oder die Verbreitung und/oder Zugänglichmachung des 
+			Werks oder dessen Vervielfältigungen.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_11">
+		<title>11. Informationspflichten</title>
+		<para>
+			Wenn Sie das Werk verbreiten und/oder zugänglich machen
+			(beispielsweise, indem Sie es zum Herunterladen von einer Website
+			anbieten), müssen Sie über den Vertriebskanal oder das benutzte
+			Verbreitungsmedium der Öffentlichkeit zumindest jene Informationen
+			bereitstellen, die nach dem anwendbaren Recht bezüglich der 
+			Lizenzgeber, der Lizenz und ihrer Zugänglichkeit, des Abschlusses
+			des Lizenzvertrages sowie darüber, wie die Lizenz durch den
+			Lizenznehmer gespeichert und vervielfältigt werden kann,
+			erforderlich sind.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_12">
+		<title>12. Beendigung der Lizenz</title>
+		<para>
+			Die Lizenz und die damit eingeräumten Rechte erlöschen automatisch,
+			wenn der Lizenznehmer gegen die Lizenzbedingungen verstößt.
+		</para>
+		<para>
+			Ein solches Erlöschen der Lizenz führt nicht zum Erlöschen der
+			Lizenzen von Personen, denen das Werk vom Lizenznehmer unter dieser
+			Lizenz zur Verfügung gestellt worden ist, solange diese Personen die
+			Lizenzbedingungen erfüllen.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_13">
+		<title>13. Sonstiges</title>
+		<para>
+			Unbeschadet der Bestimmungen unter Artikel. 9 stellt die Lizenz die
+			vollständige Vereinbarung der Parteien über das lizenzierte Werk
+			dar.
+		</para>
+		<para>
+			Sind einzelne Bestimmungen der Lizenz nach geltendem Recht nichtig
+			oder unwirksam, so berührt dies nicht die Wirksamkeit oder
+			Durchsetzbarkeit der Lizenz an sich. Solche Bestimmungen werden 
+			ielmehr so ausgelegt und/oder modifiziert, dass sie wirksam und
+			durchsetzbar sind.
+		</para>
+		<para>
+			Die Europäische Kommission kann weitere Sprachfassungen und/oder
+			neue Versionen dieser Lizenz veröffentlichen, soweit dies notwendig
+			und angemessen ist, ohne den Umfang der Lizenzrechte zu verringern.
+			Neue Versionen werden mit einer eindeutigen Versionsnummer
+			veröffentlicht.
+		</para>
+		<para>
+			Alle von der Europäischen Kommission anerkannten Sprachfassungen
+			dieser Lizenzvvsind gleichwertig. Die Parteien können sich auf die
+			Sprachfassung ihrer Wahlvberufen.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_14">
+		<title>14. Gerichtsstand</title>
+		<para>
+			Für alle Streitigkeiten über die Auslegung dieser Lizenz zwischen
+			der Europäischen Kommission als Lizenzgeberin und einem Lizenznehmer
+			ist der Gerichtshof der Europäischen Gemeinschaften gemäß Artikel
+			238 des Vertrags zur Gründung der Europäischen Gemeinschaften
+			zuständig.
+		</para>
+		<para>
+			Gerichtsstand für Streitigkeiten über die Auslegung dieser Lizenz,
+			an denen die Europäische Kommission nicht als Partei beteiligt ist,
+			ist allein der Ort, an dem der Lizenzgeber seinen Wohnsitz oder den
+			wirtschaftlichen Mittelpunkt seiner Tätigkeit hat.
+		</para>
+	</sect1>
+	<sect1 xml:id="license_15">
+		<title>15. Anwendbares Recht</title>
+		<para>
+			Diese Lizenz unterliegt dem Recht des Mitgliedstaates der
+			Europäischen Union, in dem der Lizenzgeber seinen Wohnsitz oder
+			seinen eingetragenen Sitz hat.
+		</para>
+		<para>
+			Diese Lizenz unterliegt dem belgischen Recht:
+			<itemizedlist>
+				<listitem>
+					<para>
+						wenn Streitigkeiten zwischen der Europäischen Union als
+						Lizenzgeberin und einem Lizenznehmer bestehen;
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						wenn der Lizenzgeber nicht die Europäische Union ist und
+						nicht über einen Wohnsitz oder eingetragenen Sitz in
+						einem Mitgliedstaat der Europäischen Union verfügt.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect1>
+	<sect1 xml:id="license_appendix">
+		<title>Anhang</title>
+		<para>
+			„Kompatible Lizenzen“ nach Artikel 5 der EUPL sind:
+			<itemizedlist>
+				<listitem>
+					<para>GNU General Public License (GNU GPL) v. 2</para>
+				</listitem>
+				<listitem>
+					<para>Open Software License (OSL) v. 2.1, v. 3.0</para>
+				</listitem>
+				<listitem>
+					<para>Common Public License v. 1.0</para>
+				</listitem>
+				<listitem>
+					<para>Eclipse Public License v. 1.0</para>
+				</listitem>
+				<listitem>
+					<para>Cecill v. 2.0</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect1>
+</chapter>

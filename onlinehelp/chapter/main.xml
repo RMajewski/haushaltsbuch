@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+		 xml:id="main">
+	<title>Haushaltsbuch</title>
+	<para>
+		Ich habe mich zu diesem Projekt entschlossen, da ich kein für mich
+		passendes Haushaltsbuch-Programm, -App gefunden habe.
+	</para>
+	<para>
+		Benutzte Programmiersprache: java Version 1.7.9.95
+	</para>
+	<para>
+		Quellcode-Verzeichnis: src
+		Ressourcen-Verzeichnis: resource
+	</para>
+	<para>
+		Verzeichnis für Junit- und Jemmy-Tests: src/tests
+		Verzeichnis für Fit-Tests: src/tests/fit
+	</para>
+	<para>
+		Benutzte Bibliotheken und Programme:
+		<itemizedlist>
+			<listitem>
+				<para><link linkend="library_sqlite">SQLite</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_itextpdf">ItextPDF</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_javahelp">JavaHelp</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_docbook">docbook</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_saxon">Saxon</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_testsuite">testsuite</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_jemmy">Jemmy</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_fit">Fit</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_junit">Junit</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_cglib">cglib</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_hamcrest">Hamcrest</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_javassist">Javassist</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_mockito">Mockito</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_objenesis">Objenesis</link></para>
+			</listitem>
+			<listitem>
+				<para><link linkend="library_powermock">PowerMock</link></para>
+			</listitem>
+		</itemizedlist>
+	</para>
+</chapter>

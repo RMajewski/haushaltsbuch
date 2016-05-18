@@ -20,6 +20,7 @@
 package tests.tests.windows.internal;
 
 import org.netbeans.jemmy.Test;
+import org.netbeans.jemmy.operators.JTextFieldOperator;
 
 import haushaltsbuch.tables.models.IdNameListModel;
 import haushaltsbuch.windows.internal.WndCategoryList;
@@ -99,6 +100,15 @@ public class TestWndCategoryList extends GuiWndIdNameTest {
 	public String getTableSelectName() {
 		return ((IdNameListModel)_table.getModel()).getRowDataAt(
 				_table.getSelectedRow()).getName();
+	}
+	
+	/**
+	 * Ermittelt den Eintrag des Text-Feldes im Dialog.
+	 * 
+	 * @return Eintrag des Text-Felden im Dialog.
+	 */
+	public String getDialogTextFieldText() {
+		return new JTextFieldOperator(_dlg).getText();
 	}
 
 	/**

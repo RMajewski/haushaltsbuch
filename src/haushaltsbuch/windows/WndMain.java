@@ -30,12 +30,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgAbout;
-import haushaltsbuch.dialogs.DlgLicense;
 import haushaltsbuch.dialogs.DlgLogView;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.elements.ToolBarMain;
 import haushaltsbuch.export.SqlScript;
+import haushaltsbuch.help.Help;
 import haushaltsbuch.menus.MainTop;
 import haushaltsbuch.windows.internal.WndCategoryList;
 import haushaltsbuch.windows.internal.WndMoneyList;
@@ -72,6 +72,11 @@ public class WndMain extends JFrame implements ActionListener {
 	private Desktop _desktop;
 	
 	/**
+	 * Speichert die Instanz der Onlinehilfe.
+	 */
+	private Help _help;
+	
+	/**
 	 * Speichert den Namen des Fensters
 	 */
 	public static final String TITLE = new String("René's Haushaltsbuch");
@@ -90,6 +95,9 @@ public class WndMain extends JFrame implements ActionListener {
 		
 		// Fenster beim Beenden schließen
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		// Hile-System initalisieren
+		_help = Help.getInstance();
 		
 		// Größe
 		setSize(250,100);
@@ -142,11 +150,6 @@ public class WndMain extends JFrame implements ActionListener {
 			// Programm beenden
 			case MainTop.FILE_END:
 				dispose();
-				break;
-				
-			// Linzez-Dialog
-			case MainTop.HELP_LICENSE:
-				new DlgLicense(this);
 				break;
 				
 			// Über-Dialog

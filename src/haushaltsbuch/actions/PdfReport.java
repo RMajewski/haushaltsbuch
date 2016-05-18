@@ -57,6 +57,8 @@ public class PdfReport extends Action {
 		putValue(Action.NAME, "PDF-Report");
 		putValue(Action.MNEMONIC_KEY, 2);
 		putValue(Action.ACTION_COMMAND_KEY, COMMAND);
+		putValue(Action.SHORT_DESCRIPTION,
+				"Ruft Dialog zum Exportieren als PDF auf.");
 	}
 	
 	/**

@@ -17,34 +17,13 @@
 * sind dem Lizenztext zu entnehmen.
 */ 
 
-package tests.fixtures.dialogs;
-
-import tests.tests.dialogs.TestDlgLicense;
-
 /**
- * In dieser Klasse werden die einzelnen Aktionen des DlgLicense.fit
- * implementiert.
+ * In diesem Package werden alle Tests zusammengefasst, die die Onlinehilfe
+ * testen.
  * 
  * @author René Majewski
  *
  * @version 0.1
- * @since 0.2
+ * @since 0.3
  */
-public class FixtureDlgLicense extends FixtureDialogs {
-	/**
-	 * Initalisiert diese Klasse
-	 * 
-	 * @throws Exception 
-	 */
-	public FixtureDlgLicense() throws Exception {
-		_test = new TestDlgLicense();
-	}
-	
-	/**
-	 * Gibt die Anzahl der Linien zurück
-	 */
-	public String lineCount() {
-		return String.valueOf(((TestDlgLicense)_test).lineCount());
-	}
-
-}
+package tests.tests.help;

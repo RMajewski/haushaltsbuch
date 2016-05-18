@@ -24,7 +24,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -192,7 +191,7 @@ public class ReportGraphic extends JComponent {
 				g.drawLine(51, i, width + 49, i);
 			
 			// Hilfslinien der X-Achse
-			int w = width / _data.getRowCount();
+			int w = (width - 50) / _data.getRowCount();
 			for (int i = w + 50; i < width; i += w)
 				g.drawLine(i, 26, i, height + 24);
 		}
@@ -235,32 +234,32 @@ public class ReportGraphic extends JComponent {
 		// Daten ausgeben
 		int w = (width - 50) / _data.getRowCount();
 		int w1 = w / 3;
+		int zeroCalc = zero - 25;
 		for (int i = 0; i < _data.getRowCount(); i++) {
 			// Einnahmen
 			if (_data.incoming(i) > 0.0) {
 				g.setColor(_colorIn);
-				int h = (int)((_data.incoming(i) /_maxY) * zero);
-				g.fillRect((w * i) + 51, zero - h + 25, w1, h - 25);
+				int h = (int)((_data.incoming(i) /_maxY) * zeroCalc);
+				System.out.println(_data.incoming(i) + ": " + h);
+				g.fillRect((w * i) + 51, zero - h, w1, h);
 			}
 			
 			// Ausgaben
 			if (_data.outgoing(i) > 0) {
 				g.setColor(_colorOut);
-				int h = (int)((_data.outgoing(i) /_maxY) * zero);
-				g.fillRect((w * i) + 51 + w1, zero - h + 25, w1, h - 25);
+				int h = (int)((_data.outgoing(i) /_maxY) * zeroCalc);
+				g.fillRect((w * i) + 51 + w1, zero - h, w1, h);
 			}
 			
 			// Differenz
 			if (_data.deviation(i) != 0.0) {
 				g.setColor(_colorDeviation);
 				if (_data.deviation(i) > 0.0) {
-					int h = (int)((_data.deviation(i) /_maxY) * zero);
-					g.fillRect((w * i) + 51 + (2 * w1), zero - h + 25, w1,
-							h - 25);
+					int h = (int)((_data.deviation(i) /_maxY) * zeroCalc);
+					g.fillRect((w * i) + 51 + (2 * w1), zero - h, w1, h);
 				} else {
-					int h = (int)((_data.deviation(i) / _minY) * zero);
-					g.fillRect((w * i) + 51 + (2 * w1), zero, w1,
-							h - 25);
+					int h = (int)((_data.deviation(i) / _minY) * zeroCalc);
+					g.fillRect((w * i) + 51 + (2 * w1), zero, w1, h);
 				}
 			}
 		}

@@ -13,8 +13,7 @@
 				</tr>
 				<tr>
 					<td>start</td>
-					<td>tests.fixtures.dialogs.FixtureDlgInfo</td>
-					<td>&nbsp;</td>
+					<td colspan="2">tests.fixtures.dialogs.FixtureDlgInfo</td>
 				</tr>
 				<tr>
 					<td>check</td>

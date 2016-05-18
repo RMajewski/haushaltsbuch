@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+		 xml:id="category">
+	<title>Kategorien</title>
+	<para>
+		In diesem Kapitel wird der Umgang mit Kategorien beschrieben.
+	</para>
+	<para>
+		Das folgende Bild zeigt das Fenster mit der Kategorie-Tabelle. Es wird
+		wie folgt aufgerufen: Datenbank -&gt; Kategorien.
+		<figure>
+			<title>Kategorie-Tabelle</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/category.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+	<para>
+		Um eine neue Kategorie anzulegen, gibt es zwei unterschiedliche
+		Varianten.
+		<orderedlist>
+			<listitem>
+				<para>Rechte Maustause -&gt; Neu</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/popup_new.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+			<listitem>
+				<para>Klick auf den 1. Toolbar-Button von rechts</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/toolbar_new.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+		</orderedlist>
+	</para>
+</chapter>
