@@ -59,7 +59,7 @@ public class FixtureWndSectionList extends FixtureWndTables {
 	 */
 	public void pushPopupInsert() {
 		_test.pushNoBlockPopup("Neu");
-		_test.waitDlg("Geschäft erstellen");
+		_test.waitDlg("Neues Geschäft eingeben");
 	}
 	
 	/**
@@ -108,5 +108,15 @@ public class FixtureWndSectionList extends FixtureWndTables {
 	 */
 	public String getStatusMessage() {
 		return StatusBar.getInstance().getText();
+	}
+	
+	/**
+	 * Ermittelt, ob im Text-Feld des Dialoges etwas steht.
+	 * 
+	 * @return Steht etwas im Text-Feld des Dialoges?
+	 */
+	public boolean hasSectionName() {
+		String name = ((TestWndSectionList)_test).getDialogTextFieldText();
+		return (name != null) && !name.isEmpty();
 	}
 }

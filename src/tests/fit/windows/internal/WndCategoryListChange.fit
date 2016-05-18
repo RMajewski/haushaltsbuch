@@ -65,7 +65,7 @@
 				</tr>
 				<tr>
 					<td>check</td>
-					<td>getCategoryName</td>
+					<td>hasCategoryName</td>
 					<td>true</td>
 				</tr>
 				<tr>

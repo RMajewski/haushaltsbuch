@@ -25,6 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.JPanel;
 import java.awt.FlowLayout;
 import java.awt.Frame;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -106,7 +107,8 @@ public class DlgInputChange extends JDialog implements ActionListener {
 	/**
 	 * Initialisiert den Dialog
 	 */
-	public DlgInputChange(int window, boolean type, String value, Frame owner) {
+	public DlgInputChange(int window, boolean type, String value, 
+			Window owner) {
 		super(owner);
 		_exit = 0;
 		

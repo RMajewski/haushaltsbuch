@@ -34,6 +34,7 @@ import javax.swing.table.TableRowSorter;
 import haushaltsbuch.comparators.CompInt;
 import haushaltsbuch.datas.IdNameData;
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.dialogs.DlgInputChange;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.menus.PopupStandardList;
@@ -143,7 +144,12 @@ public class WndSectionList extends WndTableFrame {
 										_table.getSelectedRow()));
 				
 				// Geschäft ändern
-				String cc = JOptionPane.showInputDialog(this, "Neuer Name", "Geschäft ändern", JOptionPane.OK_CANCEL_OPTION);
+				DlgInputChange dlg = new DlgInputChange(
+						DlgInputChange.WND_SECTION, DlgInputChange.TYPE_CHANGE,
+						data.getName(), _desktop.getMainWindow());
+				String cc = null;
+				if (dlg.getExit() == DlgInputChange.EXIT_OK)
+					cc = dlg.getInput();
 				if ((cc != null) && !cc.isEmpty() && !cc.equals(data.getName())) {
 					Statement stm = DbController.getInstance().createStatement();
 					if (stm.executeUpdate(DbController.queries().section().update(data.getId(), cc)) > 0) {
@@ -172,7 +178,12 @@ public class WndSectionList extends WndTableFrame {
 		try {
 			Statement stm = DbController.getInstance().createStatement();
 			
-			String nc = JOptionPane.showInputDialog(this, "Neues Geschäft", "Geschäft erstellen", JOptionPane.OK_CANCEL_OPTION);
+			DlgInputChange dlg = new DlgInputChange(
+					DlgInputChange.WND_SECTION, DlgInputChange.TYPE_INSERT,
+					null, _desktop.getMainWindow());
+			String nc = null;
+			if (dlg.getExit() == DlgInputChange.EXIT_OK)
+				nc = dlg.getInput();
 			if (nc != null && !nc.isEmpty()) {
 				ResultSet rs = stm.executeQuery(DbController.queries().section().search("name", nc));
 				if (!rs.next()) {

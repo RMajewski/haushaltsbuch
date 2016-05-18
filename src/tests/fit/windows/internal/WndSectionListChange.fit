@@ -64,6 +64,11 @@
 					<td>true</td>
 				</tr>
 				<tr>
+					<td>check</td>
+					<td>hasSectionName</td>
+					<td>true</td>
+				</tr>
+				<tr>
 					<td>enter</td>
 					<td>setSection</td>
 					<td>Test</td>
@@ -77,6 +82,11 @@
 					<td>check</td>
 					<td>isDialogVisible</td>
 					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectRowOne</td>
+					<td>&nbsp;</td>
 				</tr>
 				<tr>
 					<td>check</td>
@@ -101,6 +111,11 @@
 				<tr>
 					<td>press</td>
 					<td>pushDialogOk</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectRowOne</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
