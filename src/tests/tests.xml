@@ -2,7 +2,7 @@
 	<config>
 		<resultPath>result</resultPath>
 		<srcPath>src</srcPath>
-		<bibPath>lib</bibPath>
+		<libPath>lib</libPath>
 		<maxDuration>30000</maxDuration>
 		<htmlOut>true</htmlOut>
 		<systemProperty>
@@ -37,6 +37,8 @@
 			<library version="2.1" name="objenesis">objenesis-2.1.jar</library>
 			<library version="1.3.0" name="hamcrest" path="/usr/share/eclipse/plugins/">org.hamcrest.core_1.3.0.v201303031735.jar</library>
 			<library>sqlite-jdbc-3.8.11.2.jar</library>
+			<library>jhall.jar</library>
+			<library>itextpdf-5.5.9.jar</library>
 		</libraries>
 		<classpath>
 			<path>bin</path>
@@ -149,6 +151,8 @@
 			<library version="2.3.1.1" name="jemmy">jemmy.jar</library>
 			<library version="1.1" name="fit">fit.jar</library>
 			<library>sqlite-jdbc-3.8.11.2.jar</library>
+			<library>jhall.jar</library>
+			<library>itextpdf-5.5.9.jar</library>
 		</libraries>
 		<classpath>
 			<path>bin</path>
@@ -188,9 +192,9 @@
 			<package>tests.fit.dialogs</package>
 			<test>DlgExportPdfCancel</test>
 			<test>DlgExportPdfExport</test>
-			<test>DlgExportNoPreferences</test>
-			<test>DlgExportPreferenceBarChart</test>
-			<test>DlgExportPreferenceTable</test>
+			<test>DlgExportPdfNoPreferences</test>
+			<test>DlgExportPdfPreferenceBarChart</test>
+			<test>DlgExportPdfPreferenceTable</test>
 		</testSuite>
 		<testSuite>
 			<name>ToolBar: Einfügen</name>
