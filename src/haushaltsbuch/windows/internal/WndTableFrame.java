@@ -20,7 +20,6 @@
 package haushaltsbuch.windows.internal;
 
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -56,13 +55,16 @@ import haushaltsbuch.tables.models.DbModelInterface;
  * eingeben eines neues Datensatzes, zum ändern eines Datensatzes und zum
  * löschen Datensatzes öffnen.
  * 
+ * In der Version 0.3 übernimmt die Toolbar das Enabled und Disablen der
+ * Popup-Menü-Einträge.
+ * 
  * @author René Majewski
  * 
- * @version 0.2
+ * @version 0.3
  * @since 0.1
  */
 public abstract class WndTableFrame extends WndInternalFrame
-	implements ActionListener, ListSelectionListener {
+	implements ListSelectionListener {
 
 	/**
 	 * Serialisation ID
@@ -105,7 +107,7 @@ public abstract class WndTableFrame extends WndInternalFrame
 		setMinimumSize(new Dimension(600, 400));
 		
 		// Popup-Menü initalisieren
-		_popup = new PopupStandardList(this);
+		_popup = new PopupStandardList(desktop.getToolBar());
 	}
 	
 	/**
@@ -146,20 +148,6 @@ public abstract class WndTableFrame extends WndInternalFrame
 		PopupMenuMouseListener listener = new PopupMenuMouseListener(_popup);
 		pane.addMouseListener(listener);
 		_table.addMouseListener(listener);
-		
-		// Ändern und Löschen auf nicht benutzbar setzen
-		setPopupItemEnable(false);
-	}
-	
-	/**
-	 * Setzt die Einträge Ändern und Löschen des Stanard-Popup-Menü auf
-	 * benutzbar (true) oder nicht benutzbar (false).
-	 * 
-	 * @param enable Standard-Popup-Einträge benutzbar?
-	 */
-	protected void setPopupItemEnable(boolean enable) {
-		((PopupStandardList)_popup).setMenuItemEnable(PopupStandardList.VISIBLE_CHANGE, enable);
-		((PopupStandardList)_popup).setMenuItemEnable(PopupStandardList.VISIBLE_DELETE, enable);
 	}
 	
 	/**
@@ -215,10 +203,8 @@ public abstract class WndTableFrame extends WndInternalFrame
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		if (_table.getSelectedRow() > -1) {
-			setPopupItemEnable(true);
 			fireSetDbElementsEnable(true);
 		} else {
-			setPopupItemEnable(false);
 			fireSetDbElementsEnable(false);
 		}
 	}

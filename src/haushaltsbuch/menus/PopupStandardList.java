@@ -24,12 +24,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import haushaltsbuch.elements.ToolBarMain;
+
 /**
  * Initalisiert das Popup-Menü für die Kategorie-Tabelle.
  * 
+ * In Version 0.2 werden die Einträge "Neu", "Datensatz ändern" und "Datensatz
+ * löschen" aus der {@link haushaltsbuch.elements.TollBarMain} geladen.
+ * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class PopupStandardList extends JPopupMenu {
@@ -37,77 +42,31 @@ public class PopupStandardList extends JPopupMenu {
 	 * Serilisation ID
 	 */
 	private static final long serialVersionUID = -141127052107997553L;
-	
-	/**
-	 * ActionCommand zum Löschen der ausgewählten Kategorie.
-	 */
-	public static final String DELETE = "PopupStandardListDelete";
-	
-	/**
-	 * ActionCommand zum Ändern der ausgewählten Kategorie.
-	 */
-	public static final String CHANGE = "PopupStandardListChange";
-	
-	/**
-	 * ActionCommand, um eine neue Kategorie erstellen.
-	 */
-	public static final String NEW = "PopupStandardListNew";
-	
-	/**
-	 * Gibt an, ob der Eintrag "Neu" benutzbar sein soll oder nicht.
-	 */
-	public static final int VISIBLE_NEW = 0;
-	
-	/**
-	 * Gibt an, ob der Eintrag "Ändern" benutzbar sein soll oder nicht.
-	 */
-	public static final int VISIBLE_CHANGE = 1;
-	
-	/**
-	 * Gibt an, ob der Eintrag "Löschen" benutzbar sein soll oder nicht.
-	 */
-	public static final int VISIBLE_DELETE = 2;
-	
+
 	/**
 	 * Initalisiert das Popup-Menü
 	 * 
-	 * @param listener Wer reagiert auf die einzelnen Einträge?
+	 * @param tbmain Standard Toolbar
 	 */
-	public PopupStandardList(ActionListener listener) {
+	public PopupStandardList(ToolBarMain tbMain) {
 		super();
 		
 		// Neuer Eintrag hinzu fügen
-		JMenuItem item = new JMenuItem("Neu");
+		JMenuItem item = new JMenuItem(tbMain.getDbInsert());
+		item.setName("Neu");
 		item.setMnemonic('N');
-		item.setActionCommand(NEW);
-		item.addActionListener(listener);
 		add(item);
 		
 		// Eintrag ändern
-		item = new JMenuItem("Ändern");
+		item = new JMenuItem(tbMain.getDbChange());
+		item.setName("Ändern");
 		item.setMnemonic('Ä');
-		item.setActionCommand(CHANGE);
-		item.addActionListener(listener);
 		add(item);
 		
 		// Eintrag Löschen
-		item = new JMenuItem("Löschen");
+		item = new JMenuItem(tbMain.getDbDelete());
+		item.setName("Löschen");
 		item.setMnemonic('L');
-		item.setActionCommand(DELETE);
-		item.addActionListener(listener);
 		add(item);
-	}
-	
-	/**
-	 * Es wird die Benutzbarkeit des angegebenen Menü-Eintrages ensprechend
-	 * gesetzt.
-	 * 
-	 * @param item Menü-Eintrag, dessen Benutzbarkeit entsprechend gesetzt
-	 * werden soll.
-	 * 
-	 * @param enable true = Benutzbar, false = Unbenutzbar
-	 */
-	public void setMenuItemEnable(int item, boolean enable) {
-		getComponent(item).setEnabled(enable);
 	}
 }

@@ -19,7 +19,6 @@
 
 package haushaltsbuch.windows.internal;
 
-import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,7 +35,6 @@ import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgInputChange;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
-import haushaltsbuch.menus.PopupStandardList;
 import haushaltsbuch.tables.models.IdNameListModel;
 
 /**
@@ -45,9 +43,13 @@ import haushaltsbuch.tables.models.IdNameListModel;
  * In Version 0.2 wird der eigene Eingabe-Dialog zum Einfügen oder Ändern einer
  * Kategorie benutzt.
  * 
+ * In Version 0.3 wurde Methode <b>actionPerformed</b> gelöscht, da sie nicht
+ * mehr braucht wird. Die Elemente vom Popup-Menü benutzen die Methoden 
+ * {@link change}, {@link delete} und {@link insert}.
+ * 
  * @author René Majewski
  * 
- * @version 0.2
+ * @version 0.3
  * @since 0.1
  */
 public class WndCategoryList extends WndTableFrame {
@@ -102,32 +104,6 @@ public class WndCategoryList extends WndTableFrame {
 		// Anzeigen
 		pack();
 		setVisible(true);
-	}
-	
-	/**
-	 * Reagiert auf die einzelnen Einträge im PopupMenu.
-	 * 
-	 * @param ae Event-Daten
-	 */
-	@Override
-	public void actionPerformed(ActionEvent ae) {
-		// Welcher Popup-Menü-Punkt wurde ausgewählt?
-		switch (ae.getActionCommand()) {
-			// Neu
-			case PopupStandardList.NEW:
-				insert();
-				break;
-				
-			// Löschen
-			case PopupStandardList.DELETE:
-				delete();
-				break;
-				
-			// Ändern
-			case PopupStandardList.CHANGE:
-				tableRowDoubleClick();
-				break;
-		}
 	}
 
 	/**

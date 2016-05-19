@@ -20,7 +20,6 @@
 package haushaltsbuch.windows.internal;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,23 +28,25 @@ import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
 
-import haushaltsbuch.comparators.CompDouble;
 import haushaltsbuch.comparators.CompInt;
 import haushaltsbuch.comparators.CompSum;
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.elements.Desktop;
-import haushaltsbuch.menus.PopupStandardList;
 import haushaltsbuch.tables.models.MoneyDetailsListModel;
 
 /**
  * In diesem Fenster wird zum angegeben Datensatz aus der Tabelle 'money' die
  * Detail-Datensätze als Liste angezeigt.
  * 
+ * In Version 0.2 wurde Methode <b>actionPerformed</b> gelöscht, da sie nicht
+ * mehr gebraucht wird. Die Elemente vom Popup-Menü benutzen die Methoden 
+ * {@link change}, {@link delete} und {@link insert}.
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class WndMoneyDetailsList extends WndTableFrame {
@@ -114,32 +115,6 @@ public class WndMoneyDetailsList extends WndTableFrame {
 		// Fenster anzeigen
 		//pack();
 		setVisible(true);
-	}
-
-	/**
-	 * Reagiert auf die einzelnen Einträge im Popup-Menü
-	 * 
-	 * @param ae Event-Daten
-	 */
-	@Override
-	public void actionPerformed(ActionEvent ae) {
-		// Was soll ausgeführt werden?
-		switch(ae.getActionCommand()) {
-			// Neu
-			case PopupStandardList.NEW:
-				insert();
-				break;
-				
-			// Ändern
-			case PopupStandardList.CHANGE:
-				tableRowDoubleClick();
-				break;
-				
-			// Löschen
-			case PopupStandardList.DELETE:
-				delete();
-				break;
-		}
 	}
 	
 	/**

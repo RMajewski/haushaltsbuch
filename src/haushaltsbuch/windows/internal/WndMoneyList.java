@@ -20,6 +20,7 @@
 package haushaltsbuch.windows.internal;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,12 +40,17 @@ import haushaltsbuch.tables.models.MoneyListModel;
 /**
  * In diesem Fenster werden die einzelnen Money-Datensätze angezeigt.
  * 
+ * In Version 0.2 wurde Methode <b>actionPerformed</b> angepasst, da sie nur 
+ * noch vom Popup-Menü-Element "Details" benutzt wird. Die restlichen Elemente
+ * vom Popup-Menü benutzen die Methoden {@link change}, {@link delete} und
+ * {@link insert}.
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
-public class WndMoneyList extends WndTableFrame {
+public class WndMoneyList extends WndTableFrame implements ActionListener {
 	/**
 	 * Speichert den Titel des Fensters.
 	 */
@@ -68,7 +74,7 @@ public class WndMoneyList extends WndTableFrame {
 		setTitle(WND_TITLE);
 		
 		// Popup-Menü initalisieren
-		_popup = new PopupMoneyList(this);
+		_popup = new PopupMoneyList(this, desktop.getToolBar());
 		
 		// Tabelle initalisieren
 		MoneyListModel model = new MoneyListModel();
@@ -121,18 +127,6 @@ public class WndMoneyList extends WndTableFrame {
 	}
 	
 	/**
-	 * Setzt die Einträge Ändern und Löschen des Stanard-Popup-Menü auf
-	 * benutzbar (true) oder nicht benutzbar (false).
-	 * 
-	 * @param enable Standard-Popup-Einträge benutzbar?
-	 */
-	@Override
-	protected void setPopupItemEnable(boolean enable) {
-		super.setPopupItemEnable(enable);
-		((PopupMoneyList)_popup).setMenuItemEnable(PopupMoneyList.VISIBLE_DETAILS, enable);
-	}
-	
-	/**
 	 * Reagiert auf die einzelnen Einträge im Popup-Menü
 	 * 
 	 * param ae Event-Daten
@@ -141,21 +135,6 @@ public class WndMoneyList extends WndTableFrame {
 	public void actionPerformed(ActionEvent ae) {
 		// Welcher Menü-Eintrag wurde gedrückt?
 		switch (ae.getActionCommand()) {
-			// Neuen Eintrag erstellen
-			case PopupMoneyList.NEW:
-				insert();
-				break;
-				
-			// Einen Eintrag ändern
-			case PopupMoneyList.CHANGE:
-				change();
-				break;
-				
-			// Einen Eintrag löschen
-			case PopupMoneyList.DELETE:
-				delete();
-				break;
-				
 			// Details anzeigen
 			case PopupMoneyList.DETAILS:
 				tableRowDoubleClick();
@@ -199,5 +178,15 @@ public class WndMoneyList extends WndTableFrame {
 					_table.getRowSorter().convertRowIndexToModel(
 							_table.getSelectedRow())).getId(), 
 					DbController.queries().money());
+	}
+	
+	/**
+	 * Setzt die Einträge Ändern und Löschen des Stanard-Popup-Menü auf
+	 * benutzbar (true) oder nicht benutzbar (false).
+	 * 
+	 * @param enable Standard-Popup-Einträge benutzbar?
+	 */
+	protected void setPopupItemEnable(boolean enable) {
+		((PopupMoneyList)_popup).setMenuItemEnable(PopupMoneyList.VISIBLE_DETAILS, enable);
 	}
 }

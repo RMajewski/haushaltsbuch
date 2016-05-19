@@ -73,6 +73,15 @@ public class Desktop extends JDesktopPane {
 	}
 	
 	/**
+	 * Gibt die Toolbar zurück
+	 * 
+	 * @return Gespeicherte Toolbar
+	 */
+	public ToolBarMain getToolBar() {
+		return _toolbar;
+	}
+	
+	/**
 	 * Ermittelt das Hauptfenster und gibt dieses zurück.
 	 * 
 	 * @return Hauptfenster der Anwendung

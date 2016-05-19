@@ -21,6 +21,7 @@ package haushaltsbuch.elements;
 
 import java.awt.Window;
 
+import javax.swing.Icon;
 import javax.swing.JToolBar;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
@@ -29,6 +30,7 @@ import haushaltsbuch.actions.DbChange;
 import haushaltsbuch.actions.DbDelete;
 import haushaltsbuch.actions.DbInsert;
 import haushaltsbuch.actions.PdfReport;
+import haushaltsbuch.actions.Print;
 import haushaltsbuch.actions.Report;
 import haushaltsbuch.events.ToolBarDbElementEvent;
 import haushaltsbuch.listener.ToolBarDbElementListener;
@@ -61,6 +63,11 @@ public class ToolBarMain extends JToolBar
 	 * Speichert den Button zum Erzeugen eines PDF-Reportes
 	 */
 	private PdfReport _pdf;
+	
+	/**
+	 * Speichert den Button zum Drucken
+	 */
+	private Print _print;
 
 	/**
 	 * Initalisiert die ToolBar
@@ -95,6 +102,12 @@ public class ToolBarMain extends JToolBar
 		_pdf = new PdfReport(desktop);
 		_pdf.setEnabled(false);
 		add(_pdf);
+		
+		addSeparator();
+		
+		_print = new Print(desktop, owner);
+		_print.setEnabled(false);
+		add(_print);
 	}
 
 	@Override
@@ -143,6 +156,8 @@ public class ToolBarMain extends JToolBar
 		_delete.deleteFrame();
 		
 		_pdf.setEnabled(false);
+		
+		_print.setEnabled(false);
 	}
 
 	@Override
@@ -189,5 +204,50 @@ public class ToolBarMain extends JToolBar
 			_change.deleteFrame();
 			_delete.deleteFrame();
 		}
+	}
+	
+	/**
+	 * Gibt die Action zum "Drucken" zurück.
+	 * 
+	 * @return Action zum "Drucken"
+	 */
+	public Print getPrint() {
+		return _print;
+	}
+
+	/**
+	 * Gibt die Action zum "PDF-Export" zurück.
+	 * 
+	 * @return Action zum "PDF-Export"
+	 */
+	public PdfReport getPdfExport() {
+		return _pdf;
+	}
+	
+	/**
+	 * Gibt die Action "Neuer Datensatz" zurück
+	 * 
+	 * @return Action "Neuer Datensatz"
+	 */
+	public DbInsert getDbInsert() {
+		return _insert;
+	}
+	
+	/**
+	 * Gibt die Action "Datensatz ändern" zurück
+	 * 
+	 * @return Action "Datensatz ändern"
+	 */
+	public DbChange getDbChange() {
+		return _change;
+	}
+	
+	/**
+	 * Gibt die Action "Datensatz löschen" zurück
+	 * 
+	 * @return Action "Datensatz löschen"
+	 */
+	public DbDelete getDbDelete() {
+		return _delete;
 	}
 }

@@ -19,14 +19,12 @@
 
 package haushaltsbuch.windows.internal;
 
-import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
@@ -37,15 +35,18 @@ import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgInputChange;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
-import haushaltsbuch.menus.PopupStandardList;
 import haushaltsbuch.tables.models.IdNameListModel;
 
 /**
  * In diesen Unterfenster werden die einzelnen Geschäfte angezeigt.
  * 
+ * In Version 0.2 wurde Methode <b>actionPerformed</b> gelöscht, da sie nicht
+ * mehr gebraucht wird. Die Elemente vom Popup-Menü benutzen die Methoden 
+ * {@link change}, {@link delete} und {@link insert}.
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class WndSectionList extends WndTableFrame {
@@ -100,32 +101,6 @@ public class WndSectionList extends WndTableFrame {
 		// Anzeigen
 		pack();
 		setVisible(true);
-	}
-
-	
-	/**
-	 * Reagiert auf die einzelnen Einträge im PopupMenu.
-	 * 
-	 * @param ae Event-Daten
-	 */
-	@Override
-	public void actionPerformed(ActionEvent ae) {
-		// Welcher Popup-Menü-Punkt wurde ausgewählt?
-		switch (ae.getActionCommand()) {
-			// Neu
-			case PopupStandardList.NEW:
-				insert();
-				break;
-				
-			// Löschen
-			case PopupStandardList.DELETE:
-				delete();
-				break;
-				
-			// Ändern
-			case PopupStandardList.CHANGE:
-				tableRowDoubleClick();
-		}
 	}
 
 	/**

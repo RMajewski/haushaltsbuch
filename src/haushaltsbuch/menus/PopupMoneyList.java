@@ -23,15 +23,21 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
+import haushaltsbuch.elements.ToolBarMain;
+
 /**
  * Initalisiert das Standart-Popup-Menü um Einträge, die speziell im
  * Fenster {@link haushaltsbuch.windows.internal.WndMoneyList} gebraucht werden.
+ * 
+ * In Version 0.2 werden die Menü-Elemente "Neu", "Datensatz ändern" und 
+ * "Datensatz löschen" aus der {@link haushaltsbuch.elemente.ToolBarMain}
+ * geladen.
  * 
  * @author René Majewski
  *
  * @see haushaltsbuch.menus.PopupStandardList
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class PopupMoneyList extends PopupStandardList {
@@ -56,9 +62,9 @@ public class PopupMoneyList extends PopupStandardList {
 	 * 
 	 * @param listener Wer reagiert auf die einzelnen Einträge
 	 */
-	public PopupMoneyList(ActionListener listener) {
+	public PopupMoneyList(ActionListener listener, ToolBarMain tbMain) {
 		// Standart-Menü-Einträge
-		super(listener);
+		super(tbMain);
 		
 		// Linie einfügen.
 		addSeparator();
@@ -70,5 +76,17 @@ public class PopupMoneyList extends PopupStandardList {
 		item.addActionListener(listener);
 		add(item);
 	}
-
+	
+	/**
+	 * Es wird die Benutzbarkeit des angegebenen Menü-Eintrages ensprechend
+	 * gesetzt.
+	 * 
+	 * @param item Menü-Eintrag, dessen Benutzbarkeit entsprechend gesetzt
+	 * werden soll.
+	 * 
+	 * @param enable true = Benutzbar, false = Unbenutzbar
+	 */
+	public void setMenuItemEnable(int item, boolean enable) {
+		getComponent(item).setEnabled(enable);
+	}
 }
