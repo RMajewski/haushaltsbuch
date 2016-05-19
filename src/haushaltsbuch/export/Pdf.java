@@ -23,9 +23,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.DecimalFormat;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
@@ -39,7 +42,9 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfCopy;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import haushaltsbuch.datas.ReportData;
@@ -188,15 +193,34 @@ public class Pdf extends Export {
 				BaseFont.CP1250, BaseFont.EMBEDDED, 12, Font.NORMAL,
 				BaseColor.RED);
 		
+		Document doc = null;
+		Path path = null;
+		File work = null;
+		PdfWriter writer = null;
 		try {
 			// PDF-Datei erzeugen und öffnen
-			Document doc = new Document();
-			PdfWriter writer = PdfWriter.getInstance(doc,
-					new FileOutputStream(file));
-			doc.open();
+			doc = new Document();
 			
+			// Überprüfen, ob die Datei existiert
+			if (file.exists() && 
+					(_preference.get(DlgExportPdf.PDF_ATTACH) == null)) {
+				// Fragen ob Datei überschrieben werden soll
+				int ret = JOptionPane.showConfirmDialog(null, "PDF-Datei existiert schon. Soll sie überschrieben werden?", "PDF-Export", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (ret == JOptionPane.NO_OPTION)
+					return;
+			}
+			if (_preference.get(DlgExportPdf.PDF_ATTACH) != null) {
+				path = Paths.get("/tmp", file.getName());
+				Files.copy(file.toPath(), path);
+				work = new File(Paths.get("/tmp", "work.pdf").toString());
+			}
+			writer = PdfWriter.getInstance(doc,
+					new FileOutputStream(work));
+			doc.open();
+
 			// Meta-Daten erzeugen
 			createMetaData(doc);
+			
 			
 			// Überprüfen, ob Tabelle eingefügt werden soll
 			int chapterCount = 1;
@@ -234,15 +258,50 @@ public class Pdf extends Export {
 				// Diagramm einfügen
 				insertChart(writer, doc);
 			}
-			
-			// PDF-Datei schließen
-			doc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		finally {
+			// PDF-Datei schließen
+			if (doc != null) {
+				doc.close();
+			}
+			
+			if (writer != null) {
+				writer.close();
+			}
+			
+			// Hilfs-Datei löschen
+			if ((_preference.get(DlgExportPdf.PDF_ATTACH) != null) && 
+					(path != null) && !path.toString().isEmpty() && 
+					Files.exists(path)) {
+				try {
+					// PDF-Datei erstellen
+					PdfReader src = new PdfReader(path.toString());
+					PdfReader wrk = new PdfReader(work.getPath());
+					Document docCopy = new Document();
+					PdfCopy copy = new PdfCopy(docCopy, new FileOutputStream(
+							file));
+					docCopy.open();
+					copy.addDocument(src);
+					copy.addDocument(wrk);
+					docCopy.close();
+					src.close();
+					wrk.close();
+					
+					// Hilfs-Dateien löschen
+					Files.delete(path);
+					Files.delete(work.toPath());
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (DocumentException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
