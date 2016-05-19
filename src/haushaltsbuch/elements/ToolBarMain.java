@@ -21,7 +21,6 @@ package haushaltsbuch.elements;
 
 import java.awt.Window;
 
-import javax.swing.Icon;
 import javax.swing.JToolBar;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
@@ -105,11 +104,12 @@ public class ToolBarMain extends JToolBar
 		
 		addSeparator();
 		
-		_print = new Print(desktop, owner);
+		_print = new Print(desktop);
 		_print.setEnabled(false);
 		add(_print);
 	}
 
+	// OPT internalFrameActivated und internalFrameOpened Quellcode zusammenlegen
 	@Override
 	public void internalFrameActivated(InternalFrameEvent e) {
 		if (((WndInternalFrame)e.getInternalFrame()).isEnableDbElements()) {
@@ -123,6 +123,11 @@ public class ToolBarMain extends JToolBar
 		if (((WndInternalFrame)e.getInternalFrame()).isEnablePdfReport()) {
 			_pdf.setEnabled(true);
 			_pdf.setFrame((WndInternalFrame)e.getInternalFrame());
+		}
+		
+		if (((WndInternalFrame)e.getInternalFrame()).isEnablePrint()) {
+			_print.setEnabled(true);
+			_print.setFrame((WndInternalFrame)e.getInternalFrame());
 		}
 	}
 
@@ -138,6 +143,8 @@ public class ToolBarMain extends JToolBar
 		_delete.deleteFrame();
 		
 		_pdf.setEnabled(false);
+		
+		_print.setEnabled(false);
 	}
 
 	@Override
@@ -184,6 +191,11 @@ public class ToolBarMain extends JToolBar
 		if (((WndInternalFrame)e.getInternalFrame()).isEnablePdfReport()) {
 			_pdf.setEnabled(true);
 			_pdf.setFrame((WndInternalFrame)e.getInternalFrame());
+		}
+		
+		if (((WndInternalFrame)e.getInternalFrame()).isEnablePrint()) {
+			_print.setEnabled(true);
+			_print.setFrame((WndInternalFrame)e.getInternalFrame());
 		}
 	}
 

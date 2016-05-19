@@ -60,6 +60,13 @@ public class WndInternalFrame extends JInternalFrame {
 	private boolean _enablePdfReport;
 	
 	/**
+	 * Gibt an, ob das Fenster ausgedruckt werden kann. Die Standard-Einstellung
+	 * ist <b>false</b>. Sollte das Fenster ausgedruckt werden können, so muss
+	 * es das Interface <b>Printable</b> implementieren.
+	 */
+	private boolean _enablePrint;
+	
+	/**
 	 * Speichert den Desktop
 	 */
 	protected Desktop _desktop;
@@ -76,9 +83,10 @@ public class WndInternalFrame extends JInternalFrame {
 		// Desktop speichern
 		_desktop = desktop;
 		
-		// Standardmäßig kein Datenbank-Fenster und kein Report-Fenster
+		// Standard-Einstellungen für die Toolbar
 		setEnableDbElements(false);
 		setEnablePdfReport(false);
+		setEnablePrint(false);
 		
 		// Fenstergröße
 		setSize(600,400);
@@ -169,6 +177,15 @@ public class WndInternalFrame extends JInternalFrame {
 	public boolean isEnablePdfReport() {
 		return _enablePdfReport;
 	}
+	
+	/**
+	 * Gibt zurück, ob dieses Fenster ausgedruckt werden kann oder nicht.
+	 * 
+	 * @return Kann das Fenster ausgedruckt werden?
+	 */
+	public boolean isEnablePrint() {
+		return _enablePrint;
+	}
 
 	/**
 	 * Es wird gespeichert, ob das PDF-Report-Element der ToolBar benötigt wird.
@@ -178,5 +195,15 @@ public class WndInternalFrame extends JInternalFrame {
 	 */
 	public void setEnablePdfReport(boolean enablePdfReport) {
 		_enablePdfReport = enablePdfReport;
+	}
+	
+	/**
+	 * Es wird gespeichert, ob das Print-Element der Toolbar enabled sein soll.
+	 * 
+	 * @param enablePrint Gibt an, ob das Print-Element der Toolbar enabled ist
+	 * oder nicht.
+	 */
+	public void setEnablePrint(boolean enablePrint) {
+		_enablePrint = enablePrint;
 	}
 }

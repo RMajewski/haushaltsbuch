@@ -101,6 +101,9 @@ public class WndSectionList extends WndTableFrame {
 		// Anzeigen
 		pack();
 		setVisible(true);
+		
+		// Kann gedruckt werden
+		setEnablePrint(true);
 	}
 
 	/**

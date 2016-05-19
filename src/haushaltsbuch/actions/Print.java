@@ -21,8 +21,12 @@ package haushaltsbuch.actions;
 
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 
 import haushaltsbuch.elements.Desktop;
+import haushaltsbuch.elements.StatusBar;
 
 /**
  * Implementiert die Action, die ein offenes Fenster ausdruckt.
@@ -43,11 +47,6 @@ public class Print extends Action {
 	 * Speichert das Kommando, um ein Fenster auszudrucken.
 	 */
 	public static final String COMMAND = "Print";
-	
-	/**
-	 * Speichert, welches Fenster dieses Fenster aufgerufen hat.
-	 */
-	private Window _owner;
 
 	/**
 	 * Initialisiert die Aktion.
@@ -56,9 +55,8 @@ public class Print extends Action {
 	 * 
 	 * @param owner Zu diesem Fenster gehört die ToolBar
 	 */
-	public Print(Desktop desktop, Window owner) {
+	public Print(Desktop desktop) {
 		super("printer_small.png", "printer_big.png", desktop);
-		_owner = owner;
 	}
 
 	/**
@@ -69,6 +67,23 @@ public class Print extends Action {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		PrinterJob pjob = PrinterJob.getPrinterJob();
+		
+		if (pjob.printDialog() == false)
+			return;
+
+		try {
+			pjob.setPrintable((Printable)_frame);
+		
+			pjob.print();
+			
+			StatusBar.getInstance().setMessageAsOk(
+					"Druckvorgang wurde gestartet");
+		} catch (Exception e) {
+			StatusBar.getInstance().setMessageAsError(
+					"Es konnte nicht gedruckt werden");
+			e.printStackTrace();
+		}
 	}
 
 }
