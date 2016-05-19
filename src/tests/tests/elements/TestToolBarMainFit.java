@@ -214,7 +214,7 @@ public class TestToolBarMainFit extends GuiTest {
 	 */
 	public void pushInsert() {
 		new JButtonOperator((JButton)_toolbar.getComponent(0)).pushNoBlock();
-		_dlg = new JDialogOperator(_wnd, "Kategorie erstellen");
+		_dlg = new JDialogOperator(_wnd, "Neue Kategorie eingeben");
 	}
 	
 	/**

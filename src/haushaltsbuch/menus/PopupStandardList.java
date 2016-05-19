@@ -53,19 +53,19 @@ public class PopupStandardList extends JPopupMenu {
 		
 		// Neuer Eintrag hinzu fügen
 		JMenuItem item = new JMenuItem(tbMain.getDbInsert());
-		item.setName("Neu");
+		item.setText("Neu");
 		item.setMnemonic('N');
 		add(item);
 		
 		// Eintrag ändern
 		item = new JMenuItem(tbMain.getDbChange());
-		item.setName("Ändern");
+		item.setText("Ändern");
 		item.setMnemonic('Ä');
 		add(item);
 		
 		// Eintrag Löschen
 		item = new JMenuItem(tbMain.getDbDelete());
-		item.setName("Löschen");
+		item.setText("Löschen");
 		item.setMnemonic('L');
 		add(item);
 	}

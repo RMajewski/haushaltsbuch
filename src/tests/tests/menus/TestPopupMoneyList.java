@@ -21,21 +21,26 @@ package tests.tests.menus;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.*;
 
 import javax.swing.JMenuItem;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import haushaltsbuch.elements.ToolBarMain;
 import haushaltsbuch.menus.PopupMoneyList;
 
 /**
  * Testet, ob das Popup-Menü für die Tabelle Einnahmen und Ausgaben richtig
  * initalisiert wird.
  * 
+ * In der Version 0.2 wurde das Mockobjekt der Toolbar hinzugefügt, um das
+ * Popup-Menü zu initalisieren
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  *
  */
@@ -46,12 +51,18 @@ public class TestPopupMoneyList {
 	private PopupMoneyList _popup;
 	
 	/**
+	 * Speichert das Mockobjekt der Toolbar.
+	 */
+	private ToolBarMain _toolbar;
+	
+	/**
 	 * Initalisiert die einzelnen Tests
 	 * @throws Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		_popup = new PopupMoneyList(null);
+		_toolbar = mock(ToolBarMain.class);
+		_popup = new PopupMoneyList(null, _toolbar);
 	}
 	
 	/**

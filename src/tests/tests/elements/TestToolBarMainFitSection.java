@@ -51,7 +51,7 @@ public class TestToolBarMainFitSection extends TestToolBarMainFit {
 	@Override
 	public void pushInsert() {
 		new JButtonOperator((JButton)_toolbar.getComponent(0)).pushNoBlock();
-		_dlg = new JDialogOperator(_wnd, "Geschäft erstellen");
+		_dlg = new JDialogOperator(_wnd, "Neues Geschäft eingeben");
 	}
 	
 	/**

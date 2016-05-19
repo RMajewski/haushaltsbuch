@@ -156,7 +156,7 @@ public class MainTop extends JMenuBar {
 		
 		// Export PDF-Datei
 		item = new JMenuItem(tbMain.getPdfExport());
-		item.setName("PDF-Export");
+		item.setText("PDF-Export");
 		item.setMnemonic('P');
 		ret.add(item);
 		

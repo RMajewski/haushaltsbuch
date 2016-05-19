@@ -66,16 +66,6 @@ public class TestToolBarApplication extends JFrame implements ActionListener {
 		// Fenster beim Beenden schließen
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		// Menü erstellen
-		JMenuItem item = new JMenuItem("Test");
-		item.addActionListener(this);
-		item.setActionCommand("Test");
-		JMenu menu = new JMenu("Test");
-		menu.add(item);
-		MainTop bar = new MainTop(this);
-		bar.add(menu);
-		setJMenuBar(bar);
-		
 		// Desktop einfügen
 		_desktop = new Desktop(this);
 		add(_desktop);
@@ -84,6 +74,16 @@ public class TestToolBarApplication extends JFrame implements ActionListener {
 		ToolBarMain toolbar = new ToolBarMain(_desktop, this);
 		_desktop.setToolBar(toolbar);
 		add(toolbar, BorderLayout.NORTH);
+		
+		// Menü erstellen
+		JMenuItem item = new JMenuItem("Test");
+		item.addActionListener(this);
+		item.setActionCommand("Test");
+		JMenu menu = new JMenu("Test");
+		menu.add(item);
+		MainTop bar = new MainTop(this, toolbar);
+		bar.add(menu);
+		setJMenuBar(bar);
 		
 		// Fenster anzeigen
 		setVisible(true);
