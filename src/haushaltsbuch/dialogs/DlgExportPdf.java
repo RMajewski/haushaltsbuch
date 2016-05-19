@@ -31,6 +31,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  * Zeigt die Einstellungen für den Export des Reports als PDF.
@@ -63,6 +64,12 @@ public class DlgExportPdf extends DlgExport implements ActionListener {
 	public static final String EXPORT_BAR_CHART = "bar_chart";
 	
 	/**
+	 * Speichert den Namen der Einstellunge für das Anhängen an eine bestehende
+	 * PDF-Datei.
+	 */
+	public static final String PDF_ATTACH = "pdf-Attach";
+	
+	/**
 	 * Speichert den Button zum Exportieren.
 	 */
 	private JButton _btnExport;
@@ -81,6 +88,11 @@ public class DlgExportPdf extends DlgExport implements ActionListener {
 	 * Speichert die Auswahl zum exportieren des Balken-Diagramms.
 	 */
 	private JCheckBox _cbBarChart;
+	
+	/**
+	 * Speichert die Auswahl zum anhängen an existierende PDF-Datei
+	 */
+	private JCheckBox _cbPdfAttach;
 	
 	/**
 	 * ActionCommand zum Abbrechen
@@ -131,12 +143,13 @@ public class DlgExportPdf extends DlgExport implements ActionListener {
 		getContentPane().add(panExport, BorderLayout.CENTER);
 		GridBagLayout gbl_panExport = new GridBagLayout();
 		gbl_panExport.columnWidths = new int[]{0, 0};
-		gbl_panExport.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_panExport.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_panExport.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panExport.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panExport.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panExport.setLayout(gbl_panExport);
 		
 		_cbTable = new JCheckBox("Tabelle");
+		_cbTable.setHorizontalAlignment(SwingConstants.LEFT);
 		_cbTable.setSelected(true);
 		GridBagConstraints gbc_chckbxTabelle = new GridBagConstraints();
 		gbc_chckbxTabelle.insets = new Insets(0, 0, 5, 0);
@@ -145,10 +158,19 @@ public class DlgExportPdf extends DlgExport implements ActionListener {
 		panExport.add(_cbTable, gbc_chckbxTabelle);
 		
 		_cbBarChart = new JCheckBox("Balken-Diagramm");
+		_cbBarChart.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_chckbxBalkendiagramm = new GridBagConstraints();
+		gbc_chckbxBalkendiagramm.insets = new Insets(0, 0, 5, 0);
 		gbc_chckbxBalkendiagramm.gridx = 0;
-		gbc_chckbxBalkendiagramm.gridy = 2;
+		gbc_chckbxBalkendiagramm.gridy = 1;
 		panExport.add(_cbBarChart, gbc_chckbxBalkendiagramm);
+		
+		_cbPdfAttach = new JCheckBox("An PDF-Datei anhängen");
+		_cbPdfAttach.setHorizontalAlignment(SwingConstants.LEFT);
+		GridBagConstraints gbc_chckbxAnPdfdateiAnhngen = new GridBagConstraints();
+		gbc_chckbxAnPdfdateiAnhngen.gridx = 0;
+		gbc_chckbxAnPdfdateiAnhngen.gridy = 3;
+		panExport.add(_cbPdfAttach, gbc_chckbxAnPdfdateiAnhngen);
 	}
 
 	/**
@@ -172,6 +194,9 @@ public class DlgExportPdf extends DlgExport implements ActionListener {
 			
 			if (_cbBarChart.isSelected())
 				_preference.put(EXPORT_BAR_CHART, 1);
+			
+			if (_cbPdfAttach.isSelected())
+				_preference.put(PDF_ATTACH, 1);
 		}
 	}
 

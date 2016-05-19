@@ -30,6 +30,11 @@
 					<td>true</td>
 				</tr>
 				<tr>
+					<td>enter</td>
+					<td>setPdfAttach</td>
+					<td>false</td>
+				</tr>
+				<tr>
 					<td>press</td>
 					<td>pushExport</td>
 					<td>&nbsp;</td>
@@ -48,6 +53,11 @@
 					<td>check</td>
 					<td>getPreferenceExportBarChart</td>
 					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getPreferencePdfAttach</td>
+					<td>null</td>
 				</tr>
 			</tbody>
 		</table>

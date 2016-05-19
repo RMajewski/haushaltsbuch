@@ -1,13 +1,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Dialog: Export PDF (Einstellung: Export der Tabelle)</title>
+		<title>Dialog: Export PDF (Einstellung: PDF-Datei anhängen)</title>
 	</head>
 	<body>
-		<h2>Dialog: Export PDF (Einstellung: Export der Tabelle)</h2>
+		<h2>Dialog: Export PDF (Einstellung: PDF-Date anhängen)</h2>
 		
-		<p>Überprüft, ob die Einstellung für den Export der Tabelle richtig
-		gespeichert wurde, wenn alle anderen Einstellungen abgewählt wurden.</p>
+		<p>Überprüft, ob die Einstellung für den das Anhängen an eine bestehende
+		PDF-Datei gespeichert wurde, wenn alle anderen Einstellungen abgewählt
+		wurden.</p>
 		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
 			<tbody>
 				<tr>
@@ -21,17 +22,22 @@
 				<tr>
 					<td>enter</td>
 					<td>setExportTable</td>
-					<td>true</td>
+					<td>false</td>
 				</tr>
 				<tr>
 					<td>enter</td>
 					<td>setExportBarChart</td>
-					<td>false</td>
+					<td>fals</td>
 				</tr>
 				<tr>
 					<td>enter</td>
 					<td>setPdfAttach</td>
-					<td>false</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.dialogs.FixtureDlgExportPdf</td>
+					<td>&nbsp;</td>
 				</tr>
 				<tr>
 					<td>press</td>
@@ -46,7 +52,7 @@
 				<tr>
 					<td>check</td>
 					<td>getPreferenceExportTable</td>
-					<td>1</td>
+					<td>null</td>
 				</tr>
 				<tr>
 					<td>check</td>
@@ -56,7 +62,7 @@
 				<tr>
 					<td>check</td>
 					<td>getPreferencePdfAttach</td>
-					<td>null</td>
+					<td>1</td>
 				</tr>
 			</tbody>
 		</table>
