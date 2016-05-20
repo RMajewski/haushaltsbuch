@@ -21,10 +21,14 @@ package haushaltsbuch.windows.internal;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -46,6 +50,7 @@ import haushaltsbuch.datas.ReportYearData;
 import haushaltsbuch.dialogs.DlgReport;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.ReportGraphic;
+import haushaltsbuch.helper.HelperPrint;
 import haushaltsbuch.tables.models.ReportCategoryModel;
 import haushaltsbuch.tables.models.ReportModel;
 import haushaltsbuch.tables.models.ReportMonthModel;
@@ -56,10 +61,15 @@ import haushaltsbuch.tables.models.ReportYearModel;
 /**
  * Zeigt die einzelnen Reports an.
  * 
+ * In der Version 0.2 wird das Drucken der Reports unterstützt.
+ * 
  * @author René Majewski
+ * 
+ * @version 0.2
+ * @since 0.2
  */
 public class WndReports extends WndInternalFrame
-	implements ActionListener, ChangeListener {
+	implements ActionListener, ChangeListener, Printable {
 
 	/**
 	 * Serial ID
@@ -154,6 +164,9 @@ public class WndReports extends WndInternalFrame
 		btnCancel.addActionListener(this);
 		btnCancel.setActionCommand(CANCEL);
 		buttons.add(btnCancel);
+		
+		// Drucken wird unterstützt
+		setEnablePrint(true);
 		
 		// Einstellungen aufrufen
 		createDlgReport();
@@ -316,5 +329,104 @@ public class WndReports extends WndInternalFrame
 	 */
 	public ReportData getReportData() {
 		return ((ReportModel)_table.getModel()).getData();
+	}
+
+	/**
+	 * Druck die Tabelle aus.
+	 * 
+	 * @param g Grafik-Kontekt des Druckers
+	 * 
+	 * @param pf Seiten-Einstellungen
+	 * 
+	 * @param page Index der Seite
+	 * 
+	 * @return Gibt an, ob die Seite existiert oder nicht.
+	 */
+	@Override
+	public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
+		int pageCount = HelperPrint.calcPageCount(_table.getRowCount(), 
+				(int)pf.getImageableHeight(), g);
+		int count = HelperPrint.calcRecordPerPage((int)pf.getImageableHeight(),
+				g);
+		
+		// Unterstützt in Version 0.2 nur Wochenübersicht, Monatsübersicht und
+		// Jahresübersicht
+		if (_preference.getType() > ReportPreferencesData.TYPE_YEAR)
+			return Printable.NO_SUCH_PAGE;
+		
+		// Überprüft, ob die Seite noch gedruckt werden kann oder nicht.
+		if (page > (pageCount - 1))
+			return Printable.NO_SUCH_PAGE;
+		
+		// Überschriften
+		int widthColumn1 = HelperPrint.calcColumnWidth(10, g);
+		int widthColumn2 = HelperPrint.calcColumnWidth(10, g);
+		int widthColumn3 = HelperPrint.calcColumnWidth(10, g);
+		int widthColumn4 = HelperPrint.calcColumnWidth(10, g);
+		int x1 = (int)pf.getImageableX();
+		int x2 = x1 + widthColumn1;
+		int x3 = x2 + widthColumn2;
+		int x4 = x3 + widthColumn3;
+		int id1 = 0;
+		int id2 = 1;
+		int id3 = 2;
+		int id4 = 3;
+		int height = HelperPrint.calcRowHeight(g);
+		g.setFont(HelperPrint.standardBoldFont());
+		HelperPrint.drawCell(x1, (int)pf.getImageableY(), widthColumn1, height,
+				String.valueOf(_table.getColumnModel().getColumn(0)
+						.getHeaderValue()), g);
+		HelperPrint.drawCell(x2, (int)pf.getImageableY(), widthColumn2, height,
+				"Einnahmen", g);
+		HelperPrint.drawCell(x3, (int)pf.getImageableY(), widthColumn3, height,
+				"Ausgaben", g);
+		HelperPrint.drawCell(x4, (int)pf.getImageableY(), widthColumn4, height,
+				"Differenz", g);
+		
+		// Spalten in der Tabelle einstellen
+		if (_preference.getType() == ReportPreferencesData.TYPE_WEEK) {
+			String from = String.valueOf(_preference.getPreference(
+					ReportWeekData.DRAW_DATE_FROM));
+			String to = String.valueOf(_preference.getPreference(
+					ReportWeekData.DRAW_DATE_TO));
+			
+			if ((from != null) && !from.isEmpty() && from.equals("1")) {
+				id2++;
+				id3++;
+				id4++;
+			}
+			
+			if ((to != null) && !to.isEmpty() && to.equals("1")) {
+				id2++;
+				id3++;
+				id4++;
+			}
+		}
+		
+		// Daten ausgeben
+		g.setFont(HelperPrint.standardFont());
+		int max = 0;
+		if ((count * (page + 1)) < _table.getRowCount())
+			max = (count * (page + 1));
+		else
+			max = _table.getRowCount();
+		
+		for (int index = (count * page); index < max; index++)
+		{
+			int y = (int)pf.getImageableY() + 
+					((index + 1 - (count * page)) * height);
+			
+			HelperPrint.drawCell(x1, y, widthColumn1, height, 
+					String.valueOf(_table.getValueAt(index, id1)), g);
+			HelperPrint.drawCell(x2, y, widthColumn2, height, 
+					String.valueOf(_table.getValueAt(index, id2)), g);
+			HelperPrint.drawCell(x3, y, widthColumn3, height, 
+					String.valueOf(_table.getValueAt(index, id3)), g);
+			HelperPrint.drawCell(x4, y, widthColumn4, height, 
+					String.valueOf(_table.getValueAt(index, id4)), g);
+		}
+		
+		// Seite kann gedruckt werden
+		return Printable.PAGE_EXISTS;
 	}
 }
