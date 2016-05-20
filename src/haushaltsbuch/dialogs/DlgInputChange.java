@@ -22,6 +22,7 @@ package haushaltsbuch.dialogs;
 import javax.swing.JDialog;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
+
 import javax.swing.JPanel;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -31,6 +32,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.Box;
 import javax.swing.JLabel;
 
@@ -103,6 +106,7 @@ public class DlgInputChange extends JDialog implements ActionListener {
 	 * Speichert, wie der Dialog beendet wurde.
 	 */
 	private int _exit;
+	private JPanel panel_1;
 
 	/**
 	 * Initialisiert den Dialog
@@ -115,9 +119,10 @@ public class DlgInputChange extends JDialog implements ActionListener {
 		setSize(400, 85);
 		setResizable(false);
 		
-		getContentPane().setLayout(new BorderLayout(0, 0));
+		getContentPane().setLayout(new BorderLayout(10, 10));
 		
 		_txtName = new JTextField();
+		_txtName.setPreferredSize(new Dimension(0, 20));
 		getContentPane().add(_txtName, BorderLayout.CENTER);
 		
 		if ((value != null) && !value.isEmpty())
@@ -140,6 +145,9 @@ public class DlgInputChange extends JDialog implements ActionListener {
 		
 		_label = new JLabel("");
 		getContentPane().add(_label, BorderLayout.WEST);
+		
+		panel_1 = new JPanel();
+		getContentPane().add(panel_1, BorderLayout.NORTH);
 		
 		if (window == WND_CATEGORY) {
 			_label.setText("Kategorie");
