@@ -230,33 +230,42 @@ public class WndCategoryList extends WndTableFrame implements Printable {
 	public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
 		int pageCount = HelperPrint.calcPageCount(_table.getRowCount(), 
 				(int)pf.getImageableHeight(), g);
+		int count = HelperPrint.calcRecordPerPage((int)pf.getImageableHeight(),
+				g);
+		
 		// Überprüft, ob die Seite noch gedruckt werden kann oder nicht.
 		if (page > (pageCount - 1))
 			return Printable.NO_SUCH_PAGE;
 		
 		// Überschriften
 		int widthColumn1 = HelperPrint.calcColumnWidth(6, g);
-		int widhtColumn2 = (int)pf.getImageableWidth() - widthColumn1;
+		int widthColumn2 = (int)pf.getImageableWidth() - widthColumn1;
 		int height = HelperPrint.calcRowHeight(g);
 		g.setFont(HelperPrint.standardBoldFont());
 		HelperPrint.drawCell((int)pf.getImageableX(), (int)pf.getImageableY(), 
 				widthColumn1, height, "ID", g);
 		HelperPrint.drawCell((int)pf.getImageableX() + widthColumn1, 
-				(int)pf.getImageableY(), widhtColumn2, height, "Kategorie", g);
+				(int)pf.getImageableY(), widthColumn2, height, "Kategorie", g);
 		
 		g.setFont(HelperPrint.standardFont());
 		
 		// Kategorien ausgeben
-		for (int index = 0; index < _table.getRowCount(); index++) {
+		int max = 0;
+		if ((count * (page + 1)) < _table.getRowCount())
+			max = (count * (page + 1));
+		else
+			max = _table.getRowCount();
+		
+		for (int index = (count * page); index < max; index++)
+		{
 			int x1 = (int)pf.getImageableX();
 			int x2 = (int)pf.getImageableX() + widthColumn1;
-			int y = (int)pf.getImageableY() + ((index + 1) * height);
-			
-			System.out.println(x1 + "\t" + x2 + "\t" + y);
+			int y = (int)pf.getImageableY() + 
+					((index + 1 - (count * page)) * height);
 			
 			HelperPrint.drawCell(x1, y, widthColumn1, height, 
 					String.valueOf(_table.getValueAt(index, 0)), g);
-			HelperPrint.drawCell(x2, y, widthColumn1, height, 
+			HelperPrint.drawCell(x2, y, widthColumn2, height, 
 					String.valueOf(_table.getValueAt(index, 1)), g);
 		}
 		
