@@ -7,4 +7,110 @@
 		In diesem Kapitel wird der Umgang mit Details zu den Einnahmen und
 		Ausgaben beschrieben.
 	</para>
+	<para>
+		Das folgende Bild zeigt das Fenster mit mit der Tabelle für die Details
+		der Einnahmen und Ausgaben. Es wird wie folgt aufgerufen: Datenbank -&gt; 
+		Einnahmen und Ausgaben und doppelt auf einen Datensatz in der Tabelle
+		für <link linkend="money">Einnahmen und Ausgaben</link> klicken.
+		<figure>
+			<title>Tabelle mit Details zu Einnahmen und Ausgaben</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/money_details.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+	<para>
+		Um einen neuen Datensatz anzulegen, gibt es zwei unterschiedliche
+		Varianten.
+		<orderedlist>
+			<listitem>
+				<para>Rechte Maustause -&gt; Neu</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/popup_new.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+			<listitem>
+				<para>Klick auf den 1. Toolbar-Button von links</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/toolbar_new.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+		</orderedlist>
+	</para>
+	<para>
+		Das folgende Bild zeigt das Fenster zum Eingeben der Details zu einer
+		Einnahme oder Ausgabe. Die Hilfe zu diesen Fenster finden Sie
+		<link linkend="money_details_change">hier</link>.
+		<figure>
+			<title>Dialog: "Neue Einnahme oder Ausgabe"</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/money_new.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+	<para>
+		Wenn Sie einen Datensatz ändern wollen, so muss dieser selektiert
+		werden. Nun gibt es 2 Möglichkeiten, um den selektierten Datensatz zu
+		ändern.
+		<orderedlist>
+			<listitem>
+				<para>Rechte Maustause -&gt; Ändern</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/popup_change.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+			<listitem>
+				<para>Klick auf den 2. Toolbar-Button von links</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/toolbar_change.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+		</orderedlist>
+	</para>
+	<para>
+		Wenn Sie ein Datensatz löschen wollen, so muss dieser selektiert werden.
+		Nun gibt es 2 Möglichkeiten, um den selektierten Datensatz zu löschen.
+		<orderedlist>
+			<listitem>
+				<para>Rechte Maustause -&gt; Löschen</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/popup_delete.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+			<listitem>
+				<para>Klick auf den 3. Toolbar-Button von links</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/toolbar_delete.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+		</orderedlist>
+	</para>
 </chapter>
