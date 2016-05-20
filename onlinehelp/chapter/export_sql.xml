@@ -55,5 +55,53 @@ INSERT INTO section (id, name) VALUES ("14", "Sparkasse");
 	</sect1>
 	<sect1 xml:id="export_pdf">
 		<title>Export als PDF-Datei</title>
+		<note>
+			<para>
+				In der Version 0.3 können nur die Reports als PDF-Datei erstellt
+				werden.
+			</para>
+		</note>
+		<para>
+			Um ein Report als PDF-Datei zu exportieren ist notwendig, zuerst
+			einen <link linkend="report">Report</link> zu erstellen. Ist dies
+			geschehen, gibt es 2 Möglichkeiten die PDF-Datei zu generieren:
+			<orderedlist>
+			<listitem>
+				<para>Klick auf den 5. Toolbar-Button von links</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/toolbar_pdf.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+			<listitem>
+				<para>Über Menü Export -&gt; PDF-Datei</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/menu_export_pdf"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+		</orderedlist>
+		</para>
+		<para>
+			Nun erscheint zuerst der Speichern Dialog, wo die Ziel-Datei
+			ausgewählt wird. Danach erscheint der Dialog zur Auswahl, was aus
+			dem Report exportiert werden soll. Die Tabelle und / oder das 
+			Balkendiagramm. Es kann auch ausgewählt, ob an eine bestehende 
+			PDF-Datei angehängt wird oder nicht. Das folgende Bild zeigt den
+			Auswahl-Dialog.
+			<figure>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/pdf_dialog.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+		</para>
 	</sect1>
 </chapter>
