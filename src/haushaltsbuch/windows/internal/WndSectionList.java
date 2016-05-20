@@ -19,6 +19,10 @@
 
 package haushaltsbuch.windows.internal;
 
+import java.awt.Graphics;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -35,6 +39,7 @@ import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgInputChange;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
+import haushaltsbuch.helper.HelperPrint;
 import haushaltsbuch.tables.models.IdNameListModel;
 
 /**
@@ -44,12 +49,14 @@ import haushaltsbuch.tables.models.IdNameListModel;
  * mehr gebraucht wird. Die Elemente vom Popup-Menü benutzen die Methoden 
  * {@link change}, {@link delete} und {@link insert}.
  * 
+ * In Version 0.3 wird das Drucken der Tabelle unterstützt.
+ * 
  * @author René Majewski
  * 
- * @version 0.2
+ * @version 0.3
  * @since 0.1
  */
-public class WndSectionList extends WndTableFrame {
+public class WndSectionList extends WndTableFrame implements Printable {
 	
 	/**
 	 * Speichert den Titel des Fensters
@@ -203,6 +210,64 @@ public class WndSectionList extends WndTableFrame {
 					_table.getRowSorter().convertRowIndexToModel(
 							_table.getSelectedRow())).getId(), 
 					DbController.queries().section());
+	}
+
+	/**
+	 * Druck die Geschäfte-Tabelle aus.
+	 * 
+	 * @param g Grafik-Kontekt des Druckers
+	 * 
+	 * @param pf Seiten-Einstellungen
+	 * 
+	 * @param page Index der Seite
+	 * 
+	 * @return Gibt an, ob die Seite existiert oder nicht.
+	 */
+	@Override
+	public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
+		int pageCount = HelperPrint.calcPageCount(_table.getRowCount(), 
+				(int)pf.getImageableHeight(), g);
+		int count = HelperPrint.calcRecordPerPage((int)pf.getImageableHeight(),
+				g);
+		
+		// Überprüft, ob die Seite noch gedruckt werden kann oder nicht.
+		if (page > (pageCount - 1))
+			return Printable.NO_SUCH_PAGE;
+		
+		// Überschriften
+		int widthColumn1 = HelperPrint.calcColumnWidth(6, g);
+		int widthColumn2 = (int)pf.getImageableWidth() - widthColumn1;
+		int height = HelperPrint.calcRowHeight(g);
+		g.setFont(HelperPrint.standardBoldFont());
+		HelperPrint.drawCell((int)pf.getImageableX(), (int)pf.getImageableY(), 
+				widthColumn1, height, "ID", g);
+		HelperPrint.drawCell((int)pf.getImageableX() + widthColumn1, 
+				(int)pf.getImageableY(), widthColumn2, height, "Kategorie", g);
+		
+		g.setFont(HelperPrint.standardFont());
+		
+		// Kategorien ausgeben
+		int max = 0;
+		if ((count * (page + 1)) < _table.getRowCount())
+			max = (count * (page + 1));
+		else
+			max = _table.getRowCount();
+		
+		for (int index = (count * page); index < max; index++)
+		{
+			int x1 = (int)pf.getImageableX();
+			int x2 = (int)pf.getImageableX() + widthColumn1;
+			int y = (int)pf.getImageableY() + 
+					((index + 1 - (count * page)) * height);
+			
+			HelperPrint.drawCell(x1, y, widthColumn1, height, 
+					String.valueOf(_table.getValueAt(index, 0)), g);
+			HelperPrint.drawCell(x2, y, widthColumn2, height, 
+					String.valueOf(_table.getValueAt(index, 1)), g);
+		}
+		
+		// Seite kann gedruckt werden
+		return Printable.PAGE_EXISTS;
 	}
 
 }
