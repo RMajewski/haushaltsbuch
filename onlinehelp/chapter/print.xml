@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+		 xml:id="print">
+	<title>Drucken</title>
+	<para>
+		Wird ein Fenster geöffnet, dass die Druckfunktion unterstützt, so wird
+		der Button in der Toolbar bzw. der Menü-Eintrag "Drucken" enabled.
+		<figure>
+			<title>Toolbar-Button Drucken</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/toolbar_print.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+	<para>
+		In der Version 0.3 steht die Druckfunktion für folgende Fenster zur
+		Verfügung:
+		<itemizedlist>
+			<listitem>
+				<para>Tabelle für die Kategorien</para>
+			</listitem>
+			<listitem>
+				<para>Tabelle für die Geschäfte</para>
+			</listitem>
+			<listitem>
+				<para>Tabelle für die Einnahmen und Ausgaben</para>
+			</listitem>
+			<listitem>
+				<para>Tabelle für die Details der Einnahmen und Ausgaben</para>
+			</listitem>
+			<listitem>
+				<para>Report</para>
+			</listitem>
+		</itemizedlist>
+	</para>
+</chapter>
