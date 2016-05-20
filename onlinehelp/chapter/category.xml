@@ -33,11 +33,76 @@
 				</figure>
 			</listitem>
 			<listitem>
-				<para>Klick auf den 1. Toolbar-Button von rechts</para>
+				<para>Klick auf den 1. Toolbar-Button von links</para>
 				<figure>
 					<mediaobject>
 						<imageobject>
 							<imagedata format="PNG" fileref="../img/help/toolbar_new.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+		</orderedlist>
+	</para>
+	<para>
+		Im Dialog einfach den Namen der Kategorie eingegeben zu und danach auf
+		Ok geklickt zu werden (Siehe nächstes Bild). Wenn die Kategorie noch
+		nicht existiert, wird die neue Kategorie erstellt.
+		<figure>
+			<title>Dialog: "Neue Kategorie eingeben"</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/category_new.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+	<para>
+		Wenn Sie eine Kategorie ändern wollen, so muss diese selektiert werden.
+		Nun gibt es 2 Möglichkeiten, um die selektierte Kategorie zu ändern.
+		<orderedlist>
+			<listitem>
+				<para>Rechte Maustause -&gt; Ändern</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/popup_change.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+			<listitem>
+				<para>Klick auf den 2. Toolbar-Button von links</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/toolbar_change.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+		</orderedlist>
+	</para>
+	<para>
+		Wenn Sie eine Kategorie löschen wollen, so muss diese selektiert werden.
+		Nun gibt es 2 Möglichkeiten, um die selektierte Kategorie zu löschen.
+		<orderedlist>
+			<listitem>
+				<para>Rechte Maustause -&gt; Löschen</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/popup_delete.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+			<listitem>
+				<para>Klick auf den 3. Toolbar-Button von links</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/toolbar_delete.png"/>
 						</imageobject>
 					</mediaobject>
 				</figure>

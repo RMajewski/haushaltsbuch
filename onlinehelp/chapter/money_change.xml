@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+		 xml:id="money_change">
+	<title>Fenster um Einnahmen oder Ausgaben einzugeben</title>
+	<para>
+		In diesem Fenster wird der Tag (1) der Einnahme oder Ausgabe eingegeben.
+		Dazu wird in (2) ausgewählt, ob es sich um eine Einnahme oder eine
+		Ausgabe handelt. Es kann auch ein Kommentar (3) eingegeben werden. Wird
+		auf Speichern geklickt, so wird ein neuer Datensatz angelegt, wenn ein
+		Datum eingegeben wurde. Wird dagegeben auf Abbrechen geklickt, so wird
+		lediglich das Fenster geschlossen.
+		<figure>
+			<title>Fenster zur Eingabe einer Einnahme oder Ausgabe</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/money_change.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+	<para>
+		Bei der Eingabe des Datums gibt es ein kleine Besonderheit. Wird nur der
+		Tag eingegeben (z.B. 01.) und es wird das Eingabefeld geändert, so wird
+		automatisch der aktuelle Monat und das aktuelle Jahr hinzugefügt. Wird
+		der Tag und der Monat (z.B. 01.01.) eingegeben, wird das aktuelle Jahr
+		hinzugefügt, wenn das Textfeld verlassen wird. Wird auch das Jahr mit
+		eingegeben, so passiert nichts, wenn das Eingabefeld den Focus verliert.
+	</para>
+</chapter>

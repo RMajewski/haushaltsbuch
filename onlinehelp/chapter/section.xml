@@ -6,4 +6,107 @@
 	<para>
 		In diesem Kapitel wird der Umgang mit Geschäften beschrieben.
 	</para>
+	<para>
+		Das folgende Bild zeigt das Fenster mit der Tabelle der Geschäfte. Es
+		wird wie folgt aufgerufen: Datenbank -&gt; Geschäfte.
+		<figure>
+			<title>Geschäfte-Tabelle</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/section.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+	<para>
+		Um ein neues Geschäft anzulegen, gibt es zwei unterschiedliche
+		Varianten.
+		<orderedlist>
+			<listitem>
+				<para>Rechte Maustause -&gt; Neu</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/popup_new.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+			<listitem>
+				<para>Klick auf den 1. Toolbar-Button von links</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/toolbar_new.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+		</orderedlist>
+	</para>
+	<para>
+		Im Dialog einfach den Namen des Geschäftes eingegeben zu und danach auf
+		Ok geklickt zu werden (Siehe nächstes Bild). Wenn das Geschäft noch
+		nicht existiert, wird das neue Geschäft erstellt.
+		<figure>
+			<title>Dialog: "Neues geschäft eingeben"</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/section_new.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+	<para>
+		Wenn Sie ein Geschäft ändern wollen, so muss dieses selektiert werden.
+		Nun gibt es 2 Möglichkeiten, um das selektierte Geschäft zu ändern.
+		<orderedlist>
+			<listitem>
+				<para>Rechte Maustause -&gt; Ändern</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/popup_change.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+			<listitem>
+				<para>Klick auf den 2. Toolbar-Button von links</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/toolbar_change.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+		</orderedlist>
+	</para>
+	<para>
+		Wenn Sie ein Geschäft löschen wollen, so muss dieses selektiert werden.
+		Nun gibt es 2 Möglichkeiten, um das selektierte Geschäft zu löschen.
+		<orderedlist>
+			<listitem>
+				<para>Rechte Maustause -&gt; Löschen</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/popup_delete.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+			<listitem>
+				<para>Klick auf den 3. Toolbar-Button von links</para>
+				<figure>
+					<mediaobject>
+						<imageobject>
+							<imagedata format="PNG" fileref="../img/help/toolbar_delete.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</listitem>
+		</orderedlist>
+	</para>
 </chapter>

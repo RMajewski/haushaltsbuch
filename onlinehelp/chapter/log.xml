@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+		 xml:id="log">
+	<title>Log</title>
+	<para>
+		Im Log können Sie sich verschiedene Meldungen anschauen. Hier werden die
+		die einzelnen Meldungen, die in der Status-Leiste angezeigt wurden, als
+		Liste angezeigt.
+		<figure>
+			<title>Log</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/log.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+	<para>
+		Die Bedeutung der verschiedenen Farben
+		<itemizedlist>
+			<listitem>
+				<para>
+					Grün: alles ok.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Rot: Ein Fehler ist aufgetreten.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Orange: Eine Warnung wurde ausgegeben.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Grau: Eine Nachricht ohne weitere Bedeutung.
+				</para>
+			</listitem>
+		</itemizedlist>
+	</para>
+</chapter>

@@ -5,6 +5,192 @@
 	<title>Report</title>
 	<para>
 		In diesem Kapitel wird das Erstellen von Reports beschrieben. Die
-		erstellten Reports können als PDF-Datei exportiert werden.
+		erstellten Reports können als 
+		<link linkend="export_pdf">PDF-Datei</link> exportiert werden.
 	</para>
+	<sect1 xml:id="report_dialog">
+		<title>Einstellungedialog zu den Reports</title>
+		<para>
+			Bevor ein Report erstellt werden kann, muss zuerst im Dialog für
+			die Report-Einstellungen eingestellt werden, welcher Report
+			erstellt (1) werden soll. Außerdem muss noch der Monat (2) und
+			das Jahr (4) erstellt werden. Der Monat ist nicht für alle Reports
+			erforderlich.
+			<figure>
+				<title>Dialog für die Report-Einstellungen</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/report_dialog.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+		</para>
+		<para>
+			Es werden in der Version 0.3 folgende Reports erzeugt:
+			<itemizedlist>
+				<listitem>
+					<para>
+						<link linkend="report_week">Wochenübersicht:</link>
+						Erzeugt einen Bericht über alle Einnahmen und Ausgaben
+						des ausgewählten Jahres und gruppiert sie nach ihren
+						Wochen.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<link linkend="report_month">Monatsübersicht:</link>
+						Erzeugt einen Bericht über alle Einnahmen und Ausgaben
+						des ausgewählten Monats und Jahres. Hier werden sie nach
+						den einzelnen Monats-Tagen gruppiert.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<link linkend="report_year">Jahresübersicht:</link>
+						Erzeugt einen Bericht über alle Einnahmen und Ausgaben
+						des ausgewählten Jahres und sortiert sie nach ihren
+						Monaten.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<link linkend="report_category">
+							Übersicht der Kategorien:
+						</link>
+						Erzeugt einen Bericht über alle Einnahmen und Ausgaben
+						des ausgewählten Jahres und sortiert sie nach den
+						einzelnen Kategorien.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<link linkend="report_section">
+							Übersicht der Geschäfte:
+						</link>
+						Erzeugt einen Bericht über alle Einnahmen und Ausgaben
+						des ausgewählten Jahres und sortiert sie nach den
+						einzelnen Geschäften.
+					</para>
+				</listitem>
+			</itemizedlist>			
+		</para>
+	</sect1>
+	<sect1 xml:id="report_week">
+		<title>Wochenübersicht</title>
+		<para>
+			Erzeugt einen Bericht über alle Einnahmen und Ausgaben des
+			ausgewählten Jahres und gruppiert sie nach ihren Wochen.
+		</para>
+		<para>
+			<figure>
+				<title>Beispiel einer Wochenübersicht</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/report_week.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+			<figure>
+				<title>Beispiel der obigen Wochenübersicht als Balkendiagramm</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/report_week_chart.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+		</para>
+	</sect1>
+	<sect1 xml:id="report_month">
+		<title>Monatsübersicht</title>
+		<para>
+			Erzeugt einen Bericht über alle Einnahmen und Ausgaben des
+			ausgewählten Monats und Jahres. Hier werden sie nach den einzelnen
+			Monats-Tagen gruppiert.
+		</para>
+		<para>
+			<figure>
+				<title>Beispiel einer Monatsübersicht</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/report_month.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+		</para>
+	</sect1>
+	<sect1 xml:id="report_year">
+		<title>Jahresübersicht</title>
+		<para>
+			Erzeugt einen Bericht über alle Einnahmen und Ausgaben des
+			ausgewählten Jahres und sortiert sie nach ihren Monaten.
+		</para>
+		<para>
+			<figure>
+				<title>Beispiel einer Jahresübersicht</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/report_year.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+			<figure>
+				<title>Beispiel der obigen Jahresübersicht als Balkendiagramm</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/report_year_chart.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+		</para>
+	</sect1>
+	<sect1 xml:id="report_category">
+		<title>Übersicht der Kategorien</title>
+		<para>
+			Erzeugt einen Bericht über alle Einnahmen und Ausgaben des 
+			ausgewählten Jahres und sortiert sie nach den einzelnen Kategorien.
+		</para>
+		<para>
+			<figure>
+				<title>Beispiel einer Übersicht der Kategorien</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/report_category.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+			<figure>
+				<title>Beispiel der obigen Übersicht der Kategorien als Balkendiagramm</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/report_category_chart.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+		</para>
+	</sect1>
+	<sect1 xml:id="report_section">
+		<title>Übersicht der Geschäfte</title>
+		<para>
+			Erzeugt einen Bericht über alle Einnahmen und Ausgaben des 
+			ausgewählten Jahres und sortiert sie nach den einzelnen Geschäften.
+		</para>
+		<para>
+			<figure>
+				<title>Beispiel einer Übersicht der Geschäfte</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/report_section.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+			<figure>
+				<title>Beispiel der obigen Übersicht der Geschäfte als Balkendiagramm</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="PNG" fileref="../img/help/report_section_chart.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+		</para>
+	</sect1>
 </chapter>

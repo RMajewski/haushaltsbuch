@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+		 xml:id="money_details_change">
+	<title>Fenster zum eingeben der Details zu einer Einnahme bzw. Ausgabe</title>
+	<para>
+		In diesem Fenster erfolgt per Auswahl-Feld die Kategorie (1) und das
+		Geschäft (2). Der Betrag (3) der Einnahme oder Ausgabe erfolgt im Format
+		"0,00". Es kann auch eine Bemerkung (4) eingegeben werden.
+		<figure>
+			<title>Fenster zur Eingabe der Details zu einer Einnahme oder
+			Ausgabe</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/money_details_change.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+</chapter>
