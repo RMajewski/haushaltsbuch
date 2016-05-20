@@ -28,6 +28,7 @@ import java.awt.Graphics;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Matchers;
 
 import haushaltsbuch.helper.HelperPrint;
 
@@ -50,24 +51,102 @@ public class TestHelperPrint {
 		_g = mock(Graphics.class);
 	}
 
+	/**
+	 * Testet, ob die Anzahl der Seiten richtig berechnet werden.
+	 * 
+	 * @see haushaltsbuch.helper.HelperPrint#calcPageCount(int, Font, int, Graphics)
+	 */
 	@Test
 	public void testCalcPageCountIntFontIntGraphics() {
-		fail("Not yet implemented"); // TODO
+		int height = 12;
+		int count = 30;
+		int pageHeight = 700;
+		int result = (int)Math.ceil((double)count / (pageHeight / (height + 10)));
+		
+		Font font = mock(Font.class);
+		
+		FontMetrics metrics = mock(FontMetrics.class);
+		when(metrics.getHeight()).thenReturn(height);
+		
+		when(_g.getFontMetrics(font)).thenReturn(metrics);
+
+		assertEquals(result, 
+				HelperPrint.calcPageCount(count, font, pageHeight, _g));
+		
+		verify(metrics).getHeight();
+		verify(_g).getFontMetrics(font);
 	}
 
+	/**
+	 * Testet, ob die Anzahl der Seiten richtig berechnet werden.
+	 * 
+	 * @see haushaltsbuch.helper.HelperPrint#calcPageCount(int, int, Graphics)
+	 */
 	@Test
 	public void testCalcPageCountIntIntGraphics() {
-		fail("Not yet implemented"); // TODO
+		int height = 12;
+		int count = 30;
+		int pageHeight = 700;
+		int result = (int)Math.ceil((double)count / (pageHeight / (height + 10)));
+		
+		FontMetrics metrics = mock(FontMetrics.class);
+		when(metrics.getHeight()).thenReturn(height);
+		
+		when(_g.getFontMetrics(HelperPrint.standardFont())).thenReturn(metrics);
+
+		assertEquals(result, 
+				HelperPrint.calcPageCount(count, pageHeight, _g));
+		
+		verify(metrics).getHeight();
+		verify(_g).getFontMetrics(HelperPrint.standardFont());
 	}
 
+	/**
+	 * Testet, ob die Anzahl der druckbaren Daten pro Seite richtig berechnet
+	 * wird.
+	 * 
+	 * @see haushaltsbuch.helper.HelperPrint#calcRecordPerPage(Font, int, Graphics)
+	 */
 	@Test
 	public void testCalcRecordPerPageFontIntGraphics() {
-		fail("Not yet implemented"); // TODO
+		int pageHeight = 700;
+		int height = 12;
+		
+		Font font = mock(Font.class);
+		
+		FontMetrics metrics = mock(FontMetrics.class);
+		when(metrics.getHeight()).thenReturn(height);
+		
+		when(_g.getFontMetrics(font)).thenReturn(metrics);
+		
+		assertEquals((int)(pageHeight / (height + 10)), 
+				HelperPrint.calcRecordPerPage(font, pageHeight, _g));
+		
+		verify(metrics).getHeight();
+		verify(_g).getFontMetrics(font);
 	}
 
+	/**
+	 * Testet, ob die Anzahl der druckbaren Daten pro Seite richtig berechnet
+	 * wird.
+	 * 
+	 * @see haushaltsbuch.helper.HelperPrint#calcRecordPerPage(int, Graphics)
+	 */
 	@Test
 	public void testCalcRecordPerPageIntGraphics() {
-		fail("Not yet implemented"); // TODO
+		int pageHeight = 700;
+		int height = 12;
+		
+		FontMetrics metrics = mock(FontMetrics.class);
+		when(metrics.getHeight()).thenReturn(height);
+		
+		when(_g.getFontMetrics(HelperPrint.standardFont())).thenReturn(metrics);
+		
+		assertEquals((int)(pageHeight / (height + 10)), 
+				HelperPrint.calcRecordPerPage(pageHeight, _g));
+		
+		verify(metrics).getHeight();
+		verify(_g).getFontMetrics(HelperPrint.standardFont());
 	}
 
 	/**
@@ -111,14 +190,52 @@ public class TestHelperPrint {
 		verify(_g).getFontMetrics(HelperPrint.standardFont());
 	}
 
+	/**
+	 * Testet, ob die Breite einer Spalte richtig berechnet wird.
+	 * 
+	 * @see haushaltsbuch.helper.HelperPrint#calcColumnWidth(Font, int, Graphics)
+	 */
 	@Test
 	public void testCalcColumnWidthFontIntGraphics() {
-		fail("Not yet implemented"); // TODO
+		int width = 30;
+		int count = 6;
+		int result = (width * count) + 10;
+		char tmp = '0';
+		
+		Font font = mock(Font.class);
+		
+		FontMetrics metrics = mock(FontMetrics.class);
+		when(metrics.charWidth(tmp)).thenReturn(width);
+		
+		when(_g.getFontMetrics(font)).thenReturn(metrics);
+		
+		assertEquals(result, HelperPrint.calcColumnWidth(font, count, _g));
+		
+		verify(metrics).charWidth(tmp);
+		verify(_g).getFontMetrics(font);
 	}
 
+	/**
+	 * Testet, ob die Breite einer Spalte richtig berechnet wird.
+	 * 
+	 * @see haushaltsbuch.helper.HelperPrint#calcColumnWidth(int, Graphics)
+	 */
 	@Test
 	public void testCalcColumnWidthIntGraphics() {
-		fail("Not yet implemented"); // TODO
+		int width = 30;
+		int count = 6;
+		int result = (width * count) + 10;
+		char tmp = '0';
+		
+		FontMetrics metrics = mock(FontMetrics.class);
+		when(metrics.charWidth(tmp)).thenReturn(width);
+		
+		when(_g.getFontMetrics(HelperPrint.standardFont())).thenReturn(metrics);
+		
+		assertEquals(result, HelperPrint.calcColumnWidth(count, _g));
+		
+		verify(metrics).charWidth(tmp);
+		verify(_g).getFontMetrics(HelperPrint.standardFont());
 	}
 
 	/**

@@ -47,7 +47,8 @@ public class HelperPrint {
 	 */
 	public static int calcPageCount(int drc, Font font, int pageHeight, 
 			Graphics g) {
-		return (int)Math.ceil(drc / calcRecordPerPage(font, pageHeight, g));
+		return (int)Math.ceil((double)drc / 
+				calcRecordPerPage(font, pageHeight, g));
 	}
 	
 	/**
