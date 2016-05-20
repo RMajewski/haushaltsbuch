@@ -197,9 +197,10 @@ public class WndReports extends WndInternalFrame
 					break;
 					
 				case ReportPreferencesData.TYPE_MONTH:
+					ReportYearData ryd = new ReportYearData(_preference);
 					setTitle("Monatsübersicht für den Monat " + 
-							_preference.getMonth() + " im Jahr " +
-							_preference.getYear());
+							ryd.getMonthName(_preference.getMonth()) + 
+							" im Jahr " + _preference.getYear());
 					
 					// Tabellen-Model einstellen
 					ReportMonthData dataMonth = 
