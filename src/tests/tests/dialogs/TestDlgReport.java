@@ -147,7 +147,7 @@ public class TestDlgReport extends TestDialogs {
 		_cbMonth = new JComboBoxOperator(_dlg, 0);
 		
 		// Zusätzliche Spalten auswählen
-		_tabPane.selectPage("Monatsübersicht");
+		_tabPane.selectPage("Wochenübersicht");
 		_cbDateFrom = new JCheckBoxOperator(_dlg, "von");
 		_cbDateTo = new JCheckBoxOperator(_dlg, "bis");
 	}
