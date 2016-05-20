@@ -202,7 +202,7 @@ public class WndMoneyList extends WndTableFrame
 	}
 
 	/**
-	 * Druck die Kategorie-Tabelle aus.
+	 * Druck die Tabelle aus.
 	 * 
 	 * @param g Grafik-Kontekt des Druckers
 	 * 
