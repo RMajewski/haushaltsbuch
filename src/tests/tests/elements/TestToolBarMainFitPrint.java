@@ -21,57 +21,42 @@ package tests.tests.elements;
 
 import javax.swing.JButton;
 
-import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
+import org.netbeans.jemmy.operators.JInternalFrameOperator;
 
 /**
- * Implementiert das Testprogramm, um jemmy- und Fit-Tests auszufügen, um die
+ * Implementiert das Testprogramm, um jemmy- und Fit-Tests auszuführen, um die
  * {@link haushaltsbuch.elements.ToolBarMain} zu testen.
  * 
  * @author René Majewski
  *
  * @version 0.1
- * @since 0.2
+ * @since 0.3
  */
-public class TestToolBarMainFitSection extends TestToolBarMainFit {
-
+public class TestToolBarMainFitPrint extends TestToolBarMainFit {
 	/**
-	 * Initalisiert das Testprogramm.
+	 * Initalisiert die Tests.
 	 * 
 	 * @throws Exception
 	 */
-	public TestToolBarMainFitSection() throws Exception {
+	public TestToolBarMainFitPrint() throws Exception {
 		super();
 	}
-	
-	/**
-	 * Drückt auf das Element "Einfügen"
-	 */
-	@Override
-	public void pushInsert() {
-		new JButtonOperator((JButton)_toolbar.getComponent(0)).pushNoBlock();
-		_dlg = new JDialogOperator(_wnd, "Neues Geschäft eingeben");
-	}
-	
-	/**
-	 * Druck auf das Element "Ändern"
-	 */
-	@Override
-	public void pushChange() {
-		new JButtonOperator((JButton)_toolbar.getComponent(1)).pushNoBlock();
-		_dlg = new JDialogOperator(_wnd, "Geschäft ändern");
-	}
 
 	/**
-	 * Initalisiert die Test-Umgebung
+	 * Ermittelt ob der Toolbar-Eintrag "Drucken" enabled ist.
 	 * 
-	 * @param args Parameter von der Kommandozeile
+	 * @return Ist "Drucken" enabled?
 	 */
-	public static void main(String[] args) {
-		System.setProperty("testing", "true");
-		Test.main(new String[]
-				{"tests.tests.elements.TestToolBarMainFitSection"});
+	public boolean isButtonPrintEnabled() {
+		return new JButtonOperator((JButton)_toolbar.getComponent(7)).isEnabled();
 	}
-
+	
+	/**
+	 * Das Fenster Kategorien erhält den Focus
+	 */
+	public void dbCategoryFocus() {
+		new JInternalFrameOperator(_wnd, "Kategorien").getFocus();;
+	}
 }

@@ -20,10 +20,14 @@
 package tests.tests.menus;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import haushaltsbuch.actions.PdfReport;
+import haushaltsbuch.actions.Print;
+import haushaltsbuch.elements.ToolBarMain;
 import haushaltsbuch.menus.MainTop;
 
 /**
@@ -31,9 +35,12 @@ import haushaltsbuch.menus.MainTop;
  * 
  * In der Version 0.2 wurde von jemmy-Test zu junit-Test gewechselt.
  * 
+ * In der Version 0.3 wurde das Mockobjekt der Toolbar hinzugefügt, um auch die
+ * Elemente, die durch die Aktionen beschrieben werden zu testen.
+ * 
  * @author René Majewski
  * 
- * @version 0.2
+ * @version 0.3
  * @since 0.1
  */
 public class TestTopMainMenu {
@@ -41,6 +48,11 @@ public class TestTopMainMenu {
 	 * Speichert das Hauptmenü
 	 */
 	private MainTop _menu;
+	
+	/**
+	 * Speichert das Mockobjekt für die Toolbar
+	 */
+	private ToolBarMain _toolbar;
 	
 	/**
 	 * Gibt an, an welcher Stelle das Datei-Menü liegen soll
@@ -77,7 +89,11 @@ public class TestTopMainMenu {
 	 */
 	@Before
 	public void setUp() {
-		_menu = new MainTop(null);
+		_toolbar = mock(ToolBarMain.class);
+		when(_toolbar.getPrint()).thenReturn(mock(Print.class));
+		when(_toolbar.getPdfExport()).thenReturn(mock(PdfReport.class));
+		
+		_menu = new MainTop(null, _toolbar);
 	}
 	
 	/**
@@ -100,8 +116,8 @@ public class TestTopMainMenu {
 	 * Überprüft, ob das Datei-Menü genau 1 Menü-Punkt hat
 	 */
 	@Test
-	public void testFileMenuHaveOneItem() {
-		assertEquals(1, _menu.getMenu(MENU_FILE).getItemCount());
+	public void testFileMenuHaveThreeItem() {
+		assertEquals(3, _menu.getMenu(MENU_FILE).getItemCount());
 	}
 	
 	/**
@@ -109,7 +125,8 @@ public class TestTopMainMenu {
 	 */
 	@Test
 	public void testFileMenuHaveRightItems() {
-		assertEquals("Beenden", _menu.getMenu(MENU_FILE).getItem(0).getText());
+		assertEquals("Drucken", _menu.getMenu(MENU_FILE).getItem(0).getText());
+		assertEquals("Beenden", _menu.getMenu(MENU_FILE).getItem(2).getText());
 	}
 	
 	/**
@@ -153,8 +170,8 @@ public class TestTopMainMenu {
 	 * Überprüft, ob das Export-Menü genau 1 Menü-Punkt hat
 	 */
 	@Test
-	public void testExportMenuHaveOneItem() {
-		assertEquals(1, _menu.getMenu(MENU_EXPORT).getItemCount());
+	public void testExportMenuHaveThreeItem() {
+		assertEquals(3, _menu.getMenu(MENU_EXPORT).getItemCount());
 	}
 	
 	/**
@@ -164,6 +181,8 @@ public class TestTopMainMenu {
 	public void testExportMenuHaveRightItems() {
 		assertEquals("SQL-Script",
 				_menu.getMenu(MENU_EXPORT).getItem(0).getText());
+		assertEquals("PDF-Export",
+				_menu.getMenu(MENU_EXPORT).getItem(2).getText());
 	}
 	
 	/**
@@ -247,5 +266,23 @@ public class TestTopMainMenu {
 				_menu.getMenu(MENU_HELP).getItem(0).getText());
 		assertEquals("Lizenz...", _menu.getMenu(MENU_HELP).getItem(2).getText());
 		assertEquals("Über...", _menu.getMenu(MENU_HELP).getItem(4).getText());
+	}
+	
+	/**
+	 * Überprüft, ob der Menü-Eintrag "Drucken" eine Aktion ist.
+	 */
+	@Test
+	public void testHelpFilePrintIsAction() {
+		assertEquals(_toolbar.getPrint(),
+				_menu.getMenu(MENU_FILE).getItem(0).getAction());
+	}
+	
+	/**
+	 * Überprüft, ob der Menü-Eintrag "PdF-Export" eine Aktion ist.
+	 */
+	@Test
+	public void testExportPdfIsAction() {
+		assertEquals(_toolbar.getPdfExport(),
+				_menu.getMenu(MENU_EXPORT).getItem(2).getAction());
 	}
 }

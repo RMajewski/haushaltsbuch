@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Element: ToolBar -> Drucken</title>
+	</head>
+	<body>
+		<h2>Element: ToolBar -> Drucken</h2>
+		<p>Es wird geprüft, ob Drucken nicht ausführbar ist. Danach wird ein 
+		Kategorie-Fenster aufgerufen. Nun wird erneut überprüft, ob der Drucken
+		ausführbar ist. Nun wird auf den Eintrag "Drucken" geklickt. Es wird
+		geprüft, ob der Drucken-Dialog geöffnet wird.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">
+						fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.elements.FixtureToolBarMainPrint</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getToolBarName</td>
+					<td>MainToolBar</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPrintEnable</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pressDbCategory</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPrintEnable</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDbSection</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPrintEnable</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>dbCategoryFocus</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPrintEnable</td>
+					<td>true</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

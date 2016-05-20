@@ -21,20 +21,28 @@ package tests.tests.menus;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.*;
 
 import javax.swing.JMenuItem;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import haushaltsbuch.actions.DbChange;
+import haushaltsbuch.actions.DbDelete;
+import haushaltsbuch.actions.DbInsert;
+import haushaltsbuch.elements.ToolBarMain;
 import haushaltsbuch.menus.PopupStandardList;
 
 /**
  * Testet das standart Popup-Menü für Listen
  * 
+ * In der Version 0.2 wurde das Mockobjekt der Toolbar hinzugefügt, um die
+ * Aktionen richtig zu testen.
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class TestPopupStandardList {
@@ -42,6 +50,11 @@ public class TestPopupStandardList {
 	 * Speichert das Popup-Menü
 	 */
 	private PopupStandardList _popup;
+	
+	/**
+	 * Speichert das Mockobjekt der Toolbar
+	 */
+	private ToolBarMain _toolbar;
 
 	/**
 	 * Initalisiert die einzelnen Tests.
@@ -50,7 +63,12 @@ public class TestPopupStandardList {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		_popup = new PopupStandardList(null);
+		_toolbar = mock(ToolBarMain.class);
+		when(_toolbar.getDbInsert()).thenReturn(mock(DbInsert.class));
+		when(_toolbar.getDbChange()).thenReturn(mock(DbChange.class));
+		when(_toolbar.getDbDelete()).thenReturn(mock(DbDelete.class));
+		
+		_popup = new PopupStandardList(_toolbar);
 	}
 	
 	/**
@@ -74,6 +92,17 @@ public class TestPopupStandardList {
 	}
 	
 	/**
+	 * Testet, ob der Menü-Eintrag "Neu" eine Aktion ist.
+	 * 
+	 * @see haushaltsbuch.menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
+	 */
+	@Test
+	public void testInsertItemIsAction() {
+		assertEquals(_toolbar.getDbInsert(),
+				((JMenuItem)_popup.getComponent(0)).getAction());
+	}
+	
+	/**
 	 * Testet, ob der Menü-Eintrag für "Ändern" vorhanden ist
 	 * 
 	 * @see haushaltsbuch.menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
@@ -81,6 +110,17 @@ public class TestPopupStandardList {
 	@Test
 	public void testHaveChangeItem() {
 		assertTrue(((JMenuItem)_popup.getComponent(1)).getText().equals("Ändern"));
+	}
+	
+	/**
+	 * Testet, ob der Menü-Eintrag "Ändern" eine Aktion ist.
+	 * 
+	 * @see haushaltsbuch.menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
+	 */
+	@Test
+	public void testChangeItemIsAction() {
+		assertEquals(_toolbar.getDbChange(),
+				((JMenuItem)_popup.getComponent(1)).getAction());
 	}
 	
 	/**
@@ -94,32 +134,13 @@ public class TestPopupStandardList {
 	}
 	
 	/**
-	 * Überprüft, den ActionCommand für "Neu" auf Richtigkeit.
+	 * Testet, ob der Menü-Eintrag "Löschen" eine Aktion ist.
 	 * 
-	 * @see haushaltsbuch.menus.PopupStandardList#NEW
+	 * @see haushaltsbuch.menus.PopupStandardList#PopupStandardList(java.awt.event.ActionListener)
 	 */
 	@Test
-	public void testActionCommandNewIsRight() {
-		assertEquals("PopupStandardListNew", PopupStandardList.NEW);
-	}
-	
-	/**
-	 * Überprüft, den ActionCommand für "Ändern" auf Richtigkeit.
-	 * 
-	 * @see haushaltsbuch.menus.PopupStandardList#CHANGE
-	 */
-	@Test
-	public void testActionCommandChangeIsRight() {
-		assertEquals("PopupStandardListChange", PopupStandardList.CHANGE);
-	}
-	
-	/**
-	 * Überprüft, den ActionCommand für "Löschen" auf Richtigkeit.
-	 * 
-	 * @see haushaltsbuch.menus.PopupStandardList#DELETE
-	 */
-	@Test
-	public void testActionCommandDELETEIsRight() {
-		assertEquals("PopupStandardListDelete", PopupStandardList.DELETE);
+	public void testDeleteItemIsAction() {
+		assertEquals(_toolbar.getDbDelete(),
+				((JMenuItem)_popup.getComponent(2)).getAction());
 	}
 }

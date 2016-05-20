@@ -32,6 +32,31 @@
 			</tgroup>
 		</table>
 	</sect1>
+	<sect1 xml:id="library_typicons">
+		<title>Typicons</title>
+		<para>
+			Aus dem Projekt Typicons wurden die Icons für die Toolbar entnommen.
+		</para>
+		<table frame="none">
+			<title>Informationen zu Typicons</title>
+			<tgroup cols="2">
+				<tbody>
+					<row>
+						<entry>Datei-Name:</entry>
+						<entry>resource/icons/*</entry>
+					</row>
+					<row>
+						<entry>Version:</entry>
+						<entry>2.0.7</entry>
+					</row>
+					<row>
+						<entry>Webseite:</entry>
+						<entry>http://typicons.com/</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</sect1>
 	<sect1 xml:id="library_javahelp">
 		<title>JavaHelp</title>
 		<para>
@@ -169,7 +194,7 @@
 				<tbody>
 					<row>
 						<entry>Datei:</entry>
-						<entry></entry>
+						<entry>jemmy.jar</entry>
 					</row>
 					<row>
 						<entry>Version:</entry>

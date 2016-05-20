@@ -68,7 +68,7 @@ public class TestToolBarMain {
 	 */
 	@Test
 	public void testToolBarMainHaveFifeElements() {
-		assertEquals(6, _test.getComponentCount());
+		assertEquals(8, _test.getComponentCount());
 	}
 	
 	/**
@@ -124,5 +124,16 @@ public class TestToolBarMain {
 	public void testToolBarMainHaveActionPdfReport() {
 		assertEquals("haushaltsbuch.actions.PdfReport",
 				((JButton)_test.getComponent(5)).getAction().getClass().getName());
+	}
+	
+	/**
+	 * Überprüft, ob die Aktion zum Drucken eingefügt wurde.
+	 * 
+	 * @see haushaltsbuch.elements.ToolBarMain#ToolBarMain(haushaltsbuch.elements.Desktop, java.awt.Window)
+	 */
+	@Test
+	public void testToolbarMainHaveActionPrint() {
+		assertEquals("haushaltsbuch.actions.Print",
+				((JButton)_test.getComponent(7)).getAction().getClass().getName());
 	}
 }

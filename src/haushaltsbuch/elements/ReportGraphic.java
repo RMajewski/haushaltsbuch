@@ -240,7 +240,6 @@ public class ReportGraphic extends JComponent {
 			if (_data.incoming(i) > 0.0) {
 				g.setColor(_colorIn);
 				int h = (int)((_data.incoming(i) /_maxY) * zeroCalc);
-				System.out.println(_data.incoming(i) + ": " + h);
 				g.fillRect((w * i) + 51, zero - h, w1, h);
 			}
 			

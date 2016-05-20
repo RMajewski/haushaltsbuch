@@ -20,7 +20,10 @@
 package haushaltsbuch.windows.internal;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
+import java.awt.Graphics;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,26 +32,31 @@ import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
 
-import haushaltsbuch.comparators.CompDouble;
 import haushaltsbuch.comparators.CompInt;
 import haushaltsbuch.comparators.CompSum;
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.elements.Desktop;
-import haushaltsbuch.menus.PopupStandardList;
+import haushaltsbuch.helper.HelperPrint;
 import haushaltsbuch.tables.models.MoneyDetailsListModel;
 
 /**
  * In diesem Fenster wird zum angegeben Datensatz aus der Tabelle 'money' die
  * Detail-Datensätze als Liste angezeigt.
  * 
+ * In Version 0.2 wurde Methode <b>actionPerformed</b> gelöscht, da sie nicht
+ * mehr gebraucht wird. Die Elemente vom Popup-Menü benutzen die Methoden 
+ * {@link change}, {@link delete} und {@link insert}.
+ * 
+ * In Version 0.3 wird das Drucken der Tabelle unterstützt.
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.3
  * @since 0.1
  */
-public class WndMoneyDetailsList extends WndTableFrame {
+public class WndMoneyDetailsList extends WndTableFrame implements Printable {
 
 	/**
 	 * Serilisation ID
@@ -114,32 +122,9 @@ public class WndMoneyDetailsList extends WndTableFrame {
 		// Fenster anzeigen
 		//pack();
 		setVisible(true);
-	}
-
-	/**
-	 * Reagiert auf die einzelnen Einträge im Popup-Menü
-	 * 
-	 * @param ae Event-Daten
-	 */
-	@Override
-	public void actionPerformed(ActionEvent ae) {
-		// Was soll ausgeführt werden?
-		switch(ae.getActionCommand()) {
-			// Neu
-			case PopupStandardList.NEW:
-				insert();
-				break;
-				
-			// Ändern
-			case PopupStandardList.CHANGE:
-				tableRowDoubleClick();
-				break;
-				
-			// Löschen
-			case PopupStandardList.DELETE:
-				delete();
-				break;
-		}
+		
+		// Drucken unterstützen
+		setEnablePrint(true);
 	}
 	
 	/**
@@ -193,5 +178,81 @@ public class WndMoneyDetailsList extends WndTableFrame {
 					_table.getRowSorter().convertRowIndexToModel(
 							_table.getSelectedRow())).getId(), 
 					DbController.queries().moneyDetails());
+	}
+
+	/**
+	 * Druck die Tabelle aus.
+	 * 
+	 * @param g Grafik-Kontekt des Druckers
+	 * 
+	 * @param pf Seiten-Einstellungen
+	 * 
+	 * @param page Index der Seite
+	 * 
+	 * @return Gibt an, ob die Seite existiert oder nicht.
+	 */
+	@Override
+	public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
+		int pageCount = HelperPrint.calcPageCount(_table.getRowCount(), 
+				(int)pf.getImageableHeight(), g);
+		int count = HelperPrint.calcRecordPerPage((int)pf.getImageableHeight(),
+				g);
+		
+		// Überprüft, ob die Seite noch gedruckt werden kann oder nicht.
+		if (page > (pageCount - 1))
+			return Printable.NO_SUCH_PAGE;
+		
+		// Überschriften
+		int widthColumn1 = HelperPrint.calcColumnWidth(6, g);
+		int widthColumn2 = HelperPrint.calcColumnWidth(10, g);
+		int widthColumn3 = HelperPrint.calcColumnWidth(12, g);
+		int widthColumn4 = HelperPrint.calcColumnWidth(12, g);
+		int widthColumn5 = (int)pf.getImageableWidth() - widthColumn1 - 
+				widthColumn2 -widthColumn3 - widthColumn4;
+		int x1 = (int)pf.getImageableX();
+		int x2 = x1 + widthColumn1;
+		int x3 = x2 + widthColumn2;
+		int x4 = x3 + widthColumn3;
+		int x5 = x4 + widthColumn4;
+		int height = HelperPrint.calcRowHeight(g);
+		g.setFont(HelperPrint.standardBoldFont());
+		HelperPrint.drawCell(x1, (int)pf.getImageableY(), widthColumn1, height,
+				"ID", g);
+		HelperPrint.drawCell(x2, (int)pf.getImageableY(), widthColumn2, height,
+				"Datum", g);
+		HelperPrint.drawCell(x3, (int)pf.getImageableY(), widthColumn3, height,
+				"Kategorie", g);
+		HelperPrint.drawCell(x4, (int)pf.getImageableY(), widthColumn4, height,
+				"Geschäft", g);
+		HelperPrint.drawCell(x5, (int)pf.getImageableY(), widthColumn5, height,
+				"Betrag", g);
+		
+		// Daten ausgeben
+		g.setFont(HelperPrint.standardFont());
+		int max = 0;
+		if ((count * (page + 1)) < _table.getRowCount())
+			max = (count * (page + 1));
+		else
+			max = _table.getRowCount();
+		
+		for (int index = (count * page); index < max; index++)
+		{
+			int y = (int)pf.getImageableY() + 
+					((index + 1 - (count * page)) * height);
+			
+			HelperPrint.drawCell(x1, y, widthColumn1, height, 
+					String.valueOf(_table.getValueAt(index, 0)), g);
+			HelperPrint.drawCell(x2, y, widthColumn2, height, 
+					String.valueOf(_money.getDateAsString()), g);
+			HelperPrint.drawCell(x3, y, widthColumn3, height, 
+					String.valueOf(_table.getValueAt(index, 1)), g);
+			HelperPrint.drawCell(x4, y, widthColumn4, height, 
+					String.valueOf(_table.getValueAt(index, 2)), g);
+			HelperPrint.drawCell(x5, y, widthColumn5, height, 
+					String.valueOf(_table.getValueAt(index, 3)), g);
+		}
+		
+		// Seite kann gedruckt werden
+		return Printable.PAGE_EXISTS;
 	}
 }

@@ -103,9 +103,6 @@ public class WndMain extends JFrame implements ActionListener {
 		setSize(250,100);
 		setExtendedState(MAXIMIZED_BOTH);
 		
-		// Menü setzen
-		setJMenuBar(new MainTop(this));
-		
 		// Dekstop initalisieren
 		_desktop = new Desktop(this);
 		add(_desktop);
@@ -114,6 +111,9 @@ public class WndMain extends JFrame implements ActionListener {
 		_toolbar = new ToolBarMain(_desktop, this);
 		_desktop.setToolBar(_toolbar);
 		add(_toolbar, BorderLayout.NORTH);
+		
+		// Menü setzen
+		setJMenuBar(new MainTop(this, _toolbar));
 		
 		// StatusBar initalisieren und anzeigen
 		_status = StatusBar.getInstance();

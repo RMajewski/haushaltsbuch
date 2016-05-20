@@ -139,6 +139,17 @@ public class FixtureDlgExportPdf extends FixtureDialogs {
 	}
 	
 	/**
+	 * Ermittelt, ob des Anhängen an eine bestehende PDF-Datei in den
+	 * Einstellungen gespeichert wurde.
+	 * 
+	 * @return Wurde das Anhängen an eine bestehende PDF-Datei in den
+	 * Einstellungen gespeichert?
+	 */
+	public String getPreferencePdfAttach() {
+		return ((TestDlgExportPdf)_test).getPreference(DlgExportPdf.PDF_ATTACH);
+	}
+	
+	/**
 	 * Setzt das Auswahlfeld für den Export der Tabelle neu.
 	 * 
 	 * @param select Soll das Auswahlfeld für den Export der Tabelle ausgewählt
@@ -156,5 +167,15 @@ public class FixtureDlgExportPdf extends FixtureDialogs {
 	 */
 	public void setExportBarChart(boolean select) {
 		((TestDlgExportPdf)_test).setCheckBoxBarChart(select);
+	}
+	
+	/**
+	 * Setzt das Auswahlfeld für das Anhängen an eine bestehende PDF-Datei neu.
+	 * 
+	 * @param select Soll das Auswahlfeld für das Anhängen an eine bestehende
+	 * PDF-Datei ausgewählt sein?
+	 */
+	public void setPdfAttach(boolean select) {
+		((TestDlgExportPdf)_test).setCheckBoxPdfAttach(select);
 	}
 }

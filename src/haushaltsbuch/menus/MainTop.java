@@ -22,11 +22,11 @@ package haushaltsbuch.menus;
 import java.awt.event.ActionListener;
 
 import javax.help.CSH;
-import javax.help.HelpBroker;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import haushaltsbuch.elements.ToolBarMain;
 import haushaltsbuch.help.Help;
 
 /**
@@ -99,6 +99,11 @@ public class MainTop extends JMenuBar {
 	public static final String EXPORT_SQL_SCRIPT = "ExportSqlScript";
 	
 	/**
+	 * ActionCommand für Drucken
+	 */
+	public static final String FILE_PRINT = "Print";
+	
+	/**
 	 * Speichert den Namen des Menus
 	 */
 	public static final String MENU_NAME = new String("MainMenu");
@@ -107,8 +112,10 @@ public class MainTop extends JMenuBar {
 	 * Initalisiert das Menü
 	 * 
 	 * @param listener Reagiert auf das Drücken eines Menü-Eintrages
+	 * 
+	 * @param tbMain ToolBar des Programmes
 	 */
-	public MainTop(ActionListener listener) {
+	public MainTop(ActionListener listener, ToolBarMain tbMain) {
 		// Initalisieren
 		super();
 		
@@ -116,9 +123,9 @@ public class MainTop extends JMenuBar {
 		setName(MENU_NAME);
 		
 		// Menü erstellen
-		add(createFileMenu(listener));
+		add(createFileMenu(listener, tbMain));
 		add(createDbMenu(listener));
-		add(createExport(listener));
+		add(createExport(listener, tbMain));
 		add(createReportMenu(listener));
 		add(createLogMenu(listener));
 		add(createHelpMenu(listener));
@@ -129,9 +136,11 @@ public class MainTop extends JMenuBar {
 	 * 
 	 * @param listener Reagiert auf das Drücken eines Menü-Eintrages
 	 * 
+	 * @param tbMain Toolbar des Programmes
+	 * 
 	 * @return Gibt das Export-Menü zurück
 	 */
-	private JMenu createExport(ActionListener listener) {
+	private JMenu createExport(ActionListener listener, ToolBarMain tbMain) {
 		// Export-Menü initalisieren
 		JMenu ret = new JMenu("Export");
 		ret.setMnemonic('E');
@@ -143,6 +152,14 @@ public class MainTop extends JMenuBar {
 		item.addActionListener(listener);
 		ret.add(item);
 		
+		ret.addSeparator();
+		
+		// Export PDF-Datei
+		item = new JMenuItem(tbMain.getPdfExport());
+		item.setText("PDF-Export");
+		item.setMnemonic('P');
+		ret.add(item);
+		
 		// Gibt das initalisieren Export-Menü zurück
 		return ret;
 	}
@@ -151,14 +168,26 @@ public class MainTop extends JMenuBar {
 	 * Initalisiert das Menü: Datei
 	 * 
 	 * @param listener Reagiert auf das Drücken eines Menü-Eintrages
+	 * 
+	 * @param tbMain Toolbar des Programmes
+	 * 
+	 * @return Datei-Menü
 	 */
-	private JMenu createFileMenu(ActionListener listener) {
+	private JMenu createFileMenu(ActionListener listener, ToolBarMain tbMain) {
 		// Datei-Menü initalisieren
 		JMenu ret = new JMenu("Datei");
 		ret.setMnemonic('D');
 		
+		// Drucken
+		JMenuItem item = new JMenuItem(tbMain.getPrint());
+		item.setText("Drucken");
+		item.setMnemonic('D');
+		ret.add(item);
+		
+		ret.addSeparator();
+		
 		// Beenden
-		JMenuItem item = new JMenuItem(FILE_END);
+		item = new JMenuItem(FILE_END);
 		item.setMnemonic('B');
 		item.setActionCommand(FILE_END);
 		item.addActionListener(listener);

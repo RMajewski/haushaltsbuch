@@ -73,7 +73,6 @@ public class MoneyDetailsListModel extends AbstractTableModel
 			if (rs.getString("name") != null && !rs.getString("name").isEmpty())
 				ret = rs.getString("name");
 			rs.close();
-			
 		} catch (SQLException e) {
 			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
 			e.printStackTrace();

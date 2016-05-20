@@ -55,6 +55,11 @@ public class TestDlgExportPdf extends TestDialogs {
 	private JCheckBoxOperator _cbBarChart;
 	
 	/**
+	 * Speichert das Auswahlfeld für das Anhängen an eine bestehende PDF-Datei
+	 */
+	private JCheckBoxOperator _cbPdfAttach;
+	
+	/**
 	 * Initalisiert die Klasse
 	 */
 	public TestDlgExportPdf() throws Exception {
@@ -78,6 +83,7 @@ public class TestDlgExportPdf extends TestDialogs {
 		// Auswahlfelder ermitteln
 		_cbTable = new JCheckBoxOperator(_dlg, "Tabelle");
 		_cbBarChart = new JCheckBoxOperator(_dlg, "Balken-Diagramm");
+		_cbPdfAttach = new JCheckBoxOperator(_dlg, "An PDF-Datei anhängen");
 	}
 	
 	/**
@@ -182,6 +188,17 @@ public class TestDlgExportPdf extends TestDialogs {
 	 */
 	public void setCheckBoxBarChart(boolean select) {
 		_cbBarChart.setSelected(select);
+	}
+	
+	/**
+	 * Setzt die Auswahl des Auswahlfeldes für das Anhängen an eine bestehende
+	 * PDF-Datei auf den übergebenen Wert.
+	 * 
+	 * @param select Soll das Auswahlfeld für das Anhängen an eine bestehende
+	 * PDF-Datei ausgewählt sein?
+	 */
+	public void setCheckBoxPdfAttach(boolean select) {
+		_cbPdfAttach.setSelected(select);
 	}
 	
 	/**

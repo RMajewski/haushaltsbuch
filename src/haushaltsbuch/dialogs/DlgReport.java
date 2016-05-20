@@ -255,22 +255,22 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		btnCancel.addActionListener(this);
 		panButtons.add(btnCancel);
 		
-		JPanel panMonth = new JPanel();
-		tabbedPane.addTab("Monatsübersicht", null, panMonth, null);
+		JPanel panWeek = new JPanel();
+		tabbedPane.addTab("Wochenübersicht", null, panWeek, null);
 		tabbedPane.setEnabledAt(1, true);
-		GridBagLayout gbl_panMonth = new GridBagLayout();
-		gbl_panMonth.columnWidths = new int[] {4, 0, 4, 0, 3};
-		gbl_panMonth.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 10};
-		gbl_panMonth.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panMonth.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panMonth.setLayout(gbl_panMonth);
+		GridBagLayout gbl_panWeek = new GridBagLayout();
+		gbl_panWeek.columnWidths = new int[] {4, 0, 4, 0, 3};
+		gbl_panWeek.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 10};
+		gbl_panWeek.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panWeek.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panWeek.setLayout(gbl_panWeek);
 		
 		JLabel lblSpalten = new JLabel("Spalten");
 		GridBagConstraints gbc_lblSpalten = new GridBagConstraints();
 		gbc_lblSpalten.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSpalten.gridx = 1;
 		gbc_lblSpalten.gridy = 1;
-		panMonth.add(lblSpalten, gbc_lblSpalten);
+		panWeek.add(lblSpalten, gbc_lblSpalten);
 		
 		_cbWeekDateFrom = new JCheckBox("von");
 		_cbWeekDateFrom.addItemListener(this);
@@ -279,7 +279,7 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		gbc_cbFrom.insets = new Insets(0, 0, 5, 0);
 		gbc_cbFrom.gridx = 3;
 		gbc_cbFrom.gridy = 1;
-		panMonth.add(_cbWeekDateFrom, gbc_cbFrom);
+		panWeek.add(_cbWeekDateFrom, gbc_cbFrom);
 		
 		_cbWeekDateTo = new JCheckBox("bis");
 		_cbWeekDateTo.addItemListener(this);
@@ -288,14 +288,14 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		gbc_cbTo.insets = new Insets(0, 0, 5, 0);
 		gbc_cbTo.gridx = 3;
 		gbc_cbTo.gridy = 2;
-		panMonth.add(_cbWeekDateTo, gbc_cbTo);
+		panWeek.add(_cbWeekDateTo, gbc_cbTo);
 		
 		JLabel lblWochen = new JLabel("einfügen");
 		GridBagConstraints gbc_lblWochen = new GridBagConstraints();
 		gbc_lblWochen.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWochen.gridx = 1;
 		gbc_lblWochen.gridy = 2;
-		panMonth.add(lblWochen, gbc_lblWochen);
+		panWeek.add(lblWochen, gbc_lblWochen);
 		
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -303,7 +303,7 @@ public class DlgReport extends JDialog implements ActionListener, ItemListener {
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 1;
 		gbc_panel.gridy = 3;
-		panMonth.add(panel, gbc_panel);
+		panWeek.add(panel, gbc_panel);
 		
 		// Daten für die Monate
 		_cbMonth.addItem("Januar");
