@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+		 xml:id="toolbar">
+	<title>Toolbar</title>
+	<para>
+		In der Toolbar stehen Funktionen zur Verfügung, die häufig benutzt
+		werden.
+		<figure>
+			<title>Toolbar</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata format="PNG" fileref="../img/help/toolbar.png"/>
+				</imageobject>
+			</mediaobject>
+		</figure>
+	</para>
+	<para>
+		<table frame="none">
+			<title>Funktionen der Toolbar</title>
+			<tgroup cols="2">
+				<tbody>
+					<row>
+						<entry>
+							<figure>
+								<title>Neuer Datensatz</title>
+								<mediaobject>
+									<imageobject>
+										<imagedata format="PNG" fileref="../icons/insert_big.png"/>
+									</imageobject>
+								</mediaobject>
+							</figure>
+						</entry>
+						<entry>
+							Neuen Datensatz zur aktuellen Tabelle hinzufügen
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<figure>
+								<title>Datensatz ändern</title>
+								<mediaobject>
+									<imageobject>
+										<imagedata format="PNG" fileref="../icons/change_big.png"/>
+									</imageobject>
+								</mediaobject>
+							</figure>
+						</entry>
+						<entry>
+							Ausgewählten Datensatz ändern.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<figure>
+								<title>Datensatz löschen</title>
+								<mediaobject>
+									<imageobject>
+										<imagedata format="PNG" fileref="../icons/delete_big.png"/>
+									</imageobject>
+								</mediaobject>
+							</figure>
+						</entry>
+						<entry>
+							Ausgewählten Datensatz löschen.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<figure>
+								<title>Report erstellen</title>
+								<mediaobject>
+									<imageobject>
+										<imagedata format="PNG" fileref="../icons/report_big.png"/>
+									</imageobject>
+								</mediaobject>
+							</figure>
+						</entry>
+						<entry>
+							<link linkend="report">Report</link> erstellen
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<figure>
+								<title>PDF-Export</title>
+								<mediaobject>
+									<imageobject>
+										<imagedata format="PNG" fileref="../icons/pdf_big.png"/>
+									</imageobject>
+								</mediaobject>
+							</figure>
+						</entry>
+						<entry>
+							Report als 
+							<link linkend="export_pdf">PDF-Datei</link>
+							exportieren.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<figure>
+								<title>Drucken</title>
+								<mediaobject>
+									<imageobject>
+										<imagedata format="PNG" fileref="../icons/printer_big.png"/>
+									</imageobject>
+								</mediaobject>
+							</figure>
+						</entry>
+						<entry>
+							Aktuelles Fenster
+							<link linkend="print">drucken</link>.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</para>
+</chapter>

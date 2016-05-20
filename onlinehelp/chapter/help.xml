@@ -8,6 +8,7 @@
 	<chapter href="money_details.xml" />
 	<chapter href="report.xml" />
 	<chapter href="export_sql.xml" />
+	<chapter href="toolbar.xml" />
 	<chapter href="print.xml" />
 	<chapter href="log.xml" />
 	<chapter href="library.xml" />
