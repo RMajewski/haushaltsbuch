@@ -27,6 +27,7 @@ import java.util.List;
 import javax.swing.table.TableColumnModel;
 
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.elements.StatusBar;
 
 /**
  * Speichert die Daten, die im Report Übersicht der Kategorien angezeigt werden
@@ -141,7 +142,7 @@ public class ReportCategoryData extends ReportData {
 				count++;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			StatusBar.getInstance().setMessage(DbController.statusDbError(), e);
 		}
 	}
 }

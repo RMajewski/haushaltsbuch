@@ -59,8 +59,8 @@ public class DbController {
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
-			System.err.println("Fehler beim Laden des JDBC-Treibers");
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError(
+					"Fehler beim Laden des JDBC-Treibers", e);
 		}
 	}
 	
@@ -82,7 +82,8 @@ public class DbController {
 			}
 			_connection = null;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError(
+					DbController.statusDbError(), e);
 		}
 		
 

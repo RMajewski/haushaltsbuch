@@ -82,7 +82,6 @@ public class Print extends Action {
 		} catch (Exception e) {
 			StatusBar.getInstance().setMessageAsError(
 					"Es konnte nicht gedruckt werden", e);
-			e.printStackTrace();
 		}
 	}
 

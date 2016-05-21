@@ -320,6 +320,25 @@ public class TestStatusBar extends TestHelper {
 	/**
 	 * Testet, ob ein Fehler in die Liste eingefügt werden wird.
 	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(Exception)
+	 */
+	@Test
+	public void testSetMessageAsErrorInsertListException() {
+		Exception e = new Exception();
+		String error = e.toString() + System.lineSeparator() + "\t" +
+				e.getStackTrace()[0].toString();
+		StatusBar.getInstance().setMessageAsError(e);
+		List<LogData> list = StatusBar.getInstance().getLog();
+		assertEquals(1, list.size());
+		assertEquals(LogData.ERROR, list.get(0).getOut());
+		assertEquals("Folgender Fehler ist aufgetreten: " + e.toString(), 
+				list.get(0).getMessage());
+		assertEquals(1, frequency(list.get(0).getError(), error));
+	}
+	
+	/**
+	 * Testet, ob ein Fehler in die Liste eingefügt werden wird.
+	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
 	 */
 	@Test
@@ -378,6 +397,20 @@ public class TestStatusBar extends TestHelper {
 		String error = "Fehlerbericht";
 		StatusBar.getInstance().setMessageAsError(message, error);
 		assertEquals(message, StatusBar.getInstance().getText());
+		assertEquals(LogData.COLOR_ERROR, StatusBar.getInstance().getBackground());
+	}
+	
+	/**
+	 * Testet, ob ein Fehler angezeigt wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(Exception)
+	 */
+	@Test
+	public void testSetMessageAsErrorDrawMessageException() {
+		Exception e = new Exception();
+		StatusBar.getInstance().setMessageAsError(e);
+		assertEquals("Folgender Fehler ist aufgetreten: " + e.toString(),
+				StatusBar.getInstance().getText());
 		assertEquals(LogData.COLOR_ERROR, StatusBar.getInstance().getBackground());
 	}
 	

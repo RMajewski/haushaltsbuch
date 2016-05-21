@@ -23,6 +23,8 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Comparator;
 
+import haushaltsbuch.elements.StatusBar;
+
 /**
  * Vergleicht die beiden Beträge miteinander. Die Beträge sollten das Format
  * "0.00" aufweisen.
@@ -48,8 +50,7 @@ public class CompSum implements Comparator<String> {
 			d1 = df.parse(sum1).doubleValue();
 			d2 = df.parse(sum2).doubleValue();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError(e);
 		}
 		
 		if (d1 < d2)

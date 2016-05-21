@@ -27,6 +27,7 @@ import java.util.List;
 import javax.swing.table.TableColumnModel;
 
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.elements.StatusBar;
 
 
 /**
@@ -137,7 +138,7 @@ public class ReportSectionData extends ReportData {
 				count++;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError(DbController.statusDbError(), e);
 		}
 	}
 

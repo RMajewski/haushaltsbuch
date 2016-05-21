@@ -199,6 +199,19 @@ public class StatusBar extends JLabel {
 	}
 	
 	/**
+	 * Erzeugt eine Fehler-Nachricht.
+	 * 
+	 * @param e Fehler, der aufgetreten ist.
+	 * 
+	 */
+	public void setMessageAsError(Exception e) {
+		String message = "Folgender Fehler ist aufgetreten: " + e.toString();
+		setText(message);
+		setBackground(LogData.COLOR_ERROR);
+		_list.add(new LogData(message, getErrorAsString(e), LogData.ERROR));
+	}
+	
+	/**
 	 * Speichert die übergebene Nachricht und markiert sie als Fehler.
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll

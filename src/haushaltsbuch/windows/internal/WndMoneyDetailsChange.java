@@ -263,7 +263,7 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 			try {
 				 setClosed(true);
 			} catch (Exception e) {
-				e.printStackTrace();
+				StatusBar.getInstance().setMessageAsError(e);
 			}
 			
 			// Methode beenden

@@ -109,7 +109,7 @@ public class Desktop extends JDesktopPane {
 		try {
 			frame.setSelected(true);
 		} catch (Exception e) {
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError(e);
 		}		
 	}
 }

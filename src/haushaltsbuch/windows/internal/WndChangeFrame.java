@@ -29,6 +29,7 @@ import javax.swing.JTextArea;
 
 import haushaltsbuch.datas.Data;
 import haushaltsbuch.elements.Desktop;
+import haushaltsbuch.elements.StatusBar;
 
 /**
  * Zeigt die Elemente an, damit der Benutzer Daten ändern kann. In diesem
@@ -135,7 +136,7 @@ public abstract class WndChangeFrame extends WndInternalFrame implements ActionL
 			try {
 			 setClosed(true);
 			} catch (Exception e) {
-				e.printStackTrace();
+				StatusBar.getInstance().setMessageAsError(e);
 			}
 	}
 }

@@ -53,6 +53,7 @@ import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.datas.ReportWeekData;
 import haushaltsbuch.datas.ReportYearData;
 import haushaltsbuch.dialogs.DlgExportPdf;
+import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.helper.HelperNumbersOut;
 import haushaltsbuch.windows.WndMain;
 
@@ -258,12 +259,8 @@ public class Pdf extends Export {
 				// Diagramm einfügen
 				insertChart(writer, doc);
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (DocumentException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			StatusBar.getInstance().setMessageAsError(e);
 		}
 		finally {
 			// PDF-Datei schließen
@@ -296,10 +293,8 @@ public class Pdf extends Export {
 					// Hilfs-Dateien löschen
 					Files.delete(path);
 					Files.delete(work.toPath());
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (DocumentException e) {
-					e.printStackTrace();
+				} catch (Exception e) {
+					StatusBar.getInstance().setMessageAsError(e);
 				}
 			}
 		}

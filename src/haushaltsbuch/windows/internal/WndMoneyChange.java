@@ -232,7 +232,7 @@ public class WndMoneyChange extends WndChangeFrame {
 			try {
 				 setClosed(true);
 			} catch (Exception e) {
-				e.printStackTrace();
+				StatusBar.getInstance().setMessageAsError(e);
 			}
 			
 			// Tabelle updaten
@@ -244,7 +244,7 @@ public class WndMoneyChange extends WndChangeFrame {
 					try {
 						_frame.setSelected(true);
 					} catch (PropertyVetoException e) {
-						e.printStackTrace();
+						StatusBar.getInstance().setMessageAsError(e);
 					}
 					_frame.getTable().setRowSelectionInterval(
 							_frame.getTable().getRowCount() -1, 

@@ -25,6 +25,8 @@ import javax.help.HelpBroker;
 import javax.help.HelpSet;
 import javax.help.HelpSetException;
 
+import haushaltsbuch.elements.StatusBar;
+
 public class Help {
 	/**
 	 * Speichert die Instanz der Hilfe.
@@ -51,7 +53,7 @@ public class Help {
 			_hs.setHomeID("main");
 			_broker = _hs.createHelpBroker();
 		} catch (HelpSetException e) {
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError(e);
 		}
 	}
 	
