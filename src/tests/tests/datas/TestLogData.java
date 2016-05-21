@@ -34,24 +34,34 @@ import haushaltsbuch.datas.LogData;
  * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class TestLogData {
 	/**
 	 * Speichert die erstellten Daten
 	 */
-	private static LogData _data;
+	private LogData _data;
 	
 	/**
 	 * Speichert die Standard Nachricht
 	 */
-	private static String _message;
+	private String _message;
 	
 	/**
 	 * Speichert die 2. Test Nachricht
 	 */
-	private static String _message2;
+	private String _message2;
+	
+	/**
+	 * Speichert die standard Fehlerbeschreibung
+	 */
+	private String _error;
+	
+	/**
+	 * Speichert die 2. Fehlerbeschreibung
+	 */
+	private String _error2;
 
 	/**
 	 * @throws java.lang.Exception
@@ -60,7 +70,11 @@ public class TestLogData {
 	public void setUp() throws Exception {
 		_message = new String("Test Nachricht");
 		_message2 = new String("Test Nachricht 2");
-		_data = new LogData(_message);
+		
+		_error = new String("Fehlerbeschreibung");
+		_error2 = new String("Fehlerbeschreibung 2");
+		
+		_data = new LogData(_message, _error);
 	}
 
 	/**
@@ -69,21 +83,48 @@ public class TestLogData {
 	@Test
 	public void testLogData() {
 		_data = new LogData();
-		assertTrue(_data.getOut() == LogData.NO_OUT);
+		assertEquals(LogData.NO_OUT, _data.getOut());
 		assertTrue(_data.getMessage().isEmpty());
+		assertTrue(_data.getError().isEmpty());
 	}
-
 	/**
 	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String)}.
+	 * 
+	 * @deprecated
 	 */
 	@Test
 	public void testLogDataString() {
+		_data = new LogData(_message);
 		assertEquals(LogData.NONE, _data.getOut());
 		assertEquals(_message, _data.getMessage());
+		assertTrue(_data.getError().isEmpty());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	public void testLogDataStringString() {
+		assertEquals(LogData.NONE, _data.getOut());
+		assertEquals(_message, _data.getMessage());
+		assertEquals(_error, _data.getError());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String, java.lang.String, short)}.
+	 */
+	@Test
+	public void testLogDataStringStringShort() {
+		_data = new LogData(_message, _error, LogData.OK);
+		assertEquals(LogData.OK, _data.getOut());
+		assertEquals(_message, _data.getMessage());
+		assertEquals(_error, _data.getError());
 	}
 
 	/**
 	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String, short)}.
+	 * 
+	 * @deprecated
 	 */
 	@Test
 	public void testLogDataStringShort() {
@@ -101,6 +142,14 @@ public class TestLogData {
 	}
 
 	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#getError()}.
+	 */
+	@Test
+	public void testGetError() {
+		assertEquals(_error, _data.getError());
+	}
+
+	/**
 	 * Test method for {@link haushaltsbuch.datas.LogData#getOut()}.
 	 */
 	@Test
@@ -115,34 +164,71 @@ public class TestLogData {
 	public void testSetMessage() {
 		_data.setMessage(_message2);
 		assertEquals(_message2, _data.getMessage());
+		assertEquals(_error, _data.getError());
+		assertEquals(LogData.NONE, _data.getOut());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#setError(java.lang.String)}.
+	 */
+	@Test
+	public void testSetError() {
+		_data.setError(_error2);
+		assertEquals(_message, _data.getMessage());
+		assertEquals(_error2, _data.getError());
 		assertEquals(LogData.NONE, _data.getOut());
 	}
 
 	/**
 	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsNoOut(java.lang.String)}.
+	 * @deprecated
 	 */
 	@Test
-	public void testSetMessageAsNoOut() {
+	public void testSetMessageAsNoOutDeprecated() {
 		_data.setMessageAsNoOut(_message2);
 		assertEquals(_message2, _data.getMessage());
 		assertEquals(LogData.NO_OUT, _data.getOut());
 	}
 
 	/**
-	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsError(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsNoOut(java.lang.String, java.lang.String)}.
 	 */
 	@Test
-	public void testSetMessageAsError() {
+	public void testSetMessageAsNoOut() {
+		_data.setMessageAsNoOut(_message2, _error2);
+		assertEquals(_message2, _data.getMessage());
+		assertEquals(_error2, _data.getError());
+		assertEquals(LogData.NO_OUT, _data.getOut());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsError(java.lang.String)}.
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageAsErrorDeprecated() {
 		_data.setMessageAsError(_message2);
 		assertEquals(_message2, _data.getMessage());
 		assertEquals(LogData.ERROR, _data.getOut());
 	}
 
 	/**
-	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsWarning(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsError(java.lang.String, java.lang.String)}.
 	 */
 	@Test
-	public void testSetMessageAsWarning() {
+	public void testSetMessageAsError() {
+		_data.setMessageAsError(_message2, _error2);
+		assertEquals(_message2, _data.getMessage());
+		assertEquals(_error2, _data.getError());
+		assertEquals(LogData.ERROR, _data.getOut());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsWarning(java.lang.String)}.
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageAsWarningDeptrecated() {
 		_data.setMessageAsWarning(_message2);
 		assertEquals(_message2, _data.getMessage());
 		assertEquals(LogData.WARNING, _data.getOut());
@@ -150,11 +236,23 @@ public class TestLogData {
 
 	/**
 	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsOk(java.lang.String)}.
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageAsOkDeprecated() {
+		_data.setMessageAsOk(_message2);
+		assertEquals(_message2, _data.getMessage());
+		assertEquals(LogData.OK, _data.getOut());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsOk(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageAsOk() {
-		_data.setMessageAsOk(_message2);
+		_data.setMessageAsOk(_message2, _error2);
 		assertEquals(_message2, _data.getMessage());
+		assertEquals(_error2, _data.getError());
 		assertEquals(LogData.OK, _data.getOut());
 	}
 
@@ -169,11 +267,34 @@ public class TestLogData {
 
 	/**
 	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String)}.
+	 * @deprecated
 	 */
 	@Test
-	public void testLogDataStringWithNull() {
+	public void testLogDataStringWithNullDeprecated() {
 		_data = new LogData(null);
 		assertEquals(LogData.NONE, _data.getOut());
+		assertEquals(new String(), _data.getMessage());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	public void testLogDataStringStringWithNull() {
+		_data = new LogData(null, null);
+		assertEquals(LogData.NONE, _data.getOut());
+		assertEquals(new String(), _data.getMessage());
+		assertEquals(new String(), _data.getError());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String, short)}.
+	 * @deprecated
+	 */
+	@Test
+	public void testLogDataStringShortWithStringDeprecated() {
+		_data = new LogData(null, LogData.OK);
+		assertEquals(LogData.OK, _data.getOut());
 		assertEquals(new String(), _data.getMessage());
 	}
 
@@ -181,10 +302,11 @@ public class TestLogData {
 	 * Test method for {@link haushaltsbuch.datas.LogData#LogData(java.lang.String, short)}.
 	 */
 	@Test
-	public void testLogDataStringShortWithString() {
-		_data = new LogData(null, LogData.OK);
+	public void testLogDataStringStringShortWithString() {
+		_data = new LogData(null, null, LogData.OK);
 		assertEquals(LogData.OK, _data.getOut());
 		assertEquals(new String(), _data.getMessage());
+		assertEquals(new String(), _data.getError());
 	}
 
 	/**
@@ -194,46 +316,106 @@ public class TestLogData {
 	public void testSetMessageWithNull() {
 		_data.setMessage(null);
 		assertEquals(new String(), _data.getMessage());
+		assertEquals(_error, _data.getError());
+		assertEquals(LogData.NONE, _data.getOut());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#setError(java.lang.String)}.
+	 */
+	@Test
+	public void testSetErrorWithNull() {
+		_data.setError(null);
+		assertEquals(_message, _data.getMessage());
+		assertEquals(new String(), _data.getError());
 		assertEquals(LogData.NONE, _data.getOut());
 	}
 
 	/**
 	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsNoOut(java.lang.String)}.
+	 * @deprecated
 	 */
 	@Test
-	public void testSetMessageAsNoOutWithNull() {
+	public void testSetMessageAsNoOutWithNullDeprecated() {
 		_data.setMessageAsNoOut(null);
 		assertEquals(new String(), _data.getMessage());
 		assertEquals(LogData.NO_OUT, _data.getOut());
 	}
 
 	/**
-	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsError(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsNoOut(java.lang.String, java.lang.String)}.
 	 */
 	@Test
-	public void testSetMessageAsErrorWithNull() {
+	public void testSetMessageAsNoOutWithNull() {
+		_data.setMessageAsNoOut(null, null);
+		assertEquals(new String(), _data.getMessage());
+		assertEquals(new String(), _data.getError());
+		assertEquals(LogData.NO_OUT, _data.getOut());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsError(java.lang.String)}.
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageAsErrorWithNullDeprecated() {
 		_data.setMessageAsError(null);
 		assertEquals(new String(), _data.getMessage());
 		assertEquals(LogData.ERROR, _data.getOut());
 	}
 
 	/**
-	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsWarning(java.lang.String)}.
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsError(java.lang.String, java.lang.String)}.
 	 */
 	@Test
-	public void testSetMessageAsWarningWithNull() {
+	public void testSetMessageAsErrorWithNull() {
+		_data.setMessageAsError(null, null);
+		assertEquals(new String(), _data.getMessage());
+		assertEquals(new String(), _data.getError());
+		assertEquals(LogData.ERROR, _data.getOut());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsWarning(java.lang.String)}.
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageAsWarningWithNullDeprecated() {
 		_data.setMessageAsWarning(null);
 		assertEquals(new String(), _data.getMessage());
 		assertEquals(LogData.WARNING, _data.getOut());
 	}
 
 	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsWarning(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	public void testSetMessageAsWarningWithNull() {
+		_data.setMessageAsWarning(null, null);
+		assertEquals(new String(), _data.getMessage());
+		assertEquals(new String(), _data.getError());
+		assertEquals(LogData.WARNING, _data.getOut());
+	}
+
+	/**
 	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsOk(java.lang.String)}.
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageAsOkWithNullDeprecated() {
+		_data.setMessageAsOk(null);
+		assertEquals(new String(), _data.getMessage());
+		assertEquals(LogData.OK, _data.getOut());
+	}
+
+	/**
+	 * Test method for {@link haushaltsbuch.datas.LogData#setMessageAsOk(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testSetMessageAsOkWithNull() {
-		_data.setMessageAsOk(null);
+		_data.setMessageAsOk(null, null);
 		assertEquals(new String(), _data.getMessage());
+		assertEquals(new String(), _data.getError());
 		assertEquals(LogData.OK, _data.getOut());
 	}
 	

@@ -24,9 +24,14 @@ import java.awt.Color;
 /**
  * Speichert die Daten des Logbuches.
  * 
+ * In der Version 0.2 kommt die Fehlerbeschreibung hinzug. Aus diesem Grund sind
+ * die bisherigen Methoden, die eine neue Nachricht initialisieren deprecated.
+ * Sie sollten mit ihren neuen Entsprechungen aufgerufen werden. Sie werden
+ * lediglich aus Kompatibilitätsgründen belassen.
+ * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class LogData {
@@ -34,6 +39,11 @@ public class LogData {
 	 * Speichert die Nachricht, die ausgegeben werden soll
 	 */
 	private String _message;
+	
+	/**
+	 * Speichert die Fehler-Beschreibung
+	 */
+	private String _error;
 	
 	/**
 	 * Speichert, wie die Nachricht dargestellt werden soll
@@ -90,6 +100,7 @@ public class LogData {
 	 */
 	public LogData() {
 		_message = new String();
+		_error = new String();
 		_out = NO_OUT;
 	}
 	
@@ -97,17 +108,49 @@ public class LogData {
 	 * Konstruktor für eine Nachricht, die nicht speziell markiert werden soll
 	 * 
 	 * @param message Nachricht, die ausgegeben werden soll
+	 * 
+	 * @deprecated Neuer zu verwendender Konstruktor {@link #LogData(String, String)}
 	 */
 	public LogData(String message) {
 		setMessage(message);
+		_error = new String();
+		_out = NONE;
+	}
+	
+	/**
+	 * Konstruktor für eine Nachricht, die nicht speziell markiert werden soll
+	 * 
+	 * @param message Nachricht, die ausgegeben werden soll
+	 * 
+	 * @param error Fehlerbeschreibung, die gespeichert werden soll
+	 */
+	public LogData(String message, String error) {
+		setMessage(message);
+		setError(error);
 		_out = NONE;
 	}
 	
 	/**
 	 * Konstruktor für eine Nachricht, die spziell markiert werden soll
+	 * 
+	 * @deprecated Neuer zu verwendender Konstruktor
+	 * {@link #LogData(String, String, short)}
 	 */
 	public LogData(String message, short out) {
 		setMessage(message);
+		_out = out;
+	}
+	
+	/**
+	 * Konstruktor für eine Nachricht, die spziell markiert werden soll
+	 * 
+	 * @param message Nachricht, die ausgegeben werden soll
+	 * 
+	 * @param error Fehlerbeschreibung, die gespeichert werden soll
+	 */
+	public LogData(String message, String error, short out) {
+		setMessage(message);
+		setError(error);
 		_out = out;
 	}
 	
@@ -118,6 +161,15 @@ public class LogData {
 	 */
 	public String getMessage() {
 		return _message;
+	}
+	
+	/**
+	 * Gibt die gespeicherte Fehlerbeschreibung zurück
+	 * 
+	 * @return Gespeichrte Fehlerbeschreibung
+	 */
+	public String getError() {
+		return _error;
 	}
 	
 	/**
@@ -143,10 +195,24 @@ public class LogData {
 	}
 	
 	/**
+	 * Speichert die übergebene Fehlerbeschreibung
+	 * 
+	 * @param error Fehlerbeschreibung, die gespeichert werden soll
+	 */
+	public void setError(String error) {
+		if (error != null)
+			_error = error;
+		else
+			_error = new String();
+	}
+	
+	/**
 	 * Speichert die übergebene Nachricht und markiert sie so, dass sie nicht
 	 * ausgegeben werden soll
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @deprecated Neue zu verwendete Methode {@link #setMessageAsNoOut(String, String)}
 	 */
 	public void setMessageAsNoOut(String message) {
 		setMessage(message);
@@ -154,9 +220,26 @@ public class LogData {
 	}
 	
 	/**
+	 * Speichert die übergebene Nachricht und markiert sie so, dass sie nicht
+	 * ausgegeben werden soll
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @param error Fehlerbeschreibung, die gespeichert werden soll
+	 */
+	public void setMessageAsNoOut(String message, String error) {
+		setMessage(message);
+		setError(error);
+		_out = NO_OUT;
+	}
+	
+	/**
 	 * Speichert die übergebene Nachricht und markiert sie als Fehler.
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @deprecated Neue zu verwendende Methode
+	 * {@link #setMessageAsError(String, String)}
 	 */
 	public void setMessageAsError(String message) {
 		setMessage(message);
@@ -164,9 +247,25 @@ public class LogData {
 	}
 	
 	/**
+	 * Speichert die übergebene Nachricht und markiert sie als Fehler.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @param error Fehlerbeschreibung, die gespeichert werden soll
+	 */
+	public void setMessageAsError(String message, String error) {
+		setMessage(message);
+		setError(error);
+		_out = ERROR;
+	}
+	
+	/**
 	 * Speichert die übergebene Nachricht und markeirt sie als Warnung.
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @deprecated Neue zu verwendende Methode
+	 * {@link #setMessageAsWarning(String, String)}
 	 */
 	public void setMessageAsWarning(String message) {
 		setMessage(message);
@@ -174,18 +273,46 @@ public class LogData {
 	}
 	
 	/**
+	 * Speichert die übergebene Nachricht und markeirt sie als Warnung.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @param error Fehlerbeschreibung, die gespeichert werden soll
+	 */
+	public void setMessageAsWarning(String message, String error) {
+		setMessage(message);
+		setError(error);
+		_out = WARNING;
+	}
+	
+	/**
 	 * Speichert die Übergebene Nachricht als Erfolgreich.
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll.
+	 * 
+	 * @deprecated Neue zu verwendende Methode
+	 * {@link #setMessageAsOk(String, String)}
 	 */
 	public void setMessageAsOk(String message) {
 		setMessage(message);
 		_out = OK;
 	}
+	
+	/**
+	 * Speichert die Übergebene Nachricht als Erfolgreich.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll.
+	 * 
+	 * @param error Fehlerbeschreibung, die gespeichert werden soll
+	 */
+	public void setMessageAsOk(String message, String error) {
+		setMessage(message);
+		setError(error);
+		_out = OK;
+	}
 
 	/**
 	 * Speichert, wie die Nachricht ausgeben werden soll.
-	 * 
 	 * 
 	 * @param out Markierung der Nachricht
 	 */
