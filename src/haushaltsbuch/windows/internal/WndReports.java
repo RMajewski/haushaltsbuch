@@ -107,6 +107,11 @@ public class WndReports extends WndInternalFrame
 	private Window _owner;
 	
 	/**
+	 * Speichert die TabbedPane
+	 */
+	private JTabbedPane _tabbedPane;
+	
+	/**
 	 * Initalisiert das Fenster
 	 * 
 	 * @param desktop Desktop des Hauptfensters
@@ -128,19 +133,19 @@ public class WndReports extends WndInternalFrame
 		_preference = new ReportPreferencesData(report, 0, -1, 0);
 		
 		// Design
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addChangeListener(this);
-		getContentPane().add(tabbedPane, BorderLayout.CENTER);
+		_tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		_tabbedPane.addChangeListener(this);
+		getContentPane().add(_tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		tabbedPane.addTab("Tabellenansicht", null, panel, null);
+		_tabbedPane.addTab("Tabellenansicht", null, panel, null);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		_table = new JTable();
 		panel.add(new JScrollPane(_table));
 		
 		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Grafische Ansicht", null, panel_1, null);
+		_tabbedPane.addTab("Grafische Ansicht", null, panel_1, null);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		_report = new ReportGraphic();
@@ -245,6 +250,11 @@ public class WndReports extends WndInternalFrame
 					// Spalten-Beschreibungen
 					dataSection.setColumnHeader(_table.getColumnModel());
 					break;
+			}
+			
+			// Muss das Diagramm neugezeichnet werden?
+			if (_tabbedPane.getSelectedIndex() == 1) {
+				stateChanged(new ChangeEvent(_tabbedPane));
 			}
 			
 			// Dialog anzeigen
