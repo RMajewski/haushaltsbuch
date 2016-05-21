@@ -142,6 +142,7 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 	 */
 	public void focusRadioButtonIn() throws InterruptedException {
 		((TestWndMoneyChange)_test).setFocusToIn();
+		((TestWndMoneyChange)_test).setFocusToOut();
 	}
 	
 	/**
@@ -159,10 +160,10 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 	 * 
 	 * @return <b>true</b>, wenn das Datum vervollständigt wurde. <b>false</b>,
 	 * wenn nicht.
+	 * @throws InterruptedException 
 	 */
-	public String haveDateActualMonthAnYear() {
+	public boolean haveDateActualMonthAnYear() throws InterruptedException {
 		// Vorbereitungen
-		boolean ret = false;
 		String[] tmp = ((TestWndMoneyChange)_test).getTextFromDate().split(".");
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(new Date());
@@ -172,9 +173,9 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 		// Überprüfen ob der Monat und das Jahr hinzugefügt wurden.
 		if ((tmp.length == 3) && tmp[1].equals(String.valueOf(month)) &&
 				tmp[2].equals(String.valueOf(year)))
-			ret = true;
+			return true;
 		
-		return String.valueOf(ret);
+		return false;
 	}
 	
 	/**
@@ -183,20 +184,26 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 	 * 
 	 * @return <b>true</b>, wenn das Datum vervollständigt wurde. <b>false</b>,
 	 * wenn nicht.
+	 * @throws InterruptedException 
 	 */
-	public String haveDateActualYear() {
+	public boolean haveDateActualYear() throws InterruptedException {
 		// Vorbereitungen
-		boolean ret = false;
 		String[] tmp = ((TestWndMoneyChange)_test).getTextFromDate().split(".");
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(new Date());
 		int year = gc.get(GregorianCalendar.YEAR);
 		
+		System.out.println();
+		System.out.println();
+		System.out.println(((TestWndMoneyChange)_test).getTextFromDate());
+		System.out.println();
+		System.out.println();
+		
 		// Überprüfen ob der Monat und das Jahr hinzugefügt wurden.
 		if ((tmp.length == 3) && tmp[2].equals(String.valueOf(year)))
-			ret = true;
+			return true;
 		
-		return String.valueOf(ret);
+		return false;
 	}
 	
 	/**

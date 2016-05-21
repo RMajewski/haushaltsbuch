@@ -201,7 +201,7 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 				// Überprüfen ob Betrag eingegeben wurde.
 				if (_txtMoney.getText().isEmpty()) {
 					// Benutzer darauf hinweisen
-					new DlgInfo("Betrag", "Sie haben vergessen den Betrag einzugeben.", null);
+					new DlgInfo("Betrag", "Sie haben vergessen den Betrag einzugeben.", _desktop.getMainWindow());
 					
 					// Focus setzen
 					_txtMoney.requestFocus();

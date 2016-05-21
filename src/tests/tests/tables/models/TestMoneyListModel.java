@@ -40,6 +40,7 @@ import haushaltsbuch.db.DbController;
 import haushaltsbuch.db.query.Money;
 import haushaltsbuch.db.query.MoneyDetails;
 import haushaltsbuch.db.query.Queries;
+import haushaltsbuch.helper.HelperNumbersOut;
 import haushaltsbuch.tables.models.MoneyListModel;
 
 /**
@@ -217,7 +218,7 @@ public class TestMoneyListModel {
 			e.printStackTrace();
 		}
 		
-		assertEquals(sum, _model.getValueAt(0, 3));
+		assertEquals(HelperNumbersOut.sum(sum), _model.getValueAt(0, 3));
 	}
 
 	/**

@@ -21,6 +21,8 @@ package tests.tests.windows.internal;
 
 import java.util.Date;
 
+import javax.swing.JFormattedTextField;
+
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JInternalFrameOperator;
@@ -196,12 +198,20 @@ public class TestWndMoneyChange extends GuiWndTest {
 	}
 	
 	/**
+	 * Den Fokus bekommt der Radio-Button "Einnahme"
+	 */
+	public void setFocusToOut() {
+		_out.requestFocus();
+		_out.waitHasFocus();
+	}
+	
+	/**
 	 * Ermittelt den Text vom Datums-Feld
 	 * 
 	 * @return Text vom Datums-Feld
 	 */
 	public String getTextFromDate() {
-		return _date.getText();
+		return String.valueOf(((JFormattedTextField)_date.getSource()).getText());
 	}
 	
 	/**

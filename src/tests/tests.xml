@@ -61,6 +61,7 @@
 			<test>TestCompDouble</test>
 			<test>TestCompId</test>
 			<test>TestCompInt</test>
+			<test>TestCompSum</test>
 		</testSuite>
 		<testSuite>
 			<name>Daten-Strukturen</name>
@@ -111,6 +112,13 @@
 			<name>Helfer</name>
 			<package>tests.tests.helper</package>
 			<test>TestHelperCalendar</test>
+			<test>TestHelperNumberOut</test>
+			<test>TestHelperPrint</test>
+		</testSuite>
+		<testSuite>
+			<name>Hilfe</name>
+			<package>tests.tests.help</package>
+			<test>TestHelp</test>
 		</testSuite>
 		<testSuite>
 			<name>Zuhörer</name>
@@ -162,7 +170,6 @@
 			<name>Informations-Dialoge</name>
 			<package>tests.fit.dialogs</package>
 			<test>DlgAbout</test>
-			<test>DlgLogView</test>
 			<test>DlgInfo</test>
 		</testSuite>
 		<testSuite>
@@ -224,6 +231,7 @@
 			<package>tests.fit.elements</package>
 			<test>ToolBarMainReport</test>
 			<test>ToolBarMainPdfReport</test>
+			<test>ToolBarMainPrint</test>
 		</testSuite>
 		<testSuite>
 			<name>Hauptfenster</name>
@@ -257,6 +265,18 @@
 			<test>WndSectionListInsert</test>
 			<test>WndSectionListChange</test>
 			<test>WndSectionListDelete</test>
+		</testSuite>
+		<testSuite>
+			<name>Unterfenster zum Eingeben der Einnahmen und Ausgaben</name>
+			<package>tests.fit.windows.internal</package>
+			<test>WndMoneyChangeInsert</test>
+			<test>WndMoneyChangeNotInsert</test>
+		</testSuite>
+		<testSuite>
+			<name>Unterfenster zum Eingeben der Details der Einnahmen und Ausgaben</name>
+			<package>tests.fit.windows.internal</package>
+			<test>WndMoneyDetailsChangeChange</test>
+			<test>WndMoneyDetailsChangeInsert</test>
 		</testSuite>
 	</testGroup>
 </tests>

@@ -167,7 +167,7 @@ public class WndMoneyChange extends WndChangeFrame {
 				// Benutzer darauf hinweisen
 				new DlgInfo("Datum", 
 						"Sie haben vergessen ein Datum einzugeben.",
-						null);
+						_desktop.getMainWindow());
 				
 				// Focus setzen
 				_txtDate.requestFocus();
