@@ -78,10 +78,10 @@ public class Print extends Action {
 			pjob.print();
 			
 			StatusBar.getInstance().setMessageAsOk(
-					"Druckvorgang wurde gestartet");
+					"Druckvorgang wurde gestartet", new String());
 		} catch (Exception e) {
 			StatusBar.getInstance().setMessageAsError(
-					"Es konnte nicht gedruckt werden");
+					"Es konnte nicht gedruckt werden", e);
 			e.printStackTrace();
 		}
 	}

@@ -32,10 +32,8 @@ import haushaltsbuch.datas.LogData;
  * Zeigt die StatusBar an.
  * 
  * In der Version 0.2 wird die Fehlerbeschreibung zum LogData hinzugefügt. Aus
- * diesem Grund sind die bisherigen Methoden zur Erstellung von
- * LogData-Einträgen deprecated. Bitte die entsprechenden neuen Methoden
- * verwenden. Die bisherigen Methoden bleiben aus Kompatibilitätsgründen erst
- * einmal bestehen.
+ * diesem Grund sind einige der bisherigen Methoden zur Erzeugung der LogData
+ * deprecated.
  * 
  * @author René Majewski
  *
@@ -72,6 +70,26 @@ public class StatusBar extends JLabel {
 	}
 	
 	/**
+	 * Erzeugt den Fehlerbericht.
+	 * 
+	 * @param e Fehler, aus dem der Bericht erzeugt werden soll.
+	 * 
+	 * @return Fehlerbericht zu dem angegebenen Fehler
+	 */
+	private String getErrorAsString(Exception e) {
+		StringBuilder ret = new StringBuilder(e.toString());
+		
+		StackTraceElement[] ste = e.getStackTrace();
+		for (int i = 0; i < ste.length; i++) {
+			ret.append(System.lineSeparator());
+			ret.append("\t");
+			ret.append(ste[i].toString());
+		}
+		
+		return ret.toString();
+	}
+	
+	/**
 	 * Gibt die Instanz der StatusBar zurück. Sollte die Instanz nicht
 	 * intalisiert sein, so wird sie vor der Rückgabe initalisiert.
 	 * 
@@ -95,14 +113,12 @@ public class StatusBar extends JLabel {
 	 * Text anzeigen
 	 * 
 	 * @param message Text, der angezeigt werden soll.
-	 * 
-	 * @deprecated Neue zu verwendende Methode {@link #setMessage(String, String)}
 	 */
 	public void setMessage(String message)
 	{
 		setText(message);
 		setBackground(LogData.COLOR_NONE);
-		_list.add(new LogData(message));
+		_list.add(new LogData(message, null));
 	}
 	
 	/**
@@ -120,16 +136,27 @@ public class StatusBar extends JLabel {
 	}
 	
 	/**
+	 * Text anzeigen
+	 * 
+	 * @param message Text, der angezeigt werden soll.
+	 * 
+	 * @param e Fehler, zu dem der Fehlerbericht erzeugt werden soll.
+	 */
+	public void setMessage(String message, Exception e)
+	{
+		setText(message);
+		setBackground(LogData.COLOR_NONE);
+		_list.add(new LogData(message, getErrorAsString(e)));
+	}
+	
+	/**
 	 * Speichert die übergebene Nachricht und markiert sie so, dass sie nicht
 	 * ausgegeben werden soll
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll
-	 * 
-	 * @deprecated Neue zu verwendende Methode
-	 * {@link #setMessageAsNoOut(String, String)}
 	 */
 	public void setMessageAsNoOut(String message) {
-		_list.add(new LogData(message, LogData.NO_OUT));
+		_list.add(new LogData(message, null, LogData.NO_OUT));
 	}
 	
 	/**
@@ -142,6 +169,19 @@ public class StatusBar extends JLabel {
 	 */
 	public void setMessageAsNoOut(String message, String error) {
 		_list.add(new LogData(message, error, LogData.NO_OUT));
+	}
+	
+	/**
+	 * Speichert die übergebene Nachricht und markiert sie so, dass sie nicht
+	 * ausgegeben werden soll
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @param e Fehler, zu dem der Fehlerbericht erzeugt werden soll.
+	 */
+	public void setMessageAsNoOut(String message, Exception e)
+	{
+		_list.add(new LogData(message, getErrorAsString(e), LogData.NO_OUT));
 	}
 	
 	/**
@@ -172,6 +212,20 @@ public class StatusBar extends JLabel {
 	}
 	
 	/**
+	 * Speichert die übergebene Nachricht und markiert sie als Fehler.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @param e Fehler, zu dem der Fehlerbericht erzeugt werden soll.
+	 */
+	public void setMessageAsError(String message, Exception e)
+	{
+		setText(message);
+		setBackground(LogData.COLOR_ERROR);
+		_list.add(new LogData(message, getErrorAsString(e), LogData.ERROR));
+	}
+	
+	/**
 	 * Speichert die übergebene Nachricht und markeirt sie als Warnung.
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll
@@ -199,17 +253,28 @@ public class StatusBar extends JLabel {
 	}
 	
 	/**
+	 * Speichert die übergebene Nachricht und markeirt sie als Warnung.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @param e Fehler, zu dem der Fehlerbericht erzeugt werden soll.
+	 */
+	public void setMessageAsWarning(String message, Exception e)
+	{
+		setText(message);
+		setBackground(LogData.COLOR_WARNING);
+		_list.add(new LogData(message, getErrorAsString(e), LogData.WARNING));
+	}
+	
+	/**
 	 * Speichert die Übergebene Nachricht als Erfolgreich.
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll.
-	 * 
-	 * @deprecated Neue zu verwendende Methode
-	 * {@link #setMessageAsOk(String, String)}
 	 */
 	public void setMessageAsOk(String message) {
 		setText(message);
 		setBackground(LogData.COLOR_OK);
-		_list.add(new LogData(message, LogData.OK));
+		_list.add(new LogData(message, null, LogData.OK));
 	}
 	
 	/**
@@ -223,6 +288,20 @@ public class StatusBar extends JLabel {
 		setText(message);
 		setBackground(LogData.COLOR_OK);
 		_list.add(new LogData(message, error, LogData.OK));
+	}
+	
+	/**
+	 * Speichert die übergebene Nachricht und markeirt sie als Warnung.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @param e Fehler, zu dem der Fehlerbericht erzeugt werden soll.
+	 */
+	public void setMessageAsOk(String message, Exception e)
+	{
+		setText(message);
+		setBackground(LogData.COLOR_OK);
+		_list.add(new LogData(message, getErrorAsString(e), LogData.OK));
 	}
 	
 	/**
