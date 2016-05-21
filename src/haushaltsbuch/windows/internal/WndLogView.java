@@ -21,6 +21,11 @@ package haushaltsbuch.windows.internal;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -42,6 +47,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.text.Document;
 import javax.swing.text.StyledEditorKit;
 import javax.swing.JEditorPane;
+import java.awt.Component;
+import javax.swing.Box;
 
 /**
  * In diesen Dialog wird das Log angezeigt.
@@ -56,7 +63,7 @@ import javax.swing.JEditorPane;
  * @since 0.1
  */
 public class WndLogView extends WndInternalFrame 
-		implements ActionListener, ListSelectionListener {
+		implements ActionListener, ListSelectionListener, ClipboardOwner {
 	
 	/**
 	 * Speichert den Titel des Dialogs
@@ -66,7 +73,12 @@ public class WndLogView extends WndInternalFrame
 	/**
 	 * ActionCommand für den Ok-Button
 	 */
-	private static final String OK = "DlgLogViewOk";
+	private static final String OK = "WndLogViewOk";
+	
+	/**
+	 * ActionCommand zum Einfügen in die ZWischenablage
+	 */
+	private static final String CLIPBOARD = "WndLogViewClipboard";
 
 	/**
 	 * Serialisation ID
@@ -125,6 +137,15 @@ public class WndLogView extends WndInternalFrame
 		btnOk.setActionCommand(OK);
 		panel.add(btnOk);
 		
+		Component horizontalStrut = Box.createHorizontalStrut(75);
+		panel.add(horizontalStrut);
+		
+		JButton btnClipboard = new JButton("In die Zwischenablage");
+		btnClipboard.setMnemonic('Z');
+		btnClipboard.setActionCommand(CLIPBOARD);
+		btnClipboard.addActionListener(this);
+		panel.add(btnClipboard);
+		
 		JSplitPane splitPane = new JSplitPane();
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
@@ -174,6 +195,12 @@ public class WndLogView extends WndInternalFrame
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getActionCommand().equals(OK))
 			setVisible(false);
+		
+		else if (ae.getActionCommand().equals(CLIPBOARD)) {
+			Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+			StringSelection sc = new StringSelection(_txtError.getText());
+			cb.setContents(sc, this);
+		}
 	}
 
 	/**
@@ -189,5 +216,13 @@ public class WndLogView extends WndInternalFrame
 			else
 				_txtError.setText("Kein Fehlerbericht vorhanden");
 		}
+	}
+
+	/**
+	 * Wird nicht benutzt. Muss aber durch den Zugriff auf die Zwischenablage
+	 * implementiert sein.
+	 */
+	@Override
+	public void lostOwnership(Clipboard arg0, Transferable arg1) {
 	}
 }
