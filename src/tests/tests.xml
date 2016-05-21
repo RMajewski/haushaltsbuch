@@ -53,6 +53,7 @@
 			<test>TestDbInsert</test>
 			<test>TestReport</test>
 			<test>TestPdfReport</test>
+			<test>TestPrint</test>
 		</testSuite>
 		<testSuite>
 			<name>Komparatoren</name>

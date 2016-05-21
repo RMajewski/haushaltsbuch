@@ -57,6 +57,12 @@ public class Print extends Action {
 	 */
 	public Print(Desktop desktop) {
 		super("printer_small.png", "printer_big.png", desktop);
+		
+		putValue(Action.NAME, "Drucken");
+		putValue(Action.MNEMONIC_KEY, 1);
+		putValue(Action.ACTION_COMMAND_KEY, COMMAND);
+		putValue(Action.SHORT_DESCRIPTION, 
+				"Druckt das aktuelle Fenster aus");
 	}
 
 	/**
