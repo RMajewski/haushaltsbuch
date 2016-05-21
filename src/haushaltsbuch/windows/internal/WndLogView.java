@@ -20,6 +20,7 @@
 package haushaltsbuch.windows.internal;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,7 +34,13 @@ import haushaltsbuch.datas.LogData;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.renderer.LogViewListRenderer;
+import haushaltsbuch.text.ErrorSyntax;
+
 import javax.swing.JSplitPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.text.Document;
+import javax.swing.text.StyledEditorKit;
 import javax.swing.JEditorPane;
 
 /**
@@ -48,7 +55,8 @@ import javax.swing.JEditorPane;
  * @version 0.2
  * @since 0.1
  */
-public class WndLogView extends WndInternalFrame implements ActionListener {
+public class WndLogView extends WndInternalFrame 
+		implements ActionListener, ListSelectionListener {
 	
 	/**
 	 * Speichert den Titel des Dialogs
@@ -69,6 +77,11 @@ public class WndLogView extends WndInternalFrame implements ActionListener {
 	 * Speichert die Ausgabe für die Fehlermeldungen
 	 */
 	private JEditorPane _txtError;
+	
+	/**
+	 * Speichert die Liste der Meldungen
+	 */
+	private JList<LogData> _listLog;
 
 
 	/**
@@ -89,6 +102,8 @@ public class WndLogView extends WndInternalFrame implements ActionListener {
 		// Liste anzeigen
 		final DefaultListModel<LogData> model = new DefaultListModel<LogData>();
 		StatusBar status = StatusBar.getInstance();
+		status.setMessageAsError(new Exception());
+		status.setMessageAsError(new Exception("Dies ist ein Test"));
 		for (int i = 0; i < status.getLog().size(); i++) {
 			LogData data = status.getLog().get(i);
 			if (data.getOut() != LogData.NO_OUT) {
@@ -114,18 +129,40 @@ public class WndLogView extends WndInternalFrame implements ActionListener {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		_txtError = new JEditorPane();
+		_txtError.setEditable(false);
+		_txtError.setEditorKitForContentType("text", editorkit());
+		_txtError.setContentType("text");
+		_txtError.setBackground(Color.black);
 		splitPane.setRightComponent(new JScrollPane(_txtError));
 		
-		JList<LogData> l = new JList<LogData>();
-		l.setModel(model);
-		l.setCellRenderer(new LogViewListRenderer());
+		_listLog = new JList<LogData>();
+		_listLog.setModel(model);
+		_listLog.setCellRenderer(new LogViewListRenderer());
+		_listLog.addListSelectionListener(this);
 		
 		// Scroll-Pane
-		JScrollPane pane = new JScrollPane(l);
+		JScrollPane pane = new JScrollPane(_listLog);
 		splitPane.setLeftComponent(pane);
 		
 		// Anzeigen
 		setVisible(true);
+	}
+	
+	private StyledEditorKit editorkit() {
+		return new StyledEditorKit() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Document createDefaultDocument() {
+				ErrorSyntax syntax = new ErrorSyntax();
+				syntax.addKeyword("java", 
+						ErrorSyntax.DEFAULT_ERROR);
+				syntax.addException("java.lang.Exception");
+				syntax.addClassName("haushaltsbuch", 
+						ErrorSyntax.DEFAULT_CLASSES);
+				return syntax;
+			}
+		};
 	}
 
 	/**
@@ -137,5 +174,20 @@ public class WndLogView extends WndInternalFrame implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getActionCommand().equals(OK))
 			setVisible(false);
+	}
+
+	/**
+	 * Reagiert darauf, wenn in der Liste eine Zeile selektiert wird.
+	 * 
+	 * @param e Event-Daten
+	 */
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		if (e.getFirstIndex() > -1) {
+			if (!_listLog.getSelectedValue().getError().isEmpty())
+				_txtError.setText(_listLog.getSelectedValue().getError());
+			else
+				_txtError.setText("Kein Fehlerbericht vorhanden");
+		}
 	}
 }

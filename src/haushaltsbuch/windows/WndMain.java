@@ -96,12 +96,13 @@ public class WndMain extends JFrame implements ActionListener {
 		// Fenster beim Beenden schließen
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		// Hile-System initalisieren
-		_help = Help.getInstance();
-		
 		// Größe
 		setSize(250,100);
 		setExtendedState(MAXIMIZED_BOTH);
+		
+		// StatusBar initalisieren und anzeigen
+		_status = StatusBar.getInstance();
+		getContentPane().add(_status, java.awt.BorderLayout.SOUTH);
 		
 		// Dekstop initalisieren
 		_desktop = new Desktop(this);
@@ -114,10 +115,6 @@ public class WndMain extends JFrame implements ActionListener {
 		
 		// Menü setzen
 		setJMenuBar(new MainTop(this, _toolbar));
-		
-		// StatusBar initalisieren und anzeigen
-		_status = StatusBar.getInstance();
-		getContentPane().add(_status, java.awt.BorderLayout.SOUTH);
 		
 		// Datenbank vorbereiten
 		prepaireDatabase();
