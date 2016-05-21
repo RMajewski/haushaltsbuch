@@ -101,8 +101,7 @@ public class IdNameListModel extends AbstractTableModel
 			}
 			rs.close();
 		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError("Fehler beim abrufen von Daten aus der Datenbank");
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError("Fehler beim abrufen von Daten aus der Datenbank", e);
 		}
 		
 		// Überprüfen ob die Tabelle neugezeichnet werden soll

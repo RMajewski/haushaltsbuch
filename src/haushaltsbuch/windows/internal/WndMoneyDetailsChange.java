@@ -104,7 +104,8 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 			rs.close();
 			
 		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
+			StatusBar.getInstance().setMessageAsError(
+					DbController.statusDbError(), e);
 		}
 	}
 
@@ -225,7 +226,9 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 					if (stm.executeUpdate(DbController.queries().moneyDetails().insert(((MoneyDetailsData)_data).getMoneyId(), category, section, money, comment)) > 0)
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().moneyDetails().statusInsertOk());
 					else
-						StatusBar.getInstance().setMessageAsError(DbController.queries().moneyDetails().statusInsertError());
+						StatusBar.getInstance().setMessageAsError(
+								DbController.queries().moneyDetails()
+									.statusInsertError(), new String());
 				} else {
 					// Datensatz ändern
 					String sql;
@@ -240,12 +243,15 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 					if (stm.executeUpdate(sql) > 0)
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().moneyDetails().statusUpdateOk(_data.getId()));
 					else
-						StatusBar.getInstance().setMessageAsError(DbController.queries().moneyDetails().statusUpdateError(_data.getId()));
+						StatusBar.getInstance().setMessageAsError(
+								DbController.queries().moneyDetails()
+									.statusUpdateError(_data.getId()),
+								new String());
 					
 				}
 			} catch(SQLException e) {
-				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-				e.printStackTrace();
+				StatusBar.getInstance().setMessageAsError(
+						DbController.statusDbError(), e);
 			}
 			
 			// Tabelle updaten

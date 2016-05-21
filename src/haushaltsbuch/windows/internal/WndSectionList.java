@@ -140,15 +140,18 @@ public class WndSectionList extends WndTableFrame implements Printable {
 					if (stm.executeUpdate(DbController.queries().section().update(data.getId(), cc)) > 0) {
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusUpdateOk(data.getId()));
 					} else {
-						StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusUpdateError(data.getId()));
+						StatusBar.getInstance().setMessageAsError(
+								DbController.queries().section()
+									.statusUpdateError(data.getId()),
+								new String());
 					}
 	
 					// Tabelle neu zeichnen
 					((IdNameListModel)_table.getModel()).dataRefresh(true);
 				}
 			} catch (SQLException e) {
-				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-				e.printStackTrace();
+				StatusBar.getInstance().setMessageAsError(
+						DbController.statusDbError(), e);
 			}
 		}
 	}
@@ -175,7 +178,9 @@ public class WndSectionList extends WndTableFrame implements Printable {
 					if (stm.executeUpdate(DbController.queries().section().insert(nc)) > 0) {
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().section().statusInsertOk());
 					} else {
-						StatusBar.getInstance().setMessageAsError(DbController.queries().section().statusInsertError());
+						StatusBar.getInstance().setMessageAsError(
+								DbController.queries().section()
+									.statusInsertError(), new String());
 					}
 				} else {
 					StatusBar.getInstance().setMessage("Geschäft schon verhanden");
@@ -185,8 +190,8 @@ public class WndSectionList extends WndTableFrame implements Printable {
 				model.dataRefresh(true);
 			}
 		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError(
+					DbController.statusDbError(), e);
 		}
 	}
 

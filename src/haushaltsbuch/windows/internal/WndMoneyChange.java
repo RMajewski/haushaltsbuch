@@ -200,7 +200,9 @@ public class WndMoneyChange extends WndChangeFrame {
 					if (stm.executeUpdate(DbController.queries().money().insert(date, inout, comment)) > 0)
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().money().statusInsertOk());
 					else
-						StatusBar.getInstance().setMessageAsError(DbController.queries().money().statusInsertError());
+						StatusBar.getInstance().setMessageAsError(
+								DbController.queries().money()
+									.statusInsertError(), new String());
 				} else {
 					// Datensatz ändern
 					String sql;
@@ -215,12 +217,15 @@ public class WndMoneyChange extends WndChangeFrame {
 					if (stm.executeUpdate(sql) > 0)
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().money().statusUpdateOk(_data.getId()));
 					else
-						StatusBar.getInstance().setMessageAsError(DbController.queries().money().statusUpdateError(_data.getId()));
+						StatusBar.getInstance().setMessageAsError(
+								DbController.queries().money()
+									.statusUpdateError(_data.getId()),
+								new String());
 					
 				}
 			} catch (SQLException e) {
-				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-				e.printStackTrace();
+				StatusBar.getInstance().setMessageAsError(
+						DbController.statusDbError(), e);
 			}
 			
 			// Beenden

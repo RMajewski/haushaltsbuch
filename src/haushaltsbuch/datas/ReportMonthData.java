@@ -162,8 +162,7 @@ public class ReportMonthData extends ReportData {
 					_out.set(i, d);
 				rsw.close();
 			} catch (SQLException e) {
-				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-				e.printStackTrace();
+				StatusBar.getInstance().setMessageAsError(DbController.statusDbError(), e);
 			}
 		}
 	}

@@ -182,15 +182,16 @@ public abstract class WndTableFrame extends WndInternalFrame
 					if (stm.executeUpdate(query.delete(id)) > 0) {
 						StatusBar.getInstance().setMessageAsOk(query.statusDeleteOk(id));
 					} else {
-						StatusBar.getInstance().setMessageAsError(query.statusDeleteError(id));
+						StatusBar.getInstance().setMessageAsError(
+								query.statusDeleteError(id), new String());
 					}
 					
 					// Tabelle neu zeichnen
 					((DbModelInterface)_table.getModel()).dataRefresh(true);
 				}
 			} catch (SQLException e) {
-				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-				e.printStackTrace();
+				StatusBar.getInstance().setMessageAsError(
+						DbController.statusDbError(), e);
 			}
 		}
 	}

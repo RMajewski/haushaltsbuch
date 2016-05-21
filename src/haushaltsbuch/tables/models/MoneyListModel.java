@@ -122,8 +122,8 @@ public class MoneyListModel extends AbstractTableModel
 					ret = rs.getDouble(1);
 					rs.close();
 				} catch (SQLException e) {
-					StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-					e.printStackTrace();
+					StatusBar.getInstance().setMessageAsError(
+							DbController.statusDbError(), e);
 				}
 				return HelperNumbersOut.sum(ret);
 			
@@ -160,8 +160,7 @@ public class MoneyListModel extends AbstractTableModel
 			}
 			rs.close();
 		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError("Fehler beim abrufen von Daten aus der Datenbank");
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError("Fehler beim abrufen von Daten aus der Datenbank", e);
 		}
 		
 		// Überprüfen ob die Tabelle neugezeichnet werden soll

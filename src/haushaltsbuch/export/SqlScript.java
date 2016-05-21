@@ -214,12 +214,12 @@ public class SqlScript extends Export {
 			if (fw != null)
 				fw.close();
 		} catch (IOException e) {
-			StatusBar.getInstance().setMessageAsError("Der Zugriff auf die Datei " + file.getName() + " ist Fehlerhauft.");
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError(
+					"Der Zugriff auf die Datei " + file.getName() + 
+					" ist Fehlerhauft.", e);
 		} catch (SQLException e) {
 			StatusBar.getInstance().setMessageAsError(
-					DbController.statusDbError());
-			e.printStackTrace();
+					DbController.statusDbError(), e);
 		}
 	}
 

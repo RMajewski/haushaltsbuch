@@ -141,15 +141,18 @@ public class WndCategoryList extends WndTableFrame implements Printable {
 					if (stm.executeUpdate(DbController.queries().category().update(data.getId(), cc)) > 0) {
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusUpdateOk(data.getId()));
 					} else {
-						StatusBar.getInstance().setMessageAsError(DbController.queries().category().statusUpdateError(data.getId()));
+						StatusBar.getInstance().setMessageAsError(
+								DbController.queries().category()
+									.statusUpdateError(data.getId()), 
+								new String());
 					}
 	
 					// Tabelle neu zeichnen
 					((IdNameListModel)_table.getModel()).dataRefresh(true);
 				}
 			} catch (SQLException e) {
-				StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-				e.printStackTrace();
+				StatusBar.getInstance().setMessageAsError(
+						DbController.statusDbError(), e);
 			}
 		}
 	}
@@ -176,7 +179,9 @@ public class WndCategoryList extends WndTableFrame implements Printable {
 					if (stm.executeUpdate(DbController.queries().category().insert(nc)) > 0) {
 						StatusBar.getInstance().setMessageAsOk(DbController.queries().category().statusInsertOk());
 					} else {
-						StatusBar.getInstance().setMessageAsError(DbController.queries().category().statusInsertError());
+						StatusBar.getInstance().setMessageAsError(
+								DbController.queries().category()
+									.statusInsertError(), new String());
 					}
 				} else {
 					StatusBar.getInstance().setMessage("Kategorie schon verhanden");
@@ -186,8 +191,8 @@ public class WndCategoryList extends WndTableFrame implements Printable {
 				model.dataRefresh(true);
 			}
 		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError(DbController.statusDbError());
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError(
+					DbController.statusDbError(), e);
 		}
 	}
 
