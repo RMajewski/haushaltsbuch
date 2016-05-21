@@ -32,8 +32,8 @@ import haushaltsbuch.dialogs.DlgExportPdf;
 import haushaltsbuch.dialogs.DlgExportSqlScript;
 import haushaltsbuch.dialogs.DlgInfo;
 import haushaltsbuch.dialogs.DlgInputChange;
-import haushaltsbuch.dialogs.DlgLogView;
 import haushaltsbuch.dialogs.DlgReport;
+import haushaltsbuch.windows.internal.WndLogView;
 
 /**
  * Ruft zum testen den angegebenen Dialog auf, damit er mit Jemmy und Fit
@@ -54,11 +54,6 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	 * Gibt an, dass der "Über..."-Dialog angezeigt werden soll.
 	 */
 	public static final String DIALOG_ABOUT = "tests.dialogs.DlgAbout";
-	
-	/**
-	 * Gibt an, dass der Log angezeigt werden soll.
-	 */
-	public static final String DIALOG_LOG = "tests.dialogs.DlgLogView";
 	
 	/**
 	 * Gibt an, dass der Export-Dialog für das SQL-Script angezeigt werden soll.
@@ -132,12 +127,6 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		JButton btn = new JButton(DIALOG_ABOUT);
 		btn.addActionListener(this);
 		btn.setActionCommand(DIALOG_ABOUT);
-		getContentPane().add(btn);
-		
-		// Button zum Anzeigen des Logs
-		btn = new JButton(DIALOG_LOG);
-		btn.addActionListener(this);
-		btn.setActionCommand(DIALOG_LOG);
 		getContentPane().add(btn);
 		
 		// Button zum Anzeigen des Dialogs für Export des SQL-Script
@@ -220,11 +209,6 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 				// "Über..."-Dialog
 				case DIALOG_ABOUT:
 					new DlgAbout(this);
-					break;
-				
-				// Log-Dialog
-				case DIALOG_LOG:
-					new DlgLogView(this);
 					break;
 				
 				// Export SQL-Script

@@ -30,13 +30,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import haushaltsbuch.datas.ReportPreferencesData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgAbout;
-import haushaltsbuch.dialogs.DlgLogView;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.elements.ToolBarMain;
 import haushaltsbuch.export.SqlScript;
 import haushaltsbuch.help.Help;
 import haushaltsbuch.menus.MainTop;
+import haushaltsbuch.windows.internal.WndLogView;
 import haushaltsbuch.windows.internal.WndCategoryList;
 import haushaltsbuch.windows.internal.WndMoneyList;
 import haushaltsbuch.windows.internal.WndReports;
@@ -174,7 +174,7 @@ public class WndMain extends JFrame implements ActionListener {
 				
 			// Log anzeigen
 			case MainTop.LOG_VIEW:
-				new DlgLogView(this);
+				_desktop.addInternalFrame(new WndLogView(_desktop));
 				break;
 				
 			// Wochenübersicht anzeigen

@@ -17,38 +17,43 @@
 * sind dem Lizenztext zu entnehmen.
 */ 
 
-package haushaltsbuch.dialogs;
+package haushaltsbuch.windows.internal;
 
 import java.awt.BorderLayout;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import haushaltsbuch.datas.LogData;
+import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 import haushaltsbuch.renderer.LogViewListRenderer;
+import javax.swing.JSplitPane;
+import javax.swing.JEditorPane;
 
 /**
  * In diesen Dialog wird das Log angezeigt.
  * 
+ * In der Version 0.2 wird vom JDialog zum JInternalFrame gewechselt. Bei
+ * Fehlern wird noch die Fehlermeldung angezeigt. Die Fehlermeldungen können
+ * auch in die Zwischenablage kopiert werden.
+ * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
-public class DlgLogView extends JDialog implements ActionListener {
+public class WndLogView extends WndInternalFrame implements ActionListener {
 	
 	/**
 	 * Speichert den Titel des Dialogs
 	 */
-	public static final String DIALOG_TITLE = "Log";
+	public static final String WND_TITLE = "Log";
 	
 	/**
 	 * ActionCommand für den Ok-Button
@@ -59,25 +64,27 @@ public class DlgLogView extends JDialog implements ActionListener {
 	 * Serialisation ID
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Speichert die Ausgabe für die Fehlermeldungen
+	 */
+	private JEditorPane _txtError;
 
 
 	/**
-	 * Initalisiert und zeigt den Dialog an.
+	 * Initalisiert und zeigt das Fenster an.
 	 * 
-	 * @param owner Vater-Objekt
+	 * @param desktop Desktop des Hauptfensters
 	 */
-	public DlgLogView(Window owner) {
+	public WndLogView(Desktop desktop) {
 		// Dialog initalisieren
-		super(owner);
-		
-		// Modaler Dialog
-		setModal(true);
-		
-		// Größe
-		setSize(600, 400);
+		super(desktop);
 		
 		// Dialog-Titel
-		setTitle(DIALOG_TITLE);
+		setTitle(WND_TITLE);
+		
+		// Größe
+		setSize(1000, 400);
 		
 		// Liste anzeigen
 		final DefaultListModel<LogData> model = new DefaultListModel<LogData>();
@@ -88,14 +95,9 @@ public class DlgLogView extends JDialog implements ActionListener {
 				model.addElement(data);
 			}
 		}
-		getContentPane().setLayout(new BorderLayout(0, 0));
-		JList<LogData> l = new JList<LogData>();
-		l.setModel(model);
-		l.setCellRenderer(new LogViewListRenderer());
 		
-		// Scroll-Pane
-		JScrollPane pane = new JScrollPane(l);
-		getContentPane().add(pane);
+		// Layout
+		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		// Panel für den Button
 		JPanel panel = new JPanel();
@@ -107,10 +109,22 @@ public class DlgLogView extends JDialog implements ActionListener {
 		btnOk.addActionListener(this);
 		btnOk.setActionCommand(OK);
 		panel.add(btnOk);
-
+		
+		JSplitPane splitPane = new JSplitPane();
+		getContentPane().add(splitPane, BorderLayout.CENTER);
+		
+		_txtError = new JEditorPane();
+		splitPane.setRightComponent(new JScrollPane(_txtError));
+		
+		JList<LogData> l = new JList<LogData>();
+		l.setModel(model);
+		l.setCellRenderer(new LogViewListRenderer());
+		
+		// Scroll-Pane
+		JScrollPane pane = new JScrollPane(l);
+		splitPane.setLeftComponent(pane);
 		
 		// Anzeigen
-		pack();
 		setVisible(true);
 	}
 
