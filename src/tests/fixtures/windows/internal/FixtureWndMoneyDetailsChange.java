@@ -164,6 +164,13 @@ public class FixtureWndMoneyDetailsChange extends FixtureWnd {
 	}
 	
 	/**
+	 * Drückt den Abbrechen-Button
+	 */
+	public void pushCancel() {
+		((TestWndMoneyDetailsChange)_test).pushCancel();
+	}
+	
+	/**
 	 * Ermittelt ob das Fenster angezeigt wird.
 	 */
 	@Override

@@ -233,5 +233,12 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 	public void pushSave() {
 		new JButtonOperator(_wndChange, "Speichern").push();
 	}
+	
+	/**
+	 * Es wird der Abbrechen-Button gedruckt
+	 */
+	public void pushCancel() {
+		new JButtonOperator(_wndChange, "Abbrechen").push();
+	}
 
 }

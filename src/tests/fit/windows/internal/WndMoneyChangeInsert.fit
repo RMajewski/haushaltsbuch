@@ -10,12 +10,8 @@
 		Danach wird das gelöscht und überprüft, ob sich ein Hinweis-Dialog
 		öffnet. Als nächstes wird versucht ein Wort in das Text-Feld für das
 		Datum einzugeben. Nachdem das Textfeld den Fokus verloren hat, so wird
-		das Text-Feld automatisch geleert. Nun wird nur der Tag angegben (
-		<i>01.</i>). Wenn das Text-Feld verlassen wird sollte automatisch der
-		Monat und das Jahr hinzugefügt werden. Wenn in das Textfeld nur der Tag
-		und der Monat eingefügt wird (<i>01.01</i>), so sollte automatisch beim
-		wechseln in ein anderes Element das Jahr hinzugefügt werden. Zum Schluss
-		wird noch ein Kommentar eingetragen und dann auf Speichern geklickt. Es
+		das Text-Feld automatisch geleert. Nun wird das Datum und zum Schluss
+		noch ein Kommentar eingetragen und dann auf Speichern geklickt. Es 
 		sollte ein neuer Datensatz erstellt worden sein.</p>
 		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
 			<tbody>
@@ -96,36 +92,6 @@
 					<td>check</td>
 					<td>getDate</td>
 					<td></td>
-				</tr>
-				<tr>
-					<td>enter</td>
-					<td>setDateTextField</td>
-					<td>01.</td>
-				</tr>
-				<tr>
-					<td>press</td>
-					<td>focusRadioButtonIn</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>check</td>
-					<td>haveDateActualMonthAnYear</td>
-					<td>true</td>
-				</tr>
-				<tr>
-					<td>enter</td>
-					<td>setDateTextField</td>
-					<td>01.01.</td>
-				</tr>
-				<tr>
-					<td>press</td>
-					<td>focusRadioButtonIn</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>check</td>
-					<td>haveDateActualYear</td>
-					<td>true</td>
 				</tr>
 				<tr>
 					<td>enter</td>

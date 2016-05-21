@@ -188,6 +188,13 @@ public class TestWndMoneyChange extends GuiWndTest {
 	public void pushSave() {
 		new JButtonOperator(_wndChange, "Speichern").push();
 	}
+
+	/**
+	 * Klickt auf Abbrechen
+	 */
+	public void pushCancel() {
+		new JButtonOperator(_wndChange, "Abbrechen").push();
+	}
 	
 	/**
 	 * Den Fokus bekommt der Radio-Button "Einnahme"

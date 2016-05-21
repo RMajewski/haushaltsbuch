@@ -223,6 +223,13 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 	}
 	
 	/**
+	 * Drückt den Abbrechen-Button
+	 */
+	public void pushCancel() {
+		((TestWndMoneyChange)_test).pushCancel();
+	}
+	
+	/**
 	 * Ermittelt, ob das Unterfenster angezeigt wird.
 	 * 
 	 * @return Wird das Unterfenster angezeigt?

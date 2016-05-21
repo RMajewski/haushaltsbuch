@@ -1,14 +1,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Unterfenster: Einnahmen und Ausgaben Einfügen (Abbrechen)</title>
+		<title>Unterfenster: Details zu Einnahmen und Ausgaben Einfügen (Abbrechen)</title>
 	</head>
 	<body>
-		<h2>Unterfenster: Einnahmen und Ausgaben Einfügen (Abbrechen)</h2>
+		<h2>Unterfenster: Details zu Einnahmen und Ausgaben Einfügen (Abbrechen)</h2>
 		
-		<p>Startet das Fenster zum eingaben der Date für Einnahmen und Ausgaben.
-		Es wird das Fenster mit Abbrechen beendet. Nun wird überprüft, ob es
-		keinen neuen Eintrag in die Datenbank-Tabelle "money" gibt.</p>
+		<p>Startet das Fenster zum eingaben der Details für die Einnahmen und
+		die Ausgaben. Es wird auf abbrechen geklickt. Danach wird überprüft, ob
+		kein Datensatz angelegt wurde.</p>
 		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
 			<tbody>
 				<tr>
@@ -16,7 +16,7 @@
 				</tr>
 				<tr>
 					<td>start</td>
-					<td>tests.fixtures.windows.internal.FixtureWndMoneyChange</td>
+					<td>tests.fixtures.windows.internal.FixtureWndMoneyDetailsChange</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
