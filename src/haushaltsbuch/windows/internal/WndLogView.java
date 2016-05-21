@@ -28,6 +28,10 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -44,9 +48,12 @@ import haushaltsbuch.text.ErrorSyntax;
 import javax.swing.JSplitPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.Document;
 import javax.swing.text.StyledEditorKit;
 import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
+
 import java.awt.Component;
 import javax.swing.Box;
 
@@ -79,6 +86,11 @@ public class WndLogView extends WndInternalFrame
 	 * ActionCommand zum Einfügen in die ZWischenablage
 	 */
 	private static final String CLIPBOARD = "WndLogViewClipboard";
+	
+	/**
+	 * ActionCommand zum Speichern der Log
+	 */
+	private static final String SAVE = "WndLogViewSave";
 
 	/**
 	 * Serialisation ID
@@ -146,6 +158,12 @@ public class WndLogView extends WndInternalFrame
 		btnClipboard.addActionListener(this);
 		panel.add(btnClipboard);
 		
+		JButton btnSave = new JButton("Speichern");
+		btnSave.setMnemonic('S');
+		btnSave.setActionCommand(SAVE);
+		btnSave.addActionListener(this);
+		panel.add(btnSave);
+		
 		JSplitPane splitPane = new JSplitPane();
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
@@ -187,7 +205,7 @@ public class WndLogView extends WndInternalFrame
 	}
 
 	/**
-	 * Reagiert auf den Klick des Buttons
+	 * Reagiert auf den Klick eines der Buttons
 	 * 
 	 * @param ae Event-Daten
 	 */
@@ -200,6 +218,41 @@ public class WndLogView extends WndInternalFrame
 			Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
 			StringSelection sc = new StringSelection(_txtError.getText());
 			cb.setContents(sc, this);
+		}
+		
+		else if (ae.getActionCommand().equals(SAVE)) {
+			// Speichern-Dialog aufrufen
+			JFileChooser fc = new JFileChooser();
+			fc.setFileFilter(new FileNameExtensionFilter("Log-Datei log", "log"));
+			fc.setDialogTitle("Log speichern");
+			int state = fc.showSaveDialog(null);
+			
+			if (state == JFileChooser.APPROVE_OPTION) {
+				try {
+					File file = fc.getSelectedFile();
+					FileWriter fw = new FileWriter(file);
+					BufferedWriter bw = new BufferedWriter(fw);
+					
+					for (int i = 0; i < _listLog.getModel().getSize(); i++) {
+						if (i > 0)
+							bw.write(System.lineSeparator());
+						
+						LogData data = _listLog.getModel().getElementAt(i);
+						
+						bw.write(data.getMessage());
+						bw.write(System.lineSeparator());
+						
+						if (!data.getError().isEmpty()) {
+							bw.write(data.getError());
+							bw.write(System.lineSeparator());
+						}
+					}
+					
+					bw.close();
+				} catch (IOException e) {
+					StatusBar.getInstance().setMessageAsError(e);
+				}
+			}
 		}
 	}
 
