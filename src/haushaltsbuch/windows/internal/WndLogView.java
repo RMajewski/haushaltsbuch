@@ -193,12 +193,90 @@ public class WndLogView extends WndInternalFrame
 
 			@Override
 			public Document createDefaultDocument() {
+				// Syntax-Highlighting initialisieren
 				ErrorSyntax syntax = new ErrorSyntax();
-				syntax.addKeyword("java", 
-						ErrorSyntax.DEFAULT_ERROR);
+				
+				// Fehlerklassen von Java
 				syntax.addException("java.lang.Exception");
+				
+				syntax.addException("java.lang.IllegalArgumentException");
+				
+				syntax.addException("java.lang.ClassNotFoundException");
+				syntax.addException("java.lang.ClassCastException");
+				syntax.addException("java.lang.InterruptedException");
+				syntax.addException("java.lang.RuntimeException");
+				syntax.addException("java.lang.NullPointerException");
+				syntax.addException("java.lang.ArithmeticException");
+				syntax.addException("java.lang.ArrayStoreException");
+				syntax.addException("java.lang.CloneNotSupportedException");
+				syntax.addException("java.lang.EnumConstantNotPresentException");
+				syntax.addException("java.lang.IllegalMonitorStateException");
+				syntax.addException("java.lang.IllegalStateException");
+				syntax.addException("java.lang.IndexOutOfBoundsException");
+				syntax.addException("java.lang.ArrayIndexOutOfBoundsException");
+				syntax.addException("java.lang.StringIndexOutOfBoundsException");
+				syntax.addException("java.lang.NegativeArraySizeException");
+				syntax.addException("java.lang.SecurityException");
+				syntax.addException("java.lang.TypeNotPresentException");
+				syntax.addException("java.lang.UnsupportedOperationException");
+				syntax.addException("java.lang.annotation.AnnotationTypeMismatchException");
+				syntax.addException("java.lang.annotation.IncompleteAnnotationException");
+				syntax.addException("java.lang.invoke.WrongMethodTypeException");
+				syntax.addException("java.lang.reflect.MalformedParameterizedTypeException");
+				syntax.addException("java.lang.reflect.UndeclaredThrowableException");
+				syntax.addException("javax.lang.model.type.MirroredTypesException");
+				syntax.addException("javax.management.JMRuntimeException");
+				syntax.addException("java.security.ProviderException");
+				syntax.addException("java.nio.BufferOverflowException");
+				syntax.addException("java.nio.BufferUnderflowException");
+				syntax.addException("java.nio.file.FileSystemAlreadyExistsException");
+				syntax.addException("java.nio.file.FileSystemNotFoundException");
+				syntax.addException("java.nio.file.ProviderNotFoundException");
+				syntax.addException("java.io.IOException");
+				syntax.addException("java.io.FileNotFoundException");
+				syntax.addException("java.io.ObjectStreamException");
+				syntax.addException("java.io.NotSerializableException");
+				syntax.addException("java.net.MalformedURLException");
+				syntax.addException("java.util.ConcurrentModificationException");
+				syntax.addException("java.util.EmptyStackException");
+				syntax.addException("java.util.IllformedLocaleException");
+				syntax.addException("java.util.MissingResourceException");
+				syntax.addException("java.util.NoSuchElementException");
+				syntax.addException("java.util.concurrent.RejectedExecutionException");
+				syntax.addException("javax.xml.bind.DataBindingException");
+				syntax.addException("javax.lang.model.UnknownEntityException");
+				syntax.addException("javax.print.attribute.UnmodifiableSetException");
+				syntax.addException("org.w3c.dom.DOMException");
+				syntax.addException("org.w3c.dom.events.EventException");
+				syntax.addException("org.w3c.dom.ls.LSException");
+				syntax.addException("javax.xml.crypto.NoSuchMechanismException");
+				syntax.addException("javax.xml.bind.TypeConstraintException");
+				syntax.addException("javax.xml.ws.WebServiceException");
+				syntax.addException("javax.swing.undo.CannotRedoException");
+				syntax.addException("javax.swing.undo.CannotUndoException");
+				syntax.addException("java.awt.color.CMMException");
+				syntax.addException("java.awt.geom.IllegalPathStateException");
+				syntax.addException("java.awt.image.ImagingOpException");
+				syntax.addException("java.awt.color.ProfileDataException");
+				syntax.addException("java.awt.image.RasterFormatException");
+				syntax.addException("org.omg.CORBA.SystemException");
+				
+				// Fehlerklassen von SQLite
+				syntax.addException("java.sql.SQLException");
+
+				// Fehlerklassen von Itext
+				syntax.addException("com.itextpdf.text.exceptions.BadPasswordException");
+				syntax.addException("com.itextpdf.text.exceptions.IllegalPdfSyntaxException");
+				syntax.addException("com.itextpdf.text.exceptions.InvalidImageException");
+				syntax.addException("com.itextpdf.text.exceptions.InvalidPdfException");
+				syntax.addException("com.itextpdf.text.exceptions.UnsupportedPdfException");
+				syntax.addException("com.itextpdf.xmp.XMPException");
+				
+				// Eigene Klassen
 				syntax.addClassName("haushaltsbuch", 
 						ErrorSyntax.DEFAULT_CLASSES);
+				
+				// Syntax-Highlighting zurück geben
 				return syntax;
 			}
 		};
