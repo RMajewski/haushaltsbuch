@@ -37,7 +37,7 @@ import haushaltsbuch.elements.StatusBar;
  * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class TestStatusBar {
@@ -97,7 +97,7 @@ public class TestStatusBar {
 	 * @see haushaltsbuch.elements.StatusBar#getInstance()
 	 */
 	@Test
-	public void testGetInstanceAfterCloser() {
+	public void testGetInstanceAfterClose() {
 		StatusBar.getInstance().close();
 		assertNotNull(StatusBar.getInstance());
 	}
@@ -118,9 +118,10 @@ public class TestStatusBar {
 	 * Testet, ob eine "normale" Nachricht in die Liste eingefügt werden wird.
 	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
+	 * @deprecated
 	 */
 	@Test
-	public void testSetMessageInsertList() {
+	public void testSetMessageInsertListDeprecated() {
 		String message = "Dies ist ein Test";
 		StatusBar.getInstance().setMessage(message);
 		List<LogData> list = StatusBar.getInstance().getLog();
@@ -130,14 +131,46 @@ public class TestStatusBar {
 	}
 	
 	/**
+	 * Testet, ob eine "normale" Nachricht in die Liste eingefügt werden wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
+	 */
+	@Test
+	public void testSetMessageInsertList() {
+		String message = "Dies ist ein Test";
+		String error = "Fehlerbericht";
+		StatusBar.getInstance().setMessage(message, error);
+		List<LogData> list = StatusBar.getInstance().getLog();
+		assertEquals(1, list.size());
+		assertEquals(LogData.NONE, list.get(0).getOut());
+		assertEquals(message, list.get(0).getMessage());
+		assertEquals(error, list.get(0).getError());
+	}
+	
+	/**
 	 * Testet, ob eine "normale" Nachricht angezeigt wird.
 	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageDrawMessageDeprecated() {
+		String message = "Dies ist ein Test";
+		StatusBar.getInstance().setMessage(message);
+		assertEquals(message, StatusBar.getInstance().getText());
+		assertEquals(LogData.COLOR_NONE, StatusBar.getInstance().getBackground());
+	}
+	
+	/**
+	 * Testet, ob eine "normale" Nachricht angezeigt wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
 	 */
 	@Test
 	public void testSetMessageDrawMessage() {
 		String message = "Dies ist ein Test";
-		StatusBar.getInstance().setMessage(message);
+		String error = "Fehlerbericht";
+		StatusBar.getInstance().setMessage(message, error);
 		assertEquals(message, StatusBar.getInstance().getText());
 		assertEquals(LogData.COLOR_NONE, StatusBar.getInstance().getBackground());
 	}
@@ -146,9 +179,10 @@ public class TestStatusBar {
 	 * Testet, ob eine Warnung in die Liste eingefügt werden wird.
 	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
+	 * @deprecated
 	 */
 	@Test
-	public void testSetMessageAsWarningInsertList() {
+	public void testSetMessageAsWarningInsertListDeprecated() {
 		String message = "Dies ist ein Test";
 		StatusBar.getInstance().setMessageAsWarning(message);
 		List<LogData> list = StatusBar.getInstance().getLog();
@@ -158,14 +192,46 @@ public class TestStatusBar {
 	}
 	
 	/**
+	 * Testet, ob eine Warnung in die Liste eingefügt werden wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
+	 */
+	@Test
+	public void testSetMessageAsWarningInsertList() {
+		String message = "Dies ist ein Test";
+		String error = "Fehlerbericht";
+		StatusBar.getInstance().setMessageAsWarning(message, error);
+		List<LogData> list = StatusBar.getInstance().getLog();
+		assertEquals(1, list.size());
+		assertEquals(LogData.WARNING, list.get(0).getOut());
+		assertEquals(message, list.get(0).getMessage());
+		assertEquals(error, list.get(0).getError());
+	}
+	
+	/**
 	 * Testet, ob eine Warnung angezeigt wird.
 	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageAsWarningDrawMessageDeprecated() {
+		String message = "Dies ist ein Test";
+		StatusBar.getInstance().setMessageAsWarning(message);
+		assertEquals(message, StatusBar.getInstance().getText());
+		assertEquals(LogData.COLOR_WARNING, StatusBar.getInstance().getBackground());
+	}
+	
+	/**
+	 * Testet, ob eine Warnung angezeigt wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
 	 */
 	@Test
 	public void testSetMessageAsWarningDrawMessage() {
 		String message = "Dies ist ein Test";
-		StatusBar.getInstance().setMessageAsWarning(message);
+		String error = "Fehlerbericht";
+		StatusBar.getInstance().setMessageAsWarning(message, error);
 		assertEquals(message, StatusBar.getInstance().getText());
 		assertEquals(LogData.COLOR_WARNING, StatusBar.getInstance().getBackground());
 	}
@@ -174,9 +240,10 @@ public class TestStatusBar {
 	 * Testet, ob ein Fehler in die Liste eingefügt werden wird.
 	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
+	 * @deprecated
 	 */
 	@Test
-	public void testSetMessageAsErrorInsertList() {
+	public void testSetMessageAsErrorInsertListDeprecated() {
 		String message = "Dies ist ein Test";
 		StatusBar.getInstance().setMessageAsError(message);
 		List<LogData> list = StatusBar.getInstance().getLog();
@@ -186,14 +253,46 @@ public class TestStatusBar {
 	}
 	
 	/**
+	 * Testet, ob ein Fehler in die Liste eingefügt werden wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
+	 */
+	@Test
+	public void testSetMessageAsErrorInsertList() {
+		String message = "Dies ist ein Test";
+		String error = "Fehlerbericht";
+		StatusBar.getInstance().setMessageAsError(message, error);
+		List<LogData> list = StatusBar.getInstance().getLog();
+		assertEquals(1, list.size());
+		assertEquals(LogData.ERROR, list.get(0).getOut());
+		assertEquals(message, list.get(0).getMessage());
+		assertEquals(error, list.get(0).getError());
+	}
+	
+	/**
 	 * Testet, ob ein Fehler angezeigt wird.
 	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageAsErrorDrawMessageDeprecated() {
+		String message = "Dies ist ein Test";
+		StatusBar.getInstance().setMessageAsError(message);
+		assertEquals(message, StatusBar.getInstance().getText());
+		assertEquals(LogData.COLOR_ERROR, StatusBar.getInstance().getBackground());
+	}
+	
+	/**
+	 * Testet, ob ein Fehler angezeigt wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
 	 */
 	@Test
 	public void testSetMessageAsErrorDrawMessage() {
 		String message = "Dies ist ein Test";
-		StatusBar.getInstance().setMessageAsError(message);
+		String error = "Fehlerbericht";
+		StatusBar.getInstance().setMessageAsError(message, error);
 		assertEquals(message, StatusBar.getInstance().getText());
 		assertEquals(LogData.COLOR_ERROR, StatusBar.getInstance().getBackground());
 	}
@@ -203,9 +302,10 @@ public class TestStatusBar {
 	 * Liste eingefügt wird.
 	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
+	 * @deprecated
 	 */
 	@Test
-	public void testSetMessageAsNoOutInsertList() {
+	public void testSetMessageAsNoOutInsertListDeprecated() {
 		String message = "Dies ist ein Test";
 		StatusBar.getInstance().setMessageAsNoOut(message);
 		List<LogData> list = StatusBar.getInstance().getLog();
@@ -215,15 +315,48 @@ public class TestStatusBar {
 	}
 	
 	/**
+	 * Testet, ob eine Nachricht, die nicht angezeigt werden soll, in die
+	 * Liste eingefügt wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
+	 */
+	@Test
+	public void testSetMessageAsNoOutInsertList() {
+		String message = "Dies ist ein Test";
+		String error = "Fehlerbericht";
+		StatusBar.getInstance().setMessageAsNoOut(message, error);
+		List<LogData> list = StatusBar.getInstance().getLog();
+		assertEquals(1, list.size());
+		assertEquals(LogData.NO_OUT, list.get(0).getOut());
+		assertEquals(message, list.get(0).getMessage());
+		assertEquals(error, list.get(0).getError());
+	}
+	
+	/**
 	 * Testet, ob eine Nachricht, die nicht angezeigt werden soll, auch nicht
 	 * angezeigt wird.
 	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageAsNoOutDrawMessageDeprecated() {
+		String message = "Dies ist ein Test";
+		StatusBar.getInstance().setMessageAsNoOut(message);
+		assertEquals("", StatusBar.getInstance().getText());
+	}
+	
+	/**
+	 * Testet, ob eine Nachricht, die nicht angezeigt werden soll, auch nicht
+	 * angezeigt wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
 	 */
 	@Test
 	public void testSetMessageAsNoOutDrawMessage() {
 		String message = "Dies ist ein Test";
-		StatusBar.getInstance().setMessageAsNoOut(message);
+		String error = "Fehlerbericht";
+		StatusBar.getInstance().setMessageAsNoOut(message, error);
 		assertEquals("", StatusBar.getInstance().getText());
 	}
 	
@@ -232,9 +365,10 @@ public class TestStatusBar {
 	 * werden wird.
 	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
+	 * @deprecated
 	 */
 	@Test
-	public void testSetMessageAsOkInsertList() {
+	public void testSetMessageAsOkInsertListDeprecated() {
 		String message = "Dies ist ein Test";
 		StatusBar.getInstance().setMessageAsOk(message);
 		List<LogData> list = StatusBar.getInstance().getLog();
@@ -244,14 +378,47 @@ public class TestStatusBar {
 	}
 	
 	/**
+	 * Testet, ob eine alles "In Ordnung"-Nachricht in die Liste eingefügt
+	 * werden wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
+	 */
+	@Test
+	public void testSetMessageAsOkInsertList() {
+		String message = "Dies ist ein Test";
+		String error = "Fehlerbericht";
+		StatusBar.getInstance().setMessageAsOk(message, error);
+		List<LogData> list = StatusBar.getInstance().getLog();
+		assertEquals(1, list.size());
+		assertEquals(LogData.OK, list.get(0).getOut());
+		assertEquals(message, list.get(0).getMessage());
+		assertEquals(error, list.get(0).getError());
+	}
+	
+	/**
 	 * Testet, ob eine alles "In Ordnung"-Nachricht angezeigt wird.
 	 * 
 	 * @see haushaltsbuch.elements.StatusBar#setMessage(String)
+	 * @deprecated
+	 */
+	@Test
+	public void testSetMessageAsOkDrawMessageDeprecated() {
+		String message = "Dies ist ein Test";
+		StatusBar.getInstance().setMessageAsOk(message);
+		assertEquals(message, StatusBar.getInstance().getText());
+		assertEquals(LogData.COLOR_OK, StatusBar.getInstance().getBackground());
+	}
+	
+	/**
+	 * Testet, ob eine alles "In Ordnung"-Nachricht angezeigt wird.
+	 * 
+	 * @see haushaltsbuch.elements.StatusBar#setMessage(String, String)
 	 */
 	@Test
 	public void testSetMessageAsOkDrawMessage() {
 		String message = "Dies ist ein Test";
-		StatusBar.getInstance().setMessageAsOk(message);
+		String error = "Fehlerbericht";
+		StatusBar.getInstance().setMessageAsOk(message, error);
 		assertEquals(message, StatusBar.getInstance().getText());
 		assertEquals(LogData.COLOR_OK, StatusBar.getInstance().getBackground());
 	}

@@ -31,9 +31,15 @@ import haushaltsbuch.datas.LogData;
 /**
  * Zeigt die StatusBar an.
  * 
+ * In der Version 0.2 wird die Fehlerbeschreibung zum LogData hinzugefügt. Aus
+ * diesem Grund sind die bisherigen Methoden zur Erstellung von
+ * LogData-Einträgen deprecated. Bitte die entsprechenden neuen Methoden
+ * verwenden. Die bisherigen Methoden bleiben aus Kompatibilitätsgründen erst
+ * einmal bestehen.
+ * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class StatusBar extends JLabel {
@@ -89,6 +95,8 @@ public class StatusBar extends JLabel {
 	 * Text anzeigen
 	 * 
 	 * @param message Text, der angezeigt werden soll.
+	 * 
+	 * @deprecated Neue zu verwendende Methode {@link #setMessage(String, String)}
 	 */
 	public void setMessage(String message)
 	{
@@ -98,19 +106,51 @@ public class StatusBar extends JLabel {
 	}
 	
 	/**
+	 * Text anzeigen
+	 * 
+	 * @param message Text, der angezeigt werden soll.
+	 * 
+	 * @param error Fehlerbeschreibung
+	 */
+	public void setMessage(String message, String error)
+	{
+		setText(message);
+		setBackground(LogData.COLOR_NONE);
+		_list.add(new LogData(message, error));
+	}
+	
+	/**
 	 * Speichert die übergebene Nachricht und markiert sie so, dass sie nicht
 	 * ausgegeben werden soll
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @deprecated Neue zu verwendende Methode
+	 * {@link #setMessageAsNoOut(String, String)}
 	 */
 	public void setMessageAsNoOut(String message) {
 		_list.add(new LogData(message, LogData.NO_OUT));
 	}
 	
 	/**
+	 * Speichert die übergebene Nachricht und markiert sie so, dass sie nicht
+	 * ausgegeben werden soll
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @param error Fehlerbeschreibung
+	 */
+	public void setMessageAsNoOut(String message, String error) {
+		_list.add(new LogData(message, error, LogData.NO_OUT));
+	}
+	
+	/**
 	 * Speichert die übergebene Nachricht und markiert sie als Fehler.
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @deprecated Neue zu verwendende Methode
+	 * {@link #setMessageAsError(String, String)}
 	 */
 	public void setMessageAsError(String message) {
 		setText(message);
@@ -119,9 +159,25 @@ public class StatusBar extends JLabel {
 	}
 	
 	/**
+	 * Speichert die übergebene Nachricht und markiert sie als Fehler.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @param error Fehlerbeschreibung
+	 */
+	public void setMessageAsError(String message, String error) {
+		setText(message);
+		setBackground(LogData.COLOR_ERROR);
+		_list.add(new LogData(message, error, LogData.ERROR));
+	}
+	
+	/**
 	 * Speichert die übergebene Nachricht und markeirt sie als Warnung.
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @deprecated Neue zu verwendende Nachricht
+	 * {@link #setMessageAsWarning(String, String)}
 	 */
 	public void setMessageAsWarning(String message) {
 		setText(message);
@@ -130,14 +186,43 @@ public class StatusBar extends JLabel {
 	}
 	
 	/**
+	 * Speichert die übergebene Nachricht und markeirt sie als Warnung.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll
+	 * 
+	 * @param error Fehlerbeschreibung
+	 */
+	public void setMessageAsWarning(String message, String error) {
+		setText(message);
+		setBackground(LogData.COLOR_WARNING);
+		_list.add(new LogData(message, error, LogData.WARNING));
+	}
+	
+	/**
 	 * Speichert die Übergebene Nachricht als Erfolgreich.
 	 * 
 	 * @param message Nachricht, die gespeichert werden soll.
+	 * 
+	 * @deprecated Neue zu verwendende Methode
+	 * {@link #setMessageAsOk(String, String)}
 	 */
 	public void setMessageAsOk(String message) {
 		setText(message);
 		setBackground(LogData.COLOR_OK);
 		_list.add(new LogData(message, LogData.OK));
+	}
+	
+	/**
+	 * Speichert die Übergebene Nachricht als Erfolgreich.
+	 * 
+	 * @param message Nachricht, die gespeichert werden soll.
+	 * 
+	 * @param error Fehlerbeschreibung
+	 */
+	public void setMessageAsOk(String message, String error) {
+		setText(message);
+		setBackground(LogData.COLOR_OK);
+		_list.add(new LogData(message, error, LogData.OK));
 	}
 	
 	/**
