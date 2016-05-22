@@ -19,7 +19,10 @@
 
 package tests.tests.windows.internal;
 
+import java.text.ParseException;
 import java.util.Date;
+
+import javax.swing.JFormattedTextField;
 
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JComboBoxOperator;
@@ -74,6 +77,11 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 	private JTextAreaOperator _comment;
 	
 	/**
+	 * Speichert das Datum
+	 */
+	private String _date;
+	
+	/**
 	 * Initalisiert die Klasse
 	 */
 	public TestWndMoneyDetailsChange() throws Exception {
@@ -82,9 +90,9 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 		DbController.getInstance().createStatement().executeUpdate(
 				DbController.queries().money().insert(new Date().getTime(), 
 						true, "Dies ist ein Test"));
-		
+	
 		// Fenster für Einnahmen und Ausgaben aufrufen
-		String date = HelperCalendar.dateToString(new Date().getTime());
+		_date = HelperCalendar.dateToString(new Date().getTime());
 		testInit(WndMoneyList.WND_TITLE, TestWndMoneyList.MENU_PATH, false);
 		
 		
@@ -96,13 +104,34 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 		// Fenster für Details aufrufen
 		_table.clickMouse(0, 0, 2);
 		_wndDetails = new JInternalFrameOperator(_wnd, "Details zur Einnahme "
-				+ "vom " + date);
+				+ "vom " + _date);
 		_table = new JTableOperator(_wndDetails);
-
+	}
+	
+	/**
+	 * Öffnet das Fenster zum Datensatz Einfügen.
+	 */
+	public void pushInsert() {
 		// Fenster fürs Einfügen aufrufen
 		callPopup();
 		pushPopup("Neu");
 		_wndChange = new JInternalFrameOperator(_wnd, "Datensatz erstellen");
+		
+		// Komponenten ermitteln
+		_category = new JComboBoxOperator(_wndChange, 0);
+		_section = new JComboBoxOperator(_wndChange, 1);
+		_money = new JTextFieldOperator(_wndChange);
+		_comment = new JTextAreaOperator(_wndChange);
+	}
+	
+	/**
+	 * Öffnet das Fenster zum Datensatz Ändern.
+	 */
+	public void pushChange() {
+		// Fenster fürs Einfügen aufrufen
+		callPopup();
+		pushPopup("Ändern");
+		_wndChange = new JInternalFrameOperator(_wnd, "Datensatz ändern");
 		
 		// Komponenten ermitteln
 		_category = new JComboBoxOperator(_wndChange, 0);
@@ -190,9 +219,11 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 	 * Setzt im Eingabefeld für den Betrag den Text neu.
 	 * 
 	 * @param str Neuer Text für das Eingabefeld
+	 * @throws ParseException 
 	 */
-	public void setMoneyText(String str) {
+	public void setMoneyText(String str) throws ParseException {
 		_money.setText(str);
+		((JFormattedTextField)_money.getSource()).commitEdit();
 	}
 	
 	/**
@@ -207,6 +238,7 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 	 */
 	public void setFocusToCommentTextArea() {
 		_comment.requestFocus();
+		_comment.waitHasFocus();
 	}
 	
 	/**
@@ -240,5 +272,31 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 	public void pushCancel() {
 		new JButtonOperator(_wndChange, "Abbrechen").push();
 	}
+	
+	/**
+	 * Ermittelt den Namen der ausgewählten Kategorie
+	 * 
+	 * @return Name der ausgewählten Kategorie
+	 */
+	public String getCategoryComboBoxText() {
+		return _category.getSelectedItem().toString();
+	}
+	
+	/**
+	 * Ermittelt den Namen des ausgewählten Geschäfts
+	 * 
+	 * @return Name des ausgewählten Geschäfts
+	 */
+	public String getSectionComboBoxText() {
+		return _section.getSelectedItem().toString();
+	}
 
+	/**
+	 * Ermittelt den Text des Eingabefeldes für den Kommentar
+	 * 
+	 * @return Text des Eingabefeldes für den Kommentar
+	 */
+	public String getCommentTextAreaText() {
+		return _comment.getDisplayedText();
+	}
 }

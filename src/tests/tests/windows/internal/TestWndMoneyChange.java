@@ -244,7 +244,7 @@ public class TestWndMoneyChange extends GuiWndTest {
 	 * @return Text vom Datums-Feld
 	 */
 	public String getTextFromDate() {
-		return String.valueOf(((JFormattedTextField)_date.getSource()).getText());
+		return _date.getDisplayedText();
 	}
 	
 	/**

@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Details zu Einnahmen und Ausgaben Einfügen (Ändern)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Details Einnahmen und Ausgaben Einfügen (Ändern)</h2>
+		
+		<p>Startet das Fenster zu Ändern der Details der Einnahmen und Ausgaben.
+		Es wird überprüft, ob die Daten vom Datensatz in den Eingabe-Feldern
+		vorhanden sind. Dann wird der Betrag geändert und gespeichert. Nun wird
+		überprüft, ob der Betrag geändert wurde.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndMoneyDetailsChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectTableRow0</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getCategoryComboBoxText</td>
+					<td>Lebensmittel</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSectionComboBoxText</td>
+					<td>jobcenter</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getMoneyTextFieldText</td>
+					<td>10,89</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getCommentTextAreaText</td>
+					<td>Dies ist ein Test</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setMoneyText</td>
+					<td>44,98</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>focusCommentArea</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushSave</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbMoney</td>
+					<td>44.98</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

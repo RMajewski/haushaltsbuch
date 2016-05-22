@@ -21,6 +21,7 @@ package tests.fixtures.windows.internal;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import haushaltsbuch.db.DbController;
 import tests.fixtures.FixtureWnd;
@@ -120,8 +121,9 @@ public class FixtureWndMoneyDetailsChange extends FixtureWnd {
 	 * Setzt den Text in den Eingabefeld für den Betrag.
 	 * 
 	 * @param str Text, der in das Eingabefeld übertragen werden soll.
+	 * @throws ParseException 
 	 */
-	public void setMoneyText(String str) {
+	public void setMoneyText(String str) throws ParseException {
 		((TestWndMoneyDetailsChange)_test).setMoneyText(str);
 	}
 	
@@ -168,6 +170,76 @@ public class FixtureWndMoneyDetailsChange extends FixtureWnd {
 	 */
 	public void pushCancel() {
 		((TestWndMoneyDetailsChange)_test).pushCancel();
+	}
+	
+	/**
+	 * Öffnet das Fenster zum Einfügen
+	 */
+	public void pushInsert() {
+		((TestWndMoneyDetailsChange)_test).pushInsert();
+	}
+	
+	/**
+	 * Öffnet das Fenster zum Ändern
+	 */
+	public void pushChange() {
+		((TestWndMoneyDetailsChange)_test).pushChange();
+	}
+	
+	/**
+	 * Selektiert die 1. Zeile der Tabelle
+	 */
+	public void selectTableRow0() {
+		_test.tableSelectRow(0);
+	}
+	
+	/**
+	 * Ermittelt den Text der Kombobox für die Kategorie
+	 * 
+	 * @return Name der ausgwählten Kategorie
+	 */
+	public String getCategoryComboBoxText() {
+		return ((TestWndMoneyDetailsChange)_test).getCategoryComboBoxText();
+	}
+	
+	/**
+	 * Ermittelt den Text der Kombobox für die Geschäfte
+	 * 
+	 * @return Name des ausgewählten Geschäftes
+	 */
+	public String getSectionComboBoxText() {
+		return ((TestWndMoneyDetailsChange)_test).getSectionComboBoxText();
+	}
+	
+	/**
+	 * Ermittelt den Text der Eingabe des Betrages.
+	 * 
+	 * @return Text des Betrag-Eingabefeldes
+	 */
+	public String getMoneyTextFieldText() {
+		return ((TestWndMoneyDetailsChange)_test).getTextFromMoneyTextField();
+	}
+	
+	/**
+	 * Ermittelt den Text der Eingabe des Kommentares
+	 * 
+	 * @return Text des Kommentares
+	 */
+	public String getCommentTextAreaText() {
+		return ((TestWndMoneyDetailsChange)_test).getCommentTextAreaText();
+	}
+	
+	/**
+	 * Ermittelt den Betrag des geänderten Datensatzes
+	 * 
+	 * @return Betrag des Datensatzes
+	 */
+	public String getDbMoney() throws SQLException {
+		ResultSet rs = DbController.getInstance().createStatement()
+				.executeQuery(DbController.queries().moneyDetails()
+						.search("id", 1));
+		
+		return String.valueOf(rs.getDouble("money"));
 	}
 	
 	/**

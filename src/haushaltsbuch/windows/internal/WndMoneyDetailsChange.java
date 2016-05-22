@@ -217,8 +217,7 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 				
 				// Beschreibung ermitteln
 				_txtComment.selectAll();
-				String comment = _txtComment.getSelectedText();
-				System.out.println(comment);
+				String comment = _txtComment.getText();
 				
 				// Neuer Datensatz oder Datensatz ändern?
 				if (_data.getId() == -1) {

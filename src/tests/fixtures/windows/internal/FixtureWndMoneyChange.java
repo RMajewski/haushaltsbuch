@@ -161,7 +161,6 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 	 */
 	public void focusRadioButtonIn() throws InterruptedException {
 		((TestWndMoneyChange)_test).setFocusToIn();
-		((TestWndMoneyChange)_test).setFocusToOut();
 	}
 	
 	/**
@@ -181,13 +180,19 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 	 * wenn nicht.
 	 * @throws InterruptedException 
 	 */
-	public boolean haveDateActualMonthAnYear() throws InterruptedException {
+	public boolean haveDateActualMonthAndYear() throws InterruptedException {
 		// Vorbereitungen
 		String[] tmp = ((TestWndMoneyChange)_test).getTextFromDate().split(".");
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(new Date());
 		int month = gc.get(GregorianCalendar.MONTH) + 1;
 		int year = gc.get(GregorianCalendar.YEAR);
+		
+		System.out.println();
+		System.out.println();
+		System.out.println(((TestWndMoneyChange)_test).getTextFromDate());
+		System.out.println();
+		System.out.println();
 		
 		// Überprüfen ob der Monat und das Jahr hinzugefügt wurden.
 		if ((tmp.length == 3) && tmp[1].equals(String.valueOf(month)) &&

@@ -126,8 +126,6 @@ public class WndLogView extends WndInternalFrame
 		// Liste anzeigen
 		final DefaultListModel<LogData> model = new DefaultListModel<LogData>();
 		StatusBar status = StatusBar.getInstance();
-		status.setMessageAsError(new Exception());
-		status.setMessageAsError(new Exception("Dies ist ein Test"));
 		for (int i = 0; i < status.getLog().size(); i++) {
 			LogData data = status.getLog().get(i);
 			if (data.getOut() != LogData.NO_OUT) {
