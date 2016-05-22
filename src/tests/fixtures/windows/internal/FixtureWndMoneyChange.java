@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.helper.HelperCalendar;
 import tests.fixtures.FixtureWnd;
 import tests.tests.windows.internal.TestWndMoneyChange;
 
@@ -33,9 +34,13 @@ import tests.tests.windows.internal.TestWndMoneyChange;
  * Stellt die Schnittstelle zwischen den Fit-Tests für das Fenster
  * WndMoneyChange und dem Test-Programm TestWndMoneyChange dar.
  * 
+ * In der Version 0.2 kann das Fenster sowohl zum "Einfügen für Einnahmen und 
+ * Ausgaben" dienen als auch für das ändern eines Datensatzes.
+ * 
+ * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.2
  */
 public class FixtureWndMoneyChange extends FixtureWnd {
@@ -46,6 +51,20 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 	 */
 	public FixtureWndMoneyChange() throws Exception {
 		_test = new TestWndMoneyChange();
+	}
+	
+	/**
+	 * Ruft das Fenster zum Eingeben eines neuen Datensatz auf.
+	 */
+	public void pushInsert() {
+		((TestWndMoneyChange)_test).pushInsert();
+	}
+	
+	/**
+	 * Ruft das Fenster zum Ändern eines neuen Datensatz auf.
+	 */
+	public void pushChange() {
+		((TestWndMoneyChange)_test).pushChange();
 	}
 	
 	/**
@@ -239,4 +258,49 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 		return String.valueOf(((TestWndMoneyChange)_test).isWindowVisible());
 	}
 	
+	/**
+	 * Ermittel das Datum des 1. Datensatzes.
+	 * 
+	 * @return Datum des 1. Datensatz
+	 */
+	public String getDbDate() throws SQLException {
+		ResultSet rs = DbController.getInstance().createStatement()
+				.executeQuery(DbController.queries().money().search("id", 1));
+		
+		return HelperCalendar.dateToString(rs.getLong("date"));
+	}
+	
+	/**
+	 * Selektiert die 1. Zeile
+	 */
+	public void selectRow0() {
+		_test.tableSelectRow(0);
+	}
+	
+	/**
+	 * Ermittelt, ob der Einnahmen-Radio-Button selektiert ist.
+	 * 
+	 * @return Ist der Radio-Button für die Einnahmen selektiert?
+	 */
+	public boolean isIncomingRadioButtonSelected() {
+		return ((TestWndMoneyChange)_test).isIncomingRadioButtonSelected();
+	}
+	
+	/**
+	 * Ermittelt, ob der Ausgaben-Radio-Button selektiert ist.
+	 * 
+	 * @return Ist der Radio-Button für die Ausgaben selektiert?
+	 */
+	public boolean isOutgoingRadioButtonSelected() {
+		return ((TestWndMoneyChange)_test).isOutgoingRadioButtonSelected();
+	}
+	
+	/**
+	 * Ermittel den Text, der im Kommentar-Eingabefeld steht.
+	 * 
+	 * @return Text, der im Kommentar-Eingabefeld steht.
+	 */
+	public String getCommentTextArea() {
+		return ((TestWndMoneyChange)_test).getTextFromComment();
+	}
 }

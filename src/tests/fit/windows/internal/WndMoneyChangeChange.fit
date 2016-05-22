@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Einnahmen und Ausgaben Einfügen (Ändern)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Einnahmen und Ausgaben Einfügen (Ändern)</h2>
+		
+		<p>Startet das Fenster zum ändern der Daten für Einnahmen und Ausgaben.
+		Es wird überprüft, ob die Daten im Fenster eingetragen wurden. Nun wird
+		das Datum geändern und auf Speichern geklickt. Es sollte das Datum auch
+		in der Datenbank sich geändert haben.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndMoneyChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectRow0</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbDate</td>
+					<td>01.01.2015</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDate</td>
+					<td>01.01.2015</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isIncomingRadioButtonSelected</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isOutgoingRadioButtonSelected</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getCommentTextArea</td>
+					<td>Dies ist ein Test</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setDateTextField</td>
+					<td>01.01.2016</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushSave</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbDate</td>
+					<td>01.01.2016</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

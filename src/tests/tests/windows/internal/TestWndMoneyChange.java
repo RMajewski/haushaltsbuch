@@ -20,6 +20,7 @@
 package tests.tests.windows.internal;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.JFormattedTextField;
 
@@ -31,6 +32,7 @@ import org.netbeans.jemmy.operators.JTextAreaOperator;
 import org.netbeans.jemmy.operators.JTextFieldOperator;
 
 import haushaltsbuch.db.DbController;
+import haushaltsbuch.helper.HelperCalendar;
 import haushaltsbuch.windows.internal.WndMoneyList;
 import tests.testcase.GuiWndTest;
 
@@ -74,18 +76,42 @@ public class TestWndMoneyChange extends GuiWndTest {
 	 */
 	public TestWndMoneyChange() throws Exception {
 		// Datensatz für Einnahmen und Ausgaben einfügen
+		GregorianCalendar gc = HelperCalendar.createCalendar(2015);
+		gc.set(GregorianCalendar.DAY_OF_MONTH, 1);
+		gc.set(GregorianCalendar.MONTH, 0);
 		DbController.getInstance().prepaireDatabase();
 		DbController.getInstance().createStatement().executeUpdate(
-				DbController.queries().money().insert(new Date().getTime(), 
+				DbController.queries().money().insert(gc.getTimeInMillis(), 
 						true, "Dies ist ein Test"));
 		
 		// Fenster für Einnahmen und Ausgaben aufrufen
 		testInit(WndMoneyList.WND_TITLE, TestWndMoneyList.MENU_PATH, false);
-		
+	}
+	
+	/**
+	 * Ruft das Fenster für das Erstellen einen neuen Datensatzes auf.
+	 */
+	public void pushInsert() {
 		// Fenster fürs Einfügen aufrufen
 		callPopup();
 		pushPopup("Neu");
 		_wndChange = new JInternalFrameOperator(_wnd, "Datensatz erstellen");
+		
+		// Komponenten ermitteln
+		_date = new JTextFieldOperator(_wndChange);
+		_in = new JRadioButtonOperator(_wndChange, "Einnahme");
+		_out = new JRadioButtonOperator(_wndChange, "Ausgabe");
+		_comment = new JTextAreaOperator(_wndChange);
+	}
+	
+	/**
+	 * Ruft das Fenster für das Ändern eines Datensatzes auf.
+	 */
+	public void pushChange() {
+		// Fenster fürs Einfügen aufrufen
+		callPopup();
+		pushPopup("Ändern");
+		_wndChange = new JInternalFrameOperator(_wnd, "Datensatz ändern");
 		
 		// Komponenten ermitteln
 		_date = new JTextFieldOperator(_wndChange);
@@ -228,6 +254,33 @@ public class TestWndMoneyChange extends GuiWndTest {
 	 */
 	public boolean isWindowVisible() {
 		return _wndChange.isVisible();
+	}
+	
+	/**
+	 * Ermittelt, ob der Radio-Button für die Einnahmen selektiert ist.
+	 * 
+	 * @return Ist der Radio-Button für die Einnahmen selektiert?
+	 */
+	public boolean isIncomingRadioButtonSelected() {
+		return _in.isSelected();
+	}
+	
+	/**
+	 * Ermittelt, ob der Radio-Button für die Ausgaben selektiert ist.
+	 * 
+	 * @return Ist der Radio-Button für die Ausgaben selektiert?
+	 */
+	public boolean isOutgoingRadioButtonSelected() {
+		return _out.isSelected();
+	}
+	
+	/**
+	 * Ermittelt den Text vom Kommentar-Eingabefeld
+	 * 
+	 * @return Text des Kommentar-Eingabefeldes.
+	 */
+	public String getTextFromComment() {
+		return _comment.getText();
 	}
 
 	/**

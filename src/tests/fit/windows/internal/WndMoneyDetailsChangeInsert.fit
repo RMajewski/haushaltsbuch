@@ -25,6 +25,11 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
+					<td>press</td>
+					<td>pushInsert</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
 					<td>check</td>
 					<td>getDbTableRowCount</td>
 					<td>1</td>
