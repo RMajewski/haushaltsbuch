@@ -64,6 +64,46 @@
 					<td>true</td>
 				</tr>
 				<tr>
+					<td>check</td>
+					<td>isIncomingRadioButtonSelected</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isOutgoingRadioButtonSelected</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushOutgoingRadioButton</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isIncomingRadioButtonSelected</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isOutgoingRadioButtonSelected</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushIncomingRadioButton</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isIncomingRadioButtonSelected</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isOutgoingRadioButtonSelected</td>
+					<td>false</td>
+				</tr>
+				<tr>
 					<td>enter</td>
 					<td>setDateTextField</td>
 					<td></td>

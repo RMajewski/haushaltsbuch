@@ -282,6 +282,20 @@ public class TestWndMoneyChange extends GuiWndTest {
 	public String getTextFromComment() {
 		return _comment.getText();
 	}
+	
+	/**
+	 * Klickt auf den Radio-Button "Einnahme"
+	 */
+	public void pushRadioButtonIncoming() {
+		_in.push();
+	}
+	
+	/**
+	 * Klickt auf den Radio-Button "Ausgabe"
+	 */
+	public void pushRadioButtonOutgoing() {
+		_out.push();
+	}
 
 	/**
 	 * Ruft das Testprogramm auf

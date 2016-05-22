@@ -303,4 +303,18 @@ public class FixtureWndMoneyChange extends FixtureWnd {
 	public String getCommentTextArea() {
 		return ((TestWndMoneyChange)_test).getTextFromComment();
 	}
+	
+	/**
+	 * Klickt auf Einnahmen-Radio-Button
+	 */
+	public void pushIncomingRadioButton() {
+		((TestWndMoneyChange)_test).pushRadioButtonIncoming();
+	}
+	
+	/**
+	 * Klickt auf Ausgaben-Radio-Button
+	 */
+	public void pushOutgoingRadioButton() {
+		((TestWndMoneyChange)_test).pushRadioButtonOutgoing();
+	}
 }
