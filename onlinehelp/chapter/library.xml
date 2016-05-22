@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<chapter xml:id="libraries">
+<chapter xmlns="http://docbook.org/ns/docbook" xml:id="libraries">
 	<title>Verwendete Bibliotheken</title>
 	<para>
 		In diesem Kapitel werden alle verwendeten Bibliotheken kurz

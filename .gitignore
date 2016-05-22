@@ -9,5 +9,7 @@ src/org/*
 result/**/*
 result/*
 onlinehelp/help_all.xml
+onlinehelp/wiki.xml
+onlinehelp/*.*~
 resource/help/**/*
 resource/help/*

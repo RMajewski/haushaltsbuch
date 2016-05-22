@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<chapter xml:id="license">
+<chapter xmlns="http://docbook.org/ns/docbook" xml:id="license">
 	<title>Open-Source-Lizenz für die Europäische Union</title>
 	<para>V.1.1</para>
 	<para>EUPL &#169; Europäische Gemeinschaft 2007</para>
