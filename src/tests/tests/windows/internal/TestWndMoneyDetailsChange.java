@@ -223,7 +223,6 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 	 */
 	public void setMoneyText(String str) throws ParseException {
 		_money.setText(str);
-		((JFormattedTextField)_money.getSource()).commitEdit();
 	}
 	
 	/**
@@ -298,5 +297,13 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 	 */
 	public String getCommentTextAreaText() {
 		return _comment.getDisplayedText();
+	}
+	
+	/**
+	 * Führt die Validierung beim Textfeld für den Betrag durch.
+	 * @throws ParseException 
+	 */
+	public void moneyTextCommit() throws ParseException {
+		((JFormattedTextField)_money.getSource()).commitEdit();
 	}
 }

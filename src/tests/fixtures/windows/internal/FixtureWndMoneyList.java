@@ -67,7 +67,7 @@ public class FixtureWndMoneyList extends FixtureWndTables {
 	 */
 	public void pushPopupChange() {
 		_test.pushPopup("Ändern");
-		((TestWndMoneyList)_test).waitWindow("Datensätz ändern");
+		((TestWndMoneyList)_test).waitWindow("Datensatz ändern");
 	}
 	
 	/**

@@ -243,6 +243,14 @@ public class FixtureWndMoneyDetailsChange extends FixtureWnd {
 	}
 	
 	/**
+	 * Führt die Validierung beim Textfeld für den Betrag durch
+	 * @throws ParseException 
+	 */
+	public void moneyTextCommit() throws ParseException {
+		((TestWndMoneyDetailsChange)_test).moneyTextCommit();
+	}
+	
+	/**
 	 * Ermittelt ob das Fenster angezeigt wird.
 	 */
 	@Override

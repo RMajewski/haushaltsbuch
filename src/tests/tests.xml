@@ -272,12 +272,14 @@
 			<package>tests.fit.windows.internal</package>
 			<test>WndMoneyChangeInsert</test>
 			<test>WndMoneyChangeNotInsert</test>
+			<test>WndMoneyChangeChange</test>
 		</testSuite>
 		<testSuite>
 			<name>Unterfenster zum Eingeben der Details der Einnahmen und Ausgaben</name>
 			<package>tests.fit.windows.internal</package>
 			<test>WndMoneyDetailsChangeChange</test>
 			<test>WndMoneyDetailsChangeInsert</test>
+			<test>WndMoneyDetailsChangeNotInsert</test>
 		</testSuite>
 	</testGroup>
 </tests>
