@@ -25,7 +25,6 @@ import javax.swing.JTextField;
 
 import javax.swing.JPanel;
 import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -116,7 +115,7 @@ public class DlgInputChange extends JDialog implements ActionListener {
 		super(owner);
 		_exit = 0;
 		
-		setSize(400, 85);
+		setSize(400, 100);
 		setResizable(false);
 		
 		getContentPane().setLayout(new BorderLayout(10, 10));
