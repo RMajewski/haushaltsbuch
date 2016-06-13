@@ -1,4 +1,8 @@
-<tests>
+<?xml version="1.0"?>
+<configurationFile xmlns="https://github.com/RMajewski/testsuite"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="https://github.com/RMajewski/testsuite
+				   https://raw.githubusercontent.com/RMajewski/testsuite/master/src/resources/xml/config.xsd">
 	<config>
 		<resultPath>result</resultPath>
 		<srcPath>src</srcPath>
@@ -8,26 +12,22 @@
 		<systemProperty>
 			<property>testing="true"</property>
 		</systemProperty>
-	</config>
-	
-	<testGroup>
-		<testRunner>org.testsuite.core.JemmyTestRunner</testRunner>
-		<extension>java</extension>
-		<description>[h2]GUI-Tests[/h2][p]Die GUI-Tests beinhalten Test die die Oberfläche testen. Sie werden mit Jemmy ausgeführt.[/p]</description>
-		<libraries>
-			<library version="2.3.1.1" name="jemmy">jemmy.jar</library>
-			<library>sqlite-jdbc-3.8.11.2.jar</library>
-		</libraries>
 		<classpath>
 			<path>bin</path>
 			<path>resource</path>
 		</classpath>
-	</testGroup>
+		<stylesheet>
+			<file>html/out.css</file>
+		</stylesheet>
+		<javascript>
+			<file>html/out.js</file>
+		</javascript>
+	</config>
 	
 	<testGroup>
 		<testRunner>org.testsuite.core.JunitTestRunner</testRunner>
-		<extension>java</extension>
 		<description>[h2]junit-Tests[/h2][p]Die junit-Tests testen einzelne Klassen. Diese Klassen sind in den Tests meist isoliert.[/p]</description>
+		<extension>java</extension>
 		<libraries>
 			<library version="4.12" name="junit" path="/usr/share/eclipse/plugins/org.junit_4.12.0.v201504281640">junit.jar</library>
 			<library version="1.10.19" name="Mockito">mockito-all-1.10.19.jar</library>
@@ -47,115 +47,115 @@
 		<testSuite>
 			<name>Aktionen</name>
 			<package>tests.tests.actions</package>
-			<test>TestAction</test>
-			<test>TestDbChange</test>
-			<test>TestDbDelete</test>
-			<test>TestDbInsert</test>
-			<test>TestReport</test>
-			<test>TestPdfReport</test>
-			<test>TestPrint</test>
+			<test checkSource="haushaltsbuch.actions.Action">TestAction</test>
+			<test checkSource="haushaltsbuch.actions.DbChange">TestDbChange</test>
+			<test checkSource="haushaltsbuch.actions.DbDelete">TestDbDelete</test>
+			<test checkSource="haushaltsbuch.actions.DbInsert">TestDbInsert</test>
+			<test checkSource="haushaltsbuch.actions.Report">TestReport</test>
+			<test checkSource="haushaltsbuch.actions.PdfReport">TestPdfReport</test>
+			<test checkSource="haushaltsbuch.actions.Print">TestPrint</test>
 		</testSuite>
 		<testSuite>
 			<name>Komparatoren</name>
 			<package>tests.tests.comparators</package>
-			<test>TestCompDateString</test>
-			<test>TestCompDouble</test>
-			<test>TestCompId</test>
-			<test>TestCompInt</test>
-			<test>TestCompSum</test>
+			<test checkSource="haushaltsbuch.comparators.CompDateString">TestCompDateString</test>
+			<test checkSource="haushaltsbuch.comparators.CompDouble">TestCompDouble</test>
+			<test checkSource="haushaltsbuch.comparators.CompId">TestCompId</test>
+			<test checkSource="haushaltsbuch.comparators.CompInt">TestCompInt</test>
+			<test checkSource="haushaltsbuch.comparators.CompSum">TestCompSum</test>
 		</testSuite>
 		<testSuite>
 			<name>Daten-Strukturen</name>
 			<package>tests.tests.datas</package>
-			<test>TestData</test>
-			<test>TestIdNameData</test>
-			<test>TestLogData</test>
-			<test>TestMoneyData</test>
-			<test>TestMoneyDetailsData</test>
-			<test>TestReportData</test>
-			<test>TestReportMonthData</test>
-			<test>TestReportPreferenceData</test>
-			<test>TestReportWeekData</test>
-			<test>TestReportYearData</test>
-			<test>TestReportCategoryData</test>
-			<test>TestReportSectionData</test>
+			<test checkSource="haushaltsbuch.datas.Data">TestData</test>
+			<test checkSource="haushaltsbuch.datas.NameData">TestIdNameData</test>
+			<test checkSource="haushaltsbuch.datas.LogData">TestLogData</test>
+			<test checkSource="haushaltsbuch.datas.MoneyData">TestMoneyData</test>
+			<test checkSource="haushaltsbuch.datas.MoneyDetailsData">TestMoneyDetailsData</test>
+			<test checkSource="haushaltsbuch.datas.ReportData">TestReportData</test>
+			<test checkSource="haushaltsbuch.datas.MonthData">TestReportMonthData</test>
+			<test checkSource="haushaltsbuch.datas.ReportPreferenceData">TestReportPreferenceData</test>
+			<test checkSource="haushaltsbuch.datas.WeekData">TestReportWeekData</test>
+			<test checkSource="haushaltsbuch.datas.YearData">TestReportYearData</test>
+			<test checkSource="haushaltsbuch.datas.CategoryData">TestReportCategoryData</test>
+			<test checkSource="haushaltsbuch.datas.SectionData">TestReportSectionData</test>
 		</testSuite>
 		<testSuite>
 			<name>Datenbank-Verbindung</name>
 			<package>tests.tests.db</package>
-			<test>TestDbController</test>
+			<test checkSource="haushaltsbuch.db.DbConroller">TestDbController</test>
 		</testSuite>
 		<testSuite>
 			<name>Datenbank-Abfragen</name>
 			<package>tests.tests.db.query</package>
-			<test>TestQueries</test>
-			<test>TestQuery</test>
-			<test>TestQueryInterface</test>
-			<test>TestCategory</test>
-			<test>TestMoney</test>
-			<test>TestMoneyDetails</test>
-			<test>TestSection</test>
+			<test checkSource="haushaltsbuch.db.query.Queries">TestQueries</test>
+			<test checkSource="haushaltsbuch.db.query.Query">TestQuery</test>
+			<test checkSource="haushaltsbuch.db.query.QueryInterface">TestQueryInterface</test>
+			<test checkSource="haushaltsbuch.db.query.Category">TestCategory</test>
+			<test checkSource="haushaltsbuch.db.query.Money">TestMoney</test>
+			<test checkSource="haushaltsbuch.db.query.MoneyDetails">TestMoneyDetails</test>
+			<test checkSource="haushaltsbuch.db.query.Section">TestSection</test>
 		</testSuite>
 		<testSuite>
 			<name>Komponenten</name>
 			<package>tests.tests.elements</package>
-			<test>TestStatusBar</test>
-			<test>TestReportGraphic</test>
-			<test>TestToolBarMain</test>
+			<test checkSource="haushaltsbuch.elements.StatusBar">TestStatusBar</test>
+			<test checkSource="haushaltsbuch.elements.ReportGraphic">TestReportGraphic</test>
+			<test checkSource="haushaltsbuch.elements.ToolBarMain">TestToolBarMain</test>
 		</testSuite>
 		<testSuite>
 			<name>Ereignisse</name>
 			<package>tests.tests.events</package>
-			<test>TestToolBarDbElementEvent</test>
-			<test>TestToolBarDbElementEventMulticaster</test>
+			<test checkSource="haushaltsbuch.events.ToolBarDbElementEvent">TestToolBarDbElementEvent</test>
+			<test checkSource="haushaltsbuch.events.ToolBarDbElementEventMulticaster">TestToolBarDbElementEventMulticaster</test>
 		</testSuite>
 		<testSuite>
 			<name>Helfer</name>
 			<package>tests.tests.helper</package>
-			<test>TestHelperCalendar</test>
-			<test>TestHelperNumberOut</test>
-			<test>TestHelperPrint</test>
+			<test checkSource="haushaltsbuch.helper.HelperCalendar">TestHelperCalendar</test>
+			<test checkSource="haushaltsbuch.helper.HelperNumberOut">TestHelperNumberOut</test>
+			<test checkSource="haushaltsbuch.helper.HelperPrint">TestHelperPrint</test>
 		</testSuite>
 		<testSuite>
 			<name>Hilfe</name>
 			<package>tests.tests.help</package>
-			<test>TestHelp</test>
+			<test checkSource="haushaltsbuch.help.Helpt">TestHelp</test>
 		</testSuite>
 		<testSuite>
 			<name>Zuhörer</name>
 			<package>tests.tests.listener</package>
-			<test>TestToolBarDbElementListener</test>
+			<test checkSource="haushaltsbuch.listener.ToolbarDbElementListener">TestToolBarDbElementListener</test>
 		</testSuite>
 		<testSuite>
 			<name>Menüs</name>
 			<package>tests.tests.menus</package>
-			<test>TestPopupStandardList</test>
-			<test>TestPopupMoneyList</test>
-			<test>TestTopMainMenu</test>
+			<test checkSource="haushaltsbuch.menus.PopupStandardList">TestPopupStandardList</test>
+			<test checkSource="haushaltsbuch.menus.PopupMoneyList">TestPopupMoneyList</test>
+			<test checkSource="haushaltsbuch.menus.TopMainMenu">TestTopMainMenu</test>
 		</testSuite>
 		<testSuite>
 			<name>Renderer</name>
 			<package>tests.tests.renderer</package>
-			<test>TestLogViewListRenderer</test>
+			<test checkSource="haushaltsbuch.renderer.LogViewListRenderer">TestLogViewListRenderer</test>
 		</testSuite>
 		<testSuite>
 			<name>Tabellen-Modelle</name>
 			<package>tests.tests.tables.models</package>
-			<test>TestIdNameListModel</test>
-			<test>TestMoneyDetailsListModel</test>
-			<test>TestMoneyListModel</test>
-			<test>TestReportMonthModel</test>
-			<test>TestReportWeekModel</test>
-			<test>TestReportYearModel</test>
-			<test>TestReportSectionModel</test>
-			<test>TestReportCategoryModel</test>
+			<test checkSource="haushaltsbuch.tables.IdNameListModel">TestIdNameListModel</test>
+			<test checkSource="haushaltsbuch.tables.MoneyDetailsListModel">TestMoneyDetailsListModel</test>
+			<test checkSource="haushaltsbuch.tables.MoneyListModel">TestMoneyListModel</test>
+			<test checkSource="haushaltsbuch.tables.ReportMonthModel">TestReportMonthModel</test>
+			<test checkSource="haushaltsbuch.tables.ReportWeekModel">TestReportWeekModel</test>
+			<test checkSource="haushaltsbuch.tables.ReportYearModel">TestReportYearModel</test>
+			<test checkSource="haushaltsbuch.tables.ReportSectionModel">TestReportSectionModel</test>
+			<test checkSource="haushaltsbuch.tables.ReportCategoryModel">TestReportCategoryModel</test>
 		</testSuite>
 	</testGroup>
 	
 	<testGroup>
 		<testRunner>org.testsuite.core.FitTestRunner</testRunner>
-		<extension>fit</extension>
 		<description>[h2]Fit-Tests[/h2][p]Die Fit-Tests testen die Funktionalität der einzelnen Fenster. Dazu wurde die Fenster teilweise in einer Testumgebung geöffnet.[/p]</description>
+		<extension>fit</extension>
 		<libraries>
 			<library version="2.3.1.1" name="jemmy">jemmy.jar</library>
 			<library version="1.1" name="fit">fit.jar</library>
@@ -163,10 +163,6 @@
 			<library>jhall.jar</library>
 			<library>itextpdf-5.5.9.jar</library>
 		</libraries>
-		<classpath>
-			<path>bin</path>
-			<path>resource</path>
-		</classpath>
 		<testSuite>
 			<name>Informations-Dialoge</name>
 			<package>tests.fit.dialogs</package>
@@ -282,4 +278,4 @@
 			<test>WndMoneyDetailsChangeNotInsert</test>
 		</testSuite>
 	</testGroup>
-</tests>
+</configurationFile>

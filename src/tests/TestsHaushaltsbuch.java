@@ -35,7 +35,7 @@ import org.testsuite.core.TestsRun;
  * und die Ausführung der Tests und die Generierung der Ergebnisse als HTML 
  * werden in den Klassen der tests.core-Klassen implementiert.
  * 
- * In der Version 0.5 wird die Bibliothek "testsuite" in ver Version 0.2
+ * In der Version 0.5 wird die Bibliothek "testsuite" in der Version 0.2
  * genutzt, um die Tests auszuführen.
  * 
  * @author René Majewski

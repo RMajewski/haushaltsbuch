@@ -133,18 +133,6 @@ public class ToolBarMain extends JToolBar
 
 	@Override
 	public void internalFrameClosed(InternalFrameEvent e) {
-		_insert.setEnabled(false);
-		_insert.deleteFrame();
-		
-		_change.setEnabled(false);
-		_change.deleteFrame();
-		
-		_delete.setEnabled(false);
-		_delete.deleteFrame();
-		
-		_pdf.setEnabled(false);
-		
-		_print.setEnabled(false);
 	}
 
 	@Override

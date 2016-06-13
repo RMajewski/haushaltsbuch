@@ -1,0 +1,204 @@
+.pass {
+	background-color: #CFFFCF;
+}
+
+.wrong {
+	background-color: #FFCFCF;
+}
+
+.ignore {
+	background-color: #CFCFCF;
+}
+
+.exception {
+	background-color: #FFFFCF;
+}
+
+.testoutInvisible {
+	display: none;
+}
+
+.testoutVisible {
+	display: block;
+	border: 1px solid #000;
+}
+
+.right {
+	float: right;
+}
+
+.testsuite {
+	margin: 25px 0;
+}
+
+.testgroup  {
+	border: 1px solid #000;
+	margin-bottom: 25px;
+	padding: 10px;
+}
+
+.result  {
+	border: 1px solid #000;
+	margin-bottom: 25px;
+	padding: 10px;
+}
+
+.testdescription {
+	border: 1px dashed #808080;
+	padding: 10px;
+}
+
+.libraries {
+	border: 1px dashed #808080;
+	padding: 10px;
+	margin-top: 5px;
+}
+
+.nonexists {
+	border: 1px dashed #808080;
+	padding: 10px;
+	margin-top: 5px
+}
+
+.command_line {
+	margin: 10px;
+	color: #FFF;
+	background-color: #000;
+	padding: 5px;
+}
+
+.console {
+	border: 1px dashed #808080;
+	margin: 0 10px;
+	padding: 5px;
+}
+
+.error {
+	border: 1px dashed #F00;
+	margin: 10px;
+	padding: 5px;
+}
+
+.include {
+	border: 1px dashed #000;
+	margin-bottom: 25px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 10px;
+}
+
+.include p {
+	margin: 0px;
+	padding: 0px;
+}
+
+.links {
+	border: 1px dashed #000;
+	margin-bottom: 25px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 10px;
+}
+
+.links p {
+	margin: 0px;
+	padding: 0px;
+}
+
+.checksource {
+	border: 1px solid #000;
+	padding: 0px 10px;
+}
+
+.checksourceList {
+	border: 1px dashed #000;
+	margin-top: 10px;
+	padding: 0px 10px;
+}
+
+.checksourceSource {
+	margin-top: 10px;
+}
+
+.checksourceSource table {
+	border: 1px solid #000;
+}
+
+.checksourceSource table tr {
+	border: 0px;
+}
+
+.checksourceSource table td {
+	padding: 0px 10px;
+}
+
+.checksourceLinks {
+	margin-top: 10px;
+}
+
+.checksourceLinks table {
+	border: 1px solid #000;
+}
+
+.checksourceLinks table tr {
+	border: 1px dashes #000;
+}
+
+.checksourceLinks table td {
+	padding: 0px 10px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 2px solid #000;
+	table-layout: fixed;
+	padding: 2px;
+}
+
+td {
+	text-align: left;
+	vertical-align: text-top;
+	padding: 5px;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+th {
+	text-align: left;
+	padding: 5px;
+}
+
+tr {
+	border: 1px solid #000;
+}
+
+a:link {
+	text-decoration: none;
+	font-weight: bold;
+	color: #505050;
+}
+
+a:visited {
+	text-decoration: none;
+	font-weight: normal;
+	color: #505050;
+}
+
+a:hover {
+	text-decoration: underline;
+	font-weight: bolder;
+	color: #A0A0A0;
+}
+
+a:active {
+	text-decoration: underline;
+	font-weight: bolder;
+	color: #A0A0A0;	
+}
+
+a:focus {
+	text-decoration: underline;
+	font-weight: bolder;
+	color: #A0A0A0;	
+}

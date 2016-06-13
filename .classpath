@@ -5,7 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/cglib-nodep-2.2.2.jar"/>
-	<classpathentry kind="lib" path="lib/fit.jar"/>
 	<classpathentry kind="lib" path="lib/itextpdf-5.5.9.jar"/>
 	<classpathentry kind="lib" path="lib/javassist-3.20.0-GA.jar"/>
 	<classpathentry kind="lib" path="lib/jemmy.jar"/>
@@ -16,6 +15,6 @@
 	<classpathentry kind="lib" path="lib/objenesis-2.1.jar"/>
 	<classpathentry kind="lib" path="lib/powermock-mockito-1.6.3-full.jar"/>
 	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.8.11.2.jar"/>
-	<classpathentry kind="lib" path="lib/testsuite-0.2.jar"/>
+	<classpathentry kind="lib" path="/home/rene/workspace/Haushaltsbuch/lib/testsuite.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
