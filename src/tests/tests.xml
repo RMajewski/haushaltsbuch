@@ -96,6 +96,8 @@
 			<test checkSource="haushaltsbuch.db.query.MoneyDetails">TestMoneyDetails</test>
 			<test checkSource="haushaltsbuch.db.query.Section">TestSection</test>
 			<test checkSource="haushaltsbuch.db.query.Payment">TestPayment</test>
+			<test checkSource="haushaltsbuch.db.query.Outstanding">TestOutstanding</test>
+			<test checkSource="haushaltsbuch.db.query.Repay">TestRepay</test>
 		</testSuite>
 		<testSuite>
 			<name>Komponenten</name>

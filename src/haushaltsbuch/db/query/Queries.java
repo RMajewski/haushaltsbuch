@@ -44,6 +44,16 @@ public class Queries {
 	 * Zahlungsmitteln.
 	 */
 	private Payment _payment;
+	
+	/**
+	 * Beinhaltet alle Abfragen für die Tabelle mit den Schulden.
+	 */
+	private Outstanding _outstanding;
+	
+	/**
+	 * Beinhaltet alle Abfragen für die Tabelle mit den Rückzahlungen.
+	 */
+	private Repay _repay;
 
 	/**
 	 * Beinhaltet alle Abfragen für die Tabelle zu den Details der Ein- und
@@ -70,6 +80,8 @@ public class Queries {
 		_moneyDetails = new MoneyDetails();
 		_money = new Money();
 		_payment = new Payment();
+		_outstanding = new Outstanding();
+		_repay = new Repay();
 	}
 	
 	/**
@@ -109,6 +121,26 @@ public class Queries {
 	 */
 	public Payment payment() {
 		return _payment;
+	}
+	
+	/**
+	 * Gibt die Instanz der Datenbank-Abfragen für die Tabelle 'outstanding'
+	 * zurück.
+	 * 
+	 * @return Instanz der Datenbank-Abfrage für die Schulden.
+	 */
+	public Outstanding outstanding() {
+		return _outstanding;
+	}
+	
+	/**
+	 * Gibt die Instanz der Datenbank-Abfragen für die Tabelle 'repay'
+	 * zurück.
+	 * 
+	 * @return Instanz der Datenbank-Abfrage für die Rückzahlungen.
+	 */
+	public Repay repay() {
+		return _repay;
 	}
 	
 	/**

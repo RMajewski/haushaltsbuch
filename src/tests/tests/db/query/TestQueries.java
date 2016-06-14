@@ -116,5 +116,55 @@ public class TestQueries {
 	public void testPaymentInstanceofQueryInterface() {
 		assertTrue(Queries.getInstance().payment() instanceof QueryInterface);
 	}
+	
+	/**
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#payment} ein
+	 * Objekt der Klasse {@link haushaltsbuch.db.query.Section} ist.
+	 */
+	@Test
+	public void testPaymentRightClassName() {
+		assertEquals("haushaltsbuch.db.query.Payment",
+				Queries.getInstance().payment().getClass().getName());
+	}
+	
+	/**
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#outstanding}
+	 * das Interface {@link haushaltsbuch.db.query.QueryInterface}
+	 * implementiert.
+	 */
+	@Test
+	public void testOutstandingInstanceofQueryInterface() {
+		assertTrue(Queries.getInstance().outstanding() instanceof QueryInterface);
+	}
+	
+	/**
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#outstanding}
+	 * ein Objekt der Klasse {@link haushaltsbuch.db.query.Section} ist.
+	 */
+	@Test
+	public void testOutstandingRightClassName() {
+		assertEquals("haushaltsbuch.db.query.Outstanding",
+				Queries.getInstance().outstanding().getClass().getName());
+	}
+	
+	/**
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#repay}
+	 * das Interface {@link haushaltsbuch.db.query.QueryInterface}
+	 * implementiert.
+	 */
+	@Test
+	public void testRepayInstanceofQueryInterface() {
+		assertTrue(Queries.getInstance().repay() instanceof QueryInterface);
+	}
+	
+	/**
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#repay}
+	 * ein Objekt der Klasse {@link haushaltsbuch.db.query.Outstanding} ist.
+	 */
+	@Test
+	public void testRepayRightClassName() {
+		assertEquals("haushaltsbuch.db.query.Repay",
+				Queries.getInstance().repay().getClass().getName());
+	}
 
 }

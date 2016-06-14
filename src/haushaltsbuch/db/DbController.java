@@ -384,5 +384,13 @@ public class DbController {
 		// Erweiterung für die Details zu den Ein- und Ausgaben
 		if (queries().moneyDetails().upgrade1())
 			StatusBar.getInstance().setMessage("Datenbank: Tabelle der Details für Ein- und Ausgaben erweitert (Erweiterung 1)");
+		
+		// Tabelle für die Schulden
+		stm.executeUpdate(queries().outstanding().createTable());
+		StatusBar.getInstance().setMessage("Datenbank: Tabelle der Schulden ist fertig vorbereitet");
+		
+		// Tabelle für die Rückzahlungen
+		stm.executeUpdate(queries().repay().createTable());
+		StatusBar.getInstance().setMessage("Datenbank: Tabelle der Rückzahlungen ist fertig vorbereitet");
 	}
 }
