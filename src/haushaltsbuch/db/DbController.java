@@ -343,6 +343,36 @@ public class DbController {
 		rs.close();
 		StatusBar.getInstance().setMessage("Datenbank: Tabelle der Geschäfte ist fertig vorbereitet.");
 		
+		// Tabelle für die Zahlungsmittel
+		stm.executeUpdate(queries().payment().createTable());
+		
+		// Überprüfen ob die Einträge für die Standart Zahlungsmittels schon
+		// enthalten sind
+		rs = stm.executeQuery(queries().payment().count());
+		if (rs.getInt(1) == 0) {
+			// Geschäfte anlegen
+			PreparedStatement ps = prepareStatement(queries().payment().insert(false));
+			ps.setString(1, "Keine Angabe");
+			ps.addBatch();
+			ps.setString(1, "Bar");
+			ps.addBatch();
+			ps.setString(1, "Ec-Karte");
+			ps.addBatch();
+			ps.setString(1, "Überweisung");
+			ps.addBatch();
+			ps.setString(1, "Paypal");
+			ps.addBatch();
+			ps.setString(1, "Kredit-Karte");
+			ps.addBatch();
+			
+			// Geschäfte in die Datenbank schreiben
+			setAutoCommit(false);
+			ps.executeBatch();
+			setAutoCommit(true);
+		}
+		rs.close();
+		StatusBar.getInstance().setMessage("Datenbank: Tabelle der Zahlungsmittel ist fertig vorbereitet.");
+		
 		// Tabelle für die Ein- und Ausgaben
 		stm.executeUpdate(queries().money().createTable());
 		StatusBar.getInstance().setMessage("Datenbank: Tabelle der Ein- und Ausgaben ist fertig vorbereitet");
@@ -350,5 +380,9 @@ public class DbController {
 		// Tabelle für die Details zu den Ein- und Ausgaben
 		stm.executeUpdate(queries().moneyDetails().createTable());
 		StatusBar.getInstance().setMessage("Datenbank: Tabelle der Details für Ein- und Ausgaben ist fertig vorbereitet.");
+		
+		// Erweiterung für die Details zu den Ein- und Ausgaben
+		if (queries().moneyDetails().upgrade1())
+			StatusBar.getInstance().setMessage("Datenbank: Tabelle der Details für Ein- und Ausgaben erweitert (Erweiterung 1)");
 	}
 }

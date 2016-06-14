@@ -31,9 +31,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -76,6 +78,11 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 	 * Speichert die Eingabe für den Betrag
 	 */
 	private JFormattedTextField _txtMoney;
+	
+	/**
+	 * Speichert die Combo-Box für das Zahlungsmittel
+	 */
+	private JComboBox<String> _cbPayment;
 	
 	/**
 	 * Führt die angegebene SQL-Abfrage aus und fügt der angegebenen ComboBox
@@ -121,6 +128,8 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 	public WndMoneyDetailsChange(Desktop desktop, MoneyDetailsData data, WndTableFrame frame) {
 		super(desktop, data, frame);
 		
+		setSize(600, 500);
+		
 		// Label für die Kategorie
 		JLabel label = new JLabel("Kategorie");
 		addComponent(_gbl, label, 0, 0, 1, 1, 0, 0);
@@ -133,9 +142,9 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 		label = new JLabel("Betrag");
 		addComponent(_gbl, label, 0, 4, 1, 1, 0, 0);
 		
-		// Label für die Beschreibung
-		label = new JLabel("Beschreibung");
-		addComponent(_gbl, label, 0, 6, 1, 1, 0, 0);
+		// Label für den Betrag
+		label = new JLabel("Zahlungsmittel");
+		addComponent(_gbl, label, 0, 5, 1, 1, 0, 0);
 		
 		// Combo-Box für die Kategorien
 		_cbCategory = new JComboBox<String>();
@@ -153,6 +162,11 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 		_txtMoney.addFocusListener(this);
 		addComponent(_gbl, _txtMoney, 2, 4, 2, 1, 0, 0);
 		
+		// Zahlungsmittel
+		_cbPayment = new JComboBox<String>();
+		_cbPayment.setEditable(false);
+		addComponent(_gbl, _cbPayment, 2, 5, 2, 1, 0, 0);
+		
 		// Kategorien füllen
 		queriesAddComboBox(DbController.queries().category().sort("name"),
 				((MoneyDetailsData)_data).getCategoryId(),
@@ -162,6 +176,10 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 		queriesAddComboBox(DbController.queries().section().sort("name"),
 				((MoneyDetailsData)_data).getSectionId(),
 				_cbSection);
+		
+		// Zahlungsmethoden füllen
+		queriesAddComboBox(DbController.queries().payment().sort("name"),
+				((MoneyDetailsData)_data).getPaymentId(), _cbPayment);
 		
 		// Daten einfügen, wenn Daten übergeben wurden
 		if (_data.getId() > -1) {
@@ -196,6 +214,11 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 				// ID des Geschäftes ermitteln
 				rs = stm.executeQuery(DbController.queries().section().search("name", String.valueOf(_cbSection.getSelectedItem())));
 				int section = rs.getInt("id");
+				rs.close();
+				
+				// ID der Zahlungsmittel ermitteln
+				rs = stm.executeQuery(DbController.queries().payment().search("name", String.valueOf(_cbPayment.getSelectedItem())));
+				int payment = rs.getInt("id");
 				rs.close();
 				
 				// Überprüfen ob Betrag eingegeben wurde.
@@ -234,9 +257,9 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 					
 					// Überprüfen ob ein Kommentar angegeben wurde
 					if (comment.isEmpty())
-						sql = DbController.queries().moneyDetails().update(_data.getId(), ((MoneyDetailsData)_data).getMoneyId(), category, section, money);
+						sql = DbController.queries().moneyDetails().update(_data.getId(), ((MoneyDetailsData)_data).getMoneyId(), category, section, money, payment);
 					else
-						sql = DbController.queries().moneyDetails().update(_data.getId(), ((MoneyDetailsData)_data).getMoneyId(), category, section, money, comment);
+						sql = DbController.queries().moneyDetails().update(_data.getId(), ((MoneyDetailsData)_data).getMoneyId(), category, section, money, comment, payment);
 					
 					// Datenbank-Abfrage stellen
 					if (stm.executeUpdate(sql) > 0)

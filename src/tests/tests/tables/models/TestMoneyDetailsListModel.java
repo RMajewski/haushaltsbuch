@@ -26,8 +26,6 @@ import static org.mockito.Mockito.when;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DecimalFormat;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,6 +37,7 @@ import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.db.query.Category;
 import haushaltsbuch.db.query.MoneyDetails;
+import haushaltsbuch.db.query.Payment;
 import haushaltsbuch.db.query.Queries;
 import haushaltsbuch.db.query.Section;
 import haushaltsbuch.helper.HelperNumbersOut;
@@ -86,6 +85,11 @@ public class TestMoneyDetailsListModel {
 	private String _comment;
 	
 	/**
+	 * Speichert die Zahlungsmethode
+	 */
+	private int _paymentId;
+	
+	/**
 	 * Speichert die Anzahl der Spalten
 	 */
 	private int _columnCount;
@@ -106,6 +110,7 @@ public class TestMoneyDetailsListModel {
 		_sectionId = 1;
 		_money = 9.99;
 		_comment = "Dies ist ein Test";
+		_paymentId = 1;
 		_columnCount = 6;
 
 		try {
@@ -118,6 +123,7 @@ public class TestMoneyDetailsListModel {
 			when(rs.getInt("sectionid")).thenReturn(_sectionId);
 			when(rs.getDouble("money")).thenReturn(_money);
 			when(rs.getString("comment")).thenReturn(_comment);
+			when(rs.getInt("paymentid")).thenReturn(_paymentId);
 			
 			// Statment mocken
 			Statement stm = mock(Statement.class);
@@ -136,11 +142,16 @@ public class TestMoneyDetailsListModel {
 			Section section = mock(Section.class);
 			when(section.search("id", _sectionId)).thenReturn("section");
 			
+			// Payment mocken
+			Payment payment = mock(Payment.class);
+			when(payment.search("id", _paymentId)).thenReturn("payment");
+			
 			// Queries mocken
 			Queries queries = mock(Queries.class);
 			when(queries.moneyDetails()).thenReturn(details);
 			when(queries.category()).thenReturn(category);
 			when(queries.section()).thenReturn(section);
+			when(queries.payment()).thenReturn(payment);
 			
 			// DbController mocken
 			_dbc = mock(DbController.class);
@@ -250,6 +261,30 @@ public class TestMoneyDetailsListModel {
 	@Test
 	public void testGetValueAtWithFourAsColReturnComment() {
 		assertEquals(_comment, _model.getValueAt(0, 4));
+	}
+
+	/**
+	 * Testet, ob {@link haushaltsbuch.tables.models.IdNameListModel#getValueAt(int, int)}
+	 * die Zahlungsmethode liefert, wenn Spalte 4 ausgewählt ist.
+	 */
+	@Test
+	public void testGetValueAtWithFifeAsColReturnComment() {
+		try {
+			// ResultSet mocken
+			ResultSet rs = mock(ResultSet.class);
+			when(rs.getString("name")).thenReturn("test3");
+			
+			//Statement
+			Statement stm = mock(Statement.class);
+			when(stm.executeQuery("payment")).thenReturn(rs);
+			
+			// DbController
+			when(_dbc.createStatement()).thenReturn(stm);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		assertEquals("test3", _model.getValueAt(0, 5));
 	}
 
 	/**

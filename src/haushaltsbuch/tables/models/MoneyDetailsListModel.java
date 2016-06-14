@@ -147,6 +147,10 @@ public class MoneyDetailsListModel extends AbstractTableModel
 			// Beschreibung
 			case 4:
 				return _list.get(row).getComment();
+				
+			// Zahlungsmethoden
+			case 5:
+				return searchName(DbController.queries().payment().search("id", _list.get(row).getPaymentId()));
 		}
 		return null;
 	}
@@ -177,7 +181,8 @@ public class MoneyDetailsListModel extends AbstractTableModel
 							rs.getInt("categoryid"),
 							rs.getInt("sectionid"),
 							rs.getDouble("money"),
-							rs.getString("comment") ));
+							rs.getString("comment"),
+							rs.getInt("paymentid")));
 			}
 			rs.close();
 		} catch (SQLException e) {

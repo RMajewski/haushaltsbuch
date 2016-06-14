@@ -135,10 +135,6 @@ public class WndMoneyChange extends WndChangeFrame {
 		addComponent(_gbl, _rbOut, 2, 3, 2, 1, 0, 0);
 		bg.add(_rbOut);
 		
-		// Label für die Beschreibung
-		label = new JLabel("Beschreibung");
-		addComponent(_gbl, label, 0, 5, 1, 1, 0.2, 0);
-		
 		// Daten einfügen?
 		if (_data != null) {
 			// Datum einfügen

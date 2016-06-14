@@ -101,6 +101,7 @@ public class WndMoneyDetailsList extends WndTableFrame implements Printable {
 		_table.getColumnModel().getColumn(2).setHeaderValue("Geschäft");
 		_table.getColumnModel().getColumn(3).setHeaderValue("Betrag");
 		_table.getColumnModel().getColumn(4).setHeaderValue("Beschreibung");
+		_table.getColumnModel().getColumn(5).setHeaderValue("Zahlungsmethode");
 
 		// Sorter initalisieren
 		TableRowSorter<MoneyDetailsListModel> sorter = 

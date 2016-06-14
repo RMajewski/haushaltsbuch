@@ -107,5 +107,14 @@ public class TestQueries {
 	public void testMoneyInstanceofQueryInterface() {
 		assertTrue(Queries.getInstance().money() instanceof QueryInterface);
 	}
+	
+	/**
+	 * Testet ob das Attribut {@link haushaltsbuch.db.query.Queries#payment} das Interface
+	 * {@link haushaltsbuch.db.query.QueryInterface} implementiert.
+	 */
+	@Test
+	public void testPaymentInstanceofQueryInterface() {
+		assertTrue(Queries.getInstance().payment() instanceof QueryInterface);
+	}
 
 }

@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -102,11 +103,15 @@ public abstract class WndChangeFrame extends WndInternalFrame implements ActionL
 		_gbl = new GridBagLayout();
 		setLayout(_gbl);
 		
+		// Label für die Beschreibung
+		JLabel label = new JLabel("Beschreibung");
+		addComponent(_gbl, label, 0, 8, 1, 1, 0.2, 0);
+		
 		// Mehrzeiliger Text für die Beschreibung
 		_txtComment = new JTextArea(13, 55);
 		_txtComment.setLineWrap(true);
 		_txtComment.setWrapStyleWord(true);
-		addComponent(_gbl, new JScrollPane(_txtComment), 2, 5, 2, 4, 0.8, 0.5);
+		addComponent(_gbl, new JScrollPane(_txtComment), 2, 8, 2, 4, 0.8, 0.5);
 		
 		// Speichern-Button
 		JButton btn = new JButton("Speichern");
@@ -114,14 +119,14 @@ public abstract class WndChangeFrame extends WndInternalFrame implements ActionL
 		btn.setMnemonic('S');
 		btn.setSelected(true);
 		btn.addActionListener(this);
-		addComponent(_gbl, btn, 2, 10, 1, 1, 0, 0);
+		addComponent(_gbl, btn, 2, 13, 1, 1, 0, 0);
 		
 		// Abbrechen-Button
 		btn = new JButton("Abbrechen");
 		btn.setMnemonic('A');
 		btn.setActionCommand(CANCEL);
 		btn.addActionListener(this);
-		addComponent(_gbl, btn, 3, 10, 1, 1, 0, 0);
+		addComponent(_gbl, btn, 3, 13, 1, 1, 0, 0);
 	}
 	
 	/**

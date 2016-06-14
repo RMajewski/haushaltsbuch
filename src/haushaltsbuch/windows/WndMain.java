@@ -132,7 +132,7 @@ public class WndMain extends JFrame implements ActionListener {
 		try {
 			DbController.getInstance().prepaireDatabase();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			StatusBar.getInstance().setMessageAsError(e);
 		}
 	}
 

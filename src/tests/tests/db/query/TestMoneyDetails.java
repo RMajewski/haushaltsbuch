@@ -22,6 +22,7 @@ package tests.tests.db.query;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import haushaltsbuch.db.query.MoneyDetails;
@@ -90,7 +91,8 @@ public class TestMoneyDetails extends TestHelper{
 		StringBuilder test = new StringBuilder("CREATE TABLE IF NOT EXISTS " +
 				"'money_details' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				"'moneyid' INTEGER NOT NULL, 'categoryid' INTEGER NOT NULL, " +
-				"'sectionid' INTEGER NOT NULL, 'money' DOUBLE, 'comment' TEXT)");
+				"'sectionid' INTEGER NOT NULL, 'money' DOUBLE, 'comment' TEXT" +
+				", 'paymentid' INTEGER NOT NULL DEFAULT 1)");
 		assertEquals(test.toString(), _moneyDetails.createTable());
 	}
 	
@@ -100,7 +102,7 @@ public class TestMoneyDetails extends TestHelper{
 	 */
 	@Test
 	public void testInsertHasFifeQuery() {
-		assertEquals(5, frequency(_moneyDetails.insert(), "?"));
+		assertEquals(6, frequency(_moneyDetails.insert(), "?"));
 	}
 	
 	/**
@@ -287,10 +289,22 @@ public class TestMoneyDetails extends TestHelper{
 	/**
 	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * keine <b>?</b> in der Rückgabe enthält.
+	 * 
+	 * @deprecated
 	 */
+	@Ignore("The method is deprecated")
 	@Test
 	public void testUpdateIntIntIntIntDoubleStringReturnNoQuery() {
 		assertEquals(0, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, "Dies ist ein Test"), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * keine <b>?</b> in der Rückgabe enthält.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringIntReturnNoQuery() {
+		assertEquals(0, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, "Dies ist ein Test", 500), "?"));
 	}
 	
 	/**
@@ -356,6 +370,8 @@ public class TestMoneyDetails extends TestHelper{
 	/**
 	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
 	 * den Tabellen-Namen in der Rückgabe enthält.
+	 * 
+	 * @deprecated
 	 */
 	@Test
 	public void testUpdateIntIntIntIntDoubleStringReturnHaveTableName() {
@@ -364,8 +380,20 @@ public class TestMoneyDetails extends TestHelper{
 	
 	/**
 	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
-	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
+	 * den Tabellen-Namen in der Rückgabe enthält.
 	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringIntReturnHaveTableName() {
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, "Dies ist ein Test", 500), _table));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
+	 * 
+	 * @deprecated
+	 */
+	@Ignore("The method is deprecated")
 	@Test
 	public void testUpdateIntIntIntIntDoubleStringMinusOneAsIdReturnHasOneQuery() {
 		assertEquals(1, frequency(_moneyDetails.update(-1, 200, 300, 400, 10.89, "Dies ist ein Test"), "?"));
@@ -373,11 +401,45 @@ public class TestMoneyDetails extends TestHelper{
 	
 	/**
 	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
-	 * ein <b>?</b> enthält, wenn null als Kommentar übergeben wird.
+	 * ein <b>?</b> enthält, wenn -1 als ID übergeben wird.
 	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringIntMinusOneAsIdReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.update(-1, 200, 300, 400, 10.89, "Dies ist ein Test", 500), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * ein <b>?</b> enthält, wenn null als Kommentar übergeben wird.
+	 * 
+	 * @deprecated
+	 */
+	@Ignore("The method is deprecated")
 	@Test
 	public void testUpdateIntIntIntIntDoubleStringNullAsCommentReturnHasOneQuery() {
 		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, null), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * ein <b>?</b> enthält, wenn null als Kommentar übergeben wird.
+	 */
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringIntNullAsCommentReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, null, 500), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode {@link haushaltsbuch.db.query.MoneyDetails#update(int, int, int, int, double, String)}
+	 * ein <b>?</b> enthält, wenn eine leere Zeichenkette als Kommentar
+	 * übergeben wird.
+	 * 
+	 * @deprecated
+	 */
+	@Ignore("The method is deprecated")
+	@Test
+	public void testUpdateIntIntIntIntDoubleStringEmptyAsCommentReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, new String()), "?"));
 	}
 	
 	/**
@@ -386,8 +448,8 @@ public class TestMoneyDetails extends TestHelper{
 	 * übergeben wird.
 	 */
 	@Test
-	public void testUpdateIntIntIntIntDoubleStringEmptyAsCommentReturnHasOneQuery() {
-		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, new String()), "?"));
+	public void testUpdateIntIntIntIntDoubleStringIntEmptyAsCommentReturnHasOneQuery() {
+		assertEquals(1, frequency(_moneyDetails.update(100, 200, 300, 400, 10.89, new String(), 500), "?"));
 	}
 	
 	/**

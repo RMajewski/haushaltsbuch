@@ -19,12 +19,21 @@
 
 package haushaltsbuch.db.query;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import haushaltsbuch.db.DbController;
+
 /**
  * Enthält alle Datenbank-Abfragen für die Tabelle 'money_details'.
  * 
+ * In Version 0.2 wird die Tabelle um die Spalte "paymentid" erweitert. In
+ * dieser Spalte wird gespeichert, welches Zahlungsmittel benutzt wurde.
+ * 
  * @author René Majewski
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class MoneyDetails extends Query {
@@ -39,6 +48,7 @@ public class MoneyDetails extends Query {
 		_columnNames.add("sectionid");
 		_columnNames.add("money");
 		_columnNames.add("comment");
+		_columnNames.add("paymentid");
 	}
 
 	/**
@@ -55,7 +65,8 @@ public class MoneyDetails extends Query {
 				"'categoryid' INTEGER NOT NULL, " +
 				"'sectionid' INTEGER NOT NULL, " +
 				"'money' DOUBLE, " +
-				"'comment' TEXT)";
+				"'comment' TEXT, " +
+				"'paymentid' INTEGER NOT NULL DEFAULT 1)";
 	}
 	
 	/**
@@ -215,7 +226,7 @@ public class MoneyDetails extends Query {
 	 */
 	public String select(int id) {
 		// Abfrage vorbereiten
-		StringBuilder ret = new StringBuilder("SELECT id, moneyid, categoryid, sectionid, money, comment FROM money_details WHERE moneyid = ? ORDER BY id ASC");
+		StringBuilder ret = new StringBuilder("SELECT id, moneyid, categoryid, sectionid, money, comment, paymentid FROM money_details WHERE moneyid = ? ORDER BY id ASC");
 		
 		// Money-ID einfügen
 		replaceId(id, ret, false);
@@ -242,6 +253,8 @@ public class MoneyDetails extends Query {
 	 * @param money Betrag, der eingezahlt oder ausgegeben wurde.
 	 * 
 	 * @return Datenbank-Abfrage, um den angegeben Datensatz zu ändern.
+	 * 
+	 * @deprecated use {@link #update(int, int, int, int, double, int)}
 	 */
 	public String update(int id, int moneyid, int categoryid, int sectionid, double money) {
 		// Abfrage vorbereiten
@@ -276,9 +289,50 @@ public class MoneyDetails extends Query {
 	 * 
 	 * @param money Betrag, der eingezahlt oder ausgegeben wurde.
 	 * 
+	 * @param paymentId ID des Zahlungsmittels
+	 * 
+	 * @return Datenbank-Abfrage, um den angegeben Datensatz zu ändern.
+	 */
+	public String update(int id, int moneyid, int categoryid, int sectionid,
+			double money, int paymentId) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder("UPDATE 'money_details' SET moneyid = ?, categoryid = ?, sectionid = ?, money = ?, comment = \"\", paymentid = ? WHERE id = ?");
+		
+		// ID einfügen?
+		replaceId(id, ret, true);
+		// Money-ID, ID der Kategrie, ID des Geschäfts und Betrag einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(moneyid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(categoryid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(sectionid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(money));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(paymentId));
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um das Datum eines Datensatzes in der
+	 * Tabelle "money" zu ändern. Wurde eine ID größer <b>-1</b> angegeben,
+	 * so wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
+	 * angegeben, word für die ID ein <b>?</b> als Platzhalter in die
+	 * Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes, der geändert werden soll.
+	 * 
+	 * @param moneyid ID des zugehörigen Money-Datensatzes
+	 * 
+	 * @param categoryid ID der Kategorie
+	 * 
+	 * @param sectionid ID des Geschäftes
+	 * 
+	 * @param money Betrag, der eingezahlt oder ausgegeben wurde.
+	 * 
 	 * @param comment Beschreibung des Datensatzes
 	 * 
 	 * @return Datenbank-Abfrage, um den angegeben Datensatz zu ändern.
+	 * 
+	 * @deprecated
 	 */
 	public String update(int id, int moneyid, int categoryid, int sectionid, double money, String comment) {
 		// Abfrage vorbereiten
@@ -293,6 +347,50 @@ public class MoneyDetails extends Query {
 		// Soll der Kommentar eingefügt werden?
 		if (comment != null && !comment.isEmpty())
 			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		
+		// Abfrage zurück geben
+		return ret.toString();
+	}
+
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um das Datum eines Datensatzes in der
+	 * Tabelle "money" zu ändern. Wurde eine ID größer <b>-1</b> angegeben,
+	 * so wird die ID in die Abfrage aufgenommen. Wurde als ID <b>-1</b>
+	 * angegeben, word für die ID ein <b>?</b> als Platzhalter in die
+	 * Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes, der geändert werden soll.
+	 * 
+	 * @param moneyid ID des zugehörigen Money-Datensatzes
+	 * 
+	 * @param categoryid ID der Kategorie
+	 * 
+	 * @param sectionid ID des Geschäftes
+	 * 
+	 * @param money Betrag, der eingezahlt oder ausgegeben wurde.
+	 * 
+	 * @param comment Beschreibung des Datensatzes
+	 * 
+	 * @param paymentId ID des Zahlungsmittels
+	 * 
+	 * @return Datenbank-Abfrage, um den angegeben Datensatz zu ändern.
+	 */
+	public String update(int id, int moneyid, int categoryid, int sectionid, 
+			double money, String comment, int paymentId) {
+		// Abfrage vorbereiten
+		StringBuilder ret = new StringBuilder(update(id));
+		
+		// Money-ID, ID der Kategrie, ID des Geschäfts und Betrag einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(moneyid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(categoryid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(sectionid));
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, String.valueOf(money));
+		
+		// Soll der Kommentar eingefügt werden?
+		if (comment != null && !comment.isEmpty())
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		
+		ret.replace(ret.lastIndexOf("?"), ret.lastIndexOf("?") + 1, String.valueOf(paymentId));
 		
 		// Abfrage zurück geben
 		return ret.toString();
@@ -368,5 +466,27 @@ public class MoneyDetails extends Query {
 		
 		// Abfrage zurück geben
 		return ret.toString();
+	}
+
+	/**
+	 * Erzeugt die Spalte "paymentid", wenn sie noch nicht exitiert.
+	 * 
+	 * @return Gibt true zurück, wenn kein Fehler aufgetreten ist. Ist ein
+	 * Fehler aufgetreten, so wird false zurück gegeben.
+	 */
+	public boolean upgrade1() throws SQLException {
+		Statement stm = DbController.getInstance().createStatement();
+		
+		ResultSet rs = stm.executeQuery("SELECT * FROM sqlite_master WHERE " +
+				"tbl_name = '" + _tableName + "' AND type = 'table'");
+		
+		if (rs.getString(5).indexOf("paymentid") == -1) {
+			DbController.getInstance().createStatement().executeUpdate(
+					"ALTER TABLE '" + _tableName + "' ADD COLUMN 'paymentid' " +
+					"INTEGER DEFAULT 1");
+		}
+		
+		rs.close();
+		return true;
 	}
 }

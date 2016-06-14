@@ -38,6 +38,12 @@ public class Queries {
 	 * Beinhaltet alle Abfragen für die Tabelle mit den einzelnen Geschäften
 	 */
 	private Section _section;
+	
+	/**
+	 * Beinhaltet alle Abfragen für die Tabelle mit den einzelnen
+	 * Zahlungsmitteln.
+	 */
+	private Payment _payment;
 
 	/**
 	 * Beinhaltet alle Abfragen für die Tabelle zu den Details der Ein- und
@@ -63,6 +69,7 @@ public class Queries {
 		_section = new Section();
 		_moneyDetails = new MoneyDetails();
 		_money = new Money();
+		_payment = new Payment();
 	}
 	
 	/**
@@ -92,6 +99,16 @@ public class Queries {
 	 */
 	public Section section() {
 		return _section;
+	}
+	
+	/**
+	 * Gibt die Instanz der Datenbank-Abfragen für die Tabelle 'payment'
+	 * zurück.
+	 * 
+	 * @return Instanz der Datenbank-Abfrage für die Zahlungsmittel.
+	 */
+	public Payment payment() {
+		return _payment;
 	}
 	
 	/**

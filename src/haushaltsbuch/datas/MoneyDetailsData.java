@@ -55,6 +55,11 @@ public class MoneyDetailsData extends Data {
 	private String _comment;
 	
 	/**
+	 * Speichert die ID der Zahlungsmethode
+	 */
+	private int _paymentId;
+	
+	/**
 	 * Initalisiert die ID mit -1, das Geld mit 0.00 und eine leere
 	 * Zeichenkette als Beschreibung
 	 */
@@ -63,6 +68,7 @@ public class MoneyDetailsData extends Data {
 		_moneyId = -1;
 		_categoryId = -1;
 		_sectionId = -1;
+		_paymentId = -1;
 		setComment(null);
 	}
 
@@ -93,14 +99,45 @@ public class MoneyDetailsData extends Data {
 	 * @param money Geld, welches ausgegeben oder eingenommen wurde.
 	 * 
 	 * @param comment Beschreibung des Datensatzes
+	 * 
+	 * @deprecated Use {@link #MoneyDetailsData(int, int, int, int, double, String, int)}
 	 */
-	public MoneyDetailsData(int id, int moneyId, int categoryId, int sectionId, double money, String comment) {
+	public MoneyDetailsData(int id, int moneyId, int categoryId, int sectionId,
+			double money, String comment) {
 		super(id);
 		_moneyId = moneyId;
 		_categoryId = categoryId;
 		_sectionId = sectionId;
 		_money = money;
 		setComment(comment);
+	}
+
+	/**
+	 * Initalisiert die Daten mit übergebenen Werten.
+	 * 
+	 * @param id ID des Datensatzes
+	 * 
+	 * @param moneyId ID des dazugehörigen Money-Datensatzes
+	 * 
+	 * @param categoryId ID der Kategorie
+	 * 
+	 * @param sectionId ID des Geschäftes
+	 * 
+	 * @param money Geld, welches ausgegeben oder eingenommen wurde.
+	 * 
+	 * @param comment Beschreibung des Datensatzes
+	 * 
+	 * @param paymentId ID der Zahlungsmethode
+	 */
+	public MoneyDetailsData(int id, int moneyId, int categoryId, int sectionId,
+			double money, String comment, int paymentId) {
+		super(id);
+		_moneyId = moneyId;
+		_categoryId = categoryId;
+		_sectionId = sectionId;
+		_money = money;
+		setComment(comment);
+		_paymentId = paymentId;
 	}
 
 	/**
@@ -194,6 +231,24 @@ public class MoneyDetailsData extends Data {
 			_comment = new String();
 		else
 			_comment = comment;
+	}
+
+	/**
+	 * Gibt die ID des Zahlungsmethode zurück.
+	 * 
+	 * @return ID der Zahlungsmethode
+	 */
+	public int getPaymentId() {
+		return _paymentId;
+	}
+
+	/**
+	 * Speichert die neue ID der Zahlungsmethode.
+	 * 
+	 * @param paymentId Neue ID der Zahlungsmethode
+	 */
+	public void setPaymentId(int paymentId) {
+		_paymentId = paymentId;
 	}
 
 }
