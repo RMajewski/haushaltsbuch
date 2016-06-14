@@ -51,6 +51,11 @@
 				</tr>
 				<tr>
 					<td>check</td>
+					<td>havePaymentComboBox</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
 					<td>haveCommentTextArea</td>
 					<td>true</td>
 				</tr>

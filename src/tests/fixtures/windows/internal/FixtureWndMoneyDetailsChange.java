@@ -78,6 +78,16 @@ public class FixtureWndMoneyDetailsChange extends FixtureWnd {
 	}
 	
 	/**
+	 * Ermittelt ob die Combo-Box für die Zahlungsmethode existiert.
+	 * 
+	 * @return Existiert die Combo-Box der Zahlungsmethode?
+	 */
+	public String havePaymentComboBox() {
+		return String.valueOf(
+				((TestWndMoneyDetailsChange)_test).existsPaymentComboBox());
+	}
+	
+	/**
 	 * Ermittelt ob das Eingabe-Feld für den Betrag existiert.
 	 * 
 	 * @return Existiert die Betrag-Eingabe?

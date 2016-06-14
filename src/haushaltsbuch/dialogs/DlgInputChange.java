@@ -62,6 +62,12 @@ public class DlgInputChange extends JDialog implements ActionListener {
 	public static final int WND_SECTION = 2;
 	
 	/**
+	 * Gibt an, dass es sich um den Eingabe-Dialog für eine Zahlungsmethode
+	 * handelt.
+	 */
+	public static final int WND_PAYMENT = 3;
+	
+	/**
 	 * Gibt an, dass ein Neuer Datensatz erstellt werden soll
 	 */
 	public static final boolean TYPE_INSERT = false;
@@ -162,6 +168,13 @@ public class DlgInputChange extends JDialog implements ActionListener {
 				setTitle("Neues Geschäft eingeben");
 			else
 				setTitle("Geschäft ändern");
+		} else if (window == WND_PAYMENT) {
+			_label.setText("Zahlungsmethode");
+			
+			if (type == TYPE_INSERT)
+				setTitle("Neue Zahlungsmethode eingeben");
+			else
+				setTitle("Zahlungsmethode ändern");
 		}
 		setModal(true);
 		

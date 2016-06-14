@@ -28,7 +28,7 @@
 				<tr>
 					<td>check</td>
 					<td>getTableColumnCount</td>
-					<td>5</td>
+					<td>6</td>
 				</tr>
 				<tr>
 					<td>check</td>
@@ -54,6 +54,11 @@
 					<td>check</td>
 					<td>columnHeader4</td>
 					<td>Beschreibung</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>columnHeader5</td>
+					<td>Zahlungsmethode</td>
 				</tr>
 				<tr>
 					<td>check</td>

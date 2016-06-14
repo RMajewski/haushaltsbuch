@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Neue Zahlungsmethode (Ok)</title>
+	</head>
+	<body>
+		<h2>Dialog: Neue Zahlungsmethode (Ok)</h2>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td colspan="2">tests.fixtures.dialogs.FixtureDlgInputChange</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>startPaymentInsert</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isModal</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTitle</td>
+					<td>Neue Zahlungsmethode eingeben</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getLabelText</td>
+					<td>Zahlungsmethode</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getText</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setText</td>
+					<td>Neu</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushOk</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getExitStatus</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getText</td>
+					<td>Neu</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

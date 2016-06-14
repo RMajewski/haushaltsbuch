@@ -72,6 +72,24 @@ public class FixtureDlgInputChange extends FixtureDialogs {
 		_test = new TestDlgInputChange(DlgInputChange.WND_SECTION, 
 				DlgInputChange.TYPE_CHANGE);
 	}
+	
+	/**
+	 * Startet den Dialog für eine Zahlungsmethode ändern.
+	 * @throws Exception
+	 */
+	public void startPaymentChange() throws Exception {
+		_test = new TestDlgInputChange(DlgInputChange.WND_PAYMENT, 
+				DlgInputChange.TYPE_CHANGE);
+	}
+	
+	/**
+	 * Startet den Dialog für eine neue Zahlungsmethode eingeben.
+	 * @throws Exception
+	 */
+	public void startPaymentInsert() throws Exception {
+		_test = new TestDlgInputChange(DlgInputChange.WND_PAYMENT, 
+				DlgInputChange.TYPE_INSERT);
+	}
 
 	/**
 	 * Überprüft, ob der Dialog modal ist.

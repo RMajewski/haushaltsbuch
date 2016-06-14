@@ -72,6 +72,14 @@ public class TestDlgInputChange extends TestDialogs {
 			else
 				btn = new JButtonOperator(_frame,
 						TestDialogApplication.DIALOG_INPUTCHANGE_SECTION_CHANGE);
+		} else if (wnd == DlgInputChange.WND_PAYMENT) {
+			if (type == DlgInputChange.TYPE_INSERT)
+				btn = new JButtonOperator(_frame,
+						TestDialogApplication.DIALOG_INPUTCHANGE_PAYMENT_INSERT);
+			else
+				btn = new JButtonOperator(_frame,
+						TestDialogApplication.DIALOG_INPUTCHANGE_PAYMENT_CHANGE);
+			System.out.println(btn);
 		}
 		
 		if (btn != null)
@@ -128,7 +136,7 @@ public class TestDlgInputChange extends TestDialogs {
 	 */
 	public String getDialogLabelText() {
 		return ((JLabel)_dlg.getContentPane().getComponent(
-				_dlg.getContentPane().getComponentCount() -1)).getText();
+				_dlg.getContentPane().getComponentCount() -2)).getText();
 	}
 
 	/**

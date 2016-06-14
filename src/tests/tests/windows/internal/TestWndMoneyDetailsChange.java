@@ -77,6 +77,11 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 	private JTextAreaOperator _comment;
 	
 	/**
+	 * Speichert die Dombo- Box fpr die Zahlungsmethode
+	 */
+	private JComboBoxOperator _payment;
+	
+	/**
 	 * Speichert das Datum
 	 */
 	private String _date;
@@ -122,6 +127,7 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 		_section = new JComboBoxOperator(_wndChange, 1);
 		_money = new JTextFieldOperator(_wndChange);
 		_comment = new JTextAreaOperator(_wndChange);
+		_payment = new JComboBoxOperator(_wndChange, 2);
 	}
 	
 	/**
@@ -175,6 +181,16 @@ public class TestWndMoneyDetailsChange extends GuiWndTest {
 	 */
 	public boolean existsSectionComboBox() {
 		return _section.isVisible();
+	}
+	
+	/**
+	 * Ermittelt ob die Combo-Box für die Zahlungsmethode existiert und
+	 * angezeigt wird.
+	 * 
+	 * @return Existiert die Combo-Box für die Zahlungsmethode?
+	 */
+	public boolean existsPaymentComboBox() {
+		return _payment.isVisible();
 	}
 	
 	/**

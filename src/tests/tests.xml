@@ -95,6 +95,7 @@
 			<test checkSource="haushaltsbuch.db.query.Money">TestMoney</test>
 			<test checkSource="haushaltsbuch.db.query.MoneyDetails">TestMoneyDetails</test>
 			<test checkSource="haushaltsbuch.db.query.Section">TestSection</test>
+			<test checkSource="haushaltsbuch.db.query.Payment">TestPayment</test>
 		</testSuite>
 		<testSuite>
 			<name>Komponenten</name>
@@ -158,7 +159,7 @@
 		<extension>fit</extension>
 		<libraries>
 			<library version="2.3.1.1" name="jemmy">jemmy.jar</library>
-			<library version="1.1" name="fit">fit.jar</library>
+			<library version="0.5" name="testsuite">testsuite.jar</library>
 			<library>sqlite-jdbc-3.8.11.2.jar</library>
 			<library>jhall.jar</library>
 			<library>itextpdf-5.5.9.jar</library>
@@ -198,6 +199,22 @@
 			<test>DlgExportPdfNoPreferences</test>
 			<test>DlgExportPdfPreferenceBarChart</test>
 			<test>DlgExportPdfPreferenceTable</test>
+		</testSuite>
+		<testSuite>
+			<name>Eingabe-Dialog</name>
+			<package>tests.fit.dialogs</package>
+			<test>DlgInputChangeCategoryChangeCancel</test>
+			<test>DlgInputChangeCategoryChangeOk</test>
+			<test>DlgInputChangeCategoryInsertCancel</test>
+			<test>DlgInputChangeCategoryInsertOk</test>
+			<test>DlgInputChangeSectionChangeCancel</test>
+			<test>DlgInputChangeSectionChangeOk</test>
+			<test>DlgInputChangeSectionInsertCancel</test>
+			<test>DlgInputChangeSectionInsertOk</test>
+			<test>DlgInputChangePaymentChangeCancel</test>
+			<test>DlgInputChangePaymentChangeOk</test>
+			<test>DlgInputChangePaymentInsertCancel</test>
+			<test>DlgInputChangePaymentInsertOk</test>
 		</testSuite>
 		<testSuite>
 			<name>ToolBar: Einfügen</name>
@@ -241,6 +258,13 @@
 			<test>WndCategoryListInsert</test>
 			<test>WndCategoryListChange</test>
 			<test>WndCategoryListDelete</test>
+		</testSuite>
+		<testSuite>
+			<name>Unterfenster für Tabellen: Zahlungsmethoden</name>
+			<package>tests.fit.windows.internal</package>
+			<test>WndPaymentListInsert</test>
+			<test>WndPaymentListChange</test>
+			<test>WndPaymentListDelete</test>
 		</testSuite>
 		<testSuite>
 			<name>Unterfenster für Tabellen: Einnahmen und Ausgaben</name>

@@ -1,0 +1,174 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Liste der Zahlungsmethoden (Ändern)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Liste der Zahlungsmethoden (Ändern)</h2>
+	
+		<p>In diesem Test wird eine Zeile in der Tabelle ausgewählt. Danach wird
+		im Popup-Menü auf den Menü-Eintrag Ändern geklickt. Der sich öffnende
+		Dialog wird abgebrochen. Es wird überprüft, ob sich der Datensatz nicht
+		geändert hat. Nun wird erneut auf den Popup-Menü-Eintrag Ändern
+		geklickt. Es wird ein Name für die Zahlungsmethode eingegeben und auf Ok
+		geklickt. Nun sollte sich der Name der ausgewählten Kategorie geändert
+		haben.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndPaymentList</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPopupChangeItemEnable</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectRowOne</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSelectedPayment</td>
+					<td>Keine Angabe</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isPopupChangeItemEnable</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushPopupChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDialogVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>hasPaymentName</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setPayment</td>
+					<td>Test</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDialogCancel</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isDialogVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectRowOne</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSelectedPayment</td>
+					<td>Keine Angabe</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushPopupChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setPayment</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDialogOk</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectRowOne</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>6</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSelectedPayment</td>
+					<td>Keine Angabe</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>openPopup</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushPopupChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setPayment</td>
+					<td>Test</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushDialogOk</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableRowCount</td>
+					<td>6</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTableSelectedRow</td>
+					<td>-1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectRowOne</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSelectedPayment</td>
+					<td>Test</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

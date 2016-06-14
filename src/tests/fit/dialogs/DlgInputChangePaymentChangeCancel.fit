@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dialog: Zahlungsmethode ändern (Abbrechen)</title>
+	</head>
+	<body>
+		<h2>Dialog: Zahlungsmethode ändern (Abbrechen)</h2>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td colspan="2">tests.fixtures.dialogs.FixtureDlgInputChange</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>startPaymentChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isModal</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveOkButton</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>haveCancelButton</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getTitle</td>
+					<td>Zahlungsmethode ändern</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getLabelText</td>
+					<td>Zahlungsmethode</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getText</td>
+					<td>Test</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushCancel</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getExitStatus</td>
+					<td>-1</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

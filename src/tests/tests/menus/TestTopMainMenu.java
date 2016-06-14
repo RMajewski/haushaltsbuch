@@ -142,8 +142,8 @@ public class TestTopMainMenu {
 	 * Überprüft, ob das Datenbank-Menü genau 4 Menü-Punkte hat
 	 */
 	@Test
-	public void testDbMenuHaveFourItems() {
-		assertEquals(3, _menu.getMenu(MENU_DB).getItemCount());
+	public void testDbMenuHaveFifeItems() {
+		assertEquals(5, _menu.getMenu(MENU_DB).getItemCount());
 	}
 	
 	/**
@@ -153,8 +153,10 @@ public class TestTopMainMenu {
 	public void testDbMenuHaveRightItems() {
 		assertEquals("Kategorien", _menu.getMenu(MENU_DB).getItem(0).getText());
 		assertEquals("Geschäfte", _menu.getMenu(MENU_DB).getItem(1).getText());
+		assertEquals("Zahlungsmethoden", _menu.getMenu(MENU_DB).getItem(2)
+				.getText());
 		assertEquals("Einnahmen und Ausgaben",
-				_menu.getMenu(MENU_DB).getItem(2).getText());
+				_menu.getMenu(MENU_DB).getItem(4).getText());
 	}
 	
 	/**

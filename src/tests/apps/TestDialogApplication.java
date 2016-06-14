@@ -98,6 +98,18 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 	 */
 	public static final String DIALOG_INPUTCHANGE_SECTION_CHANGE = 
 				"test.dialogs.DlgInputChange.Section.Change";
+	
+	/**
+	 * Gibt an, dass eine neue Zahlungsmethode erstellt werden soll.
+	 */
+	public static final String DIALOG_INPUTCHANGE_PAYMENT_INSERT = 
+				"test.dialogs.DlgInputChange.Payment.Insert";
+	
+	/**
+	 * Gibt an, dass eine Zahlungsmethode geändert werden soll.
+	 */
+	public static final String DIALOG_INPUTCHANGE_PAYMENT_CHANGE = 
+				"test.dialogs.DlgInputChange.Payment.Change";
 
 	/**
 	 * Serilisation ID
@@ -175,6 +187,18 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 		btn = new JButton(DIALOG_INPUTCHANGE_SECTION_CHANGE);
 		btn.addActionListener(this);
 		btn.setActionCommand(DIALOG_INPUTCHANGE_SECTION_CHANGE);
+		getContentPane().add(btn);
+		
+		// Button zum Dialog zur Eingabe einer neuen Zahlungsmethode
+		btn = new JButton(DIALOG_INPUTCHANGE_PAYMENT_INSERT);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_INPUTCHANGE_PAYMENT_INSERT);
+		getContentPane().add(btn);
+		
+		// Button zum Dialog zur Änderung einer Zahlungsmethode
+		btn = new JButton(DIALOG_INPUTCHANGE_PAYMENT_CHANGE);
+		btn.addActionListener(this);
+		btn.setActionCommand(DIALOG_INPUTCHANGE_PAYMENT_CHANGE);
 		getContentPane().add(btn);
 
 		// Fenster Anzeigen
@@ -254,6 +278,18 @@ public class TestDialogApplication extends JFrame implements ActionListener {
 				// Geschäft ändern
 				case DIALOG_INPUTCHANGE_SECTION_CHANGE:
 					new DlgInputChange(DlgInputChange.WND_SECTION,
+							DlgInputChange.TYPE_CHANGE, "Test", this);
+					break;
+					
+				// Neue Zahlungsmethode
+				case DIALOG_INPUTCHANGE_PAYMENT_INSERT:
+					new DlgInputChange(DlgInputChange.WND_PAYMENT, 
+							DlgInputChange.TYPE_INSERT, null, this);
+					break;
+					
+				// Zahlungsmethode ändern
+				case DIALOG_INPUTCHANGE_PAYMENT_CHANGE:
+					new DlgInputChange(DlgInputChange.WND_PAYMENT,
 							DlgInputChange.TYPE_CHANGE, "Test", this);
 					break;
 			}

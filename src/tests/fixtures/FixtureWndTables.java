@@ -75,6 +75,15 @@ public class FixtureWndTables extends FixtureWnd {
 	}
 	
 	/**
+	 * Ermittelt die Überschrift der Spalte 5
+	 * 
+	 * @return Überschrift der Spalte 5
+	 */
+	public String columnHeader5() {
+		return _test.getColumnHeader(5);
+	}
+	
+	/**
 	 * Ermittelt die Anzahl der Spalten
 	 */
 	public String getTableColumnCount() {
