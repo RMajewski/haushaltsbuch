@@ -84,6 +84,11 @@ public class MainTop extends JMenuBar {
 	public static final String DB_MONEY = "DBMoneyList";
 	
 	/**
+	 * ActionCommand für Datenbank -> Outstanding
+	 */
+	public static final String DB_OUTSTANDING = "DBOutstandingList";
+	
+	/**
 	 * ActionCommand für Report -> Wochenübersicht
 	 */
 	public static final String REPORT_WEEK = "ReportWeek";
@@ -312,6 +317,16 @@ public class MainTop extends JMenuBar {
 		item = new JMenuItem("Einnahmen und Ausgaben");
 		item.setMnemonic('A');
 		item.setActionCommand(DB_MONEY);
+		item.addActionListener(listener);
+		ret.add(item);
+		
+		// Separator
+		ret.addSeparator();
+		
+		// Eintrag für die Schulden
+		item = new JMenuItem("Schulden");
+		item.setMnemonic('S');
+		item.setActionCommand(DB_OUTSTANDING);
 		item.addActionListener(listener);
 		ret.add(item);
 		

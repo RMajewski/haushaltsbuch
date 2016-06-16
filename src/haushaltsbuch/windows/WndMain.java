@@ -39,6 +39,7 @@ import haushaltsbuch.menus.MainTop;
 import haushaltsbuch.windows.internal.WndLogView;
 import haushaltsbuch.windows.internal.WndCategoryList;
 import haushaltsbuch.windows.internal.WndMoneyList;
+import haushaltsbuch.windows.internal.WndOutstandingList;
 import haushaltsbuch.windows.internal.WndPaymentList;
 import haushaltsbuch.windows.internal.WndReports;
 import haushaltsbuch.windows.internal.WndSectionList;
@@ -173,6 +174,11 @@ public class WndMain extends JFrame implements ActionListener {
 			// Money-Datensätze anzeigen
 			case MainTop.DB_MONEY:
 				_desktop.addInternalFrame(new WndMoneyList(_desktop));
+				break;
+				
+			// Schulden anzeigen
+			case MainTop.DB_OUTSTANDING:
+				_desktop.addInternalFrame(new WndOutstandingList(_desktop));
 				break;
 				
 			// Log anzeigen

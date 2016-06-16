@@ -73,12 +73,13 @@
 			<test checkSource="haushaltsbuch.datas.MoneyData">TestMoneyData</test>
 			<test checkSource="haushaltsbuch.datas.MoneyDetailsData">TestMoneyDetailsData</test>
 			<test checkSource="haushaltsbuch.datas.ReportData">TestReportData</test>
-			<test checkSource="haushaltsbuch.datas.MonthData">TestReportMonthData</test>
+			<test checkSource="haushaltsbuch.datas.ReportMonthData">TestReportMonthData</test>
 			<test checkSource="haushaltsbuch.datas.ReportPreferenceData">TestReportPreferenceData</test>
-			<test checkSource="haushaltsbuch.datas.WeekData">TestReportWeekData</test>
-			<test checkSource="haushaltsbuch.datas.YearData">TestReportYearData</test>
-			<test checkSource="haushaltsbuch.datas.CategoryData">TestReportCategoryData</test>
-			<test checkSource="haushaltsbuch.datas.SectionData">TestReportSectionData</test>
+			<test checkSource="haushaltsbuch.datas.ReportWeekData">TestReportWeekData</test>
+			<test checkSource="haushaltsbuch.datas.ReportYearData">TestReportYearData</test>
+			<test checkSource="haushaltsbuch.datas.ReportCategoryData">TestReportCategoryData</test>
+			<test checkSource="haushaltsbuch.datas.ReportSectionData">TestReportSectionData</test>
+			<test checkSource="haushaltsbuch.datas.OutstandingData">TestOutstandingData</test>
 		</testSuite>
 		<testSuite>
 			<name>Datenbank-Verbindung</name>
@@ -152,6 +153,7 @@
 			<test checkSource="haushaltsbuch.tables.ReportYearModel">TestReportYearModel</test>
 			<test checkSource="haushaltsbuch.tables.ReportSectionModel">TestReportSectionModel</test>
 			<test checkSource="haushaltsbuch.tables.ReportCategoryModel">TestReportCategoryModel</test>
+			<test checkSource="haushaltsbuch.tables.OutstandingListModel">TestOutstandingListModel</test>
 		</testSuite>
 	</testGroup>
 	
@@ -288,6 +290,13 @@
 			<test>WndSectionListInsert</test>
 			<test>WndSectionListChange</test>
 			<test>WndSectionListDelete</test>
+		</testSuite>
+		<testSuite>
+			<name>Unterfenster für Tabellen: Schulden</name>
+			<package>tests.fit.windows.internal</package>
+			<test>WndOutstandingListInsert</test>
+			<test>WndOutstandingListChange</test>
+			<test>WndOutstandingListDelete</test>
 		</testSuite>
 		<testSuite>
 			<name>Unterfenster zum Eingeben der Einnahmen und Ausgaben</name>

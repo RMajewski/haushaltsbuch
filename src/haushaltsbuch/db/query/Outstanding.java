@@ -50,7 +50,7 @@ public class Outstanding extends Query {
 	 */
 	@Override
 	public String createTable() {
-		return "CREATE TABLE IF NOT EXISTS 'oustanding' (" +
+		return "CREATE TABLE IF NOT EXISTS 'outstanding' (" +
 				"'id' INTEGER PRIMARY KEY AUTOINCREMENT," +
 				"'sectionid' INTEGER NOT NULL," +
 				"'money' DOUBLE NOT NULL," +
@@ -59,5 +59,95 @@ public class Outstanding extends Query {
 				"'monthMoney' DOUBLE NOT NULL," +
 				"'comment' TEXT);";
 	}
+	
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um einen Eintrag in der Tabelle
+	 * "outstanding" zu erzeugen. Es werden die übergebenen Daten in die
+	 * Datenbank-Abfrage geschrieben.
+	 * 
+	 * @return Datenbank-Abfrage, um einen neuen Eintrag in "outstanding" zu
+	 * erzeugen
+	 */
+	public String insert(int sectionId, double money, int months, long start,
+			double monthMoney, String comment) {
+		// Rückgabe voerbereiten
+		StringBuilder ret = new StringBuilder(insert());
+		
+		// ID des Geschäftes einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(sectionId));
+		
+		// Schlulden einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(money));
+		
+		// Anzahl monatlicher Raten einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(months));
+		
+		// Datum der 1. Rate einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(start));
+		
+		// Höhe der monatlichen Rate einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(monthMoney));
+		
+		// Kommentar einfügen
+		if (comment != null && !comment.isEmpty())
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		else
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, new String());
+		
+		// Datenbank-Abfrage zurück geben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um einen Eintrag in der Tabelle "money"
+	 * zu erzeugen. Es werden die übergebenen Daten in die Datenbank-Abfrage
+	 * geschrieben.
+	 * 
+	 * @return Datenbank-Abfrage, um einen neuen Eintrag in "money" zu erzeugen
+	 */
+	public String insert(int id, int sectionId, double money, int months, long start,
+			double monthMoney, String comment) {
+		// Rückgabe voerbereiten
+		StringBuilder ret = new StringBuilder(insertWithId());
+		
+		// Id einfügen
+		replaceId(id, ret, false);
+		
+		// ID des Geschäftes einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(sectionId));
+		
+		// Schlulden einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(money));
+		
+		// Anzahl monatlicher Raten einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(months));
+		
+		// Datum der 1. Rate einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(start));
+		
+		// Höhe der monatlichen Rate einfügen
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(monthMoney));
+		
+		// Kommentar einfügen
+		if (comment != null && !comment.isEmpty())
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		else
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, new String());
+		
+		// Datenbank-Abfrage zurück geben
+		return ret.toString();
+	}
+
 
 }

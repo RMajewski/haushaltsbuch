@@ -31,6 +31,8 @@ import java.util.GregorianCalendar;
  * 
  * @version 0.1
  * @since 0.2
+ * 
+ * @deprecated Use org.testsuite.helper.HelperCalendar
  */
 public class HelperCalendar {
 

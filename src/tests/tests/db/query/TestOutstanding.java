@@ -88,7 +88,7 @@ public class TestOutstanding extends TestHelper {
 	@Test
 	public void testCreateTableReturnIsRight() {
 		StringBuilder test = new StringBuilder("CREATE TABLE IF NOT EXISTS " +
-				"'oustanding' ('id' INTEGER PRIMARY KEY AUTOINCREMENT," +
+				"'outstanding' ('id' INTEGER PRIMARY KEY AUTOINCREMENT," +
 				"'sectionid' INTEGER NOT NULL," +
 				"'money' DOUBLE NOT NULL," +
 				"'months' INTEGER NOT NULL," +
@@ -105,5 +105,71 @@ public class TestOutstanding extends TestHelper {
 	@Test
 	public void testInsertReturnNotNull() {
 		assertStringIsNotNull(_outstanding.insert());
+	}
+	
+	/**
+	 * Testet, ob die Methode
+	 * {@link haushaltsbuch.db.query.Outstanding#insert(int, double, int, long, double, String)}
+	 * kein ? in der Rückgabe enthält, wenn die Beschreibung <b>null</b> ist.
+	 */
+	@Test
+	public void testInsertIntDoubleIntLongDoubleStringgWithNull() {
+		assertEquals(0, frequency(_outstanding.insert(1, 19.99, 10, 768786L, 
+				19.99, null), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode
+	 * {@link haushaltsbuch.db.query.Outstanding#insert(int, double, int, long, double, String)}
+	 * Zeichenkette ist.
+	 */
+	@Test
+	public void testInsertIntDoubleIntLongDoubleStringWithEmpty() {
+		assertEquals(0, frequency(_outstanding.insert(1, 19.99, 10, 768786L, 
+				19.99, new String()), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode
+	 * {@link haushaltsbuch.db.query.Outstanding#insert(int, double, int, long, double, String)}
+	 * der Rückgabe 'outstanding' enthält.
+	 */
+	@Test
+	public void testInsertIntDoubleIntLongDoubleStringTableReturnHaveMoney() {
+		assertEquals(1, frequency(_outstanding.insert(1, 19.99, 10, 768786L, 
+				19.99, "'Dies ist ein Test'"), _table));
+	}
+	
+	/**
+	 * Testet, ob die Methode
+	 * {@link haushaltsbuch.db.query.Outstanding#insert(int, int, double, int, long, double, String)}
+	 * kein ? in der Rückgabe enthält, wenn die Beschreibung <b>null</b> ist.
+	 */
+	@Test
+	public void testInsertIntIntDoubleIntLongDoubleStringgWithNull() {
+		assertEquals(0, frequency(_outstanding.insert(1, 1, 19.99, 10, 768786L, 
+				19.99, null), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode
+	 * {@link haushaltsbuch.db.query.Outstanding#insert(int, int, double, int, long, double, String)}
+	 * Zeichenkette ist.
+	 */
+	@Test
+	public void testInsertIntIntDoubleIntLongDoubleStringWithEmpty() {
+		assertEquals(0, frequency(_outstanding.insert(1, 1, 19.99, 10, 768786L, 
+				19.99, new String()), "?"));
+	}
+	
+	/**
+	 * Testet, ob die Methode
+	 * {@link haushaltsbuch.db.query.Outstanding#insert(int, int, double, int, long, double, String)}
+	 * der Rückgabe 'outstanding' enthält.
+	 */
+	@Test
+	public void testInsertIntIntDoubleIntLongDoubleStringTableReturnHaveMoney() {
+		assertEquals(1, frequency(_outstanding.insert(1, 1, 19.99, 10, 768786L, 
+				19.99, "'Dies ist ein Test'"), _table));
 	}
 }
