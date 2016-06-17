@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Schulden einfügen (Abbrechen)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Schulden einfügen (Abbrechen)</h2>
+		
+		<p>Startet das Fenster zum eingeben der Schulden. Es wird auf abbrechen
+		geklickt. Danach wird überprüft, ob kein Datensatz angelegt wurde.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndOutstandingChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushInsert</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushCancel</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

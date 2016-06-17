@@ -22,13 +22,18 @@ package haushaltsbuch.windows.internal;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import haushaltsbuch.datas.Data;
+import haushaltsbuch.db.DbController;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
 
@@ -38,9 +43,12 @@ import haushaltsbuch.elements.StatusBar;
  * Fenster, die von diesem Fenster abgeleitet werden, müssen die anderen
  * Steuerelemnte initalisieren.
  * 
+ * In der Version 0.2 werden die automatisch erzeugten Elemente nur erzeugt,
+ * wenn dies gewünscht wird.
+ * 
  * @author René Majewski
  * 
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public abstract class WndChangeFrame extends WndInternalFrame implements ActionListener{
@@ -84,8 +92,22 @@ public abstract class WndChangeFrame extends WndInternalFrame implements ActionL
 	 * @param desktop
 	 * @param data
 	 * @param frame
+	 * 
+	 * @deprecated Bitte neuen Konstruktor benutzen:
+	 * {@link #WndChangeFrame(Desktop, Data, WndTableFrame, boolean)}
 	 */
 	public WndChangeFrame(Desktop desktop, Data data, WndTableFrame frame) {
+		this(desktop, data, frame, true);
+	}
+	
+	/**
+	 * @param desktop
+	 * @param data
+	 * @param frame
+	 * @param create
+	 */
+	public WndChangeFrame(Desktop desktop, Data data, WndTableFrame frame,
+			boolean create) {
 		// Klasse initalisieren
 		super(desktop);
 		
@@ -98,35 +120,37 @@ public abstract class WndChangeFrame extends WndInternalFrame implements ActionL
 			setTitle("Neuen Datensatz erstellen");
 		else
 			setTitle("Datensatz ändern");
-	
-		// GridBag-Layout initalisieren und setzen
-		_gbl = new GridBagLayout();
-		setLayout(_gbl);
 		
-		// Label für die Beschreibung
-		JLabel label = new JLabel("Beschreibung");
-		addComponent(_gbl, label, 0, 8, 1, 1, 0.2, 0);
-		
-		// Mehrzeiliger Text für die Beschreibung
-		_txtComment = new JTextArea(13, 55);
-		_txtComment.setLineWrap(true);
-		_txtComment.setWrapStyleWord(true);
-		addComponent(_gbl, new JScrollPane(_txtComment), 2, 8, 2, 4, 0.8, 0.5);
-		
-		// Speichern-Button
-		JButton btn = new JButton("Speichern");
-		btn.setActionCommand(SAVE);
-		btn.setMnemonic('S');
-		btn.setSelected(true);
-		btn.addActionListener(this);
-		addComponent(_gbl, btn, 2, 13, 1, 1, 0, 0);
-		
-		// Abbrechen-Button
-		btn = new JButton("Abbrechen");
-		btn.setMnemonic('A');
-		btn.setActionCommand(CANCEL);
-		btn.addActionListener(this);
-		addComponent(_gbl, btn, 3, 13, 1, 1, 0, 0);
+		if (create) {
+			// GridBag-Layout initalisieren und setzen
+			_gbl = new GridBagLayout();
+			setLayout(_gbl);
+			
+			// Label für die Beschreibung
+			JLabel label = new JLabel("Beschreibung");
+			addComponent(_gbl, label, 0, 8, 1, 1, 0.2, 0);
+			
+			// Mehrzeiliger Text für die Beschreibung
+			_txtComment = new JTextArea(13, 55);
+			_txtComment.setLineWrap(true);
+			_txtComment.setWrapStyleWord(true);
+			addComponent(_gbl, new JScrollPane(_txtComment), 2, 8, 2, 4, 0.8, 0.5);
+			
+			// Speichern-Button
+			JButton btn = new JButton("Speichern");
+			btn.setActionCommand(SAVE);
+			btn.setMnemonic('S');
+			btn.setSelected(true);
+			btn.addActionListener(this);
+			addComponent(_gbl, btn, 2, 13, 1, 1, 0, 0);
+			
+			// Abbrechen-Button
+			btn = new JButton("Abbrechen");
+			btn.setMnemonic('A');
+			btn.setActionCommand(CANCEL);
+			btn.addActionListener(this);
+			addComponent(_gbl, btn, 3, 13, 1, 1, 0, 0);
+		}
 	}
 	
 	/**
@@ -143,5 +167,37 @@ public abstract class WndChangeFrame extends WndInternalFrame implements ActionL
 			} catch (Exception e) {
 				StatusBar.getInstance().setMessageAsError(e);
 			}
+	}
+	
+	/**
+	 * Führt die angegebene SQL-Abfrage aus und fügt der angegebenen ComboBox
+	 * den Namen als Eintrag hinzu. Sollte die ID des Namens und die übergebene
+	 * ID übereinstimmten, so wird der Namen in der ComboBox ausgewählt.
+	 * 
+	 * @param sql SQL-Abfrage, mit der die Daten aus der Datenbank ermittelt
+	 * werden können.
+	 * 
+	 * @param id ID, des Namens, der in der ComboBox ausgewählt werden soll
+	 * 
+	 * @param combo ComboBox, die gefüllt werden soll.
+	 */
+	protected void queriesAddComboBox(String sql, int id, JComboBox<String> combo) {
+		try {
+			Statement stm = DbController.getInstance().createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+			while (rs.next()) {
+				combo.addItem(rs.getString("name"));
+				
+				// Datensatz auswählen?
+				if (_data.getId() > -1)
+					if (rs.getInt("id") == id)
+						combo.setSelectedItem(rs.getString("name"));
+			}
+			rs.close();
+			
+		} catch (SQLException e) {
+			StatusBar.getInstance().setMessageAsError(
+					DbController.statusDbError(), e);
+		}
 	}
 }

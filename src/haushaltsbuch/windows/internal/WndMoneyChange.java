@@ -33,8 +33,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-
 import haushaltsbuch.datas.MoneyData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgInfo;
@@ -87,7 +85,7 @@ public class WndMoneyChange extends WndChangeFrame {
 	public WndMoneyChange(Desktop desktop, MoneyData data, WndTableFrame frame) {
 		
 		// Fenster initalisieren
-		super(desktop, data, frame);
+		super(desktop, data, frame, true);
 		
 		// Label für das Datum
 		JLabel label = new JLabel("Datum");

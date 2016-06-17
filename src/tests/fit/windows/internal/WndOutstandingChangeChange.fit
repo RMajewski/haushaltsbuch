@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Unterfenster: Schulden Einfügen (Ändern)</title>
+	</head>
+	<body>
+		<h2>Unterfenster: Schulden Einfügen (Ändern)</h2>
+		
+		<p>Startet das Fenster zum Ändern der Details der Schulden. Es wird 
+		überprüft, ob die Daten vom Datensatz in den Eingabe-Feldern vorhanden
+		sind. Dann wird der Betrag für die Höhe der Schulden geändert und
+		gespeichert. Nun wird überprüft, ob der Betrag für die Höhe der Schulden
+		geändert wurde.</p>
+		<table border="1" cellpadding="1" cellspacing="1" style="width: *;">
+			<tbody>
+				<tr>
+					<td colspan="3">fit.ActionFixture</td>
+				</tr>
+				<tr>
+					<td>start</td>
+					<td>tests.fixtures.windows.internal.FixtureWndOutstandingChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>selectTableRow0</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushChange</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getSection</td>
+					<td>jobcenter</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getMoney</td>
+					<td>1200,00</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getMonths</td>
+					<td>12</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getStart</td>
+					<td>01.01.2016</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getMonthMoney</td>
+					<td>100,00</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getComment</td>
+					<td>Dies ist ein Test</td>
+				</tr>
+				<tr>
+					<td>enter</td>
+					<td>setMoneyTextFieldValue</td>
+					<td>44.98</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushSave</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbTableRowCount</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>getDbMoney</td>
+					<td>44.98</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

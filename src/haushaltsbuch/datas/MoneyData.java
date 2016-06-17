@@ -152,6 +152,7 @@ public class MoneyData extends Data {
 	 * 
 	 * @return Gibt das ermittelte Datum zurück.
 	 */
+	// OPT In Helper verschieben
 	public long setDate(String date) {
 		if (date == null || date.isEmpty()) {
 			// Aktuelles Datum ermitteln und long-Wert speichern

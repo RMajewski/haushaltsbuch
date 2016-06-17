@@ -149,5 +149,247 @@ public class Outstanding extends Query {
 		return ret.toString();
 	}
 
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um in der Tabelle 'outstanding' das
+	 * Geschäft oder die Höhe der monatlichen Raten zu ändern.
+	 * 
+	 * Wurde eine ID größer <b>-1</b> angegeben, so wird die ID in die Abfrage
+	 * aufgenommen. Wurde als ID <b>-1</b> angegeben, wird für die ID ein 
+	 * <b>?</b> als Platzhalter in die Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Datensatzes.
+	 * 
+	 * @param sectionId Neue ID des Geschäftes.
+	 * 
+	 * @param months <b>True</b>, wenn es sich um die Anzahl der monatlichen
+	 * Raten handelt. <b>False</b>, wenn es sich um die ID des Geschäftes
+	 * handelt.
+	 * 
+	 * @return Datenbank-Abfrage, um in der Tabelle 'outstanding' das Geschäft
+	 * zu ändern
+	 */
+	public String update(int id, int integer, boolean months) {
+		StringBuilder ret;
+		if (months)
+			ret = new StringBuilder("UPDATE 'outstanding' SET months = ? " +
+					"WHERE id = ?");
+		else
+			ret = new StringBuilder("UPDATE 'outstanding' SET sectionid = ? " +
+					"WHERE id = ?");
+		
+		// ID ersetzen
+		replaceId(id, ret, true);
+		
+		// ID des Geschäftes einfügen
+		if (!months && (integer > -1))
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+					String.valueOf(integer));
+		else if (months)
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+					String.valueOf(integer));
+		
+		// Abfrage zurückgeben
+		return ret.toString();
+	}
 
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um in der Tabelle 'outstanding' die Höhe
+	 * der Schulden oder die Höhe der monatlichen Raten zu ändern.
+	 * 
+	 * @param id ID des Datensatzes.
+	 * 
+	 * @param money Neuer Betrag für die Höhe der Schlulden
+	 * 
+	 * @param month <b>True</b>, wenn es sich um den Betrag für die monatlichen
+	 * Raten handelt. <b>False</b>, wenn es sich um den Betrag für die Höhe
+	 * der Schuld handelt.
+	 * 
+	 * @return Datenbank-Abfrage, um in der Tabelle 'outstanding' die Höhe der
+	 * Schuld oder die Höhe der monatlichen Raten zu ändern.
+	 */
+	public String update(int id, double money, boolean month) {
+		StringBuilder ret;
+		if (month)
+			ret = new StringBuilder("UPDATE 'outstanding' SET monthmoney = ? " +
+					"WHERE id = ?");
+		else
+			ret = new StringBuilder("UPDATE 'outstanding' SET money = ? WHERE " +
+					"id = ?");
+		
+		// ID ersetzen
+		replaceId(id, ret, true);
+		
+		// Betrag
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+					String.valueOf(money));
+		
+		// Abfrage zurückgeben
+		return ret.toString();
+	}
+
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um in der Tabelle 'outstanding' das Datum
+	 * für die 1. Rate zu ändern.
+	 * 
+	 * @param id ID des Datensatzes.
+	 * 
+	 * @param start Neues Datum, für die 1. Rate
+	 * 
+	 * @return Datenbank-Abfrage, um in der Tabelle 'outstanding' das Datum der
+	 * 1. Rate zu ändern.
+	 */
+	public String update(int id, long date) {
+		StringBuilder ret = new StringBuilder("UPDATE 'outstanding' SET " +
+				"start = ? WHERE id = ?");
+		
+		// ID ersetzen
+		replaceId(id, ret, true);
+		
+		// Datum der 1. Rate
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+					String.valueOf(date));
+		
+		// Abfrage zurückgeben
+		return ret.toString();
+	}
+
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um in der Tabelle 'outstanding' den
+	 * Kommentart zu ändern.
+	 * 
+	 * @param id ID des Datensatzes.
+	 * 
+	 * @param comment Neuer Kommentar
+	 * 
+	 * @return Datenbank-Abfrage, um in der Tabelle 'outstanding' den Kommentar 
+	 * zu ändern.
+	 */
+	public String update(int id, String comment) {
+		StringBuilder ret = new StringBuilder("UPDATE 'outstanding' SET " +
+				"comment = \"?\" WHERE id = ?");
+		
+		// ID ersetzen
+		replaceId(id, ret, true);
+		
+		// Datum der 1. Rate
+		if ((comment != null) && !comment.isEmpty())
+			ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		
+		// Abfrage zurückgeben
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um das Datum eines Datensatzes in der
+	 * Tabelle "outstanding" zu ändern, ohne Kommentar. Wurde eine ID größer
+	 * <b>-1</b> angegeben, so wird die ID in die Abfrage aufgenommen. Wurde
+	 * als ID <b>-1</b> angegeben, word für die ID ein <b>?</b> als Platzhalter
+	 * in die Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Daatensatzes, der geändert werden soll
+	 * 
+	 * @param sectionId ID des Geschäftes
+	 * 
+	 * @param money Betrag für die Höhe der Schuld
+	 * 
+	 * @param months Anzahl der monatlichen Raten
+	 * 
+	 * @param start Datum für die 1. Rate
+	 * 
+	 * @param monthMoney Betrag für die monatlichen Raten
+	 * 
+	 * @return Datenbank-Abfrage, um den angegeben Datensatz zu ändern.
+	 */
+	public String update (int id, int sectionId, double money, int months,
+			long start, double monthMoney) {
+		StringBuilder ret = new StringBuilder("UPDATE 'outstanding' SET " +
+			"sectionid = ?, money = ?, months = ?, start = ?, monthmoney = ? " +
+			"WHERE id = ?");
+		
+		// ID des Datensatzes
+		replaceId(id, ret, true);
+		
+		// ID des Geschäftes
+		// OPT In eine Methode stecken
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(sectionId));
+		
+		// Betrag für die Höhe der Schuld
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(money));
+		
+		// Anzahl der Monate
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(months));
+		
+		// Datum der 1. Rate
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(start));
+		
+		// Betrag für die monatlichen Raten
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1,
+				String.valueOf(monthMoney));
+		
+		return ret.toString();
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um das Datum eines Datensatzes in der
+	 * Tabelle "outstanding" zu ändern, ohne Kommentar. Wurde eine ID größer
+	 * <b>-1</b> angegeben, so wird die ID in die Abfrage aufgenommen. Wurde
+	 * als ID <b>-1</b> angegeben, word für die ID ein <b>?</b> als Platzhalter
+	 * in die Datenbankabfrage übernommen.
+	 * 
+	 * @param id ID des Daatensatzes, der geändert werden soll
+	 * 
+	 * @param sectionId ID des Geschäftes
+	 * 
+	 * @param money Betrag für die Höhe der Schuld
+	 * 
+	 * @param months Anzahl der monatlichen Raten
+	 * 
+	 * @param start Datum für die 1. Rate
+	 * 
+	 * @param monthMoney Betrag für die monatlichen Raten
+	 * 
+	 * @param comment Neuer Kommentar
+	 * 
+	 * @return Datenbank-Abfrage, um den angegeben Datensatz zu ändern.
+	 */
+	public String update (int id, int sectionId, double money, int months,
+			long start, double monthMoney, String comment) {
+		StringBuilder ret = new StringBuilder("UPDATE 'outstanding' SET " +
+			"sectionid = ?, money = ?, months = ?, start = ?, monthmoney = ?, " +
+			"comment = \"?\" WHERE id = ?");
+		
+		// ID des Datensatzes
+		replaceId(id, ret, true);
+		
+		// ID des Geschäftes
+		// OPT In eine Methode stecken
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(sectionId));
+		
+		// Betrag für die Höhe der Schuld
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(money));
+		
+		// Anzahl der Monate
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(months));
+		
+		// Datum der 1. Rate
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(start));
+		
+		// Betrag für die monatlichen Raten
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1,
+				String.valueOf(monthMoney));
+		
+		// Kommentar
+		if ((comment != null) && !comment.isEmpty())
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, comment);
+		
+		return ret.toString();
+	}
 }

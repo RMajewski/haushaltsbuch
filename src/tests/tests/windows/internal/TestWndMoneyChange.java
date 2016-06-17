@@ -19,10 +19,7 @@
 
 package tests.tests.windows.internal;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
-
-import javax.swing.JFormattedTextField;
 
 import org.netbeans.jemmy.Test;
 import org.netbeans.jemmy.operators.JButtonOperator;
@@ -32,7 +29,7 @@ import org.netbeans.jemmy.operators.JTextAreaOperator;
 import org.netbeans.jemmy.operators.JTextFieldOperator;
 
 import haushaltsbuch.db.DbController;
-import haushaltsbuch.helper.HelperCalendar;
+import org.testsuite.helper.HelperCalendar;
 import haushaltsbuch.windows.internal.WndMoneyList;
 import tests.testcase.GuiWndTest;
 

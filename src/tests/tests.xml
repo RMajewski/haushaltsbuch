@@ -312,5 +312,12 @@
 			<test>WndMoneyDetailsChangeInsert</test>
 			<test>WndMoneyDetailsChangeNotInsert</test>
 		</testSuite>
+		<testSuite>
+			<name>Unterfenster zum Eingeben der Schulden</name>
+			<package>tests.fit.windows.internal</package>
+			<test>WndOutstandingChangeChange</test>
+			<test>WndOutstandingChangeInsert</test>
+			<test>WndOutstandingChangeNotInsert</test>
+		</testSuite>
 	</testGroup>
 </configurationFile>

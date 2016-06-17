@@ -23,24 +23,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.text.BadLocationException;
-
 import haushaltsbuch.datas.MoneyDetailsData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgInfo;
@@ -95,8 +85,11 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 	 * @param id ID, des Namens, der in der ComboBox ausgewählt werden soll
 	 * 
 	 * @param combo ComboBox, die gefüllt werden soll.
+	 * 
+	 * @deprecated Use {@link haushaltsbuch.windows.internal.WndChangeFrame#queriesAddComboBox(String, int, JComboBox)}
 	 */
-	private void queriesAddComboBox(String sql, int id, JComboBox<String> combo) {
+	@Override
+	protected void queriesAddComboBox(String sql, int id, JComboBox<String> combo) {
 		try {
 			Statement stm = DbController.getInstance().createStatement();
 			ResultSet rs = stm.executeQuery(sql);
@@ -126,7 +119,7 @@ public class WndMoneyDetailsChange extends WndChangeFrame
 	 * @param frame Fenster, welches dieses Fenster aufgereufen hat
 	 */
 	public WndMoneyDetailsChange(Desktop desktop, MoneyDetailsData data, WndTableFrame frame) {
-		super(desktop, data, frame);
+		super(desktop, data, frame, true);
 		
 		setSize(600, 500);
 		
