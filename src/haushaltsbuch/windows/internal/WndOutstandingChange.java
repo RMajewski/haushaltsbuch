@@ -299,6 +299,8 @@ public class WndOutstandingChange extends WndChangeFrame  {
 		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
 		_table.getColumnModel().getColumn(1).setHeaderValue("Details-Id");
 		_table.getColumnModel().getColumn(2).setHeaderValue("Outstanding-Id");
+		_table.getColumnModel().getColumn(3).setHeaderValue("Datum");
+		_table.getColumnModel().getColumn(4).setHeaderValue("Betrag");
 		
 		JPanel panRest = new JPanel();
 		panRepay.add(panRest, BorderLayout.WEST);
@@ -343,8 +345,8 @@ public class WndOutstandingChange extends WndChangeFrame  {
 		btnSave.setActionCommand(SAVE);
 		panButtons.add(btnSave);
 		
-		JButton btnCancel = new JButton("Abbrechen");
-		btnCancel.setMnemonic('A');
+		JButton btnCancel = new JButton("Beenden");
+		btnCancel.setMnemonic('B');
 		btnCancel.addActionListener(this);
 		btnCancel.setActionCommand(CANCEL);
 		panButtons.add(btnCancel);
@@ -360,6 +362,7 @@ public class WndOutstandingChange extends WndChangeFrame  {
 			_txtComment.setText(((OutstandingData)_data).getComment());
 			_btnSearch.setEnabled(true);
 			_btnNewRepay.setEnabled(true);
+			update();
 		}
 		
 		// Geschäfte füllen
@@ -377,6 +380,7 @@ public class WndOutstandingChange extends WndChangeFrame  {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		// Speichern
 		if(ae.getActionCommand().compareTo(SAVE) == 0) {
 			// Überprüfen ob die Höhe der Schuld eingegeben wurde.
 			if (_txtMoney.getText().isEmpty()) {
@@ -543,7 +547,15 @@ public class WndOutstandingChange extends WndChangeFrame  {
 		// Rückzahlungen suchen
 		if (ae.getActionCommand().equals(REPAY_SEARCH)) {
 			_desktop.addInternalFrame(new WndRepaySearchList(_desktop,
-					(OutstandingData)_data));
+					(OutstandingData)_data, this));
+			
+			// Methode beenden
+			return;
+		}
+		
+		// Neue Rückzahlung eingeben
+		if (ae.getActionCommand().equals(REPAY_NEW)) {
+			_desktop.addInternalFrame(new WndRepayNew(_desktop, _data, this));
 			
 			// Methode beenden
 			return;
@@ -552,5 +564,26 @@ public class WndOutstandingChange extends WndChangeFrame  {
 		// Da nich beendet, diese Methode in der Vater-Klasse aufrufen
 		super.actionPerformed(ae);
 	}
-
+	
+	/**
+	 * Veranlasst, dass die Tabelle neu aufgebaut wird und die Rest-Schuld und
+	 * die Anzahl der restlichen Monatlichen Raten neu berechnet wird 
+	 */
+	public void update() {
+		// Daten in der Tabelle neu einlesen
+		RepayListModel model = (RepayListModel)_table.getModel();
+		model.dataRefresh(true);
+		
+		// Rest-Schuld neu berechnen
+		double repay = 0.0;
+		for (int i = 0; i < model.getRowCount(); i++)
+			repay += (double)model.getValueAt(i, 4);
+		
+		repay = ((Number)_txtMoney.getValue()).doubleValue() - repay;
+		_restMoney.setText(String.valueOf(repay));
+		
+		// Anzahl restlicher Monate
+		_restMonths.setText(String.valueOf(Math.ceil(repay / 
+				((Number)_txtMonthMoney.getValue()).intValue())));
+	}
 }

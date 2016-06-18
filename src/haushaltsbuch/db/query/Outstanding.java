@@ -398,6 +398,7 @@ public class Outstanding extends Query {
 	 * 
 	 * @return Datenbank-Abfrage, um die letzte vergebene ID auszulesen.
 	 */
+	// OPT in Query verschieben
 	public String lastId() {
 		return "SELECT id FROM " + _tableName + " ORDER BY ID DESC LIMIT 1";
 	}

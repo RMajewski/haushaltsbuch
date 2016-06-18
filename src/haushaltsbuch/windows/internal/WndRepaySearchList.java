@@ -39,6 +39,14 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+/**
+ * Zeigt das Fenster an, wo Rückzahlungen ausgewählt werden können.
+ * 
+ * @author René Majewski
+ * 
+ * @version 0.1
+ * @since 0.4
+ */
 public class WndRepaySearchList extends WndInternalFrame
 	implements ActionListener {
 	/**
@@ -62,16 +70,26 @@ public class WndRepaySearchList extends WndInternalFrame
 	private JTable _table;
 	
 	/**
+	 * Speichert das Fenster für die Schulden
+	 */
+	private WndOutstandingChange _frame;
+	
+	/**
 	 * Initialisiert das Fenster
 	 * 
 	 * @param desktop Desktop, auf dem sich das Fenster befindet.
 	 * 
 	 * @param data Datensatz der Schulden
+	 * 
+	 * @param frame Fenster für die Schulden
 	 */
-	public WndRepaySearchList(Desktop desktop, OutstandingData data) {
+	public WndRepaySearchList(Desktop desktop, OutstandingData data, 
+			WndOutstandingChange frame) {
 		// Fenster initialisieren
 		super(desktop);
 		setTitle("Rückzahlungen suchen");
+		
+		_frame = frame;
 		
 		// Kein Datenbank-Elemente
 		setEnableDbElements(false);
@@ -144,6 +162,8 @@ public class WndRepaySearchList extends WndInternalFrame
 					StatusBar.getInstance().setMessageAsError(e);
 				}
 			}
+			_frame.update();
+			dispose();
 		} else if (ae.getActionCommand().equals(CANCEL)) {
 			dispose();
 		}

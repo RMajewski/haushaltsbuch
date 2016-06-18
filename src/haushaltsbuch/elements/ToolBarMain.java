@@ -25,6 +25,8 @@ import javax.swing.JToolBar;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
+import org.testsuite.checksource.annotation.CheckSource;
+
 import haushaltsbuch.actions.DbChange;
 import haushaltsbuch.actions.DbDelete;
 import haushaltsbuch.actions.DbInsert;
@@ -131,10 +133,12 @@ public class ToolBarMain extends JToolBar
 		}
 	}
 
+	@CheckSource(ignored=true)
 	@Override
 	public void internalFrameClosed(InternalFrameEvent e) {
 	}
 
+	@CheckSource(ignored=true)
 	@Override
 	public void internalFrameClosing(InternalFrameEvent e) {
 	}
@@ -155,10 +159,12 @@ public class ToolBarMain extends JToolBar
 		_print.setEnabled(false);
 	}
 
+	@CheckSource(ignored=true)
 	@Override
 	public void internalFrameDeiconified(InternalFrameEvent e) {
 	}
 
+	@CheckSource(ignored=true)
 	@Override
 	public void internalFrameIconified(InternalFrameEvent e) {
 	}

@@ -29,9 +29,7 @@ import javax.swing.table.AbstractTableModel;
 
 import org.testsuite.helper.HelperCalendar;
 
-import haushaltsbuch.datas.Data;
 import haushaltsbuch.datas.RepayData;
-import haushaltsbuch.datas.RepaySearchData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.elements.StatusBar;
 
@@ -73,7 +71,7 @@ public class RepayListModel extends AbstractTableModel
 	 */
 	@Override
 	public int getColumnCount() {
-		return DbController.queries().repay().getCloumnCount();
+		return DbController.queries().repay().getCloumnCount() + 2;
 	}
 
 	/**
@@ -97,15 +95,39 @@ public class RepayListModel extends AbstractTableModel
 	 */
 	@Override
 	public Object getValueAt(int row, int col) {
-		switch (col) {
-			case 0:
-				return _list.get(row).getId();
-				
-			case 1:
-				return _list.get(row).getDetailsId();
-				
-			case 2:
-				return _list.get(row).getOutstandingId();
+		try {
+			switch (col) {
+				case 0:
+					return _list.get(row).getId();
+					
+				case 1:
+					return _list.get(row).getDetailsId();
+					
+				case 2:
+					return _list.get(row).getOutstandingId();
+					
+				case 3:
+					Statement stm = DbController.getInstance().createStatement();
+					ResultSet rs = stm.executeQuery(DbController.queries()
+							.moneyDetails().getDate(
+									_list.get(row).getDetailsId()));
+					String date = HelperCalendar.dateToString(
+							rs.getLong("date"));
+					rs.close();
+					return date;
+					
+				case 4:
+					stm = DbController.getInstance().createStatement();
+					rs = stm.executeQuery(DbController.queries()
+							.moneyDetails().getMoney(
+									_list.get(row).getDetailsId()));
+					double money = rs.getLong("money");
+					rs.close();
+					return money;
+			}
+		} catch (SQLException e) {
+			StatusBar.getInstance().setMessageAsError(
+					DbController.statusDbError(), e);
 		}
 		
 		return null;

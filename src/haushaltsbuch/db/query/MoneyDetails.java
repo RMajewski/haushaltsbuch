@@ -510,4 +510,41 @@ public class MoneyDetails extends Query {
 		rs.close();
 		return true;
 	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um das Datum zum angegeben Datensatz zu
+	 * ermitteln.
+	 * 
+	 * @param id ID des Datensatzes, dessen Datum ermittelt werden soll.
+	 * 
+	 * @return Datenbank-Abfrage, um das Datum des angegebenen Datensatzes zu
+	 * ermitteln.
+	 */
+	public String getDate(int id) {
+		return "SELECT m.date FROM " + _tableName + " AS d " +
+				"INNER JOIN money AS m ON m.id = d.moneyid WHERE d.id = " + id;
+	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um den Betrag zum angegeben Datensatz zu
+	 * ermitteln.
+	 * 
+	 * @param id ID des Datensatzes, dessen Betrag ermittelt werden soll.
+	 * 
+	 * @return Datenbank-Abfrage, um das Betrag des angegebenen Datensatzes zu
+	 * ermitteln.
+	 */
+	public String getMoney(int id) {
+		return "SELECT money FROM " + _tableName + " WHERE id = " + id;
+	}
+	
+	/**
+	 * Erstellt die Datenbank-Abfrage, um die letzte vergebene ID auszulesen.
+	 * 
+	 * @return Datenbank-Abfrage, um die letzte vergebene ID auszulesen.
+	 */
+	//OPT In Query verschieben
+	public String lastId() {
+		return "SELECT id FROM " + _tableName + " ORDER BY ID DESC LIMIT 1";
+	}
 }
