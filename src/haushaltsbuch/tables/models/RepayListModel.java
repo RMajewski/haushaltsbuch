@@ -29,41 +29,38 @@ import javax.swing.table.AbstractTableModel;
 
 import org.testsuite.helper.HelperCalendar;
 
-import haushaltsbuch.datas.OutstandingData;
+import haushaltsbuch.datas.Data;
+import haushaltsbuch.datas.RepayData;
+import haushaltsbuch.datas.RepaySearchData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.elements.StatusBar;
-import haushaltsbuch.helper.HelperNumbersOut;
 
 /**
- * Gibt die Daten für die Tabelle 'outstanding' aus.
+ * Gibt die Daten für die Rückzahlungen aus.
  * 
  * @author René Majewski
  *
  * @version 0.1
  * @since 0.4
  */
-public class OutstandingListModel extends AbstractTableModel 
+public class RepayListModel extends AbstractTableModel 
 		implements DbModelInterface {
 
 	/**
-	 * Serilisation ID
+	 * Serialization ID
 	 */
 	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Speichert die Liste mit den Datensätzen
 	 */
-	private List<OutstandingData> _list;
+	private List<RepayData> _list;
 	
 	/**
-	 * Initialisiert das Model
+	 * Initialisiert die Daten
 	 */
-	public OutstandingListModel() {
-		// Klasse initaliseren
-		super();
-		
-		// Tabelle vorbereiten
-		_list = new ArrayList<OutstandingData>();
+	public RepayListModel() {
+		_list = new ArrayList<RepayData>();
 		
 		// Daten initalisieren
 		dataRefresh(false);
@@ -76,7 +73,7 @@ public class OutstandingListModel extends AbstractTableModel
 	 */
 	@Override
 	public int getColumnCount() {
-		return DbController.queries().outstanding().getCloumnCount();
+		return DbController.queries().repay().getCloumnCount();
 	}
 
 	/**
@@ -100,39 +97,17 @@ public class OutstandingListModel extends AbstractTableModel
 	 */
 	@Override
 	public Object getValueAt(int row, int col) {
-		// Welche Spalte soll ausgegeben werden?
 		switch (col) {
-			// ID
 			case 0:
 				return _list.get(row).getId();
 				
-			// Name des Geschäftes
 			case 1:
-				return searchName(DbController.queries().section().search("id", 
-						_list.get(row).getSectionId()));
+				return _list.get(row).getDetailsId();
 				
-			// Höhe der Schulden
 			case 2:
-				return HelperNumbersOut.sum(_list.get(row).getMoney());
-				
-			// Anzahl der Monate
-			case 3:
-				return _list.get(row).getMonths();
-				
-			// Datum der 1. Rate
-			case 4:
-				return HelperCalendar.dateToString(_list.get(row).getStart());
-				
-			// Höhe der monatlichen Rate
-			case 5:
-				return HelperNumbersOut.sum(_list.get(row).getMonthMoney());
-				
-			// Kommentar
-			case 6:
-				return _list.get(row).getComment();
+				return _list.get(row).getOutstandingId();
 		}
 		
-		// Standart-Rückgabe-Wert
 		return null;
 	}
 
@@ -154,12 +129,12 @@ public class OutstandingListModel extends AbstractTableModel
 		try {
 			DbController db = DbController.getInstance();
 			Statement stmt = db.createStatement();
-			ResultSet rs = stmt.executeQuery(DbController.queries().outstanding().select());
+			ResultSet rs = stmt.executeQuery(DbController.queries().repay()
+					.select());
 			while(rs.next()) {
-				_list.add(new OutstandingData(rs.getInt("id"), 
-						rs.getInt("sectionid"), rs.getDouble("money"),
-						rs.getInt("months"), rs.getLong("start"), 
-						rs.getDouble("monthmoney"), rs.getString("comment")));
+				_list.add(new RepayData(rs.getInt("id"), 
+						rs.getInt("money_detailsid"), 
+						rs.getInt("outstandingid")));
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -180,33 +155,11 @@ public class OutstandingListModel extends AbstractTableModel
 	 * @return Selektierter Datensatz
 	 */
 	@Override
-	public OutstandingData getRowDataAt(int row) {
+	public RepayData getRowDataAt(int row) {
 		if (row > -1)
 			return _list.get(row);
 		
-		return new OutstandingData();
-	}
-	
-	/**
-	 * Stellt die Abfrage an die Datenbank und gibt das Ergebenis zurück.
-	 * 
-	 * @param sql SQL-Abfrage, die gestellt werden soll.
-	 * 
-	 * @return Der zu suchende Name
-	 */
-	private String searchName(String sql) {
-		String ret = new String();
-		try {
-			Statement stm = DbController.getInstance().createStatement();
-			ResultSet rs = stm.executeQuery(sql);
-			if (rs.getString("name") != null && !rs.getString("name").isEmpty())
-				ret = rs.getString("name");
-			rs.close();
-		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError(
-					DbController.statusDbError(), e);
-		}
-		return ret;
+		return new RepayData();
 	}
 
 }

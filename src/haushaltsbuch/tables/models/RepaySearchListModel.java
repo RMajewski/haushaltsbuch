@@ -30,40 +30,55 @@ import javax.swing.table.AbstractTableModel;
 import org.testsuite.helper.HelperCalendar;
 
 import haushaltsbuch.datas.OutstandingData;
+import haushaltsbuch.datas.RepayData;
+import haushaltsbuch.datas.RepaySearchData;
 import haushaltsbuch.db.DbController;
 import haushaltsbuch.elements.StatusBar;
-import haushaltsbuch.helper.HelperNumbersOut;
 
 /**
- * Gibt die Daten für die Tabelle 'outstanding' aus.
+ * Gibt die Daten für die gefunden Datensätze für die Rückzahlungen aus.
  * 
  * @author René Majewski
  *
  * @version 0.1
  * @since 0.4
  */
-public class OutstandingListModel extends AbstractTableModel 
+public class RepaySearchListModel extends AbstractTableModel 
 		implements DbModelInterface {
-
 	/**
 	 * Serilisation ID
 	 */
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Speichert die Liste mit den Datensätzen der bereits gespeicherten
+	 * Rückzahlungen.
+	 */
+	private List<RepayData> _repay;
 	
 	/**
-	 * Speichert die Liste mit den Datensätzen
+	 * Speichert die Liste mit den gefundenen Datensätzen, die noch nicht in der
+	 * Liste der Rückzahlungen gespeichert sind.
 	 */
-	private List<OutstandingData> _list;
+	private List<RepaySearchData> _search;
+	
+	/**
+	 * Speichert den Datensatz für die Schulden
+	 */
+	private OutstandingData _data;
 	
 	/**
 	 * Initialisiert das Model
 	 */
-	public OutstandingListModel() {
+	public RepaySearchListModel(OutstandingData data) {
 		// Klasse initaliseren
 		super();
 		
-		// Tabelle vorbereiten
-		_list = new ArrayList<OutstandingData>();
+		_data = data;
+		
+		// Tabellen vorbereiten
+		_repay = new ArrayList<RepayData>();
+		_search = new ArrayList<RepaySearchData>();
 		
 		// Daten initalisieren
 		dataRefresh(false);
@@ -76,7 +91,7 @@ public class OutstandingListModel extends AbstractTableModel
 	 */
 	@Override
 	public int getColumnCount() {
-		return DbController.queries().outstanding().getCloumnCount();
+		return RepaySearchData.COLUMNS;
 	}
 
 	/**
@@ -86,7 +101,7 @@ public class OutstandingListModel extends AbstractTableModel
 	 */
 	@Override
 	public int getRowCount() {
-		return _list.size();
+		return _search.size();
 	}
 
 	/**
@@ -100,39 +115,25 @@ public class OutstandingListModel extends AbstractTableModel
 	 */
 	@Override
 	public Object getValueAt(int row, int col) {
-		// Welche Spalte soll ausgegeben werden?
 		switch (col) {
-			// ID
 			case 0:
-				return _list.get(row).getId();
+				return _search.get(row).getTake();
 				
-			// Name des Geschäftes
 			case 1:
-				return searchName(DbController.queries().section().search("id", 
-						_list.get(row).getSectionId()));
+				return _search.get(row).getDetailsId();
 				
-			// Höhe der Schulden
 			case 2:
-				return HelperNumbersOut.sum(_list.get(row).getMoney());
+				return -1;
 				
-			// Anzahl der Monate
 			case 3:
-				return _list.get(row).getMonths();
+				return _search.get(row).getDate();
 				
-			// Datum der 1. Rate
 			case 4:
-				return HelperCalendar.dateToString(_list.get(row).getStart());
+				return _search.get(row).getMoney();
 				
-			// Höhe der monatlichen Rate
 			case 5:
-				return HelperNumbersOut.sum(_list.get(row).getMonthMoney());
-				
-			// Kommentar
-			case 6:
-				return _list.get(row).getComment();
+				return _search.get(row).getComment();
 		}
-		
-		// Standart-Rückgabe-Wert
 		return null;
 	}
 
@@ -148,18 +149,36 @@ public class OutstandingListModel extends AbstractTableModel
 	@Override
 	public void dataRefresh(boolean repaint) {
 		// Liste mit Daten leeren
-		_list.clear();
+		_repay.clear();
+		_search.clear();
 		
 		// Daten aus Datenbank lesen
 		try {
 			DbController db = DbController.getInstance();
 			Statement stmt = db.createStatement();
-			ResultSet rs = stmt.executeQuery(DbController.queries().outstanding().select());
+			ResultSet rs = stmt.executeQuery(DbController.queries().repay()
+					.select());
 			while(rs.next()) {
-				_list.add(new OutstandingData(rs.getInt("id"), 
-						rs.getInt("sectionid"), rs.getDouble("money"),
-						rs.getInt("months"), rs.getLong("start"), 
-						rs.getDouble("monthmoney"), rs.getString("comment")));
+				_repay.add(new RepayData(rs.getInt("id"), 
+						rs.getInt("money_detailsid"),
+						rs.getInt("outstandingid")));
+			}
+			rs = stmt.executeQuery(DbController.queries().moneyDetails()
+					.searchPay(_data.getSectionId()));
+			while(rs.next()) {
+				boolean insert = true;
+				for (int i = 0; i < _repay.size(); i++)
+					if (_repay.get(i).getDetailsId() == rs.getInt("id")) {
+						insert = false;
+						break;
+					}
+				
+				if (insert) {
+					_search.add(new RepaySearchData(-1, rs.getInt("id"), -1, 
+							HelperCalendar.dateToString(rs.getLong("date")),
+							rs.getDouble("money"),
+							rs.getString("comment")));
+				}
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -180,33 +199,67 @@ public class OutstandingListModel extends AbstractTableModel
 	 * @return Selektierter Datensatz
 	 */
 	@Override
-	public OutstandingData getRowDataAt(int row) {
+	public RepaySearchData getRowDataAt(int row) {
 		if (row > -1)
-			return _list.get(row);
+			return _search.get(row);
 		
-		return new OutstandingData();
+		return new RepaySearchData();
 	}
 	
 	/**
-	 * Stellt die Abfrage an die Datenbank und gibt das Ergebenis zurück.
+	 * Gibt die Klasse für die entsprechende Spalte aus.
 	 * 
-	 * @param sql SQL-Abfrage, die gestellt werden soll.
+	 * @param column Index der Spalte.
 	 * 
-	 * @return Der zu suchende Name
+	 * @return Klasse für die angegebene Spalte.
 	 */
-	private String searchName(String sql) {
-		String ret = new String();
-		try {
-			Statement stm = DbController.getInstance().createStatement();
-			ResultSet rs = stm.executeQuery(sql);
-			if (rs.getString("name") != null && !rs.getString("name").isEmpty())
-				ret = rs.getString("name");
-			rs.close();
-		} catch (SQLException e) {
-			StatusBar.getInstance().setMessageAsError(
-					DbController.statusDbError(), e);
-		}
-		return ret;
+	@Override
+	public Class<?> getColumnClass(int column) {
+		if (column == 0)
+			return Boolean.class;
+		
+		return super.getColumnClass(column);
 	}
-
+	
+	/**
+	 * Die Spalte 0 (mit Check-Boxen) soll editierbar sein.
+	 * 
+	 * @param row Zeile, in der sich die Zelle befindet.
+	 * 
+	 * @param col Spalte, in der sich die Zelle befindet.
+	 * 
+	 * @return Ist die Zelle editierbar?
+	 */
+	@Override
+	public boolean isCellEditable(int row, int col) {
+		return col == 0;
+	}
+	
+	/**
+	 * Speichert den übergebenen Wert im entsprechenden Datensatz. Wenn der Wert
+	 * geändert wurde, so wird der Tabelle mitgeteilt, welche Zelle sich
+	 * geändert hat.
+	 * 
+	 * @param value Wert der gespeichert werden soll.
+	 * 
+	 * @param row Zeile, in der die Zelle sich befindet.
+	 * 
+	 * @param col Spalte, in der die die Zelle sich befindet.
+	 */
+	@Override
+	public void setValueAt(Object value, int row, int col) {
+		if (col == 0) {
+			_search.get(row).setTake(((Boolean)value).booleanValue());
+			fireTableCellUpdated(row, col);
+		}
+	}
+	
+	/**
+	 * Gibt die ID vom Schulden-Datensatz zurück.
+	 * 
+	 * @return ID des Schulden-Datensatzes.
+	 */
+	public int getOutstandingId() {
+		return _data.getId();
+	}
 }

@@ -46,9 +46,30 @@ public class Repay extends Query {
 	 */
 	@Override
 	public String createTable() {
-		return "CREATE TABLE IF NOT EXISTS 'oustanding' (" +
+		return "CREATE TABLE IF NOT EXISTS 'repay' (" +
 				"'id' INTEGER PRIMARY KEY AUTOINCREMENT," +
 				"'outstandingid' INTEGER NOT NULL," +
 				"'money_detailsid' INTEGER NOT NULL);";
+	}
+	
+	/**
+	 * Erstellt die Datenbank-Abfrage zum Einfügen von neuen Datensätzen.
+	 * 
+	 * @param detailsId ID für die Zahlung
+	 * 
+	 * @param oustandingId ID des Datensatzes der Schulden
+	 * 
+	 * @return Datenbank-Abfrage zum Einfügen von neuen Datensätzen.
+	 */
+	public String insert(int detailsId, int oustandingId) {
+		StringBuilder ret = new StringBuilder(insert());
+		
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1,
+				String.valueOf(oustandingId));
+		
+		ret.replace(ret.indexOf("?"), ret.indexOf("?") + 1, 
+				String.valueOf(detailsId));
+		
+		return ret.toString();
 	}
 }

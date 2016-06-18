@@ -467,6 +467,27 @@ public class MoneyDetails extends Query {
 		// Abfrage zurück geben
 		return ret.toString();
 	}
+	
+	/**
+	 * Erzeugt die Datenbank-Abfrage, um Zahlungen für das angegebene Geschäft
+	 * zu auszugeben.
+	 * 
+	 * @param sectionid ID des Geschäftes, für das Zahlungen gesucht werden
+	 * sollen.
+	 * 
+	 * @return Datenbank-Abfrage, um Zahlungen zu für das angegebene Geschäft
+	 * auszugeben.
+	 */
+	public String searchPay(int sectionid) {
+		StringBuilder ret = new StringBuilder("SELECT d.id, m.date, d.money, ");
+		ret.append("d.comment FROM money_details AS d INNER JOIN money AS m ");
+		ret.append("ON d.moneyid = m.id WHERE d.sectionid");
+		ret.append(" = ");
+		ret.append(sectionid);
+		ret.append(" ORDER BY m.date ASC");
+		
+		return ret.toString();
+	}
 
 	/**
 	 * Erzeugt die Spalte "paymentid", wenn sie noch nicht exitiert.

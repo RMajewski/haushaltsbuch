@@ -37,8 +37,8 @@ import haushaltsbuch.db.DbController;
 import haushaltsbuch.dialogs.DlgInfo;
 import haushaltsbuch.elements.Desktop;
 import haushaltsbuch.elements.StatusBar;
-import haushaltsbuch.tables.models.MoneyListModel;
 import haushaltsbuch.tables.models.OutstandingListModel;
+import haushaltsbuch.tables.models.RepayListModel;
 
 import java.awt.BorderLayout;
 import javax.swing.JSplitPane;
@@ -55,6 +55,7 @@ import javax.swing.JComboBox;
 import java.awt.Insets;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
 
 /**
  * Zeigt das Fenster an, um einen neuen Datensatz anzulegen oder einen
@@ -124,9 +125,14 @@ public class WndOutstandingChange extends WndChangeFrame  {
 	private JFormattedTextField _txtMonthMoney;
 	
 	/**
-	 * Speichert die Höhe der Schuld
+	 * Speichert den Button zum Suchen der Rückzahlungen
 	 */
-	private double _money;
+	private JButton _btnSearch;
+	
+	/**
+	 * Speichert den Button zum Einfügen einer neuen Rückzahlung
+	 */
+	private JButton _btnNewRepay;
 
 	/**
 	 * Initalisiert das Fenster.
@@ -140,8 +146,6 @@ public class WndOutstandingChange extends WndChangeFrame  {
 	 */
 	public WndOutstandingChange(Desktop desktop, Data data, WndTableFrame frame) {
 		super(desktop, data, frame, false);
-		
-		_money = 0.00;
 		
 		// Größe des Fensters festlegen
 		setSize(desktop.getWidth(), desktop.getHeight());
@@ -187,15 +191,6 @@ public class WndOutstandingChange extends WndChangeFrame  {
 		
 		_txtMoney = new JFormattedTextField(new DecimalFormat("0.00"));
 		_txtMoney.setText("0,00");
-		_txtMoney.addPropertyChangeListener(new PropertyChangeListener() {
-			@Override
-			public void propertyChange(PropertyChangeEvent e) {
-				if (_txtMoney.getValue() != null)
-					_money = ((Number)_txtMoney.getValue()).doubleValue();
-				else
-					_money = 0.00;
-			}
-		});
 		GridBagConstraints gbc__txtMoney = new GridBagConstraints();
 		gbc__txtMoney.insets = new Insets(0, 0, 5, 0);
 		gbc__txtMoney.fill = GridBagConstraints.HORIZONTAL;
@@ -220,8 +215,11 @@ public class WndOutstandingChange extends WndChangeFrame  {
 		_txtMonths.addPropertyChangeListener(new PropertyChangeListener() {
 			@Override
 			public void propertyChange(PropertyChangeEvent e) {
-				if ((_txtMonths.getValue() != null) && (_money > 0.00)) {
-					_txtMonthMoney.setValue(new Double(_money / 
+				
+				if ((_txtMonths.getValue() != null) && 
+						(_txtMoney.getValue() != null)) {
+					_txtMonthMoney.setValue(new Double(
+							((Number)_txtMoney.getValue()).doubleValue() / 
 							((Number)_txtMonths.getValue()).intValue()));
 				}
 			}
@@ -288,9 +286,19 @@ public class WndOutstandingChange extends WndChangeFrame  {
 		JPanel panRepay = new JPanel();
 		panRepay.setLayout(new BorderLayout(0, 0));
 	
-		_table = new JTable();
+		RepayListModel model = new RepayListModel();
+		_table = new JTable(model);
 		panRepay.add(_table);
+		_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		_table.setRowSelectionAllowed(true);
+		JScrollPane pane = new JScrollPane(_table);
+		panRepay.add(pane);
 		splitPane.setRightComponent(panRepay);
+		
+		// Namen der Tabellen-Spalten
+		_table.getColumnModel().getColumn(0).setHeaderValue("ID");
+		_table.getColumnModel().getColumn(1).setHeaderValue("Details-Id");
+		_table.getColumnModel().getColumn(2).setHeaderValue("Outstanding-Id");
 		
 		JPanel panRest = new JPanel();
 		panRepay.add(panRest, BorderLayout.WEST);
@@ -312,17 +320,19 @@ public class WndOutstandingChange extends WndChangeFrame  {
 		panRepay.add(panRepayButtons, BorderLayout.SOUTH);
 		panRepayButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnNewRepay = new JButton("Neue Zahlung");
-		btnNewRepay.setMnemonic('Z');
-		btnNewRepay.addActionListener(this);
-		btnNewRepay.setActionCommand(REPAY_NEW);
-		panRepayButtons.add(btnNewRepay);
+		_btnNewRepay = new JButton("Neue Zahlung");
+		_btnNewRepay.setMnemonic('Z');
+		_btnNewRepay.addActionListener(this);
+		_btnNewRepay.setActionCommand(REPAY_NEW);
+		_btnNewRepay.setEnabled(false);
+		panRepayButtons.add(_btnNewRepay);
 		
-		JButton btnSearch = new JButton("Zahlungen suchen");
-		btnSearch.setMnemonic('s');
-		btnSearch.addActionListener(this);
-		btnSearch.setActionCommand(REPAY_SEARCH);
-		panRepayButtons.add(btnSearch);
+		_btnSearch = new JButton("Zahlungen suchen");
+		_btnSearch.setMnemonic('s');
+		_btnSearch.addActionListener(this);
+		_btnSearch.setActionCommand(REPAY_SEARCH);
+		_btnSearch.setEnabled(false);
+		panRepayButtons.add(_btnSearch);
 		
 		JPanel panButtons = new JPanel();
 		getContentPane().add(panButtons, BorderLayout.SOUTH);
@@ -348,6 +358,8 @@ public class WndOutstandingChange extends WndChangeFrame  {
 			_txtMonths.setValue(((OutstandingData)_data).getMonths());
 			_txtStart.setText(((OutstandingData)_data).getStartAsString());
 			_txtComment.setText(((OutstandingData)_data).getComment());
+			_btnSearch.setEnabled(true);
+			_btnNewRepay.setEnabled(true);
 		}
 		
 		// Geschäfte füllen
@@ -460,6 +472,11 @@ public class WndOutstandingChange extends WndChangeFrame  {
 						StatusBar.getInstance().setMessageAsError(
 								DbController.queries().outstanding()
 								.statusInsertError(), new String());
+					
+					// ID des Datensatzes ermitteln
+					rs = stm.executeQuery(DbController.queries()
+							.outstanding().lastId());
+					_data.setId(rs.getInt("id"));
 				} else {
 					// Datensatz ändern
 					String sql = new String();
@@ -486,17 +503,20 @@ public class WndOutstandingChange extends WndChangeFrame  {
 									new String());
 				}
 					
+				// Datensatz aktualisieren
+				((OutstandingData)_data).setMoney(money);
+				((OutstandingData)_data).setMonths(months);
+				((OutstandingData)_data).setMonthMoney(monthMoney);
+				((OutstandingData)_data).setStart(start);
+				((OutstandingData)_data).setComment(comment);
 			} catch (SQLException e) {
 				StatusBar.getInstance().setMessageAsError(
 						DbController.statusDbError(), e);
 			}
 			
-			// Beenden
-			try {
-				 setClosed(true);
-			} catch (Exception e) {
-				StatusBar.getInstance().setMessageAsError(e);
-			}
+			// Button enablen
+			_btnSearch.setEnabled(true);
+			_btnNewRepay.setEnabled(true);
 			
 			// Tabelle updaten
 			if (_frame != null) {
@@ -515,6 +535,15 @@ public class WndOutstandingChange extends WndChangeFrame  {
 							_frame.getTable().getRowCount() -1);
 				}
 			}
+			
+			// Methode beenden
+			return;
+		}
+		
+		// Rückzahlungen suchen
+		if (ae.getActionCommand().equals(REPAY_SEARCH)) {
+			_desktop.addInternalFrame(new WndRepaySearchList(_desktop,
+					(OutstandingData)_data));
 			
 			// Methode beenden
 			return;

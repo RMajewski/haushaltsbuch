@@ -392,4 +392,13 @@ public class Outstanding extends Query {
 		
 		return ret.toString();
 	}
+	
+	/**
+	 * Erstellt die Datenbank-Abfrage, um die letzte vergebene ID auszulesen.
+	 * 
+	 * @return Datenbank-Abfrage, um die letzte vergebene ID auszulesen.
+	 */
+	public String lastId() {
+		return "SELECT id FROM " + _tableName + " ORDER BY ID DESC LIMIT 1";
+	}
 }

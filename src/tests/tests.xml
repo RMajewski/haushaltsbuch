@@ -74,7 +74,7 @@
 			<test checkSource="haushaltsbuch.datas.MoneyDetailsData">TestMoneyDetailsData</test>
 			<test checkSource="haushaltsbuch.datas.ReportData">TestReportData</test>
 			<test checkSource="haushaltsbuch.datas.ReportMonthData">TestReportMonthData</test>
-			<test checkSource="haushaltsbuch.datas.ReportPreferenceData">TestReportPreferenceData</test>
+			<test checkSource="haushaltsbuch.datas.ReportPreferencesData">TestReportPreferenceData</test>
 			<test checkSource="haushaltsbuch.datas.ReportWeekData">TestReportWeekData</test>
 			<test checkSource="haushaltsbuch.datas.ReportYearData">TestReportYearData</test>
 			<test checkSource="haushaltsbuch.datas.ReportCategoryData">TestReportCategoryData</test>
@@ -117,25 +117,25 @@
 			<name>Helfer</name>
 			<package>tests.tests.helper</package>
 			<test checkSource="haushaltsbuch.helper.HelperCalendar">TestHelperCalendar</test>
-			<test checkSource="haushaltsbuch.helper.HelperNumberOut">TestHelperNumberOut</test>
+			<test checkSource="haushaltsbuch.helper.HelperNumbersOut">TestHelperNumberOut</test>
 			<test checkSource="haushaltsbuch.helper.HelperPrint">TestHelperPrint</test>
 		</testSuite>
 		<testSuite>
 			<name>Hilfe</name>
 			<package>tests.tests.help</package>
-			<test checkSource="haushaltsbuch.help.Helpt">TestHelp</test>
+			<test checkSource="haushaltsbuch.help.Help">TestHelp</test>
 		</testSuite>
 		<testSuite>
 			<name>Zuhörer</name>
 			<package>tests.tests.listener</package>
-			<test checkSource="haushaltsbuch.listener.ToolbarDbElementListener">TestToolBarDbElementListener</test>
+			<test checkSource="haushaltsbuch.listener.ToolBarDbElementListener">TestToolBarDbElementListener</test>
 		</testSuite>
 		<testSuite>
 			<name>Menüs</name>
 			<package>tests.tests.menus</package>
 			<test checkSource="haushaltsbuch.menus.PopupStandardList">TestPopupStandardList</test>
 			<test checkSource="haushaltsbuch.menus.PopupMoneyList">TestPopupMoneyList</test>
-			<test checkSource="haushaltsbuch.menus.TopMainMenu">TestTopMainMenu</test>
+			<test checkSource="haushaltsbuch.menus.MainTop">TestTopMainMenu</test>
 		</testSuite>
 		<testSuite>
 			<name>Renderer</name>
@@ -145,15 +145,15 @@
 		<testSuite>
 			<name>Tabellen-Modelle</name>
 			<package>tests.tests.tables.models</package>
-			<test checkSource="haushaltsbuch.tables.IdNameListModel">TestIdNameListModel</test>
-			<test checkSource="haushaltsbuch.tables.MoneyDetailsListModel">TestMoneyDetailsListModel</test>
-			<test checkSource="haushaltsbuch.tables.MoneyListModel">TestMoneyListModel</test>
-			<test checkSource="haushaltsbuch.tables.ReportMonthModel">TestReportMonthModel</test>
-			<test checkSource="haushaltsbuch.tables.ReportWeekModel">TestReportWeekModel</test>
-			<test checkSource="haushaltsbuch.tables.ReportYearModel">TestReportYearModel</test>
-			<test checkSource="haushaltsbuch.tables.ReportSectionModel">TestReportSectionModel</test>
-			<test checkSource="haushaltsbuch.tables.ReportCategoryModel">TestReportCategoryModel</test>
-			<test checkSource="haushaltsbuch.tables.OutstandingListModel">TestOutstandingListModel</test>
+			<test checkSource="haushaltsbuch.tables.models.IdNameListModel">TestIdNameListModel</test>
+			<test checkSource="haushaltsbuch.tables.models.MoneyDetailsListModel">TestMoneyDetailsListModel</test>
+			<test checkSource="haushaltsbuch.tables.models.MoneyListModel">TestMoneyListModel</test>
+			<test checkSource="haushaltsbuch.tables.models.ReportMonthModel">TestReportMonthModel</test>
+			<test checkSource="haushaltsbuch.tables.models.ReportWeekModel">TestReportWeekModel</test>
+			<test checkSource="haushaltsbuch.tables.models.ReportYearModel">TestReportYearModel</test>
+			<test checkSource="haushaltsbuch.tables.models.ReportSectionModel">TestReportSectionModel</test>
+			<test checkSource="haushaltsbuch.tables.models.ReportCategoryModel">TestReportCategoryModel</test>
+			<test checkSource="haushaltsbuch.tables.models.OutstandingListModel">TestOutstandingListModel</test>
 		</testSuite>
 	</testGroup>
 	

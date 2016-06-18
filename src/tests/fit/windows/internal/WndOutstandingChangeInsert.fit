@@ -375,12 +375,22 @@
 				<tr>
 					<td>check</td>
 					<td>isWindowVisible</td>
-					<td>false</td>
+					<td>true</td>
 				</tr>
 				<tr>
 					<td>check</td>
 					<td>getDbTableRowCount</td>
 					<td>2</td>
+				</tr>
+				<tr>
+					<td>press</td>
+					<td>pushCancel</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>check</td>
+					<td>isWindowVisible</td>
+					<td>false</td>
 				</tr>
 			</tbody>
 		</table>

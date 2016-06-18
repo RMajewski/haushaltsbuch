@@ -21,10 +21,6 @@ package tests.fixtures.windows.internal;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import haushaltsbuch.db.DbController;
 import tests.fixtures.FixtureWnd;
 import tests.tests.windows.internal.TestWndOutstandingChange;
